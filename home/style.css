@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+    
 }
 
 
@@ -14,7 +15,7 @@
     background-color: white;
     color: #18A0FB;
     box-shadow: 0 0 2px black ;
-
+    
 }
 
 .Hcontainer {
@@ -102,6 +103,7 @@ footer{
     box-shadow: 0 0 2px  black;
     justify-content: center;
     display: flex  ;
+    color: #18A0FB;
 
 }
 
@@ -127,6 +129,8 @@ footer{
 .Fitem a{
     font-size: 1em;
     text-decoration: none;
+    color: #18A0FB;
+
 }
 
 .Fcontainer{
@@ -151,4 +155,5 @@ text-align: center;
 section{
     flex: 1;
     padding: 100px;
+    background-color: aliceblue;
 }
