@@ -74,28 +74,6 @@ li.Login a {
     color: #18A0FB;
 }
 
-/* Responsive  header*/
-@media (max-width: 900px) {
-    .header_item {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-    }
-    .header_item.active {
-        display: flex;
-    }
-    .menu_toggle {
-        display: flex;
-    }
-    .menu_toggle img {
-        display: flex;
-    }
-    .header_item li {
-        text-align: center;
-        margin: 10px 0;
-    }
-}
-
 
 /*fotter-----------------*/
 
@@ -104,6 +82,7 @@ footer{
     justify-content: center;
     display: flex  ;
     color: #18A0FB;
+    width: 100%;
 
 }
 
@@ -151,9 +130,102 @@ text-align: center;
 
 
 
+
+
+
+
+
 /*section-----------------*/
+
 section{
-    flex: 1;
-    padding: 100px;
+
+    width: 100%;
     background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+
+}
+.title{
+    box-shadow: 0 0 2PX black;
+    background-color: #D9D9D9;
+}
+
+.Scontainer{
+    display: flex;
+    height: 120px;
+    width: 1200px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.Scontainer h1{
+    text-decoration: underline;
+    justify-content: center;
+
+}
+
+.Kcontainer{
+    max-width: 1200px;
+    display: flex;
+    padding: 20px 20px;
+    gap: 20px;
+    align-items: center;
+    flex-direction: row;
+}
+
+.Kcontainer a{
+    text-decoration: none;
+    color: black;
+}
+
+.kcard{
+    padding: 20px;
+    gap: 20px;
+    display: flex;
+    border: 2px solid black;
+    align-items: center;
+    width: 270px;
+    height: 300px;
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+
+
+
+
+/* Responsive r*/
+@media (max-width: 900px) {
+    .header_item {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    .header_item.active {
+        display: flex;
+    }
+    .menu_toggle {
+        display: flex;
+    }
+    .menu_toggle img {
+        display: flex;
+    }
+    .header_item li {
+        text-align: center;
+        margin: 10px 0;
+    }
+    .Flinks{
+        flex-direction: column;
+    }
+    .Flink{
+        flex-direction: column;
+        
+    }
+    .Kcontainer{
+        
+        flex-direction: column;
+
+    }
 }
