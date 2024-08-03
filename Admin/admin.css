@@ -63,8 +63,9 @@ iframe{
 /*adminDashboard*/
 
 .adminDashBoard{
-    width: 60vw;
-    height: 60vh;
+    padding: 100vh 20px 20px 20px;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
