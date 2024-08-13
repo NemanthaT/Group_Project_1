@@ -1,0 +1,70 @@
+/*admin*/
+body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+.left{
+    color: #18A0FB;
+    width: 40vh;
+    height: 100vh;
+    display: flex;
+    align-content: normal;
+    border: 1px solid black;
+}
+
+.right{
+    width: 100%;
+    height: 100vh;
+}
+
+.right .top{
+    width: 100%;
+    height: 10%;
+    text-align: right;
+    align-content: inline;
+    border-width: 1px 1px 1px 0px;
+    border-style: solid;
+    border-color: black;
+}
+
+/* .right .bottom{
+    width: 100%;
+    height: 90vh;
+    align-content: inline;
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: black;
+}*/
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-content: inline;
+    overflow: hidden;
+}
+
+ul a{
+    text-decoration: none;
+    color: black;
+}
+
+iframe{
+    width: 100%;
+    height: 90vh;
+    border: none;
+}
+
+/*adminDashboard*/
+
+.adminDashBoard{
+    width: 60vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+}
