@@ -5,7 +5,7 @@
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['username'])) { // if not logged in
         header("Location: login.php");
         exit;
     }
