@@ -3,18 +3,14 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    
 }
 
-/*---------------header*/
-
-/* Navbar  */
+/* Navbar */
 .navbar {
     width: 100%;
     background-color: white;
     color: #18A0FB;
-    box-shadow: 0 0 2px black ;
-    
+    box-shadow: 0 0 2px black;
 }
 
 .Hcontainer {
@@ -26,15 +22,16 @@
     justify-content: space-between;
 }
 
-/* Logo  */
+/* Logo */
 .header_logo img {
     height: 75px;
 }
 
-/* Navigation Links  */
+/* Navigation Links */
 .header_item {
     list-style: none;
     display: flex;
+    align-items: center;
 }
 
 .header_item li {
@@ -42,15 +39,14 @@
 }
 
 .header_item a {
-    padding: 5px 10px 5px 10px;
+    padding: 5px 10px;
     border-radius: 7px;
     color: #18A0FB;
     font-size: 1em;
     text-decoration: none;
-
 }
 
-/* Menu Toggle Button  */
+/* Menu Toggle Button */
 .menu_toggle {
     display: none;
 }
@@ -62,131 +58,145 @@
     transition: all 0.3s ease;
 }
 
-/* Add Border to Login Class */
-li.Login a {
-    padding: 5px 20px 5px 20px;
+/* Add Border to Login and Register Classes */
+li.Login a, li.Register a {
+    padding: 5px 20px;
     border: 1px solid #18A0FB;
 }
 
-.header_item a:hover{
-    background-color: rgb(215, 236, 255);    
+.header_item a:hover {
+    background-color: rgb(215, 236, 255);
     color: #18A0FB;
 }
 
+/* Main Section */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    text-align: center;
+}
 
-/*fotter-----------------*/
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
 
-footer{
-    box-shadow: 0 0 2px  black;
+p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.form-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.specialized-fields, .services-provided {
+    width: 45%;
+    text-align: left;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.qualifications {
+    margin-bottom: 20px;
+}
+
+#special-qualifications {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.terms-and-conditions {
+    margin-bottom: 30px;
+    font-size: 1.2em;
+}
+
+.terms-and-conditions a {
+    color: #18A0FB;
+    text-decoration: none;
+}
+
+.submit-btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #0e7ac4;
+}
+
+/* Footer */
+footer {
+    box-shadow: 0 0 2px black;
     justify-content: center;
-    display: flex  ;
+    display: flex;
     color: #18A0FB;
     width: 100%;
-
+    padding: 20px 0;
+    background-color: white;
 }
 
-.Flinks{
-    display: flex  ;
-    flex-direction: row;
-    justify-content:  space-between ;
-}
-.Flogo img{
-    width: 250px;
+.Fcontainer {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
 }
 
-.Flink ul{
+.Fheading {
+    padding: 10px;
+    text-align: center;
+}
+
+.Flinks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.Flink ul {
     list-style: none;
     padding-right: 150px;
 }
 
-.Flink{
-    display: flex;
-    flex-direction: row;    
-}
-
-.Fitem a{
+.Fitem a {
     font-size: 1em;
     text-decoration: none;
     color: #18A0FB;
-
 }
 
-.Fcontainer{
-    width: 1200px;
-    display: flex;
-    justify-content: left;
-    padding: 20px;
-    flex-direction: column;
+.Flogo img {
+    width: 250px;
 }
 
-.Fheading{
-    padding: 10px;
+.Fcopyright {
+    text-align: center;
 }
 
-.Fcopyright{
-text-align: center;
-}
-
-
-/*section-----------------*/
-
-section{
-
-    width: 100%;
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-
-}
-.title{
-    box-shadow: 0 0 2PX black;
-    background-color: #D9D9D9;
-}
-
-.Scontainer{
-    display: flex;
-    height: 120px;
-    width: 1200px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    justify-content: flex-start;
-    align-items: flex-end;
-}
-
-.Scontainer h1{
-    text-decoration: underline;
-    justify-content: center;
-
-}
-
-.Kcontainer{
-    max-width: 1200px;
-    display: flex;
-    padding: 20px 20px;
-    gap: 20px;
-    align-items: center;
-    flex-direction: row;
-}
-
-.Kcontainer a{
-    text-decoration: none;
-    color: black;
-}
-
-.kcard{
-    padding: 20px;
-    gap: 20px;
-    display: flex;
-    border: 2px solid black;
-    align-items: center;
-    width: 270px;
-    height: 300px;
-    border-radius: 20px;
-    flex-direction: column;
-}
-
-
-/* Responsive r*/
+/* Responsive Design */
 @media (max-width: 900px) {
     .header_item {
         display: none;
@@ -206,16 +216,17 @@ section{
         text-align: center;
         margin: 10px 0;
     }
-    .Flinks{
+    .Flinks {
         flex-direction: column;
     }
-    .Flink{
+    .Flink {
         flex-direction: column;
-        
     }
-    .Kcontainer{
-        
+    .form-section {
         flex-direction: column;
-
+        align-items: center;
+    }
+    .specialized-fields, .services-provided {
+        width: 100%;
     }
 }
