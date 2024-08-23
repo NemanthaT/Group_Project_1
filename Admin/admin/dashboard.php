@@ -7,8 +7,7 @@
         <link rel="stylesheet" href="dashboard.css">
     </head>
     <body>
-        <div class="dashboard">
-            <div class="backgroundimage">
+            <div class="dashboard">
                 
             </div>
             <div class="card">
