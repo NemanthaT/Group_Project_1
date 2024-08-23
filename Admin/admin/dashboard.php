@@ -21,8 +21,9 @@
         <link rel="stylesheet" href="dashboard.css">
     </head>
     <body>
-            <div class="dashboard">
-                
+        <div class="dashboard">
+            <div class="backgroundimage">
+                <img src="Image/background.jpg" alt="background">
             </div>
             <div class="card">
                 <div class="icon"></div>
