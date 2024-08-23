@@ -4,24 +4,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin Dashboard</title>
-        <link rel="stylesheet" href="dashboard.css">
+        <link rel="stylesheet" href="users.css">
     </head>
     <body>
             <div class="dashboard">
-                
+                <div class="card">
+                    <div class="icon"></div>
+                    <p><a href="clients.php">Clients</a></p>
+                </div>
+                <div class="card">
+                    <div class="icon"></div>
+                    <p><a href="serviceProviders.php">Service Providers</a></p>
+                </div>
+                <div class="card">
+                    <div class="icon"></div>
+                    <p><a href="companyWorkers.php">Company Workers</a></p>
+                </div>
             </div>
-            <div class="card">
-                <div class="icon"></div>
-                <p>Clients</p>
-            </div>
-            <div class="card">
-                <div class="icon"></div>
-                <p>Service Providers</p>
-            </div>
-            <div class="card">
-                <div class="icon"></div>
-                <p>Company Workers</p>
-            </div>
-        </div>
     </body>
 </html>
