@@ -54,11 +54,6 @@ nav ul li a {
     padding: 10px;
 }
 
-nav ul li ul {
-    margin-left: 20px;
-    margin-top: 5px;
-}
-
 .content {
     flex-grow: 1;
     display: grid;
@@ -104,20 +99,12 @@ a {
     color: #fff;
 }
 
-.dropDownContent{
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #333;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    min-width: 160px;
-    z-index: 2;
+ul:hover {
+    color: white;
 }
 
 .dropDown{
+    font-weight: bold;
     border-radius: 10px;
     border: thin solid #18A0FB;
     width: 70%;
@@ -125,13 +112,6 @@ a {
     transition: transform 0.5s ease-in-out;
 }
 
-.dropDownContent li a {
-    padding: 10px;
-    color: #000000;
-    text-decoration: none;
-    display: block;
-    white-space: nowrap;
-}
 .dropDown:hover{
     background-color: #18A0FB;
     color: white;
