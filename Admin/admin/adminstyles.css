@@ -94,13 +94,19 @@ header .user-info button:hover {
     transform: scale(1.2);
 }
 
-a {
+header .user-info button a {
     text-decoration: none;
-    color: #fff;
+    color: white;
 }
 
-ul:hover {
-    color: white;
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
 }
 
 .dropDown{
