@@ -28,12 +28,9 @@
                 </div>
                 <nav>
                     <ul>
-                        <li class="dropDown"><a href="dashboard.html" target="Dashboard">Dashboard</a></li>
-                        <li class="dropDown"><a href="#" target="Dashboard">Knowledge Base</a>
-                            <ul class="dropDownContent">
-                            </ul>
-                        </li>
-                        <li class="dropDown"><a href="#">People</a></li>
+                        <li class="dropDown"><a href="dashboard.php" target="Dashboard">Dashboard</a></li>
+                        <li class="dropDown"><a href="#" target="Dashboard">Knowledge Base</a></li>
+                        <li class="dropDown"><a href="#" target="Dashboard">People</a></li>
                     </ul>
                 </nav>
             </div>
@@ -47,7 +44,7 @@
                     </header>
                 </div>
                 <div class="frame">
-                    <iframe src="dashboard.html" name="Dashboard" title="Dashboard"></iframe>
+                    <iframe src="dashboard.php" name="Dashboard" title="Dashboard"></iframe>
                 </div>
             </div>
         </div>
