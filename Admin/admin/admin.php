@@ -29,7 +29,7 @@
                 <nav>
                     <ul>
                         <li class="dropDown"><a href="dashboard.html" target="Dashboard">Dashboard</a></li>
-                        <li class="dropDown"><a href="#" target="Dashboard">People</a></li>
+                        <li class="dropDown"><a href="people.php" target="Dashboard">People</a></li>
                     </ul>
                 </nav>
             </div>
