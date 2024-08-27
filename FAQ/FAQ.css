@@ -71,7 +71,7 @@ li.Login a, li.Register a {
     color: #18A0FB;
 }
 
-/* Main Section */
+/* Main Section 
 main {
     max-width: 1200px;
     margin: 20px auto;
@@ -147,6 +147,75 @@ label {
 .submit-btn:hover {
     background-color: #0e7ac4;
 }
+*/
+/* Main Section */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.faq-container {
+    width: 100%;
+    text-align: left;
+}
+
+.faq-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+    width: 100%;
+    background-color: #18A0FB;
+    color: white;
+    padding: 15px;
+    font-size: 1.2em;
+    text-align: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #0e7ac4;
+}
+
+.faq-question::after {
+    content: '\002B'; /* Plus symbol */
+    font-size: 1.2em;
+}
+
+.faq-question.active::after {
+    content: '\2212'; /* Minus symbol */
+}
+
+.faq-answer {
+    padding: 0 15px;
+    background-color: white;
+    display: none;
+    font-size: 1em;
+    color: #333;
+}
+
+.faq-answer p {
+    padding: 15px 0;
+    margin: 0;
+}
+
 
 /* Footer */
 footer {
