@@ -1,0 +1,159 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background-color: white;
+    color: #18A0FB;
+    box-shadow: 0 0 2px black;
+}
+
+.Hcontainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header_logo img {
+    height: 75px;
+}
+
+.header_item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.header_item li {
+    margin-left: 15px;
+}
+
+.header_item a {
+    padding: 5px 10px;
+    border-radius: 7px;
+    color: #18A0FB;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+li.Login a, li.Register a {
+    padding: 5px 20px;
+    border: 2px solid;
+    background-color: #18A0FB;
+    color: #F0F8FF;
+}
+
+.header_item a:hover {
+    background-color: rgb(215, 236, 255);
+    color: #18A0FB;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.content-box {
+    width: 48%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    color: #18A0FB;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h4 {
+    color: #666;
+    margin-top: 15px;
+}
+
+p {
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background-color: white;
+    padding: 20px 0;
+    box-shadow: 0 0 2px black;
+    color: #18A0FB;
+}
+
+.Fcontainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Flinks {
+    display: flex;
+}
+
+.Flink ul {
+    list-style: none;
+}
+
+.Flink ul li {
+    margin-bottom: 10px;
+}
+
+.Flink ul li a {
+    text-decoration: none;
+    color: #18A0FB;
+}
+
+.Flogo img {
+    width: 200px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .header_item {
+        display: none;
+    }
+    .Hcontainer {
+        flex-direction: column;
+    }
+    .content-container {
+        flex-direction: column;
+    }
+    .content-box {
+        width: 100%;
+    }
+    .Fcontainer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
