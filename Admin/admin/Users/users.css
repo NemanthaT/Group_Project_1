@@ -10,6 +10,12 @@ body {
     height: 100vh;
 }
 
+.header {
+    text-align: center;
+    background-color:#f4f4f4;
+    color: #18A0FB;
+}
+
 .backgroundimage{
     width: 100vw;
     height: 100vh;
@@ -28,7 +34,7 @@ body {
     height: 100%;
 }
 .dashboard {
-    padding: 50px 20px 20px 100px;
+    padding: 350px 20px 20px 150px;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
