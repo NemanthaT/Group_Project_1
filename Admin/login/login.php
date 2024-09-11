@@ -13,7 +13,7 @@ if (isset($_POST['submit'])){ //check if form was submitted
     $query_serviceproviders = "SELECT * FROM serviceproviders WHERE email='$Email'";  //query to get service provider details
 
     //execute query
-    $result_log_admin = mysqli_query($conn, $query_admin); 
+    $result_log_admin = mysqli_query($conn, $query_admin);
     $result_log_companyworkers = mysqli_query($conn, $query_companyworkers); 
     $result_log_clients = mysqli_query($conn, $query_clients);
     $result_log_serviceproviders = mysqli_query($conn, $query_serviceproviders);
