@@ -9,37 +9,38 @@
 
     <body>
         <h1>Company Workers</h1>
-        <table>
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-            </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>jhon@gmail.com</td>
-                <td>Client</td>
-            </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>jhon@gmail.com</td>
-                <td>Client</td>
-            </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>jhon@gmail.com</td>
-                <td>Client</td>
-            </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>jhon@gmail.com</td>
-                <td>Client</td>
-            </tr>
-            <tr>
-                <td>John Doe</td>
-                <td>jhon@gmail.com</td>
-                <td>Client</td>
-            </tr>
-        </table>
-    </body>
+        <center>
+            <table>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>jhon@gmail.com</td>
+                    <td>Client</td>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>jhon@gmail.com</td>
+                    <td>Client</td>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>jhon@gmail.com</td>
+                    <td>Client</td>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>jhon@gmail.com</td>
+                    <td>Client</td>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>jhon@gmail.com</td>
+                    <td>Client</td>
+                </tr>
+            </table>
+        </center>
 </html>
