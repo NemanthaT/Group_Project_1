@@ -25,8 +25,8 @@
             <div class="backgroundimage">
                 <img src="Image/background.jpg" alt="background">
             </div>
-            <div class="card">
-                <div class="icon" onclick="redirectTo('Users/clients.php')"></div>
+            <div class="card" onclick="redirectTo('Users/clients.php')">
+                <div class="icon"></div>
                 <p>Users</p>
             </div>
             <div class="card">
@@ -50,5 +50,6 @@
                 <p>Manage Employees</p>
             </div>
         </div>
+        <script src="../js/common.js"></script>
     </body>
 </html>
