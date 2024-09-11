@@ -31,7 +31,7 @@
                         <li class="dropDown"><a href="dashboard.php" target="Dashboard">Dashboard</a></li>
                         <li class="dropDown"><a href="Users/users.php" target="Dashboard">Users</a></li>
                         <li class="dropDown"><a href="Users/users.php" target="Dashboard">Service Provider Requests</a></li>
-                        <li class="dropDown"><a href="Users/users.php" target="Dashboard">Forums</a></li>
+                        <li class="dropDown"><a href="Forums/forums.php" target="Dashboard">Forums</a></li>
                         <li class="dropDown"><a href="Users/users.php" target="Dashboard">Financial Reports</a></li>
                         <li class="dropDown"><a href="Users/users.php" target="Dashboard">Appointments</a></li>
                         <li class="dropDown"><a href="Users/users.php" target="Dashboard">Manage Employees</a></li>
