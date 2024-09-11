@@ -9,7 +9,6 @@
 
     <body>
         <h1>Service Providers</h1>
-        <table>
         <center>
             <table>
                 <tr>
@@ -44,6 +43,5 @@
                 </tr>
             </table>
         </center>
-        </table>
     </body>
 </html>
