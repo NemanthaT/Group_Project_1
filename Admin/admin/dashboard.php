@@ -25,7 +25,7 @@
             <div class="backgroundimage">
                 <img src="Image/background.jpg" alt="background">
             </div>
-            <div class="card" onclick="redirectTo('Users/clients.php')">
+            <div class="card" onclick="redirectTo('Users/users.php')">
                 <div class="icon"></div>
                 <p>Users</p>
             </div>
