@@ -1,3 +1,17 @@
+<?php
+    session_start(); 
+    require_once('../../config/config.php');
+
+    $username = $_SESSION['username'];
+    $email = $_SESSION['email'];
+
+    if (!isset($_SESSION['username'])) { // if not logged in
+        header("Location: ../../login/login.php");
+        exit;
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
