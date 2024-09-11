@@ -33,7 +33,7 @@
                 <div class="icon"></div>
                 <p>Service Provider Requests</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="redirectTo('Forums/forums.php')">
                 <div class="icon"></div>
                 <p>Forums</p>
             </div>
