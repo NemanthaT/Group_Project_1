@@ -11,18 +11,19 @@
             <h1>Users</h1>
         </div>
         <div class="dashboard">
-            <div class="card">
+            <div class="card" onclick="redirectTo('clients.php')">
                 <div class="icon"></div>
-                <p><a href="clients.php">Clients</a></p>
+                <p>Clients</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="redirectTo('serviceProviders.php')">
                 <div class="icon"></div>
-                <p><a href="serviceProviders.php">Service Providers</a></p>
+                <p>Service Providers</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="redirectTo('companyWorkers.php')">
                 <div class="icon"></div>
-                <p><a href="companyWorkers.php">Company Workers</a></p>
+                <p>Company Workers</p>
             </div>
         </div>
+        <script src="../../js/common.js"></script>
     </body>
 </html>
