@@ -71,83 +71,6 @@ li.Login a, li.Register a {
     color: #18A0FB;
 }
 
-/* Main Section 
-main {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-}
-
-.form-section {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.specialized-fields, .services-provided {
-    width: 45%;
-    text-align: left;
-}
-
-h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-}
-
-.qualifications {
-    margin-bottom: 20px;
-}
-
-#special-qualifications {
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.terms-and-conditions {
-    margin-bottom: 30px;
-    font-size: 1.2em;
-}
-
-.terms-and-conditions a {
-    color: #18A0FB;
-    text-decoration: none;
-}
-
-.submit-btn {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    background-color: #18A0FB;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit-btn:hover {
-    background-color: #0e7ac4;
-}
-*/
 /* Main Section */
 main {
     max-width: 1200px;
@@ -194,13 +117,8 @@ h1 {
     background-color: #0e7ac4;
 }
 
-.faq-question::after {
-    content: '\002B'; /* Plus symbol */
+.faq-question i {
     font-size: 1.2em;
-}
-
-.faq-question.active::after {
-    content: '\2212'; /* Minus symbol */
 }
 
 .faq-answer {
@@ -215,7 +133,6 @@ h1 {
     padding: 15px 0;
     margin: 0;
 }
-
 
 /* Footer */
 footer {
