@@ -119,33 +119,6 @@ footer {
     flex-direction: column;
 }
 
-.Fheading {
-    padding: 10px;
-    /*text-align: center;*/
-}
-
-.Flinks {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding-bottom: 20px;
-}
-
-.Flink {
-    display: flex; /* Add this line */
-}
-
-.Flink ul {
-    list-style: none;
-    padding-right: 150px;
-}
-
-.Fitem a {
-    font-size: 1em;
-    text-decoration: none;
-    color: #18A0FB;
-}
-
 .Flogo img {
     width: 250px;
 }
