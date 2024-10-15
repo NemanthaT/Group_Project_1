@@ -48,6 +48,9 @@ form button:hover{
 }
 
 p {
+    padding: 0px 0px 0px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 20px;
     color: black;
 }
