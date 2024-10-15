@@ -18,18 +18,19 @@
 <body>
     <h1>Manage Employees</h1>
 
+    <!--Search Employees and list them-->
     <h2>Search Employees</h2>
     <div class="top">
         <form action="" method="POST">
-            <input type="text" name="name" placeholder="Enter name" required>
-            <button type="submit" name="search">Search</button>
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <button type="submit" name="search_name">Search</button>
         </form>
     </div>
     <div id="searchResults">
         <table>
 
             <?php
-                if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['search'])) {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['search_name'])) {
                     $name = $_POST['name'];
             
                     // Prepare and execute the SQL query
@@ -63,6 +64,7 @@
         </table>
     </div>
 
+    <!--Remove Employees-->
     <h2>Remove Employees</h2>
     <div class="top">
         <form action="" method="POST">
@@ -74,22 +76,32 @@
         <?php
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove'])) {
                 $id = $_POST['id'];
-            
-                $del = "DELETE FROM companyworkers WHERE worker_id = $id";
-                if ($conn->query($del) === TRUE) {
-                    echo "<p>Record deleted successfully</p>";
+                $srch="SELECT * FROM companyworkers WHERE worker_id = $id ";
+                $result = $conn->query($srch);
+
+                //checking whether worker exists or not
+                if ($result->num_rows > 0) {
+                    //Removing the worker
+                    $del = "DELETE FROM companyworkers WHERE worker_id = $id";
+                    $opert = $conn->query($srch);
+                    if ($opert===true) {
+                        echo "<p>Record deleted successfully</p>";
+                    } else {
+                        echo "<p>Error: ".$conn->error."</p>";
+                    }
                 } else {
-                    echo "<p>Error deleting record: " . $conn->error. "</p>";
+                    echo "<p>Error: No records</p>";
                 }
             }
         ?>        
     </div>
 
+    <!--Change role of the Employees-->
     <h2>Change Role</h2>
     <div class="top">
         <form action="" method="POST">
             <input type="text" name="id" placeholder="Enter ID" required>
-            <input type="text" name="role" placeholder="Enter the New Role" required>
+            <input type="text" name="role" placeholder="Enter New Role" required>
             <button type="submit" name="change">Change</button>
         </form>
     </div>
@@ -98,12 +110,21 @@
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change'])) {
                 $id = $_POST['id'];
                 $role = $_POST['role'];
-                
-                $chng = "UPDATE companyworkers SET role = $role WHERE companyworkers.worker_id = $id";
-                if ($conn->query($chng) === TRUE) {
-                    echo "<p>Role changed successfully</p>";
+                $srch="SELECT * FROM companyworkers WHERE worker_id = $id ";
+                $result = $conn->query($srch);
+
+                //checking whether worker exists or not
+                if ($result->num_rows > 0) {
+                    //Changing the role
+                    $chng = "UPDATE companyworkers SET role = " . " ' " . $role . " ' " . " WHERE worker_id = $id";
+                    $opert = $conn->query($chng);
+                    if ($opert===true) {
+                        echo "<p>Role changed successfully</p>";
+                    } else {
+                        echo "<p>Error: ".$conn->error."</p>";
+                    }
                 } else {
-                    echo "<p>Error Changing record: </p>";
+                    echo "<p>Error: No records</p>";
                 }
             }
         ?>        
