@@ -25,7 +25,7 @@
     </head>
 
     <body>
-        <h1>Company Workers</h1>
+        <h1><u>Company Workers</u></h1>
         <center>
             <table>
                 <tr>
