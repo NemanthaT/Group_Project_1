@@ -49,7 +49,7 @@
             </tr>
             <?php
                 if($result->num_rows > 0){
-                        // Output matching products
+                        // Output matching results
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr><td>'.$row['worker_id'] .'</td><td>'. $row['full_name'] . '</td><td>'.$row['email'].'</td></tr>';
                     }
