@@ -207,30 +207,38 @@ footer {
         flex-direction: column;
         width: 100%;
     }
+
     .header_item.active {
         display: flex;
     }
+
     .menu_toggle {
         display: flex;
     }
+
     .menu_toggle img {
         display: flex;
     }
+
     .header_item li {
         text-align: center;
         margin: 10px 0;
     }
-    .contact-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .contact-info, .contact-form {
-        width: 90%;
-    }
+
     .Flinks {
         flex-direction: column;
     }
+
     .Flink {
         flex-direction: column;
+    }
+
+    .form-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .specialized-fields, .services-provided {
+        width: 100%;
     }
 }
