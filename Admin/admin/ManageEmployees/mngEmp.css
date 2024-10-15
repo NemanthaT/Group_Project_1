@@ -1,13 +1,36 @@
 form{
-    font-size: large;
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #18A0FB;
     border-radius: 10px;
     background-color: #f9f9f9;
+}
+
+form input {
+    padding: 0px 5px 0px 0px;
+    font-family: Arial, sans-serif;
+    font-size: large;
+}
+
+form button{
+    font-size: large;
+    color: black;
+    background-color:#ccc;
+    cursor: pointer;
+    height: 25px;
+    width: 80px;
+    border: 1px solid #18A0FB;
+    border-radius: 10px;
+    transition: transform 0.1s ease-in-out;
+}
+
+form button:hover{
+    color: white;
+    background-color: #18A0FB;
+    transform: scale(1.1);
 }
 
 .search{
