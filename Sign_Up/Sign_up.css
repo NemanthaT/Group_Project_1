@@ -7,13 +7,27 @@
 }
 
 body {
-    background-color: #18A0FB; /* Overall background color */
+    position: relative;
+    min-height: 100vh;
+}
+
+.blurry-background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/logo.png"); /* Adjust the path as needed */
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: blur(10px);
+    z-index: -1;
 }
 
 /* Main Section */
 main {
-    max-width: 600px; /* Adjust the width as needed */
-    margin: 20px auto; /* Center the main section */
+    max-width: 600px;
+    margin: 20px auto;
     padding: 0 20px;
     text-align: center;
 }
@@ -25,9 +39,9 @@ h1 {
 
 .form-section {
     display: flex;
-    justify-content: center; /* Center the form section */
+    justify-content: center;
     gap: 30px;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
 }
 
 /* Sign-up Section */
@@ -37,8 +51,8 @@ h1 {
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    
 }
+
 .sign-up-btn {
     background-color: #18A0FB;
     color: white;
@@ -54,12 +68,11 @@ h1 {
 }
 
 label {
-    display: block; /* Keep this as block for other labels */
+    display: block;
     margin-top: 20px;
     text-align: left;
 }
 
-/* Styles for input fields */
 input[type="email"], input[type="password"], input[type="text"], input[type="date"] {
     width: 100%;
     padding: 10px;
@@ -69,40 +82,50 @@ input[type="email"], input[type="password"], input[type="text"], input[type="dat
 }
 
 .form-group {
-    display: flex; /* Use flexbox to align label and input */
-    flex: 1; /* Allow the label to take up space */
+    display: flex;
+    flex: 1;
 }
 
-.form-group label{
+.form-group label {
     margin-right: 15px;
 }
 
-/* Gender Selection */
-.gender-selection, .sign-in-as  {
-    display: inline-flex; /* Use inline-flex to keep it on the same line */
-    align-items: center; /* Align items vertically */
-    margin-top: 10px; /* Space above the gender selection */
+/* Gender and Sign-in Selection */
+.gender-selection, .sign-in-as {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .gender-selection input[type="radio"], .sign-in-as input[type="radio"] {
-    margin-right: 10px; /* Space between radio buttons and their labels */
+    margin-right: 10px;
     margin-top: 10px;
-    
 }
 
 .gender-selection label, .sign-in-as label {
-    margin-right: 30px; /* Space between the labels */ 
-    margin-top: 10px; 
+    margin-right: 30px;
+    margin-top: 10px;
 }
 
+/* Footer */
+.footer {
+    background-color: #d3d3d3;
+    color: #576574;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #18A0FB;
+    padding: 10px 0;
+}
 
 /* Responsive Design */
 @media (max-width: 900px) {
     .form-section {
-        flex-direction: column; /* Ensure form sections stack */
+        flex-direction: column;
     }
 
     .sign-up {
-        width: 100%; /* Full width on smaller screens */
+        width: 100%;
     }
 }
