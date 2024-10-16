@@ -34,7 +34,7 @@
                     $name = $_POST['name'];
             
                     // Prepare and execute the SQL query
-                    $stmt = $conn->prepare("SELECT worker_id, full_name, role, email FROM companyworkers WHERE full_name LIKE ?");
+                    $stmt = $conn->prepare("SELECT * FROM companyworkers WHERE full_name LIKE ?");
                     $searchTerm = "%" . $name . "%";
                     $stmt->bind_param("s", $searchTerm);
                     $stmt->execute();
@@ -46,13 +46,14 @@
                         //create table
                         echo "<tr>
                                 <th>UId</th>
-                                <th>Username</th>
+                                <th>User Name</th>
+                                <th>Full Name</th>
                                 <th>Role</th>
                                 <th>Email</th>
                               </tr>";
                         // Output matching results
                         while ($row = $result->fetch_assoc()) {
-                            echo '<tr><td>'.$row['worker_id'] .'</td><td>'. $row['full_name'] . '</td><td>'.$row['role'].'</td><td>'.$row['email'].'</td></tr>';
+                            echo '<tr><td>'.$row['worker_id'] .'</td><td>'. $row['username'] .'</td><td>'. $row['full_name'] . '</td><td>'.$row['role'].'</td><td>'.$row['email'].'</td></tr>';
                         }
                     } 
                     else{
