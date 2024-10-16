@@ -45,7 +45,7 @@
                 <div class="icon"></div>
                 <p>Appointments</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="redirectTo('ManageEmployees/manEmp.php')">
                 <div class="icon"></div>
                 <p>Manage Employees</p>
             </div>
