@@ -36,7 +36,9 @@
 
                     if($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-                            echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td></tr>";
+                            echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
+                            <td><button onclick=\"viewContent(" . $row['forum_id'] . ")\">View</button>
+                            <button onclick=\"deleteContent(" . $row['forum_id'] . ")\">Delete</button></td></tr>";
                         }
                     }
 
@@ -70,6 +72,6 @@
                     }
                 ?>
         </div>            
-        
+        <script src="../../js/common.js"></script>
     </body>
 </html>
