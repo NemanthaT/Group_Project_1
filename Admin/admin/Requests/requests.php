@@ -22,6 +22,14 @@
     </head>
 
     <body>
+        <div id="table">
+            <table>
+                <tr>
+                    <th>
+                </tr>
+            </table>
+        </div>
+
         <div>
                 <?php
                     if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['view'])) {
