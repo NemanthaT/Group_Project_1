@@ -41,7 +41,7 @@
                 <div class="icon"></div>
                 <p>Financial Reports</p>
             </div>
-            <div class="card">
+            <div class="card" onclick="redirectTo('Requests/requests.php')">
                 <div class="icon"></div>
                 <p>Appointments</p>
             </div>
