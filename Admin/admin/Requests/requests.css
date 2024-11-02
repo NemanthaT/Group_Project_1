@@ -1,0 +1,90 @@
+* {   
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #18A0FB;
+}
+
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: 40px 50px 20px 50px;
+    border: 2px solid #18A0FB;
+    border-radius: 15px;
+}
+
+table th {
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid #18A0FB;
+}
+
+table td {
+    border: 2px solid #18A0FB;
+    text-align: center;
+    padding: 10px;
+}
+
+form{
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #18A0FB;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+form input {
+    padding: 0px 5px 0px 0px;
+    font-family: Arial, sans-serif;
+    font-size: large;
+}
+
+form button{
+    font-size: large;
+    color: black;
+    background-color:#ccc;
+    cursor: pointer;
+    height: 25px;
+    width: 80px;
+    border: 1px solid #18A0FB;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+button{
+    font-size: large;
+    color: black;
+    background-color:#ccc;
+    cursor: pointer;
+    height: 25px;
+    width: 80px;
+    border: 1px solid #18A0FB;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+form button:hover{
+    color: white;
+    background-color: #18A0FB;
+    transform: scale(1.1);
+}
+
+button:hover{
+    color: white;
+    background-color: #18A0FB;
+    transform: scale(1.1);
+}
