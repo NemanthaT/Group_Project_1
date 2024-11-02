@@ -20,15 +20,3 @@ function loadPage(url) {
         console.error('There was an error:', error);
       });
 }
-
-//view content
-function viewContent(id){
-  window.location.href = 'view.php?id=' + id;
-}
-
-//delete content
-function deleteContent(id){
-  if(confirm('Are you sure you want to delete this content?')){
-    window.location.href = 'delete.php?id=' + id;
-  }
-}
