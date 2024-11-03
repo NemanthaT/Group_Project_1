@@ -19,6 +19,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EDSA Lanka Consultancy</title>
         <link rel="stylesheet" href="adminstyles.css">
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -51,9 +53,28 @@
                     <iframe src="dashboard.php" name="Dashboard" title="Dashboard"></iframe>
                 </div>
             </div>
+            <div class="hiddenbtn" id="arrow"></div>
+                    <div id="content">
+                        <div class="calendar">
+                            <div class="calendar-header">
+                                <button id="prev-month">&#9664; October</button>
+                                <span id="month-year">November 2024</span>
+                                <button id="next-month">December &#9654;</button>
+                            </div>
+                            <div class="calendar-body">
+                                <div class="calendar-weekdays">
+                                    <span>Mon</span><span>Tue</span><span>Wed</span>
+                                    <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                                </div>
+                                <div id="calendar-days" class="calendar-days"></div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
         <footer>
             <center><p>&copy; 2024 EDSA Lanka Consultancy</p></center>
         </footer>
+        <script src="admin.js"></script>
     </body>
 </html>
