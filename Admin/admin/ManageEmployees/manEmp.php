@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Employees</title>
-    <link rel="stylesheet" href="mngEmp.css">
+    <link rel="stylesheet" href="empStyles.css">
 </head>
 <body>
     <center><h1>Manage Employees</h1></center>
