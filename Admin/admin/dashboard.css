@@ -40,9 +40,9 @@ body {
     height: 200px;
     width: 200px;
     background-color: rgb(235, 235, 235);
-    border: 1px solid #18A0FB;
+    /*border: 1px solid #18A0FB;*/
     border-radius: 120px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3);
     padding: 20px;
     font-weight: bold;
     text-align: center;
