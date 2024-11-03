@@ -1,3 +1,16 @@
+* {   
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #808080;
+    width: 100vw;
+    height: 100vh;
+    display: inline;
+}
+
 h2 {
     padding: 0px 0px 0px 20px;
     margin-top: 20px;
@@ -40,6 +53,29 @@ form button:hover{
     background-color: #18A0FB;
     transform: scale(1.1);
 }
+
+table{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+table th {
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid #18A0FB;
+    border-radius: 15px;
+}
+
+table td {
+    border: 2px solid #18A0FB;
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
+}
+
 
 .top{
     display: flex;
