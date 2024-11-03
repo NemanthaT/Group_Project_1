@@ -7,6 +7,7 @@ document.getElementById("arrow").addEventListener("click", function() {
     } else {
         content.style.display = "none";
     }
+    //arrow.style.transform="rotate(180deg)";
 });
 
 //Calendar
