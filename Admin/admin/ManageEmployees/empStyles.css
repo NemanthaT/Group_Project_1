@@ -4,8 +4,9 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #808080;
+    /*font-family: Arial, sans-serif;*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
     width: 100vw;
     height: 100vh;
     /*display: inline;*/
@@ -25,7 +26,7 @@ form{
     margin-right: 20px;
     margin-bottom: 20px;
     padding: 20px;
-    border: 1px solid #18A0FB;
+    border: 1px solid #f4f4f4;
     border-radius: 10px;
     background-color: #f9f9f9;
 }
@@ -43,7 +44,7 @@ form button{
     cursor: pointer;
     height: 25px;
     width: 80px;
-    border: 1px solid #18A0FB;
+    border: 1px solid #ccc;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
 }
@@ -68,24 +69,26 @@ p {
     color: black;
 }
 
-table{
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
+table {
+    padding: 10px 20px 10px 20px;
+    width: 50%;
+    margin: 20px 50px 20px 50px;
+    border-spacing: 0;
+    border-collapse: separate;
+    background-color: rgb(221, 219, 219);
 }
 
 table th {
     text-align: center;
+    background-color: lightblue;
+    font-size: large;
     font-weight: bold;
-    border: 2px solid #18A0FB;
-    border-radius: 15px;
+    border-radius: 20px;
+    border: 6px solid rgb(221, 219, 219);
+    padding: 10px;
 }
 
 table td {
-    border: 2px solid #18A0FB;
-    text-align: center;
-    padding: 10px;
-    border-radius: 15px;
+    /*border: 2px solid #18A0FB;*/
+    padding: 10px 10px 10px 40px;
 }
