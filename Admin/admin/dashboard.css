@@ -10,7 +10,7 @@ body {
     height: 100vh;
 }
 
-.backgroundimage{
+/*.backgroundimage{
     width: 100vw;
     height: 100vh;
     background-image: url("../Images/background.jpg");
@@ -21,7 +21,7 @@ body {
     left: 0;
     filter: blur(10px);
     z-index: 0;
-}
+}*/
 
 .backgroundimage img{
     width: 100%;
