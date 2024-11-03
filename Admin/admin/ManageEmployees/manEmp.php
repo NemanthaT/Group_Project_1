@@ -12,12 +12,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Employees</title>
-    <link rel="stylesheet" href="../Users/people.css">
     <link rel="stylesheet" href="mngEmp.css">
 </head>
 <body>
-    <h1>Manage Employees</h1>
-
+    <center><h1>Manage Employees</h1></center>
     <!--Search Employees and list them-->
     <h2>Search Employees</h2>
     <div class="top">
