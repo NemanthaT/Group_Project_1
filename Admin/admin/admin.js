@@ -2,12 +2,13 @@
 document.getElementById("arrow").addEventListener("click", function() {
     var content = document.getElementById("content");
     var arrow = document.getElementById("arrow");
-    if (content.style.display === "none") {
+    if (content.style.display === "none" || content.style.display === "") {
         content.style.display = "block";
+        arrow.style.transform = "rotate(180deg)";
     } else {
         content.style.display = "none";
+        arrow.style.transform = "rotate(0deg)";
     }
-    //arrow.style.transform="rotate(180deg)";
 });
 
 //Calendar
