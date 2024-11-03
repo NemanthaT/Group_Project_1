@@ -12,7 +12,7 @@ body {
 
 .header {
     text-align: center;
-    background-color: white;
+    background-color: #f4f4f4;
     color: #18A0FB;
 }
 
@@ -38,7 +38,7 @@ body {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    background-color: white;
+    background-color: #f4f4f4;
     /*gap: 20px;*/
 }
 
