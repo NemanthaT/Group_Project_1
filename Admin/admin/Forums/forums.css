@@ -4,7 +4,8 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
     width: 100vw;
     height: 100vh;
