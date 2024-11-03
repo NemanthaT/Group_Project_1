@@ -50,10 +50,10 @@
                     </header>
                 </div>
                 <div class="frame">
-                    <iframe src="dashboard.php" name="Dashboard" title="Dashboard"></iframe>
-                </div>
-            </div>
-            <div class="right" id="arrow"></div>
+                    <div id=frame>
+                        <iframe src="dashboard.php" name="Dashboard" title="Dashboard"></iframe>
+                    </div>
+                    <div class="right" id="arrow"></div>
                     <div id="content">
                         <div class="calendar">
                             <div class="calendar-header">
@@ -69,8 +69,31 @@
                                 <div id="calendar-days" class="calendar-days"></div>
                             </div>
                         </div>
+                        <div class="userAmount">
+                            <?php
+                                $sql = "SELECT COUNT(*) FROM clients";
+                                $result = $conn->query($sql);
+                                $row = $result->fetch_assoc();
+                                echo "<table>";
+                                echo "<tr><th>Number of Clients: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
+
+                                $sql = "SELECT COUNT(*) FROM serviceproviders";
+                                $result = $conn->query($sql);
+                                $row = $result->fetch_assoc();
+                                echo "<tr><th>Number of Service Providers: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
+
+                                $sql = "SELECT COUNT(*) FROM companyworkers";
+                                $result = $conn->query($sql);
+                                $row = $result->fetch_assoc();
+                                echo "<tr><th>Number of Employees: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
+                                echo "</table>";
+                            ?>
+                        </div>
                     </div>
+                </div>
+
             </div>
+        </div>
         </div>
         <footer>
             <center><p>&copy; 2024 EDSA Lanka Consultancy</p></center>
