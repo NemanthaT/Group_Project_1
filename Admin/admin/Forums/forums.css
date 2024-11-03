@@ -28,12 +28,14 @@ table th {
     text-align: center;
     font-weight: bold;
     border: 2px solid #18A0FB;
+    border-radius: 15px;
 }
 
 table td {
     border: 2px solid #18A0FB;
     text-align: center;
     padding: 10px;
+    border-radius: 15px;
 }
 
 form{
