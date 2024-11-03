@@ -22,9 +22,9 @@
     </head>
     <body>
         <div class="dashboard">
-            <div class="backgroundimage">
+            <!--<div class="backgroundimage">
                 <img src="Image/background.jpg" alt="background">
-            </div>
+            </div>-->
             <div class="card" onclick="redirectTo('Users/users.php')">
                 <div class="icon"></div>
                 <p>Users</p>
