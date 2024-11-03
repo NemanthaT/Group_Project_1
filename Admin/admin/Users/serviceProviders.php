@@ -21,7 +21,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Service Providers</title>
-        <link rel="stylesheet" href="people.css">
+        <link rel="stylesheet" href="peopleStyles.css">
     </head>
 
     <body>
