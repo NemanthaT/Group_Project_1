@@ -4,7 +4,8 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
     width: 100vw;
     height: 100vh;
@@ -16,24 +17,26 @@ h1 {
     color: #18A0FB;
 }
 
-/*table {
+table {
     padding: 10px 20px 10px 20px;
-    width: 70%;
+    width: 50%;
     margin: 20px 50px 20px 50px;
-    border: 5px solid #18A0FB;
-    border-radius: 10px;
     border-spacing: 0;
     border-collapse: separate;
-}*/
+    background-color: rgb(221, 219, 219);
+}
 
 table th {
     text-align: center;
+    background-color: lightblue;
+    font-size: large;
     font-weight: bold;
-    border-radius: 10px;
-    border: 2px solid #18A0FB;
+    border-radius: 20px;
+    border: 6px solid rgb(221, 219, 219);
+    padding: 10px;
 }
 
 table td {
     /*border: 2px solid #18A0FB;*/
-    padding: 10px;
+    padding: 10px 10px 10px 40px;
 }
