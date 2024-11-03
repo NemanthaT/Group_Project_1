@@ -53,7 +53,7 @@
                     <iframe src="dashboard.php" name="Dashboard" title="Dashboard"></iframe>
                 </div>
             </div>
-            <div class="hiddenbtn" id="arrow"></div>
+            <div class="right" id="arrow"></div>
                     <div id="content">
                         <div class="calendar">
                             <div class="calendar-header">
