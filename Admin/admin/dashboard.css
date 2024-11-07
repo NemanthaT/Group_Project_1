@@ -24,42 +24,142 @@ body {
     z-index: 0;
 }*/
 
-.backgroundimage img{
-    width: 100%;
-    height: 100%;
-}
 .dashboard {
-    padding: 50px 20px 20px 100px;
+    /*padding: 50px 20px 20px 100px;*/
     height: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    /*grid-template-columns: repeat(3, 1fr);*/
     background-color: white;
-    /*gap: 20px;*/
+    gap: 20px;
 }
 
 .card {
-    height: 200px;
-    width: 200px;
+    height: 100px;
+    width: 370px;
+    overflow: hidden;
     background-color: rgb(235, 235, 235);
     /*border: 1px solid #18A0FB;*/
-    border-radius: 120px;
+    border-radius: 10px;
     box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
+    padding: 10px;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     cursor: pointer;
     z-index: 1;
     transition: transform 0.5s ease-in-out;
 }
 
-.card:hover {
-    transform: scale(1.2);
-    background-color: #18A0FB;
-    color: white;
+.card .icon{
+    width: 10px;
+    height: 10px;
+    margin: 0 auto 10px;
+    z-index: -1;
+}
+.card p{
+    font-size: 20px;
+    margin: 0;
+    padding-left: 20px;
+    z-index: 1;
 }
 
-.card .icon {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto 10px;
+#contentLeft {
+    padding: 50px;
+    margin-left: 20px;
+    width: 55vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: rgb(221, 219, 219);
+    border-radius: 10px;
+    overflow:hidden;
+    /*gap: 20px;*/
+}
+
+#contentRight {
+    padding: 50px;
+    background-color:  rgb(221, 219, 219);
+    width: 420px;
+    height: 100%;
+    border-radius: 10px;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.calendar {
+    width: 400px;
+    height: 320px;
+    background-color: #fffefe;
+    margin: auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-header button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.calendar-header h2 {
+    margin: 0;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.day, .date {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.day {
+    font-weight: bold;
+    background-color: #f4f4f4;
+    border-radius: 4px;
+}
+
+.date {
+    background-color: #e9f7fe;
+    border-radius: 4px;
+}
+
+.date.other-month {
+    color: #ccc;
+}
+
+.date.today {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+.card th{
+    text-align: left;
+    font-size: large;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.card td{
+    font-weight: normal;
+    text-align: center;
+    padding: 2px 2px 2px 70px;
 }
