@@ -57,18 +57,22 @@
                     <div id="content">
                         <div class="calendar">
                             <div class="calendar-header">
-                                <button id="prev-month">&#9664; October</button>
-                                <span id="month-year">November 2024</span>
-                                <button id="next-month">December &#9654;</button>
+                                <button onclick="prevMonth()">‹</button>
+                                <h2 id="monthYear"></h2>
+                                <button onclick="nextMonth()">›</button>
                             </div>
-                            <div class="calendar-body">
-                                <div class="calendar-weekdays">
-                                    <span>Mon</span><span>Tue</span><span>Wed</span>
-                                    <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
-                                </div>
-                                <div id="calendar-days" class="calendar-days"></div>
+                            <div class="days">
+                                <div class="day">Sun</div>
+                                <div class="day">Mon</div>
+                                <div class="day">Tue</div>
+                                <div class="day">Wed</div>
+                                <div class="day">Thu</div>
+                                <div class="day">Fri</div>
+                                <div class="day">Sat</div>
                             </div>
+                            <div class="days" id="dates"></div>
                         </div>
+
                         <div class="userAmount">
                             <?php
                                 $sql = "SELECT COUNT(*) FROM clients";
