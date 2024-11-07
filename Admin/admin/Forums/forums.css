@@ -18,25 +18,27 @@ h1 {
 }
 
 table {
+    padding: 10px 20px 10px 20px;
     width: 70%;
-    border-collapse: collapse;
-    margin: 40px 50px 20px 50px;
-    border: 2px solid #18A0FB;
-    border-radius: 15px;
+    margin: 20px 50px 20px 50px;
+    border-spacing: 0;
+    border-collapse: separate;
+    background-color: rgb(221, 219, 219);
 }
 
 table th {
     text-align: center;
+    background-color: lightblue;
+    font-size: large;
     font-weight: bold;
-    border: 2px solid #18A0FB;
-    border-radius: 15px;
+    border-radius: 20px;
+    border: 6px solid rgb(221, 219, 219);
+    padding: 10px;
 }
 
 table td {
-    border: 2px solid #18A0FB;
-    text-align: center;
-    padding: 10px;
-    border-radius: 15px;
+    /*border: 2px solid #18A0FB;*/
+    padding: 10px 10px 10px 40px;
 }
 
 form{
@@ -45,7 +47,7 @@ form{
     margin-right: 20px;
     margin-bottom: 20px;
     padding: 20px;
-    border: 1px solid #18A0FB;
+    border: 1px solid #c6e8ff8e;
     border-radius: 10px;
     background-color: #f9f9f9;
 }
@@ -106,9 +108,11 @@ button:hover{
     margin: 20px;
     padding: 5px;
     width: 90%;
+    border-radius: 10px;
     height: auto;
     overflow: scroll;
-    border: 1px solid #18A0FB;
+    border: 1px solid #ffffffab;
+    box-shadow: 5px 5px 10px rgb(133, 133, 133);
 }
 p {
     padding: 0px 0px 0px 40px;
@@ -116,4 +120,15 @@ p {
     margin-bottom: 20px;
     font-size: 20px;
     color: black;
+}
+
+.viewSpace{
+    /*margin: 20px;*/
+    margin-left: 40px;
+    padding: 5px;
+    border-radius: 20px;
+    width: 90%;
+    height: auto;
+    background-color: rgb(221, 219, 219);
+    border: 1px solid #d8d8d8;
 }
