@@ -15,7 +15,6 @@ body {
 h2 {
     padding: 0px 0px 0px 20px;
     margin-top: 20px;
-    margin-bottom: 20px;
     font-size: 30px;
     color: #18A0FB;
 }
@@ -32,6 +31,7 @@ form{
 }
 
 form input {
+    width: 150px;
     padding: 0px 5px 0px 0px;
     font-family: Arial, sans-serif;
     font-size: large;
@@ -45,6 +45,7 @@ form button{
     height: 25px;
     width: 80px;
     border: 1px solid #ccc;
+    padding: 2px;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
 }
@@ -57,6 +58,7 @@ form button:hover{
 
 .top{
     display: flex;
+    height: auto;
     justify-content: space-between;
     margin-bottom: 20px;
 }
@@ -71,7 +73,7 @@ p {
 
 table {
     padding: 10px 20px 10px 20px;
-    width: 50%;
+    width: 70%;
     margin: 20px 50px 20px 50px;
     border-spacing: 0;
     border-collapse: separate;
@@ -91,4 +93,20 @@ table th {
 table td {
     /*border: 2px solid #18A0FB;*/
     padding: 10px 10px 10px 40px;
+}
+
+.mainTop{
+    display: flex;
+    background-color: rgb(221, 219, 219);
+    justify-content: space-between;
+    padding: 10px 20px 10px 20px;
+    margin: 20px 50px 20px 50px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.section{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
