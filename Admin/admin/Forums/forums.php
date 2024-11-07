@@ -52,17 +52,18 @@
                 <button type="submit" name="delete">Delete</button>
             </form>
         </div>
-        <div>
-                <?php
+        <?php         
                     if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['view'])) {
                         $id=$_POST['id'];
                         $sql = "SELECT * FROM forums WHERE forum_id = $id";
                         $opert=$conn->query($sql);
                         $row = $opert->fetch_assoc();
-                        echo "<p>Viewing Forum ID: ". $row["forum_id"]."</p>";
-                        echo "<p>Title: ". $row["title"]."</p>";
-                        echo "<p>Client ID: ". $row["user_id"]."</p>";
-                        echo "<p>Content: " . "<div class=\"content\"><p>" . $row["content"]."</p></div>" . "</p>";
+                        echo "<div class=\"viewSpace\">";
+                        echo "<p><b>Viewing Forum ID: </b>". $row["forum_id"]."</p>";
+                        echo "<p><b>Title: </b>". $row["title"]."</p>";
+                        echo "<p><b>Client ID: </b>". $row["user_id"]."</p>";
+                        echo "<p><b>Content: </b>" . "<div class=\"content\"><p>" . $row["content"]."</p></div>" . "</p>";
+                        echo "</div>"; 
                     }
                     if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['delete'])) {
                         $id=$_POST['id'];
@@ -70,8 +71,9 @@
                         $opert=$conn->query($sql);
                         echo "Deleting";
                     }
-                ?>
-        </div>            
+                   
+        ?>
+                    
         <script src="../../js/common.js"></script>
     </body>
 </html>
