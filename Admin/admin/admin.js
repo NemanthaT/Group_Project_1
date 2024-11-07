@@ -12,53 +12,73 @@ document.getElementById("arrow").addEventListener("click", function() {
 });
 
 //Calendar
-const calendarDays = document.getElementById("calendar-days");
-const monthYear = document.getElementById("month-year");
-const prevMonthButton = document.getElementById("prev-month");
-const nextMonthButton = document.getElementById("next-month");
-
 let currentDate = new Date();
+const today = new Date(); // Stores today's date
 
-function renderCalendar(date) {
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    monthYear.textContent = date.toLocaleString("default", { month: "long" }) + " " + year;
-    
-    calendarDays.innerHTML = "";
+function renderCalendar() {
+    const monthYear = document.getElementById('monthYear');
+    const dates = document.getElementById('dates');
 
-    const firstDay = new Date(year, month, 1).getDay() || 7;
-    const lastDate = new Date(year, month + 1, 0).getDate();
-    
-    // Fill in the blank days before the 1st
-    for (let i = 1; i < firstDay; i++) {
-        const emptyDay = document.createElement("span");
-        calendarDays.appendChild(emptyDay);
+    // Set the current month and year
+    const month = currentDate.getMonth();
+    const year = currentDate.getFullYear();
+    monthYear.textContent = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+    // Clear previous dates
+    dates.innerHTML = '';
+
+    // Get the first day of the month
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+    const lastDateOfPrevMonth = new Date(year, month, 0).getDate();
+
+    // Add previous month's dates
+    for (let i = firstDayOfMonth; i > 0; i--) {
+        const date = document.createElement('div');
+        date.classList.add('date', 'other-month');
+        date.textContent = lastDateOfPrevMonth - i + 1;
+        dates.appendChild(date);
     }
 
-    // Add days of the month
-    for (let day = 1; day <= lastDate; day++) {
-        const dayElement = document.createElement("span");
-        dayElement.textContent = day;
-        
-        // Highlight today's date
+    // Add current month's dates
+    for (let i = 1; i <= lastDateOfMonth; i++) {
+        const date = document.createElement('div');
+        date.classList.add('date');
+        date.textContent = i;
+
+        // Highlight today
         if (
-            day === currentDate.getDate() &&
-            month === currentDate.getMonth() &&
-            year === currentDate.getFullYear()
+            year === today.getFullYear() &&
+            month === today.getMonth() &&
+            i === today.getDate()
         ) {
-            dayElement.classList.add("today");
+            date.classList.add('today');
         }
 
-        calendarDays.appendChild(dayElement);
+        dates.appendChild(date);
+    }
+
+    // Calculate the remaining cells after the last date of the month
+    const remainingCells = 42 - (firstDayOfMonth + lastDateOfMonth);
+
+    // Add next month's dates
+    for (let i = 1; i <= remainingCells; i++) {
+        const date = document.createElement('div');
+        date.classList.add('date', 'other-month');
+        date.textContent = i;
+        dates.appendChild(date);
     }
 }
 
-function changeMonth(direction) {
-    currentDate.setMonth(currentDate.getMonth() + direction);
-    renderCalendar(currentDate);
+function prevMonth() {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
 }
 
-prevMonthButton.addEventListener("click", () => changeMonth(-1));
-nextMonthButton.addEventListener("click", () => changeMonth(1));
+function nextMonth() {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+}
 
-renderCalendar(currentDate);
+// Initial calendar render
+renderCalendar();
