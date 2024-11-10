@@ -4,46 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload News Article</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
-        /* Remove the blue outline (focus ring) */
-        .input-field:focus, 
-        .textarea-field:focus, 
-        .submit-btn:focus {
-            outline: none;
-            box-shadow: none;
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
 
-        /* Optional: Custom focus style */
-        .input-field:focus, 
-        .textarea-field:focus, 
+        /* Container styling */
+        .content-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        /* Form title */
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Form group styling */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Input, textarea, and button styling */
+        .input-field,
+        .textarea-field,
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .textarea-field {
+            resize: vertical;
+        }
+
+        /* Remove blue outline (focus ring) */
+        .input-field:focus,
+        .textarea-field:focus,
         .submit-btn:focus {
             outline: none;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
+
+        /* Button styling */
+        .submit-btn {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-    <div class="content-container mt-5">
+    <div class="content-container">
         <h2>Upload News Article</h2>
         <form action="upload.php" method="post" enctype="multipart/form-data">
-            <div class="form-group mt-4">
+            <div class="form-group">
                 <label for="worker_id">Worker ID</label>
-                <input class="input-field form-control" type="number" name="worker_id" id="worker_id" placeholder="Enter Worker ID" required>
+                <input class="input-field" type="number" name="worker_id" id="worker_id" placeholder="Enter Worker ID" required>
             </div>
-            <div class="form-group mt-4">
+            <div class="form-group">
                 <label for="title">Title</label>
-                <input class="input-field form-control" type="text" name="title" id="title" placeholder="Enter Title" required>
+                <input class="input-field" type="text" name="title" id="title" placeholder="Enter Title" required>
             </div>
-            <div class="form-group mt-4">
+            <div class="form-group">
                 <label for="content">Content</label>
-                <textarea class="textarea-field form-control" name="content" id="content" rows="4" placeholder="Enter Content" required></textarea>
+                <textarea class="textarea-field" name="content" id="content" rows="4" placeholder="Enter Content" required></textarea>
             </div>
-            <div class="form-group mt-4">
+            <div class="form-group">
                 <label for="image">Image</label>
-                <input class="input-field form-control" type="file" name="image" id="image" required>
+                <input class="input-field" type="file" name="image" id="image" required>
             </div>
-            <input class="submit-btn btn btn-primary mt-4" type="submit" value="Upload" name="submit">
+            <input class="submit-btn" type="submit" value="Upload" name="submit">
         </form>
     </div>
 </body>
