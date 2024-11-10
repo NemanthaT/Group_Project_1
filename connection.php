@@ -14,6 +14,6 @@ $dbname="edsalanka";
        
 
     }else{
-        echo"connection ----succesfull";
+        //echo"connection ----succesfull";
     }
 ?>
