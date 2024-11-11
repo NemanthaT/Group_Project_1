@@ -1,0 +1,94 @@
+/*table styles*/
+table {
+    padding: 10px 20px 10px 20px;
+    width: 70%;
+    margin: 20px 50px 20px 50px;
+    border-spacing: 0;
+    border-collapse: separate;
+    background-color: rgb(221, 219, 219);
+}
+
+table th {
+    text-align: center;
+    background-color: lightblue;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 6px solid rgb(221, 219, 219);
+    padding: 10px;
+}
+
+table td {
+    /*border: 2px solid #18A0FB;*/
+    padding: 10px 10px 10px 40px;
+    border-radius: 20px;
+    border: 6px solid rgb(221, 219, 219);
+    padding: 10px;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/*search delete container styles*/
+.searchContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+form{
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #c6e8ff8e;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+form input {
+    padding: 0px 5px 0px 0px;
+    font-family: Arial, sans-serif;
+    font-size: large;
+}
+
+form button{
+    font-size: large;
+    color: black;
+    background-color:#ffa600;
+    cursor: pointer;
+    height: 25px;
+    width: 80px;
+    border: 1px solid #ff3c00;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+button{
+    font-size: large;
+    color: black;
+    background-color:#ccc;
+    cursor: pointer;
+    height: 25px;
+    width: 80px;
+    border: 1px solid #18A0FB;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+form button:hover{
+    color: white;
+    background-color: #ff3c00;
+    transform: scale(1.1);
+}
+
+button:hover{
+    color: white;
+    background-color: #ff3c00;
+    transform: scale(1.1);
+}
