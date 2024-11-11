@@ -1,162 +1,94 @@
-/* Global Styles */
-* {
+body {
+    font-family: 'Segoe UI', 'cursive';
+    background-color: black;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+    overflow: hidden; /* Prevent unnecessary scrollbars outside */
+}
+
+.blurry-background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../images/logo.png");
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    background-color: #ececec;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 700px;
+    max-width: 90%;
+    margin: 20px auto; /* Center horizontally */
+    text-align: left;
+    flex-direction: row;
+    flex-grow: 1; /* Allows container to take up remaining space */
+    overflow-y: auto; /* Scroll within the container */
+}
+
+.sidebar {
+    background-color: #f4f4f4;
+    width: 200px;
+    padding: 20px 0;
+    text-align: left;
+}
+
+.sidebar ul {
+    list-style-type: none;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
-/* Navbar */
-.navbar {
-    width: 100%;
-    background-color: white;
-    color: #18A0FB;
-    box-shadow: 0 0 2px black;
+.sidebar ul li {
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #555;
+    font-weight: bold;
 }
 
-.Hcontainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.header_logo img {
-    height: 75px;
-}
-
-.header_item {
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.header_item li {
-    margin-left: 15px;
-}
-
-.header_item a {
-    padding: 5px 10px;
-    border-radius: 7px;
-    color: #18A0FB;
-    font-size: 1em;
-    text-decoration: none;
-}
-
-li.Login a, li.Register a {
-    padding: 5px 20px;
-    border: 2px solid;
+.sidebar ul li.active, .sidebar ul li:hover {
     background-color: #18A0FB;
-    color: #F0F8FF;
+    color: white;
 }
 
-.header_item a:hover {
-    background-color: rgb(215, 236, 255);
-    color: #18A0FB;
-}
-
-/* Main Content */
-main {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.content-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.content-box {
-    width: 48%;
+.content {
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 70vh; /* Prevent overflow and keep centered */
 }
 
-h2 {
+.content h2 {
     color: #18A0FB;
-    margin-bottom: 10px;
+    font-size: 24px;
 }
 
-h3 {
+.content h3, .content h4 {
+    margin: 15px 0 5px;
     color: #333;
-    margin-bottom: 10px;
 }
 
-h4 {
-    color: #666;
-    margin-top: 15px;
-}
-
-p {
-    color: #333;
+.content p {
+    margin-bottom: 15px;
     line-height: 1.6;
 }
 
-/* Footer */
 footer {
-    box-shadow: 0 0 2px black;
-    justify-content: center;
-    display: flex;
-    color: #18A0FB;
-    width: 100%;
-    padding: 20px 0;
-    background-color: white;
-}
-
-.Fcontainer {
-    width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-.Flogo img {
-    width: 250px;
-}
-
-.Fcopyright {
+    background-color: #d3d3d3;
+    color: #576574;
+    width: 100%; /* Make footer full width */
     text-align: center;
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-    .header_item {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-    }
-    .header_item.active {
-        display: flex;
-    }
-    .menu_toggle {
-        display: flex;
-    }
-    .menu_toggle img {
-        display: flex;
-    }
-    .header_item li {
-        text-align: center;
-        margin: 10px 0;
-    }
-    .Flinks {
-        flex-direction: column;
-    }
-    .Flink {
-        flex-direction: column;
-    }
-    .form-section {
-        flex-direction: column;
-        align-items: center;
-    }
-    .specialized-fields, .services-provided {
-        width: 100%;
-    }
+    border-top: 1px solid #18A0FB;
+    padding: 5px; /* Reduced padding to reduce height */
+    margin-top: auto; /* Push footer to the bottom */
 }
