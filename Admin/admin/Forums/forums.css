@@ -17,31 +17,7 @@ h1 {
     color: #18A0FB;
 }
 
-table {
-    padding: 10px 20px 10px 20px;
-    width: 70%;
-    margin: 20px 50px 20px 50px;
-    border-spacing: 0;
-    border-collapse: separate;
-    background-color: rgb(221, 219, 219);
-}
-
-table th {
-    text-align: center;
-    background-color: lightblue;
-    font-size: large;
-    font-weight: bold;
-    border-radius: 20px;
-    border: 6px solid rgb(221, 219, 219);
-    padding: 10px;
-}
-
-table td {
-    /*border: 2px solid #18A0FB;*/
-    padding: 10px 10px 10px 40px;
-}
-
-form{
+/*form{
     margin-top: 20px;
     margin-left: 40px;
     margin-right: 20px;
@@ -92,13 +68,13 @@ button:hover{
     color: white;
     background-color: #18A0FB;
     transform: scale(1.1);
-}
+}*/
 
-.container{
+/*.searchContainer{
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-}
+}*/
 
 .viewer{
     padding: 20px;
