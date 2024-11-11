@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Employees</title>
     <link rel="stylesheet" href="empStyles.css">
+    <link rel="stylesheet" href="../../css/common.css">
 </head>
 <body>
     <div class="main">
@@ -24,7 +25,7 @@
             <!--Search Employees and list them-->
             <div class="section">
                 <h2>Search</h2>
-                <div class="top">
+                <div class="searchContainer">
                     <form action="" method="POST">
                         <input type="text" name="name" placeholder="Enter Name" required>
                         <button type="submit" name="search_name">Search</button>
@@ -35,7 +36,7 @@
             <!--Remove Employees-->
             <div class="section">
                 <h2>Remove Employees</h2>
-                <div class="top">
+                <div class="searchContainer">
                     <form action="" method="POST">
                         <input type="text" name="id" placeholder="Enter ID" required>
                         <button type="submit" name="remove">Remove</button>
@@ -70,7 +71,7 @@
             <!--Change role of the Employees-->
             <div class="section">
                 <h2>Change Role</h2>
-                <div class="top">
+                <div class="searchContainer">
                     <form action="" method="POST">
                         <input type="text" name="id" placeholder="Enter ID" required>
                         <input type="text" name="role" placeholder="Enter New Role" required>
