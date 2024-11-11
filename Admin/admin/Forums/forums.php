@@ -19,33 +19,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Clients</title>
         <link rel="stylesheet" href="forums.css">
+        <link rel="stylesheet" href="../../css/common.css">
     </head>
 
     <body>
         <h1>Manage Forums</h1>
-        <center>
-            <table>
-                <tr>
-                    <th>Forum Id</th>
-                    <th>Title</th>
-                    <th>Client ID</th>
-                </tr>
-                <?php
-                    $sql = "SELECT * FROM forums";
-                    $result = $conn->query($sql);
-
-                    if($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
-                            <td><button onclick=\"viewContent(" . $row['forum_id'] . ")\">View</button>
-                            <button onclick=\"deleteContent(" . $row['forum_id'] . ")\">Delete</button></td></tr>";
-                        }
-                    }
-
-                ?>
-            </table>
-        </center>
-        <div class="container">
+        <div class="searchContainer">
             <form action="" method="POST">
                 <input type="text" name="id" placeholder="Enter Forum ID" required>
                 <button type="submit" name="view">View</button>
@@ -73,7 +52,32 @@
                     }
                    
         ?>
-                    
+
+        <center>
+            <table>
+                <tr>
+                    <th>Forum Id</th>
+                    <th>Title</th>
+                    <th>Client ID</th>
+                </tr>
+                <?php
+                    $sql = "SELECT * FROM forums";
+                    $result = $conn->query($sql);
+
+                    if($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
+                            <td><button onclick=\"viewContent(" . $row['forum_id'] . ")\">View</button>
+                            <button onclick=\"deleteContent(" . $row['forum_id'] . ")\">Delete</button></td></tr>";
+                        }
+                    }
+                    else{
+                        echo "<tr><td></td><td>0 results</td><td></td></tr>";
+                    }
+
+                ?>
+            </table>
+        </center>   
         <script src="../../js/common.js"></script>
     </body>
 </html>
