@@ -49,6 +49,7 @@ form{
     border: 1px solid #c6e8ff8e;
     border-radius: 10px;
     background-color: #f9f9f9;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
 form input {
@@ -60,35 +61,38 @@ form input {
 form button{
     font-size: large;
     color: black;
-    background-color:#ffa600;
+    background-color:#f1c40f;
     cursor: pointer;
     height: 25px;
     width: 80px;
-    border: 1px solid #ff3c00;
+    border: 1px solid #ffae00;
     border-radius: 10px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease-in-out;
 }
 
 button{
     font-size: large;
     color: black;
-    background-color:#ccc;
+    background-color:#f1c40f;
     cursor: pointer;
     height: 25px;
     width: 80px;
-    border: 1px solid #18A0FB;
+    border: 1px solid #ffae00;
     border-radius: 10px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease-in-out;
 }
 
 form button:hover{
     color: white;
-    background-color: #ff3c00;
+    background-color: #ffae00;
     transform: scale(1.1);
 }
 
 button:hover{
     color: white;
-    background-color: #ff3c00;
+    background-color: #ffae00;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
     transform: scale(1.1);
 }
