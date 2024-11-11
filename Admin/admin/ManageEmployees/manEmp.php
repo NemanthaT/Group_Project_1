@@ -55,12 +55,13 @@
                                 $del = "DELETE FROM companyworkers WHERE worker_id = $id";
                                 $opert = $conn->query($srch);
                                 if ($opert===true) {
-                                    echo "<p>Record deleted successfully</p>";
-                                } else {
-                                    echo "<p>Error: ".$conn->error."</p>";
+                                    echo "<script>alert('Employee Deleted!');</script>";  
+                                }
+                                else {
+                                    echo "<script>alert('Error: ".$conn->error."!');</script>";
                                 }
                             } else {
-                                echo "<p>Error: No records</p>";
+                                echo "<script>alert('Error: Invalid ID!');</script>";
                             }
                         }
                     ?>        
@@ -92,12 +93,12 @@
                                 $chng = "UPDATE companyworkers SET role = " . " ' " . $role . " ' " . " WHERE worker_id = $id";
                                 $opert = $conn->query($chng);
                                 if ($opert===true) {
-                                    echo "<p>Role changed successfully</p>";
+                                    echo "<script>alert('Role Changed Successfully!');</script>"; ;
                                 } else {
-                                    echo "<p>Error: ".$conn->error."</p>";
+                                    echo "<script>alert('Error: ".$conn->error."!');</script>";
                                 }
                             } else {
-                                echo "<p>Error: No records</p>";
+                                echo "<script>alert('>Error: Invalid ID!');</script>";
                             }
                         }
                     ?>        
@@ -123,7 +124,7 @@
                         // Close the statement
                         $stmt->close();
                         echo "<h2>Search Results</h2>";
-                        echo "<table class=\"displayArea\">";
+                        echo "<center><table class=\"displayArea\">";
                         if($result->num_rows > 0){
                             //create table
                             echo "<tr>
@@ -141,7 +142,7 @@
                     else{
                             echo '<tr><td> </td><td> No Result Found </td><td> </td></tr>';
                     }
-                    echo "</table>";
+                    echo "</table></center>";
                     echo "<hr>";
                     }   
 
@@ -149,7 +150,7 @@
             </div>
             <div>
                 <?php
-                    echo "<table class=\"displayArea\">
+                    echo "<center><table class=\"displayArea\">
                     <tr>
                         <th>UId</th>
                         <th>User Name</th>
@@ -170,7 +171,7 @@
                     }
 
 
-                    echo "</table>";
+                    echo "</table></center>";
                 ?>
             </div>
         </div>
