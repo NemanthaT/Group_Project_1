@@ -37,24 +37,24 @@ $result = $conn->query($sql);
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
             </div>
             <ul class="menu">
-                <li><button>Dashboard</button></li>
-                <li><button>Appointment</button></li>
-                <li><button>Message</button></li>
-                <li><button>Forum</button></li>
-                <li><button>Bill</button></li>
+                <li><a href="http://127.0.0.1:5500/SP_Dashboard/SPDash.html"><button>Dashboard</button></a></li>
+                <li><a href="http://localhost/Service%20Provider/Appointment/App.php"><button>Appointment</button></a></li>
+                <li><a href="http://127.0.0.1:5500/Message/Message.html"><button>Message</button></a></li>
+                <li><a href="#"><button>Forum</button></a></li>
+                <li><a href="#"><button>KnowledgeBase</button></a></li>
             </ul>
-            <div class="profile">
-                <button>Profile</button>
-            </div>
         </div>
-
+                   
         <!-- Navbar -->
         <header>
             <nav class="navbar">
-                <span>Hi, <?php echo htmlspecialchars($username); ?></span>
-                <a href="logout.php" class="logout">Logout</a>
+                <div class="profile">
+                    <a href="http://127.0.0.1:5500/SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                </div> 
+                <a href="http://localhost/Service%20Provider/Login/Login.php" class="logout">Logout</a>
             </nav>
         </header>
+
 
         <!-- Main Content (Appointments Table) -->
         <div class="main-content">
