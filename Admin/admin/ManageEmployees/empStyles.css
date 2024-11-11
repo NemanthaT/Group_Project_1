@@ -19,7 +19,7 @@ h2 {
     color: #18A0FB;
 }
 
-form{
+/*form{
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
@@ -54,14 +54,14 @@ form button:hover{
     color: white;
     background-color: #18A0FB;
     transform: scale(1.1);
-}
+}*/
 
-.top{
+/*.top{
     display: flex;
     height: auto;
     justify-content: space-between;
     margin-bottom: 20px;
-}
+}*/
 
 p {
     padding: 0px 0px 0px 20px;
@@ -69,30 +69,6 @@ p {
     margin-bottom: 20px;
     font-size: 20px;
     color: black;
-}
-
-table {
-    padding: 10px 20px 10px 20px;
-    width: 70%;
-    margin: 20px 50px 20px 50px;
-    border-spacing: 0;
-    border-collapse: separate;
-    background-color: rgb(221, 219, 219);
-}
-
-table th {
-    text-align: center;
-    background-color: lightblue;
-    font-size: large;
-    font-weight: bold;
-    border-radius: 20px;
-    border: 6px solid rgb(221, 219, 219);
-    padding: 10px;
-}
-
-table td {
-    /*border: 2px solid #18A0FB;*/
-    padding: 10px 10px 10px 40px;
 }
 
 .mainTop{
