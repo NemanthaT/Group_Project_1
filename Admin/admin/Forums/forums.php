@@ -24,14 +24,27 @@
 
     <body>
         <h1>Manage Forums</h1>
-        <div class="searchContainer">
+
+        <!--This section was replaced by js code-->
+        <!--<div class="searchContainer">
             <form action="" method="POST">
                 <input type="text" name="id" placeholder="Enter Forum ID" required>
                 <button type="submit" name="view">View</button>
                 <button type="submit" name="delete">Delete</button>
             </form>
+        </div>-->
+
+        <div id="hiddenView">
+            <button id="closeView" onclick="closeView()">x</button>
+            <p><b>Viewing Forum ID:</b> <span id="forumId"></span></p>
+            <p><b>Title:</b> <span id="forumTitle"></span></p>
+            <p><b>Client ID:</b> <span id="clientId"></span></p>
+            <p><b>Content:</b></p>
+            <div class="content" id="forumContent"></div>
         </div>
-        <?php         
+
+        <!--This section was replaced by js code-->
+        <?php /*        
                     if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['view'])) {
                         $id=$_POST['id'];
                         $sql = "SELECT * FROM forums WHERE forum_id = $id";
@@ -49,7 +62,7 @@
                         $sql = "DELETE FROM forums WHERE forum_id = $id";
                         $opert=$conn->query($sql);
                         echo "Deleting";
-                    }
+                    } */
                    
         ?>
 
@@ -59,6 +72,7 @@
                     <th>Forum Id</th>
                     <th>Title</th>
                     <th>Client ID</th>
+                    <th>Action</th>
                 </tr>
                 <?php
                     $sql = "SELECT * FROM forums";
@@ -67,8 +81,8 @@
                     if($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
-                            <td><button onclick=\"viewContent(" . $row['forum_id'] . ")\">View</button>
-                            <button onclick=\"deleteContent(" . $row['forum_id'] . ")\">Delete</button></td></tr>";
+                            <td class=\"actions\"><center><button onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
+                            <button onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
                         }
                     }
                     else{
@@ -79,5 +93,6 @@
             </table>
         </center>   
         <script src="../../js/common.js"></script>
+        <script src="forums.js"></script>
     </body>
 </html>
