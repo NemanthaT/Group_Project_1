@@ -17,64 +17,9 @@ h1 {
     color: #18A0FB;
 }
 
-/*form{
-    margin-top: 20px;
-    margin-left: 40px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #c6e8ff8e;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-}
-
-form input {
-    padding: 0px 5px 0px 0px;
-    font-family: Arial, sans-serif;
-    font-size: large;
-}
-
-form button{
-    font-size: large;
-    color: black;
-    background-color:#ccc;
-    cursor: pointer;
-    height: 25px;
-    width: 80px;
-    border: 1px solid #18A0FB;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-}
-
-button{
-    font-size: large;
-    color: black;
-    background-color:#ccc;
-    cursor: pointer;
-    height: 25px;
-    width: 80px;
-    border: 1px solid #18A0FB;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-}
-
-form button:hover{
-    color: white;
+table .actions{
     background-color: #18A0FB;
-    transform: scale(1.1);
 }
-
-button:hover{
-    color: white;
-    background-color: #18A0FB;
-    transform: scale(1.1);
-}*/
-
-/*.searchContainer{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}*/
 
 .viewer{
     padding: 20px;
@@ -107,4 +52,23 @@ p {
     height: auto;
     background-color: rgb(221, 219, 219);
     border: 1px solid #d8d8d8;
+}
+
+#hiddenView{
+    display: none;
+    margin-left: 40px;
+    padding: 5px;
+    border-radius: 20px;
+    width: 90%;
+    height: auto;
+    background-color: rgb(221, 219, 219);
+    border: 1px solid #d8d8d8;
+}
+
+#closeView{
+    font-size: large;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    margin-left: 90%;
 }
