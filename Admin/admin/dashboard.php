@@ -28,7 +28,7 @@
 
             <!--Left side of the dashboard-->
             <div id="contentLeft">
-                <div class="card" onclick="redirectTo('Users/users.php')">
+                <div class="card">
                     <div class="icon"></div>
                     <div>
                         <?php
@@ -55,7 +55,7 @@
                     <div class="icon"></div>
                     <div><p>Time</p></div>
                 </div>
-                <div class="card" onclick="redirectTo('Forums/forums.php')">
+                <div class="card">
                     <div class="icon"></div>
                     <div><p>Service Provider Requests</p></div>
                 </div>
