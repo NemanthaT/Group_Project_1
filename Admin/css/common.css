@@ -1,3 +1,21 @@
+* {   
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #18A0FB;
+}
+
 /*table styles*/
 table {
     padding: 10px 20px 10px 20px;
@@ -6,7 +24,7 @@ table {
     border-spacing: 0;
     border-radius: 10px;
     border-collapse: separate;
-    background-color: rgba(221, 219, 219, 0.5);
+    background-color: rgb(236, 236, 236);
 }
 
 table th {
@@ -15,7 +33,7 @@ table th {
     font-size: large;
     font-weight: bold;
     border-radius: 20px;
-    border: 6px solid rgb(221, 219, 219);
+    border: 6px solid rgba(236, 236, 236);
     padding: 10px;
 }
 
@@ -23,7 +41,7 @@ table td {
     /*border: 2px solid #18A0FB;*/
     padding: 10px 10px 10px 40px;
     border-radius: 20px;
-    border: 6px solid rgb(221, 219, 219);
+    border: 6px solid rgb(236, 236, 236);
     padding: 10px;
 }
 
