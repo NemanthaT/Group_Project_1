@@ -25,11 +25,33 @@
     <body>
     <div id="hiddenView">
             <button id="closeView" onclick="closeView()">x</button>
-            <p><b>Viewing Forum ID:</b> <span id="forumId"></span></p>
-            <p><b>Title:</b> <span id="forumTitle"></span></p>
-            <p><b>Client ID:</b> <span id="clientId"></span></p>
-            <p><b>Content:</b></p>
-            <div class="content" id="forumContent"></div>
+            <center>
+            <table>
+                <tr>
+                    <th>Request ID:</th> <td id="reqId"></td>
+                </tr>
+
+                <tr>
+                    <th>Name:</th> <td id="reqName"></td>
+                </tr>
+
+                <tr>
+                    <th><b>Email:</th> <td id="reqEmail"></td>
+                </tr>
+
+                <tr>
+                    <th><b>Tel:</th> <td id="reqTel"></td>
+                </tr>
+
+                <tr>
+                    <th><b>Field:</th> <td id="reqField"></td>
+                </tr>
+
+                <tr>
+                    <th><b>specialty</th> <td id="reqSpec"></td>
+                </tr>
+            </table>
+            </center>
         </div>
         <center>
             <table>
@@ -46,8 +68,8 @@
                     if($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             echo "<tr><td>".$row["reqId"]."</td><td>".$row["field"]."</td><td>".$row["specialty"]."</td>
-                            <td class=\"actions\"><center><button onclick=\"viewForum(" . $row['reqId'] . ")\">View</button>
-                            <button onclick=\"deleteForum(" . $row['reqId'] . ")\">Delete</button></center></td></tr>";
+                            <td class=\"actions\"><center><button onclick=\"viewReq(" . $row['reqId'] . ")\">View</button>
+                            <button onclick=\"deleteReq(" . $row['reqId'] . ")\">Delete</button></center></td></tr>";
                         }
                     }
                     else{
@@ -56,7 +78,8 @@
 
                 ?>
             </table>
-        </center>   
+        </center> 
+        <script src="requests.js"></script>  
     </body>
 
 </html>
