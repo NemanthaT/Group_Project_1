@@ -17,39 +17,46 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Service Requests</title>
+        <title>Provider Requests</title>
         <link rel="stylesheet" href="requests.css">
+        <link rel="stylesheet" href="../../css/common.css">
     </head>
 
     <body>
-        <div id="table">
+    <div id="hiddenView">
+            <button id="closeView" onclick="closeView()">x</button>
+            <p><b>Viewing Forum ID:</b> <span id="forumId"></span></p>
+            <p><b>Title:</b> <span id="forumTitle"></span></p>
+            <p><b>Client ID:</b> <span id="clientId"></span></p>
+            <p><b>Content:</b></p>
+            <div class="content" id="forumContent"></div>
+        </div>
+        <center>
             <table>
                 <tr>
-                    <th>
+                    <th>Request Id</th>
+                    <th>Field</th>
+                    <th>specialty</th>
+                    <th>Action</th>
                 </tr>
-            </table>
-        </div>
-
-        <div>
                 <?php
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['view'])) {
-                        $id=$_POST['id'];
-                        $sql = "SELECT * FROM forums WHERE forum_id = $id";
-                        $opert=$conn->query($sql);
-                        $row = $opert->fetch_assoc();
-                        echo "<p>Viewing Forum ID: ". $row["forum_id"]."</p>";
-                        echo "<p>Title: ". $row["title"]."</p>";
-                        echo "<p>Client ID: ". $row["user_id"]."</p>";
-                        echo "<p>Content: " . "<div class=\"content\"><p>" . $row["content"]."</p></div>" . "</p>";
+                    $sql = "SELECT * FROM providerrequests";
+                    $result = $conn->query($sql);
+
+                    if($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr><td>".$row["reqId"]."</td><td>".$row["field"]."</td><td>".$row["specialty"]."</td>
+                            <td class=\"actions\"><center><button onclick=\"viewForum(" . $row['reqId'] . ")\">View</button>
+                            <button onclick=\"deleteForum(" . $row['reqId'] . ")\">Delete</button></center></td></tr>";
+                        }
                     }
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['delete'])) {
-                        $id=$_POST['id'];
-                        $sql = "DELETE FROM forums WHERE forum_id = $id";
-                        $opert=$conn->query($sql);
-                        echo "Deleting";
+                    else{
+                        echo "<tr><td></td><td>0 results</td><td></td></tr>";
                     }
+
                 ?>
-        </div> 
+            </table>
+        </center>   
     </body>
 
 </html>
