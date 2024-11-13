@@ -6,12 +6,12 @@ table {
     border-spacing: 0;
     border-radius: 10px;
     border-collapse: separate;
-    background-color: rgb(221, 219, 219);
+    background-color: rgba(221, 219, 219, 0.5);
 }
 
 table th {
     text-align: center;
-    background-color: lightblue;
+    background-color: rgb(154, 211, 230);
     font-size: large;
     font-weight: bold;
     border-radius: 20px;
