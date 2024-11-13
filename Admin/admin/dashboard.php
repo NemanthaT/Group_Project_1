@@ -30,6 +30,7 @@
             <div id="contentLeft">
                 <div class="card">
                     <div class="icon"></div>
+                    <div><p>Users</p></div>
                     <div>
                         <?php
                             $sql = "SELECT COUNT(*) FROM clients";
@@ -53,15 +54,30 @@
                 </div>
                 <div class="card">
                     <div class="icon"></div>
-                    <div><p>Time</p></div>
+                    <div id="time"></div>
                 </div>
                 <div class="card">
                     <div class="icon"></div>
-                    <div><p>Service Provider Requests</p></div>
+                    <div><p>Service Requests</p></div>
+                    <div>
+                    <?php
+                            $sql = "SELECT COUNT(*) FROM servicerequests WHERE status = 'Pending'";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            echo "<table>";
+                            echo "<tr><th>Pending: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
+                            
+                            $sql = "SELECT COUNT(*) FROM servicerequests WHERE status = 'Finished'";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            echo "<tr><th>Accepted: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
+                            echo "</table>";
+                        ?>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="icon"></div>
-                    <div><p>Employees</p></div>
+                    <div><p>Appointments</p></div>
                 </div>
             </div>
 
@@ -87,6 +103,5 @@
             </div>
         </div>
         <script src="../js/common.js"></script>
-        <!--<script src="admin.js"></script>-->
     </body>
 </html>
