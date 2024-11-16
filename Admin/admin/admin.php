@@ -19,6 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EDSA Lanka Consultancy</title>
         <link rel="stylesheet" href="adminstyles.css">
+        <link rel="stylesheet" href="../css/common.css">
         <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     </head>
@@ -72,7 +73,7 @@
                             <div class="days" id="dates"></div>
                         </div>
 
-                        <div class="userAmount">
+                        <!--<div class="userAmount">
                             <?php
                                 $sql = "SELECT COUNT(*) FROM clients";
                                 $result = $conn->query($sql);
@@ -91,7 +92,7 @@
                                 echo "<tr><th>Number of Employees: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
                                 echo "</table>";
                             ?>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 
