@@ -4,13 +4,21 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    /*font-family: 'Segoe UI', 'cursive';*/
+    font-family: 'Poppins', sans-serif;
+    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
     background-color: #f4f4f4;
     width: 100vw;
     height: 100vh;
+    /*background-image: url("../Images/bg.gif");*/
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position:center; /* Centers the image */
+    background-repeat: no-repeat; /* No repeating background image */
+    background-attachment: fixed; /* The background image will not scroll with the page */
 }
 
 h1 {
+    padding-top: 10px;
     text-align: center;
     margin: 20px 0;
     color: #18A0FB;
@@ -20,11 +28,12 @@ h1 {
 table {
     padding: 10px 20px 10px 20px;
     width: 70%;
+    gap: 6px;
     margin: 20px 50px 20px 50px;
-    border-spacing: 0;
+    border-spacing: 10px;
     border-radius: 10px;
     border-collapse: separate;
-    background-color: rgb(236, 236, 236);
+    
 }
 
 table th {
@@ -32,17 +41,18 @@ table th {
     background-color: rgb(154, 211, 230);
     font-size: large;
     font-weight: bold;
+    margin: 6px;
     border-radius: 20px;
-    border: 6px solid rgba(236, 236, 236);
-    padding: 10px;
+    border: 1px solid rgba(236, 236, 236, 0.137);
+    padding: 20px;
 }
 
 table td {
     /*border: 2px solid #18A0FB;*/
-    padding: 10px 10px 10px 40px;
+    margin: 6px;
     border-radius: 20px;
-    border: 6px solid rgb(236, 236, 236);
-    padding: 10px;
+    border: 1px solid rgba(236, 236, 236, 0.5);
+    padding: 15px;
 }
 
 table tr:nth-child(even) {
@@ -50,6 +60,10 @@ table tr:nth-child(even) {
 }
 table tr:nth-child(odd) {
     background-color: #ffffff;
+}
+
+table .actions{
+    background-color: #1882fb;
 }
 
 /*search delete container styles*/
@@ -116,4 +130,16 @@ button:hover{
     background-color: #ffae00;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
     transform: scale(1.1);
+}
+
+.bg{
+    background-color: rgba(0, 0, 0, 0.4);
+    background-image: url("../Images/bg.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    filter: blur(5px);
+    z-index: -1;
 }
