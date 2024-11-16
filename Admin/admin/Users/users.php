@@ -19,8 +19,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin Dashboard</title>
         <link rel="stylesheet" href="users.css">
+        <link rel="stylesheet" href="../../css/common.css">
     </head>
     <body>
+        <div class="bg">
+            <!--blur Background image-->  
+        </div>
         <div class="header">
             <h1>Users</h1>
         </div>
