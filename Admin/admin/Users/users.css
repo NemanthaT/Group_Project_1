@@ -2,18 +2,9 @@
     margin: 0;
     padding: 0;
 }
-
-body {
-    /*font-family: Arial, sans-serif;*/
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    width: 100vw;
-    height: 100vh;
-}
-
 .header {
     text-align: center;
-    background-color: #f4f4f4;
+    /*background-color: #f4f4f4;*/
     color: #18A0FB;
 }
 
@@ -22,16 +13,19 @@ body {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    background-color: #f4f4f4;
+    /*background-color: #f4f4f4;*/
     /*gap: 20px;*/
 }
 
 .card {
     height: 200px;
     width: 200px;
-    background-color: rgb(235, 235, 235);
-    border: 1px solid #18A0FB;
-    border-radius: 10px;
+    /*background-color: rgb(235, 235, 235);*/
+    /*border: 1px solid #18A0FB;*/
+    background-color: #fffefe21;
+    border: 1px solid #00ffd5;
+    color: white;
+    border-radius: 25px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     padding: 20px;
     font-weight: bold;
@@ -56,4 +50,10 @@ body {
 a {
     text-decoration: none;
     color: black;
+}
+
+.bg{
+    position: fixed;
+    filter: blur(10px);
+    z-index: -1;
 }
