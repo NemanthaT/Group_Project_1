@@ -3,20 +3,11 @@
     padding: 0;
 }
 
-body {
-    /*font-family: Arial, sans-serif;*/
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    width: 100vw;
-    height: 100vh;
-    /*display: inline;*/
-}
-
 h2 {
     padding: 0px 0px 0px 20px;
     margin-top: 20px;
     font-size: 30px;
-    color: #18A0FB;
+    color: #ffffff;
 }
 
 p {
@@ -29,10 +20,13 @@ p {
 
 .mainTop{
     display: flex;
-    background-color: rgb(221, 219, 219);
+    /*background-color: rgb(221, 219, 219);*/
+    background-color: #fffefe21;
+    border: 1px solid #00ffd5;
+
     justify-content: space-between;
     padding: 10px 20px 10px 20px;
-    margin: 20px 50px 20px 50px;
+    margin: 40px 50px 20px 50px;
     border-radius: 20px;
     margin-bottom: 20px;
 }
