@@ -1,6 +1,6 @@
 #hiddenView{
     display: none;
-    margin-left: 40px;
+    margin-left: 40%;
     padding: 10px;
     border-radius: 20px;
     width: 50%;
@@ -15,8 +15,4 @@
     width: 40px;
     height: 40px;
     margin-left: 90%;
-}
-
-table .actions{
-    background-color: #18A0FB;
 }
