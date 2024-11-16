@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="../../css/common.css">
 </head>
 <body>
+    <div class="bg">
+        <!--blur Background image-->  
+    </div>
+    <h1>Manage Employees</h1>
     <div class="main">
         <div class ="mainTop">
             <!--Search Employees and list them-->
