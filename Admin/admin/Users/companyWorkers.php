@@ -26,24 +26,29 @@
     </head>
 
     <body>
-        <h1>Company Workers</h1>
-        <center>
-            <table>
-                <tr>
-                    <th>UId</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                </tr>
-            <?php
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr><td>" . $row["worker_id"]. "</td><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td></tr>";
+        <div class="bg">
+                <!--blur Background image-->  
+        </div> 
+        <div>
+            <h1>Company Workers</h1>
+            <center>
+                <table>
+                    <tr>
+                        <th>UId</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                <?php
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr><td>" . $row["worker_id"]. "</td><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td></tr>";
+                        }
+                    } else {
+                        echo "0 results";
                     }
-                } else {
-                    echo "0 results";
-                }
-                $conn->close();
-            ?>
-            </table>
-        </center>
+                    $conn->close();
+                ?>
+                </table>
+            </center>
+        </div>
 </html>
