@@ -23,75 +23,80 @@
     </head>
 
     <body>
-        <h1>Manage Forums</h1>
-
-        <!--This section was replaced by js code-->
-        <!--<div class="searchContainer">
-            <form action="" method="POST">
-                <input type="text" name="id" placeholder="Enter Forum ID" required>
-                <button type="submit" name="view">View</button>
-                <button type="submit" name="delete">Delete</button>
-            </form>
-        </div>-->
-
-        <div id="hiddenView">
-            <button id="closeView" onclick="closeView()">x</button>
-            <p><b>Viewing Forum ID:</b> <span id="forumId"></span></p>
-            <p><b>Title:</b> <span id="forumTitle"></span></p>
-            <p><b>Client ID:</b> <span id="clientId"></span></p>
-            <p><b>Content:</b></p>
-            <div class="content" id="forumContent"></div>
+        <div class="bg">
+            
         </div>
+        <div>
+            <h1>Manage Forums</h1>
 
-        <!--This section was replaced by js code-->
-        <?php /*        
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['view'])) {
-                        $id=$_POST['id'];
-                        $sql = "SELECT * FROM forums WHERE forum_id = $id";
-                        $opert=$conn->query($sql);
-                        $row = $opert->fetch_assoc();
-                        echo "<div class=\"viewSpace\">";
-                        echo "<p><b>Viewing Forum ID: </b>". $row["forum_id"]."</p>";
-                        echo "<p><b>Title: </b>". $row["title"]."</p>";
-                        echo "<p><b>Client ID: </b>". $row["user_id"]."</p>";
-                        echo "<p><b>Content: </b>" . "<div class=\"content\"><p>" . $row["content"]."</p></div>" . "</p>";
-                        echo "</div>"; 
-                    }
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['delete'])) {
-                        $id=$_POST['id'];
-                        $sql = "DELETE FROM forums WHERE forum_id = $id";
-                        $opert=$conn->query($sql);
-                        echo "Deleting";
-                    } */
-                   
-        ?>
+            <!--This section was replaced by js code-->
+            <!--<div class="searchContainer">
+                <form action="" method="POST">
+                    <input type="text" name="id" placeholder="Enter Forum ID" required>
+                    <button type="submit" name="view">View</button>
+                    <button type="submit" name="delete">Delete</button>
+                </form>
+            </div>-->
 
-        <center>
-            <table>
-                <tr>
-                    <th>Forum Id</th>
-                    <th>Title</th>
-                    <th>Client ID</th>
-                    <th>Action</th>
-                </tr>
-                <?php
-                    $sql = "SELECT * FROM forums";
-                    $result = $conn->query($sql);
+            <div id="hiddenView">
+                <button id="closeView" onclick="closeView()">x</button>
+                <p><b>Viewing Forum ID:</b> <span id="forumId"></span></p>
+                <p><b>Title:</b> <span id="forumTitle"></span></p>
+                <p><b>Client ID:</b> <span id="clientId"></span></p>
+                <p><b>Content:</b></p>
+                <div class="content" id="forumContent"></div>
+            </div>
 
-                    if($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
-                            <td class=\"actions\"><center><button onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
-                            <button onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
+            <!--This section was replaced by js code-->
+            <?php /*        
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['view'])) {
+                            $id=$_POST['id'];
+                            $sql = "SELECT * FROM forums WHERE forum_id = $id";
+                            $opert=$conn->query($sql);
+                            $row = $opert->fetch_assoc();
+                            echo "<div class=\"viewSpace\">";
+                            echo "<p><b>Viewing Forum ID: </b>". $row["forum_id"]."</p>";
+                            echo "<p><b>Title: </b>". $row["title"]."</p>";
+                            echo "<p><b>Client ID: </b>". $row["user_id"]."</p>";
+                            echo "<p><b>Content: </b>" . "<div class=\"content\"><p>" . $row["content"]."</p></div>" . "</p>";
+                            echo "</div>"; 
                         }
-                    }
-                    else{
-                        echo "<tr><td></td><td>0 results</td><td></td></tr>";
-                    }
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['delete'])) {
+                            $id=$_POST['id'];
+                            $sql = "DELETE FROM forums WHERE forum_id = $id";
+                            $opert=$conn->query($sql);
+                            echo "Deleting";
+                        } */
+                    
+            ?>
 
-                ?>
-            </table>
-        </center>   
+            <center>
+                <table>
+                    <tr>
+                        <th>Forum Id</th>
+                        <th>Title</th>
+                        <th>Client ID</th>
+                        <th>Action</th>
+                    </tr>
+                    <?php
+                        $sql = "SELECT * FROM forums";
+                        $result = $conn->query($sql);
+
+                        if($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
+                                <td class=\"actions\"><center><button onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
+                                <button onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
+                            }
+                        }
+                        else{
+                            echo "<tr><td></td><td>0 results</td><td></td></tr>";
+                        }
+
+                    ?>
+                </table>
+            </center>
+        </div>
         <script src="../../js/common.js"></script>
         <script src="forums.js"></script>
     </body>
