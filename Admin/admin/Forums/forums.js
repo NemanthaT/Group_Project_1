@@ -12,6 +12,7 @@ function viewForum(id) {
         // Check if data contains error
         if (data.error) {
             alert(data.error);
+            document.documentElement.scrollTop = 0;
         } else {
             // Display forum details in the designated area
             document.getElementById('hiddenView').style.display = "block";
@@ -19,6 +20,7 @@ function viewForum(id) {
             document.getElementById("forumTitle").innerText = data.title;
             document.getElementById("clientId").innerText = data.user_id;
             document.getElementById("forumContent").innerText = data.content;
+            document.documentElement.scrollTop = 0;
         }
     })
     .catch(error => console.error('Error fetching forum data:', error));
@@ -47,7 +49,8 @@ function deleteForum(id) {
         })
         .catch(error => console.error('Error deleting forum:', error));
         alert("Item deleted.");
-        window.location.href = forums.php;
+        document.documentElement.scrollTop = 0;
+        location.href = forums.php;
     } else {
         // Do nothing
         alert("Delete canceled.");
