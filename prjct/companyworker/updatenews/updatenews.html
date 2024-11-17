@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update News</title>
+  <link rel="stylesheet" href="updatenews.css">
+  <link rel="stylesheet" href="../sidebar.css">
+</head>
+<body>
+    <div class="sidebar">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☰</button> <!-- Toggle Button -->
+    
+        <div>
+          <img src="../logo.png" alt="logo" width="150" height="10" class="logo">
+        </div>
+        
+        <ul>
+          <br><br><br><br>
+          <li><a href="../servicerequest/servicerequest.html">Service Request</a></li><br>
+          <li><a href="../contactforums/contactforum.html">Contact Forum</a></li><br>
+          <li><a href="../updatenews/updatenews.html">Update News</a></li><br>
+          <li><a href="../updateevents/updateevents.html">Update Events</a></li><br>
+          <li><a href="../updateknowlgebase/updateknowlgebase.html">Update knowlgdebase</a></li><br>
+          <li><a href="../dashboard/dashboard.html">dashboard</a></li><br>
+        </ul>
+      </div>
+
+      <!-- Content -->
+
+      <div class="content">
+        <div class="header">
+          <header class="header">
+            <h1 class="logo">Update News</h1>
+            <nav class="nav">
+              <ul class = "nav-links">
+                <li><a href="#">Logout</a></li>
+                <li><a href="#">Profile</a></li>
+              </ul>
+            </nav>
+          </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <form action="/submit-description" method="POST">
+            <center><label for="description">News to be updated:</label><br>
+            <textarea class="description" name="description" rows="10" cols="50" placeholder="Enter your description here..."></textarea><br><br></center>
+            <div class="review">
+            <ul class ="ulbutton">
+                <li class="button"><a href="#">Save</a></li>
+                <li class="button"><a href="#">Update</a></li>
+            </ul>
+            </div>
+        </form>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script src="../sidebar.js"></script>
+
+    </body>
+</html>
