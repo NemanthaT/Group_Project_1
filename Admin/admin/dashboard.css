@@ -58,15 +58,25 @@ body {
     transition: transform 0.5s ease-in-out;
 }
 
-.card .icon{
-    width: 10px;
-    height: 10px;
+.card .iconClock{
+    justify-content: center;
+    width: 200px;
+    height: 200px;
     margin: 0 auto 10px;
     z-index: -1;
 }
+.card .iconClock img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
 .card p{
-    font-size: 20px;
+    /*font-size: 20px;*/
+    font-size: 2rem;
     margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding-left: 20px;
     z-index: 1;
 }
@@ -181,20 +191,24 @@ canvas{
 
 .card th{
     text-align: left;
-    font-size: large;
+    /*font-size: large;*/
+    font-size: 1.5rem;
     font-weight: bold;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 .card td{
     font-weight: normal;
-    text-align: center;
+    font-size: 1.5rem;
+    text-align: right;
+    padding-right: 10px;
     padding: 2px 2px 2px 70px;
 }
 
 #time {
-    font-family: 'Poppins', sans-serif;
-    font-size: 4rem;
+    /*font-family: 'Poppins', sans-serif;*/
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
     font-weight: bold;
     text-align: center;
 }
