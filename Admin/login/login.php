@@ -34,7 +34,8 @@ if (isset($_POST['submit'])){ //check if form was submitted
             exit;
         }
         else{
-            echo "<script>alert('Login failed!');</script>";  
+            echo "<script>alert('Login failed!');</script>";
+            echo "<script>location.href='login.php';</script>";  
         }      
     }
     elseif ($assoc_companyworkers['email'] == $Email){ //check if email is in company workers table
@@ -46,7 +47,8 @@ if (isset($_POST['submit'])){ //check if form was submitted
             exit;
         }
         else{
-            echo "<script>alert('Login failed!');</script>";  
+            echo "<script>alert('Login failed!');</script>";
+            echo "<script>location.href='login.php';</script>";  
         }      
     }
     elseif ($assoc_clients['email'] == $Email){ //check if email is in clients table
@@ -58,7 +60,8 @@ if (isset($_POST['submit'])){ //check if form was submitted
             exit;
         }
         else{
-            echo "<script>alert('Login failed!');</script>";  
+            echo "<script>alert('Login failed!');</script>";
+            echo "<script>location.href='login.php';</script>";  
         }      
     }
     elseif ($assoc_serviceproviders['email'] == $Email){ //check if email is in service providers table
@@ -71,10 +74,12 @@ if (isset($_POST['submit'])){ //check if form was submitted
         }
         else{
             echo "<script>alert('Login failed!');</script>"; //display error message
+            echo "<script>location.href='login.php';</script>";
         }
     }
     else{
         echo "<script>alert('Login failed!');</script>"; //display error message
+        echo "<script>location.href='login.php';</script>";
     }
 
 }
