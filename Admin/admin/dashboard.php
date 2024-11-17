@@ -20,6 +20,7 @@
         <title>Admin Dashboard</title>
         <link rel="stylesheet" href="dashboard.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div class="dashboard">
@@ -33,7 +34,6 @@
             </div>
             <div id="contentLeft">
                 <div class="card">
-                    <div class="icon"></div>
                     <div><p>Users</p></div>
                     <div>
                         <?php
@@ -112,11 +112,12 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="icon"></div>
+                    <div class="iconClock">
+                        <img src="../Images/clock.png" alt="clock">
+                    </div>
                     <div id="time"></div>
                 </div>
                 <div class="card">
-                    <div class="icon"></div>
                     <div><p>Service Requests</p></div>
                     <div>
                     <?php
@@ -135,7 +136,6 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="icon"></div>
                     <div><p>Appointments</p></div>
                 </div>
             </div>
