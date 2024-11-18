@@ -56,7 +56,7 @@ table td {
 }
 
 table tr:nth-child(even) {
-    background-color: #bbbbbb;
+    background-color: #d6d6d6;
 }
 table tr:nth-child(odd) {
     background-color: #ffffff;
@@ -134,7 +134,7 @@ button:hover{
 
 .bg{
     background-color: rgba(0, 0, 0, 0.4);
-    background-image: url("../Images/bg.gif");
+    background-image: url("../Images/bg.png");
     background-size: cover;
     background-repeat: no-repeat;
     width: 100vw;
