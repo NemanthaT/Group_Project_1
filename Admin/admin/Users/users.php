@@ -37,10 +37,10 @@
                 <div class="icon"></div>
                 <p>Service Providers</p>
             </div>
-            <div class="card" onclick="redirectTo('companyWorkers.php')">
+            <!--<div class="card" onclick="redirectTo('companyWorkers.php')">
                 <div class="icon"></div>
                 <p>Company Workers</p>
-            </div>
+            </div>-->
         </div>
         <script src="../../js/common.js"></script>
     </body>
