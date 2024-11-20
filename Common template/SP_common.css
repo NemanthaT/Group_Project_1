@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    flex: 1; /* Allow the container to grow and fill available space */
+    flex-direction: row; /* Sidebar and main content side by side */
+}
+
+.sidebar {
+    background-color: white;
+    color: white;
+    width: 20vw;           /* Sidebar width at 20% of viewport width */
+    padding: 3vh;          /* Sidebar padding at 3% of viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+}
+
+.sidebar .logo img {
+    width: 100%;
+    max-width: 20vw;       /* Max width in terms of viewport width */
+    margin-bottom: 5vh;
+}
+
+.menu {
+    list-style: none;
+    width: 100%;
+}
+
+.menu li {
+    margin-bottom: 2vh;
+}
+
+.menu a {
+    text-decoration: none; /* Remove the underline */
+}
+
+.menu button {
+    display: flex;              /* Use flexbox for alignment */
+    align-items: center;        /* Align items vertically */
+    font-size: 2.5vh;           /* Adjusts the text size */
+    font-weight: bold;          /* Makes the text bold */
+    width: 100%;                /* Full button width */
+    padding: 1.5vh;             /* Button padding */
+    color: #333;                /* Text color */
+    background-color: #fff;     /* Button background */
+    border: none;               /* Remove borders */
+    cursor: pointer;            /* Pointer cursor on hover */
+    text-align: left;           /* Align text to the left */
+    border-radius: 1vh;         /* Rounded corners */
+    gap: 1vh;                   /* Space between image and text */
+    text-decoration: none;      /* Remove underline */
+}
+
+.menu img {
+    width: auto;                /* Maintain aspect ratio */
+    height: 4vh;                /* Set a consistent height for images */
+    object-fit: contain;        /* Ensure images fit within the height */
+    margin-right: 1vh;          /* Add spacing between image and text */
+}
+
+.menu button:hover {
+    transform: scale(1.1);
+    background-color: #18A0FB;
+    color: white;
+}
+
+.navbar {
+    width: 80vw;  /* Width adjusted for sidebar */
+    background-color: white;
+    color: #18A0FB;
+    margin-left: 20vw;  /* Margin adjusted to sidebar width */
+    padding: 2vh 4vw;  /* Add some padding for better spacing */
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center;
+}
+
+.navbar a {
+    color: #18A0FB;
+    text-decoration: none;
+    font-size: 2.5vh;
+    padding: 0.8vh 1.5vw;  /* Reduced padding to reduce gap between links */
+    margin-left: 1.5vw;  /* Optional: Adds space between links */
+    border-radius: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar a:hover {
+    background-color: rgb(215, 236, 255);
+}
+
+.notification {
+    display: flex;
+    align-items: center;
+    margin-right: 1vw;
+}
+
+.notification a {
+    padding: 0;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;  /* Circular shape for profile */
+    width: 5vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification a img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-right: 1vw;
+}
+
+.profile a {
+    padding: 0;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;  /* Circular shape for profile */
+    width: 5vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile a img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+/* Main content styling */
+.main-content {
+    width: 80vw;
+    margin: 9vh 0 0 20vw;
+    padding: 3vh 2vw 8vh 2vw;  /* Added bottom padding for footer spacing */
+    background-color: #ecf0f4;
+    overflow-y: auto;
+}
+
+/* Footer styling */
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   /* Align content starting from the left */
+    width: 80vw;               /* Align width to the main content */
+    margin-left: 20vw;         /* Offset by the sidebar width */
+    background-color: white;
+    color: #18A0FB;
+    padding: 2vh 2vw;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;           /* Fix the footer at the bottom */
+    bottom: 0;                 /* Position it at the bottom */
+    z-index: 1;                /* Ensure it overlaps other content */
+}
+
+.Fcontainer {
+    display: flex;
+    justify-content: space-between; /* Spread out the items */
+    align-items: flex-start;
+    width: 100%;
+}
+
+.Fquick-links,
+.Fcontact-info {
+    flex: 1; /* Allow equal space for links and contact info */
+    padding: 0 1vw;
+}
+
+.Fquick-links ul,
+.Fcontact-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.Fquick-links ul li,
+.Fcontact-info ul li {
+    margin-bottom: 1vh;
+}
+
+.Fquick-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 2.5vh;
+}
+
+.Fquick-links a:hover {
+    text-decoration: underline;
+}
+
+.Fcontact-info h3,
+.Fquick-links h3 {
+    margin-bottom: 1vh;
+    font-size: 5vh;
+}
+
+.Fcontact-info ul li {
+    font-size: 2.5vh;
+    color: #333;
+}
+
+.Fsocial-media {
+    margin-top: 1vh;
+    display: flex;
+    gap: 1vw;
+}
+
+.Fsocial-media a img {
+    width: 3vh;
+    height: 3vh;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.Fsocial-media a img:hover {
+    transform: scale(1.1);
+}
+
+/* Footer Logo */
+.Flogo img {
+    width: 20vw;
+    object-fit: contain;
+}
+
+/* Copyright Section */
+.Fcopyright {
+    text-align: center;
+    font-size: 2vh;
+    color: #333;
+    width: 100%;
+    margin-top: 2vh;
+    border-top: 0.1vh solid #ddd;
+    padding-top: 1vh;
+}
