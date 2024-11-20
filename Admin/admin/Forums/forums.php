@@ -85,8 +85,8 @@
                         if($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
-                                <td class=\"actions\"><center><button onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
-                                <button onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
+                                <td class=\"actions\"><center><button class=\"view\" onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
+                                <button class=\"del\" onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
                             }
                         }
                         else{
