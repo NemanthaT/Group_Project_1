@@ -18,9 +18,10 @@ body {
 }
 
 h1 {
-    padding-top: 10px;
+    font-size: 3rem;
+    padding-top: 40px;
     text-align: center;
-    margin: 20px 0;
+    margin-bottom: 20px;
     color: #18A0FB;
 }
 
@@ -42,6 +43,7 @@ table th {
     font-size: large;
     font-weight: bold;
     margin: 6px;
+    border: 1px solid #00ffd5;
     border-radius: 20px;
     border: 1px solid rgba(236, 236, 236, 0.137);
     padding: 20px;
@@ -63,6 +65,7 @@ table tr:nth-child(odd) {
 }
 
 table .actions{
+    gap: 10px;
     background-color: #1882fb;
 }
 
@@ -96,11 +99,11 @@ form input {
 form button{
     font-size: large;
     color: black;
-    background-color:#f1c40f;
+    background-color:#ffffff;
     cursor: pointer;
     height: 25px;
     width: 80px;
-    border: 1px solid #ffae00;
+    border: 1px solid #ffffff;
     border-radius: 10px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease-in-out;
@@ -108,12 +111,13 @@ form button{
 
 button{
     font-size: large;
+    font-weight: bold;
     color: black;
-    background-color:#f1c40f;
+    background-color:#ffffff;
     cursor: pointer;
     height: 25px;
     width: 80px;
-    border: 1px solid #ffae00;
+    border: 1px solid #ffffff;
     border-radius: 10px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease-in-out;
@@ -130,6 +134,31 @@ button:hover{
     background-color: #ffae00;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
     transform: scale(1.1);
+}
+
+.accept{
+    color: rgb(3, 202, 3);
+    margin-right: 10px;
+}
+.accept:hover{
+    background-color: rgb(3, 202, 3);
+    border: rgb(3, 202, 3);
+}
+.view{
+    color: #1882fb;
+    margin-right: 10px;
+}
+.view:hover{
+    background-color: #1882fb;
+    border: 1px white;  
+}
+
+.del{
+    color: red;
+}
+.del:hover{
+    background-color: red;
+    border: red;
 }
 
 .bg{
