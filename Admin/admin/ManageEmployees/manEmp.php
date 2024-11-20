@@ -57,7 +57,7 @@
                             if ($result->num_rows > 0) {
                                 //Removing the worker
                                 $del = "DELETE FROM companyworkers WHERE worker_id = $id";
-                                $opert = $conn->query($srch);
+                                $opert = $conn->query($del);
                                 if ($opert===true) {
                                     echo "<script>alert('Employee Deleted!');</script>";  
                                 }
