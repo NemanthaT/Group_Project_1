@@ -49,10 +49,43 @@ function deleteReq(id) {
         })
         .catch(error => console.error('Error deleting forum:', error));
         alert("Item deleted.");
-        window.location.href = forums.php;
+        location.reload();
+        window.location.href = 'requests.php';
     } else {
         // Do nothing
         alert("Delete canceled.");
+    }
+
+}
+
+//accept requests
+function accReq(id) {
+    if (confirm("Do you want to accept the request?")) {
+        // Proceed with accept action
+            // Send an AJAX request to the PHP script
+        fetch('acc_req.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `id=${id}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Check if data contains error
+            if (data.error) {
+                alert(data.error);
+            } else {
+                // Reload the page
+                location.reload();
+            }
+        })
+        .catch(error => console.error('Error Accepting Request:', error));
+        alert("Request Accepeted.");
+        window.location.href = 'requests.php';
+    } else {
+        // Do nothing
+        alert("Accepting canceled.");
     }
 
 }
