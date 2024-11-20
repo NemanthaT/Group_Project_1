@@ -183,7 +183,6 @@ footer {
     color: #18A0FB;
     padding: 2vh 2vw;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed;           /* Fix the footer at the bottom */
     bottom: 0;                 /* Position it at the bottom */
     z-index: 1;                /* Ensure it overlaps other content */
 }
