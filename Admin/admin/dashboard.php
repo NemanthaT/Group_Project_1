@@ -159,6 +159,9 @@
                     </div>
                     <div class="days" id="dates"></div>
                 </div>
+                <div class="card">
+                    <div><p>Forums</p></div>
+                <div>
             </div>
         </div>
         <script src="../js/common.js"></script>
