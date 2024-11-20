@@ -45,7 +45,7 @@
                     <tr><th>Viewing Forum ID:</th> <td id="forumId"></td></tr>
                     <tr><th>Title:</th> <td id="forumTitle"></td></tr>
                     <tr><th>Client ID:</th> <td id="clientId"></td></tr>
-                    <tr><th>Content:</th><td><div class="content" id="forumContent"></div></td></tr>
+                    <tr><th>Content:</th><td class="content" id="forumContent"></td></tr>
                 </table>
                 </center>
                 
