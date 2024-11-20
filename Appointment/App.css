@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    color: #333;
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar {
+    background-color: #333;
+    color: white;
+    width: 20vw;
+    padding: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+}
+
+.sidebar .logo img {
+    width: 100%;
+    max-width: 20vw;
+    margin-bottom: 5vh;
+}
+
+.menu {
+    list-style: none;
+    width: 100%;
+}
+
+.menu li {
+    margin-bottom: 2vh;
+}
+
+.menu button {
+    font-size: 2.5vh;
+    font-weight: bold;
+    width: 100%;
+    padding: 1.5vh;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 1vh;
+}
+
+.menu button:hover {
+    transform: scale(1.1);
+    background-color: #18A0FB;
+    color: white;
+}
+
+.navbar {
+    width: 80vw;
+    background-color: white;
+    color: #18A0FB;
+    box-shadow: 0 0 0.2vh black;
+    margin-left: 20vw;
+    padding: 2vh 2vw;
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.profile a img {
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+}
+
+.main-content {
+    flex: 1;
+    padding: 80px 20px 20px 270px;
+    background-color: white;
+    overflow-y: auto;
+}
+
+.appointment-section {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.appointment-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.appointment-controls input[type="text"],
+.appointment-controls button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #555;
+}
+
+.appointment-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appointment-table th,
+.appointment-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.appointment-table th {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.appointment-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
