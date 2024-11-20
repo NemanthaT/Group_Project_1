@@ -16,8 +16,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Employees</title>
-    <link rel="stylesheet" href="empStyles.css">
     <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="empStyles.css">
 </head>
 <body>
     <div class="bg">
@@ -32,7 +32,7 @@
                 <div class="searchContainer">
                     <form action="" method="POST">
                         <input type="text" name="name" placeholder="Enter Name" required>
-                        <button type="submit" name="search_name">Search</button>
+                        <button class="sBtn" type="submit" name="search_name">Search</button>
                     </form>
                 </div>
             </div>
@@ -43,29 +43,35 @@
                 <div class="searchContainer">
                     <form action="" method="POST">
                         <input type="text" name="id" placeholder="Enter ID" required>
-                        <button type="submit" name="remove">Remove</button>
+                        <button class="rBtn" type="submit" name="remove">Remove</button>
                     </form>
                 </div>
                 <div class="removeEmployee">
                     <?php
                         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove'])) {
                             $id = $_POST['id'];
-                            $srch="SELECT * FROM companyworkers WHERE worker_id = $id ";
-                            $result = $conn->query($srch);
-
-                            //checking whether worker exists or not
-                            if ($result->num_rows > 0) {
-                                //Removing the worker
-                                $del = "DELETE FROM companyworkers WHERE worker_id = $id";
-                                $opert = $conn->query($del);
-                                if ($opert===true) {
-                                    echo "<script>alert('Employee Deleted!');</script>";  
-                                }
-                                else {
-                                    echo "<script>alert('Error: ".$conn->error."!');</script>";
-                                }
-                            } else {
+                            //check whether given id is an integer
+                            if (!is_numeric($id)) {
                                 echo "<script>alert('Error: Invalid ID!');</script>";
+                            }
+                            else{
+                                $srch="SELECT * FROM companyworkers WHERE worker_id = $id ";
+                                $result = $conn->query($srch);
+    
+                                //checking whether worker exists or not
+                                if ($result->num_rows > 0) {
+                                    //Removing the worker
+                                    $del = "DELETE FROM companyworkers WHERE worker_id = $id";
+                                    $opert = $conn->query($del);
+                                    if ($opert===true) {
+                                        echo "<script>alert('Employee Deleted!');</script>";  
+                                    }
+                                    else {
+                                        echo "<script>alert('Error: ".$conn->error."!');</script>";
+                                    }
+                                } else {
+                                    echo "<script>alert('Error: Invalid ID!');</script>";
+                                }
                             }
                         }
                     ?>        
@@ -80,29 +86,34 @@
                     <form action="" method="POST">
                         <input type="text" name="id" placeholder="Enter ID" required>
                         <input type="text" name="role" placeholder="Enter New Role" required>
-                        <button type="submit" name="change">Change</button>
+                        <button class="chBtn" type="submit" name="change">Change</button>
                     </form>
                 </div>
                     <div class="changeEmployeeRole">
                     <?php
                         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change'])) {
                             $id = $_POST['id'];
-                            $role = $_POST['role'];
-                            $srch="SELECT * FROM companyworkers WHERE worker_id = $id ";
-                            $result = $conn->query($srch);
-
-                            //checking whether worker exists or not
-                            if ($result->num_rows > 0) {
-                                //Changing the role
-                                $chng = "UPDATE companyworkers SET role = " . " ' " . $role . " ' " . " WHERE worker_id = $id";
-                                $opert = $conn->query($chng);
-                                if ($opert===true) {
-                                    echo "<script>alert('Role Changed Successfully!');</script>"; ;
+                            if (!is_numeric($id)) {
+                                echo "<script>alert('Error: Invalid ID!');</script>";
+                            }
+                            else{
+                                $role = $_POST['role'];
+                                $srch="SELECT * FROM companyworkers WHERE worker_id = $id ";
+                                $result = $conn->query($srch);
+    
+                                //checking whether worker exists or not
+                                if ($result->num_rows > 0) {
+                                    //Changing the role
+                                    $chng = "UPDATE companyworkers SET role = " . " ' " . $role . " ' " . " WHERE worker_id = $id";
+                                    $opert = $conn->query($chng);
+                                    if ($opert===true) {
+                                        echo "<script>alert('Role Changed Successfully!');</script>"; ;
+                                    } else {
+                                        echo "<script>alert('Error: ".$conn->error."!');</script>";
+                                    }
                                 } else {
-                                    echo "<script>alert('Error: ".$conn->error."!');</script>";
+                                    echo "<script>alert('>Error: Invalid ID!');</script>";
                                 }
-                            } else {
-                                echo "<script>alert('>Error: Invalid ID!');</script>";
                             }
                         }
                     ?>        
