@@ -8,6 +8,7 @@
 }
 
 .sidebar {
+    color: white;
     overflow: hidden;
     width: 17%;
     height: 100vh;
@@ -110,12 +111,13 @@ a:hover {
     /*border-radius: 10px;*/
     /*border: thin solid rgba(255, 255, 255, 0.521);*/
     width: 100%;
-    cursor: pointer;
+    cursor:pointer;
     /*box-shadow: 6px 8px 5px rgba(0, 0, 0, 0.8);*/
     transition: transform 0.5s ease-in-out;
 }
 
 .dropDown:hover{
+    box-shadow: 6px 8px 5px rgba(0, 0, 0, 0.8);
     background-color: #18A0FB;
     color: white;
     /*transform: scale(1.1);*/
