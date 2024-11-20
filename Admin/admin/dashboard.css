@@ -100,6 +100,11 @@ canvas{
     border-radius: 10px;
     padding: 10px;
     color: white;
+    transition: transform 0.5s ease-in-out;
+}
+
+canvas:hover {
+    transform: scale(1.2);
 }
 
 #contentLeft {
