@@ -33,10 +33,10 @@
                     <ul>
                         <li class="dropDown"><a href="dashboard.php" target="Dashboard">Dashboard</a></li>
                         <li class="dropDown"><a href="Users/users.php" target="Dashboard">Users</a></li>
+                        <li class="dropDown"><a href="ManageEmployees/manEmp.php" target="Dashboard">Manage Employees</a></li>
                         <li class="dropDown"><a href="Requests/requests.php" target="Dashboard">Service Provider Requests</a></li>
                         <li class="dropDown"><a href="Forums/forums.php" target="Dashboard">Forums</a></li>
                         <li class="dropDown"><a href="Reports/reports.php" target="Dashboard">Reports</a></li>
-                        <li class="dropDown"><a href="ManageEmployees/manEmp.php" target="Dashboard">Manage Employees</a></li>
                     </ul>
                 </nav>
             </div>
