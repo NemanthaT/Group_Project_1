@@ -58,6 +58,11 @@ body {
     transition: transform 0.5s ease-in-out;
 }
 
+.card:hover {
+    transform: scale(1.1);
+    color: white;
+}
+
 .card .iconClock{
     justify-content: center;
     width: 200px;
@@ -94,6 +99,7 @@ canvas{
     background-color: rgb(0, 0, 0);
     border-radius: 10px;
     padding: 10px;
+    color: white;
 }
 
 #contentLeft {
@@ -132,6 +138,7 @@ canvas{
     border: 1px solid #00ffd5;
     border-radius: 25px;
     padding: 20px;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3);
 }
 
 .calendar-header {
