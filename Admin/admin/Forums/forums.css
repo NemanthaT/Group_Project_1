@@ -37,20 +37,20 @@ p {
 }
 
 #hiddenView{
+    flex-direction: column;
     display: none;
-    margin-left: 40px;
+    margin-left: 10%;
+    margin-right: 10%;
     padding: 5px;
     border-radius: 20px;
-    width: 90%;
+    width: 80%;
     height: auto;
-    background-color: rgb(221, 219, 219);
-    border: 1px solid #d8d8d8;
+    /*background-color: rgb(221, 219, 219);
+    border: 1px solid #d8d8d8;*/
+    background-color: #fffefe21;
+    border: 1px solid #00ffd5;
 }
 
-#closeView{
-    font-size: large;
-    font-weight: bold;
-    width: 40px;
-    height: 40px;
-    margin-left: 90%;
+th {
+    text-align: left;
 }
