@@ -1,33 +1,14 @@
-<?php
-session_start();
-require_once('../connection.php');
-
-// Check if user session is active
-/*
-if (!isset($_SESSION['username']) || !isset($_SESSION['email'])) {
-    header("Location: login.php"); // Redirect to login page if not logged in
-    exit();
-}
-*/
-
-$username = $_SESSION['username'] ?? 'Guest';
-$email = $_SESSION['email'] ?? 'guest@example.com';
-
-// Query to retrieve appointments data
-$sql = "SELECT appointment_id, provider_id, client_id, appointment_date, status FROM appointments";
-$result = $conn->query($sql);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSA Lanka Consultancy - Appointments</title>
-    <link rel="stylesheet" href="App.css">
+    <title>EDSA Lanka Consultancy</title>
+    <link rel="stylesheet" href="SPDash.css">
+    <link rel="stylesheet" href="../Common CSS/SP_common.css">
+
 </head>
 <body>
-    <div class="backgroundimage"></div>
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -35,62 +16,75 @@ $result = $conn->query($sql);
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
             </div>
             <ul class="menu">
-                <li><a href=""><button>Dashboard</button></a></li>
-                <li><a href=""><button>Appointment</button></a></li>
-                <li><a href=""><button>Message</button></a></li>
-                <li><a href="#"><button>Forum</button></a></li>
-                <li><a href="#"><button>KnowledgeBase</button></a></li>
+                <li><a href="../SP_Dashboard/SPDash.html"><button><img src="../images/dashboard.jpg">Dashboard</button></a></li>
+                <li><a href=""><button><img src="../images/appointment.png">Appointment</button></a></li>
+                <li><a href="../Message/Message.html"><button><img src="../images/message.jpg">Message</button></a></li>
+                <li><a href="../SP_Forum/Forum.html"><button><img src="../images/forum.png">Forum</button></a></li>
+                <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
             </ul>
         </div>
-        <!-- Navbar -->
-        <header>
-            <nav class="navbar">
-                <div class="profile">
-                    <a href=""><img src="../images/user.png" alt="Profile"></a>
-                </div> 
-                <a href="" class="logout">Logout</a>
-            </nav>
-        </header>
 
-        <!-- Main Content (Appointments Table) -->
-        <div class="main-content">
-            <div class="appointment-section">
-                <h2>Appointments</h2>
-                <div class="appointment-controls">
-                    <input type="text" id="clientFilter" placeholder="Search by Client ID">
-                    <button class="search-button" onclick="filterAppointments()">Search</button>
-                </div>
-                <table class="appointment-table">
-                    <thead>
-                        <tr>
-                            <th>Appointment ID</th>
-                            <th>Client ID</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="appointment-tbody">
-                        <?php
-                        if ($result && $result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td class='appointment-id'>" . htmlspecialchars($row['appointment_id']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['provider_id']) . "</td>";
-                                echo "<td class='client-id'>" . htmlspecialchars($row['client_id']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='5'>No appointments found</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
+        <!-- Main Content Wrapper -->
+        <div class="main-wrapper">
+            <!-- Navbar -->
+            <header>
+                <nav class="navbar">       
+                        <a href="#">Home</a>
+                        <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                    <div class="profile">
+                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                    </div>
+                    <a href="../Login/Logout.php" class="logout">Logout</a>
+                </nav>
+            </header>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                
             </div>
+
+            <!-- Footer -->
+            <footer>
+                <div class="Fcontainer">
+                    <!-- Quick Links -->
+                    <div class="Fquick-links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Knowledge Base</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Community</a></li>
+                        </ul>
+                    </div>
+                    <!-- Contact Info -->
+                    <div class="Fcontact-info">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li>Email: info@edsalanka.com</li>
+                            <li>Phone: +94 123 456 789</li>
+                            <li>Address: 123 EDSA Lane, Colombo, Sri Lanka</li>
+                        </ul>
+                        <!-- Social Media Links -->
+                        <div class="Fsocial-media">
+                            <a href="#"><img src="../images/facebook.jpg" alt="Facebook"></a>
+                            <a href="#"><img src="../images/linkedin.png" alt="LinkedIn"></a>
+                            <a href="#"><img src="../images/instagram.jpg" alt="Instagram"></a>
+                        </div>
+                    </div>
+                    <!-- Footer Logo -->
+                    <div class="Flogo">
+                        <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
+                    </div>
+                </div>
+                <div class="Fcopyright">
+                    &copy; 2024 EDSA Lanka Consultancy. All rights reserved.
+                </div>
+            </footer>
         </div>
     </div>
-
-    <script src="App.js"></script>
+    <script src="Calendar.js"></script>
 </body>
 </html>
