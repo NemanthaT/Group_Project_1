@@ -1,0 +1,258 @@
+* {   
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    overflow: hidden;
+    width: 17%;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgb(80, 80, 80);
+    padding: 20px;
+    box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.575);
+}
+
+button{
+    cursor: pointer;
+    height: 25px;
+    width: 80px;
+    border-radius: 10px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.logo h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    margin: 10px 0;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    display: block;
+    padding: 10px;
+}
+
+.content {
+    flex-grow: 1;
+    display: grid;
+    padding: 20px 0px 20px 0px;
+    background-color: #fff;
+    height: 100vh;
+    z-index: 0;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+    height: auto;
+    width: auto;
+    padding: 0px 30px 0px 0px;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+header .user-info p {
+    margin-right: 20px;
+}
+
+header .user-info button {
+    padding: 5px 10px 5px 10px;
+    background-color: #333;
+    text-decoration: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+header .user-info button:hover {
+    background-color: tomato;
+    transform: scale(1.2);
+}
+
+header .user-info button a {
+    text-decoration: none;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.dropDown{
+    /*background-color: #18A0FB;*/
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    /*border-radius: 10px;*/
+    /*border: thin solid rgba(255, 255, 255, 0.521);*/
+    width: 100%;
+    cursor: pointer;
+    /*box-shadow: 6px 8px 5px rgba(0, 0, 0, 0.8);*/
+    transition: transform 0.5s ease-in-out;
+}
+
+.dropDown:hover{
+    background-color: #18A0FB;
+    color: white;
+    /*transform: scale(1.1);*/
+}
+
+.dropDown:hover .dropDownContent {
+    display: block;
+}
+
+.frame {
+    width: 100%;
+    height: 92.5vh;
+    display: flex;
+}
+
+#frame{
+    width: 100%;
+    height: 92.5vh;
+}
+
+iframe {
+    background-color:#f4f4f4;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: auto;
+    height: auto;
+    z-index: 1;
+}
+
+#arrow{
+    z-index: 2;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 20px solid rgb(0, 0, 0);
+    cursor: pointer;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+#content {
+    z-index: 2;
+    background-color: rgb(255, 255, 255);
+    display: none;
+    width: 440px;
+    height: 100%;
+}
+
+.calendar {
+    width: 400px;
+    height: auto;
+    margin: auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-header button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.calendar-header h2 {
+    margin: 0;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.day, .date {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.day {
+    font-weight: bold;
+    background-color: #f4f4f4;
+    border-radius: 4px;
+}
+
+.date {
+    background-color: #e9f7fe;
+    border-radius: 4px;
+}
+
+.date.other-month {
+    color: #ccc;
+}
+
+.date.today {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+.userAmount{
+    width: 270px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 40px;
+    margin-right: 10px; 
+}
+
+.userAmount th{
+    text-align: left;
+    font-weight: bold;
+}
+
+.userAmount td{
+    text-align: right;
+    padding: 5px;
+}
