@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div><p>Appointments</p></div>
+                    <div><p>Total Earnings</p></div>
                 </div>
             </div>
 
