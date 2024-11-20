@@ -5,8 +5,8 @@
 
 body {
     /*font-family: 'Segoe UI', 'cursive';*/
-    font-family: 'Poppins', sans-serif;
-    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+    /*font-family: 'Poppins', sans-serif;*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
     width: 100vw;
     height: 100vh;
@@ -86,7 +86,7 @@ form{
     padding: 20px;
     border: 1px solid #c6e8ff8e;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: rgb(80, 80, 80);
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -157,6 +157,21 @@ button:hover{
     color: red;
 }
 .del:hover{
+    background-color: red;
+    border: red;
+}
+
+#closeView{
+    color: red;
+    font-size: large;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    margin-left: 90%;
+}
+
+#closeView:hover{
+    color: white;
     background-color: red;
     border: red;
 }
