@@ -13,7 +13,6 @@
     height: 100vh;
     z-index: 1;
     background-color: rgb(80, 80, 80);
-    color: #18A0FB;
     padding: 20px;
     box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.575);
 }
@@ -75,7 +74,7 @@ header .user-info p {
 }
 
 header .user-info button {
-    padding: 5px 10px;
+    padding: 5px 10px 5px 10px;
     background-color: #333;
     text-decoration: none;
     color: #fff;
@@ -104,20 +103,22 @@ a:hover {
 }
 
 .dropDown{
-    background-color: #f1c40f;
+    /*background-color: #18A0FB;*/
+    color: white;
+    font-size: 2rem;
     font-weight: bold;
-    border-radius: 10px;
-    border: thin solid rgba(255, 255, 255, 0.521);
-    width: 70%;
+    /*border-radius: 10px;*/
+    /*border: thin solid rgba(255, 255, 255, 0.521);*/
+    width: 100%;
     cursor: pointer;
-    box-shadow: 6px 8px 5px rgba(0, 0, 0, 0.8);
+    /*box-shadow: 6px 8px 5px rgba(0, 0, 0, 0.8);*/
     transition: transform 0.5s ease-in-out;
 }
 
 .dropDown:hover{
-    background-color: #ffae00;
+    background-color: #18A0FB;
     color: white;
-    transform: scale(1.1);
+    /*transform: scale(1.1);*/
 }
 
 .dropDown:hover .dropDownContent {
