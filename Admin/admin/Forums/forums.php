@@ -40,11 +40,15 @@
 
             <div id="hiddenView">
                 <button id="closeView" onclick="closeView()">x</button>
-                <p><b>Viewing Forum ID:</b> <span id="forumId"></span></p>
-                <p><b>Title:</b> <span id="forumTitle"></span></p>
-                <p><b>Client ID:</b> <span id="clientId"></span></p>
-                <p><b>Content:</b></p>
-                <div class="content" id="forumContent"></div>
+                <center>
+                <table>
+                    <tr><th>Viewing Forum ID:</th> <td id="forumId"></td></tr>
+                    <tr><th>Title:</th> <td id="forumTitle"></td></tr>
+                    <tr><th>Client ID:</th> <td id="clientId"></td></tr>
+                    <tr><th>Content:</th><td><div class="content" id="forumContent"></div></td></tr>
+                </table>
+                </center>
+                
             </div>
 
             <!--This section was replaced by js code-->
