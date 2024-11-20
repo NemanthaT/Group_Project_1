@@ -17,7 +17,7 @@ body{
     padding: 300px 20px 20px 150px;
     height: 100vh;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     /*background-color: #f4f4f4;*/
     /*gap: 20px;*/
 }
