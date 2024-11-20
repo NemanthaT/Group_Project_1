@@ -1,3 +1,4 @@
+/*Body styles*/
 * {   
     margin: 0;
     padding: 0;
@@ -17,6 +18,7 @@ body {
     background-attachment: fixed; /* The background image will not scroll with the page */
 }
 
+/*h1 style*/
 h1 {
     font-size: 3rem;
     padding-top: 40px;
@@ -76,6 +78,7 @@ table .actions{
     margin-bottom: 20px;
 }
 
+/*form styles*/
 form{
     width: auto;
     height: fit-content;
@@ -123,11 +126,11 @@ button{
     transition: transform 0.3s ease-in-out;
 }
 
-form button:hover{
+/*form button:hover{
     color: white;
     background-color: #ffae00;
     transform: scale(1.1);
-}
+}*/
 
 button:hover{
     color: white;
@@ -136,6 +139,7 @@ button:hover{
     transform: scale(1.1);
 }
 
+/*accept view delete button styles*/
 .accept{
     color: rgb(3, 202, 3);
     margin-right: 10px;
@@ -161,6 +165,7 @@ button:hover{
     border: red;
 }
 
+/*close button styles*/
 #closeView{
     color: red;
     font-size: large;
@@ -176,6 +181,35 @@ button:hover{
     border: red;
 }
 
+/*button styles for form*/
+.sBtn{
+    color: rgb(3, 202, 3);
+}
+.sbtn:hover{
+    color: white;
+    background-color: rgb(3, 202, 3);
+    border: 1px solid rgb(3, 202, 3);
+}
+
+.rBtn{
+    color: red;
+}
+.rbtn:hover{
+    color: white;
+    background-color: red;
+    border: 1px solid red;
+}
+
+.chBtn{
+    color: yellow;
+}
+.chBtn:hover{
+    color: white;
+    background-color: rgb(0, 17, 255);
+    border: 1px solid rgb(0, 17, 255);
+}
+
+/*style for background*/
 .bg{
     background-color: rgba(0, 0, 0, 0.4);
     background-image: url("../Images/bg.png");
