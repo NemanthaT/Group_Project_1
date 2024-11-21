@@ -51,6 +51,10 @@ p {
     border: 1px solid #00ffd5;
 }
 
-th {
+.forum_th{
     text-align: left;
+}
+
+table{
+    margin: 20px 20px 20px 20px;
 }
