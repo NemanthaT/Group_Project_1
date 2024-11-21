@@ -2,3 +2,28 @@
     margin: 0;
     padding: 0;
 }
+
+.c_th{
+    text-align: left !important;
+}
+
+table{
+    margin: 20px 20px 20px 20px;
+}
+
+#hiddenView{
+    display: none;
+    margin-left: 25%;
+    padding: 10px;
+    border-radius: 20px;
+    width: 50%;
+    height: auto;
+    /*background-color: rgb(221, 219, 219);*/
+    background-color: #fffefe21;
+    /*border: 1px solid #d8d8d8;*/
+    border: 1px solid #00ffd5;
+}
+
+.action{
+    background-color: transparent !important;
+}

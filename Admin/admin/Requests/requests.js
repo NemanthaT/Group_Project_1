@@ -13,7 +13,7 @@ function viewReq(id) {
         if (data.error) {
             alert(data.error);
         } else {
-            // Display forum details in the designated area
+            // Display forum details in the hidden area
             document.getElementById('hiddenView').style.display = "block";
             document.getElementById("reqId").innerText = data.reqId;
             document.getElementById("reqName").innerText = data.full_name;
@@ -21,6 +21,7 @@ function viewReq(id) {
             document.getElementById("reqTel").innerText = data.phone;
             document.getElementById("reqField").innerText = data.field;
             document.getElementById("reqSpec").innerText = data.specialty;
+            document.documentElement.scrollTop = 0;
         }
     })
     .catch(error => console.error('Error fetching forum data:', error));

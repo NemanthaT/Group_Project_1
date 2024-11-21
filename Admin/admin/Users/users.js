@@ -1,6 +1,6 @@
-function viewForum(id) {
+function viewClient(id) {
     // Send an AJAX request to the PHP script
-    fetch('view_forum.php', {
+    fetch('cView.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -14,23 +14,24 @@ function viewForum(id) {
             alert(data.error);
             document.documentElement.scrollTop = 0;
         } else {
-            // Display forum details in the hidden area
+            // Display forum details in the designated area
             document.getElementById('hiddenView').style.display = "block";
-            document.getElementById("forumId").innerText = data.forum_id;
-            document.getElementById("forumTitle").innerText = data.title;
-            document.getElementById("clientId").innerText = data.user_id;
-            document.getElementById("forumContent").innerText = data.content;
+            document.getElementById("cId").innerText = data.client_id;
+            document.getElementById("uName").innerText = data.username;
+            document.getElementById("fName").innerText = data.full_name;
+            document.getElementById("email").innerText = data.email;
+            document.getElementById("address").innerText = data.address;
             document.documentElement.scrollTop = 0;
         }
     })
     .catch(error => console.error('Error fetching forum data:', error));
 }
 
-function deleteForum(id) {
+function deleteClient(id) {
     if (confirm("Are you sure you want to delete this item?")) {
         // Proceed with delete action
             // Send an AJAX request to the PHP script
-        fetch('delete_forum.php', {
+        fetch('cDelete.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -47,9 +48,9 @@ function deleteForum(id) {
                 location.reload();
             }
         })
-        .catch(error => console.error('Error deleting forum:', error));
+        .catch(error => console.error('Error deleting client:', error));
         alert("Item deleted.");
-        window.location.href = 'forums.php';
+        window.location.href = 'clients.php';
     } else {
         // Do nothing
         alert("Delete canceled.");
