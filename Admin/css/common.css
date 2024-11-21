@@ -47,7 +47,7 @@ table th {
     margin: 6px;
     border: 1px solid #00ffd5;
     border-radius: 20px;
-    border: 1px solid rgba(236, 236, 236, 0.137);
+    /*border: 1px solid rgba(236, 236, 236, 0.137);*/
     padding: 20px;
 }
 
@@ -168,7 +168,8 @@ button:hover{
 /*close button styles*/
 #closeView{
     color: red;
-    font-size: large;
+    /*font-size: large;*/
+    font-size: 2rem;
     font-weight: bold;
     width: 40px;
     height: 40px;
@@ -185,7 +186,7 @@ button:hover{
 .sBtn{
     color: rgb(3, 202, 3);
 }
-.sbtn:hover{
+.sBtn:hover{
     color: white;
     background-color: rgb(3, 202, 3);
     border: 1px solid rgb(3, 202, 3);
@@ -194,14 +195,14 @@ button:hover{
 .rBtn{
     color: red;
 }
-.rbtn:hover{
+.rBtn:hover{
     color: white;
     background-color: red;
     border: 1px solid red;
 }
 
 .chBtn{
-    color: yellow;
+    color: rgb(0, 17, 255);
 }
 .chBtn:hover{
     color: white;
