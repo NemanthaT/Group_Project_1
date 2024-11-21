@@ -6,7 +6,7 @@
     $email = $_SESSION['email'];
 
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: login.php");
+        header("Location: ../../login/login.php");
         exit;
     }
 
@@ -18,8 +18,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Clients</title>
-        <link rel="stylesheet" href="forums.css">
         <link rel="stylesheet" href="../../css/common.css">
+        <link rel="stylesheet" href="forums.css">  
     </head>
 
     <body>
@@ -42,10 +42,10 @@
                 <button id="closeView" onclick="closeView()">x</button>
                 <center>
                 <table>
-                    <tr><th>Viewing Forum ID:</th> <td id="forumId"></td></tr>
-                    <tr><th>Title:</th> <td id="forumTitle"></td></tr>
-                    <tr><th>Client ID:</th> <td id="clientId"></td></tr>
-                    <tr><th>Content:</th><td class="content" id="forumContent"></td></tr>
+                    <tr><th class="forum_th">Forum ID:</th> <td id="forumId"></td></tr>
+                    <tr><th class="forum_th">Title:</th> <td id="forumTitle"></td></tr>
+                    <tr><th class="forum_th">Client ID:</th> <td id="clientId"></td></tr>
+                    <tr><th class="forum_th">Content:</th><td class="content" id="forumContent"></td></tr>
                 </table>
                 </center>
                 
