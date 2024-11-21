@@ -14,7 +14,7 @@ function viewForum(id) {
             alert(data.error);
             document.documentElement.scrollTop = 0;
         } else {
-            // Display forum details in the designated area
+            // Display forum details in the hidden area
             document.getElementById('hiddenView').style.display = "block";
             document.getElementById("forumId").innerText = data.forum_id;
             document.getElementById("forumTitle").innerText = data.title;
@@ -49,8 +49,7 @@ function deleteForum(id) {
         })
         .catch(error => console.error('Error deleting forum:', error));
         alert("Item deleted.");
-        document.documentElement.scrollTop = 0;
-        location.href = forums.php;
+        window.location.href = 'forums.php';
     } else {
         // Do nothing
         alert("Delete canceled.");
