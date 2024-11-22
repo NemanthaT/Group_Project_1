@@ -13,11 +13,16 @@
         </header>
 
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search by Appointment ID or Service...">
-            <button id="addAppointmentBtn" class="btn">Add Appointment</button>
+            <div>
+                <input type="text" id="searchInput" class="searchInput" placeholder="Appointment ID.">
+                <button id="Search" class="btn">Search</button>
+            </div>
+            <div>
+                <button id="addAppointmentBtn" class="btn">Add Appointment</button>
+             </div>
         </div>
-
-        <table class="appointment-table">
+        
+     </style>   <table class="appointment-table">
             <thead>
                 <tr>
                     <th>Appointment ID</th>
@@ -29,41 +34,8 @@
                 </tr>
             </thead>
             <tbody id="appointmentList">
-                <!--<tr>
-                    <td>1</td>
-                    <td>Dental Checkup</td>
-                    <td>2023-10-10</td>
-                    <td>Confirmed</td>
-                    <td>2023-09-01</td>
-                    <td>
-                        <button class="btn edit-btn">Edit</button>
-                        <button class="btn cancel-btn">Cancel</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Medical Consultation</td>
-                    <td>2023-10-12</td>
-                    <td>Pending</td>
-                    <td>2023-09-05</td>
-                    <td>
-                        <button class="btn edit-btn">Edit</button>
-                        <button class="btn cancel-btn">Cancel</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Massage Therapy</td>
-                    <td>2023-10-15</td>
-                    <td>Confirmed</td>
-                    <td>2023-09-10</td>
-                    <td>
-                        <button class="btn edit-btn">Edit</button>
-                        <button class="btn cancel-btn">Cancel</button>
-                    </td>
-                </tr>-->
                 <?php
-                    include '../connect/connect.php';
+                    include '../../connect/connect.php';
                     $sql = "SELECT * FROM appointments";
                     $result = $conn->query($sql);
 

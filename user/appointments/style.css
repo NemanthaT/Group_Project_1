@@ -105,7 +105,37 @@ h1 {
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 8px;
+  padding: 10px; /* Increased padding for better usability */
   border: 1px solid #ccc;
   border-radius: 4px;
-} 
+  box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+
+textarea {
+  resize: vertical; /* Allow vertical resizing only */
+}
+
+.appointment-table .btn {
+  margin: 0 5px; /* Add margin between buttons */
+}
+
+.edit-btn, .cancel-btn {
+  margin-left: 5px; /* Add some space between edit and cancel buttons */
+}
+
+.search-container{
+  margin-bottom: 20px;
+align-content: space-between;
+display: flex;
+}
+
+
+
+.searchInput{
+  width: 120px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
