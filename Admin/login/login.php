@@ -119,8 +119,8 @@ if (isset($_POST['submit'])){ //check if form was submitted
             <div class="showp">
             
             <label for="showpassword">Show Password</label>
-            <input type="checkbox" onclick="myFunction()">
-            <script> function myFunction() {    
+            <input type="checkbox" onclick="showPassword()">
+            <script> function showPassword() {    
                 var x = document.getElementById("password");
                 if (x.type === "password") {
                     x.type = "text";
