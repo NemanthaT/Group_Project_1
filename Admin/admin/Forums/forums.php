@@ -73,33 +73,34 @@
                         } */
                     
             ?>
+            <div id="displayArea">
+                <center>
+                    <table>
+                        <tr>
+                            <th>Forum Id</th>
+                            <th>Title</th>
+                            <th>Client ID</th>
+                            <th>Action</th>
+                        </tr>
+                        <?php
+                            $sql = "SELECT * FROM forums";
+                            $result = $conn->query($sql);
 
-            <center>
-                <table>
-                    <tr>
-                        <th>Forum Id</th>
-                        <th>Title</th>
-                        <th>Client ID</th>
-                        <th>Action</th>
-                    </tr>
-                    <?php
-                        $sql = "SELECT * FROM forums";
-                        $result = $conn->query($sql);
-
-                        if($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                                echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
-                                <td class=\"actions\"><center><button class=\"view\" onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
-                                <button class=\"del\" onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
+                            if($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
+                                    <td class=\"actions\"><center><button class=\"view\" onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
+                                    <button class=\"del\" onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
+                                }
                             }
-                        }
-                        else{
-                            echo "<tr><td></td><td>0 results</td><td></td></tr>";
-                        }
+                            else{
+                                echo "<tr><td></td><td>0 results</td><td></td></tr>";
+                            }
 
-                    ?>
-                </table>
-            </center>
+                        ?>
+                    </table>
+                </center>
+            </div>
         </div>
         <script src="../../js/common.js"></script>
         <script src="forums.js"></script>
