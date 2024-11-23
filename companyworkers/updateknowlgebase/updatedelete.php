@@ -47,47 +47,43 @@ include("../connect.php");
     </div>
 
     <div class="container" style="position: absolute; top: 100px;">
-        <table class="table table-hover">
-            <table class="table">
-                <thead>
-                <tr>
-                  <th scope="col" style="width: 15%;">Knowledgebase_ID</th>
-                  <th scope="col" style="width: 15%;">Worker_ID</th>
-                  <th scope="col" style="width: 25%;">Title</th>
-                  <th scope="col" style="width: 20%;">Date Created</th>
-                  <th scope="col" style="width: 20%;">Action</th>
-                </tr>
-                
-
-                </thead>
-                <tbody>
-
-                <?php
-
-                $sql="Select * from knowledgebase";
-                $result=mysqli_query($con,$sql);
-                if($result){
-                  while($row=mysqli_fetch_assoc($result)){
-                    $kb_id=$row['kb_id'];
-                    $worker_id=$row['worker_id'];
-                    $title=$row['title'];
-                    $date_created=$row['created_at'];
-                  echo '<tr>
-                    <th scope="row">'.$kb_id.'</th>
-                    <td>'.$worker_id.'</td>
-                    <td>'.$title.'</td>
-                    <td>'.$date_created.'</td>
-                    <td>
-                      <button><a href="update.php?update_id='.$kb_id.'">Update</a></button>
-                      <button><a href="delete.php?delete_id='.$kb_id.'">Delete</a></button>
-                    </td>
+    <div class="table-container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 15%;">Knowldgebase_ID</th>
+                <th scope="col" style="width: 15%;">Worker_ID</th>
+                <th scope="col" style="width: 25%;">Title</th>
+                <th scope="col" style="width: 20%;">Date Created</th>
+                <th scope="col" style="width: 20%;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $sql = "SELECT * FROM knowledgebase";
+            $result = mysqli_query($con, $sql);
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $kb_id = $row['kb_id'];
+                    $worker_id = $row['worker_id'];
+                    $title = $row['title'];
+                    $date_created = $row['created_at'];
+                    echo '<tr>
+                        <th scope="row">' . $kb_id . '</th>
+                        <td>' . $worker_id . '</td>
+                        <td>' . $title . '</td>
+                        <td>' . $date_created . '</td>
+                        <td>
+                            <button><a href="update.php?update_id=' . $kb_id . '">Update</a></button>
+                            <button><a href="delete.php?delete_id=' . $kb_id . '">Delete</a></button>
+                        </td>
                     </tr>';
-                  }
                 }
-                  ?>
-                </tbody>
-              </table>
-        </table>
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
     </div>
 
     <script src="dashboard.js"></script>

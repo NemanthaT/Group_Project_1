@@ -79,7 +79,7 @@
 
 /* Scrollable Table Container */
 .table-container {
-    max-height: 300px; /* Limit the table height */
+    max-height: 520px; /* Limit the table height */
     overflow-y: auto; /* Add vertical scrolling */
     border: 1px solid #ddd; /* Optional: border for container clarity */
     margin-top: 20px;
@@ -88,11 +88,13 @@
 
 /* Table Styling */
 .table {
-    width: 100%; /* Full width of container */
-    border-collapse: collapse; /* Combine borders for cleaner appearance */
-    font-size: 18px; /* Adjust font size */
-    text-align: left; /* Align content to the left */
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0; /* Explicitly set to avoid unexpected gaps */
+    font-size: 18px;
+    text-align: left;
 }
+
 
 .table thead th {
     background-color: #4CAF50; /* Header background */

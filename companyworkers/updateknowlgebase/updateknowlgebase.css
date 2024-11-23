@@ -77,82 +77,84 @@
    
 }
 
+.table-container {
+    max-height: 520px; /* Limit the table height */
+    overflow-y: auto; /* Add vertical scrolling */
+    border: 1px solid #ddd; /* Optional: border for container clarity */
+    margin-top: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+/* Table Styling */
 .table {
-    width: 100%; /* Full width of the parent container */
-    border-collapse: collapse; /* Combines borders for cleaner appearance */
-    margin: 20px 0;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0; /* Explicitly set to avoid unexpected gaps */
     font-size: 18px;
     text-align: left;
-  }
-  
-  .table thead th {
-    background-color: #4CAF50; /* Header background color */
-    color: white; /* Header text color */
-    padding: 10px; /* Add spacing inside the header cells */
-    border: 1px solid #ddd; /* Border around header cells */
-  }
-  
-  .table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9; /* Light background for odd rows */
-  }
-  
-  .table tbody tr:nth-child(even) {
-    background-color: #ffffff; /* White background for even rows */
-  }
-  
-  .table tbody tr:hover {
-    background-color: #f1f1f1; /* Highlight row on hover */
-    cursor: pointer; /* Change cursor to pointer on hover */
-  }
-  
-  .table td, .table th {
-    padding: 10px; /* Padding for all cells */
-    border: 1px solid #ddd; /* Border for all cells */
-  }
-  
-  .table th {
-    text-align: center; /* Center-align header text */
-  }
-  
-.table th, .table td {
-  text-align: center; /* Center horizontally */
-  vertical-align: middle; /* Center vertically */
-  border: 1px solid #ddd; /* Add border */
-  padding: 8px; /* Add spacing inside cells */
 }
 
 
-/* General Button Styles */
+.table thead th {
+    background-color: #4CAF50; /* Header background */
+    color: white; /* Header text color */
+    padding: 10px; /* Padding in header cells */
+    border: 1px solid #ddd; /* Border around header cells */
+    text-align: center; /* Center-align header text */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Light background for odd rows */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #ffffff; /* White background for even rows */
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.table td, .table th {
+    padding: 10px; /* Padding for all cells */
+    border: 1px solid #ddd; /* Add border to all cells */
+    text-align: center; /* Center content horizontally */
+    vertical-align: middle; /* Center content vertically */
+}
+
+/* Button Styling */
 .table td button {
-    background-color: transparent; /* Remove default button background */
-    border: none; /* Remove default border */
-    margin: 0 5px; /* Add space between buttons */
-  }
-  
-  .table td button a {
+    background-color: transparent; /* Remove default background */
+    border: none; /* Remove border */
+    margin: 0 5px; /* Space between buttons */
+}
+
+.table td button a {
     display: inline-block;
-    padding: 8px 15px; /* Add padding */
-    text-decoration: none; /* Remove underline from links */
-    color: white; /* Default text color */
-    font-weight: bold; /* Make text bold */
+    padding: 8px 15px; /* Add padding inside links */
+    text-decoration: none; /* Remove underline */
+    color: white; /* Button text color */
+    font-weight: bold; /* Bold text */
     border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s, transform 0.3s; /* Add smooth transition */
-  }
-  
-  /* Update Button Style */
-  .table td button a[href*="update.php"] {
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+/* Update Button */
+.table td button a[href*="update.php"] {
     background-color: #28a745; /* Green background */
-  }
-  
-  /* Delete Button Style */
-  .table td button a[href*="delete.php"] {
+}
+
+/* Delete Button */
+.table td button a[href*="delete.php"] {
     background-color: #dc3545; /* Red background */
-  }
-  
-  /* Hover Effects */
-  .table td button a:hover {
-    background-color: #007bff; /* Change to blue on hover */
-    color: white; /* Ensure white text color */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-  }
+}
+
+/* Hover Effects for Buttons */
+.table td button a:hover {
+    background-color: #007bff; /* Blue on hover */
+    color: white; /* White text on hover */
+    transform: scale(1.05); /* Slight enlargement on hover */
+}
+
   
