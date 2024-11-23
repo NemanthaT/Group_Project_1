@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) { //check if form was submitted
     ];
 
     $redirects = [
-        'admin' => '../admin/admin.php',
+        'admin' => '../../Admin/admin/admin.php',
         'companyworker' => '../companyworkers/companyworker.php',
         'client' => '../user/Dashboard/Dashboard.php',
         'serviceprovider' => '../serviceproviders/serviceprovider.php'
