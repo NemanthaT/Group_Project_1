@@ -15,13 +15,16 @@ function viewClient(id) {
             document.documentElement.scrollTop = 0;
         } else {
             // Display forum details in the designated area
+            window.addEventListener('scroll', function() {});
+            document.getElementById('displayArea').style.filter = "blur(10px)";
             document.getElementById('hiddenView').style.display = "block";
+            document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
             document.getElementById("cId").innerText = data.client_id;
             document.getElementById("uName").innerText = data.username;
             document.getElementById("fName").innerText = data.full_name;
             document.getElementById("email").innerText = data.email;
             document.getElementById("address").innerText = data.address;
-            document.documentElement.scrollTop = 0;
+            //document.documentElement.scrollTop = 0;
         }
     })
     .catch(error => console.error('Error fetching forum data:', error));
@@ -43,9 +46,6 @@ function deleteClient(id) {
             // Check if data contains error
             if (data.error) {
                 alert(data.error);
-            } else {
-                // Reload the page
-                location.reload();
             }
         })
         .catch(error => console.error('Error deleting client:', error));
@@ -76,7 +76,10 @@ function viewSp(id) {
             document.documentElement.scrollTop = 0;
         } else {
             // Display forum details in the designated area
+            window.addEventListener('scroll', function() {});
+            document.getElementById('displayArea').style.filter = "blur(10px)";
             document.getElementById('hiddenView').style.display = "block";
+            document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
             document.getElementById("spId").innerText = data.provider_id;
             document.getElementById("uName").innerText = data.username;
             document.getElementById("fName").innerText = data.full_name;
@@ -84,7 +87,7 @@ function viewSp(id) {
             document.getElementById("address").innerText = data.address;
             document.getElementById("specialty").innerText = data.speciality;
             document.getElementById("field").innerText = data.field;
-            document.documentElement.scrollTop = 0;
+            //document.documentElement.scrollTop = 0;
         }
     })
     .catch(error => console.error('Error fetching forum data:', error));
@@ -123,4 +126,5 @@ function deleteSp(id) {
 
 function closeView(){
     document.getElementById('hiddenView').style.display = "none";
+    document.getElementById('displayArea').style.filter = "none";
 }
