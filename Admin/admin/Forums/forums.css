@@ -37,8 +37,9 @@ p {
 }
 
 #hiddenView{
-    flex-direction: column;
     display: none;
+    position: absolute;
+    z-index: 1;
     margin-left: 10%;
     margin-right: 10%;
     padding: 5px;
