@@ -47,47 +47,44 @@ include("../connect.php");
     </div>
 
     <div class="container" style="position: absolute; top: 100px;">
-        <table class="table table-hover">
-            <table class="table">
-                <thead>
-                <tr>
-                  <th scope="col" style="width: 15%;">News_ID</th>
-                  <th scope="col" style="width: 15%;">Worker_ID</th>
-                  <th scope="col" style="width: 25%;">Title</th>
-                  <th scope="col" style="width: 20%;">Date Created</th>
-                  <th scope="col" style="width: 20%;">Action</th>
-                </tr>
-                
-
-                </thead>
-                <tbody>
-
-                <?php
-
-                $sql="Select * from news";
-                $result=mysqli_query($con,$sql);
-                if($result){
-                  while($row=mysqli_fetch_assoc($result)){
-                    $news_id=$row['news_id'];
-                    $worker_id=$row['worker_id'];
-                    $title=$row['title'];
-                    $date_created=$row['created_at'];
-                  echo '<tr>
-                    <th scope="row">'.$news_id.'</th>
-                    <td>'.$worker_id.'</td>
-                    <td>'.$title.'</td>
-                    <td>'.$date_created.'</td>
-                    <td>
-                      <button><a href="update.php?update_id='.$news_id.'">Update</a></button>
-                      <button><a href="delete.php?delete_id='.$news_id.'">Delete</a></button>
-                    </td>
+    <div class="table-container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 15%;">News_ID</th>
+                <th scope="col" style="width: 15%;">Worker_ID</th>
+                <th scope="col" style="width: 25%;">Title</th>
+                <th scope="col" style="width: 20%;">Date Created</th>
+                <th scope="col" style="width: 20%;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $sql = "SELECT * FROM news";
+            $result = mysqli_query($con, $sql);
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $news_id = $row['news_id'];
+                    $worker_id = $row['worker_id'];
+                    $title = $row['title'];
+                    $date_created = $row['created_at'];
+                    echo '<tr>
+                        <th scope="row">' . $news_id . '</th>
+                        <td>' . $worker_id . '</td>
+                        <td>' . $title . '</td>
+                        <td>' . $date_created . '</td>
+                        <td>
+                            <button><a href="update.php?update_id=' . $news_id . '">Update</a></button>
+                            <button><a href="delete.php?delete_id=' . $news_id . '">Delete</a></button>
+                        </td>
                     </tr>';
-                  }
                 }
-                  ?>
-                </tbody>
-              </table>
-        </table>
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
     </div>
 
     <script src="dashboard.js"></script>
