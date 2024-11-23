@@ -15,12 +15,15 @@ function viewForum(id) {
             document.documentElement.scrollTop = 0;
         } else {
             // Display forum details in the hidden area
+            window.addEventListener('scroll', function() {});
+            document.getElementById('displayArea').style.filter = "blur(10px)";
             document.getElementById('hiddenView').style.display = "block";
+            document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
             document.getElementById("forumId").innerText = data.forum_id;
             document.getElementById("forumTitle").innerText = data.title;
             document.getElementById("clientId").innerText = data.user_id;
             document.getElementById("forumContent").innerText = data.content;
-            document.documentElement.scrollTop = 0;
+            //document.documentElement.scrollTop = 0;
         }
     })
     .catch(error => console.error('Error fetching forum data:', error));
@@ -59,4 +62,5 @@ function deleteForum(id) {
 
 function closeView(){
     document.getElementById('hiddenView').style.display = "none";
+    document.getElementById('displayArea').style.filter = "blur(0px)";
 }
