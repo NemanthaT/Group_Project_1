@@ -45,7 +45,7 @@
                 </center>
                 
             </div>
-            <div>
+            <div id="displayArea">
                 <center>
                     <table>
                         <tr>
