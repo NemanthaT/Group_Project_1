@@ -209,6 +209,11 @@ button:hover{
     background-color: rgb(0, 17, 255);
     border: 1px solid rgb(0, 17, 255);
 }
+/*hidden view styles*/
+#hiddenView{
+    position: absolute;
+    z-index: 1;
+}
 
 /*style for background*/
 .bg{
