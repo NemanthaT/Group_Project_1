@@ -17,7 +17,7 @@
             <ul class="menu">
                 <li><a href="../Dashboard/Dashboard.php">
                     <button>
-                        <img src="../images/dashboard.jpg" alt="Dashboard">
+                        <img src="../images/dashboard.png" alt="Dashboard">
                         Dashboard
                     </button>
                 </a>
@@ -82,7 +82,7 @@
                         <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
-                <a href="../Login/Logout.php" class="logout">Logout</a>
+                <a href="../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
             <!-- Appointment Content -->
