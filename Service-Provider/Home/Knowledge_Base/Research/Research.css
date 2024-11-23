@@ -1,0 +1,233 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background-color: white;
+    color: #18A0FB;
+    box-shadow: 0 0 2px black;
+}
+
+.Hcontainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.header_logo img {
+    height: 75px;
+}
+
+/* Navigation Links */
+.header_item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.header_item li {
+    margin-left: 15px;
+}
+
+.header_item a {
+    padding: 5px 10px;
+    border-radius: 7px;
+    color: #000000;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+/* Menu Toggle Button */
+.menu_toggle {
+    display: none;
+}
+
+.menu_toggle img {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Add Border to Login and Register Classes */
+li.Login a, li.Register a {
+    padding: 5px 20px;
+    border: 2px solid;
+    background-color: #18A0FB;
+    color: #F0F8FF;
+}
+
+.header_item a:hover {
+    background-color: rgb(215, 236, 255);
+    color: #18A0FB;
+}
+
+/* Main Section */
+/* Knowledge Base Section */
+.knowledge-base {
+    padding: 40px;
+    text-align: center;
+    background-color: #F9F9F9;
+    box-shadow: 0 0 2px black;
+}
+
+.kb-heading {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.research-section {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.research-heading {
+    font-size: 2em;
+    color: #18A0FB;
+    margin-bottom: 15px;
+}
+
+.research-description {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.research-topics {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.research-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+}
+
+.research-list li {
+    font-size: 1em;
+    color: #000;
+    background-color: #F0F8FF;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.research-list li:hover {
+    transform: scale(1.05);
+    background-color: #18A0FB;
+    color: #FFF;
+}
+
+
+
+
+/* Footer */
+footer {
+    box-shadow: 0 0 2px black;
+    justify-content: center;
+    display: flex;
+    color: #18A0FB;
+    width: 100%;
+    padding: 20px 0;
+    background-color: white;
+}
+
+.Fcontainer {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.Fheading {
+    padding: 10px;
+}
+
+.Flinks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.Flink {
+    display: flex;
+}
+
+.Flink ul {
+    list-style: none;
+    padding-right: 150px;
+}
+
+.Fitem a {
+    font-size: 1em;
+    text-decoration: none;
+    color: #18A0FB;
+}
+
+.Flogo img {
+    width: 250px;
+}
+
+.Fcopyright {
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .header_item {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .header_item.active {
+        display: flex;
+    }
+
+    .menu_toggle {
+        display: flex;
+    }
+
+    .menu_toggle img {
+        display: flex;
+    }
+
+    .header_item li {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .Flinks {
+        flex-direction: column;
+    }
+
+    .Flink {
+        flex-direction: column;
+    }
+
+    .form-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .specialized-fields, .services-provided {
+        width: 100%;
+    }
+}

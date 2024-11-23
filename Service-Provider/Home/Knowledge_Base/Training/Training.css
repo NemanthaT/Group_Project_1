@@ -1,0 +1,238 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background-color: white;
+    color: #18A0FB;
+    box-shadow: 0 0 2px black;
+}
+
+.Hcontainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.header_logo img {
+    height: 75px;
+}
+
+/* Navigation Links */
+.header_item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.header_item li {
+    margin-left: 15px;
+}
+
+.header_item a {
+    padding: 5px 10px;
+    border-radius: 7px;
+    color: #000000;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+/* Menu Toggle Button */
+.menu_toggle {
+    display: none;
+}
+
+.menu_toggle img {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Add Border to Login and Register Classes */
+li.Login a, li.Register a {
+    padding: 5px 20px;
+    border: 2px solid;
+    background-color: #18A0FB;
+    color: #F0F8FF;
+}
+
+.header_item a:hover {
+    background-color: rgb(215, 236, 255);
+    color: #18A0FB;
+}
+
+/* Main Section */
+/* Knowledge Base Section */
+.knowledge-base {
+    padding: 30px;
+    background-color: #f5f5f5;
+    text-align: center;
+    box-shadow: 0 0 2px black;
+}
+
+.kb-heading {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.training-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.training-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.training-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.training-title {
+    font-size: 1.8rem;
+    color: #18A0FB;
+}
+
+.training-description {
+    font-size: 1rem;
+    color: #555;
+    margin: 15px auto 30px;
+    max-width: 800px;
+}
+
+.training-topics {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.training-topics li {
+    font-size: 1rem;
+    color: #333;
+    background-color: #eaf4ff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.training-topics li:hover {
+    background-color: #18A0FB;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    box-shadow: 0 0 2px black;
+    justify-content: center;
+    display: flex;
+    color: #18A0FB;
+    width: 100%;
+    padding: 20px 0;
+    background-color: white;
+}
+
+.Fcontainer {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.Fheading {
+    padding: 10px;
+}
+
+.Flinks {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.Flink {
+    display: flex;
+}
+
+.Flink ul {
+    list-style: none;
+    padding-right: 150px;
+}
+
+.Fitem a {
+    font-size: 1em;
+    text-decoration: none;
+    color: #18A0FB;
+}
+
+.Flogo img {
+    width: 250px;
+}
+
+.Fcopyright {
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .header_item {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .header_item.active {
+        display: flex;
+    }
+
+    .menu_toggle {
+        display: flex;
+    }
+
+    .menu_toggle img {
+        display: flex;
+    }
+
+    .header_item li {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .Flinks {
+        flex-direction: column;
+    }
+
+    .Flink {
+        flex-direction: column;
+    }
+
+    .form-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .specialized-fields, .services-provided {
+        width: 100%;
+    }
+}
