@@ -1,71 +1,231 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
   background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+/* Container Layout */
+.container {
+  display: flex;
+  width: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background-color: white;
+  width: 20vw;
+  padding: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+}
+
+.sidebar .logo img {
+  width: 100%;
+  max-width: 20vw;
+  margin-bottom: 5vh;
+}
+
+.menu {
+  list-style: none;
+  width: 100%;
+}
+
+.menu li {
+  margin-bottom: 2vh;
+}
+
+.menu button {
+  display: flex;
+  align-items: center;
+  font-size: 2.5vh;
+  font-weight: bold;
+  width: 100%;
+  padding: 1.5vh;
+  color: #333;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 1vh;
+  gap: 1vh;
+  text-decoration: none;
+}
+
+.menu button.active {
+  background-color: #18A0FB;
+  color: white;
+}
+
+.menu img {
+  width: auto;
+  height: 4vh;
+  object-fit: contain;
+  margin-right: 1vh;
+}
+
+.menu button:hover {
+  background-color: #18A0FB;
+  color: white;
+}
+
+/* Navbar Styles */
+.navbar {
+  width: 80vw;
+  background-color: white;
+  color: #18A0FB;
+  margin-left: 0;
+  padding: 2vh 4vw;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbar a {
+  color: #18A0FB;
+  text-decoration: none;
+  font-size: 2.5vh;
+  padding: 0.8vh 1.5vw;
+  margin-left: 1.5vw;
+  border-radius: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar a:hover {
+  background-color: rgb(215, 236, 255);
+}
+
+.navbar a img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-right: 1vw;
+}
+
+.profile a {
+  padding: 0;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 5vh;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout {
+  background-color: #18A0FB;
+  color: white !important;
+}
+
+/* Main Content Area */
+.main-wrapper {
+  
+  width: 80vw;
+  margin-left: 20vw;
 }
 
 .main-container {
-  max-width: 90%;
-  margin: auto;
+  max-width: 95%;
+  margin: 12vh auto 2vh;
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Appointment Management Styles */
 h1 {
   text-align: center;
-  color: #007bff; /* Blue color for the heading */
+  color: #18A0FB;
+  margin-bottom: 20px;
 }
 
-.actions {
-  text-align: center;
+.search-container {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchInput {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
 }
 
 .btn {
   padding: 10px 20px;
-  background-color: #007bff; /* Blue background */
+  background-color: #18A0FB;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s; /* Add transition for smooth effect */
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .btn:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: scale(1.05); /* Slightly enlarge the button */
+  background-color: #1690e0;
+  transform: scale(1.05);
 }
 
+/* Table Styles */
 .appointment-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.appointment-table th, .appointment-table td {
+.appointment-table th,
+.appointment-table td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px;
   text-align: center;
 }
 
 .appointment-table th {
-  background-color: #f2f2f2;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
+.appointment-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Overlay Styles */
 .overlay {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-  padding-top: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .overlay-content {
@@ -74,68 +234,66 @@ h1 {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  height: fit-content;
   max-width: 500px;
-  border-radius: 5px;
+  border-radius: 8px;
+  position: relative;
 }
 
 .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
   color: #aaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-  text-decoration: none;
   cursor: pointer;
 }
 
+.close-btn:hover {
+  color: #333;
+}
+
+/* Form Styles */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: bold;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 10px; /* Increased padding for better usability */
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box; /* Ensures padding is included in width */
-}
-
-
-textarea {
-  resize: vertical; /* Allow vertical resizing only */
-}
-
-.appointment-table .btn {
-  margin: 0 5px; /* Add margin between buttons */
-}
-
-.edit-btn, .cancel-btn {
-  margin-left: 5px; /* Add some space between edit and cancel buttons */
-}
-
-.search-container{
-  margin-bottom: 20px;
-align-content: space-between;
-display: flex;
-}
-
-
-
-.searchInput{
-  width: 120px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Button Styles in Table */
+.edit-btn,
+.cancel-btn {
+  padding: 6px 12px;
+  margin: 0 5px;
+  font-size: 14px;
+}
+
+.edit-btn {
+  background-color: #28a745;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
 }
