@@ -1,6 +1,7 @@
 <?php
 // Database connection
-include '../../connect/connect.php';
+include '../session/session.php';
+
 
 // Check connection
 if ($conn->connect_error) {
@@ -9,14 +10,15 @@ if ($conn->connect_error) {
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_POST['user_id'];
+    $client_id = $_SESSION['client_id'];
     $appointment_date = $_POST['appointmentDate'];
-    $additionalMessage = $_POST['additionalMessage'];
-    $description = $_POST['description'];
+    $message = $_POST['additionalMessage'];
+    $status = "pending";
+    $service_type = $_POST['serviceSelect'];
 
     // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO appointments (user_id, appointment_date, appointment_time, description) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("isss", $user_id, $appointment_date, $appointment_time, $description);
+    $stmt = $conn->prepare("INSERT INTO appointments (client_id, appointment_date,status, message,service_type) VALUES (?, ?, ?, ?,?)");
+    $stmt->bind_param("issss", $user_id, $appointment_date, $status, $message, $service_type);
 
     // Execute the statement
     if ($stmt->execute()) {

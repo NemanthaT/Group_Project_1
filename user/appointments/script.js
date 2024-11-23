@@ -9,34 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         addAppointmentOverlay.style.display = 'flex';
     }
 
-    /*function loadAppointments() {
-        fetch('load_appointments.php')
-            .then(response => response.json())
-            .then(appointments => {
-                appointmentList.innerHTML = '';
-                appointments.forEach(appointment => {
-                    const row = `
-                        <tr data-id="${appointment.appointment_id}">
-                            <td>${appointment.appointment_id}</td>
-                            <td>${appointment.service_type}</td>
-                            <td>${appointment.appointment_date}</td>
-                            <td>${appointment.status}</td>
-                            <td>${appointment.created_at}</td>
-                            <td>
-                                <div class="action-icons">
-                                    <i class="edit-icon">✏️</i>
-                                    <i class="delete-icon">🗑️</i>
-                                </div>
-                            </td>
-                        </tr>
-                    `;
-                    appointmentList.innerHTML += row;
-                });
-            })
-            .catch(error => console.error('Error loading appointments:', error));
-    }
-
-    loadAppointments();*/
 
     addAppointmentBtn.addEventListener('click', centerOverlay);
     

@@ -1,3 +1,6 @@
+<?php 
+include '../session/session.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,9 +149,11 @@
                         <form id="appointmentForm">
                             <div class="form-group">
                                 <label for="serviceSelect">Select a Service</label>
-                                <select id="serviceSelect" name="serviceSelect" required>
+                                <select id="serviceSelect" name="serviceSelect"  required>
                                     <option value="">Choose a Service</option>
+                                    <option value="Consulting">Consulting</option>
                                     <option value="training">Training</option>
+                                    <option value="Researching">Researching</option>
                                 </select>
                             </div>
                             <div class="form-group">
