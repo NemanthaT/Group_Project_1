@@ -112,33 +112,43 @@ li.Login a, li.Register a {
 }
 
 .kb-card {
-    text-decoration: none; /* Remove underline */
-    display: block; /* Make the entire card clickable */
+    position: relative; /* Enable positioning for child elements */
     width: 250px;
+    height: 300px; /* Fixed height for consistent layout */
     background: #fff;
-    padding: 20px;
     border-radius: 10px;
+    overflow: hidden; /* Ensure content stays within the card */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: inherit; /* Ensure text color remains unchanged */
+    text-decoration: none; /* Remove underline from links */
 }
 
-.kb-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+.kb-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the card */
 }
 
-.kb-icon img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 15px;
+.kb-text {
+    position: absolute; /* Position the text over the image */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the text */
+    color: #fff; /* White text for contrast */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for better readability */
 }
 
 .kb-text h3 {
     font-size: 1.5em;
-    color: #18A0FB;
-    margin-top: 10px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Hover Effect */
+.kb-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* Responsive Design for Knowledge Base */
