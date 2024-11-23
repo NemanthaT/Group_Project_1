@@ -6,6 +6,10 @@
     font-family: Arial, sans-serif;
 }
 
+body {
+    background-color: #f4f4f4;
+}
+
 /* Navbar */
 .navbar {
     width: 100%;
@@ -42,21 +46,14 @@
 .header_item a {
     padding: 5px 10px;
     border-radius: 7px;
-    color: #000000;
+    color: #18A0FB;
     font-size: 1em;
     text-decoration: none;
 }
 
-/* Menu Toggle Button */
-.menu_toggle {
-    display: none;
-}
-
-.menu_toggle img {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.header_item a:hover {
+    background-color: rgb(215, 236, 255);
+    color: #18A0FB;
 }
 
 /* Add Border to Login and Register Classes */
@@ -67,75 +64,54 @@ li.Login a, li.Register a {
     color: #F0F8FF;
 }
 
-.header_item a:hover {
-    background-color: rgb(215, 236, 255);
-    color: #18A0FB;
-}
-
-/* Main Section */
-/* Knowledge Base Section */
-.knowledge-base {
-    padding: 40px;
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
     text-align: center;
-    background-color: #F9F9F9;
-    box-shadow: 0 0 2px black;
 }
 
-.kb-heading {
+.services h1 {
     font-size: 2.5em;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.research-section {
-    margin-top: 20px;
-    padding: 20px;
-}
-
-.research-heading {
-    font-size: 2em;
-    color: #18A0FB;
-    margin-bottom: 15px;
-}
-
-.research-description {
-    font-size: 1em;
-    color: #555;
     margin-bottom: 30px;
 }
 
-.research-topics {
+/* Service Sections */
+.service-section {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.research-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 0;
-}
-
-.research-list li {
-    font-size: 1em;
-    color: #000;
-    background-color: #F0F8FF;
-    padding: 10px 15px;
-    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
+    align-items: center;
 }
 
-.research-list li:hover {
-    transform: scale(1.05);
-    background-color: #18A0FB;
-    color: #FFF;
+.service-image {
+    flex: 1;
 }
 
+.image-placeholder {
+    background-color: #e0e0e0;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
 
+.service-text {
+    flex: 2;
+    text-align: left;
+    padding-left: 20px;
+}
 
+.service-text h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.service-text p {
+    line-height: 1.6;
+}
 
 /* Footer */
 footer {
@@ -220,14 +196,5 @@ footer {
 
     .Flink {
         flex-direction: column;
-    }
-
-    .form-section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .specialized-fields, .services-provided {
-        width: 100%;
     }
 }
