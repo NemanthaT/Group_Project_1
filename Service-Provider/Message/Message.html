@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDSA Lanka Consultancy</title>
+    <link rel="stylesheet" href="Message.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
+            </div>
+            <ul class="menu">
+                <li><a href=""><button>Dashboard</button></a></li>
+                <li><a href="#"><button>Appointment</button></a></li>
+                <li><a href=""><button>Message</button></a></li>
+                <li><a href="#"><button>Forum</button></a></li>
+                <li><a href="#"><button>KnowledgeBase</button></a></li>
+            </ul>
+        </div>
+                   
+        <!-- Navbar -->
+        <header>
+            <nav class="navbar">
+                <div class="profile">
+                    <a href="http://127.0.0.1:5500/SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                </div> 
+                <a href="#" class="logout">Logout</a>
+            </nav>
+        </header>
+
+        <!-- Main Content (Message Table) -->
+        <div class="main-content">
+            <div class="message-section">
+                <h2>Message</h2>
+                <div class="message-controls">
+                    <button class="new-message">New Message</button>
+                    <input type="text" placeholder="Service">
+                    <input type="text" placeholder="Topic">
+                    <button class="search-button">Search</button>
+                </div>
+                <table class="message-table">
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Service</th>
+                            <th>States</th>
+                        </tr>
+                    </thead>
+                    <tbody id="message-tbody">
+                        <!-- Rows will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="Message.js"></script>
+</body>
+</html>

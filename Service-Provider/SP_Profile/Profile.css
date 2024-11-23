@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    color: #333;
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar {
+    background-color: #333;
+    color: white;
+    width: 20vw;           /* Sidebar width at 20% of viewport width */
+    padding: 3vh;          /* Sidebar padding at 3% of viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+}
+
+.sidebar .logo img {
+    width: 100%;
+    max-width: 20vw;       /* Max width in terms of viewport width */
+    margin-bottom: 5vh;
+}
+
+.menu {
+    list-style: none;
+    width: 100%;
+}
+
+.menu li {
+    margin-bottom: 2vh;
+}
+
+.menu button {
+    font-size: 2.5vh;  /* Adjusts the text size */
+    font-weight: bold;  /* Makes the text bold */
+    width: 100%;
+    padding: 1.5vh;        /* Button padding based on viewport height */
+    color: #333;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    border-radius: 1vh;
+}
+
+.menu button:hover {
+    transform: scale(1.1);
+    background-color: #18A0FB;
+    color: white;
+}
+
+.navbar {
+    width: 80vw;  /* Width adjusted for sidebar */
+    background-color: white;
+    color: #18A0FB;
+    box-shadow: 0 0 0.2vh black;
+    margin-left: 20vw;          /* Margin adjusted to sidebar width */
+    padding: 2vh 2vw;
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar a {
+    color: #18A0FB;
+    text-decoration: none;
+    font-size: 2.5vh;      /* Font size based on viewport height */
+    padding: 1vh;    /* Padding based on viewport units */
+    border-radius: 1vh;
+}
+
+.navbar a:hover {
+    background-color: rgb(215, 236, 255);
+}
+
+.profile {
+    display: flex;             /* Use flexbox for alignment */
+    align-items: center;      /* Center the items vertically */
+    margin-right: 1vw;        /* Add some space to the right */
+}
+
+.profile a {
+    padding: 0;               /* Remove extra padding */
+    color: #333;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;       /* Make it circular */
+    width: 5vh;               /* Fixed width to keep it contained */
+    height: 5vh;              /* Fixed height to maintain circular shape */
+    display: flex;            /* Flex to center the image */
+    justify-content: center;  /* Center the image horizontally */
+    align-items: center;      /* Center the image vertically */
+}
+
+.profile a img {
+    max-width: 100%;           /* Ensure the image fits well */
+    max-height: 100%;          /* Keep the aspect ratio */
+    border-radius: 50%;       /* Make the image circular */
+}
+
+/* Main content styling */
+.main-content {
+    width: 80vw;
+    margin: 9vh 0 0 20vw;
+    padding: 3vh 2vw 3vh 2vw;  /* Adjusted padding for alignment */
+    background-color: white;
+    overflow-y: auto;
+}
+
+/* Profile section styling */
+.profile-section {
+    margin: 8vh 0 2vh 22vw;
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.profile-card, .service-stats, .additional-info {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center-aligns text within each grid */
+}
+
+/* Profile section styling */
+.profile-section {
+    margin: 8vh 0 2vh 22vw;
+    display: flex;
+    gap: 10px;
+    padding-top: 20px;
+}
+
+.profile-card, .service-stats, .additional-info {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center-aligns text within each grid */
+}
+
+/* Spacing adjustments */
+.profile-card h3, .service-stats h3, .additional-info h3 {
+    margin-bottom: 10px; /* Space below headings */
+}
+
+.profile-info li, .social-media-links li, .service-stats ul li, .additional-info p {
+    margin: 8px 0; /* Adds spacing between list items and paragraphs */
+}
+
+.social-media-links li {
+    display: inline-block;
+    margin: 0 5px; /* Horizontal spacing between social media links */
+}
+
+.profile-card {
+    width: 280px;
+}
+
+.profile-image {
+    position: relative;
+    text-align: center;
+    margin-bottom: 15px; /* Space below profile image */
+}
+
+.profile-image img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.edit-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    transform: scale(1.05);
+    background-color: darkblue;
+    color: white;
+}
+
+.profile-info, .social-media-links {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    text-align: center; /* Center-aligns text in list items */
+}

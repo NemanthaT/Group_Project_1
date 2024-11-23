@@ -1,4 +1,3 @@
-/* General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -23,12 +22,10 @@
     justify-content: space-between;
 }
 
-/* Logo */
 .header_logo img {
     height: 75px;
 }
 
-/* Navigation Links */
 .header_item {
     list-style: none;
     display: flex;
@@ -42,24 +39,21 @@
 .header_item a {
     padding: 5px 10px;
     border-radius: 7px;
-    color: #000000;
+    color: #18A0FB;
     font-size: 1em;
     text-decoration: none;
 }
 
-/* Menu Toggle Button */
 .menu_toggle {
     display: none;
 }
 
 .menu_toggle img {
     display: none;
-    flex-direction: column;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-/* Add Border to Login and Register Classes */
 li.Login a, li.Register a {
     padding: 5px 20px;
     border: 2px solid;
@@ -72,70 +66,87 @@ li.Login a, li.Register a {
     color: #18A0FB;
 }
 
-/* Main Section */
-/* Knowledge Base Section */
-.knowledge-base {
-    padding: 40px;
+/* Main Content */
+.contact-main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
     text-align: center;
-    background-color: #F9F9F9;
-    box-shadow: 0 0 2px black;
 }
 
-.kb-heading {
-    font-size: 2.5em;
-    color: #333;
+.contact-main h1 {
+    font-size: 2em;
     margin-bottom: 20px;
 }
 
-.research-section {
-    margin-top: 20px;
-    padding: 20px;
+.contact-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
-.research-heading {
-    font-size: 2em;
-    color: #18A0FB;
+.contact-info, .contact-form {
+    background-color: #F8F8F8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 45%;
+    margin: 10px 0;
+}
+
+.contact-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    margin-bottom: 20px;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 1.1em;
+}
+
+.contact-info ul li {
+    margin-bottom: 10px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
     margin-bottom: 15px;
 }
 
-.research-description {
-    font-size: 1em;
-    color: #555;
-    margin-bottom: 30px;
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: block;
 }
 
-.research-topics {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.research-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 0;
-}
-
-.research-list li {
-    font-size: 1em;
-    color: #000;
-    background-color: #F0F8FF;
-    padding: 10px 15px;
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
 }
 
-.research-list li:hover {
-    transform: scale(1.05);
+button {
     background-color: #18A0FB;
-    color: #FFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-
-
+button:hover {
+    background-color: #147BCE;
+}
 
 /* Footer */
 footer {
