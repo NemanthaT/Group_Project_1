@@ -1,5 +1,7 @@
 <?php
+        
 session_start();
+
 include '../connect/connect.php'; //connect to database
 
 if (isset($_POST['submit'])) { //check if form was submitted
