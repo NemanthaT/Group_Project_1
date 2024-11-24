@@ -45,8 +45,8 @@
   }
 
   a {
-    text-decoration: none
-}
+    text-decoration: none;
+  }
   
   .menu button {
     display: flex;
