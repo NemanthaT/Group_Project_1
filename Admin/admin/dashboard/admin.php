@@ -1,6 +1,6 @@
 <?php
     session_start(); 
-    require_once('../config/config.php');
+    require_once('../../config/config.php');
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
@@ -19,7 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EDSA Lanka Consultancy</title>
         <link rel="stylesheet" href="adminstyles.css">
-        <link rel="stylesheet" href="../css/common.css">
+        <link rel="stylesheet" href="../../css/common.css">
         <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     </head>
@@ -27,16 +27,16 @@
         <div class="container">
             <div class="sidebar">
                 <div class="logo">
-                    <img src="../Images/logo.png" alt="EDSA Lanka Consultancy">
+                    <img src="../../Images/logo.png" alt="EDSA Lanka Consultancy">
                 </div>
                 <nav>
                     <ul>
                         <li class="dropDown"><a href="dashboard.php" target="Dashboard">Dashboard</a></li>
-                        <li class="dropDown"><a href="Users/users.php" target="Dashboard">Users</a></li>
-                        <li class="dropDown"><a href="ManageEmployees/manEmp.php" target="Dashboard">Manage Employees</a></li>
-                        <li class="dropDown"><a href="Requests/requests.php" target="Dashboard">Service Provider Requests</a></li>
-                        <li class="dropDown"><a href="Forums/forums.php" target="Dashboard">Forums</a></li>
-                        <li class="dropDown"><a href="Reports/reports.php" target="Dashboard">Reports</a></li>
+                        <li class="dropDown"><a href="../Users/users.php" target="Dashboard">Users</a></li>
+                        <li class="dropDown"><a href="../ManageEmployees/manEmp.php" target="Dashboard">Manage Employees</a></li>
+                        <li class="dropDown"><a href="../Requests/requests.php" target="Dashboard">Service Provider Requests</a></li>
+                        <li class="dropDown"><a href="../Forums/forums.php" target="Dashboard">Forums</a></li>
+                        <li class="dropDown"><a href="../Reports/reports.php" target="Dashboard">Reports</a></li>
                     </ul>
                 </nav>
             </div>
