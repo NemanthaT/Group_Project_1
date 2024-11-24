@@ -1,6 +1,6 @@
 <?php
     session_start(); 
-    require_once('../config/config.php');
+    require_once('../../config/config.php');
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
@@ -113,7 +113,7 @@
                 </div>
                 <div class="card">
                     <div class="iconClock">
-                        <img src="../Images/clock.png" alt="clock">
+                        <img src="../../Images/clock.png" alt="clock">
                     </div>
                     <div id="time"></div>
                 </div>
@@ -164,6 +164,6 @@
                 <div>
             </div>
         </div>
-        <script src="../js/common.js"></script>
+        <script src="../../js/common.js"></script>
     </body>
 </html>
