@@ -18,6 +18,7 @@
     <title>Manage Employees</title>
     <link rel="stylesheet" href="../../css/common.css">
     <link rel="stylesheet" href="empStyles.css">
+    <script src="emp.js"></script>
 </head>
 <body>
     <div class="bg">
@@ -123,7 +124,7 @@
 
         </div>
         <div id="searchResults">
-            <div class="results">
+            <div id="results">
                 <?php
 
                     if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['search_name'])) {
@@ -138,7 +139,8 @@
                 
                         // Close the statement
                         $stmt->close();
-                        echo "<h2>Search Results</h2>";
+                        echo "<center><h2>Search Results</h2></center>";
+                        echo "<button id=\"closeView\" onclick=\"closeView()\">x</button>";
                         echo "<center><table class=\"displayArea\">";
                         if($result->num_rows > 0){
                             //create table
@@ -163,6 +165,8 @@
 
                 ?>
             </div>
+            
+            <!--List all the Employees-->
             <div>
                 <?php
                     echo "<center><table class=\"displayArea\">

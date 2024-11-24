@@ -45,13 +45,15 @@
                 </center>
                 
             </div>
-            <div>
+            <div id="displayArea">
                 <center>
                     <table>
                         <tr>
                             <th>UId</th>
                             <th>Username</th>
                             <th>Email</th>
+                            <th>Actions</th>
+
                         </tr>
                     <?php
                         if ($result->num_rows > 0) {
