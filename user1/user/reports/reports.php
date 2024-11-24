@@ -42,16 +42,20 @@ include '../session/session.php';
                     </a>
                 </li>
                 <li>
+                    <a href="">
                     <button>
                         <img src="../images/forum.png" alt="Forum">
                         Forum
                     </button>
+                    </a>
                 </li>
                 <li>
+                    <a href="">
                     <button>
                         <img src="../images/knowledgebase.png" alt="Knowledge Base">
                         Knowledge Base
                     </button>
+                    </a>
                 </li>
                 <li>
                     <a href="../reports/reports.php">

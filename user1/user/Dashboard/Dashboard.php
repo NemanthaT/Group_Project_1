@@ -1,4 +1,5 @@
-<?php 
+
+<?php
 include '../session/session.php';
 ?>
 <!DOCTYPE html>
@@ -6,24 +7,23 @@ include '../session/session.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>EDSA Lanka - Appointment Management</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
             </div>
             
             <ul class="menu">
-                <li><a href="../Dashboard/Dashboard.php">
-                    <button class="active">
-                        <img src="../images/dashboard.png" alt="Dashboard">
-                        Dashboard
-                    </button>
-                </a>
+                <li>
+                    <a href="../Dashboard/Dashboard.php">
+                        <button class="active">
+                            <img src="../images/dashboard.png" alt="Dashboard">
+                            Dashboard
+                        </button>
+                    </a>
                 </li>
                 <li>
                     <a href="../appointments/appointment.php">
@@ -35,10 +35,10 @@ include '../session/session.php';
                 </li>
                 <li>
                     <a href="../bill/bill.php">
-                    <button>
+                        <button >
                         <img src="../images/bill.png" alt="Bill">
                         Bill
-                    </button>
+                        </button>
                     </a>
                 </li>
                 <li>
@@ -56,9 +56,10 @@ include '../session/session.php';
                         Knowledge Base
                     </button>
                     </a>
+                </li>
                 <li>
                     <a href="../reports/reports.php">
-                        <button>
+                        <button >
                             <img src="../images/reports.png" alt="Reports">
                             Reports
                         </button>
@@ -83,6 +84,10 @@ include '../session/session.php';
                 <a href="../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
-
+                
+        <div class="controls">
+        
+        </div>
+    <script src="script.js"></script>
 </body>
 </html>
