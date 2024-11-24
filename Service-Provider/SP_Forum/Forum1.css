@@ -15,21 +15,23 @@ body {
 }
 
 .container {
-    width: 100%;
-    flex: 1; /* Allow the container to grow and fill available space */
+    display: flex; /* Ensure container uses flexbox */
     flex-direction: row; /* Sidebar and main content side by side */
+    height: 100vh; /* Make container take full viewport height */
+    width: 100%; /* Full width */
 }
 
 .sidebar {
     background-color: white;
     color: white;
-    width: 20vw;           /* Sidebar width at 20% of viewport width */
-    padding: 3vh;          /* Sidebar padding at 3% of viewport height */
+    width: 20vw; /* Sidebar width at 20% of viewport width */
+    padding: 3vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: fixed;
-    height: 100vh;
+    height: 100vh; /* Sidebar takes full height */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar .logo img {
@@ -82,16 +84,16 @@ body {
 }
 
 .navbar {
-    width: 80vw;  /* Width adjusted for sidebar */
+    width: 100%; /* Full width of the main wrapper */
     background-color: white;
     color: #18A0FB;
-    margin-left: 20vw;  /* Margin adjusted to sidebar width */
-    padding: 2vh 4vw;  /* Add some padding for better spacing */
-    position: fixed;
+    padding: 2vh 4vw;
+    position: relative; /* Keep navbar within the main-wrapper */
     z-index: 2;
     display: flex;
-    justify-content: flex-end; /* Align items to the right */
+    justify-content: flex-end;
     align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar a {
@@ -162,11 +164,22 @@ body {
     border-radius: 50%;
 }
 
+.main-wrapper {
+    margin-left: 20vw; /* Push main content to account for sidebar */
+    flex: 1; /* Allow the main wrapper to take up remaining space */
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height */
+}
+
 .main-content {
-    flex: 1;
-    padding: 80px 20px 20px 270px;
+    flex: 1; /* Take up remaining vertical space */
+    padding: 20px;
+    overflow-y: auto; /* Enable scrolling for overflow content */
     background-color: white;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Add some spacing between content sections */
 }
 
 .forum-section {
