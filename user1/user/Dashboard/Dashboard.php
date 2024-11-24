@@ -84,10 +84,14 @@ include '../session/session.php';
                 <a href="../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
-                
-        <div class="controls">
-        
+    <div class=".main-container">
+        <div class="space"></div>
+        <div class="controls card1">
+        <h1>Welcome To EDSA Lanka</h1>
+        <h3>HI !  Safran Zahim ..</h3>
+
         </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

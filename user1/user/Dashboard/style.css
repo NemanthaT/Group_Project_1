@@ -144,13 +144,43 @@ body {
 .main-wrapper {
   width: 80vw;
   margin-left: 20vw;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .main-container {
   max-width: 95%;
-  margin: 12vh auto 2vh;
+  margin: 12vh;
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.space{
+  background-color: #f4f4f4;
+  width: 100%;
+  padding: 6.5vh ;
+  height: 100%;
+  display: flex;
+}
+.controls {
+  width: 95%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-content: center;
+  margin: auto;
+  border-radius: 8px;
+}
+
+.card1 {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  background-image: url("../images/sunset.jpg") ;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
