@@ -1,3 +1,3 @@
 function closeView(){
-    document.getElementById('results').style.display = "none";
+    document.getElementById('searchResults').style.display = "none";
 }
