@@ -15,7 +15,6 @@ body {
 }
 
 .container {
-    display: flex;
     width: 100%;
     flex: 1; /* Allow the container to grow and fill available space */
     flex-direction: row; /* Sidebar and main content side by side */
