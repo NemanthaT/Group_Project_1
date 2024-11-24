@@ -1,0 +1,229 @@
+* {   
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*font-family: Arial, sans-serif;*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*font-family: 'Poppins', sans-serif;*/
+    /*background-color: #f4f4f4;*/
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../Images/bg.png");
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position:center; /* Centers the image */
+    background-repeat: no-repeat; /* No repeating background image */
+    background-attachment: fixed; /* The background image will not scroll with the page */
+}
+
+/*.backgroundimage{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../Images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: blur(10px);
+    z-index: 0;
+}*/
+
+.dashboard {
+    /*padding: 50px 20px 20px 100px;*/
+    height: 100%;
+    display: flex;
+    /*grid-template-columns: repeat(3, 1fr);*/
+    /*background-color: white;*/
+    gap: 20px;
+}
+
+.card {
+    height: 390px;
+    width: 370px;
+    overflow: hidden;
+    /*background-color: rgb(235, 235, 235);*/
+    background-color: #fffefe21;
+    /*border: 1px solid #18A0FB;*/
+    border: 1px solid #00ffd5;
+    color: white;
+    border-radius: 25px;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+    z-index: 1;
+    transition: transform 0.5s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    color: white;
+}
+
+.card .iconClock{
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    margin: 30px auto 10px;
+    z-index: -1;
+}
+.card .iconClock img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.card p{
+    /*font-size: 20px;*/
+    font-size: 2rem;
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    z-index: 1;
+}
+
+.card .charts{
+    margin-top: 10px;
+    margin-left: 85px;
+    margin-right: 85px;
+    width: 200px;
+    height: 200px;
+}
+
+canvas{
+    font-weight: bolder;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    /*padding: 10px;*/
+    color: white;
+    transition: transform 0.5s ease-in-out;
+}
+
+canvas:hover {
+    transform: scale(1.1);
+}
+
+#contentLeft {
+    padding: 50px;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 55vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /*background-color: rgba(255, 255, 255, 0.6);*/
+    border-radius: 10px;
+    overflow:hidden;
+    /*gap: 20px;*/
+}
+
+#contentRight {
+    
+    padding: 50px;
+    margin-top: 10px;
+    /*background-color:  rgba(255, 255, 255, 0.6);*/
+    width: 420px;
+    height: auto;
+    border-radius: 10px;
+    justify-content: center;
+    overflow: hidden;
+}
+#contentRight .card{
+    margin-top: 30px;
+}
+
+.calendar {
+    width: 400px;
+    height: 320px;
+    background-color: #fffefe21;
+    margin: auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    border: 1px solid #00ffd5;
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-header button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.calendar-header h2 {
+    margin: 0;
+    color: white;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.day, .date {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.day {
+    font-weight: bold;
+    background-color: #f4f4f4;
+    border-radius: 4px;
+}
+
+.date {
+    background-color: #e9f7fe;
+    border-radius: 4px;
+}
+
+.date.other-month {
+    color: #ccc;
+}
+
+.date.today {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+.card th{
+    text-align: left;
+    /*font-size: large;*/
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.card td{
+    font-weight: normal;
+    font-size: 1.5rem;
+    text-align: right;
+    padding-right: 10px;
+    padding: 2px 2px 2px 70px;
+}
+
+#time {
+    /*font-family: 'Poppins', sans-serif;*/
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
