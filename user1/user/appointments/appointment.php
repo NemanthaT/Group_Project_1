@@ -18,12 +18,13 @@ include '../session/session.php';
             </div>
             
             <ul class="menu">
-                <li><a href="../Dashboard/Dashboard.php">
-                    <button>
-                        <img src="../images/dashboard.png" alt="Dashboard">
-                        Dashboard
-                    </button>
-                </a>
+                <li>
+                    <a href="../Dashboard/Dashboard.php">
+                        <button>
+                            <img src="../images/dashboard.png" alt="Dashboard">
+                            Dashboard
+                        </button>
+                    </a>
                 </li>
                 <li>
                     <a href="../appointments/appointment.php">
@@ -35,10 +36,10 @@ include '../session/session.php';
                 </li>
                 <li>
                     <a href="../bill/bill.php">
-                    <button>
-                        <img src="../images/bill.jpg" alt="Bill">
-                        Bill
-                    </button>
+                        <button>
+                            <img src="../images/bill.jpg" alt="Bill">
+                            Bill
+                        </button>
                     </a>
                 </li>
                 <li>
@@ -52,6 +53,7 @@ include '../session/session.php';
                         <img src="../images/knowledgebase.png" alt="Knowledge Base">
                         Knowledge Base
                     </button>
+                </li>
                 <li>
                     <a href="../reports/reports.php">
                         <button>
@@ -67,7 +69,6 @@ include '../session/session.php';
                             Settings
                         </button>
                     </a>
-                </li>
                 </li>
             </ul>
         </div>
@@ -96,7 +97,7 @@ include '../session/session.php';
 
                 <div class="search-container">
                     <div>
-                        <input type="text" id="searchInput" class="searchInput" placeholder="Appointment ID.">
+                        <input type="text" id="searchInput" class="searchInput" placeholder="Appointment ID">
                         <button id="Search" class="btn">Search</button>
                     </div>
                     <div>
@@ -117,31 +118,53 @@ include '../session/session.php';
                     </thead>
                     <tbody id="appointmentList">
                         <?php
-                            include '../../connect/connect.php';
-                            $sql = "SELECT * FROM appointments";
-                            $result = $conn->query($sql);
-        
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['appointment_id'] . "</td>";
-                                    echo "<td>" . $row['service_type'] . "</td>";
-                                    echo "<td>" . $row['appointment_date'] . "</td>";
-                                    echo "<td>" . $row['status'] . "</td>";
-                                    echo "<td>" . $row['created_at'] . "</td>";
-                                    echo "<td>";
-                                    echo "<button class='btn edit-btn'>Edit</button>";
-                                    echo "<button class='btn cancel-btn'>Cancel</button>";
-                                    echo "</td>";
-                                    echo "</tr>";
-                                }
-                            }
+                        include '../../connect/connect.php';
                         
+                        // Prepare SQL with JOIN to get provider information
+                        $sql = "SELECT a.*, p.full_name 
+                                FROM appointments a 
+                                LEFT JOIN serviceproviders p ON a.provider_id = p.provider_id 
+                                WHERE a.client_id = ?";
+                        
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("i", $_SESSION['client_id']);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['appointment_id']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['service_type']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
+                                echo "<td>";
+                                
+                                // Show edit button only if no provider assigned
+                                if ($row['provider_id'] === null) {
+                                    echo "<button class='btn edit-btn' data-id='" . $row['appointment_id'] . "'>Edit</button>";
+                                }
+                                
+                                // Show cancel button only if provider is assigned and status is not cancelled
+                                if ($row['provider_id'] !== null && $row['status'] !== 'cancelled') {
+                                    echo "<button class='btn cancel-btn' data-id='" . $row['appointment_id'] . "'>Cancel</button>";
+                                }
+                                
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='6'>No appointments found</td></tr>";
+                        }
+                        
+                        $stmt->close();
+                        $conn->close();
                         ?>
-                </tbody>
+                    </tbody>
                 </table>
 
-                <!-- Add Appointment Overlay -->
+                <!-- Add/Edit Appointment Overlay -->
                 <div id="addAppointmentOverlay" class="overlay">
                     <div class="overlay-content">
                         <span class="close-btn">&times;</span>
@@ -149,22 +172,22 @@ include '../session/session.php';
                         <form id="appointmentForm">
                             <div class="form-group">
                                 <label for="serviceSelect">Select a Service</label>
-                                <select id="serviceSelect" name="serviceSelect"  required>
+                                <select id="serviceSelect" name="serviceSelect" required>
                                     <option value="">Choose a Service</option>
                                     <option value="Consulting">Consulting</option>
-                                    <option value="training">Training</option>
+                                    <option value="Training">Training</option>
                                     <option value="Researching">Researching</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="appointmentDate">Select a Date</label>
-                                <input type="date" id="appointmentDate" name="appointmentDate" required>
+                                <input type="datetime-local" id="appointmentDate" name="appointmentDate" required>
                             </div>
                             <div class="form-group">
                                 <label for="additionalMessage">Additional Message</label>
                                 <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
                             </div>
-                            <button type="submit" id = "Bookappointmentbtn"class="btn">Book Appointment</button>
+                            <button type="submit" id="Bookappointmentbtn" class="btn">Book Appointment</button>
                         </form>
                     </div>
                 </div>

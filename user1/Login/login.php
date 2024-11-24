@@ -38,6 +38,7 @@ if (isset($_POST['submit'])) { //check if form was submitted
                 break;
             } else {
                 echo "<script>alert('Invalid password!');</script>";
+                echo "<script>window.location = 'login.php';</script>";
                 exit;
             }
         }
@@ -52,6 +53,7 @@ if (isset($_POST['submit'])) { //check if form was submitted
         exit;
     } else {
         echo "<script>alert('Email not found!');</script>";
+
     }
 }
 ?>
