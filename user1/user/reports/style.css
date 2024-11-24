@@ -3,22 +3,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     min-height: 100vh;
-  }
-  
-  /* Container Layout */
-  .container {
+}
+
+/* Container Layout */
+.container {
     display: flex;
     width: 100%;
-  }
-  
-  /* Sidebar Styles */
-  .sidebar {
+}
+
+/* Sidebar Styles */
+.sidebar {
     background-color: white;
     width: 20vw;
     padding: 3vh;
@@ -27,28 +27,28 @@
     align-items: center;
     position: fixed;
     height: 100vh;
-  }
-  
-  .sidebar .logo img {
+}
+
+.sidebar .logo img {
     width: 100%;
     max-width: 20vw;
     margin-bottom: 5vh;
-  }
-  
-  .menu {
+}
+
+.menu {
     list-style: none;
     width: 100%;
-  }
-  
-  .menu li {
-    margin-bottom: 2vh;
-  }
+}
 
-  a {
+.menu li {
+    margin-bottom: 2vh;
+}
+
+.menu a {
     text-decoration: none
 }
-  
-  .menu button {
+
+.menu button {
     display: flex;
     align-items: center;
     font-size: 2.5vh;
@@ -63,27 +63,23 @@
     border-radius: 1vh;
     gap: 1vh;
     text-decoration: none;
-  }
-  
-  .menu button.active {
+}
+
+.menu button.active,
+.menu button:hover {
     background-color: #18A0FB;
     color: white;
-  }
-  
-  .menu img {
+}
+
+.menu img {
     width: auto;
     height: 4vh;
     object-fit: contain;
     margin-right: 1vh;
-  }
-  
-  .menu button:hover {
-    background-color: #18A0FB;
-    color: white;
-  }
-  
-  /* Navbar Styles */
-  .navbar {
+}
+
+/* Navbar Styles */
+.navbar {
     width: 80vw;
     background-color: white;
     color: #18A0FB;
@@ -94,9 +90,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-  }
-  
-  .navbar a {
+}
+
+.navbar a {
     color: #18A0FB;
     text-decoration: none;
     font-size: 2.5vh;
@@ -106,27 +102,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .navbar a:hover {
+}
+
+.navbar a:hover {
     background-color: rgb(215, 236, 255);
-  }
-  
-  .navbar a img {
+}
+
+.navbar a img {
     max-width: 100%;
     max-height: 100%;
     width: 5vh;
     height: 5vh;
     border-radius: 50%;
-  }
-  
-  .profile {
+}
+
+.profile {
     display: flex;
     align-items: center;
     margin-right: 1vw;
-  }
-  
-  .profile a {
+}
+
+.profile a {
     padding: 0;
     background-color: #fff;
     border: none;
@@ -137,26 +133,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .logout {
+}
+
+.logout {
     background-color: #18A0FB;
     color: white !important;
-  }
-  
-  /* Main Content Area */
-  .main-wrapper {
-    
+}
+
+/* Main Content Area */
+.main-wrapper {
     width: 80vw;
     margin-left: 20vw;
-  }
-  
-  .main-container {
+}
+
+.main-container {
     max-width: 95%;
     margin: 12vh auto 2vh;
     background: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
+}

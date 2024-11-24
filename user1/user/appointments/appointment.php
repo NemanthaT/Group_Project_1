@@ -37,7 +37,7 @@ include '../session/session.php';
                 <li>
                     <a href="../bill/bill.php">
                         <button>
-                            <img src="../images/bill.jpg" alt="Bill">
+                            <img src="../images/bill.png" alt="Bill">
                             Bill
                         </button>
                     </a>
@@ -59,14 +59,6 @@ include '../session/session.php';
                         <button>
                             <img src="../images/reports.png" alt="Reports">
                             Reports
-                        </button>
-                    </a>
-                </li>
-                <li>
-                    <a href="../settings/settings.php">
-                        <button>
-                            <img src="../images/settings.png" alt="Settings">
-                            Settings
                         </button>
                     </a>
                 </li>
@@ -111,8 +103,8 @@ include '../session/session.php';
                             <th>Appointment ID</th>
                             <th>Service</th>
                             <th>Appointment Date</th>
+                            <th>Message</th>
                             <th>Status</th>
-                            <th>Created Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -137,8 +129,8 @@ include '../session/session.php';
                                 echo "<td>" . htmlspecialchars($row['appointment_id']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['service_type']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['message']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
                                 echo "<td>";
                                 
                                 // Show edit button only if no provider assigned
@@ -181,7 +173,7 @@ include '../session/session.php';
                             </div>
                             <div class="form-group">
                                 <label for="appointmentDate">Select a Date</label>
-                                <input type="datetime-local" id="appointmentDate" name="appointmentDate" required>
+                                <input type="date" id="appointmentDate" name="appointmentDate" required>
                             </div>
                             <div class="form-group">
                                 <label for="additionalMessage">Additional Message</label>

@@ -15,6 +15,11 @@ function sendResponse($success, $message) {
     exit;
 }
 
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Check connection
 if ($conn->connect_error) {
     sendResponse(false, "Connection failed: " . $conn->connect_error);
