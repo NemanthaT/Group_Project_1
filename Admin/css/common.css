@@ -61,9 +61,21 @@ table td {
 
 table tr:nth-child(even) {
     background-color: #d6d6d6;
+    transition: transform 0.3s ease-in-out;
+}
+table tr:nth-child(even):hover {
+    background-color: #34adfd;
+    color: white;
+    transform: scale(1.1);
 }
 table tr:nth-child(odd) {
     background-color: #ffffff;
+    transition: transform 0.3s ease-in-out;
+}
+table tr:nth-child(odd):hover {
+    background-color: #34adfd;
+    color: white;
+    transform: scale(1.1);
 }
 
 table .actions{
