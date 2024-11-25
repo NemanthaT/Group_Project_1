@@ -82,3 +82,10 @@ function nextMonth() {
 
 // Initial calendar render
 renderCalendar();
+
+function changeBgColor(id) {
+    const element = document.getElementById(id);
+    element.addEventListener('click', function () {
+        element.style.backgroundColor = '#18A0FB';
+    });
+}
