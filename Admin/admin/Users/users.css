@@ -17,6 +17,7 @@ body{
     padding: 300px 20px 20px 150px;
     height: 100vh;
     display: grid;
+    justify-content: center;
     grid-template-columns: repeat(2, 1fr);
     /*background-color: #f4f4f4;*/
     /*gap: 20px;*/
@@ -28,8 +29,10 @@ body{
     /*background-color: rgb(235, 235, 235);*/
     /*border: 1px solid #18A0FB;*/
     background-color: #fffefe21;
-    border: 1px solid #00ffd5;
-    color: white;
+    border: 1px solid #333;
+    color: #333;
+    /*border: 1px solid #00ffd5;
+    color: white;*/
     border-radius: 25px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     padding: 20px;
@@ -42,7 +45,7 @@ body{
 }
 
 .card:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
     background-color: #18A0FB;
     color: white;
 }

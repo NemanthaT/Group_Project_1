@@ -8,13 +8,14 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /*font-family: 'Poppins', sans-serif;*/
     /*background-color: #f4f4f4;*/
+    background-color: #f4f4f4;
     width: 100vw;
     height: 100vh;
-    background-image: url("../../Images/bg.png");
+    /*background-image: url("../../Images/bg.png");
     background-size: cover; /* Ensures the image covers the entire screen */
-    background-position:center; /* Centers the image */
-    background-repeat: no-repeat; /* No repeating background image */
-    background-attachment: fixed; /* The background image will not scroll with the page */
+    /*background-position:center; /* Centers the image */
+    /*background-repeat: no-repeat; /* No repeating background image */
+    /*background-attachment: fixed; /* The background image will not scroll with the page */
 }
 
 /*.backgroundimage{
@@ -40,28 +41,32 @@ body {
 }
 
 .card {
-    height: 390px;
+    height: 400px;
     width: 370px;
     overflow: hidden;
     /*background-color: rgb(235, 235, 235);*/
     background-color: #fffefe21;
     /*border: 1px solid #18A0FB;*/
-    border: 1px solid #00ffd5;
-    color: white;
+    /*border: 1px solid #333;*/
+    color: #333;
     border-radius: 25px;
     box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3);
     padding: 10px;
     font-weight: bold;
     text-align: left;
-    cursor: pointer;
+    /*cursor: pointer;*/
     z-index: 1;
     transition: transform 0.5s ease-in-out;
 }
 
-.card:hover {
+#sR,#fo,#tE{
+    height: 200px;
+}
+
+/*.card:hover {
     transform: scale(1.1);
     color: white;
-}
+}*/
 
 .card .iconClock{
     justify-content: center;
@@ -87,11 +92,12 @@ body {
 }
 
 .card .charts{
+    font-weight: bolder;
     margin-top: 10px;
     margin-left: 85px;
     margin-right: 85px;
-    width: 200px;
-    height: 200px;
+    width: 210px;
+    height: 210px;
 }
 
 canvas{
@@ -100,6 +106,7 @@ canvas{
     border-radius: 10px;
     /*padding: 10px;*/
     color: white;
+    cursor: pointer;
     transition: transform 0.5s ease-in-out;
 }
 
@@ -111,10 +118,10 @@ canvas:hover {
     padding: 50px;
     margin-top: 10px;
     margin-left: 20px;
-    width: 55vw;
+    width: 100vw;
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     /*background-color: rgba(255, 255, 255, 0.6);*/
     border-radius: 10px;
     overflow:hidden;
@@ -167,7 +174,7 @@ canvas:hover {
 
 .calendar-header h2 {
     margin: 0;
-    color: white;
+    color: #333;
 }
 
 .days {

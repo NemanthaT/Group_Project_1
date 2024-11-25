@@ -5,9 +5,10 @@
 }
 
 body {
-    /*font-family: 'Segoe UI', 'cursive';*/
+    font-family: 'Segoe UI', 'cursive';
     /*font-family: 'Poppins', sans-serif;*/
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+    /*font-family: Arial, sans-serif;*/
     background-color: #f4f4f4;
     width: 100vw;
     height: 100vh;
@@ -21,67 +22,80 @@ body {
 /*h1 style*/
 h1 {
     font-size: 3rem;
-    padding-top: 40px;
+    padding-top: 10px;
     text-align: center;
     margin-bottom: 20px;
     color: #18A0FB;
 }
 
+/*h2 style*/
+h2 {
+    /*padding: 0px 0px 0px 20px;*/
+    margin-top: 5px;
+    font-size: 30px;
+    color: #333;
+}
+
 /*table styles*/
 table {
-    padding: 10px 20px 10px 20px;
-    width: 70%;
-    gap: 6px;
-    margin: 20px 50px 20px 50px;
-    border-spacing: 10px;
-    border-radius: 10px;
+    /*padding: 10px 20px 10px 20px;*/
+    width: 98%;
+    /*gap: 6px;*/
+    /*margin: 20px 50px 20px 50px;*/
+    margin: 0px 10px 20px 10px;
+    /*border: 1px solid #ddd;*/
+    /*border-spacing: 10px;*/
+    /*border-radius: 10px;*/
     border-collapse: separate;
     
 }
 
 table th {
     text-align: center;
-    background-color: rgb(154, 211, 230);
+    background-color: #f8f9fa;
+    color: #333;
     font-size: large;
     font-weight: bold;
-    margin: 6px;
-    border: 1px solid #00ffd5;
+    /*margin: 6px;
+    /*border: 1px solid #00ffd5;
     border-radius: 20px;
     /*border: 1px solid rgba(236, 236, 236, 0.137);*/
-    padding: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
 }
 
 table td {
     /*border: 2px solid #18A0FB;*/
-    margin: 6px;
-    border-radius: 20px;
-    border: 1px solid rgba(236, 236, 236, 0.5);
-    padding: 15px;
+    /*margin: 6px;*/
+    border: 1px solid #ddd;
+    /*border-radius: 20px;*/
+    /*border: 1px solid rgba(236, 236, 236, 0.5);*/
+    padding: 12px;
 }
 
 table tr:nth-child(even) {
-    background-color: #d6d6d6;
+    background-color: #ddd;
     transition: transform 0.3s ease-in-out;
 }
-table tr:nth-child(even):hover {
+/*table tr:nth-child(even):hover {
     background-color: #34adfd;
     color: white;
     transform: scale(1.1);
-}
+}*/
 table tr:nth-child(odd) {
-    background-color: #ffffff;
+    background-color: #ddd;
     transition: transform 0.3s ease-in-out;
 }
-table tr:nth-child(odd):hover {
+/*table tr:nth-child(odd):hover {
     background-color: #34adfd;
     color: white;
     transform: scale(1.1);
-}
+}*/
 
-table .actions{
+/*table .actions{
     gap: 10px;
     background-color: #1882fb89;
-}
+}*/
 
 /*search delete container styles*/
 .searchContainer{
@@ -99,16 +113,22 @@ form{
     margin-right: 20px;
     margin-bottom: 20px;
     padding: 20px;
-    border: 1px solid #c6e8ff8e;
-    border-radius: 10px;
-    background-color: rgb(80, 80, 80);
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    /*border: 1px solid #ccc;
+    border-radius: 4px;
+    /*background-color: rgb(80, 80, 80);*/
+    /*box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);*/
 }
 
 form input {
+    /*border: 1px solid #ccc;
+    border-radius: 4px;
     padding: 0px 5px 0px 0px;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;*/
     font-size: large;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
 }
 
 form button{
@@ -117,10 +137,12 @@ form button{
     background-color:#ffffff;
     cursor: pointer;
     height: 25px;
-    width: 80px;
-    border: 1px solid #ffffff;
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    /*box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);*/
     transition: transform 0.3s ease-in-out;
 }
 
@@ -133,22 +155,22 @@ button{
     height: 25px;
     width: 80px;
     border: 1px solid #ffffff;
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease-in-out;
+    border-radius: 5px;
+    /*box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);*/
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
 }
 
-/*form button:hover{
+form button:hover{
     color: white;
     background-color: #ffae00;
-    transform: scale(1.1);
-}*/
+    transform: scale(1.05);
+}
 
 button:hover{
     color: white;
     background-color: #ffae00;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-    transform: scale(1.1);
+    /*box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);*/
+    transform: scale(1.05);
 }
 
 /*accept view delete button styles*/
@@ -185,7 +207,8 @@ button:hover{
     font-weight: bold;
     width: 40px;
     height: 40px;
-    margin-left: 90%;
+    margin-left: 95%;
+    margin-bottom: 5%;
 }
 
 #closeView:hover{
@@ -229,13 +252,30 @@ button:hover{
 
 /*style for background*/
 .bg{
-    background-color: rgba(0, 0, 0, 0.4);
-    background-image: url("../Images/bg.png");
+    /*background-color: rgba(0, 0, 0, 0.4);*/
+    /*background-image: url("../Images/bg.png");
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
     width: 100vw;
     height: 100vh;
     position: fixed;
     filter: blur(5px);
     z-index: -1;
+}
+
+/*style for main view*/
+.main{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 96%;
+    margin: 1% 2% 1% 2%;
+    padding: 5px;
+}
+
+/*style for searchResults*/
+
+#searchResults{
+    margin-bottom: 20px;
 }
