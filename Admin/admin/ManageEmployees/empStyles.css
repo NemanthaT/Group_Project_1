@@ -21,8 +21,8 @@ p {
 .mainTop{
     display: flex;
     /*background-color: rgb(221, 219, 219);*/
-    background-color: #fffefe21;
-    border: 1px solid #00ffd5;
+    background-color: #f4f4f4;;
+    /*border: 1px solid #00ffd5;*/
 
     justify-content: space-between;
     padding: 10px 20px 10px 20px;
