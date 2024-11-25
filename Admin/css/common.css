@@ -5,9 +5,10 @@
 }
 
 body {
-    /*font-family: 'Segoe UI', 'cursive';*/
+    font-family: 'Segoe UI', 'cursive';
     /*font-family: 'Poppins', sans-serif;*/
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+    /*font-family: Arial, sans-serif;*/
     background-color: #f4f4f4;
     width: 100vw;
     height: 100vh;
@@ -21,19 +22,28 @@ body {
 /*h1 style*/
 h1 {
     font-size: 3rem;
-    padding-top: 40px;
+    padding-top: 10px;
     text-align: center;
     margin-bottom: 20px;
     color: #18A0FB;
 }
 
+/*h2 style*/
+h2 {
+    /*padding: 0px 0px 0px 20px;*/
+    margin-top: 5px;
+    font-size: 30px;
+    color: #333;
+}
+
 /*table styles*/
 table {
-    padding: 10px 20px 10px 20px;
-    width: 70%;
+    /*padding: 10px 20px 10px 20px;*/
+    width: 98%;
     /*gap: 6px;*/
-    margin: 20px 50px 20px 50px;
-    border: 1px solid #ddd;
+    /*margin: 20px 50px 20px 50px;*/
+    margin: 0px 10px 20px 10px;
+    /*border: 1px solid #ddd;*/
     /*border-spacing: 10px;*/
     /*border-radius: 10px;*/
     border-collapse: separate;
@@ -46,21 +56,21 @@ table th {
     color: #333;
     font-size: large;
     font-weight: bold;
-    margin: 6px;
+    /*margin: 6px;
     /*border: 1px solid #00ffd5;
     border-radius: 20px;
     /*border: 1px solid rgba(236, 236, 236, 0.137);*/
     border: 1px solid #ddd;
-    padding: 20px;
+    padding: 15px;
 }
 
 table td {
     /*border: 2px solid #18A0FB;*/
-    margin: 6px;
+    /*margin: 6px;*/
     border: 1px solid #ddd;
     /*border-radius: 20px;*/
-    border: 1px solid rgba(236, 236, 236, 0.5);
-    padding: 15px;
+    /*border: 1px solid rgba(236, 236, 236, 0.5);*/
+    padding: 12px;
 }
 
 table tr:nth-child(even) {
@@ -82,10 +92,10 @@ table tr:nth-child(odd) {
     transform: scale(1.1);
 }*/
 
-table .actions{
+/*table .actions{
     gap: 10px;
     background-color: #1882fb89;
-}
+}*/
 
 /*search delete container styles*/
 .searchContainer{
@@ -113,8 +123,8 @@ form input {
     /*border: 1px solid #ccc;
     border-radius: 4px;
     padding: 0px 5px 0px 0px;
-    font-family: Arial, sans-serif;
-    font-size: large;*/
+    font-family: Arial, sans-serif;*/
+    font-size: large;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -130,9 +140,9 @@ form button{
     width: auto;
     height: auto;
     padding: 10px 20px;
-    border: 1px solid #ffffff;
+    border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    /*box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);*/
     transition: transform 0.3s ease-in-out;
 }
 
@@ -146,7 +156,7 @@ button{
     width: 80px;
     border: 1px solid #ffffff;
     border-radius: 5px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    /*box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);*/
     transition: background-color 0.3s, transform 0.3s ease-in-out;
 }
 
@@ -159,8 +169,8 @@ form button:hover{
 button:hover{
     color: white;
     background-color: #ffae00;
-    /*box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-    /*transform: scale(1.1);*/
+    /*box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);*/
+    transform: scale(1.05);
 }
 
 /*accept view delete button styles*/
@@ -197,7 +207,8 @@ button:hover{
     font-weight: bold;
     width: 40px;
     height: 40px;
-    margin-left: 90%;
+    margin-left: 95%;
+    margin-bottom: 5%;
 }
 
 #closeView:hover{
@@ -241,7 +252,7 @@ button:hover{
 
 /*style for background*/
 .bg{
-    background-color: rgba(0, 0, 0, 0.4);
+    /*background-color: rgba(0, 0, 0, 0.4);*/
     /*background-image: url("../Images/bg.png");
     background-size: cover;
     background-repeat: no-repeat;*/
@@ -250,4 +261,21 @@ button:hover{
     position: fixed;
     filter: blur(5px);
     z-index: -1;
+}
+
+/*style for main view*/
+.main{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 96%;
+    margin: 1% 2% 1% 2%;
+    padding: 5px;
+}
+
+/*style for searchResults*/
+
+#searchResults{
+    margin-bottom: 20px;
 }
