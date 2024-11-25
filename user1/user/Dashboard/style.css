@@ -158,11 +158,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  column-gap: 20px;
 }
 .space{
   background-color: #f4f4f4;
   width: 100%;
-  padding: 6.5vh ;
+  padding: 5.5vh ;
   height: 100%;
   display: flex;
 }
@@ -173,8 +174,10 @@ body {
   flex-direction: column;
   justify-content: space-between;
   justify-content: center;
-  margin: auto;
+  background-color: #fff;
+  margin: 10px auto;
   border-radius: 8px;
+  
 }
 
 .card1 {

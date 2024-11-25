@@ -8,7 +8,7 @@ include '../session/session.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka - Appointment Management</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
         <div class="sidebar">
@@ -30,6 +30,14 @@ include '../session/session.php';
                         <button >
                             <img src="../images/appointment.png" alt="Appointment">
                             Appointment
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a href="../Project/project.php">
+                        <button >
+                            <img src="../images/project.png" alt="project">
+                            Projects
                         </button>
                     </a>
                 </li>
