@@ -82,7 +82,6 @@ if (isset($_POST['submit'])){ //check if form was submitted
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,7 +91,6 @@ if (isset($_POST['submit'])){ //check if form was submitted
 
 <body>
     <div class="blurry-background">
-
     </div>
     <div class="container">
         <form action="login.php" method="post">
@@ -127,15 +125,13 @@ if (isset($_POST['submit'])){ //check if form was submitted
                 </center>    
             </div>
             <div class="form-footer">
-                <p>Don't have an account? <a href="#">Sign up</a></p>
+                <p>Don't have an account? <a href="../Sign_Up/Sign_Up.php">Sign up</a></p>
                 <p><a href="#">Forgot password?</a></p>
             </div>
-
         </form>
     </div>
     <footer >
         <p>&copy; 2024 EDSA Lanka Consultancy</p>
     </footer>
 </body>
-
 </html>
