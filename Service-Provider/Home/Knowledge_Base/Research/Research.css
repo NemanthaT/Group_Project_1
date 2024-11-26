@@ -23,6 +23,22 @@
     justify-content: space-between;
 }
 
+.Hcontainer a{
+    color: #18A0FB;
+    text-decoration: none;
+    font-size: 2.5vh;
+    padding: 0.8vh 1.5vw;  /* Reduced padding to reduce gap between links */
+    margin-left: 1.5vw;  /* Optional: Adds space between links */
+    border-radius: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Hcontainer a:hover {
+    background-color: rgb(215, 236, 255);
+}
+
 /* Logo */
 .header_logo img {
     height: 75px;
@@ -104,13 +120,22 @@ li.Login a, li.Register a {
     margin-bottom: 30px;
 }
 
-.research-topics {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.research-types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create 2 columns */
+    gap: 20px; /* Add gap between the buttons */
+    max-width: 1000px;
+    margin: 0 auto; /* Center align the grid */
 }
 
-.research-list {
+.research-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+
+.cresearch-list {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -135,58 +160,155 @@ li.Login a, li.Register a {
 }
 
 
-
-
-/* Footer */
-footer {
-    box-shadow: 0 0 2px black;
-    justify-content: center;
-    display: flex;
-    color: #18A0FB;
+.faq-question {
+    background-color: #18A0FB;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-align: left;
     width: 100%;
-    padding: 20px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.faq-question i {
+    margin-left: 10px;
+    transition: transform 0.2s ease;
+}
+
+.faq-question.active {
+    background-color: #0F76C0;
+}
+
+.faq-question.active i {
+    transform: rotate(180deg); /* Rotate icon when active */
+}
+
+.faq-question:hover {
+    background-color: #0F76C0;
+    transform: scale(1.02); /* Slight scaling on hover */
+}
+
+.faq-answer {
+    display: none;
+    background-color: #F0F8FF;
+    color: #333;
+    font-size: 1em;
+    padding: 15px;
+    border-left: 3px solid #18A0FB;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: -5px;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+}
+
+.faq-answer.show {
+    display: block;
+    max-height: 1000px; /* Arbitrary large value to allow smooth height transition */
+    opacity: 1;
+}
+
+
+/* Footer styling */
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   /* Align content starting from the left */
+    width: 100%;               /* Align width to the main content */
+   
     background-color: white;
+    color: #18A0FB;
+    padding: 2vh 2vw;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    bottom: 0;                 /* Position it at the bottom */
+    z-index: 1;                /* Ensure it overlaps other content */
 }
 
 .Fcontainer {
-    width: 1200px;
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-.Fheading {
-    padding: 10px;
-}
-
-.Flinks {
-    display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Spread out the items */
+    align-items: flex-start;
     width: 100%;
-    padding-bottom: 20px;
 }
 
-.Flink {
-    display: flex;
+.Fquick-links,
+.Fcontact-info {
+    flex: 1; /* Allow equal space for links and contact info */
+    padding: 0 1vw;
 }
 
-.Flink ul {
+.Fquick-links ul,
+.Fcontact-info ul {
     list-style: none;
-    padding-right: 150px;
+    padding: 0;
 }
 
-.Fitem a {
-    font-size: 1em;
+.Fquick-links ul li,
+.Fcontact-info ul li {
+    margin-bottom: 1vh;
+}
+
+.Fquick-links a {
+    color: #333;
     text-decoration: none;
-    color: #18A0FB;
+    font-size: 2.5vh;
 }
 
+.Fquick-links a:hover {
+    text-decoration: underline;
+}
+
+.Fcontact-info h3,
+.Fquick-links h3 {
+    margin-bottom: 1vh;
+    font-size: 5vh;
+}
+
+.Fcontact-info ul li {
+    font-size: 2.5vh;
+    color: #333;
+}
+
+.Fsocial-media {
+    margin-top: 1vh;
+    display: flex;
+    gap: 1vw;
+}
+
+.Fsocial-media a img {
+    width: 3vh;
+    height: 3vh;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.Fsocial-media a img:hover {
+    transform: scale(1.1);
+}
+
+/* Footer Logo */
 .Flogo img {
-    width: 250px;
+    width: 20vw;
+    object-fit: contain;
 }
 
+/* Copyright Section */
 .Fcopyright {
     text-align: center;
+    font-size: 2vh;
+    color: #333;
+    width: 100%;
+    margin-top: 2vh;
+    border-top: 0.1vh solid #ddd;
+    padding-top: 1vh;
 }
 
 /* Responsive Design */
