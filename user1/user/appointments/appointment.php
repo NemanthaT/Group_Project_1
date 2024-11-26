@@ -150,6 +150,40 @@ include '../session/session.php';
                         </form>
                     </div>
                 </div>
+
+
+                <!-- View Appointment Overlay -->
+                <div id="EditAppointmentOverlay" class="overlay">
+                    <div class="overlay-content">
+                        <span class="close-btn">&times;</span>
+                        <h2  >View Appointment</h2>
+                        <form id="appointmentForm">
+                            <div class="form-group">
+                                <label for="appointmentid">Appointment ID</label>
+                                <input type="text" id="appointmentid" name="appointmentid" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="serviceSelect">Select a Service</label>
+                                <select id="serviceSelect" name="serviceSelect" required>
+                                    <option value="">Choose a Service</option>
+                                    <option value="Consulting">Consulting</option>
+                                    <option value="Training">Training</option>
+                                    <option value="Researching">Researching</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="appointmentDate">Select a Date</label>
+                                <input type="date" id="appointmentDate" name="appointmentDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="additionalMessage">Additional Message</label>
+                                <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
+                            </div>
+                            <button type="submit" id="Saveappointmentbtn" class="btn">Save</button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

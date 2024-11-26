@@ -95,14 +95,30 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
 
-        <div class="controls card1">
-            <h1>Welcome To EDSA Lanka</h1>
-            <h3>HI !  Safran Zahim ..</h3>
-        </div>
-        <div class="controls">
-            
+        <div class="controls card1">            <h1>Projects</h1>
+
+        
         </div>
 
+                <!-- Bills Grid -->
+                <div class="project-grid">
+            <!-- Bill Card 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-id">P001</span>
+                    <span class="status green">Ongoing</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-info">
+                        <h2><strong>Financial consultancy for board of directers</strong></h2> <br />
+                        <p>Financial Consultancy Program is a specialized service aimed at helping individuals or organizations make informed financial decisions, manage their finances more effectively, and achieve financial goals. Financial consultants or advisors provide expert advice on a range of financial matters, from budgeting and investment strategies to tax planning, risk management, and long-term financial planning.</p>
+                    </div>
+                    <a href="projectview.php">
+                    <button class="pay-button" >view</button>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

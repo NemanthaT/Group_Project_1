@@ -187,3 +187,133 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  
+
+/* Bills Grid */
+.project-grid {
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px 0px;
+  margin: auto;
+}
+
+/* Bill Card */
+.project-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.project-header {
+  padding: 15px;
+  background: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.payment-id {
+  font-weight: bold;
+  color: #666;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.green {
+  background: #d4edda;
+  color: #155724;
+}
+
+.red {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.project-content {
+  padding: 15px;
+}
+
+.project-info p {
+  margin-bottom: 8px;
+  color: #444;
+  font-size: 14px;
+}
+
+.project-info strong {
+  color: #333;
+}
+
+.pay-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pay-button:hover:not([disabled]) {
+  background: #0056b3;
+}
+
+.pay-button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .controls {
+      flex-direction: column;
+  }
+  
+  .filter-group select,
+  .search-group input {
+      width: 100%;
+  }
+  
+  .bills-grid {
+      grid-template-columns: 1fr;
+  }
+}
+
+.row{
+  
+  display: flex;
+  flex-direction: row;
+}
+.header{
+color: white;
+background-color:#18A0FB  ;
+}
+
+.margin{
+  margin: 0px auto;
+  align-items: center;
+  width: 100%;
+}
+.row-container {
+  width: 46%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-content: center;
+  background-color: #fff;
+  margin: 10px auto;
+  border-radius: 8px;
+}
+
+

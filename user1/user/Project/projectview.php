@@ -19,7 +19,7 @@ include '../session/session.php';
             <ul class="menu">
                 <li>
                     <a href="../Dashboard/Dashboard.php">
-                        <button class="active">
+                        <button >
                             <img src="../images/dashboard.png" alt="Dashboard">
                             Dashboard
                         </button>
@@ -35,12 +35,13 @@ include '../session/session.php';
                     </li>
                 <li>
                     <a href="../Project/project.php">
-                        <button >
+                        <button class="active">
                             <img src="../images/project.png" alt="project">
                             Projects
                         </button>
                     </a>
-                </li>                <li>
+                </li>                
+                <li>
                     <a href="../bill/bill.php">
                         <button >
                         <img src="../images/bill.png" alt="Bill">
@@ -94,48 +95,36 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
 
-        <div class="controls card1">
-            <h1>Welcome To EDSA Lanka</h1>
-            <h3>HI !  Safran Zahim ..</h3>
+        
+        <div class="controls header">
+            <h1>Financial consultancy for board of directers</h1>
         </div>
-        <div class="controls">
-
-                <!-- Add/Edit Appointment Overlay -->
-                <div id="EditAppointmentOverlay" class="overlay">
-                    <div class="overlay-content">
-                        <span class="close-btn">&times;</span>
-                        <h2  >View Appointment</h2>
-                        <form id="appointmentForm">
-                            <div class="form-group">
-                                <label for="appointmentid">Appointment ID</label>
-                                <input type="text" id="appointmentid" name="appointmentid" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="serviceSelect">Select a Service</label>
-                                <select id="serviceSelect" name="serviceSelect" required>
-                                    <option value="">Choose a Service</option>
-                                    <option value="Consulting">Consulting</option>
-                                    <option value="Training">Training</option>
-                                    <option value="Researching">Researching</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="appointmentDate">Select a Date</label>
-                                <input type="date" id="appointmentDate" name="appointmentDate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="additionalMessage">Additional Message</label>
-                                <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
-                            </div>
-                            <button type="submit" id="Saveappointmentbtn" class="btn"></button>
-                        </form>
-                    </div>
-                </div>
-
-
+        <div class="row margin">
+        <div class="row-container">
+            <h2>Project Details</h2>
+            <hr><br>
+            <p><strong>Project Name:</strong> Financial consultancy for board of directers</p>
+            <p><strong>Project ID:</strong> 001</p>
+            <p><strong>Service Provider Name :</strong> Rama Crish</p>
+            <p><strong>Service Provider Content Details :</strong> 0711234561</p>    
         </div>
+        <div class="row-container">
+            <h2>Project Progress </h2>
+            <hr><br>
+            <p><strong>Project Start Date:</strong> 2021-09-01</p>
+            <p><strong>updated Date:</strong> 2021-09-30</p>
+            <div class="row">
+            <p ><strong>Project Status : </strong> <p class="green"> Ongoing </p></p>
+            </div>
+            <p><strong>Project pashe :</strong> Requirement Gathering</p>
+    </div>
+    </div>
+    <div class="controls">
 
     </div>
+
+    </div>
+</div>
     <script src="script.js"></script>
 </body>
 </html>
