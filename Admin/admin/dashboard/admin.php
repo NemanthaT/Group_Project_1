@@ -31,12 +31,12 @@
                 </div>
                 <nav>
                     <ul>
-                        <li class="dropDown" id="dD1" onclick="changeBgColor(dD1)"><a href="dashboard.php" target="Dashboard">Dashboard</a></li>
-                        <li class="dropDown" id="dD2" onclick="changeBgColor(dD2)"><a href="../Users/users.php" target="Dashboard">Users</a></li>
-                        <li class="dropDown" id="dD3" onclick="changeBgColor(dD3)"><a href="../ManageEmployees/manEmp.php" target="Dashboard">Manage Employees</a></li>
-                        <li class="dropDown" id="dD4" onclick="changeBgColor(dD4)"><a href="../Requests/requests.php" target="Dashboard">Service Provider Requests</a></li>
-                        <li class="dropDown" id="dD5" onclick="changeBgColor(dD5)"><a href="../Forums/forums.php" target="Dashboard">Forums</a></li>
-                        <li class="dropDown" id="dD6" onclick="changeBgColor(dD6)"><a href="../Reports/reports.php" target="Dashboard">Billing Reports</a></li>
+                        <li class="dropDown" id="dD1" onclick="changeBgColor(dD1)"><a href="dashboard.php" target="Dashboard">&#9875 Dashboard</a></li>
+                        <li class="dropDown" id="dD2" onclick="changeBgColor(dD2)"><a href="../Users/users.php" target="Dashboard">&#128113 Users</a></li>
+                        <li class="dropDown" id="dD3" onclick="changeBgColor(dD3)"><a href="../ManageEmployees/manEmp.php" target="Dashboard">&#9997 Manage Employees</a></li>
+                        <li class="dropDown" id="dD4" onclick="changeBgColor(dD4)"><a href="../Requests/requests.php" target="Dashboard"><span style="color:green">&#129159</span> Provider Requests</a></li>
+                        <li class="dropDown" id="dD5" onclick="changeBgColor(dD5)"><a href="../Forums/forums.php" target="Dashboard">&#128195 Forums</a></li>
+                        <li class="dropDown" id="dD6" onclick="changeBgColor(dD6)"><a href="../Reports/reports.php" target="Dashboard">&#128203 Billing Reports</a></li>
                     </ul>
                 </nav>
             </div>
@@ -44,7 +44,7 @@
                 <div class="header">
                     <header>
                         <div class="user-info">
-                            <p>Hi,<?php echo $username ?> </p>
+                            <p>Hi, <?php echo $username ?>!! 👋</p>
                             <button name="submit" type="submit"><a href="../../login/logout.php" class="logoutbutton">Logout</a></button>
                         </div>
                     </header>

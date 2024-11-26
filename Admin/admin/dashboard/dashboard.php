@@ -34,7 +34,7 @@
             </div>
             <div id="contentLeft">
                 <div class="card">
-                    <div><p>Users</p></div>
+                    <div><p>Users &#128113</p></div>
                     <div>
                         <?php
                             $sql = "SELECT COUNT(*) FROM clients";
@@ -112,13 +112,15 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="iconClock">
+                    <center><span style='font-size:200px;'>&#128336;</span></center>
+                    <!--<div class="iconClock">
+                        
                         <img src="../../Images/clock.png" alt="clock">
-                    </div>
+                    </div>-->
                     <div id="time"></div>
                 </div>
 
-                <div class="calendar">
+                <div class="card">
                     <div class="calendar-header">
                         <button onclick="prevMonth()">‹</button>
                         <h2 id="monthYear"></h2>
@@ -137,7 +139,7 @@
                 </div>
 
                 <div class="card" id="sR">
-                    <div><p>Service Requests</p></div>
+                    <div><p>Service Requests &#128276</p></div>
                     <div>
                     <?php
                             $sql = "SELECT COUNT(*) FROM servicerequests WHERE status = 'Pending'";
@@ -155,7 +157,7 @@
                     </div>
                 </div>
                 <div class="card" id="tE">
-                    <div><p>Total Earnings</p></div>
+                    <div><p>Total Earnings &#128176</p></div>
                     <div>
                         <?php
                             $sql = "SELECT SUM(amount) FROM payments";
@@ -168,7 +170,7 @@
                     </div>    
                 </div>
                 <div class="card" id="fo">
-                    <div><p>Forums</p></div>
+                    <div><p>Forums &#128195</p></div>
                     <div>
                         <?php
                             $sql = "SELECT COUNT(*) FROM forums";
