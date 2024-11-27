@@ -1,0 +1,187 @@
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header {
+    width: 85%;
+    margin-left: 16.3%;
+    background-color: #1dd2fb;
+    color: white;                    /* White text color */
+    padding: 15px 20px;              /* Padding inside header */
+    display: flex;                   /* Flex layout for alignment */
+    align-items: center;             /* Center align items vertically */
+    justify-content: space-between;  /* Space between logo and nav links */
+    position: fixed;                 /* Fix header to top */
+    top: 0;
+    left: 0;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    z-index: 1000;                  /* Ensure header is on top of other elements */
+  }
+  
+  /* Logo styling */
+  .header .logo {
+    font-size: 1.5em;                /* Make logo text larger */
+    font-weight: bold;             /* Bold logo text */
+  }
+  
+  /* Navigation styling */
+  .header .nav ul {
+    list-style: none;                /* Remove list bullets */
+    display: flex;                   /* Display links in a row */
+    gap: 30px; 
+    margin-right: 40px;
+                          /* Space between links */
+  }
+  
+  .header .nav ul li a {
+    color: white;                    /* Link color */
+    text-decoration: none;           /* Remove underline */
+    font-weight: bold;               /* Bold text for links */
+  }
+  
+  .header .nav ul li a:hover {
+    color: #ffeb3b;                  /* Change color on hover */
+  }
+  .body {
+    font-family: Arial, sans-serif;
+    display: flex;
+  }
+  /* Sidebar styling */
+  .sidebar {
+    width: 250px;
+    background-color: #1dd2fb;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 20px;
+  }
+  
+  /* Header for the Sidebar */
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Unordered List for Menu */
+  .sidebar ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0px;
+    margin-top: -80px;
+    gap: 10px;
+  }
+  
+  /* List Items (Sidebar Buttons) */
+  .sidebar ul li {
+    padding: 15px 20px;
+    background-color: #333;
+    border-bottom: 1px solid #3a1a1a;
+    position: relative;
+    border-radius: 10px;
+    margin: 3%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover transition */
+    cursor: pointer; /* Add cursor to indicate clickable */
+  }
+  
+  /* Styling for Anchor Links */
+  .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: color 0.6s ease;
+  }
+  
+  /* Hover Effect for Links (Background Change) */
+  .sidebar ul li a:hover {
+    background-color: #555;
+  }
+  
+  /* Pop-up Effect on Hover */
+  .sidebar ul li:hover {
+    transform: translateY(-5px); /* Moves the button upwards slightly */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds a shadow to give depth */
+  }
+  
+  /* Logo Styling */
+  .sidebar .logo {
+    display: block;
+    margin: 0 auto;
+    width: 180px;
+    height: 180px;
+    margin-top: 50px;
+    margin-bottom: 0px;
+  }
+  
+  
+  /* Hide toggle button on larger screens */
+  /* Toggle button styling within sidebar */
+  /* Base style for the toggle button (initially hidden on large screens) */
+  /* Hide the toggle button on larger screens */
+  .sidebar-toggle {
+    display: none;
+    font-size: 1.4em;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    top: 5px;
+    left: 0px;
+    z-index: 1001; /* Above other elements */
+  }
+  
+  /* Responsive layout for sidebar and toggle button */
+  @media (max-width: 768px) {
+    /* Display the toggle button on small screens */
+    .sidebar-toggle {
+      display: block; /* Show toggle button */
+    }
+  
+    /* Sidebar styling on small screens */
+    .sidebar {
+      position: fixed;
+      left: -250px; /* Initially hide sidebar to the left */
+      top: 0;
+      height: 100vh;
+      transition: left 0.3s ease; /* Smooth transition */
+      z-index: 1000; /* Layer behind the toggle button */
+      width: 250px;
+    }
+  
+    /* Slide the sidebar in when 'active' class is added */
+    .sidebar.active {
+      left: 0;
+    }
+  
+    /* Adjust main content margin when sidebar is hidden */
+    .content {
+      margin-left: 0;
+      width: 300%;
+      height: 100%;
+    }
+    .body{
+      margin-left: 0;
+      width: 300%;
+      height: 100%;
+    }
+  }
+   
+  /* Content styling */
+  
+  .logo{
+    /* Make the image block-level */
+    margin-left: 10px;
+  } 
+
+.content {
+    width: 100%;
+    background-color: #f5f5f5;    
+    height: 100%;
+}
+  
