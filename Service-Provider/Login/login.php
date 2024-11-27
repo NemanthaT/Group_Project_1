@@ -62,11 +62,11 @@ if (isset($_POST['submit'])){ //check if form was submitted
         }      
     }
     elseif ($assoc_serviceproviders['email'] == $Email){ //check if email is in service providers table
-        if($assoc_serviceproviders['password'] == $Password){
+        if(password_verify($Password,$assoc_serviceproviders['password'])){
             $_SESSION['username'] = $assoc_serviceproviders['username'];
             $_SESSION['email'] = $assoc_serviceproviders['email'];
     
-            header("Location: ../serviceproviders/serviceprovider.php"); //redirect to service provider page
+            header("Location: ../SP_Dashboard/SPDash.html"); //redirect to service provider page
             exit;
         }
         else{
