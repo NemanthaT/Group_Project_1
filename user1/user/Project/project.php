@@ -99,7 +99,6 @@ include '../session/session.php';
 
         
         </div>
-
                 <!-- Bills Grid -->
                 <div class="project-grid">
             <!-- Bill Card 1 -->

@@ -94,8 +94,6 @@ include '../session/session.php';
 
     <div class=".main-container">
         <div class="space"></div>
-
-        
         <div class="controls header card1">
             <h1>Financial consultancy for board of directers</h1>
         </div>

@@ -95,42 +95,11 @@ include '../session/session.php';
         <div class="space"></div>
 
         <div class="controls card1">
-            <h1>Welcome To EDSA Lanka</h1>
-            <h3>HI !  Safran Zahim ..</h3>
+            <h1>Reports</h1>
         </div>
         <div class="controls">
 
-                <!-- Add/Edit Appointment Overlay -->
-                <div id="EditAppointmentOverlay" class="overlay">
-                    <div class="overlay-content">
-                        <span class="close-btn">&times;</span>
-                        <h2  >View Appointment</h2>
-                        <form id="appointmentForm">
-                            <div class="form-group">
-                                <label for="appointmentid">Appointment ID</label>
-                                <input type="text" id="appointmentid" name="appointmentid" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="serviceSelect">Select a Service</label>
-                                <select id="serviceSelect" name="serviceSelect" required>
-                                    <option value="">Choose a Service</option>
-                                    <option value="Consulting">Consulting</option>
-                                    <option value="Training">Training</option>
-                                    <option value="Researching">Researching</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="appointmentDate">Select a Date</label>
-                                <input type="date" id="appointmentDate" name="appointmentDate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="additionalMessage">Additional Message</label>
-                                <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
-                            </div>
-                            <button type="submit" id="Saveappointmentbtn" class="btn"></button>
-                        </form>
-                    </div>
-                </div>
+                
 
 
         </div>
