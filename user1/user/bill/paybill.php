@@ -95,65 +95,52 @@ include '../session/session.php';
         <div class="space">
 
         </div>
-        
-        <!-- Filter and Search Section -->
-         <div class="center">
-
-        <div class="controls ">
-            <div class="filter-group">
-                <select id="status-filter">
-                    <option value="all">All Bills</option>
-                    <option value="paid">Paid</option>
-                    <option value="unpaid">Unpaid</option>
-                </select>
-            </div>
-            <div class="search-group">
-                <input type="text" placeholder="Search client ID or service..." id="search">
-                <button class="search-button">search </button>
-            </div>
+       <div class="boxcontent"> 
+    <div class="invoice-header">
+        <div class="company-info">
+            <h1>EDSA Lanka Consultancy</h1>
+            <p>No. 45, Lotus Road<br>Colombo 01, Sri Lanka</p>
+            <p>Tel: +94 11 234 5678</p>
         </div>
+        <div class="invoice-details">
+            <h2>INVOICE</h2>
+            <p>Invoice Number: SD-2024-1127</p>
+            <p>Date: November 27, 2024</p>
+            <p>Due Date: December 15, 2024</p>
         </div>
-        <!-- Bills Grid -->
-        <div class="bills-grid">
-        <!-- Bill Card 1 -->
-            <div class="bill-card">
-                <div class="bill-header">
-                    <span class="payment-id">PAY002</span>
-                    <span class="status unpaid">Unpaid</span>
-                </div>
-                <div class="bill-content">
-                    <div class="bill-info">
-                        <p><strong>Service:</strong> Financial consultancy for board of directers</p>
-                        <p><strong>Amount:</strong> Rs 4,500,000</p>
-                        <p><strong>Date:</strong> 2024-11-21</p>
-                        <p><strong>Project ID:</strong> 001</p>
-                    </div><a href="paybill.php">
-                    <button class="pay-button">Pay Bill</button></a>
-                </div>
-            </div>
+    </div>
 
-            <!-- Bill Card 2 -->
-            <div class="bill-card">
-                <div class="bill-header">
-                    <span class="payment-id">PAY001</span>
-                    <span class="status paid">Paid</span>
-                </div>
-                <div class="bill-content">
-                    <div class="bill-info">
-                        <p><strong>Service:</strong> Financial consultancy for board of directers (advance)</p>
-                        <p><strong>Amount:</strong> Rs 4,500,000</p>
-                        <p><strong>Date:</strong> 2024-11-21</p>
-                        <p><strong>Project ID:</strong> 001</p>
-                    </div>
-                    <button class="pay-button" disabled>Paid</button>
-                </div>
-            </div>
+    <div class="bill-to">
+        <h3>Bill To:</h3>
+        <p>Priyantha Gunawardena<br>
+        456 Galle Road<br>
+        Ratmalana, Western Province 10380</p>
+    </div>
 
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
 
+                <th style="width:20%">Amount (LKR)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Advance</td>
 
+                <td>4,500,000</td>
+            </tr>
 
+        </tbody>
+    </table>
 
-        </div>
+    <div class="total-section">
+        <p>Subtotal: 19,000 LKR</p>
+        <p>VAT (15%): 2,850 LKR</p>
+        <strong>Total Due: 21,850 LKR</strong>
+    </div>
+    </div>
             </div>
         </div>
     </div>

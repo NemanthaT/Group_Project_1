@@ -96,7 +96,7 @@ include '../session/session.php';
         <div class="space"></div>
 
         
-        <div class="controls header">
+        <div class="controls header card1">
             <h1>Financial consultancy for board of directers</h1>
         </div>
         <div class="row margin">
@@ -130,7 +130,15 @@ include '../session/session.php';
                 <img class="pdf" src="img/pdf.png" alt="">
                 <h3> Agrement.pdf</h3>
             </div>
-        </div>
+        </div> <div class="box">
+
+<h2>Proposal</h2>
+<br>
+<div class="row center">
+    <img class="pdf" src="img/pdf.png" alt="">
+    <h3> Proposal.pdf</h3>
+</div>
+</div>
     </div>
 
     </div>

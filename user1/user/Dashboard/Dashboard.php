@@ -98,7 +98,7 @@ include '../session/session.php';
             <h1>Welcome To EDSA Lanka</h1>
             <h3>HI !  Safran Zahim ..</h3>
         </div>
-        <div class="controls">
+        <div class="controls ">
 
         </div>
 
