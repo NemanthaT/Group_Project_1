@@ -85,8 +85,8 @@ include '../session/session.php';
                     <img src="../images/notification.png" alt="Notifications">
                 </a>
                 <div class="profile">
-                    <a href="../SP_Profile/Profile.html">
-                        <img src="../images/user.png" alt="Profile">
+                <a href="../profile/profile.php">
+                <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
                 <a href="../../Login/Logout.php" class="logout">Logout</a>
@@ -139,6 +139,9 @@ include '../session/session.php';
         <p>Subtotal: 19,000 LKR</p>
         <p>VAT (15%): 2,850 LKR</p>
         <strong>Total Due: 21,850 LKR</strong>
+    </div>
+    <div>
+        <button class="pay-button">Pay Now</button>
     </div>
     </div>
             </div>

@@ -11,15 +11,15 @@ include '../session/session.php';
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo">
-            <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
             </div>
             
             <ul class="menu">
                 <li>
                     <a href="../Dashboard/Dashboard.php">
-                        <button >
+                        <button>
                             <img src="../images/dashboard.png" alt="Dashboard">
                             Dashboard
                         </button>
@@ -32,7 +32,7 @@ include '../session/session.php';
                             Appointment
                         </button>
                     </a>
-                    </li>
+                </li>
                 <li>
                     <a href="../Project/project.php">
                         <button >
@@ -40,9 +40,10 @@ include '../session/session.php';
                             Projects
                         </button>
                     </a>
-                </li>                <li>
+                </li>
+                <li>
                     <a href="../bill/bill.php">
-                        <button >
+                        <button class="active">
                         <img src="../images/bill.png" alt="Bill">
                         Bill
                         </button>
@@ -66,7 +67,7 @@ include '../session/session.php';
                 </li>
                 <li>
                     <a href="../reports/reports.php">
-                        <button >
+                        <button>
                             <img src="../images/reports.png" alt="Reports">
                             Reports
                         </button>
@@ -91,51 +92,61 @@ include '../session/session.php';
                 <a href="../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
-    <div class=".main-container">
-        <div class="space"></div>
-
-        <div class="controls card1">
-            <h1>Welcome To EDSA Lanka</h1>
-            <h3>HI !  Safran Zahim ..</h3>
-        </div>
-        <div class="controls">
-
-                <!-- Add/Edit Appointment Overlay -->
-                <div id="EditAppointmentOverlay" class="overlay">
-                    <div class="overlay-content">
-                        <span class="close-btn">&times;</span>
-                        <h2  >View Appointment</h2>
-                        <form id="appointmentForm">
-                            <div class="form-group">
-                                <label for="appointmentid">Appointment ID</label>
-                                <input type="text" id="appointmentid" name="appointmentid" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="serviceSelect">Select a Service</label>
-                                <select id="serviceSelect" name="serviceSelect" required>
-                                    <option value="">Choose a Service</option>
-                                    <option value="Consulting">Consulting</option>
-                                    <option value="Training">Training</option>
-                                    <option value="Researching">Researching</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="appointmentDate">Select a Date</label>
-                                <input type="date" id="appointmentDate" name="appointmentDate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="additionalMessage">Additional Message</label>
-                                <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
-                            </div>
-                            <button type="submit" id="Saveappointmentbtn" class="btn"></button>
-                        </form>
-                    </div>
-                </div>
-
+        <div class="space">
 
         </div>
-
+       <div class="boxcontent"> 
+    <div class="invoice-header">
+        <div class="company-info">
+            <h1>EDSA Lanka Consultancy</h1>
+            <p>No. 45, Lotus Road<br>Colombo 01, Sri Lanka</p>
+            <p>Tel: +94 11 234 5678</p>
+        </div>
+        <div class="invoice-details">
+            <h2>INVOICE</h2>
+            <p>Invoice Number: SD-2024-1127</p>
+            <p>Date: November 27, 2024</p>
+            <p>Due Date: December 15, 2024</p>
+        </div>
     </div>
+
+    <div class="bill-to">
+        <h3>Bill To:</h3>
+        <p>Priyantha Gunawardena<br>
+        456 Galle Road<br>
+        Ratmalana, Western Province 10380</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+
+                <th style="width:20%">Amount (LKR)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Advance</td>
+
+                <td>4,500,000</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div class="total-section">
+        <p>Subtotal: 19,000 LKR</p>
+        <p>VAT (15%): 2,850 LKR</p>
+        <strong>Total Due: 21,850 LKR</strong>
+    </div>
+    <div>
+    </div>
+    </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

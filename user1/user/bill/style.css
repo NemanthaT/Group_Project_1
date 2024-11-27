@@ -128,13 +128,15 @@ header {
     transition: background-color 0.3s;
 }
 
-.pay-button:hover:not([disabled]) {
+.pay-button:hover {
     background: #0056b3;
 }
 
-.pay-button:disabled {
-    background: #6c757d;
-    cursor: not-allowed;
+.green{
+    background: green;
+}
+.green:hover{
+    background: darkgreen;
 }
 
 /* Responsive Design */
