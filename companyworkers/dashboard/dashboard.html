@@ -1,116 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DashBoard</title>
-  <link rel="stylesheet" href="dashboard.css">
-  <link rel="stylesheet" href="../sidebar.css">
-</head>
-<body>
-  <div class="sidebar">
-    <button class="sidebar-toggle" onclick="toggleSidebar()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☰</button> <!-- Toggle Button -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <link rel="stylesheet" href="../sidebar.css?version=1">
+    <link rel="stylesheet" href="dashboard.css?version=3">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="logo">
+          <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
+        </div>
 
-    <div>
-      <img src="../logo.png" alt="logo" width="150" height="10" class="logo">
-    </div>
-    
-    <ul>
-      <br><br><br><br>
-      <li><a href="../servicerequest/servicerequest.html">Service Request</a></li><br>
-      <li><a href="../contactforums/contactforum.html">Contact Forum</a></li><br>
-      <li><a href="../updatenews/initial.php">Update News</a></li><br>
-      <li><a href="../updateevents/updateevents.php">Update Events</a></li><br>
-      <li><a href="../updateknowlgebase/initial.php">Update knowlgdebase</a></li><br>
-      <li><a href="../dashboard/dashboard.html">dashboard</a></li><br>
-    </ul>
-  </div>
+        <ul class="menu">
+          <li>
+            <a href="dashboard.html">
+              <button>
+                <img src="../images/dashboard.png" alt="Dashboard">
+                Dashboard
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="../servicerequest/servicerequest.html">
+              <button>
+                <img src="../images/service.jpg" alt="servicerequest">
+                Service Requests
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="../contactforums/contactforum.html">
+              <button>
+                <img src="../images/contact forms.jpg" alt="contactforms">
+                Contact Forum
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="../updateevents/updateevents.php">
+              <button>
+                <img src="../images/events.jpg" alt="events">
+                Update Events
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="../updateknowlgebase/initial.php">
+            <button>
+              <img src="../images/knowlegdebase.jpg" alt="knowldgedebase">
+              Update Knowledge Base
+            </button>
+            </a>  
+          </li>
+          <li>
+            <a href="../updatenews/initial.php">
+            <button>
+              <img src="../images/news.jpg" alt="News">
+              Update News
+            </button>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="main-wrapper">
+        <!-- Navbar -->
+        <div class="navbar">
+          <a href="#">Home</a>
+          <a href="#">
+            <img src="../images/notification.png" alt="Notifications">
+          </a>
+          <div class="profile">
+            <a href="../SP_Profile/Profile.html">
+              <img src="../images/user.png" alt="Profile">
+            </a>
+          </div>
+          <a href="../../Login/Logout.php" class="logout">Logout</a>
+        </div>
 
-  <!-- Content -->
-  <div class="content">
-    <div class="header">
-      <header class="header">
-        <h1 class="logo">DashBoard</h1>
-        <nav class="nav">
-          <ul class = "nav-links">
-            <li><a href="#">Logout</a></li>
-            <li><a href="#">Profile</a></li>
-          </ul>
-        </nav>
-      </header>
-    </div>
-    
+        <!-- Main Content Area -->
+        <div class="main-container">
+          <div class="top">
+          <div class="box1">
+            <h1>helloo</h1>
+          </div>
+          <div class="box1">
+            <h1>helloo</h1>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="left">
+            <div class="box2">
+              <h1>helloo1</h1>
+            </div>
 
-    <div class = "top">
-      <div class = "left">
-        <div class ="time">
-          <div><br> Time </div>
-            <div id="clock">Loading...</div>
+            <div class="box2">
+              <h1>helloo2</h1>
+            </div>
+
+            <div class="box2">
+              <h1>helloo</h1>
+            </div>
+
+        </div>
+        <div class="right">
+          <div class="box3">
+            <div class="time">
+              <div><br> Time </div>
+              <div id="clock">Loading...</div>
+          </div>
+          
+          </div>
+
+          <div class="box3">
+            <div class="calendar">
+              <div class="calendar-header">
+                <button onclick="prevMonth()">‹</button>
+                <h2 id="monthYear"></h2>
+                <button onclick="nextMonth()">›</button>
+              </div>
+              <div class="days">
+                <div class="day">Sun</div>
+                <div class="day">Mon</div>
+                <div class="day">Tue</div>
+                <div class="day">Wed</div>
+                <div class="day">Thu</div>
+                <div class="day">Fri</div>
+                <div class="day">Sat</div>
+              </div>
+              <div class="days" id="dates"></div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+
         </div>
         
-        <a href="https://example.com" class="clickable-box">
-        <div class="ri-bot">
-          <div class="box">
-                Click Me!
-                <div class="counter-container">
-                <div class="counter-box">
-                  <div id="counter" class="counter">0</div>
-                </div>
-              <div class = "counter-button">
-                <!--<button onclick="incrementCounter()">Increment</button>
-                <button onclick="decrementCounter()">Decrement</button>
-                <button onclick="resetCounter()">Reset</button>-->
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="../dashboard/servicereq.html" class="clickable-box">
-      <div class="ri-bot2">
-          <div class="box">
-            <div  class="box-name">
-            </div>
-            <div class="counter-container">
-              <div class="counter-box">
-                <div id="counter" class="counter">0</div>
-              </div>
-              <div class = "counter-button">
-                <!--<button onclick="incrementCounter()">Increment</button>
-                <button onclick="decrementCounter()">Decrement</button>
-                <button onclick="resetCounter()">Reset</button>-->
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </a>
-
-
-      <!--timeeeeeeeeeeeee-->
-      <div class = "right">
-        
-        <div class="calendar">
-          <div class="calendar-header">
-              <button onclick="prevMonth()">‹</button>
-              <h2 id="monthYear"></h2>
-              <button onclick="nextMonth()">›</button>
-          </div>
-          <div class="days">
-              <div class="day">Sun</div>
-              <div class="day">Mon</div>
-              <div class="day">Tue</div>
-              <div class="day">Wed</div>
-              <div class="day">Thu</div>
-              <div class="day">Fri</div>
-              <div class="day">Sat</div>
-          </div>
-          <div class="days" id="dates"></div>
-        </div>
-      </div>
-    </div>
-</div>
     <script src="dashboard.js"></script>
     <script src="../sidebar.js"></script>
-</body>
+  </body>
 </html>

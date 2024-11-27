@@ -1,51 +1,30 @@
-/* Style for the box */
-.box {
-    width: 500px;              /* Set the width of the box */
-    height: 500px;             /* Set the height of the box */
-    border: 2px solid #333;    /* Add a border to create the box outline */
-    background-color: #ba0000; /* Optional: Add a background color */
-    margin: 20px;              /* Optional: Add some margin around the box */
-    box-sizing: border-box;    /* Ensures padding and border are included in width and height */
+.form-top1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Style for the scrollable panel */
-.scroll-panel {
-    width: 90%;       /* Adjust width as needed */
-    max-height: 95%;  /* Set a fixed or max height to enable scrolling */
-    overflow-y: scroll; /* Enable vertical scrolling */
-    padding: 10px;
-    box-sizing: border-box;
-    margin-left: 5%;
+.middle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Style for the list items */
-.item-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    margin-top: 20px;
-    margin-bottom: 20px;
+#message{
+  width: 700px;
 }
 
-.item {
-    padding: 20px 0;
-    border-style: solid;
-    gap: 5px;
-    margin-top: 20px;
-    border-radius: 20px;
-    width: 95%;
-    height: 150px;
-    cursor: pointer;
+.submit-button {
+  font-size: 18px;        /* Increase the font size */
+  color: white;           /* Text color */
+  background-color: blue; /* Background color */
+  padding: 10px 20px;     /* Add padding for a larger button */
+  border: none;           /* Remove default borders */
+  border-radius: 5px;     /* Rounded corners */
+  cursor: pointer;        /* Add a pointer cursor on hover */
+  transition: 0.3s ease;  /* Smooth transition for hover effect */
 }
 
-.scroll {
-        width: 73%;
-        background-color: #afafaf;    
-        height: 600px;
-        margin-left: 22%;
-        margin-top: 80px;
-        margin-bottom: 50px;
-        border-radius: 10px;
-        box-shadow: 0 80px 170px rgba(1.0, 1.0, 1.0, 1.0);
-    }
-
+.submit-button:hover {
+  background-color: darkblue; /* Change color on hover */
+}

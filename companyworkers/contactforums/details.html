@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Knowledgebase</title>
-  <link rel="stylesheet" href="updateknowlgebase.css?version=12">
-  <link rel="stylesheet" href="../sidebar.css?version=2">
+  <title>Service Request Count</title>
+  <link rel="stylesheet" href="contactforums.css?version=3">
+  <link rel="stylesheet" href="../sidebar.css?version=1">
 </head>
-<body>  
-<div class="container">
+<body>
+  <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="logo">
@@ -82,28 +82,31 @@
         <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
       <div class="main-container">
-      <div class="boxcontainer">
-        <div class="boxes">
-            <a href="new.php" style="text-decoration: none; color: inherit;">
-                <div class="new">
-                    Enter to add new knowledge base
-                </div>
-            </a>
-            <a href="updatedelete.php" style="text-decoration: none; color: inherit;">
-                <div class="new">
-                    Update or delete knowledge base
-                </div>
-            </a>
+        <div class="form-top1">
+            <label for="contact_id">Contact ID:</label>
+            <input type="text" id="contact_id" name="contact_id" placeholder="Contact ID" required><br><br>
+            <label for="Client_ID">Client ID:</label>
+            <input type="text" id="Client_ID" name="Client_ID" placeholder="Client ID" required><br><br>
+            <label for="Date">Date:</label>
+            <input type="text" id="Date" name="Date" placeholder="Date" required><br><br>
         </div>
+        <div class="middle">
+            <center><label for="message">Message:</label><br>
+            <textarea id="message" name="message" placeholder="customer message" required></textarea>
+            <center><label for="reply">reply:</label><br>
+            <textarea id="message" name="reply" placeholder="customer reply" required></textarea>
+      </div>
+
+      <center><input type="submit"value="submit" name="submit" class="submit-button"></center>
+
+        
+
+
       </div>
     </div>
   </div>
-</div>
 
-    
+  <script src="../sidebar.js"></script>
 
-    <script src="dashboard.js"></script>
-    <script src="../sidebar.js"></script>
-
-    </body>
+</body>
 </html>

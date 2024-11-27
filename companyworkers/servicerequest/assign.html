@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Knowledgebase</title>
-  <link rel="stylesheet" href="updateknowlgebase.css?version=12">
-  <link rel="stylesheet" href="../sidebar.css?version=2">
+  <title>Service Request Count</title>
+  <link rel="stylesheet" href="servicerequest.css?version=2">
+  <link rel="stylesheet" href="../sidebar.css?version=3">
 </head>
-<body>  
-<div class="container">
+<body>
+  <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="logo">
@@ -82,28 +82,45 @@
         <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
       <div class="main-container">
-      <div class="boxcontainer">
-        <div class="boxes">
-            <a href="new.php" style="text-decoration: none; color: inherit;">
-                <div class="new">
-                    Enter to add new knowledge base
+        <form action="" method="POST">
+        <br>
+        <div class="form-container">
+            <div class="left">
+                <div class="form-top">
+                    <label for="Appointment_ID">Appointment ID:</label>
+                    <input type="text" id="Appointment_ID" name="Appointment_ID" placeholder="Appointment ID" required><br><br>
+                    <label for="Client_ID">Client ID:</label>
+                    <input type="text" id="Client_ID" name="Client_ID" placeholder="Client ID" required><br><br>
+                    <label for="Date">Date:</label>
+                    <input type="text" id="Date" name="Date" placeholder="Date" required><br><br>
+                    <label for="Status">Status:</label>
+                    <input type="text" id="Status" name="Status" placeholder="Status" required><br><br>
+                    <label for="Type">Type:</label>
+                    <input type="text" id="Type" name="Type" placeholder="Type" required><br><br>
                 </div>
-            </a>
-            <a href="updatedelete.php" style="text-decoration: none; color: inherit;">
-                <div class="new">
-                    Update or delete knowledge base
-                </div>
-            </a>
+            </div>
+            <div class="right">
+                <center><label for="message">Message:</label><br>
+                <textarea id="message" name="message" placeholder="customer message" required></textarea>
+            </div>
         </div>
-      </div>
+           
+            </center>
+            <center><label for="reply">reply:</label><br>
+            <textarea id="reply" name="reply" placeholder="customer reply" required></textarea>
+            <br><br></center>
+            <div class="scrollable-panel">
+                <a href="consulting.html">Consulting</a>
+                <a href="reaserch.html">Reaserch</a>
+                <a href="training.html">Training</a>
+            </div>
+            <br><br><br>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
     
 
-    <script src="dashboard.js"></script>
-    <script src="../sidebar.js"></script>
+  <script src="../sidebar.js"></script>
 
-    </body>
+</body>
 </html>
