@@ -1,3 +1,46 @@
 table td{
     text-align: right;
 }
+
+.mainTop{
+    display: flex;
+    /*background-color: rgb(221, 219, 219);*/
+    /*background-color: #fffefe21;
+    border: 1px solid #00ffd5;*/
+
+    justify-content: space-between;
+    padding: 10px 5px 10px 5px;
+    margin: 40px 50px 20px 50px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.section{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+form{
+    display: flex;
+}
+
+form input {
+    margin-right: 10px;
+    width: 65%;
+}
+
+.results{
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+    padding: 5px;
+    border-radius: 20px;
+    width: 90%;
+    height: auto;
+    /*background-color: rgb(221, 219, 219);
+    border: 1px solid #d8d8d8;*/
+    background-color: #fffefe21;
+    border: 1px solid #00ffd5;
+}
