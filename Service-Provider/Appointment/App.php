@@ -16,7 +16,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
-    <link rel="stylesheet" href="Appo.css">
+    <link rel="stylesheet" href="App.css">
 </head>
 <body>
     <div class="container">
