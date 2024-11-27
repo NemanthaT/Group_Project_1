@@ -120,7 +120,17 @@ include '../session/session.php';
     </div>
     </div>
     <div class="controls">
+        <h1>Documents</h1>
 
+        <div class="box">
+
+            <h2>Agreement</h2>
+            <br>
+            <div class="row center">
+                <img class="pdf" src="img/pdf.png" alt="">
+                <h3> Agrement.pdf</h3>
+            </div>
+        </div>
     </div>
 
     </div>

@@ -315,5 +315,24 @@ background-color:#18A0FB  ;
   margin: 10px auto;
   border-radius: 8px;
 }
+.box{
+  width: 100%;
+  padding: 10px 10px;
+  margin-top: 15px;
+  box-sizing: border-box;
+  border-color: #007bff48;
+  border-width: 1px;
+  border-style: solid ;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
+.pdf{
+width: 100px;
+}
 
+.center{
+  text-align: center;
+align-items: center;
+}
