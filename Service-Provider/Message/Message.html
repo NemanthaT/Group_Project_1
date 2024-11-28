@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="Message.css">
 </head>
 <body>
-
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -15,25 +14,31 @@
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
             </div>
             <ul class="menu">
-                <li><a href=""><button>Dashboard</button></a></li>
-                <li><a href="#"><button>Appointment</button></a></li>
-                <li><a href=""><button>Message</button></a></li>
-                <li><a href="#"><button>Forum</button></a></li>
-                <li><a href="#"><button>KnowledgeBase</button></a></li>
+                <li><a href="../SP_Dashboard/SPDash.html"><button><img src="../images/dashboard.jpg">Dashboard</button></a></li>
+                <li><a href="../Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
+                <li><a href="../Message/Message.html"><button><img src="../images/message.jpg">Message</button></a></li>
+                <li><a href="../SP_Forum/Forum.html"><button><img src="../images/forum.png">Forum</button></a></li>
+                <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>3
             </ul>
         </div>
-                   
-        <!-- Navbar -->
-        <header>
-            <nav class="navbar">
-                <div class="profile">
-                    <a href="http://127.0.0.1:5500/SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
-                </div> 
-                <a href="#" class="logout">Logout</a>
-            </nav>
-        </header>
 
-        <!-- Main Content (Message Table) -->
+        <!-- Main Content Wrapper -->
+        <div class="main-wrapper">
+            <!-- Navbar -->
+            <header>
+                <nav class="navbar">       
+                        <a href="../Home/Homepage/HP.html">Home</a>
+                    <div class="notification">   
+                        <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                    </div> 
+                    <div class="profile">
+                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                    </div>
+                    <a href="../Login/Logout.php" class="logout">Logout</a>
+                </nav>
+            </header>
+
+            <!-- Main Content (Message Table) -->
         <div class="main-content">
             <div class="message-section">
                 <h2>Message</h2>
