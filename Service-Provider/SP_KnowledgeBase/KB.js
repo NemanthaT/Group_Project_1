@@ -1,59 +1,43 @@
-// Function to search through case studies
-function searchCaseStudies() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const caseStudies = document.querySelectorAll('.case-study-card');
+    // Function to search through case studies
+    // function searchCaseStudies() {
+    //     const input = document.getElementById('searchInput').value.toLowerCase();
+    //     const caseStudies = document.querySelectorAll('.case-study-card');
 
-    caseStudies.forEach(study => {
-        const title = study.querySelector('h3').textContent.toLowerCase();
-        const description = study.querySelector('p').textContent.toLowerCase();
-        if (title.includes(input) || description.includes(input)) {
-            study.style.display = 'flex';
-        } else {
-            study.style.display = 'none';
-        }
-    });
+    //     caseStudies.forEach(study => {
+    //         const title = study.querySelector('h3').textContent.toLowerCase();
+    //         const description = study.querySelector('p').textContent.toLowerCase();
+    //         if (title.includes(input) || description.includes(input)) {
+    //             study.style.display = 'flex';
+    //         } else {
+    //             study.style.display = 'none';
+    //         }
+    //     });
+    // }
+
+// Confirm delete before submitting
+function confirmDelete(paperId) {
+    if (confirm("Are you sure you want to delete this case study?")) {
+        return true;
+    }
+    return false;
 }
 
-// Function to dynamically load case studies (assuming they are fetched from the server)
-function loadCaseStudies() {
-    // For now, let's simulate some static case study data
-    const caseStudyData = [
-        {
-            title: 'Case Study 1',
-            description: 'A detailed case study about project X.',
-            tags: ['Tag1', 'Tag2'],
-        },
-        {
-            title: 'Case Study 2',
-            description: 'An in-depth analysis of project Y.',
-            tags: ['Tag3', 'Tag4'],
-        }
-    ];
+// Toggle between read-only and editable mode
+function toggleEdit() {
+    var titleField = document.getElementById("modalTitle");
+    var descriptionField = document.getElementById("modalDescription");
 
-    const caseStudyList = document.getElementById('caseStudyList');
-    caseStudyList.innerHTML = ''; // Clear existing list
-
-    caseStudyData.forEach(study => {
-        const card = document.createElement('div');
-        card.classList.add('case-study-card');
-
-        const title = document.createElement('h3');
-        title.textContent = study.title;
-
-        const description = document.createElement('p');
-        description.textContent = study.description;
-
-        const tags = document.createElement('div');
-        tags.classList.add('tags');
-        tags.textContent = study.tags.join(', ');
-
-        card.appendChild(title);
-        card.appendChild(description);
-        card.appendChild(tags);
-
-        caseStudyList.appendChild(card);
-    });
+    if (titleField.readOnly) {
+        titleField.readOnly = false;
+        descriptionField.readOnly = false;
+    } else {
+        titleField.readOnly = true;
+        descriptionField.readOnly = true;
+    }
 }
 
-// Load case studies on page load
-window.onload = loadCaseStudies;
+// Close the modal
+function closeModal() {
+    document.getElementById("modalForm").style.display = "none";
+    document.getElementById("modalOverlay").style.display = "none";
+}
