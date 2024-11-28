@@ -69,6 +69,10 @@
                 </div>
 
             </div>
+            <div id="report">
+                <button id="gBtn">Generate</button>
+            </div>
+
             <div id="searchResults">
                 <?php
                     if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['search_c'])) {
@@ -119,7 +123,7 @@
                         else{
                             
                             // Prepare and execute the SQL query
-                            $stmt = $conn->prepare("SELECT * FROM payments WHERE request_id = ?");
+                            $stmt = $conn->prepare("SELECT * FROM payments WHERE service_request_id = ?");
                             $searchTerm = $id;
                             $stmt->bind_param("s", $searchTerm);
                             $stmt->execute();
@@ -144,7 +148,7 @@
                                     }
                                 } 
                                 else{
-                                    echo "<tr><td> </td><td> No Result Found </td><td> </td></tr>";
+                                    echo "<tr><td> </td><td><center> No Result Found </center></td><td> </td></tr>";
                                 }
                             echo "</table></center>";
                             echo "<hr>";
