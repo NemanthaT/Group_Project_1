@@ -22,25 +22,27 @@
         <link rel="stylesheet" href="../../css/common.css">
     </head>
     <body>
-        <div class="bg">
-            <!--blur Background image-->  
-        </div>
-        <div class="header">
-            <h1>Users</h1>
-        </div>
-        <div class="dashboard">
-            <div class="card" onclick="redirectTo('clients.php')">
-                <div class="icon"></div>
-                <p>Clients</p>
+        <div class="main">
+            <div class="bg">
+                <!--blur Background image-->  
             </div>
-            <div class="card" onclick="redirectTo('serviceProviders.php')">
-                <div class="icon"></div>
-                <p>Service Providers</p>
+            <div class="header">
+                <h1>Users</h1>
             </div>
-            <!--<div class="card" onclick="redirectTo('companyWorkers.php')">
-                <div class="icon"></div>
-                <p>Company Workers</p>
-            </div>-->
+            <div class="dashboard">
+                <div class="card" onclick="redirectTo('clients.php')">
+                    <div class="icon"></div>
+                    <p>Clients</p>
+                </div>
+                <div class="card" onclick="redirectTo('serviceProviders.php')">
+                    <div class="icon"></div>
+                    <p>Service Providers</p>
+                </div>
+                <!--<div class="card" onclick="redirectTo('companyWorkers.php')">
+                    <div class="icon"></div>
+                    <p>Company Workers</p>
+                </div>-->
+            </div>
         </div>
         <script src="../../js/common.js"></script>
     </body>
