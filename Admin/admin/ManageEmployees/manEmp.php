@@ -24,8 +24,9 @@
     <div class="bg">
         <!--blur Background image-->  
     </div>
-    <h1>Manage Employees</h1>
+    
     <div class="main">
+        <h1>Manage Employees</h1>
         <div class ="mainTop">
             <!--Search Employees and list them-->
             <div class="section">

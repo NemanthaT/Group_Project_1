@@ -82,3 +82,13 @@ function nextMonth() {
 
 // Initial calendar render
 renderCalendar();
+
+function changeBgColor(id) {
+    const element = document.getElementById(id);
+    if(element.style.backgroundColor === "white"){
+        element.style.backgroundColor = "blue";
+    }
+    else{
+        element.style.backgroundColor = "white";
+    }
+}

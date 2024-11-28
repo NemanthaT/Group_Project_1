@@ -1,6 +1,6 @@
 <?php
     session_start(); 
-    require_once('../config/config.php');
+    require_once('../../config/config.php');
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
@@ -34,7 +34,7 @@
             </div>
             <div id="contentLeft">
                 <div class="card">
-                    <div><p>Users</p></div>
+                    <div><p>Users &#128113</p></div>
                     <div>
                         <?php
                             $sql = "SELECT COUNT(*) FROM clients";
@@ -68,7 +68,7 @@
                         ?>
                     </div>
                     <div class="charts">
-                        <canvas id="usersChart" width="300px" height="200px">
+                        <canvas id="usersChart" width="300px" height="210px">
                             <script>
                                 // Get the data passed from PHP
                                 console.log(chartData);
@@ -112,37 +112,15 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="iconClock">
-                        <img src="../Images/clock.png" alt="clock">
-                    </div>
+                    <center><span style='font-size:200px;'>&#128336;</span></center>
+                    <!--<div class="iconClock">
+                        
+                        <img src="../../Images/clock.png" alt="clock">
+                    </div>-->
                     <div id="time"></div>
                 </div>
-                <div class="card">
-                    <div><p>Service Requests</p></div>
-                    <div>
-                    <?php
-                            $sql = "SELECT COUNT(*) FROM servicerequests WHERE status = 'Pending'";
-                            $result = $conn->query($sql);
-                            $row = $result->fetch_assoc();
-                            echo "<table>";
-                            echo "<tr><th>Pending: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
-                            
-                            $sql = "SELECT COUNT(*) FROM servicerequests WHERE status = 'Finished'";
-                            $result = $conn->query($sql);
-                            $row = $result->fetch_assoc();
-                            echo "<tr><th>Accepted: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
-                            echo "</table>";
-                        ?>
-                    </div>
-                </div>
-                <div class="card">
-                    <div><p>Total Earnings</p></div>
-                </div>
-            </div>
 
-            <!--Right side of the dashboard-->
-            <div id="contentRight">
-                <div class="calendar">
+                <div class="card">
                     <div class="calendar-header">
                         <button onclick="prevMonth()">‹</button>
                         <h2 id="monthYear"></h2>
@@ -159,11 +137,59 @@
                     </div>
                     <div class="days" id="dates"></div>
                 </div>
-                <div class="card">
-                    <div><p>Forums</p></div>
+
+                <div class="card" id="sR">
+                    <div><p>Service Requests &#128276</p></div>
+                    <div>
+                    <?php
+                            $sql = "SELECT COUNT(*) FROM servicerequests WHERE status = 'Pending'";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            echo "<table>";
+                            echo "<tr><th>Pending: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
+                            
+                            $sql = "SELECT COUNT(*) FROM servicerequests WHERE status = 'Finished'";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            echo "<tr><th>Accepted: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
+                            echo "</table>";
+                        ?>
+                    </div>
+                </div>
+                <div class="card" id="tE">
+                    <div><p>Total Earnings &#128176</p></div>
+                    <div>
+                        <?php
+                            $sql = "SELECT SUM(amount) FROM payments";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            echo "<table>";
+                            echo "<tr><th>Amount: <th>" . "<td>" . $row["SUM(amount)"] . "</td></tr>";
+                            echo "</table>";
+                        ?>
+                    </div>    
+                </div>
+                <div class="card" id="fo">
+                    <div><p>Forums &#128195</p></div>
+                    <div>
+                        <?php
+                            $sql = "SELECT COUNT(*) FROM forums";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            echo "<table>";
+                            echo "<tr><th>Forums: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
+                            echo "<tr><th>By clients: </th> <td>10</td></tr>";
+                            echo "<tr><th>By SP's: </th> <td>10</td></tr>";
+                            echo "</table>";
+                        ?>
+                    </div>    
                 <div>
+            <!--</div>-->
+
+            <!--Right side of the dashboard-->
+            <!--<div id="contentRight">-->
             </div>
         </div>
-        <script src="../js/common.js"></script>
+        <script src="../../js/common.js"></script>
     </body>
 </html>

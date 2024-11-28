@@ -3,13 +3,6 @@
     padding: 0;
 }
 
-h2 {
-    /*padding: 0px 0px 0px 20px;*/
-    margin-top: 20px;
-    font-size: 30px;
-    color: #ffffff;
-}
-
 p {
     padding: 0px 0px 0px 20px;
     margin-top: 20px;
@@ -20,13 +13,13 @@ p {
 
 .mainTop{
     display: flex;
-    /*background-color: rgb(221, 219, 219);*/
-    background-color: #fffefe21;
-    border: 1px solid #00ffd5;
+    /*background-color: rgb(221, 219, 219);
+    background-color: #f4f4f4;
+    /*border: 1px solid #00ffd5;*/
 
     justify-content: space-between;
     padding: 10px 20px 10px 20px;
-    margin: 40px 50px 20px 50px;
+    margin: 0px 10px 0px 10px;
     border-radius: 20px;
     margin-bottom: 20px;
 }
@@ -43,13 +36,14 @@ form{
 
 form input {
     margin-right: 10px;
-    width: 65%;
+    width: 70%;
 }
 
 .results{
     flex-direction: column;
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 10%;
     padding: 5px;
     border-radius: 20px;
     width: 90%;

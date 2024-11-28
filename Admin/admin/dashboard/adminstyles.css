@@ -8,14 +8,14 @@
 }
 
 .sidebar {
-    color: white;
+    color: #18A0FB;
     overflow: hidden;
     width: 17%;
     height: 100vh;
     z-index: 1;
-    background-color: rgb(80, 80, 80);
+    background-color: white;
     padding: 20px;
-    box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.575);
+    /*box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.575);*/
 }
 
 button{
@@ -40,7 +40,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: #333;
     font-size: 25px;
     /*color: black;*/
     text-decoration: none;
@@ -53,27 +53,36 @@ nav ul li a {
 .content {
     flex-grow: 1;
     display: grid;
-    padding: 20px 0px 20px 0px;
+    padding: 0px 0px 20px 0px;
     background-color: #fff;
     height: 100vh;
     z-index: 0;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    /*box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);*/
 }
 
 .header {
     height: auto;
     width: auto;
-    padding: 0px 30px 0px 0px;
+    padding: 20px 30px 0px 0px;
 }
 
 header {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
     margin-bottom: 20px;
 }
 
+.user-info{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+
 header .user-info p {
-    margin-right: 20px;
+    font-weight: bolder;
+    font-size: 2rem;
+    margin-right: 40px;
 }
 
 header .user-info button {
@@ -83,11 +92,13 @@ header .user-info button {
     color: #fff;
     border: none;
     cursor: pointer;
+    height: auto;
+    width: auto;
 }
 
 header .user-info button:hover {
     background-color: tomato;
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 
 header .user-info button a {
@@ -97,7 +108,7 @@ header .user-info button a {
 
 a {
     text-decoration: none;
-    color: black;
+    color: #333;
 }
 
 a:hover {
@@ -107,10 +118,12 @@ a:hover {
 
 .dropDown{
     /*background-color: #18A0FB;*/
-    color: white;
+    background-color: white;
+    /*color: white;*/
+    color: #18A0FB;
     font-size: 2rem;
     font-weight: bold;
-    /*border-radius: 10px;*/
+    border-radius: 10px;
     /*border: thin solid rgba(255, 255, 255, 0.521);*/
     width: 100%;
     cursor:pointer;
@@ -119,7 +132,7 @@ a:hover {
 }
 
 .dropDown:hover{
-    box-shadow: 6px 8px 5px rgba(0, 0, 0, 0.8);
+    /*box-shadow: 6px 8px 5px rgba(0, 0, 0, 0.8);*/
     background-color: #18A0FB;
     color: white;
     /*transform: scale(1.1);*/
@@ -197,7 +210,7 @@ footer {
 
 .calendar-header button {
     background-color: #3498db;
-    color: white;
+    color: #333;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
