@@ -62,14 +62,14 @@ include '../session/session.php';
                         Knowledge Base
                     </button>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="../reports/reports.php">
                         <button>
                             <img src="../images/reports.png" alt="Reports">
                             Reports
                         </button>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
 

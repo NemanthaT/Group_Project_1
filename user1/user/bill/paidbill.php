@@ -65,14 +65,14 @@ include '../session/session.php';
                     </button>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="../reports/reports.php">
                         <button>
                             <img src="../images/reports.png" alt="Reports">
                             Reports
                         </button>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
 

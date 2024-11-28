@@ -65,14 +65,14 @@ include '../session/session.php';
                     </button>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
                             <img src="../images/reports.png" alt="Reports">
                             Reports
                         </button>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
 
@@ -95,13 +95,12 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
 
-        <div class="controls card1">            <h1>Projects</h1>
-
-        
+        <div class="controls card1">            
+            <h1>Projects</h1>   
         </div>
-                <!-- Bills Grid -->
+                <!-- project Grid -->
                 <div class="project-grid">
-            <!-- Bill Card 1 -->
+            <!-- project Card 1 -->
             <div class="project-card">
                 <div class="project-header">
                     <span class="project-id">P001</span>

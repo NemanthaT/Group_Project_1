@@ -65,14 +65,14 @@ include '../session/session.php';
                     </button>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
                             <img src="../images/reports.png" alt="Reports">
                             Reports
                         </button>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
 
@@ -137,6 +137,18 @@ include '../session/session.php';
     <h3> Proposal.pdf</h3>
 </div>
 </div>
+    </div>
+    <div class="controls">
+        <h1>Report</h1>
+        <div class="box">
+        <h2>Report</h2>
+            <br>
+                <div class="row center">
+                    <img class="pdf" src="img/pdf.png" alt="">
+                    <h3> Report.pdf</h3>
+                </div>
+        </div>
+
     </div>
 
     </div>
