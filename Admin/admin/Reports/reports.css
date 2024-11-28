@@ -44,3 +44,22 @@ form input {
     background-color: #fffefe21;
     border: 1px solid #00ffd5;
 }
+
+#gBtn{
+    color:green;
+    padding: 10px;
+    border: 1px solid #ccc;
+    height: auto;
+    width: auto;
+}
+
+#report{
+    margin-right: 10px;
+    padding-left: 90%;
+    margin-bottom: 20px;
+}
+
+#gBtn:hover{
+    color:white;
+    background-color: green;
+}
