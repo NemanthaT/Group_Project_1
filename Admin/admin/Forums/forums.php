@@ -95,7 +95,7 @@
                                     }
                                 }
                                 else{
-                                    echo "<tr><td></td><td>0 results</td><td></td></tr>";
+                                    echo "<tr><td></td><td><center>0 results</center></td><td></td></tr>";
                                 }
     
                             ?>
