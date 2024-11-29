@@ -49,29 +49,27 @@ include '../session/session.php';
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="../forum/forum.php">
                     <button>
                         <img src="../images/forum.png" alt="Forum">
                         Forum
                     </button>
                     </a>
                 </li>
-                <li>
-                    <a href="">
+                <!-- <li>
                     <button>
                         <img src="../images/knowledgebase.png" alt="Knowledge Base">
                         Knowledge Base
                     </button>
-                    </a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
                             <img src="../images/reports.png" alt="Reports">
                             Reports
                         </button>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
 

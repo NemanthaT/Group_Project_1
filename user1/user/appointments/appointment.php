@@ -56,17 +56,19 @@ include 'get_appointment.php';
                     </a>
                 </li>
                 <li>
+                    <a href="../forum/forum.php">
                     <button>
                         <img src="../images/forum.png" alt="Forum">
                         Forum
                     </button>
+                    </a>
                 </li>
-                <li>
+                <!-- <li>
                     <button>
                         <img src="../images/knowledgebase.png" alt="Knowledge Base">
                         Knowledge Base
                     </button>
-                </li>
+                </li> -->
                 <!-- <li>
                     <a href="../reports/reports.php">
                         <button>

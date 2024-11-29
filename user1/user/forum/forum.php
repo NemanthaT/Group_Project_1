@@ -19,7 +19,7 @@ include '../session/session.php';
             <ul class="menu">
                 <li>
                     <a href="../Dashboard/Dashboard.php">
-                        <button class="active">
+                        <button >
                             <img src="../images/dashboard.png" alt="Dashboard">
                             Dashboard
                         </button>
@@ -40,7 +40,8 @@ include '../session/session.php';
                             Projects
                         </button>
                     </a>
-                </li>                <li>
+                </li>                
+                <li>
                     <a href="../bill/bill.php">
                         <button >
                         <img src="../images/bill.png" alt="Bill">
@@ -49,29 +50,27 @@ include '../session/session.php';
                     </a>
                 </li>
                 <li>
-                    <a href="">
-                    <button>
+                    <a href="../forum/forum.php">
+                    <button class="active">
                         <img src="../images/forum.png" alt="Forum">
                         Forum
                     </button>
                     </a>
                 </li>
-                <li>
-                    <a href="">
+                <!-- <li>
                     <button>
                         <img src="../images/knowledgebase.png" alt="Knowledge Base">
                         Knowledge Base
                     </button>
-                    </a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
                             <img src="../images/reports.png" alt="Reports">
                             Reports
                         </button>
                     </a>
-                </li>
+                </li> --> 
             </ul>
         </div>
 
