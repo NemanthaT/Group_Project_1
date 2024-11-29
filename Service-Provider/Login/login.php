@@ -62,7 +62,7 @@ if (isset($_POST['submit'])){ //check if form was submitted
         }      
     }
     elseif ($assoc_serviceproviders['email'] == $Email){ //check if email is in service providers table
-        if(password_verify($Password,$assoc_serviceproviders['password'])){
+        if($assoc_serviceproviders['password'] == $Password){
             $_SESSION['username'] = $assoc_serviceproviders['username'];
             $_SESSION['email'] = $assoc_serviceproviders['email'];
     
