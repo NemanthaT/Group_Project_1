@@ -91,7 +91,7 @@ include 'get_appointment.php';
                         <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>
+                <a href="../../../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
             <!-- Appointment Content -->
@@ -135,13 +135,13 @@ include 'get_appointment.php';
                 <?php if ($user['provider_id'] === null): ?>
                     <button class='btn edit-btn' 
                             data-id='<?= htmlspecialchars($user['appointment_id']) ?>' 
-                            onclick="openUpdatePopup('<?= addslashes($user['service_type']) ?>', '<?= addslashes($user['appointment_date']) ?>', '<?= addslashes($user['message']) ?>')">
-                        Edit
-                    </button>
+        onclick="openUpdatePopup('<?= addslashes($user['appointment_id']) ?>', '<?= addslashes($user['service_type']) ?>', '<?= addslashes($user['appointment_date']) ?>', '<?= addslashes($user['message']) ?>')">
+    Edit
+</button>
                 <?php endif; ?>
                 
                 <?php if ($user['provider_id'] !== null && $user['status'] !== 'cancelled'): ?>
-                    <button class='btn cancel-btn' data-id='<?= htmlspecialchars($user['appointment_id']) ?>'>Cancel</button>
+                    <button class='btn cancel-btn' data-id='<?= htmlspecialchars($user['appointment_id']) ?>' action="">Cancel</button>
                 <?php endif; ?>
             </td>
         </tr>
@@ -153,7 +153,7 @@ include 'get_appointment.php';
 
             </div>
             
-                <!-- Add/Edit Appointment Overlay -->
+                <!-- Add Appointment Overlay -->
                 <div id="addAppointmentOverlay" class="overlay">
                     <div class="overlay-content">
                         <span class="close-btn" onclick="closePopup('addAppointmentOverlay')">&times;</span>
@@ -174,7 +174,7 @@ include 'get_appointment.php';
                             </div>
                             <div class="form-group">
                                 <label for="additionalMessage" >Additional Message</label>
-                                <textarea id="additionalMessage" name="additionalMessage" rows="4" required > </textarea>
+                                <textarea id="additionalMessage" name="additionalMessage" rows="4"  > </textarea>
                             </div>
                             <button type="submit" id="Bookappointmentbtn" class="btn" >Book Appointment</button>
                         </form>
@@ -182,62 +182,78 @@ include 'get_appointment.php';
                 </div>
 
 
-                <!-- View Appointment Overlay -->
-                <div id="EditAppointmentOverlay" class="overlay">
-                    <div class="overlay-content">
-                        <span class="close-btn">&times;</span>
-                        <h2  >View Appointment</h2>
-                        <form id="appointmentForm">
-                            <div class="form-group">
-                                <label for="appointmentid">Appointment ID</label>
-                                <input type="text" id="appointmentid" name="appointmentid" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="serviceSelect">Select a Service</label>
-                                <select id="serviceSelect" name="serviceSelect" required>
-                                    <option value="">Choose a Service</option>
-                                    <option value="Consulting">Consulting</option>
-                                    <option value="Training">Training</option>
-                                    <option value="Researching">Researching</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="appointmentDate">Select a Date</label>
-                                <input type="date" id="appointmentDate" name="appointmentDate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="additionalMessage">Additional Message</label>
-                                <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
-                            </div>
-                            <button type="submit" id="Saveappointmentbtn" class="btn">Save</button>
-                        </form>
-                    </div>
+                     <!-- Edit Appointment Overlay -->
+
+                <div id="EditAppointmentOverlay" class="overlay" >
+    <div class="overlay-content">
+        <span class="close-btn" onclick="closePopup('EditAppointmentOverlay')">&times;</span>
+        <h2>Edit Appointment</h2>
+        <form id="appointmentForm" action="update_appointment.php" method="POST">
+        <div class="form-group">
+                <label for="editAppointmentid">Appointment ID</label>
+                <input type="text" id="editAppointmentid" name="editAppointmentid" readonly required>
                 </div>
+            <div class="form-group">
+                <label for="editServiceSelect">Select a Service</label>
+                <select id="editServiceSelect" name="serviceSelect" required>
+                    <option value="">Choose a Service</option>
+                    <option value="Consulting">Consulting</option>
+                    <option value="Training">Training</option>
+                    <option value="Researching">Researching</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editAppointmentDate">Select a Date</label>
+                <input type="date" id="editAppointmentDate" name="appointmentDate" required>
+            </div>
+            <div class="form-group">
+                <label for="editAdditionalMessage">Additional Message</label>
+                <textarea id="editAdditionalMessage" name="additionalMessage" rows="4"></textarea>
+            </div>
+            <button type="submit" id="editSaveappointmentbtn" class="btn">Save</button>
+            </form>
+    </div>
+</div>
+
+
         </div>
     </div>
-        <?php if (isset($_SESSION['error'])): ?>
+
+    <!-- error message popup -->
+<?php if (isset($_SESSION['error']) || isset($_SESSION['success'])): ?>
     <div id="popupModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <div class="modal-header">
                 <h2>
                     <?php 
-                        echo $_SESSION['error'] === 'booked' 
-                            ? '<span class="Success">Success</span>' 
-                            : '<span class="Error">Error</span>'; 
+                        // Check if it's an error or success message and display the corresponding title
+                        if (isset($_SESSION['error'])) {
+                            echo '<span class="Error">Error</span>';
+                        } elseif (isset($_SESSION['success'])) {
+                            echo '<span class="Success">Success</span>';
+                        }
                     ?>
                 </h2>
                 <hr>
             </div>
             <div class="modal-body">
-                <p><?= $_SESSION['error'] === 'booked' ? 'Your appointment has been booked successfully!' : htmlspecialchars($_SESSION['error']) ?></p>
-            </div>
-        
+                <p>
+                    <?php 
+                        // Directly print the message from the session
+                        echo isset($_SESSION['error']) ? htmlspecialchars($_SESSION['error']) : htmlspecialchars($_SESSION['success']);
+                    ?>
+                </p>
             </div>
         </div>
     </div>
-    <?php unset($_SESSION['error']); ?>
-    <?php endif; ?>
+    <?php 
+        // Unset both error and success messages after displaying them
+        unset($_SESSION['error']);
+        unset($_SESSION['success']);
+    ?>
+<?php endif; ?>
+
 
 </body>
 
