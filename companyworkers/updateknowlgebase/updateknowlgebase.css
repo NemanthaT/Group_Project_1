@@ -1,0 +1,160 @@
+.boxcontainer{
+    width: 1200px;
+}
+
+
+.container label {
+    font-size: 1.75rem;
+    margin-bottom: 5px;
+}
+
+.container textarea {
+    width:100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 250px;
+}
+
+.submit-button {
+    font-size: 18px;        /* Increase the font size */
+    color: white;           /* Text color */
+    background-color: blue; /* Background color */
+    padding: 10px 20px;     /* Add padding for a larger button */
+    border: none;           /* Remove default borders */
+    border-radius: 5px;     /* Rounded corners */
+    cursor: pointer;        /* Add a pointer cursor on hover */
+    transition: 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+.submit-button:hover {
+    background-color: darkblue; /* Change color on hover */
+}
+#worker_id {
+    font-size: 100%;      /* Increase font size */
+    padding: 10px;        /* Add padding inside the input */
+    width: 20%;         /* Set the width of the input box */
+    border: 1px solid #ccc; /* Optional: Customize border */
+    border-radius: 5px;   /* Optional: Add rounded corners */
+     /* Add some margin to the left of the input */
+}
+
+#title{
+    font-size: 100%;
+    padding: 10px;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.boxes{ 
+    display: flex;
+    gap: 40%; /* Space out the boxes */
+    align-items: center; /* Center the boxes vertically */
+    margin-left: 7%;
+}
+
+.new{
+    width: 150%;
+    background-color: #afafaf;    
+    height: 300px;
+    margin-left: 10%;
+    margin-right: 50%;
+    margin-top: 60%;
+    border-radius: 10px;
+    display: flex;
+   
+}
+
+.table-container {
+    max-height: 800px; /* Limit the table height */
+    overflow-y: auto; /* Add vertical scrolling */
+    border: 1px solid #ddd; /* Optional: border for container clarity */
+    margin-top: 150px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    width: 1200px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    margin-left: 80px;
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0; /* Explicitly set to avoid unexpected gaps */
+    font-size: 18px;
+    text-align: left;
+}
+
+
+.table thead th {
+    background-color: #4CAF50; /* Header background */
+    color: white; /* Header text color */
+    padding: 10px; /* Padding in header cells */
+    border: 1px solid #ddd; /* Border around header cells */
+    text-align: center; /* Center-align header text */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Light background for odd rows */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #ffffff; /* White background for even rows */
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.table td, .table th {
+    padding: 10px; /* Padding for all cells */
+    border: 1px solid #ddd; /* Add border to all cells */
+    text-align: center; /* Center content horizontally */
+    vertical-align: middle; /* Center content vertically */
+}
+
+/* Button Styling */
+.table td button {
+    background-color: transparent; /* Remove default background */
+    border: none; /* Remove border */
+    margin: 0 5px; /* Space between buttons */
+}
+
+.table td button a {
+    display: inline-block;
+    padding: 8px 15px; /* Add padding inside links */
+    text-decoration: none; /* Remove underline */
+    color: white; /* Button text color */
+    font-weight: bold; /* Bold text */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+/* Update Button */
+.table td button a[href*="update.php"] {
+    background-color: #28a745; /* Green background */
+}
+
+/* Delete Button */
+.table td button a[href*="delete.php"] {
+    background-color: #dc3545; /* Red background */
+}
+
+/* Hover Effects for Buttons */
+.table td button a:hover {
+    background-color: #007bff; /* Blue on hover */
+    color: white; /* White text on hover */
+    transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+.main-container{
+    height: 650px;
+}
+  
