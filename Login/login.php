@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) { //check if form was submitted
         'admin' => '../Admin/admin/dashboard/admin.php',
         'companyworker' => '../companyworkers/dashboard/dashboard.html',
         'client' => '../user1/user/Dashboard/Dashboard.php',
-        'serviceprovider' => '../Service-Provider/SP_Dashboard/SP_Dash.html'
+        'serviceprovider' => '../Service-Provider/SP_Dashboard/SPDash.html'
     ];
 
     $userType = null;
