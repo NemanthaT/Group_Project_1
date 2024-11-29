@@ -66,7 +66,7 @@ if (isset($_POST['submit'])){ //check if form was submitted
             $_SESSION['username'] = $assoc_serviceproviders['username'];
             $_SESSION['email'] = $assoc_serviceproviders['email'];
     
-            header("Location: ../SP_Dashboard/SPDash.html"); //redirect to service provider page
+            header("Location: ../SP_Dashboard/SPDash.php"); //redirect to service provider page
             exit;
         }
         else{
