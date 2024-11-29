@@ -186,3 +186,7 @@ p {
 iframe {
     width: 100%;
     max-height: fit-content;}
+
+.footer{
+    height: auto;
+}
