@@ -1,0 +1,246 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  
+  /* Container Layout */
+  .container {
+    display: flex;
+    width: 100%;
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    background-color: white;
+    width: 20vw;
+    padding: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+  }
+  
+  .sidebar .logo img {
+    width: 100%;
+    max-width: 20vw;
+    margin-bottom: 5vh;
+  }
+  
+  .menu {
+    list-style: none;
+    width: 100%;
+  }
+  
+  .menu li {
+    margin-bottom: 2vh;
+  }
+  
+  .menu a {
+    text-decoration: none;
+  }
+  
+  .menu button {
+    display: flex;
+    align-items: center;
+    font-size: 2.5vh;
+    font-weight: bold;
+    width: 100%;
+    padding: 1.5vh;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 1vh;
+    gap: 1vh;
+    text-decoration: none;
+  }
+  
+  .menu button.active,
+  .menu button:hover {
+    background-color: #18A0FB;
+    color: white;
+  }
+  
+  .menu img {
+    width: auto;
+    height: 4vh;
+    object-fit: contain;
+    margin-right: 1vh;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    width: 80vw;
+    background-color: white;
+    color: #18A0FB;
+    margin-left: 0;
+    padding: 2vh 4vw;
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .navbar a {
+    color: #18A0FB;
+    text-decoration: none;
+    font-size: 2.5vh;
+    padding: 0.8vh 1.5vw;
+    margin-left: 1.5vw;
+    border-radius: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbar a:hover {
+    background-color: rgb(215, 236, 255);
+  }
+  
+  .navbar a img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50%;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    margin-right: 1vw;
+  }
+  
+  .profile a {
+    padding: 0;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 5vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logout {
+    background-color: #18A0FB;
+    color: white !important;
+  }
+  
+  /* Main Content Area */
+  .main-wrapper {
+    width: 80vw;
+    margin-left: 20vw;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .main-container {
+    max-width: 95%;
+    margin: 12vh;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+  }
+  .space{
+    background-color: #f4f4f4;
+    width: 100%;
+    padding: 5.5vh ;
+    height: 100%;
+    display: flex;
+  }
+  .controls {
+    width: 95%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-content: center;
+    background-color: #fff;
+    margin: 10px auto;
+    border-radius: 8px;
+    
+  }
+  
+  .card1 {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    background-image: url("../images/sunset.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .profile-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: auto;
+}
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+.profile-section {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.profile-section h2 {
+    margin-top: 0;
+    color: #2980b9;
+    border-bottom: 1px solid #bdc3c7;
+    padding-bottom: 5px;
+}
+.profile-field {
+    margin-bottom: 10px;
+}
+.profile-field label {
+    display: block;
+    color: #34495e;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.profile-field .value {
+    background-color: #f1f1f1;
+    padding: 8px;
+    border-radius: 4px;
+}
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.action-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.edit-button {
+    background-color: #3498db;
+    color: white;
+}

@@ -1,0 +1,30 @@
+.form-top1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.middle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#message{
+  width: 700px;
+}
+
+.submit-button {
+  font-size: 18px;        /* Increase the font size */
+  color: white;           /* Text color */
+  background-color: blue; /* Background color */
+  padding: 10px 20px;     /* Add padding for a larger button */
+  border: none;           /* Remove default borders */
+  border-radius: 5px;     /* Rounded corners */
+  cursor: pointer;        /* Add a pointer cursor on hover */
+  transition: 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+.submit-button:hover {
+  background-color: darkblue; /* Change color on hover */
+}

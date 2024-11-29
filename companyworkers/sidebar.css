@@ -1,0 +1,266 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+/* Container Layout */
+.container {
+  display: flex;
+  width: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background-color: white;
+  width: 20vw;
+  padding: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+}
+
+.sidebar .logo img {
+  width: 100%;
+  max-width: 20vw;
+  margin-bottom: 5vh;
+}
+
+.menu {
+  list-style: none;
+  width: 100%;
+}
+
+.menu li {
+  margin-bottom: 2vh;
+}
+
+.menu a {
+  text-decoration: none;
+}
+
+.menu button {
+  display: flex;
+  align-items: center;
+  font-size: 2.5vh;
+  font-weight: bold;
+  width: 100%;
+  padding: 1.5vh;
+  color: #333;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 1vh;
+  gap: 1vh;
+  text-decoration: none;
+}
+
+.menu button.active,
+.menu button:hover {
+  background-color: #18A0FB;
+  color: white;
+}
+
+.menu img {
+  width: auto;
+  height: 4vh;
+  object-fit: contain;
+  margin-right: 1vh;
+}
+
+/* Navbar Styles */
+.navbar {
+  width: 80vw;
+  background-color: white;
+  color: #18A0FB;
+  margin-left: 0;
+  padding: 2vh 4vw;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbar a {
+  color: #18A0FB;
+  text-decoration: none;
+  font-size: 2.5vh;
+  padding: 0.8vh 1.5vw;
+  margin-left: 1.5vw;
+  border-radius: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar a:hover {
+  background-color: rgb(215, 236, 255);
+}
+
+.navbar a img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-right: 1vw;
+}
+
+.profile a {
+  padding: 0;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 5vh;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout {
+  background-color: #18A0FB;
+  color: white !important;
+}
+
+/* Main Content Area */
+.main-wrapper {
+  width: 80vw;
+  margin-left: 20vw;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.main-container {
+  max-width: 100%;
+  margin: 5vh;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: center;
+  margin-top: 15vh;
+}
+
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  margin: 16px;
+  width: 500px;
+  background-color: #fff;
+}
+.card img {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.card h3 {
+  margin: 0 0 8px;
+}
+.card p {
+  margin: 0 0 16px;
+}
+.card a {
+  text-decoration: none;
+}
+.card a:hover {
+  text-decoration: underline;
+}
+
+.card-container {
+  display: flex;
+}
+
+
+.container textarea {
+  width: 55%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 100px;
+}
+
+.submit-button {
+  font-size: 18px;        /* Increase the font size */
+  color: white;           /* Text color */
+  background-color: blue; /* Background color */
+  padding: 10px 20px;     /* Add padding for a larger button */
+  border: none;           /* Remove default borders */
+  border-radius: 5px;     /* Rounded corners */
+  cursor: pointer;        /* Add a pointer cursor on hover */
+  transition: 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+.submit-button:hover {
+  background-color: darkblue; /* Change color on hover */
+}
+#worker_id {
+  font-size: 100%;      /* Increase font size */
+  padding: 10px;        /* Add padding inside the input */
+  width: 20%;         /* Set the width of the input box */
+  border: 1px solid #ccc; /* Optional: Customize border */
+  border-radius: 5px;   /* Optional: Add rounded corners */
+   /* Add some margin to the left of the input */
+}
+
+#title{
+  font-size: 100%;
+  padding: 10px;
+  width: 50%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+}
+
+
+.scrollable-panel {
+  width: 250px;
+  height: 160px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Links styled as items */
+.scrollable-panel a {
+  display: block; /* Makes the links block-level */
+  text-decoration: none; /* Removes underline */
+  color: #333; /* Default text color */
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for better UX */
+.scrollable-panel a:hover {
+  background-color: #007bff;
+  color: #fff; /* Change text color on hover */
+}
