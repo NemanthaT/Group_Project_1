@@ -62,7 +62,7 @@ include '../session/session.php';
                         <img src="../images/knowledgebase.png" alt="Knowledge Base">
                         Knowledge Base
                     </button>
-                </li> --> -->
+                </li> -->
                 <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
@@ -93,8 +93,8 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
 
-        <div class="controls card1">            
-            <h1>Projects</h1>   
+        <div class="controls card1">
+            <h1>Projects</h1>
         </div>
                 <!-- project Grid -->
                 <div class="project-grid">

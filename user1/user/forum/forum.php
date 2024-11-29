@@ -94,7 +94,7 @@ include '../session/session.php';
         <div class="space"></div>
 
         <div class="controls card1">
-            <h1>Reports</h1>
+            <h1>Forum</h1>
         </div>
         <div class="controls">
 

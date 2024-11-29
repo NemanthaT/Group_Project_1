@@ -1,8 +1,5 @@
 <?php
-// Enable error reporting for debugging
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 
 // Database configuration
 $servername = "127.0.0.1";  // Usually 'localhost' or '127.0.0.1' for local setup

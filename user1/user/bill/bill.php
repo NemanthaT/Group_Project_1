@@ -93,7 +93,9 @@ include '../session/session.php';
         <div class="space">
 
         </div>
-        
+        <div class="controls card1 ">
+        <h1>Bill</h1>
+        </div>
         <!-- Filter and Search Section -->
          <div class="center">
 

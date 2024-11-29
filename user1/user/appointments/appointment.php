@@ -96,11 +96,17 @@ include 'get_appointment.php';
                 <a href="../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
+
+
             <!-- Appointment Content -->
+            <div class="space"></div>
+            <div class="main-container controls card1">
+                <h1>Appointment Management</h1>
+            </div>
             <div class="main-container">
-                <header>
-                    <h1>Appointment Management</h1>
-                </header>
+      
+           
+                
 
                 <div class="search-container">
                     <div >
