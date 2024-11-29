@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    // Redirect to the login page if the session is not active
+    header("Location: ../Login/Login.php");
+    exit();
+}
+
+// Prevent caching of the page
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+require_once('../connection.php');
+
+$username = $_SESSION['username'] ?? 'Guest';
+$email = $_SESSION['email'] ?? 'guest@example.com';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +35,7 @@
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
             </div>
             <ul class="menu">
-                <li><a href="../SP_Dashboard/SPDash.html"><button><img src="../images/dashboard.jpg">Dashboard</button></a></li>
+                <li><a href="../SP_Dashboard/SPDash.php"><button><img src="../images/dashboard.jpg">Dashboard</button></a></li>
                 <li><a href="../Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
                 <li><a href="../Message/Message.html"><button><img src="../images/message.jpg">Message</button></a></li>
                 <li><a href="../SP_Projects/Project.html"><button><img src="../images/project.png">Project</button></a></li>
