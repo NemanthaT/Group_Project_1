@@ -182,7 +182,7 @@ include 'get_appointment.php';
                 </div>
 
 
-                     <!-- Edit Appointment Overlay -->
+                <!-- Edit Appointment Overlay -->
 
                 <div id="EditAppointmentOverlay" class="overlay" >
     <div class="overlay-content">
@@ -195,7 +195,7 @@ include 'get_appointment.php';
                 </div>
             <div class="form-group">
                 <label for="editServiceSelect">Select a Service</label>
-                <select id="editServiceSelect" name="serviceSelect" required>
+                <select id="editServiceSelect" name="editServiceSelect" required>
                     <option value="">Choose a Service</option>
                     <option value="Consulting">Consulting</option>
                     <option value="Training">Training</option>
@@ -204,11 +204,11 @@ include 'get_appointment.php';
             </div>
             <div class="form-group">
                 <label for="editAppointmentDate">Select a Date</label>
-                <input type="date" id="editAppointmentDate" name="appointmentDate" required>
+                <input type="date" id="editAppointmentDate" name="editAppointmentDate" required>
             </div>
             <div class="form-group">
                 <label for="editAdditionalMessage">Additional Message</label>
-                <textarea id="editAdditionalMessage" name="additionalMessage" rows="4"></textarea>
+                <textarea id="editAdditionalMessage" name="editAdditionalMessage" rows="4"></textarea>
             </div>
             <button type="submit" id="editSaveappointmentbtn" class="btn">Save</button>
             </form>

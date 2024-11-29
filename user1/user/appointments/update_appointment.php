@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editAppointmentid']))
         $clientId = $_SESSION['client_id'];
         $status = "pending";
 
-
         // Validate appointment date is not in the past
         $current_date = new DateTime();
         $appointment_datetime = new DateTime($appointmentDate);
@@ -29,30 +28,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editAppointmentid']))
             exit;
         }
 
+        // Prepare the UPDATE query
         $updateStmt = $conn->prepare("UPDATE appointments 
-        SET appointment_date = ?, 
-            service_type = ?, 
-            message = ? ,
-            status = ?
-
-        WHERE appointment_id = ? 
-        AND client_id = ?");
-        $updateStmt->bind_param("sssiis", 
-        $appointmentDate,  // appointment_date
-        $serviceType,      // service_type
-        $message,          // message
-        $appointmentId,    // appointment_id
-        $clientId ,           // client_id
-        $status            // status
+            SET appointment_date = ?, 
+                service_type = ?, 
+                message = ?, 
+                status = ? 
+            WHERE appointment_id = ? 
+              AND client_id = ?");
+        
+        // Correctly bind the parameters
+        $updateStmt->bind_param(
+            "ssssii", 
+            $appointmentDate, // appointment_date (string)
+            $serviceType,     // service_type (string)
+            $message,         // message (string)
+            $status,          // status (string)
+            $appointmentId,   // appointment_id (integer)
+            $clientId         // client_id (integer)
         );
-
 
         // Execute update and handle success/failure
         if ($updateStmt->execute()) {
-            $_SESSION['success'] = 'appointment updated';  // Success message
+            $_SESSION['success'] = 'Appointment updated successfully.';  // Success message
         } else {
-            $_SESSION['error'] = "Error updating appointment";
+            $_SESSION['error'] = "Error updating appointment.";
         }
+
+        $updateStmt->close(); // Close statement
+        $conn->close();       // Close connection
 
         header('Location: appointment.php');
         exit;
@@ -63,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editAppointmentid']))
         exit;
     }
 } else {
-    $_SESSION['error'] = "Invalid request method";
+    $_SESSION['error'] = "Invalid request method.";
     header('Location: appointment.php');
     exit;
 }
