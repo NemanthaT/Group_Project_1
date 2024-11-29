@@ -70,11 +70,16 @@
 }
 
 .table-container {
-    max-height: 520px; /* Limit the table height */
+    max-height: 800px; /* Limit the table height */
     overflow-y: auto; /* Add vertical scrolling */
     border: 1px solid #ddd; /* Optional: border for container clarity */
-    margin-top: 20px;
+    margin-top: 150px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    width: 1200px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    margin-left: 80px;
 }
 
 /* Table Styling */

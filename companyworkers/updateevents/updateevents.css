@@ -1,13 +1,3 @@
-.container {
-    width: 73%;
-    background-color: #afafaf;    
-    height: 600px;
-    margin-left: 22%;
-    margin-top: -15px;
-    margin-bottom: 50px;
-    border-radius: 10px;
-    box-shadow: 0 80px 170px rgba(1.0, 1.0, 1.0, 1.0);
-}
 
 .container label {
     font-size: 1.75rem;
