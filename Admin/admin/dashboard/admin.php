@@ -45,7 +45,7 @@
                     <header>
                         <div class="user-info">
                             <p>Hi, <?php echo $username ?>!! 👋</p>
-                            <button name="submit" type="submit"><a href="../../login/logout.php" class="logoutbutton">Logout</a></button>
+                            <button name="submit" type="submit"><a href="../../../Home/Homepage/HP.html" class="logoutbutton">Logout</a></button>
                         </div>
                     </header>
                 </div>
