@@ -16,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editAppointmentid']))
         $serviceType = $_POST['editServiceSelect'];
         $message = $_POST['editAdditionalMessage'] ?? '';
         $clientId = $_SESSION['client_id'];
+        $status = "pending";
+
 
         // Validate appointment date is not in the past
         $current_date = new DateTime();
@@ -30,20 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editAppointmentid']))
         $updateStmt = $conn->prepare("UPDATE appointments 
         SET appointment_date = ?, 
             service_type = ?, 
-            message = ? 
+            message = ? ,
+            status = ?
+
         WHERE appointment_id = ? 
         AND client_id = ?");
-        $updateStmt->bind_param("sssii", 
+        $updateStmt->bind_param("sssiis", 
         $appointmentDate,  // appointment_date
         $serviceType,      // service_type
         $message,          // message
         $appointmentId,    // appointment_id
-        $clientId          // client_id
+        $clientId ,           // client_id
+        $status            // status
         );
-        // Debugging: Print out the variables
-echo "Appointment Date: " . $appointmentDate . "<br>";
-echo "Service Type: " . $serviceType . "<br>";
-echo "Message: " . $message . "<br>";
+
 
         // Execute update and handle success/failure
         if ($updateStmt->execute()) {
@@ -52,8 +54,8 @@ echo "Message: " . $message . "<br>";
             $_SESSION['error'] = "Error updating appointment";
         }
 
-        // header('Location: appointment.php');
-        // exit;
+        header('Location: appointment.php');
+        exit;
 
     } catch (Exception $e) {
         $_SESSION['error'] = "Error: " . $e->getMessage();
