@@ -141,8 +141,12 @@ include 'get_appointment.php';
                 <?php endif; ?>
                 
                 <?php if ($user['provider_id'] !== null && $user['status'] !== 'cancelled'): ?>
-                    <button class='btn cancel-btn' data-id='<?= htmlspecialchars($user['appointment_id']) ?>'>Cancel</button>
-                <?php endif; ?>
+    <form method="POST" action="cancel_appointment.php" style="display: inline;">
+        <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
+        <button type="submit" class="btn cancel-btn">Cancel</button>
+    </form>
+<?php endif; ?>
+
             </td>
         </tr>
         <?php endforeach; ?>

@@ -1,64 +1,28 @@
 <?php
-include '../session/session.php';
+session_start();
 include '../../connect/connect.php';
 
-header('Content-Type: application/json');
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        $data = json_decode(file_get_contents('php://input'), true);
-        
-        if (!isset($data['appointmentId'])) {
-            throw new Exception("Appointment ID not provided");
-        }
+    $appointmentId = $_POST['appointment_id'] ?? null;
 
-        $appointmentId = $data['appointmentId'];
-        $clientId = $_SESSION['client_id'];
+    if ($appointmentId) {
+        // Update the appointment status in the database
+        $stmt = $conn->prepare("UPDATE appointments SET status = 'cancelled' WHERE appointment_id = ?");
+        $stmt->bind_param("i", $appointmentId);
 
-        // Check if appointment exists and can be cancelled
-        $checkStmt = $conn->prepare("SELECT status, provider_id 
-                                   FROM appointments 
-                                   WHERE appointment_id = ? AND client_id = ?");
-        $checkStmt->bind_param("ii", $appointmentId, $clientId);
-        $checkStmt->execute();
-        $result = $checkStmt->get_result();
-
-        if ($result->num_rows === 0) {
-            throw new Exception("Appointment not found or unauthorized");
-        }
-
-        $appointment = $result->fetch_assoc();
-        
-        // Validate cancellation conditions
-        if ($appointment['provider_id'] === null) {
-            throw new Exception("Cannot cancel appointment without provider assignment");
-        }
-
-        if ($appointment['status'] === 'cancelled') {
-            throw new Exception("Appointment is already cancelled");
-        }
-
-        // Update status to cancelled
-        $updateStmt = $conn->prepare("UPDATE appointments 
-                                    SET status = 'cancelled' 
-                                    WHERE appointment_id = ? AND client_id = ?");
-        $updateStmt->bind_param("ii", $appointmentId, $clientId);
-        
-        if ($updateStmt->execute()) {
-            echo json_encode([
-                'success' => true,
-                'message' => "Appointment cancelled successfully"
-            ]);
+        if ($stmt->execute()) {
+            $_SESSION['success'] = 'Appointment cancelled successfully.';
         } else {
-            throw new Exception("Error cancelling appointment");
+            $_SESSION['error'] = 'Failed to cancel the appointment. Please try again.';
         }
 
-            $updateStmt->close();
-        } catch (Exception $e) {
-            echo json_encode([
-                'success' => false,
-                'message' => $e->getMessage()
-            ]);
-        }
+        $stmt->close();
+    } else {
+        $_SESSION['error'] = 'Invalid appointment ID.';
     }
-    ?>
+
+    // Redirect back to the previous page
+    header("Location: appointment.php"); // Adjust this to the correct page
+    exit();
+}
+?>
