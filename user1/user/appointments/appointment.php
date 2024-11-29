@@ -1,6 +1,9 @@
 <?php 
 include '../session/session.php';
+include 'get_appointment.php';
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +13,8 @@ include '../session/session.php';
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<script src="script.js"></script>
+
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -97,38 +102,63 @@ include '../session/session.php';
 
                 <div class="search-container">
                     <div >
-                        <form action="get_appointment.php" method="POST">
-                        <input type="text" id="searchInput" class="searchInput" placeholder="Appointment ID">
+                        <form action="appointment.php" method="POST">
+                        <input type="text" id="searchInput" name="searchInput" class="searchInput" placeholder="Appointment ID" value="<?= htmlspecialchars($_POST['searchInput'] ?? '') ?>">
                         <button id="Search" class="btn">Search</button>
                         </form>
                     </div>
                     <div>
-                        <button id="addAppointmentBtn" class="btn">Add Appointment</button>
+                        <button id="addAppointmentBtn" class="btn" onclick="openPopup('addAppointmentOverlay')">Add Appointment</button>
                     </div>
                 </div>
 
                 <table class="appointment-table">
-                    <thead>
-                        <tr>
-                            <th>Appointment ID</th>
-                            <th>Service</th>
-                            <th>Appointment Date</th>
-                            <th>Message</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="appointmentList">
-                        <?php include 'get_appointment.php'; ?>
-                    </tbody>
-                </table>
+    <thead>
+        <tr>
+            <th>Appointment ID</th>
+            <th>Service</th>
+            <th>Appointment Date</th>
+            <th>Message</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="appointmentList">
+        <?php foreach ($users as $user): ?>
+        <tr>
+            <td><?= htmlspecialchars($user['appointment_id']) ?></td>
+            <td><?= htmlspecialchars($user['service_type']) ?></td>
+            <td><?= htmlspecialchars($user['appointment_date']) ?></td>
+            <td><?= htmlspecialchars($user['message']) ?></td>
+            <td><?= htmlspecialchars($user['status']) ?></td>
+            <td>
+                <?php if ($user['provider_id'] === null): ?>
+                    <button class='btn edit-btn' 
+                            data-id='<?= htmlspecialchars($user['appointment_id']) ?>' 
+                            onclick="openUpdatePopup('<?= addslashes($user['service_type']) ?>', '<?= addslashes($user['appointment_date']) ?>', '<?= addslashes($user['message']) ?>')">
+                        Edit
+                    </button>
+                <?php endif; ?>
+                
+                <?php if ($user['provider_id'] !== null && $user['status'] !== 'cancelled'): ?>
+                    <button class='btn cancel-btn' data-id='<?= htmlspecialchars($user['appointment_id']) ?>'>Cancel</button>
+                <?php endif; ?>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
 
+
+
+            </div>
+            
                 <!-- Add/Edit Appointment Overlay -->
                 <div id="addAppointmentOverlay" class="overlay">
                     <div class="overlay-content">
-                        <span class="close-btn">&times;</span>
+                        <span class="close-btn" onclick="closePopup('addAppointmentOverlay')">&times;</span>
                         <h2  >Add New Appointment</h2>
-                        <form id="appointmentForm">
+                        <form id="appointmentForm" action="add_appointment.php" method="POST">
                             <div class="form-group">
                                 <label for="serviceSelect">Select a Service</label>
                                 <select id="serviceSelect" name="serviceSelect" required>
@@ -143,10 +173,10 @@ include '../session/session.php';
                                 <input type="date" id="appointmentDate" name="appointmentDate" required>
                             </div>
                             <div class="form-group">
-                                <label for="additionalMessage">Additional Message</label>
-                                <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
+                                <label for="additionalMessage" >Additional Message</label>
+                                <textarea id="additionalMessage" name="additionalMessage" rows="4" required > </textarea>
                             </div>
-                            <button type="submit" id="Bookappointmentbtn" class="btn">Book Appointment</button>
+                            <button type="submit" id="Bookappointmentbtn" class="btn" >Book Appointment</button>
                         </form>
                     </div>
                 </div>
@@ -183,11 +213,33 @@ include '../session/session.php';
                         </form>
                     </div>
                 </div>
-
+        </div>
+    </div>
+        <?php if (isset($_SESSION['error'])): ?>
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>
+                    <?php 
+                        echo $_SESSION['error'] === 'booked' 
+                            ? '<span class="Success">Success</span>' 
+                            : '<span class="Error">Error</span>'; 
+                    ?>
+                </h2>
+                <hr>
+            </div>
+            <div class="modal-body">
+                <p><?= $_SESSION['error'] === 'booked' ? 'Your appointment has been booked successfully!' : htmlspecialchars($_SESSION['error']) ?></p>
+            </div>
+        
             </div>
         </div>
     </div>
+    <?php unset($_SESSION['error']); ?>
+    <?php endif; ?>
 
-    <script src="script.js"></script>
 </body>
+
+
 </html>

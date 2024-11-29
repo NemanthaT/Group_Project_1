@@ -1,80 +1,59 @@
 <?php
-// Database connection and session
-include '../session/session.php';
 include '../../connect/connect.php';
 
-// Set header to return JSON response
-header('Content-Type: application/json');
-
-// Function to send JSON response
-function sendResponse($success, $message) {
-    echo json_encode([
-        'success' => $success,
-        'message' => $message
-    ]);
-    exit;
-}
-
-// Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Check connection
-if ($conn->connect_error) {
-    sendResponse(false, "Connection failed: " . $conn->connect_error);
-}
-
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate session
-    if (!isset($_SESSION['client_id'])) {
-        sendResponse(false, "User not logged in");
-    }
-
-    // Validate required fields
-    if (empty($_POST['appointmentDate']) || empty($_POST['serviceSelect'])) {
-        sendResponse(false, "Required fields are missing");
-    }
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        $client_id = $_SESSION['client_id']; // Using client_id consistently
+        if (!isset($_SESSION['client_id'])) {
+            throw new Exception("User not logged in.");
+        }
+
+        if (empty($_POST['appointmentDate']) || empty($_POST['serviceSelect'])) {
+            throw new Exception("Appointment date and service type are required.");
+        }
+
+        $client_id = $_SESSION['client_id'];
         $appointment_date = $_POST['appointmentDate'];
-        $message = $_POST['additionalMessage'] ?? ''; // Making message optional
+        $message = $_POST['additionalMessage'] ?? '';
         $status = "pending";
         $service_type = $_POST['serviceSelect'];
 
-        // Validate appointment date
         $current_date = new DateTime();
         $appointment_datetime = new DateTime($appointment_date);
-        
+
         if ($appointment_datetime < $current_date) {
-            sendResponse(false, "Cannot book appointment for past dates");
+            throw new Exception("Cannot book an appointment for past dates.");
         }
 
-        // Prepare and bind
         $stmt = $conn->prepare("INSERT INTO appointments (client_id, appointment_date, status, message, service_type) VALUES (?, ?, ?, ?, ?)");
-        
         if (!$stmt) {
-            sendResponse(false, "Prepare failed: " . $conn->error);
+            throw new Exception("SQL prepare failed: " . $conn->error);
         }
 
         $stmt->bind_param("issss", $client_id, $appointment_date, $status, $message, $service_type);
 
-        // Execute the statement
-        if ($stmt->execute()) {
-            sendResponse(true, "New appointment booked successfully");
-        } else {
-            sendResponse(false, "Error booking appointment: " . $stmt->error);
+        if (!$stmt->execute()) {
+            throw new Exception("Error inserting appointment: " . $stmt->error);
         }
-
-        $stmt->close();
+        $_SESSION['error']="booked";
+        header('Location: appointment.php');
+        exit();
     } catch (Exception $e) {
-        sendResponse(false, "Error: " . $e->getMessage());
+        
+        $_SESSION['error']=$e->getMessage();
+        header('Location: appointment.php' );
+        exit();
     } finally {
+        if (isset($stmt)) {
+            $stmt->close();
+        }
         $conn->close();
     }
 } else {
-    sendResponse(false, "Invalid request method");
+    header('Location: appointment.php?');
+    exit();
 }
 ?>
