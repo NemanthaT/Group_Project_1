@@ -19,7 +19,7 @@ include '../session/session.php';
             <ul class="menu">
                 <li>
                     <a href="../Dashboard/Dashboard.php">
-                        <button class="active">
+                        <button>
                             <img src="../images/dashboard.png" alt="Dashboard">
                             Dashboard
                         </button>
@@ -32,15 +32,16 @@ include '../session/session.php';
                             Appointment
                         </button>
                     </a>
-                    </li>
+                </li>
                 <li>
                     <a href="../Project/project.php">
-                        <button >
+                        <button class="active">
                             <img src="../images/project.png" alt="project">
                             Projects
                         </button>
                     </a>
-                </li>                <li>
+                </li>
+                <li>
                     <a href="../bill/bill.php">
                         <button >
                         <img src="../images/bill.png" alt="Bill">
@@ -94,15 +95,11 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
 
-        <div class="controls card1">
-            <h1>Welcome To EDSA Lanka</h1>
-            <h3>HI !  Safran Zahim ..</h3>
+        <div class="controls card1">            
+            <h1>Projects</h1>   
         </div>
-        <div class="controls ">
-            
-        </div>
-            <!-- project Grid -->
-            <div class="project-grid">
+                <!-- project Grid -->
+                <div class="project-grid">
             <!-- project Card 1 -->
             <div class="project-card">
                 <div class="project-header">

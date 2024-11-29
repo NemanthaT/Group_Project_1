@@ -19,7 +19,7 @@ include '../session/session.php';
             <ul class="menu">
                 <li>
                     <a href="../Dashboard/Dashboard.php">
-                        <button class="active">
+                        <button >
                             <img src="../images/dashboard.png" alt="Dashboard">
                             Dashboard
                         </button>
@@ -35,12 +35,13 @@ include '../session/session.php';
                     </li>
                 <li>
                     <a href="../Project/project.php">
-                        <button >
+                        <button class="active">
                             <img src="../images/project.png" alt="project">
                             Projects
                         </button>
                     </a>
-                </li>                <li>
+                </li>                
+                <li>
                     <a href="../bill/bill.php">
                         <button >
                         <img src="../images/bill.png" alt="Bill">
@@ -93,34 +94,65 @@ include '../session/session.php';
 
     <div class=".main-container">
         <div class="space"></div>
-
-        <div class="controls card1">
-            <h1>Welcome To EDSA Lanka</h1>
-            <h3>HI !  Safran Zahim ..</h3>
+        <div class="controls header card1">
+            <h1>Financial consultancy for board of directers</h1>
         </div>
-        <div class="controls ">
-            
+        <div class="row margin">
+        <div class="row-container">
+            <h2>Project Details</h2>
+            <hr><br>
+            <p><strong>Project Name:</strong> Financial consultancy for board of directers</p>
+            <p><strong>Project ID:</strong> 001</p>
+            <p><strong>Service Provider Name :</strong> Rama Crish</p>
+            <p><strong>Service Provider Content Details :</strong> 0711234561</p>    
         </div>
-            <!-- project Grid -->
-            <div class="project-grid">
-            <!-- project Card 1 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-id">P001</span>
-                    <span class="status green">Ongoing</span>
-                </div>
-                <div class="project-content">
-                    <div class="project-info">
-                        <h2><strong>Financial consultancy for board of directers</strong></h2> <br />
-                        <p>Financial Consultancy Program is a specialized service aimed at helping individuals or organizations make informed financial decisions, manage their finances more effectively, and achieve financial goals. Financial consultants or advisors provide expert advice on a range of financial matters, from budgeting and investment strategies to tax planning, risk management, and long-term financial planning.</p>
-                    </div>
-                    <a href="projectview.php">
-                    <button class="pay-button" >view</button>
-                    </a>
-                </div>
+        <div class="row-container">
+            <h2>Project Progress </h2>
+            <hr><br>
+            <p><strong>Project Start Date:</strong> 2021-09-01</p>
+            <p><strong>updated Date:</strong> 2021-09-30</p>
+            <div class="row">
+            <p ><strong>Project Status : </strong> <p class="green"> Ongoing </p></p>
             </div>
-        </div>
+            <p><strong>Project pashe :</strong> Requirement Gathering</p>
     </div>
+    </div>
+    <div class="controls">
+        <h1>Documents</h1>
+
+        <div class="box">
+
+            <h2>Agreement</h2>
+            <br>
+            <div class="row center">
+                <img class="pdf" src="img/pdf.png" alt="">
+                <h3> Agrement.pdf</h3>
+            </div>
+        </div> <div class="box">
+
+<h2>Proposal</h2>
+<br>
+<div class="row center">
+    <img class="pdf" src="img/pdf.png" alt="">
+    <h3> Proposal.pdf</h3>
+</div>
+</div>
+    </div>
+    <div class="controls">
+        <h1>Report</h1>
+        <div class="box">
+        <h2>Report</h2>
+            <br>
+                <div class="row center">
+                    <img class="pdf" src="img/pdf.png" alt="">
+                    <h3> Report.pdf</h3>
+                </div>
+        </div>
+
+    </div>
+
+    </div>
+</div>
     <script src="script.js"></script>
 </body>
 </html>

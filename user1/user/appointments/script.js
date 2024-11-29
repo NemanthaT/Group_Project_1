@@ -1,68 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const addAppointmentBtn = document.getElementById('addAppointmentBtn');
-    const addAppointmentOverlay = document.getElementById('addAppointmentOverlay');
-    const closeBtn = document.querySelector('.close-btn');
-    const appointmentForm = document.getElementById('appointmentForm');
-    const appointmentList = document.getElementById('appointmentList');
+function openPopup(id) {
+    document.getElementById(id).style.display = 'flex';
+}
 
-    function centerOverlay() {
-        addAppointmentOverlay.style.display = 'flex';
+function closePopup(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+function openUpdatePopup(serviceSelect, appointmentDate, additionalMessage) {
+    document.getElementById('serviceSelect').value = serviceSelect;
+    document.getElementById('appointmentDate').value = appointmentDate;
+    document.getElementById('additionalMessage').value = additionalMessage;
+    openPopup('updatePopup');
+}
+// modal.js
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('popupModal');
+    if (modal) {
+        modal.style.display = 'block';
     }
 
-
-    addAppointmentBtn.addEventListener('click', centerOverlay);
-    
-    closeBtn.addEventListener('click', () => {
-        addAppointmentOverlay.style.display = 'none';
-    });
-
-    addAppointmentOverlay.addEventListener('click', function(event) {
-        if (event.target === addAppointmentOverlay) {
-            addAppointmentOverlay.style.display = 'none';
+    const closeModal = () => {
+        if (modal) {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300); // Match transition duration
         }
+    };
+
+    // Attach close functionality to buttons and close icon
+    const closeButtons = document.querySelectorAll('.close-modal, .btn');
+    closeButtons.forEach((button) => {
+        button.addEventListener('click', closeModal);
     });
-
-    appointmentForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(appointmentForm);
-
-        fetch('add_appointment.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                addAppointmentOverlay.style.display = 'none';
-                appointmentForm.reset();
-                loadAppointments();
-            } else {
-                alert('Error adding appointment: ' + result.message);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
-});
-
-const bookAppointmentBtn = document.getElementById('bookAppointmentBtn');
-
-bookAppointmentBtn.addEventListener('click', function() {
-    const formData = new FormData(appointmentForm);
-
-    fetch('add_appointment.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.success) {
-            addAppointmentOverlay.style.display = 'none';
-            appointmentForm.reset();
-            loadAppointments();
-        } else {
-            alert('Error adding appointment: ' + result.message);
-        }
-    })
-    .catch(error => console.error('Error:', error));
 });

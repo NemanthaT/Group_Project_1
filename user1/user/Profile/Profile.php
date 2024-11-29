@@ -19,7 +19,7 @@ include '../session/session.php';
             <ul class="menu">
                 <li>
                     <a href="../Dashboard/Dashboard.php">
-                        <button class="active">
+                        <button >
                             <img src="../images/dashboard.png" alt="Dashboard">
                             Dashboard
                         </button>
@@ -64,14 +64,14 @@ include '../session/session.php';
                     </button>
                     </a>
                 </li>
-                <!-- <li>
+                <li>
                     <a href="../reports/reports.php">
                         <button >
                             <img src="../images/reports.png" alt="Reports">
                             Reports
                         </button>
                     </a>
-                </li> -->
+                </li>
             </ul>
         </div>
 
@@ -94,32 +94,82 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
 
-        <div class="controls card1">
-            <h1>Welcome To EDSA Lanka</h1>
-            <h3>HI !  Safran Zahim ..</h3>
-        </div>
-        <div class="controls ">
+        <div class="profile-container">
+        <h1>Business Profile Details</h1>
+        
+        <div class="profile-section">
+            <h2>Business Details</h2>
+            <div class="profile-field">
+                <br>
+                <label>Business Name</label>
+                <div class="value" id="business_name_display">Green Solutions Pvt Ltd</div>
+            </div>
             
-        </div>
-            <!-- project Grid -->
-            <div class="project-grid">
-            <!-- project Card 1 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-id">P001</span>
-                    <span class="status green">Ongoing</span>
-                </div>
-                <div class="project-content">
-                    <div class="project-info">
-                        <h2><strong>Financial consultancy for board of directers</strong></h2> <br />
-                        <p>Financial Consultancy Program is a specialized service aimed at helping individuals or organizations make informed financial decisions, manage their finances more effectively, and achieve financial goals. Financial consultants or advisors provide expert advice on a range of financial matters, from budgeting and investment strategies to tax planning, risk management, and long-term financial planning.</p>
-                    </div>
-                    <a href="projectview.php">
-                    <button class="pay-button" >view</button>
-                    </a>
-                </div>
+            <div class="profile-field">
+                <label>Business Type</label>
+                <div class="value" id="business_type_display">Limited Company</div>
+            </div>
+            
+            <div class="profile-field">
+                <label>Business Registration Number</label>
+                <div class="value" id="registration_number_display">BR/2024/5678</div>
+            </div>
+            
+            <div class="profile-field">
+                <label>Tax Identification Number (TIN)</label>
+                <div class="value" id="tax_id_display">987-654-321</div>
             </div>
         </div>
+
+        <div class="profile-section">
+            <h2>Company Contact Information</h2>
+            <div class="profile-field">
+                <br>
+                <label>Business Email</label>
+                <div class="value" id="business_email_display">info@greensolutions.lk</div>
+            </div>
+            
+            <div class="profile-field">
+                <label>Business Phone Number</label>
+                <div class="value" id="business_phone_display">+94 11 456 7890</div>
+            </div>
+            
+            <div class="profile-field">
+                <label>Business Address</label>
+                <div class="value" id="business_address_display">123 Eco Street, Colombo 04, Sri Lanka</div>
+            </div>
+            
+            <div class="profile-field">
+                <label>Province</label>
+                <div class="value" id="province_display">Western Province</div>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h2>Business Owner/Proprietor Details</h2>
+            <div class="profile-field">
+                <br>
+                <label>Full Name</label>
+                <div class="value" id="owner_name_display">Saman Kumara</div>
+            </div>
+            
+            <div class="profile-field">
+                <label>National Identity Card (NIC) Number</label>
+                <div class="value" id="owner_nic_display">199012345678</div>
+            </div>
+            
+            <div class="profile-field">
+                <label>Personal Phone Number</label>
+                <div class="value" id="owner_phone_display">+94 77 987 6543</div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="action-button edit-button" onclick="enableEditing()">Edit Profile</button>
+        </div>
+    </div>
+        </div>
+
     </div>
     <script src="script.js"></script>
 </body>
