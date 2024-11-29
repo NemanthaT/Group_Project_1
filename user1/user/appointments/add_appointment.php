@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = $_POST['additionalMessage'] ?? '';
         $status = "pending";
         $service_type = $_POST['serviceSelect'];
+        
 
         $current_date = new DateTime();
         $appointment_datetime = new DateTime($appointment_date);
@@ -38,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$stmt->execute()) {
             throw new Exception("Error inserting appointment: " . $stmt->error);
         }
-        $_SESSION['error']="booked";
+        $_SESSION['success']="successfully added appointment";
         header('Location: appointment.php');
         exit();
     } catch (Exception $e) {
