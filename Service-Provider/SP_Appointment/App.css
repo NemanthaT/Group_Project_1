@@ -179,7 +179,7 @@ body {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 100%; /* Ensure it spans the full width of the main content */
-    height: 100%; /* Fully utilize the height of the main-content */
+    height: fit-content;
 }
 
 .appointment-section h2 {
