@@ -32,9 +32,9 @@
                         <a href="../Home/Homepage/HP.html">Home</a>
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     <div class="profile">
-                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
                     </div>
-                    <a href="../Login/Logout.php" class="logout">Logout</a>
+                    <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
             </header>
 

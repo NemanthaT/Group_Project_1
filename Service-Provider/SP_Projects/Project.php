@@ -36,7 +36,7 @@
                     <div class="profile">
                         <a href="#"><img src="../images/user.png" alt="Profile"></a>
                     </div>
-                    <a href="#" class="logout">Logout</a>
+                    <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
             </header>
 

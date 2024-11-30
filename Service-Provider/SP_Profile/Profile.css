@@ -111,12 +111,30 @@ body {
     background-color: rgb(215, 236, 255);
 }
 
-.navbar a img {
+.notification {
+    display: flex;
+    align-items: center;
+    margin-right: 1vw;
+}
+
+.notification a {
+    padding: 0;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;  /* Circular shape for profile */
+    width: 5vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification a img {
     max-width: 100%;
-    max-height: 100%;  /* Ensure the icon fits well */
-    width: 5vh;         /* Adjust width for consistent sizing */
-    height: 5vh;        /* Adjust height to maintain aspect ratio */
-    border-radius: 50%; /* Circular shape for profile icon */
+    max-height: 100%;
+    border-radius: 50%;
 }
 
 .profile {
@@ -145,15 +163,15 @@ body {
     border-radius: 50%;
 }
 
-/* Main Content Styling */
+/* Main content styling */
 .main-content {
-    width: 80vw;
-    margin: 9vh 0 0 20vw;
-    padding: 3vh 2vw;
-    background-color: white;
-    overflow-y: auto;
+    width: 80vw; /* Matches the remaining space after the sidebar */
+    margin: 9vh 0 0 20vw; /* Top margin for the navbar and left margin for the sidebar */
+    padding: 3vh 2vw; /* Padding for consistent spacing */
+    background-color: #ecf0f4;
+    height: calc(100vh - 9vh); /* Full viewport height minus navbar height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
 }
-
 
 .profile-section {
     display: grid;

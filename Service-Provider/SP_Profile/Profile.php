@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
-    <link rel="stylesheet" href="Profile.css">
+    <link rel="stylesheet" href="profile.css">
 </head>
 <body>
     <div class="container">
@@ -12,7 +12,8 @@
         <div class="sidebar">
             <div class="logo">
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-                <ul class="menu">
+            </div>
+            <ul class="menu">
                 <li><a href="../SP_Dashboard/SPDash.php"><button><img src="../images/dashboard.png">Dashboard</button></a></li>
                 <li><a href="../SP_Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
                 <li><a href="../SP_Message/Message.php"><button><img src="../images/message.png">Message</button></a></li>
@@ -28,12 +29,14 @@
             <!-- Navbar -->
             <header>
                 <nav class="navbar">       
-                        <a href="../Home/Homepage/HP.html">Home</a>
+                        <a href="#">Home</a>
+                    <div class="notification">   
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                    </div> 
                     <div class="profile">
-                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                        <a href="#"><img src="../images/user.png" alt="Profile"></a>
                     </div>
-                    <a href="../Login/Logout.php" class="logout">Logout</a>
+                    <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
             </header>
 

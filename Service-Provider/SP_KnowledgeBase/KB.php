@@ -120,7 +120,7 @@ if (isset($_GET['paper_id'])) {
                     <div class="profile">
                         <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
                     </div>
-                    <a href="../Login/Logout.php" class="logout">Logout</a>
+                    <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
             </header>
 
