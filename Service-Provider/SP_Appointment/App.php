@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username'])) {
-    // Redirect to the login page if the session is not active
-    header("Location: ../Login/Login.php");
-    exit();
-}
-
 // Prevent caching of the page
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
@@ -14,8 +8,31 @@ header("Pragma: no-cache");
 
 require_once('../connection.php');
 
-$username = $_SESSION['username'] ?? 'Guest';
-$email = $_SESSION['email'] ?? 'guest@example.com';
+// Check if the form is submitted to update the status
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['appointment_id']) && isset($_POST['status'])) {
+        $appointmentId = $_POST['appointment_id'];
+        $status = $_POST['status'];
+
+        // Update the appointment status in the database
+        $stmt = $conn->prepare("UPDATE appointments SET status = ? WHERE appointment_id = ?");
+        $stmt->bind_param("si", $status, $appointmentId);
+
+        if ($stmt->execute()) {
+            $message = "Appointment status updated successfully!";
+        } else {
+            $message = "Failed to update appointment status.";
+        }
+
+        $stmt->close();
+
+        // Redirect to the same page after the POST request to avoid resubmission
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit;
+    } else {
+        $message = "Invalid request.";
+    }
+}
 
 // Query to retrieve appointments data
 $sql = "SELECT appointment_id, provider_id, client_id, appointment_date, status, created_at FROM appointments";
@@ -53,7 +70,7 @@ $result = $conn->query($sql);
             <!-- Navbar -->
             <header>
                 <nav class="navbar">
-                    <a href="#">Home</a>
+                    <a href="../Home/Homepage/HP.html">Home</a>
                     <div class="notification">
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     </div>
@@ -83,56 +100,55 @@ $result = $conn->query($sql);
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="appointment-tbody">
-                            <?php
-                            if ($result && $result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td class='appointment-id'>" . htmlspecialchars($row['appointment_id']) . "</td>";
-                                    echo "<td class='client-id'>" . htmlspecialchars($row['client_id']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
-                                    echo "<td class='status'>" . htmlspecialchars($row['status']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
-                                    echo "<td class='actions'>
-                                            <button class='accept-btn' onclick='updateAction(this, \"Accepted\")'>Accept</button>
-                                            <button class='reject-btn' onclick='updateAction(this, \"Rejected\")'>Reject</button>
-                                          </td>";
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='6'>No appointments found</td></tr>";
-                            }
-                            ?>
-                        </tbody>
+                        <tbody>
+    <?php
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($row['appointment_id']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['client_id']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
+            echo "<td>";
+
+            // Dynamic actions based on status
+            if ($row['status'] === 'Pending') {
+                echo "<form method='POST' style='display: inline;'>
+                        <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
+                        <input type='hidden' name='status' value='Scheduled'>
+                        <button type='submit' class='accept-btn'>Accept</button>
+                      </form>";
+                echo "<form method='POST' style='display: inline;'>
+                        <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
+                        <input type='hidden' name='status' value='Rejected'>
+                        <button type='submit' class='reject-btn'>Reject</button>
+                      </form>";
+            } elseif ($row['status'] === 'Scheduled') {
+                echo "<form method='POST' style='display: inline;'>
+                        <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
+                        <input type='hidden' name='status' value='Cancelled'>
+                        <button type='submit' class='reject-btn'>Cancel</button>
+                      </form>";
+            } elseif ($row['status'] === 'Rejected') {
+                echo "<span class='status-text rejected'>Rejected</span>";
+            } elseif ($row['status'] === 'Cancelled') {
+                echo "<span class='status-text cancelled'>Cancelled</span>";
+            }
+
+            echo "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='6'>No appointments found</td></tr>";
+    }
+    ?>
+</tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
     <script src="App.js"></script>
-    <script>
-        // Function to handle action updates
-        function updateAction(button, actionText) {
-            const actionCell = button.closest('td'); // Get the Actions cell
-            actionCell.innerHTML = `<span>${actionText}</span>`; // Replace buttons with text
-        }
-
-        // Function to filter appointments
-        function filterAppointments() {
-            const filterValue = document.getElementById("clientFilter").value.toLowerCase();
-            const rows = document.querySelectorAll("#appointment-tbody tr");
-
-            rows.forEach(row => {
-                const clientID = row.querySelector(".client-id").textContent.toLowerCase();
-                const appointmentID = row.querySelector(".appointment-id").textContent.toLowerCase();
-
-                if (clientID.includes(filterValue) || appointmentID.includes(filterValue)) {
-                    row.style.display = ""; // Show row
-                } else {
-                    row.style.display = "none"; // Hide row
-                }
-            });
-        }
-    </script>
 </body>
-</html>
+</html
