@@ -10,7 +10,7 @@
         exit;
     }
 
-    $sql = "SELECT provider_id, username, email, speciality FROM serviceproviders";
+    $sql = "SELECT * FROM serviceproviders";
     $result = $conn->query($sql);
 
 ?>
@@ -51,8 +51,8 @@
                 <center>
                     <table>
                         <tr>
-                            <th>UId</th>
-                            <th>Username</th>
+                            <!--<th>UId</th>-->
+                            <th>Full Name</th>
                             <th>Email</th>
                             <th>Specialty</th>
                             <th>Actions</th>
@@ -60,7 +60,7 @@
                     <?php
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                                echo "<tr><td>" . $row["provider_id"]. "</td><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td><td>" . $row["speciality"]."</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewSp(".$row["provider_id"].")\">View</button><button class=\"del\" onclick=\"deleteSp(".$row["provider_id"].")\">Delete</button></center></td></tr>";
+                                echo "<tr><!--<td>" . $row["provider_id"]. "</td>--><td>" . $row["full_name"]. "</td><td>" . $row["email"]. "</td><td>" . $row["speciality"]."</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewSp(".$row["provider_id"].")\">View</button><button class=\"del\" onclick=\"deleteSp(".$row["provider_id"].")\">Delete</button></center></td></tr>";
                             }
                         } else {
                             echo "0 results";
