@@ -161,17 +161,17 @@ include '../session/session.php';
                     <span class="icon">💰</span>
                 </div>
                 <div class="list-item">
-                    <span>Client A</span>
+                    <span>Training Session Payment</span>
                     <span>Rs.5,000</span>
                     <span class="status-badge status-pending">Pending</span>
                 </div>
                 <div class="list-item">
-                    <span>Client B</span>
+                    <span>Subscription for Monthly Sessions</span>
                     <span>Rs.3,500</span>
                     <span class="status-badge status-upcoming">Due Soon</span>
                 </div>
                 <div class="list-item">
-                    <span>Client C</span>
+                    <span>Payment for Personal Finance Session</span>
                     <span>Rs.2,200</span>
                     <span class="status-badge status-overdue">Overdue</span>
                 </div>
@@ -192,14 +192,14 @@ include '../session/session.php';
                 <div class="list-item">
                     <div class="appointment-details">
                         <strong>Transaction Confirmation</strong>
-                        <span class="appointment-time">Your recent transaction of $250 to Jane Doe has been successfully processed.</span>
+                        <span class="appointment-time">Your recent transaction of Rs.4,000 to Mr.Rama Crish has been successfully processed.</span>
                     </div>
                     <span class="status-badge status-pending">Seen</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Deadline Extension</strong>
-                        <span class="appointment-time">Automated Financial Reporting System project extension request</span>
+                        <strong>Agreement Uploaded</strong>
+                        <span class="appointment-time">Your agreement has been successfully uploaded. Please review the document and let us know if you have any questions or need further assistance.</span>
                     </div>
                     <span class="status-badge status-overdue">Pending</span>
                 </div>
