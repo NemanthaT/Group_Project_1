@@ -57,13 +57,13 @@ include '../session/session.php';
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <!-- <a href="">
                     <button>
                         <img src="../images/knowledgebase.png" alt="Knowledge Base">
                         Knowledge Base
                     </button>
                     </a>
-                </li>
+                </li> -->
                 <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
