@@ -93,7 +93,7 @@ include 'get_appointment.php';
                         <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
-                <a href="../../../../Login/Logout.php" class="logout">Logout</a>
+                <a href="../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
 
@@ -148,9 +148,13 @@ include 'get_appointment.php';
 </button>
                 <?php endif; ?>
                 
-                <?php if ($user['provider_id'] !== null && $user['status'] !== 'Cancelled'): ?>
-                    <button class='btn cancel-btn' data-id='<?= htmlspecialchars($user['appointment_id']) ?>'>Cancel</button>
-                <?php endif; ?>
+                <?php if ($user['provider_id'] !== null && $user['status'] !== 'cancelled'): ?>
+    <form method="POST" action="cancel_appointment.php" style="display: inline;">
+        <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
+        <button type="submit" class="btn cancel-btn">Cancel</button>
+    </form>
+<?php endif; ?>
+
             </td>
         </tr>
         <?php endforeach; ?>
@@ -190,37 +194,40 @@ include 'get_appointment.php';
                 </div>
 
 
-                <!-- View Appointment Overlay -->
-                <div id="EditAppointmentOverlay" class="overlay">
-                    <div class="overlay-content">
-                        <span class="close-btn">&times;</span>
-                        <h2  >View Appointment</h2>
-                        <form id="appointmentForm">
-                            <div class="form-group">
-                                <label for="appointmentid">Appointment ID</label>
-                                <input type="text" id="editappointmentid" name="appointmentid" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="serviceSelect">Select a Service</label>
-                                <select id="serviceSelect" name="serviceSelect" required>
-                                    <option value="">Choose a Service</option>
-                                    <option value="Consulting">Consulting</option>
-                                    <option value="Training">Training</option>
-                                    <option value="Researching">Researching</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="appointmentDate">Select a Date</label>
-                                <input type="date" id="appointmentDate" name="appointmentDate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="additionalMessage">Additional Message</label>
-                                <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
-                            </div>
-                            <button type="submit" id="Saveappointmentbtn" class="btn">Save</button>
-                        </form>
-                    </div>
+                <!-- Edit Appointment Overlay -->
+
+                <div id="EditAppointmentOverlay" class="overlay" >
+    <div class="overlay-content">
+        <span class="close-btn" onclick="closePopup('EditAppointmentOverlay')">&times;</span>
+        <h2>Edit Appointment</h2>
+        <form id="appointmentForm" action="update_appointment.php" method="POST">
+        <div class="form-group">
+                <label for="editAppointmentid">Appointment ID</label>
+                <input type="text" id="editAppointmentid" name="editAppointmentid" readonly required>
                 </div>
+            <div class="form-group">
+                <label for="editServiceSelect">Select a Service</label>
+                <select id="editServiceSelect" name="editServiceSelect" required>
+                    <option value="">Choose a Service</option>
+                    <option value="Consulting">Consulting</option>
+                    <option value="Training">Training</option>
+                    <option value="Researching">Researching</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editAppointmentDate">Select a Date</label>
+                <input type="date" id="editAppointmentDate" name="editAppointmentDate" required>
+            </div>
+            <div class="form-group">
+                <label for="editAdditionalMessage">Additional Message</label>
+                <textarea id="editAdditionalMessage" name="editAdditionalMessage" rows="4"></textarea>
+            </div>
+            <button type="submit" id="editSaveappointmentbtn" class="btn">Save</button>
+            </form>
+    </div>
+</div>
+
+
         </div>
     </div>
 
