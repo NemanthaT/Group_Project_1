@@ -275,3 +275,98 @@ body {
     }
 }
 
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .controls {
+    width: 95%;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    margin: 10px auto;
+    border-radius: 8px;
+    
+  }
+  
+  .card1 {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    background-image: url("../images/sunset.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .filter-group select,
+  .search-group input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      min-width: 200px;
+  }
+  
+  .search-group input {
+      width: 300px;
+  }
+
+  .search-button {
+    width: 100px;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Add these styles to the existing Bill.css file */
+
+.bill-form-container {
+    width: 95%;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bill-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.bill-form .pay-button {
+    align-self: flex-start;
+    width: auto;
+    padding: 12px 24px;
+}

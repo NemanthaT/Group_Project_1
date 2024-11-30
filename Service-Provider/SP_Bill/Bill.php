@@ -63,6 +63,10 @@
                 <input type="text" placeholder="Search client ID or service..." id="search">
                 <button class="search-button">search </button>
             </div>
+            <div class="search-group">
+                <input type="text" placeholder="Search client ID or service..." id="search">
+                <button class="search-button">search </button>
+            </div>
         </div>
         </div>
         <!-- Bills Grid -->
