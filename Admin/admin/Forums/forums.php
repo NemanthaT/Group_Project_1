@@ -43,7 +43,7 @@
                     <button id="closeView" onclick="closeView()">x</button>
                     <center>
                     <table>
-                        <tr><th class="forum_th">Forum ID:</th> <td id="forumId"></td></tr>
+                        <!--<tr><th class="forum_th">Forum ID:</th> <td id="forumId"></td></tr>-->
                         <tr><th class="forum_th">Title:</th> <td id="forumTitle"></td></tr>
                         <tr><th class="forum_th">Client ID:</th> <td id="clientId"></td></tr>
                         <tr><th class="forum_th">Content:</th><td class="content" id="forumContent"></td></tr>
@@ -78,7 +78,7 @@
                     <center>
                         <table>
                             <tr>
-                                <th>Forum Id</th>
+                                <!--<th>Forum Id</th>-->
                                 <th>Title</th>
                                 <th>Client ID</th>
                                 <th>Action</th>
@@ -89,7 +89,7 @@
     
                                 if($result->num_rows > 0) {
                                     while($row = $result->fetch_assoc()) {
-                                        echo "<tr><td>".$row["forum_id"]."</td><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
+                                        echo "<tr><!--<td>".$row["forum_id"]."</td>--><td>".$row["title"]."</td><td>".$row["user_id"]."</td>
                                         <td class=\"actions\"><center><button class=\"view\" onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
                                         <button class=\"del\" onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
                                     }
