@@ -52,17 +52,18 @@
          <div class="center">
 
         <div class="controls ">
-            <div class="filter-group">
+            <div class="filter-group search-group">
                 <select id="status-filter">
                     <option value="all">All Bills</option>
                     <option value="paid">Paid</option>
                     <option value="unpaid">Unpaid</option>
                 </select>
-            </div>
-            <div class="search-group">
                 <input type="text" placeholder="Search client ID or service..." id="search">
                 <button class="search-button">search </button>
-                <a href="CreateBill.php"><button class="search-button">Add Bill</button></a>
+            </div>
+            <div class="search-group">
+               
+                <a href="CreateBill.php"><button class="search-button">+ Add Bill</button></a>
 
             </div>
 
