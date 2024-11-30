@@ -50,21 +50,19 @@ include '../session/session.php';
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="../forum/forum.php">
                     <button>
                         <img src="../images/forum.png" alt="Forum">
                         Forum
                     </button>
                     </a>
                 </li>
-                <li>
-                    <a href="">
+                <!-- <li>
                     <button>
                         <img src="../images/knowledgebase.png" alt="Knowledge Base">
                         Knowledge Base
                     </button>
-                    </a>
-                </li>
+                </li> -->
                 <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
@@ -95,8 +93,8 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
 
-        <div class="controls card1">            
-            <h1>Projects</h1>   
+        <div class="controls card1">
+            <h1>Projects</h1>
         </div>
                 <!-- project Grid -->
                 <div class="project-grid">

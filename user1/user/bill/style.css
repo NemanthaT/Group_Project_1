@@ -28,6 +28,7 @@ header {
     margin-bottom: 20px;
     gap: 20px;
     width: 95%;
+    flex-direction: row;
 }
 
 .search-button {
@@ -61,6 +62,7 @@ header {
     gap: 20px;
     padding: 20px 10px;
     width: 95%;
+    margin: auto;
 }
 
 /* Bill Card */
@@ -313,9 +315,7 @@ header {
     width: 95%;
     padding: 40px;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    justify-content: center;
     background-color: #fff;
     margin: 10px auto;
     border-radius: 8px;

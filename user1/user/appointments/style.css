@@ -153,19 +153,14 @@ a {
 
 .main-container {
   max-width: 95%;
-  margin: 12vh auto 2vh;
+  margin: 4vh auto 2vh;
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Appointment Management Styles */
-h1 {
-  text-align: center;
-  color: #18A0FB;
-  margin-bottom: 20px;
-}
+
 
 .search-container {
   margin-bottom: 20px;
@@ -395,4 +390,31 @@ h1 {
       transform: translateY(0);
       opacity: 1;
   }
+}
+
+.space{
+  background-color: #f4f4f4;
+  width: 100%;
+  padding: 5.5vh ;
+  display: flex;
+}
+.controls {
+  width: 95%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-content: center;
+  background-color: #fff;
+  margin: 10px auto;
+  border-radius: 8px;
+  
+}
+
+.card1 {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  background-image: url("../images/sunset.jpg") ;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

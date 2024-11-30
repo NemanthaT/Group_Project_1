@@ -1,70 +1,73 @@
 <?php
-include '../session/session.php';
+session_start(); // Start session at the beginning of the file
 include '../../connect/connect.php';
 
-header('Content-Type: application/json');
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointmentId'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editAppointmentid'])) {
+    // Check if user is logged in
     if (!isset($_SESSION['client_id'])) {
-        echo json_encode(['success' => false, 'message' => "User not logged in"]);
+        $_SESSION['error'] = "User not logged in";
+        header('Location: appointment.php');
         exit;
     }
 
     try {
-        $appointmentId = $_POST['appointmentId'];
-        $appointmentDate = $_POST['appointmentDate'];
-        $serviceType = $_POST['serviceSelect'];
-        $message = $_POST['additionalMessage'] ?? '';
+        $appointmentId = $_POST['editAppointmentid'];
+        $appointmentDate = $_POST['editAppointmentDate'];
+        $serviceType = $_POST['editServiceSelect'];
+        $message = $_POST['editAdditionalMessage'] ?? '';
         $clientId = $_SESSION['client_id'];
+        $status = "pending";
 
-        // Check if appointment exists and belongs to client
-        $checkStmt = $conn->prepare("SELECT provider_id FROM appointments WHERE appointment_id = ? AND client_id = ?");
-        $checkStmt->bind_param("ii", $appointmentId, $clientId);
-        $checkStmt->execute();
-        $result = $checkStmt->get_result();
-
-        if ($result->num_rows === 0) {
-            echo json_encode(['success' => false, 'message' => "Appointment not found or unauthorized"]);
-            exit;
-        }
-
-        $appointment = $result->fetch_assoc();
-        
-        // Check if provider is assigned
-        if ($appointment['provider_id'] !== null) {
-            echo json_encode(['success' => false, 'message' => "Cannot edit appointment after provider assignment"]);
-            exit;
-        }
-
-        // Validate appointment date
+        // Validate appointment date is not in the past
         $current_date = new DateTime();
         $appointment_datetime = new DateTime($appointmentDate);
-        
+
         if ($appointment_datetime < $current_date) {
-            echo json_encode(['success' => false, 'message' => "Cannot update appointment to past dates"]);
+            $_SESSION['error'] = "Cannot update appointment to past dates";
+            header('Location: appointment.php');
             exit;
         }
 
-        // Update appointment
+        // Prepare the UPDATE query
         $updateStmt = $conn->prepare("UPDATE appointments 
-                                    SET appointment_date = ?, 
-                                        service_type = ?, 
-                                        message = ? 
-                                    WHERE appointment_id = ? 
-                                    AND client_id = ?");
-        $updateStmt->bind_param("sssii", $appointmentDate, $serviceType, $message, $appointmentId, $clientId);
+            SET appointment_date = ?, 
+                service_type = ?, 
+                message = ?, 
+                status = ? 
+            WHERE appointment_id = ? 
+              AND client_id = ?");
         
+        // Correctly bind the parameters
+        $updateStmt->bind_param(
+            "ssssii", 
+            $appointmentDate, // appointment_date (string)
+            $serviceType,     // service_type (string)
+            $message,         // message (string)
+            $status,          // status (string)
+            $appointmentId,   // appointment_id (integer)
+            $clientId         // client_id (integer)
+        );
+
+        // Execute update and handle success/failure
         if ($updateStmt->execute()) {
-            echo json_encode(['success' => true, 'message' => "Appointment updated successfully"]);
+            $_SESSION['success'] = 'Appointment updated successfully.';  // Success message
         } else {
-            echo json_encode(['success' => false, 'message' => "Error updating appointment"]);
+            $_SESSION['error'] = "Error updating appointment.";
         }
 
-        $updateStmt->close();
+        $updateStmt->close(); // Close statement
+        $conn->close();       // Close connection
+
+        header('Location: appointment.php');
+        exit;
+
     } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => "Error: " . $e->getMessage()]);
+        $_SESSION['error'] = "Error: " . $e->getMessage();
+        header('Location: appointment.php');
+        exit;
     }
-    
-    $conn->close();
+} else {
+    $_SESSION['error'] = "Invalid request method.";
+    header('Location: appointment.php');
+    exit;
 }
-?>

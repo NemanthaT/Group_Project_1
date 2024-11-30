@@ -142,7 +142,7 @@
   
   /* Main Content Area */
   .main-wrapper {
-    width: 80vw;
+    width: 78vw;
     margin-left: 20vw;
     flex-direction: row;
     justify-content: center;
@@ -150,7 +150,7 @@
   
   .main-container {
     max-width: 95%;
-    margin: 12vh;
+    /* margin: 12vh; */
     background: #fff;
     padding: 20px;
     border-radius: 8px;

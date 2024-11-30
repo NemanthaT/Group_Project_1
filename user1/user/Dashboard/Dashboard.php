@@ -98,28 +98,117 @@ include '../session/session.php';
             <h1>Welcome To EDSA Lanka</h1>
             <h3>HI !  Safran Zahim ..</h3>
         </div>
-        <div class="controls ">
-            
-        </div>
-            <!-- project Grid -->
-            <div class="project-grid">
-            <!-- project Card 1 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-id">P001</span>
-                    <span class="status green">Ongoing</span>
+
+   <div class="dashboard">
+        <div class="appointments-panel card">
+                <div class="card-header">
+                    <h2>Upcoming Appointments</h2>
+                    <span class="icon">📅</span>
                 </div>
-                <div class="project-content">
-                    <div class="project-info">
-                        <h2><strong>Financial consultancy for board of directers</strong></h2> <br />
-                        <p>Financial Consultancy Program is a specialized service aimed at helping individuals or organizations make informed financial decisions, manage their finances more effectively, and achieve financial goals. Financial consultants or advisors provide expert advice on a range of financial matters, from budgeting and investment strategies to tax planning, risk management, and long-term financial planning.</p>
+                <div class="list-item">
+                    <div class="appointment-details">
+                        <strong>Project Kickoff</strong>
+                        <span class="appointment-time">12 Dec, 10:00 AM</span>
                     </div>
-                    <a href="projectview.php">
-                    <button class="pay-button" >view</button>
-                    </a>
+                    <span class="status-badge status-upcoming">Upcoming</span>
+                </div>
+                <div class="list-item">
+                    <div class="appointment-details">
+                        <strong>Client Meeting</strong>
+                        <span class="appointment-time">15 Dec, 2:00 PM</span>
+                    </div>
+                    <span class="status-badge status-pending">Pending</span>
+                </div>
+                <div class="list-item">
+                    <div class="appointment-details">
+                        <strong>Design Review</strong>
+                        <span class="appointment-time">18 Dec, 11:30 AM</span>
+                    </div>
+                    <span class="status-badge status-upcoming">Upcoming</span>
+                </div>
+                <div class="list-item">
+                    <div class="appointment-details">
+                        <strong>Budget Discussion</strong>
+                        <span class="appointment-time">20 Dec, 9:00 AM</span>
+                    </div>
+                    <span class="status-badge status-upcoming">Upcoming</span>
+                </div>
+        </div>
+
+        <div class="main-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Upcoming Projects</h2>
+                    <span class="icon">📋</span>
+                </div>
+                <div class="list-item">
+                    <span>Web Redesign</span>
+                    <span class="status-badge status-upcoming">Upcoming</span>
+                </div>
+                <div class="list-item">
+                    <span>Mobile App</span>
+                    <span class="status-badge status-pending">Pending</span>
+                </div>
+                <div class="list-item">
+                    <span>E-commerce Platform</span>
+                    <span class="status-badge status-overdue">Overdue</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Pending Payments</h2>
+                    <span class="icon">💰</span>
+                </div>
+                <div class="list-item">
+                    <span>Client A</span>
+                    <span>$5,000</span>
+                    <span class="status-badge status-pending">Pending</span>
+                </div>
+                <div class="list-item">
+                    <span>Client B</span>
+                    <span>$3,500</span>
+                    <span class="status-badge status-upcoming">Due Soon</span>
+                </div>
+                <div class="list-item">
+                    <span>Client C</span>
+                    <span>$2,200</span>
+                    <span class="status-badge status-overdue">Overdue</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Notifications</h2>
+                    <span class="icon">🔔</span>
+                </div>
+                <div class="list-item">
+                    <div class="appointment-details">
+                        <strong>New Project Proposal</strong>
+                        <span class="appointment-time">Client D submitted a new proposal</span>
+                    </div>
+                    <span class="status-badge status-upcoming">New</span>
+                </div>
+                <div class="list-item">
+                    <div class="appointment-details">
+                        <strong>Payment Reminder</strong>
+                        <span class="appointment-time">Reminder sent to Client B</span>
+                    </div>
+                    <span class="status-badge status-pending">Sent</span>
+                </div>
+                <div class="list-item">
+                    <div class="appointment-details">
+                        <strong>Deadline Extension</strong>
+                        <span class="appointment-time">Mobile App project extension request</span>
+                    </div>
+                    <span class="status-badge status-overdue">Pending</span>
                 </div>
             </div>
         </div>
+    </div>
+
+
+    </div>
     </div>
     <script src="script.js"></script>
 </body>
