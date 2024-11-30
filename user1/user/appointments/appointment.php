@@ -93,7 +93,7 @@ include 'get_appointment.php';
                         <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>
+                <a href="../../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
 
@@ -148,10 +148,17 @@ include 'get_appointment.php';
 </button>
                 <?php endif; ?>
                 
-                <?php if ($user['provider_id'] !== null && $user['status'] == 'Scheduled'): ?>
+                <?php if ( $user['status'] == 'Scheduled'): ?>
     <form method="POST" action="cancel_appointment.php" style="display: inline;">
         <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
         <button type="submit" class="btn cancel-btn">Cancel</button>
+    </form>
+<?php endif; ?>
+
+<?php if ($user['provider_id'] !== null && $user['status'] == 'Cancelled'): ?>
+    <form method="POST" action="delete_appointment.php" style="display: inline;">
+        <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
+        <button type="submit" class="btn cancel-btn">Delete</button>
     </form>
 <?php endif; ?>
 
