@@ -1,21 +1,18 @@
-
-<?php
-include '../session/session.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSA Lanka - Appointment Management</title>
-    <link rel="stylesheet" href="style.css">
+    <title>EDSA Lanka Consultancy - Add Bill</title>
+    <link rel="stylesheet" href="Bill.css">
 </head>
 <body>
+    <div class="container">
+        <!-- Sidebar -->
         <div class="sidebar">
             <div class="logo">
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
             </div>
-            
             <ul class="menu">
                 <li><a href="../SP_Dashboard/SPDash.php"><button><img src="../images/dashboard.png">Dashboard</button></a></li>
                 <li><a href="../SP_Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
@@ -41,10 +38,10 @@ include '../session/session.php';
                 </nav>
             </header>
 
-        <div class="space">
-
-        </div>
-       <div class="boxcontent"> 
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="space"></div>
+                <div class="boxcontent"> 
     <div class="invoice-header">
         <div class="company-info">
             <h1>EDSA Lanka Consultancy</h1>
@@ -78,7 +75,7 @@ include '../session/session.php';
             <tr>
                 <td>Advance</td>
 
-                <td>4,500,000</td>
+                <td>19,000</td>
             </tr>
 
         </tbody>
@@ -90,13 +87,12 @@ include '../session/session.php';
         <strong>Total Due: 21,850 LKR</strong>
     </div>
     <div>
-        <button class="pay-button">Pay Now</button>
+        <button class="pay-button">Edit</button>
     </div>
     </div>
+
             </div>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
-</html> 
+</html>

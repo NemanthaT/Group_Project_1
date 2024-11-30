@@ -79,11 +79,11 @@
                 <div class="bill-content">
                     <div class="bill-info">
                         <p><strong>Service:</strong> Financial consultancy for board of directers(stage 2)</p>
-                        <p><strong>Amount:</strong> Rs 4,500,000</p>
+                        <p><strong>Amount:</strong> Rs 21,850</p>
                         <p><strong>Date:</strong> 2024-11-21</p>
                         <p><strong>Project ID:</strong> 001</p>
                     </div><a href="Viewbill.php">
-                    <button class="pay-button ">View</button></a>
+                    <button class="pay-button green">View</button></a>
                 </div>
             </div>
         
@@ -96,7 +96,7 @@
                 <div class="bill-content">
                     <div class="bill-info">
                         <p><strong>Service:</strong> Financial consultancy for board of directers (advance)</p>
-                        <p><strong>Amount:</strong> Rs 4,500,000</p>
+                        <p><strong>Amount:</strong> Rs 21,850</p>
                         <p><strong>Date:</strong> 2024-11-21</p>
                         <p><strong>Project ID:</strong> 001</p>
                     </div>
