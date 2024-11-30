@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../connection.php'); // Include the database connection
+require_once('../../config/config.php'); // Include the database connection
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve and sanitize form data
