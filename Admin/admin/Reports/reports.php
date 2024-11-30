@@ -1,6 +1,7 @@
 <?php
     session_start(); 
     require_once('../../config/config.php');
+    //include '../../../Error/error.php';
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
@@ -23,7 +24,9 @@
         <title>Reports</title>
         <link rel="stylesheet" href="../../css/common.css">
         <link rel="stylesheet" href="reports.css">
+        <link rel="stylesheet" href="../../../Error/error.css">
         <script src="reports.js"></script>
+        <script src="../../../Error/error.js"></script>
     </head>
 
     <body>
@@ -78,7 +81,8 @@
                     if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['search_c'])) {
                         $id = $_POST['id'];
                         if(!is_numeric($id)){
-                            echo "<script>alert('Error: Please Enter Numeric Values!');</script>";
+                            $_SESSION['error']="Enter a numeric Value";
+                            //echo "<script>alert('Error: Please Enter Numeric Values!');</script>";
                         }
                         else{
                             
@@ -118,7 +122,8 @@
                     if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['search_r'])) {
                         $id = $_POST['id'];
                         if(!is_numeric($id)){
-                            echo "<script>alert('Error: Please Enter Numeric Values!');</script>";
+                            $_SESSION['error']="Enter a numeric Value";
+                            //echo "<script>alert('Error: Please Enter Numeric Values!');</script>";
                         }
                         else{
                             
@@ -160,7 +165,8 @@
                         $dayE = $_POST['dayE'];
                             
                         if($dayB > $dayE){
-                            echo "<script>alert('Error: Invalid Date Range!');</script>";
+                            $_SESSION['error']="Enter a Valid Date Range";
+                            //echo "<script>alert('Error: Invalid Date Range!');</script>";
                         }
                         else{
                             // Prepare and execute the SQL query
@@ -218,6 +224,39 @@
                     </table>
                 </center>
             </div>
+            <?php if (isset($_SESSION['error']) || isset($_SESSION['success'])): ?>
+                <div id="popupModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <div class="modal-header">
+                            <h2>
+                                <?php 
+                                    // Check if it's an error or success message and display the corresponding title
+                                    if (isset($_SESSION['error'])) {
+                                        echo '<span class="Error">Error</span>';
+                                    } elseif (isset($_SESSION['success'])) {
+                                        echo '<span class="Success">Success</span>';
+                                    }
+                                ?>
+                            </h2>
+                            <hr>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <?php 
+                                    // Directly print the message from the session
+                                    echo isset($_SESSION['error']) ? htmlspecialchars($_SESSION['error']) : htmlspecialchars($_SESSION['success']);
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <?php 
+                    // Unset both error and success messages after displaying them
+                    unset($_SESSION['error']);
+                    unset($_SESSION['success']);
+                ?>
+            <?php endif; ?>
         </div>
     </body>
 </html>
