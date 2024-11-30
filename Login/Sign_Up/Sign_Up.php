@@ -27,13 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>
-                    alert('Registration successful!');
-                    window.location.href = '../../Home/Homepage/HP.html';
+                    alert('Registration successful!\\nPlease wait for our confirmation email with further instructions.');
+                    window.location.href = '../Home/Homepage/HP.html';
                   </script>";
             exit;
         } else {
-            echo "<script>\"Error: \" . $sql . \"<br>\" . mysqli_error($conn)<script>";
-            echo "<script>window.location.href= 'Sign_Up.php'</script>"
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
     }
     mysqli_close($conn);
