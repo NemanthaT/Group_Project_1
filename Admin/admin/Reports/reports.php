@@ -25,8 +25,8 @@
         <link rel="stylesheet" href="../../css/common.css">
         <link rel="stylesheet" href="reports.css">
         <link rel="stylesheet" href="../../../Error/error.css">
-        <script src="reports.js"></script>
         <script src="../../../Error/error.js"></script>
+        <script src="reports.js"></script>
     </head>
 
     <body>
