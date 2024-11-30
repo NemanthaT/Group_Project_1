@@ -1,95 +1,47 @@
-
-<?php
-include '../session/session.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSA Lanka - Appointment Management</title>
-    <link rel="stylesheet" href="style.css">
+    <title>EDSA Lanka Consultancy</title>
+    <link rel="stylesheet" href="Bill.css">
 </head>
 <body>
+    <div class="container">
+        <!-- Sidebar -->
         <div class="sidebar">
             <div class="logo">
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
             </div>
-            
             <ul class="menu">
-                <li>
-                    <a href="../Dashboard/Dashboard.php">
-                        <button>
-                            <img src="../images/dashboard.png" alt="Dashboard">
-                            Dashboard
-                        </button>
-                    </a>
-                </li>
-                <li>
-                    <a href="../appointments/appointment.php">
-                        <button >
-                            <img src="../images/appointment.png" alt="Appointment">
-                            Appointment
-                        </button>
-                    </a>
-                </li>
-                <li>
-                    <a href="../Project/project.php">
-                        <button >
-                            <img src="../images/project.png" alt="project">
-                            Projects
-                        </button>
-                    </a>
-                </li>
-                <li>
-                    <a href="../bill/bill.php">
-                        <button class="active">
-                        <img src="../images/bill.png" alt="Bill">
-                        Bill
-                        </button>
-                    </a>
-                </li>
-                <li>
-                    <a href="../forum/forum.php">
-                    <button>
-                        <img src="../images/forum.png" alt="Forum">
-                        Forum
-                    </button>
-                    </a>
-                </li>
-                <!-- <li>
-                    <button>
-                        <img src="../images/knowledgebase.png" alt="Knowledge Base">
-                        Knowledge Base
-                    </button>
-                </li> -->
-                <!-- <li>
-                    <a href="../reports/reports.php">
-                        <button>
-                            <img src="../images/reports.png" alt="Reports">
-                            Reports
-                        </button>
-                    </a>
-                </li> -->
+                <li><a href="../SP_Dashboard/SPDash.php"><button><img src="../images/dashboard.jpg">Dashboard</button></a></li>
+                <li><a href="../SP_Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
+                <li><a href="../SP_Message/Message.php"><button><img src="../images/message.jpg">Message</button></a></li>
+                <li><a href="../SP_Projects/Project.php"><button><img src="../images/project.png">Project</button></a></li>
+                <li><a href="../SP_Bill/Bill.php"><button><img src="../images/bill.png">Bill</button></a></li>
+                <li><a href="../SP_Forum/Forum.php"><button><img src="../images/forum.png">Forum</button></a></li>
+                <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
             </ul>
         </div>
 
-        <!-- Main Content Area -->
+        <!-- Main Content Wrapper -->
         <div class="main-wrapper">
             <!-- Navbar -->
-            <div class="navbar">
-                <a href="#">Home</a>
-                <a href="#">
-                    <img src="../images/notification.png" alt="Notifications">
-                </a>
-                <div class="profile">
-                <a href="../profile/profile.php">
-                <img src="../images/user.png" alt="Profile">
-                    </a>
-                </div>
-                <a href="../../../Login/Logout.php" class="logout">Logout</a>
-            </div>
+            <header>
+                <nav class="navbar">       
+                        <a href="../Home/Homepage/HP.html">Home</a>
+                        <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                    <div class="profile">
+                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                    </div>
+                    <a href="../Login/Logout.php" class="logout">Logout</a>
+                </nav>
+            </header>
 
+            <!-- Main Content -->
+            <div class="main-content">
+
+            
         <div class="space">
 
         </div>
@@ -152,9 +104,7 @@ include '../session/session.php';
             </div>
         </div>
             </div>
-        </div>
-    </div>
+    
 
-    <script src="script.js"></script>
 </body>
 </html>
