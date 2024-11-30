@@ -78,7 +78,7 @@ include '../session/session.php';
         <div class="main-wrapper">
             <!-- Navbar -->
             <div class="navbar">
-                <a href="#">Home</a>
+                <a href="../../../Home/Homepage/HP.html">Home</a>
                 <a href="#">
                     <img src="../images/notification.png" alt="Notifications">
                 </a>
@@ -97,10 +97,6 @@ include '../session/session.php';
             <h1>Forum</h1>
         </div>
         <div class="controls">
-        
-                    <h2>Forum</h2>
-
-                    <!-- Forum Search -->
                     <div class="forum-search">
                         <input type="text" id="search-input" placeholder="Search forum topics">
                         <button onclick="searchTopics()">Search</button>
@@ -158,16 +154,8 @@ include '../session/session.php';
                             <button type="button" onclick="addThread()">Post Thread</button>
                         </form>
                     </div>
-
                 </div>
             </div>
-        
-
-                
-
-
-        
-
     </div>
     <script src="script.js"></script>
 </body>
