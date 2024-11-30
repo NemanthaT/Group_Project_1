@@ -165,11 +165,12 @@ body {
 
 /* Main content styling */
 .main-content {
-    width: 80vw;
-    margin: 9vh 0 0 20vw;
-    padding: 3vh 2vw 8vh 2vw;  /* Added bottom padding for footer spacing */
+    width: 80vw; /* Matches the remaining space after the sidebar */
+    margin: 9vh 0 0 20vw; /* Top margin for the navbar and left margin for the sidebar */
+    padding: 3vh 2vw; /* Padding for consistent spacing */
     background-color: #ecf0f4;
-    overflow-y: auto;
+    height: calc(100vh - 9vh); /* Full viewport height minus navbar height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
 .appointment-section {
@@ -177,6 +178,8 @@ body {
     background-color: #f4f4f4;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it spans the full width of the main content */
+    height: 100%; /* Fully utilize the height of the main-content */
 }
 
 .appointment-section h2 {
@@ -200,7 +203,7 @@ body {
 }
 
 .search-button {
-    background-color: #333;
+    background-color: #18A0FB;
     color: white;
     border: none;
     cursor: pointer;
@@ -229,4 +232,31 @@ body {
 
 .appointment-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
+}
+
+.accept-btn, .reject-btn {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.accept-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.reject-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.accept-btn:hover {
+    background-color: #218838;
+}
+
+.reject-btn:hover {
+    background-color: #c82333;
 }

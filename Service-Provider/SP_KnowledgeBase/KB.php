@@ -101,8 +101,8 @@ if (isset($_GET['paper_id'])) {
                 <li><a href="../SP_Dashboard/SPDash.html"><button><img src="../images/dashboard.jpg">Dashboard</button></a></li>
                 <li><a href="../Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
                 <li><a href="../Message/Message.html"><button><img src="../images/message.jpg">Message</button></a></li>
-                <li><a href="../SP_Projects/Project.html"><button><img src="">Project</button></a></li>
-                <li><a href="../SP_Bill/Bill.html"><button><img src="">Bill</button></a></li>
+                <li><a href="../SP_Projects/Project.html"><button><img src="../images/project.png">Project</button></a></li>
+                <li><a href="../SP_Bill/Bill.html"><button><img src="../images/bill.png">Bill</button></a></li>
                 <li><a href="../SP_Forum/Forum.html"><button><img src="../images/forum.png">Forum</button></a></li>
                 <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
             </ul>
