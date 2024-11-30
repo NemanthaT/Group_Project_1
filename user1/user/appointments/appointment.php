@@ -148,7 +148,7 @@ include 'get_appointment.php';
 </button>
                 <?php endif; ?>
                 
-                <?php if ($user['provider_id'] !== null && $user['status'] !== 'cancelled'): ?>
+                <?php if ($user['provider_id'] !== null && $user['status'] !== 'Cancelled'): ?>
                     <button class='btn cancel-btn' data-id='<?= htmlspecialchars($user['appointment_id']) ?>'>Cancel</button>
                 <?php endif; ?>
             </td>
@@ -198,7 +198,7 @@ include 'get_appointment.php';
                         <form id="appointmentForm">
                             <div class="form-group">
                                 <label for="appointmentid">Appointment ID</label>
-                                <input type="text" id="appointmentid" name="appointmentid" required>
+                                <input type="text" id="editappointmentid" name="appointmentid" required>
                             </div>
                             <div class="form-group">
                                 <label for="serviceSelect">Select a Service</label>

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editAppointmentid']))
         $serviceType = $_POST['editServiceSelect'];
         $message = $_POST['editAdditionalMessage'] ?? '';
         $clientId = $_SESSION['client_id'];
-        $status = "pending";
+        $status = "Pending";
 
         // Validate appointment date is not in the past
         $current_date = new DateTime();

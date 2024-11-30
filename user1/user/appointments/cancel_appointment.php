@@ -5,7 +5,7 @@ include '../../connect/connect.php';
     try {
         $appointmentId = $_POST['editAppointmentid'];
         $clientId = $_SESSION['client_id'];
-        $status = "Canceled";
+        $status = "Cancelled";
 
 
         $updateStmt = $conn->prepare("UPDATE appointments 

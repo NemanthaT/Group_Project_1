@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $client_id = $_SESSION['client_id'];
         $appointment_date = $_POST['appointmentDate'];
         $message = $_POST['additionalMessage'] ?? '';
-        $status = "pending";
+        $status = "Pending";
         $service_type = $_POST['serviceSelect'];
         
 
