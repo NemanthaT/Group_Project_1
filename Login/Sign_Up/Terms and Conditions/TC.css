@@ -1,0 +1,94 @@
+body {
+    font-family: 'Segoe UI', 'cursive';
+    background-color: white;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+    overflow: hidden; /* Prevent unnecessary scrollbars outside */
+}
+
+.blurry-background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../images/logo.png");
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+    overflow: hidden;
+    width: 700px;
+    max-width: 90%;
+    margin: 20px auto; /* Center horizontally */
+    text-align: left;
+    flex-direction: row;
+    flex-grow: 1; /* Allows container to take up remaining space */
+    overflow-y: auto; /* Scroll within the container */
+}
+
+.sidebar {
+    background-color: #ececec;
+    width: 200px;
+    padding: 20px 0;
+    text-align: left;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 20px;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+}
+
+.sidebar ul li.active, .sidebar ul li:hover {
+    background-color: #18A0FB;
+    color: white;
+}
+
+.content {
+    padding: 20px;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 70vh; /* Prevent overflow and keep centered */
+}
+
+.content h2 {
+    color: #18A0FB;
+    font-size: 24px;
+}
+
+.content h3, .content h4 {
+    margin: 15px 0 5px;
+    color: black;
+}
+
+.content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+footer {
+    background-color: #d3d3d3;
+    color: #576574;
+    width: 100%; /* Make footer full width */
+    text-align: center;
+    border-top: 1px solid #18A0FB;
+    padding: 5px; /* Reduced padding to reduce height */
+    margin-top: auto; /* Push footer to the bottom */
+}
