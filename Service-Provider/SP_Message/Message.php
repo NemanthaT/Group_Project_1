@@ -15,7 +15,7 @@
             </div>
             <ul class="menu">
                 <li><a href="../SP_Dashboard/SPDash.php"><button><img src="../images/dashboard.png">Dashboard</button></a></li>
-                <li><a href="../Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
+                <li><a href="../SP_Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
                 <li><a href="../Message/Message.php"><button><img src="../images/message.png">Message</button></a></li>
                 <li><a href="../SP_Projects/Project.php"><button><img src="../images/project.png">Project</button></a></li>
                 <li><a href="../SP_Bill/Bill.php"><button><img src="../images/bill.png">Bill</button></a></li>

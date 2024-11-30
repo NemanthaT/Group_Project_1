@@ -62,11 +62,10 @@
             <div class="search-group">
                 <input type="text" placeholder="Search client ID or service..." id="search">
                 <button class="search-button">search </button>
+                <a href="CreateBill.php"><button class="search-button">Add Bill</button></a>
+
             </div>
-            <div class="search-group">
-                <input type="text" placeholder="Search client ID or service..." id="search">
-                <button class="search-button">search </button>
-            </div>
+
         </div>
         </div>
         <!-- Bills Grid -->
@@ -79,12 +78,12 @@
                 </div>
                 <div class="bill-content">
                     <div class="bill-info">
-                        <p><strong>Service:</strong> Financial consultancy for board of directers</p>
+                        <p><strong>Service:</strong> Financial consultancy for board of directers(stage 2)</p>
                         <p><strong>Amount:</strong> Rs 4,500,000</p>
                         <p><strong>Date:</strong> 2024-11-21</p>
                         <p><strong>Project ID:</strong> 001</p>
-                    </div><a href="paybill.php">
-                    <button class="pay-button">Pay Bill</button></a>
+                    </div><a href="Viewbill.php">
+                    <button class="pay-button ">View</button></a>
                 </div>
             </div>
         
@@ -101,7 +100,7 @@
                         <p><strong>Date:</strong> 2024-11-21</p>
                         <p><strong>Project ID:</strong> 001</p>
                     </div>
-                    <a href="paidbill.php">
+                    <a href="Viewbill.php">
                     <button class="pay-button green" >View</button>
                     </a>
                 </div>
