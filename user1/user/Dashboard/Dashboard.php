@@ -107,28 +107,28 @@ include '../session/session.php';
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Project Kickoff</strong>
+                        <strong>Project Kickoff Discussion</strong>
                         <span class="appointment-time">12 Dec, 10:00 AM</span>
                     </div>
                     <span class="status-badge status-upcoming">Upcoming</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Client Meeting</strong>
+                        <strong>Investment Portfolio Review</strong>
                         <span class="appointment-time">15 Dec, 2:00 PM</span>
                     </div>
                     <span class="status-badge status-pending">Pending</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Design Review</strong>
+                        <strong>Team Performance Review</strong>
                         <span class="appointment-time">18 Dec, 11:30 AM</span>
                     </div>
                     <span class="status-badge status-upcoming">Upcoming</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Budget Discussion</strong>
+                        <strong>Quarterly Financial Review</strong>
                         <span class="appointment-time">20 Dec, 9:00 AM</span>
                     </div>
                     <span class="status-badge status-upcoming">Upcoming</span>
@@ -142,11 +142,11 @@ include '../session/session.php';
                     <span class="icon">📋</span>
                 </div>
                 <div class="list-item">
-                    <span>Web Redesign</span>
+                    <span>Investment Portfolio Management Software</span>
                     <span class="status-badge status-upcoming">Upcoming</span>
                 </div>
                 <div class="list-item">
-                    <span>Mobile App</span>
+                    <span>Automated Financial Reporting System</span>
                     <span class="status-badge status-pending">Pending</span>
                 </div>
                 <div class="list-item">
@@ -162,17 +162,17 @@ include '../session/session.php';
                 </div>
                 <div class="list-item">
                     <span>Client A</span>
-                    <span>$5,000</span>
+                    <span>Rs.5,000</span>
                     <span class="status-badge status-pending">Pending</span>
                 </div>
                 <div class="list-item">
                     <span>Client B</span>
-                    <span>$3,500</span>
+                    <span>Rs.3,500</span>
                     <span class="status-badge status-upcoming">Due Soon</span>
                 </div>
                 <div class="list-item">
                     <span>Client C</span>
-                    <span>$2,200</span>
+                    <span>Rs.2,200</span>
                     <span class="status-badge status-overdue">Overdue</span>
                 </div>
             </div>
@@ -184,22 +184,22 @@ include '../session/session.php';
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>New Project Proposal</strong>
-                        <span class="appointment-time">Client D submitted a new proposal</span>
+                        <strong>Payment Due Reminder</strong>
+                        <span class="appointment-time">Your monthly payment of Rs.6,000 is due in 3 days. Please ensure timely payment.</span>
                     </div>
                     <span class="status-badge status-upcoming">New</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Payment Reminder</strong>
-                        <span class="appointment-time">Reminder sent to Client B</span>
+                        <strong>Transaction Confirmation</strong>
+                        <span class="appointment-time">Your recent transaction of $250 to Jane Doe has been successfully processed.</span>
                     </div>
-                    <span class="status-badge status-pending">Sent</span>
+                    <span class="status-badge status-pending">Seen</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
                         <strong>Deadline Extension</strong>
-                        <span class="appointment-time">Mobile App project extension request</span>
+                        <span class="appointment-time">Automated Financial Reporting System project extension request</span>
                     </div>
                     <span class="status-badge status-overdue">Pending</span>
                 </div>
