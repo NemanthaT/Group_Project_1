@@ -123,7 +123,7 @@ include '../session/session.php';
             <h2>Agreement</h2>
             <br>
             <div class="row center">
-                <img class="pdf" src="img/pdf.png" alt="">
+                <img class="pdf" src="../images/pdf.png" alt="">
                 <h3> Agrement.pdf</h3>
             </div>
         </div> <div class="box">
@@ -131,8 +131,8 @@ include '../session/session.php';
 <h2>Proposal</h2>
 <br>
 <div class="row center">
-    <img class="pdf" src="img/pdf.png" alt="">
-    <h3> Proposal.pdf</h3>
+<img class="pdf" src="../images/pdf.png" alt="">
+<h3> Proposal.pdf</h3>
 </div>
 </div>
     </div>
@@ -142,7 +142,7 @@ include '../session/session.php';
         <h2>Report</h2>
             <br>
                 <div class="row center">
-                    <img class="pdf" src="img/pdf.png" alt="">
+                <img class="pdf" src="../images/pdf.png" alt="">
                     <h3> Report.pdf</h3>
                 </div>
         </div>
