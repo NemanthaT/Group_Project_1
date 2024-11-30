@@ -9,6 +9,7 @@
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     min-height: 100vh;
+    overflow-x: hidden;
   }
   
   /* Container Layout */
@@ -191,6 +192,21 @@
 .controls h2, .controls h3 {
     color: #333;
     margin-bottom: 15px;
+}
+
+.forum-search button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #18A0FB;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.forum-search button:hover {
+  background-color: #1071B1;
 }
 
 .forum-categories h3{
