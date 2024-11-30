@@ -140,18 +140,25 @@ include 'get_appointment.php';
             <td><?= htmlspecialchars($user['message']) ?></td>
             <td><?= htmlspecialchars($user['status']) ?></td>
             <td>
-                <?php if ($user['provider_id'] === null): ?>
-                    <button class='btn edit-btn' 
+                <?php if ($user['status'] == 'Pending'): ?>
+                    <button class='btn edit-btn'
                             data-id='<?= htmlspecialchars($user['appointment_id']) ?>' 
         onclick="openUpdatePopup('<?= addslashes($user['appointment_id']) ?>', '<?= addslashes($user['service_type']) ?>', '<?= addslashes($user['appointment_date']) ?>', '<?= addslashes($user['message']) ?>')">
     Edit
 </button>
                 <?php endif; ?>
                 
-                <?php if ($user['provider_id'] !== null && $user['status'] !== 'cancelled'): ?>
+                <?php if ($user['provider_id'] !== null && $user['status'] == 'Scheduled'): ?>
     <form method="POST" action="cancel_appointment.php" style="display: inline;">
         <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
         <button type="submit" class="btn cancel-btn">Cancel</button>
+    </form>
+<?php endif; ?>
+
+<?php if ($user['provider_id'] !== null && $user['status'] == 'Cancelled'): ?>
+    <form method="POST" action="delete_appointment.php" style="display: inline;">
+        <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
+        <button type="submit" class="btn cancel-btn">Delete</button>
     </form>
 <?php endif; ?>
 

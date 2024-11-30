@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($appointmentId) {
         // Update the appointment status in the database
-        $stmt = $conn->prepare("UPDATE appointments SET status = 'cancelled' WHERE appointment_id = ?");
+        $stmt = $conn->prepare("UPDATE appointments SET status = 'Cancelled' WHERE appointment_id = ?");
         $stmt->bind_param("i", $appointmentId);
 
         if ($stmt->execute()) {
