@@ -178,8 +178,8 @@ body {
     background-color: #f4f4f4;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Ensure it spans the full width of the main content */
-    height: 100%; /* Fully utilize the height of the main-content */
+    width: 100%;  /* Fully utilize the width of the main-content */
+    height: fit-content; /* make sure the maincontent fit  the height of the appointment-section */ 
 }
 
 .appointment-section h2 {
@@ -234,7 +234,7 @@ body {
     background-color: #f9f9f9;
 }
 
-.accept-btn, .reject-btn {
+.accept-btn, .reject-btn, .cancel-btn {
     padding: 5px 10px;
     margin: 0 5px;
     border: none;
@@ -248,7 +248,7 @@ body {
     color: white;
 }
 
-.reject-btn {
+.reject-btn, .cancel-btn {
     background-color: #dc3545;
     color: white;
 }
@@ -257,6 +257,6 @@ body {
     background-color: #218838;
 }
 
-.reject-btn:hover {
+.reject-btn:hover, .cancel-btn {
     background-color: #c82333;
 }
