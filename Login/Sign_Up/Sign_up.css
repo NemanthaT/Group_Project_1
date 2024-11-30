@@ -9,6 +9,7 @@
 body {
     position: relative;
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
 }
 
 .blurry-background {
@@ -26,8 +27,13 @@ body {
 
 /* Main Section */
 main {
-    max-width: 600px;
-    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures it takes the full height of the window */
+    max-width: 700px; /* Increased max width for better readability */
+    margin: 0 auto;
     padding: 0 20px;
     text-align: center;
 }
@@ -40,8 +46,10 @@ h1 {
 .form-section {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 30px;
     flex-direction: column;
+    width: 100%;
 }
 
 /* Sign-up Section */
@@ -51,6 +59,8 @@ h1 {
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    width: 100%; /* Ensure it adapts to the container width */
+    max-width: 500px; /* Increased maximum width */
 }
 
 .sign-up-btn {
@@ -108,35 +118,35 @@ input[type="email"], input[type="password"], input[type="text"], input[type="dat
 }
 
 .radio-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-            align-items: center;
-        }
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    align-items: center;
+}
 
-        .radio-buttons label {
-            flex: 1;
-            text-align: center;
-        }
+.radio-buttons label {
+    flex: 1;
+    text-align: center;
+}
 
-        .radio-buttons input[type="radio"] {
-            margin-right: 5px;
-        }
+.radio-buttons input[type="radio"] {
+    margin-right: 5px;
+}
 
-        .terms a {
-            color: #18A0FB; /* Initial light blue color */
-            text-decoration: none;
-        }
+.terms a {
+    color: #18A0FB; /* Initial light blue color */
+    text-decoration: none;
+}
 
-        .terms a:hover {
-            text-decoration: underline;
-        }
+.terms a:hover {
+    text-decoration: underline;
+}
 
-        .terms a:visited {
-            color: purple; /* Change to purple after visited */
-        }
+.terms a:visited {
+    color: purple; /* Change to purple after visited */
+}
 
-        /* Specialized Fields Section */
+/* Specialized Fields Section */
 .specialized-fields {
     display: flex;
     justify-content: space-between;
@@ -154,6 +164,7 @@ input[type="email"], input[type="password"], input[type="text"], input[type="dat
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    gap: 8px;
 }
 
 .specialized-fields input[type="radio"] {
@@ -165,10 +176,6 @@ input[type="email"], input[type="password"], input[type="text"], input[type="dat
     font-size: 14px;
     line-height: 1.5;
     word-wrap: break-word;
-}
-
-.specialized-fields label:hover {
-    color: #18A0FB; /* Highlight label text on hover */
 }
 
 /* Footer */
@@ -208,5 +215,3 @@ input[type="email"], input[type="password"], input[type="text"], input[type="dat
         width: 100%;
     }
 }
-
-
