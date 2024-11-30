@@ -63,12 +63,12 @@ include 'get_appointment.php';
                     </button>
                     </a>
                 </li>
-                <!-- <li>
+                <li><a href="../Message/Message.php">
                     <button>
-                        <img src="../images/knowledgebase.png" alt="Knowledge Base">
-                        Knowledge Base
-                    </button>
-                </li> -->
+                        <img src="../images/Message.png" alt="Message">
+                        Message
+                    </button></a>
+                </li>
                 <!-- <li>
                     <a href="../reports/reports.php">
                         <button>

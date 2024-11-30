@@ -56,14 +56,12 @@ include '../session/session.php';
                     </button>
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="">
+                <li><a href="../Message/Message.php">
                     <button>
-                        <img src="../images/knowledgebase.png" alt="Knowledge Base">
-                        Knowledge Base
-                    </button>
-                    </a>
-                </li> -->
+                        <img src="../images/Message.png" alt="Message">
+                        Message
+                    </button></a>
+                </li>
                 <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
