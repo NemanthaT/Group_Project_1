@@ -40,7 +40,7 @@ include '../session/session.php';
                             Projects
                         </button>
                     </a>
-                </li>                
+                </li>
                 <li>
                     <a href="../bill/bill.php">
                         <button >
