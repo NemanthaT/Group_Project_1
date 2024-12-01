@@ -119,3 +119,23 @@ renderCalendar();
       function toggleSidebar() {
         document.querySelector('.sidebar').classList.toggle('active');
       }
+
+//dateeeeeeeeeeeee
+
+function updateDateDisplay() {
+  const dateDisplay = document.getElementById('date-display');
+
+  // Get the current date
+  const currentDate = new Date();
+
+  // Format the date as YYYY-MM-DD
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const day = String(currentDate.getDate()).padStart(2, '0');
+
+  // Set the date in the format YYYY-MM-DD
+  dateDisplay.textContent = `${year}-${month}-${day}`;
+}
+
+// Update the date display on page load
+updateDateDisplay();

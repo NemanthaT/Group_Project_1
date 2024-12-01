@@ -89,7 +89,8 @@
 }
 
 .date.today {
-  color: white;
+  color: #1dd2fb;
+  background-color: black;
   font-weight: bold;
   font-size: 50px; /* Even bigger font for today's date */
 }
@@ -174,6 +175,22 @@
 }
 
 
+.digital-date {
+  font-size: 2.5em;
+  font-family: 'Arial', sans-serif;
+  color: #000000; /* Match your theme */
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.3); /* Glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  margin: 20px auto;
+  width: fit-content;
+}
+
+
 
 .time {
   color: #000000;
@@ -230,4 +247,8 @@ margin-left: 60px;
   border-radius: 10px;
   padding: 10px;
   border-width: 2;
+}
+
+.box4{
+  display: flex;
 }
