@@ -53,3 +53,38 @@ form input {
     background-color: #fffefe21;
     border: 1px solid #00ffd5;
 }
+
+#addEmp{
+    display: none;
+    position: absolute;
+    z-index: 100;
+    padding: 10px;
+    width: 50%;
+    height: auto;
+    background-color: white;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#form{
+    display: flex !important;
+    flex-direction: column !important;
+    margin-right: 10px;
+    padding-left: 90%;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+#addEmpBtn{
+    color:green;
+    padding: 10px;
+    border: 1px solid #ccc;
+    height: auto;
+    width: auto;
+}
+
+#addEmpBtn:hover{
+    color:white;
+    background-color: green;
+}
