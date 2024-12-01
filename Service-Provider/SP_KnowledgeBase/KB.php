@@ -140,8 +140,8 @@ if (isset($_GET['paper_id'])) {
                         <label for="description">Description:</label>
                         <textarea id="description" name="description" rows="5" placeholder="Enter case study description" required></textarea>
 
-                        <label for="fileUpload">Upload File:</label>
-                        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.docx,.txt">
+                        <!-- <label for="fileUpload">Upload File:</label>
+                        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.docx,.txt"> -->
 
                         <button type="submit">Create Case Study</button>
                     </form>
