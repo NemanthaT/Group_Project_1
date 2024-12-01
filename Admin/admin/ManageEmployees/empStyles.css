@@ -58,6 +58,7 @@ form input {
     display: none;
     position: absolute;
     z-index: 100;
+    margin: 20% 20% 20% 20%;
     padding: 10px;
     width: 50%;
     height: auto;
