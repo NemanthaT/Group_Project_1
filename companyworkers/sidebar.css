@@ -193,13 +193,13 @@ body {
 
 
 .container textarea {
-  width: 55%;
+  width: 80%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  height: 100px;
+  height: 300px;
 }
 
 .submit-button {
