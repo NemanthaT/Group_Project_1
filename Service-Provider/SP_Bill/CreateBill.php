@@ -2,12 +2,13 @@
 include '../Session/Session.php';
 include '../connection.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSA Lanka Consultancy - Add Bill</title>
+    <title>EDSA Lanka Consultancy</title>
     <link rel="stylesheet" href="Bill.css">
 </head>
 <body>
@@ -32,11 +33,13 @@ include '../connection.php';
         <div class="main-wrapper">
             <!-- Navbar -->
             <header>
-                <nav class="navbar">       
+                <nav class="navbar">
                     <a href="../Home/Homepage/HP.html">Home</a>
-                    <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                    <div class="notification">
+                        <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                    </div>
                     <div class="profile">
-                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
                     </div>
                     <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
@@ -44,15 +47,9 @@ include '../connection.php';
 
             <!-- Main Content -->
             <div class="main-content">
-                <div class="space"></div>
-                
-                <!-- Add Bill Section -->
-                <div class="controls card1">
-                    <h1>Create New Bill</h1>
-                </div>
-
-                <div class="center">
-                    <div class="bill-form-container">
+            <div class="create-bill-section">
+    <center><h2>Create New Bill</h2></center>
+    <div class="bill-form-container">
                         <form action="process_bill.php" method="POST" class="bill-form">
                             <div class="form-group">
                                 <label for="project">Select Project</label>
@@ -92,7 +89,7 @@ include '../connection.php';
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            
+    <script src="#"></script>
 </body>
-</html>
+</html
