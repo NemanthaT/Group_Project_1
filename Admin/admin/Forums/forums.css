@@ -12,6 +12,7 @@
     padding: 5px;
     width: 90%;
     border-radius: 10px;
+    text-align: left;
     height: auto;
     overflow: scroll;
     border: 1px solid #ffffffab;
@@ -40,11 +41,11 @@ p {
     display: none;
     position: absolute;
     z-index: 1;
-    margin-left: 10%;
+    margin-left: 20%;
     margin-right: 10%;
     padding: 5px;
     border-radius: 20px;
-    width: 80%;
+    width: 60%;
     height: auto;
     /*background-color: rgb(221, 219, 219);
     border: 1px solid #d8d8d8;*/
