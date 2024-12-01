@@ -27,13 +27,19 @@
     <div id="addEmp">
         <button id="closeView" onclick="closeForm()">x</button>
         <div id="addEmpForm">
-            <form action="" method="POST">
-                <input type="text" name="fullname" placeholder="Enter Full Name" required>
-                <input type="text" name="username" placeholder="Enter Username" required>
-                <input type="text" name="role" placeholder="Enter Role" required>
-                <input type="email" name="email" placeholder="Enter Email" required>
-                <button type="submit" name="addEmp">Add</button>
-            </form>
+            <center>
+                <form action="" method="POST">
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" name="fullname" placeholder="Enter Full Name" required><br>
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" placeholder="Enter Username" required><br>
+                    <label for="role">Role:</label>
+                    <input type="text" name="role" placeholder="Enter Role" required><br>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" placeholder="Enter Email" required><br>
+                    <center><button type="submit" name="addEmp">Add</button></center>
+                </form>
+            </center>
         </div>
         <?php
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addEmp'])) {
@@ -53,7 +59,7 @@
         ?>
     </div>
     
-    <div class="main">
+    <div class="main" id="main">
         <h1>Manage Employees</h1>
         <div class ="mainTop">
             <!--Search Employees and list them-->
