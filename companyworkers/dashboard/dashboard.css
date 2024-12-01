@@ -1,0 +1,147 @@
+/* Calendar Styles */
+.calendar {
+  width: 550px;
+  height: 500px; /* Increase the height here */
+  text-align: center;
+  font-family: Arial, sans-serif;
+  border: 1px solid #1dd2fb;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 20px;
+  overflow-y: auto; /* Allow scrolling if needed */
+  margin-left: 50px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #1dd2fb;
+}
+
+.calendar-header button {
+  background-color: #1dd2fb;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.calendar-header h2 {
+  margin: 0;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.day, .date {
+  padding: 15px; /* Increase padding for larger space */
+  font-size: 18px; /* Increase font size for bigger numbers */
+  color: #333;
+}
+
+.day {
+  font-weight: bold;
+  background-color: #1dd2fb;
+  border-radius: 4px;
+}
+
+.date {
+  background-color: #1dd2fb;
+  border-radius: 4px;
+}
+
+.date.other-month {
+  color: #ccc;
+}
+
+.date.today {
+  background-color: #1dd2fb;
+  color: white;
+  font-weight: bold;
+  font-size: 20px; /* Even bigger font for today's date */
+}
+
+/* Flip-clock counter styles */
+.counter-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#dateDisplay {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.flip-clock-digit {
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  margin: 0 2px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+
+
+.time{
+  margin-left: 200px;
+  color: #1dd2fb;
+  font-weight: bold;
+}
+
+#clock {
+  font-size: 2em;
+  color: #333;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  display: inline-block;
+  background-color: #1dd2fb;
+  margin-top: 5px;
+}
+
+
+
+.box1{
+display: flex;
+flex-direction: row;
+gap : 70px;
+margin-left: 60px;
+}
+
+.box2{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+ 
+}
+
+.box3{
+  height: 150px;
+  width: 600px;
+  background-color: aquamarine;
+  gap: 50px;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+
+}

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DashBoard</title>
     <link rel="stylesheet" href="../sidebar.css?version=1">
-    <link rel="stylesheet" href="dashboard.css?version=3">
+    <link rel="stylesheet" href="dashboard.css?version=7">
   </head>
   <body>
     <div class="container">
@@ -84,65 +84,76 @@
 
         <!-- Main Content Area -->
         <div class="main-container">
-          <div class="top">
           <div class="box1">
-            <h1>helloo</h1>
-          </div>
-          <div class="box1">
-            <h1>helloo</h1>
-          </div>
-        </div>
-        <div class="bottom">
-          <div class="left">
             <div class="box2">
-              <h1>helloo1</h1>
-            </div>
-
-            <div class="box2">
-              <h1>helloo2</h1>
-            </div>
-
-            <div class="box2">
-              <h1>helloo</h1>
-            </div>
-
-        </div>
-        <div class="right">
-          <div class="box3">
-            <div class="time">
-              <div><br> Time </div>
-              <div id="clock">Loading...</div>
-          </div>
-          
-          </div>
-
-          <div class="box3">
-            <div class="calendar">
-              <div class="calendar-header">
-                <button onclick="prevMonth()">‹</button>
-                <h2 id="monthYear"></h2>
-                <button onclick="nextMonth()">›</button>
+              <div class="box3">
+                <!-- Counter Display with Date -->
+              <div class="counter-container">
+                <div id="dateDisplay" class="date-display"></div>
+                <div class="counter-container">
+                  <div id="dateDisplay"></div>
+                  <div class="counter">
+                    <div id="digit1" class="flip-clock-digit"></div>
+                    <div id="digit2" class="flip-clock-digit"></div>
+                  </div>
+                </div>
               </div>
-              <div class="days">
-                <div class="day">Sun</div>
-                <div class="day">Mon</div>
-                <div class="day">Tue</div>
-                <div class="day">Wed</div>
-                <div class="day">Thu</div>
-                <div class="day">Fri</div>
-                <div class="day">Sat</div>
               </div>
-              <div class="days" id="dates"></div>
+              
+              
+              <div class="box3">
+                <!-- Counter Display with Date -->
+              <div class="counter-container">
+                <div id="dateDisplay" class="date-display"></div>
+                <div class="counter-container">
+                  <div id="dateDisplay"></div>
+                  <div class="counter">
+                    <div id="digit1" class="flip-clock-digit"></div>
+                    <div id="digit2" class="flip-clock-digit"></div>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+  
+              <div class="box3">
+                heloo3
+              </div>
+  
+              <div class="box3">
+                heloo4
+              </div>
+  
+
             </div>
+              
+            <div class="box2">
+              <div class="time">
+                <div id="clock">Loading...</div>
+              </div>
+              <div class="calendar">
+                <div class="calendar-header">
+                  <button onclick="prevMonth()">‹</button>
+                  <h2 id="monthYear"></h2>
+                  <button onclick="nextMonth()">›</button>
+                </div>
+                <div class="days">
+                  <div class="day">Sun</div>
+                  <div class="day">Mon</div>
+                  <div class="day">Tue</div>
+                  <div class="day">Wed</div>
+                  <div class="day">Thu</div>
+                  <div class="day">Fri</div>
+                  <div class="day">Sat</div>
+                </div>
+                <div class="days" id="dates"></div>
+              </div>
           </div>
-
         </div>
-        </div>
-
-        </div>
-        
       </div>
-    <script src="dashboard.js"></script>
+    </div>
+  </div>
+    <script src="dashboard.js?version=6"></script>
     <script src="../sidebar.js"></script>
   </body>
 </html>
