@@ -14,7 +14,7 @@
     border-radius: 10px;
     text-align: left;
     height: auto;
-    overflow: scroll;
+    /*overflow: scroll;*/
     border: 1px solid #ffffffab;
     box-shadow: 5px 5px 10px rgb(133, 133, 133);
 }
