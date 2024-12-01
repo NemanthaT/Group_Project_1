@@ -38,7 +38,7 @@ include '../connection.php';
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     </div> 
                     <div class="profile">
-                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
                     </div>
                     <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
@@ -49,7 +49,7 @@ include '../connection.php';
         <div class="message-section">
     <h2>Message</h2>
     <div class="message-controls">
-        <input type="text" placeholder="Provider ID/Topic">
+        <input type="text" placeholder="Client ID/Topic">
         <button class="search-button">Search</button>
     </div>
     
