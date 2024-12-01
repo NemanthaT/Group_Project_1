@@ -127,6 +127,7 @@ if (isset($_GET['paper_id'])) {
 
             <!-- Main Content -->
             <div class="main-content">
+            <div class="KB-section">
                 <h2>Case Studies and Knowledge Resources</h2>
 
                 <!-- Form for Adding Case Studies -->
@@ -190,6 +191,7 @@ if (isset($_GET['paper_id'])) {
                 </form>
             </div>
             <?php endif; ?>
+        </div>
         </div>
 
         <script src="KB.js"></script>        
