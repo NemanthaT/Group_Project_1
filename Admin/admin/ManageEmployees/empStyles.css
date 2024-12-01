@@ -56,13 +56,20 @@ form input {
 
 #addEmp{
     display: none;
+    position: absolute;
     z-index: 100;
-    margin: 15% 30% 15% 30%;
+    padding: 10px;
+    width: 50%;
+    height: auto;
     background-color: white;
     flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
 #form{
+    display: flex !important;
+    flex-direction: column !important;
     margin-right: 10px;
     padding-left: 90%;
     margin-bottom: 20px;
