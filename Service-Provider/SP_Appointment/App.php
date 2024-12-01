@@ -94,7 +94,7 @@ $result = $conn->query($sql);
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="appointment-tbody">
     <?php
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -107,29 +107,30 @@ $result = $conn->query($sql);
             echo "<td>";
 
             // Dynamic actions based on status
-            if ($row['status'] === 'Pending') {
-                echo "<form method='POST' style='display: inline;'>
-                        <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
-                        <input type='hidden' name='status' value='Scheduled'>
-                        <button type='submit' class='accept-btn'>Accept</button>
-                      </form>";
-                echo "<form method='POST' style='display: inline;'>
-                        <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
-                        <input type='hidden' name='status' value='Rejected'>
-                        <button type='submit' class='reject-btn'>Reject</button>
-                      </form>";
-            } elseif ($row['status'] === 'Scheduled') {
-                echo "<form method='POST' style='display: inline;'>
-                        <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
-                        <input type='hidden' name='status' value='Cancelled'>
-                        <button type='submit' class='reject-btn'>Cancel</button>
-                      </form>";
-            } elseif ($row['status'] === 'Rejected') {
-                echo "<span class='status-text rejected'>Rejected</span>";
-            } elseif ($row['status'] === 'Cancelled') {
-                echo "<span class='status-text cancelled'>Cancelled</span>";
-            }
+            $status = strtolower($row['status']); // Convert status to lowercase for case-insensitive comparison
 
+if ($status === 'pending') {
+    echo "<form method='POST' style='display: inline;'>
+            <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
+            <input type='hidden' name='status' value='Scheduled'>
+            <button type='submit' class='accept-btn'>Accept</button>
+          </form>";
+    echo "<form method='POST' style='display: inline;'>
+            <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
+            <input type='hidden' name='status' value='Rejected'>
+            <button type='submit' class='reject-btn'>Reject</button>
+          </form>";
+} elseif ($status === 'scheduled') {
+    echo "<form method='POST' style='display: inline;'>
+            <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
+            <input type='hidden' name='status' value='Cancelled'>
+            <button type='submit' class='reject-btn'>Cancel</button>
+          </form>";
+} elseif ($status === 'rejected') {
+    echo "<span class='status-text rejected'>Rejected</span>";
+} elseif ($status === 'cancelled') {
+    echo "<span class='status-text cancelled'>Cancelled</span>";
+} 
             echo "</td>";
             echo "</tr>";
         }
