@@ -163,14 +163,30 @@ body {
     border-radius: 50%;
 }
 
+/* Main content styling */
 .main-content {
-    width: 80vw;
-    margin: 9vh 0 0 20vw;
-    padding: 3vh  0;  /* Added bottom padding for footer spacing */
+    width: 80vw; /* Matches the remaining space after the sidebar */
+    margin: 9vh 0 0 20vw; /* Top margin for the navbar and left margin for the sidebar */
+    padding: 3vh 2vw; /* Padding for consistent spacing */
     background-color: #ecf0f4;
-    overflow-y: auto;
+    height: calc(100vh - 9vh); /* Full viewport height minus navbar height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
+.bill-section {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it spans the full width of the main content */
+    height: fit-content;
+}
+
+.bill-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
 
 /* Bills Grid */
 .bills-grid {
@@ -274,46 +290,28 @@ body {
     }
 }
 
-
-.center{
+.filter-group {
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .controls {
-    width: 95%;
-    padding: 40px;
-    display: flex;
-    justify-content: space-between;
-    background-color: #fff;
-    margin: 10px auto;
-    border-radius: 8px;
-    
-  }
-  
-  .card1 {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    color: #fff;
-    background-image: url("../images/sunset.jpg") ;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .filter-group select,
-  .search-group input {
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 14px;
-      min-width: 200px;
-  }
-  
-  .search-group input {
-      width: 300px;
-  }
+    align-items: center; /* Align items vertically */
+    gap: 10px; /* Add spacing between elements */
+    justify-content: space-between; /* Space between search and Add Bill button */
+}
 
-  .search-button {
-    width: 100px;
+.filter-group select,
+.filter-group input {
     padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+.search-group input {
+    width: 300px;
+}
+
+.search-button {
+    padding: 10px 20px;
     background: #007bff;
     color: white;
     border: none;
@@ -322,11 +320,39 @@ body {
     transition: background-color 0.3s;
 }
 
-/* Add these styles to the existing Bill.css file */
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.add-bill-button {
+    margin-left: auto; /* Pushes the button to the far right */
+    border-radius: 4px;
+}
+
+.add-bill-button:hover {
+    background-color: #0056b3;
+}
+
+/* Add these styles to the existing Bill.css file for CreateBill.php*/
+
+.create-bill-section {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it spans the full width of the main content */
+    height: fit-content;
+}
+
+.create-bill-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
 
 .bill-form-container {
     width: 95%;
-    background-color: white;
+    background-color: #fcf9f9;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -370,9 +396,24 @@ body {
     padding: 12px 24px;
 }
 
+ /* Invoice Styles  viewbill.php*/
 
-  /* Invoice Styles */
-  .boxcontent {
+.view-bill-section {
+    padding: 20px;
+    background-color: #fcf9f9;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it spans the full width of the main content */
+    height: fit-content;
+}
+
+.view-bill-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.boxcontent {
     background-color: white;
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -383,38 +424,44 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 8px;
   }
-  .invoice-header {
+
+.invoice-header {
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid #333;
     padding-bottom: 10px;
     margin-bottom: 20px;
-  }
-  .company-info {
+}
+
+.company-info {
     font-weight: bold;
-  }
-  .invoice-details {
+}
+
+.invoice-details {
     text-align: right;
-  }
-  .bill-to {
+}
+
+.bill-to {
     margin-bottom: 20px;
-  }
-  table {
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-  }
-  th, td {
+}
+th, td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
-  }
-  th {
+}
+th {
     background-color: #f4f4f4;
-  }
-  .total-section {
+}
+.total-section {
     text-align: right;
     margin-top: 20px;
-  }
-  .total-section strong {
+}
+
+.total-section strong {
     font-size: 1.2em;
-  }
+}
