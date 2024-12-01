@@ -14,12 +14,7 @@ body {
     min-height: 100vh; /* Ensure full viewport height */
 }
 
-.container {
-    display: flex;
-    width: 100%;
-    flex: 1; /* Allow the container to grow and fill available space */
-    flex-direction: row; /* Sidebar and main content side by side */
-}
+
 
 .sidebar {
     background-color: white;
@@ -86,7 +81,6 @@ body {
     width: 80vw;  /* Width adjusted for sidebar */
     background-color: white;
     color: #18A0FB;
-    margin-left: 20vw;  /* Margin adjusted to sidebar width */
     padding: 2vh 4vw;  /* Add some padding for better spacing */
     z-index: 2;
     display: flex;
@@ -286,12 +280,7 @@ body {
     color: #333;
 }
 
-.container {
-    max-width: 1100px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border-radius: 10px;
-}
+
 
 .project-header {
     background-color: #2c3e50;
@@ -301,6 +290,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .document-details {
@@ -448,12 +438,17 @@ body {
 /* Main content styling */
 .main-content {
     width: 80vw;
-    margin: 9vh 0 0 20vw;
     padding: 3vh 2vw 8vh 2vw;  /* Added bottom padding for footer spacing */
     overflow-y: auto;
     
 }
 
+.main-wrapper{
+    width: 80vw;
+    margin-left: 20vw;
+    flex-direction: row;
+    justify-content: center;
+}
 
 /* Bills Grid */
 .bills-grid {
@@ -651,4 +646,76 @@ body {
     align-self: flex-start;
     width: auto;
     padding: 12px 24px;
+}
+
+.project-form-container {
+    width: 80%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+}
+
+.project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field label {
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.container2{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
 }

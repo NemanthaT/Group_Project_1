@@ -68,7 +68,7 @@ include '../connection.php';
             </div>
             <div class="search-group">
                
-                <a href="CreateBill.php"><button class="search-button">+ Projects</button></a>
+                <a href="AddProject.php"><button class="search-button">+ Projects</button></a>
 
             </div>
 
@@ -88,7 +88,7 @@ include '../connection.php';
                         <p><strong>Amount:</strong> Rs 21,850</p>
                         <p><strong>Date:</strong> 2024-11-21</p>
                         <p><strong>Project ID:</strong> 001</p>
-                    </div><a href="Viewbill.php">
+                    </div>                    <a href="EditProject.php">
                     <button class="pay-button green">View</button></a>
                 </div>
             </div>
@@ -106,7 +106,7 @@ include '../connection.php';
                         <p><strong>Date:</strong> 2024-11-21</p>
                         <p><strong>Project ID:</strong> 001</p>
                     </div>
-                    <a href="Viewbill.php">
+                    <a href="EditProject.php">
                     <button class="pay-button green" >View</button>
                     </a>
                 </div>

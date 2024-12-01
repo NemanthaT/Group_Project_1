@@ -163,11 +163,10 @@ body {
     border-radius: 50%;
 }
 
-/* Main content styling */
 .main-content {
     width: 80vw;
     margin: 9vh 0 0 20vw;
-    padding: 3vh 2vw 8vh 2vw;  /* Added bottom padding for footer spacing */
+    padding: 3vh  0;  /* Added bottom padding for footer spacing */
     background-color: #ecf0f4;
     overflow-y: auto;
 }
