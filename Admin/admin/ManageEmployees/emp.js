@@ -4,9 +4,15 @@ function closeView(){
 
 function closeForm(){
     document.getElementById('addEmp').style.display = "none";
-    document.getElementById('main').style.filter = "blur(0px)";
+    document.getElementById('mainContent').style.filter = "blur(0px)";
 }
 function showForm(){
+    window.addEventListener('scroll', function() {});
     document.getElementById('addEmp').style.display = "block";
-    document.getElementById('main').style.filter = "blur(10px)";
+    document.getElementById('mainContent').style.filter = "blur(10px)";
+    document.getElementById('addEmp').style.marginTop = window.scrollY + "px";
 }
+
+window.addEventListener('scroll', function() {
+    document.getElementById('addEmp').style.marginTop = window.scrollY + "px";
+});

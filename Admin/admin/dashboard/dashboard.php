@@ -139,16 +139,16 @@
                 </div>
 
                 <div class="card" id="sR">
-                    <div><p>Service Requests &#128276</p></div>
+                    <div><p>Provider Requests &#128276</p></div>
                     <div>
                     <?php
-                            $sql = "SELECT COUNT(*) FROM servicerequests WHERE status = 'Pending'";
+                            $sql = "SELECT COUNT(*) FROM providerrequests";
                             $result = $conn->query($sql);
                             $row = $result->fetch_assoc();
                             echo "<table>";
                             echo "<tr><th>Pending: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
                             
-                            $sql = "SELECT COUNT(*) FROM servicerequests WHERE status = 'Finished'";
+                            $sql = "SELECT COUNT(*) FROM serviceproviders";
                             $result = $conn->query($sql);
                             $row = $result->fetch_assoc();
                             echo "<tr><th>Accepted: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
@@ -173,13 +173,22 @@
                     <div><p>Forums &#128195</p></div>
                     <div>
                         <?php
-                            $sql = "SELECT COUNT(*) FROM forums";
-                            $result = $conn->query($sql);
-                            $row = $result->fetch_assoc();
+                            $sql1 = "SELECT COUNT(*) FROM forums";
+                            $sql2 = "SELECT COUNT(*) FROM forums WHERE created_by = 'Client'";
+                            $sql3 = "SELECT COUNT(*) FROM forums WHERE created_by = 'ServiceProvider'";
                             echo "<table>";
-                            echo "<tr><th>Forums: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
-                            echo "<tr><th>By clients: </th> <td>10</td></tr>";
-                            echo "<tr><th>By SP's: </th> <td>10</td></tr>";
+                            $result = $conn->query($sql1);
+                            $row = $result->fetch_assoc();
+                            echo "<tr><th>Forums: </th><td>" . $row["COUNT(*)"] . "</td></tr>";
+
+                            $result = $conn->query($sql2);
+                            $row = $result->fetch_assoc();
+                            echo "<tr><th>By Clients: </th><td>" . $row["COUNT(*)"] . "</td></tr>";
+
+                            $result = $conn->query($sql3);
+                            $row = $result->fetch_assoc();
+                            echo "<tr><th>By SP's: </th><td>" . $row["COUNT(*)"] . "</td></tr>";
+
                             echo "</table>";
                         ?>
                     </div>    

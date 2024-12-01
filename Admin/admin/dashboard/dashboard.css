@@ -173,7 +173,7 @@ canvas:hover {
     background-color: #3498db;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 5px 20px;
     cursor: pointer;
     border-radius: 4px;
 }
@@ -203,18 +203,27 @@ canvas:hover {
 }
 
 .date {
-    background-color: #e9f7fe;
+    background-color: #afe4ff;
     border-radius: 4px;
+    text-align: center;
 }
 
 .date.other-month {
     color: #ccc;
+    text-align: center;
 }
 
 .date.today {
     background-color: #3498db;
     color: white;
     font-weight: bold;
+}
+
+.date:hover{
+    cursor: pointer;
+    background-color: tomato;
+    color: white;
+    box-shadow: 0px 5px 15px rgb(0, 238, 255)
 }
 
 .card th{

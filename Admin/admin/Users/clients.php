@@ -59,7 +59,7 @@
                         <?php
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
-                                    echo "<tr><!--<td>" . $row["client_id"]. "</td>--><td>" . $row["full_name"]. "</td><td>" . $row["email"]. "</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewClient(".$row["client_id"].")\">View</button><button class=\"del\" onclick=\"deleteClient(".$row["client_id"].")\">Delete</button></center></td></tr>";
+                                    echo "<tr><!--<td>" . $row["client_id"]. "</td>--><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewClient(".$row["client_id"].")\">View</button><button class=\"del\" onclick=\"deleteClient(".$row["client_id"].")\">Delete</button></center></td></tr>";
                                 }
                             } else {
                                 echo "0 results";
