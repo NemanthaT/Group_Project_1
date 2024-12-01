@@ -1,15 +1,15 @@
 // Search Functionality
 document.querySelector('.search-button').addEventListener('click', function () {
-    const searchValue = document.querySelector('.message-controls input[placeholder="Client ID/Topic"]').value.trim().toLowerCase();
+    const searchValue = document.querySelector('.message-controls input[placeholder="Provider ID/Topic"]').value.trim().toLowerCase();
 
     const rows = document.querySelectorAll('#message-tbody tr');
 
     rows.forEach(row => {
-        const clientIdCell = row.children[0].textContent.toLowerCase(); // Ckient ID
+        const providerIdCell = row.children[0].textContent.toLowerCase(); // Provider ID
         const topicCell = row.children[1].textContent.toLowerCase(); // Topic
 
-        // Show/hide row based on whether the search value matches Client ID or Topic
-        if (clientIdCell.includes(searchValue) || topicCell.includes(searchValue)) {
+        // Show/hide row based on whether the search value matches Provider ID or Topic
+        if (providerIdCell.includes(searchValue) || topicCell.includes(searchValue)) {
             row.style.display = ''; // Show row
         } else {
             row.style.display = 'none'; // Hide row
@@ -19,15 +19,15 @@ document.querySelector('.search-button').addEventListener('click', function () {
 
 
 // Add Chat Button to Each Row
-function addRow(clientId, topic, message, status) {
+function addRow(providerId, topic, message, status) {
     const tableBody = document.getElementById('message-tbody');
     const newRow = document.createElement('tr');
     newRow.innerHTML = `
-        <td>${clientId}</td>
+        <td>${providerId}</td>
         <td>${topic}</td>
         <td>${message}</td>
         <td>${status}</td>
-        <td><button class="chat-button" data-client-id="${clientId}">Chat</button></td>
+        <td><button class="chat-button" data-provider-id="${providerId}">Chat</button></td>
     `;
     tableBody.appendChild(newRow);
 
@@ -40,9 +40,9 @@ function openChatModal(event) {
     const chatModal = document.getElementById('chat-modal');
     chatModal.style.display = 'flex';
 
-    // Get Client ID from Button
-    const clientId = event.target.getAttribute('data-client-id');
-    document.getElementById('chat-window').innerHTML = `<p>Chatting with Client ID: ${clientId}</p>`;
+    // Get Provider ID from Button
+    const providerId = event.target.getAttribute('data-provider-id');
+    document.getElementById('chat-window').innerHTML = `<p>Chatting with Provider ID: ${providerId}</p>`;
 }
 
 // Close Chat Modal
@@ -74,6 +74,6 @@ window.addEventListener('click', function (event) {
 });
 
 // Example: Add Rows Dynamically
-addRow('1', 'Integration Issue', 'Error integrating with Teams', 'Seen');
-addRow('10', 'Login Issue', 'Unable to log in', 'Replied');
-addRow('15', 'Password Reset', 'Request for resetting the password', 'Unseen');
+addRow('101', 'Integration Issue', 'Error integrating with Teams', 'Seen');
+addRow('102', 'Login Issue', 'Unable to log in', 'Replied');
+addRow('103', 'Password Reset', 'Request for resetting the password', 'Unseen');

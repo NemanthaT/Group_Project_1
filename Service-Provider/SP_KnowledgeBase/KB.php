@@ -1,5 +1,6 @@
 <?php
-require_once('../connection.php');
+include '../Session/Session.php';
+include '../connection.php';
 
 // Handle CRUD operations
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

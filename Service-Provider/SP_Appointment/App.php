@@ -1,12 +1,6 @@
 <?php
-session_start();
-
-// Prevent caching of the page
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-
-require_once('../connection.php');
+include '../Session/Session.php';
+include '../connection.php';
 
 // Check if the form is submitted to update the status
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
