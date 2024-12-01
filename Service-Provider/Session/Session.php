@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['email'])) {
-    // Redirect to login page if session does not have user_id
+    // Redirect to login page if session does not have provider_id
     header("Location: ../Login/login.php");
     exit();
 }
