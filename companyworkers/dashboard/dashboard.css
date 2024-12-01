@@ -1,16 +1,15 @@
-/* Calendar Styles */
+body {
+  font-family: Arial, sans-serif;
+}
+
 .calendar {
-  width: 550px;
-  height: 500px; /* Increase the height here */
+  width: 400px;
   text-align: center;
   font-family: Arial, sans-serif;
   border: 1px solid #1dd2fb;
   border-radius: 8px;
   padding: 20px;
   margin: 0 auto;
-  margin-top: 20px;
-  overflow-y: auto; /* Allow scrolling if needed */
-  margin-left: 50px;
 }
 
 .calendar-header {
@@ -42,8 +41,8 @@
 }
 
 .day, .date {
-  padding: 15px; /* Increase padding for larger space */
-  font-size: 18px; /* Increase font size for bigger numbers */
+  padding: 10px;
+  font-size: 14px;
   color: #333;
 }
 
@@ -66,38 +65,52 @@
   background-color: #1dd2fb;
   color: white;
   font-weight: bold;
-  font-size: 20px; /* Even bigger font for today's date */
 }
 
-/* Flip-clock counter styles */
-.counter-container {
-  text-align: center;
+#counter-section {
   margin-top: 20px;
-}
-
-#dateDisplay {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 10px;
+  text-align: center;
 }
 
 .counter {
-  display: flex;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.flip-counter {
+  display: inline-flex;
+  gap: 5px;
   justify-content: center;
   align-items: center;
   font-size: 30px;
+  width: 400px;
 }
 
-.flip-clock-digit {
-  background-color: #333;
-  color: white;
-  padding: 10px 15px;
-  margin: 0 2px;
-  border-radius: 5px;
-  font-weight: bold;
-  display: inline-block;
+.flip-counter div {
   width: 40px;
-  text-align: center;
+  height: 60px;
+  background-color: #1dd2fb;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 36px;
+}
+
+#counter1, #counter2, #counter3, #counter4, #counter5 {
+  display: inline-flex;
+}
+
+#counter1_digit1, #counter2_digit1, #counter3_digit1, #counter4_digit1, #counter5_digit1 {
+  font-size: 36px;
+  background-color: #1dd2fb;
+}
+
+#counter1_digit2, #counter2_digit2, #counter3_digit2, #counter4_digit2, #counter5_digit2 {
+  font-size: 36px;
+  background-color: #1dd2fb;
 }
 
 
@@ -137,11 +150,13 @@ margin-left: 60px;
 
 .box3{
   height: 150px;
-  width: 600px;
-  background-color: aquamarine;
+  width: 400px;
   gap: 50px;
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
+  border-width: 5;
+  border-color: black;
+  border-style: solid;
 
 }
