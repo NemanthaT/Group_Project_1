@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DashBoard</title>
     <link rel="stylesheet" href="../sidebar.css?version=1">
-    <link rel="stylesheet" href="dashboard.css?version=7">
+    <link rel="stylesheet" href="dashboard.css?version=8">
   </head>
   <body>
     <div class="container">
@@ -86,10 +86,10 @@
         <div class="main-container">
           <div class="box1">
             <div class="box2">
-              <div class="box3">
+              <div class="box3 glass-effect-2">
                 <!-- Counter Display with Date -->
                 <div class="counter">
-                  <p id="dateDisplay2" data-name="Service Request Recived On:">Service Request Recived On:</p>
+                  <p id="dateDisplay2" data-name="Service Request">Service Request</p>
                   <div class="flip-counter" id="counter2">
                     <div id="counter2_digit1">0</div>
                     <div id="counter2_digit2">0</div>
@@ -98,10 +98,10 @@
               </div>
               
               
-              <div class="box3">
+              <div class="box3 glass-effect-2">
                 <!-- Counter Display with Date -->
                 <div class="counter">
-                  <p id="dateDisplay3" data-name="Contact Forums Recived On:">Contact Forums Recived On:</p>
+                  <p id="dateDisplay3" data-name="Contact Forums">Contact Forums</p>
                   <div class="flip-counter" id="counter3">
                     <div id="counter3_digit1">0</div>
                     <div id="counter3_digit2">0</div>
@@ -110,9 +110,9 @@
               </div>
 
   
-              <div class="box3">
+              <div class="box3 glass-effect-2">
                 <div class="counter">
-                  <p id="dateDisplay4" data-name="Events Updated On:">Events Updated On:</p>
+                  <p id="dateDisplay4" data-name="Events">Events</p>
                   <div class="flip-counter" id="counter4">
                     <div id="counter4_digit1">0</div>
                     <div id="counter4_digit2">0</div>
@@ -120,45 +120,45 @@
                 </div>
               </div>
   
-              <div class="box3">
-                <div class="counter">
-                  <p id="dateDisplay5" data-name="News Updated:">News Updated:</p>
+              <div class="box3 glass-effect-2">
+                <div class="counter ">
+                  <p id="dateDisplay5" data-name="News">News</p>
                   <div class="flip-counter" id="counter5">
                     <div id="counter5_digit1">0</div>
                     <div id="counter5_digit2">0</div>
                   </div>
                 </div>
               </div>
-  
-
             </div>
               
             <div class="box2">
-              <div class="time">
+              <div class="time glass-effect-3">
                 <div id="clock">Loading...</div>
               </div>
-              <div class="calendar">
+
+              <div class="calendar glass-effect">
                 <div class="calendar-header">
                   <button onclick="prevMonth()">‹</button>
                   <h2 id="monthYear"></h2>
                   <button onclick="nextMonth()">›</button>
                 </div>
                 <div class="days">
-                  <div class="day">Sun</div>
-                  <div class="day">Mon</div>
-                  <div class="day">Tue</div>
-                  <div class="day">Wed</div>
-                  <div class="day">Thu</div>
-                  <div class="day">Fri</div>
-                  <div class="day">Sat</div>
+                  <div class="day glass-effect">Sun</div>
+                  <div class="day glass-effect">Mon</div>
+                  <div class="day glass-effect">Tue</div>
+                  <div class="day glass-effect">Wed</div>
+                  <div class="day glass-effect">Thu</div>
+                  <div class="day glass-effect">Fri</div>
+                  <div class="day glass-effect">Sat</div>
                 </div>
-                <div class="days" id="dates"></div>
+                <div class="days glass-effect" id="dates"></div>
               </div>
             
               <!-- Counter Section (5 counters with customizable names) -->
+              <div class="box3 glass-effect-2">
               <div id="counter-section">
                 <div class="counter">
-                  <p id="dateDisplay1" data-name="Counter 1">Counter 1:</p>
+                  <p id="dateDisplay1" data-name="knowldgedebase">Knowldgedebase</p>
                   <div class="flip-counter" id="counter1">
                     <div id="counter1_digit1">0</div>
                     <div id="counter1_digit2">0</div>
@@ -170,6 +170,7 @@
       </div>
     </div>
   </div>
+    </div>
     <script src="dashboard.js?version=6"></script>
     <script src="../sidebar.js"></script>
   </body>

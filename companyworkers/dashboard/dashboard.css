@@ -1,15 +1,37 @@
-body {
-  font-family: Arial, sans-serif;
-}
-
+/* Calendar Styles */
 .calendar {
-  width: 400px;
+  width: 550px;
+  height: 530px; /* Increase the height here */
   text-align: center;
   font-family: Arial, sans-serif;
   border: 1px solid #1dd2fb;
   border-radius: 8px;
   padding: 20px;
   margin: 0 auto;
+  margin-top: 20px;
+  overflow-y: auto; /* Allow scrolling if needed */
+}
+
+.glass-effect {
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent white */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+  backdrop-filter: blur(10px); /* Adds the blur effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 20px; /* Add some padding inside */
+}
+
+.glass-effect-2 {
+  background: rgba(255, 255, 255, 0.3); /* Glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 150px;
+  margin: 20px auto;
 }
 
 .calendar-header {
@@ -17,11 +39,11 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  color: #1dd2fb;
+  color: black;
 }
 
 .calendar-header button {
-  background-color: #1dd2fb;
+  background-color: black;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -41,20 +63,25 @@ body {
 }
 
 .day, .date {
-  padding: 10px;
-  font-size: 14px;
+  padding: 15px; /* Increase padding for larger space */
+  font-size: 18px; /* Increase font size for bigger numbers */
   color: #333;
 }
 
 .day {
   font-weight: bold;
-  background-color: #1dd2fb;
   border-radius: 4px;
+
 }
 
 .date {
-  background-color: #1dd2fb;
   border-radius: 4px;
+  cursor: pointer;
+  font-weight: 10px;
+}
+
+#dates{
+  font-weight: 20px;
 }
 
 .date.other-month {
@@ -62,42 +89,75 @@ body {
 }
 
 .date.today {
-  background-color: #1dd2fb;
   color: white;
   font-weight: bold;
+  font-size: 50px; /* Even bigger font for today's date */
 }
 
-#counter-section {
+/* Flip-clock counter styles */
+.counter-container {
+  text-align: center;
   margin-top: 20px;
+}
+
+#dateDisplay {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.flip-clock-digit {
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  margin: 0 2px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  width: 40px;
   text-align: center;
 }
 
 .counter {
-  display: inline-block;
-  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Arrange name and digits in a column */
+  gap: 10px; /* Space between name and numbers */
+}
+
+#dateDisplay1 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .flip-counter {
-  display: inline-flex;
-  gap: 5px;
+  display: flex; /* Display digits horizontally */
   justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  width: 400px;
+  gap: 5px; /* Space between digits */
 }
 
 .flip-counter div {
-  width: 40px;
-  height: 60px;
-  background-color: #1dd2fb;
+  width: 50px;
+  height: 70px;
+  background-color: #333;
   color: white;
-  font-weight: bold;
+  font-size: 40px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 4px;
-  font-size: 36px;
+  justify-content: center;
+  border-radius: 5px;
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
+
 
 #counter1, #counter2, #counter3, #counter4, #counter5 {
   display: inline-flex;
@@ -105,31 +165,45 @@ body {
 
 #counter1_digit1, #counter2_digit1, #counter3_digit1, #counter4_digit1, #counter5_digit1 {
   font-size: 36px;
-  background-color: #1dd2fb;
+  background-color: #333333;
 }
 
 #counter1_digit2, #counter2_digit2, #counter3_digit2, #counter4_digit2, #counter5_digit2 {
   font-size: 36px;
-  background-color: #1dd2fb;
+  background-color: #333333;
 }
 
 
-.time{
-  margin-left: 200px;
-  color: #1dd2fb;
+
+.time {
+  color: #000000;
   font-weight: bold;
+  text-align: center; /* Ensure proper alignment */
 }
 
 #clock {
   font-size: 2em;
-  color: #333;
   font-family: Arial, sans-serif;
   padding: 20px;
-  border: 2px solid #333;
   border-radius: 8px;
   display: inline-block;
-  background-color: #1dd2fb;
+  background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Soft border */
+  backdrop-filter: blur(10px); /* Blur effect for glass */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  color: #000000; /* Match text color with the glass effect */
+  text-align: center;
   margin-top: 5px;
+}
+
+.glass-effect-3 {
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent white */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+  backdrop-filter: blur(10px); /* Adds the blur effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 20px; /* Add some padding inside */
 }
 
 
@@ -144,19 +218,16 @@ margin-left: 60px;
 .box2{
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 40px;
+  width: 65vh;
  
 }
 
 .box3{
   height: 150px;
-  width: 400px;
-  gap: 50px;
+  width: 500px;
+  gap: 40px;
   border-radius: 10px;
   padding: 10px;
-  cursor: pointer;
-  border-width: 5;
-  border-color: black;
-  border-style: solid;
-
+  border-width: 2;
 }
