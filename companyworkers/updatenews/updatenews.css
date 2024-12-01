@@ -50,25 +50,6 @@
 
 }
 
-.boxes{ 
-    display: flex;
-    gap: 40%; /* Space out the boxes */
-    align-items: center; /* Center the boxes vertically */
-    margin-left: 7%;
-}
-
-.new{
-    width: 150%;
-    background-color: #afafaf;    
-    height: 300px;
-    margin-left: 10%;
-    margin-right: 50%;
-    margin-top: 60%;
-    border-radius: 10px;
-    display: flex;
-   
-}
-
 .table-container {
     max-height: 800px; /* Limit the table height */
     overflow-y: auto; /* Add vertical scrolling */

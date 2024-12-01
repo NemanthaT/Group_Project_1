@@ -21,7 +21,7 @@ include("../connect.php");
 
       <ul class="menu">
         <li>
-          <a href="../dashboard/dashboard.html">
+        <a href="../dashboard/dashboard.php">
             <button>
               <img src="../images/dashboard.png" alt="Dashboard">
               Dashboard
@@ -85,9 +85,8 @@ include("../connect.php");
         </div>
         <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
-      <div class="main-container">
 
-    <div class="container" style="position: absolute; top: 100px;">
+      <div class="main-container">
     <div class="table-container">
     <table class="table table-hover">
         <thead>

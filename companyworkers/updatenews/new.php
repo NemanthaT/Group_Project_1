@@ -35,7 +35,7 @@ if(isset($_POST['submit'])){
 
       <ul class="menu">
         <li>
-          <a href="../dashboard/dashboard.html">
+          <a href="../dashboard/dashboard.php">
             <button>
               <img src="../images/dashboard.png" alt="Dashboard">
               Dashboard

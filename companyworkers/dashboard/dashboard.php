@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +19,7 @@
 
         <ul class="menu">
           <li>
-            <a href="dashboard.html">
+          <a href="dashboard.php">
               <button>
                 <img src="../images/dashboard.png" alt="Dashboard">
                 Dashboard

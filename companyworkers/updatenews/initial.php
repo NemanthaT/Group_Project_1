@@ -17,7 +17,7 @@
 
       <ul class="menu">
         <li>
-          <a href="../dashboard/dashboard.html">
+        <a href="../dashboard/dashboard.php">
             <button>
               <img src="../images/dashboard.png" alt="Dashboard">
               Dashboard
@@ -85,13 +85,18 @@
       <div class="boxcontainer">
         <div class="boxes">
             <a href="new.php" style="text-decoration: none; color: inherit;">
-                <div class="new">
-                    Enter to add new knowledge base
+            <div class="new glass-effect">
+                  <img src="../images/new.jpg" alt="new" class="icon">
+                    <p>Enter to add new news</p>
                 </div>
             </a>
             <a href="updatedelete.php" style="text-decoration: none; color: inherit;">
-                <div class="new">
-                    Update or delete knowledge base
+            <div class="new glass-effect">
+                  <div class="updelete">
+                  <img src="../images/update.jpg" alt="new" class="icon1">
+                  <img src="../images/delete.jpg" alt="new" class="icon1">
+                  </div>
+                  <p1>Update or delete news</p1>
                 </div>
             </a>
         </div>

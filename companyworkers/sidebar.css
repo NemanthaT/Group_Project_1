@@ -264,3 +264,197 @@ body {
   background-color: #007bff;
   color: #fff; /* Change text color on hover */
 }
+
+
+.table-container {
+  max-height: 800px; /* Limit the table height */
+  overflow-y: auto; /* Add vertical scrolling */
+  border: 1px solid #ddd; /* Optional: border for container clarity */
+  margin-top: 50px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  width: 1200px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-left: 80px;
+}
+
+/* Table Styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0; /* Explicitly set to avoid unexpected gaps */
+  font-size: 18px;
+  text-align: left;
+}
+
+
+.table thead th {
+  background-color: #4CAF50; /* Header background */
+  color: white; /* Header text color */
+  padding: 10px; /* Padding in header cells */
+  border: 1px solid #ddd; /* Border around header cells */
+  text-align: center; /* Center-align header text */
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9; /* Light background for odd rows */
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #ffffff; /* White background for even rows */
+}
+
+.table tbody tr:hover {
+  background-color: #f1f1f1; /* Highlight row on hover */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.table td, .table th {
+  padding: 10px; /* Padding for all cells */
+  border: 1px solid #ddd; /* Add border to all cells */
+  text-align: center; /* Center content horizontally */
+  vertical-align: middle; /* Center content vertically */
+}
+
+/* Button Styling */
+.table td button {
+  background-color: transparent; /* Remove default background */
+  border: none; /* Remove border */
+  margin: 0 5px; /* Space between buttons */
+}
+
+.table td button a {
+  display: inline-block;
+  padding: 8px 15px; /* Add padding inside links */
+  text-decoration: none; /* Remove underline */
+  color: white; /* Button text color */
+  font-weight: bold; /* Bold text */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+/* Update Button */
+.table td button a[href*="update.php"] {
+  background-color: #28a745; /* Green background */
+}
+
+/* Delete Button */
+.table td button a[href*="delete.php"] {
+  background-color: #dc3545; /* Red background */
+}
+
+/* Hover Effects for Buttons */
+.table td button a:hover {
+  background-color: #007bff; /* Blue on hover */
+  color: white; /* White text on hover */
+  transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+/* Ensure the label covers the entire cell */
+.checkbox-label {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+/* Hide the actual checkbox */
+.hidden-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Custom checkbox appearance */
+.custom-checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  margin: 0 auto; /* Center the checkbox */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Checkbox checked state */
+.hidden-checkbox:checked + .custom-checkbox {
+  background-color: #1dd2fb;
+  border-color: #1dd2fb;
+  box-shadow: 0 0 5px #1dd2fb;
+}
+
+.icon{
+  width: auto;
+  height: 200px;
+  object-fit: contain;
+  margin-right: 1vh;
+}
+
+.icon1{
+  width: auto;
+  height: 150px;
+  object-fit: contain;
+  margin-right: 1vh;
+}
+
+p{
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #000000;
+}
+
+.p1{
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #000000;
+  margin-top: 20px;
+}
+
+.updelete{
+  display: flex;
+  justify-content: space-between;
+  gap:20px;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  border: 1px solid rgb(255, 255, 255); /* Subtle border */
+  backdrop-filter: blur(10px); /* Adds the blur effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 20px; /* Add some padding inside */
+  display: flex;
+}
+
+
+.boxes{ 
+  display: flex;
+  flex-direction: row;
+  gap: 300px; /* Space out the boxes */
+  align-items: center; /* Center the boxes vertically */
+  justify-items: center;
+  margin-left: 100px;
+
+}
+
+.new{
+  width: 150%;
+  background-color: #ffffff;    
+  height: 300px;
+  margin-left: 10%;
+  margin-right: 50%;
+  margin-top: 60%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: #ffffff;
+  justify-items: center;
+  align-items: center;
+ 
+}
