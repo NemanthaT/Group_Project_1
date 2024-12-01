@@ -52,11 +52,7 @@
                     <table>
                         <tr>
                             <!--<th>UId</th>-->
-<<<<<<< HEAD
-                            <th>Full Name</th>
-=======
                             <th>Username</th>
->>>>>>> admin
                             <th>Email</th>
                             <th>Specialty</th>
                             <th>Actions</th>
@@ -64,11 +60,7 @@
                     <?php
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-<<<<<<< HEAD
-                                echo "<tr><!--<td>" . $row["provider_id"]. "</td>--><td>" . $row["full_name"]. "</td><td>" . $row["email"]. "</td><td>" . $row["speciality"]."</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewSp(".$row["provider_id"].")\">View</button><button class=\"del\" onclick=\"deleteSp(".$row["provider_id"].")\">Delete</button></center></td></tr>";
-=======
                                 echo "<tr><!--<td>" . $row["provider_id"]. "</td>--><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td><td>" . $row["speciality"]."</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewSp(".$row["provider_id"].")\">View</button><button class=\"del\" onclick=\"deleteSp(".$row["provider_id"].")\">Delete</button></center></td></tr>";
->>>>>>> admin
                             }
                         } else {
                             echo "0 results";
