@@ -58,7 +58,10 @@ form input {
     display: none;
     position: absolute;
     z-index: 100;
-    margin: 20% 20% 20% 20%;
+    margin-left: 20%;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     width: 50%;
     height: auto;
@@ -69,12 +72,30 @@ form input {
 }
 
 #form{
-    display: flex !important;
-    flex-direction: column !important;
     margin-right: 10px;
     padding-left: 90%;
     margin-bottom: 20px;
     height: auto;
+}
+
+#fm{
+    width: 70% !important;
+    display: block !important;
+    margin: 0 auto !important;
+    padding: 0px !important;
+}
+
+#fm input{
+    align-items: flex-end;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#fm label{
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 #addEmpBtn{
@@ -88,4 +109,16 @@ form input {
 #addEmpBtn:hover{
     color:white;
     background-color: green;
+}
+
+#sBtn{
+    margin-top: 15px;
+}
+
+#addEmpForm{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
