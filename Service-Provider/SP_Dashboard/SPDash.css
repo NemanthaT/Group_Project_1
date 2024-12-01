@@ -152,7 +152,7 @@ body {
     padding: 3vh 2vw; /* Padding for consistent spacing */
     background-color: #ecf0f4;
     height: calc(100vh - 9vh); /* Full viewport height minus navbar height */
-    overflow-y: auto; /* Enable scrolling if content overflows */
+    overflow-y: hidden; /* Enable scrolling if content overflows */
 }
 
 /* Dashboard grid layout */
@@ -174,7 +174,7 @@ body {
 /* Right section with 2 grids */
 .right-section {
     display: grid;
-    grid-template-rows: 1fr 2fr;  /* Top grid 1x height, bottom grid 2x height */
+    grid-template-rows: repeat(3, 1fr);  /* Top grid 1x height, bottom grid 2x height */
     gap: 3vh;
 }
 
@@ -194,11 +194,27 @@ body {
     transition: transform 0.3s ease;
 }
 
-.card:hover {
+.card h3 {
+    font-size: 2vh;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2vh; /* Space between heading and the first paragraph */
+    text-transform: uppercase;
+}
+
+/* Styling for p tags inside cards */
+.card p {
+    font-size: 1.8vh; /* Larger font for better readability */
+    color: #555;
+    margin: 1vh 0; /* Even spacing between paragraphs */
+    line-height: 1.5; /* Increased line height for better text clarity */
+}
+
+/* .card:hover {
     transform: scale(1.05);
     background-color: #18A0FB;
     color: white;
-}
+} */
 
 .clock-card {
     background-color: white;
@@ -214,11 +230,11 @@ body {
     transition: transform 0.3s ease;
 }
 
-.clock-card:hover {
+/* .clock-card:hover {
     transform: scale(1.05);
     background-color: #18A0FB;
     color: white;
-}
+} */
 
 #time {
     font-size: 4vh; /* Large font for better visibility */
