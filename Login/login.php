@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) { //check if form was submitted
 
     $redirects = [
         'admin' => '../Admin/admin/dashboard/admin.php',
-        'companyworker' => '../companyworkers/dashboard/dashboard.html',
+        'companyworker' => '../companyworkers/dashboard/dashboard.php',
         'client' => '../user1/user/Dashboard/Dashboard.php',
         'serviceprovider' => '../Service-Provider/SP_Dashboard/SPDash.php'
     ];
