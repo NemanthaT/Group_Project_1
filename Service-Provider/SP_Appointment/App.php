@@ -78,7 +78,7 @@ $result = $conn->query($sql);
             <!-- Main Content -->
             <div class="main-content">
                 <div class="appointment-section">
-                    <h2>Appointments</h2>
+                    <center><h2>Appointments</h2></center>
                     <div class="appointment-controls">
                         <input type="text" id="clientFilter" placeholder="Search by Client ID">
                         <button class="search-button" onclick="filterAppointments()">Search</button>
