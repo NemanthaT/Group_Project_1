@@ -212,6 +212,81 @@ body {
     background-color: #1071B1;
 }
 
+/* Create Chat Button Styling */
+.create-chat-button {
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-chat-button:hover {
+    background-color: #1071B1;
+}
+
+/* Create Chat Modal Styles */
+#create-chat-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#create-chat-modal {
+    display: none; /* Ensure it stays hidden on page load */
+}
+
+.create-chat-modal .modal-content {
+   background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.create-chat-modal .close-create-chat-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+.create-chat-modal input, .create-chat-modal textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.create-chat-modal button[type="submit"] {
+    background-color: #18A0FB;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-chat-modal button[type="submit"]:hover {
+    background-color: #1071B1;
+}
+
 .message-table {
     width: 100%;
     border-collapse: collapse;
