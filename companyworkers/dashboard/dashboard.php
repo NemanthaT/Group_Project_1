@@ -19,7 +19,7 @@
 
         <ul class="menu">
           <li>
-          <a href="dashboard.php">
+            <a href="../dashboard/dashboard.php">
               <button>
                 <img src="../images/dashboard.png" alt="Dashboard">
                 Dashboard
@@ -145,7 +145,7 @@
               </div>
               
 
-              <div class="calendar glass-effect">
+              <div class="calendar">
                 <div class="calendar-header">
                   <button onclick="prevMonth()">‹</button>
                   <h2 id="monthYear"></h2>

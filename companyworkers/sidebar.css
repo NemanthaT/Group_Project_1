@@ -202,6 +202,16 @@ body {
   height: 300px;
 }
 
+.middle textarea{
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 200px;
+}
+
 .submit-button {
   font-size: 18px;        /* Increase the font size */
   color: white;           /* Text color */
@@ -336,7 +346,7 @@ body {
 
 /* Update Button */
 .table td button a[href*="update.php"] {
-  background-color: #28a745; /* Green background */
+  background-color: #63c2d7
 }
 
 /* Delete Button */
