@@ -24,6 +24,34 @@
     <div class="bg">
         <!--blur Background image-->  
     </div>
+    <div id="addEmp">
+        <button id="closeView" onclick="closeForm()">x</button>
+        <div id="addEmpForm">
+            <form action="" method="POST">
+                <input type="text" name="fullname" placeholder="Enter Full Name" required>
+                <input type="text" name="username" placeholder="Enter Username" required>
+                <input type="text" name="role" placeholder="Enter Role" required>
+                <input type="email" name="email" placeholder="Enter Email" required>
+                <button type="submit" name="addEmp">Add</button>
+            </form>
+        </div>
+        <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addEmp'])) {
+                $username = $_POST['username'];
+                $fullname = $_POST['fullname'];
+                $role = $_POST['role'];
+                $email = $_POST['email'];
+                $password = rand(100000, 999999);
+                $password = password_hash($password, PASSWORD_DEFAULT);
+                $sql = "INSERT INTO companyworkers (username, full_name, role, email, password) VALUES ('$username', '$fullname', '$role', '$email', '$password')";
+                if ($conn->query($sql) === TRUE) {
+                    echo "<script>alert('New Employee Added Successfully!');</script>";
+                } else {
+                    echo "<script>alert('Error: ".$conn->error."!');</script>";
+                }
+            }
+        ?>
+    </div>
     
     <div class="main">
         <h1>Manage Employees</h1>
@@ -123,6 +151,9 @@
 
             </div>
 
+        </div>
+        <div id="form">
+            <button id="addEmpBtn" onclick="showForm()">Add Employee</button>
         </div>
         <div id="searchResults">
             <div id="results">
