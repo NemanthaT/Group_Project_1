@@ -42,29 +42,43 @@
 
             <!-- Main Content (Message Table) -->
         <div class="main-content">
-            <div class="message-section">
-                <h2>Message</h2>
-                <div class="message-controls">
-                    <button class="new-message">New Message</button>
-                    <input type="text" placeholder="Service">
-                    <input type="text" placeholder="Topic">
-                    <button class="search-button">Search</button>
-                </div>
-                <table class="message-table">
-                    <thead>
-                        <tr>
-                            <th>Topic</th>
-                            <th>Service</th>
-                            <th>States</th>
-                        </tr>
-                    </thead>
-                    <tbody id="message-tbody">
-                        <!-- Rows will be added here dynamically -->
-                    </tbody>
-                </table>
-            </div>
+        <div class="message-section">
+    <h2>Message</h2>
+    <div class="message-controls">
+        <input type="text" placeholder="Provider ID/Topic">
+        <button class="search-button">Search</button>
+    </div>
+    
+    <table class="message-table">
+        <thead>
+            <tr>
+                <th>Client ID</th>
+                <th>Topic</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="message-tbody">
+            <!-- Rows will be added dynamically -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Chat Modal -->
+<div id="chat-modal" class="modal">
+    <div class="modal-content">
+        <button class="close-chat-modal" title="Close">&times;</button>
+        <h3>Chat with Client</h3>
+        <div class="chat-window" id="chat-window">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="chat-input-section">
+            <textarea id="chat-input" placeholder="Type your message..."></textarea>
+            <button id="send-chat" class="send-chat">Send</button>
         </div>
     </div>
+</div>
 
     <script src="Message.js"></script>
 </body>
