@@ -8,6 +8,7 @@
 
 /* Navbar */
 .navbar {
+    font-size: 1.3rem;
     width: 100%;
     background-color: white;
     color: #18A0FB;
@@ -15,7 +16,8 @@
 }
 
 .Hcontainer {
-    max-width: 1200px;
+    /*max-width: 1200px;*/
+    width: 70%;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -26,6 +28,7 @@
 .Hcontainer a{
     color: #18A0FB;
     text-decoration: none;
+    font-weight: bold;
     font-size: 2.5vh;
     padding: 0.8vh 1.5vw;  /* Reduced padding to reduce gap between links */
     margin-left: 1.5vw;  /* Optional: Adds space between links */
@@ -113,7 +116,7 @@ h1 {
 
 .image-placeholder {
     background-color: #e0e0e0;
-    width: 100%;
+    width: 300px;
     height: 300px;
 }
 
