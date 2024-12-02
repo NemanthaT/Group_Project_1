@@ -88,7 +88,7 @@ include("../connect.php");
 
       
       <div style="text-align: right;">
-        <input type="submit" value="Assign" name="submit" class="submit-button" onclick="window.location.href='assign.php';">
+        <input type="submit" value="Assign" name="submit" class="submit-button">
       </div>
       
       <div class="table-container">
