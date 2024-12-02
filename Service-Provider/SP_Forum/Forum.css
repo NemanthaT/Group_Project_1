@@ -175,33 +175,89 @@ body {
 
 .forum-section {
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 100%; /* Ensure it spans the full width of the main content */
-    height: 100%; /* Fully utilize the height of the main-content */
+    height: fit-content; /* Fully utilize the height of the main-content */
 }
 
 .forum-section h2, .forum-section h3 {
     color: #333;
     margin-bottom: 15px;
+    margin-top: 15px;
 }
 
-.forum-categories ul, .forum-threads ul {
+.forum-section button{
+    background-color: #18A0FB;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+            padding: 0.8vh 2vw;
+
+}
+
+.forum-categories ul{
     list-style: none;
     padding: 0;
+    display: flex;
+    gap: 10px;
+
 }
+
+.forum-threads ul {
+    list-style: none;
+    padding: 0;
+    
+}
+.forum-threads ul li h4,
+.forum-threads ul li p {
+    display: block;
+    margin: 0 0 5px 0; /* Space between h4, p, and buttons */
+}
+
+.forum-threads ul li .button-container {
+    display: flex; /* Align buttons horizontally */
+    gap: 10px; /* Space between buttons */
+}
+
+.forum-threads ul li button{
+    color: white;
+    font-size: 2.2vh;
+    padding: 0.8vh 2vw;
+    border: none;
+    border-radius: 1vh;
+    cursor: pointer;
+}
+
+.forum-threads ul li .view-btn{
+   background-color: green;
+}
+
+.forum-threads ul li .delete-btn{
+    background-color: red;
+ }
+
+ .forum-threads ul li .view-btn:hover{
+    background-color: green;
+ }
+ 
+ .forum-threads ul li .delete-btn:hover{
+     background-color: red;
+  }
 
 .forum-categories ul li button {
     display: block;
     padding: 10px;
     margin-bottom: 5px;
-    width: 100%;
     background-color: #18A0FB;
     color: white;
     border: none;
     cursor: pointer;
     text-align: left;
+    border-radius: 10px;
 }
 
 .forum-categories ul li button:hover {
@@ -223,58 +279,94 @@ body {
     margin-top: 15px;
 }
 
-.forum-search input[type="text"], .new-thread input[type="text"], .forum-search button, .new-thread button, .new-thread select {
+.forum-search input[type="text"], .new-thread input[type="text"], .new-thread button, .new-thread select {
     padding: 8px;
     margin-right: 5px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
+    width: 90%;
 
-.new-thread {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
 }
-
-.new-thread form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.new-thread .form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.new-thread label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.new-thread input[type="text"],
-.new-thread select,
-.new-thread textarea {
-    padding: 10px;
-    font-size: 16px;
+.forum-search button{
+    padding: 8px;
+    margin-right: 5px;
+    font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-.new-thread button {
-    padding: 10px;
-    font-size: 16px;
     background-color: #18A0FB;
     color: white;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-    align-self: flex-start;
 }
 
-.new-thread button:hover {
+.forum-search button:hover{
     background-color: #1071B1;
 }
+
+/* Modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 9998;
+}
+
+/* Modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 9998;
+}
+
+/* Create Thread Modal styles */
+.create-thread-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; /* Adjusted width */
+    height: auto; /* Allow height to adjust */
+    background-color: #fff;
+    padding: 30px; /* Padding */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    border-radius: 10px;
+    overflow-y: auto; /* Allow vertical scrolling if content overflows */
+}
+
+/* View Thread Modal styles */
+.view-thread-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; /* Adjusted width */
+    height: auto; /* Allow height to adjust */
+    background-color: #fff;
+    padding: 30px; /* Padding */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    border-radius: 10px;
+    overflow-y: auto; /* Allow vertical scrolling if content overflows */
+}
+
+/* Form input styles */
+.input-field {
+    width: calc(100% - 20px);
+    margin-bottom: 15px; /* Margin for spacing */
+    padding: 12px; /* Padding for comfort */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px; /* Font size */
+}
+
+/* Button

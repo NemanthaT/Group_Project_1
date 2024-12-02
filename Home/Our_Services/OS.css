@@ -116,10 +116,12 @@ main {
 }
 
 .image-placeholder {
-    background-color: #e0e0e0;
     width: 150px;
     height: 150px;
     margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .service-text {

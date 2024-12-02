@@ -53,7 +53,7 @@
                     <div id=frame>
                         <iframe src="dashboard.php" name="Dashboard" title="Dashboard"></iframe>
                     </div>
-                    <div class="right" id="arrow"></div>
+                    <!--<div class="right" id="arrow"></div>
                     <div id="content">
                         <div class="calendar">
                             <div class="calendar-header">
@@ -71,7 +71,7 @@
                                 <div class="day">Sat</div>
                             </div>
                             <div class="days" id="dates"></div>
-                        </div>
+                        </div>-->
 
                         <!--<div class="userAmount">
                             <?php
