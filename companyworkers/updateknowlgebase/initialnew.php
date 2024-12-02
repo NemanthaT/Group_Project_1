@@ -83,16 +83,19 @@
       <div class="main-container">
       <div class="boxcontainer">
         <div class="boxes">
-            <a href="initialnew.php" style="text-decoration: none; color: inherit;">
+            <a href="new.php" style="text-decoration: none; color: inherit;">
                 <div class="new glass-effect">
-                  <img src="../images/research.jpg" alt="new" class="icon">
-                    <p>Training</p>
+                  <img src="../images/new.jpg" alt="new" class="icon">
+                    <p>Enter to add new knowledge base</p>
                 </div>
             </a>
-            <a href="initialnew.php" style="text-decoration: none; color: inherit;">
+            <a href="updatedelete.php" style="text-decoration: none; color: inherit;">
                 <div class="new glass-effect">
-                  <img src="../images/consultant.jpg" alt="new" class="icon">
-                  <p>Consulting</p>
+                  <div class="updelete">
+                  <img src="../images/update.jpg" alt="new" class="icon1">
+                  <img src="../images/delete.jpg" alt="new" class="icon1">
+                  </div>
+                  <p>Update or delete knowledge base</p>
                 </div>
             </a>
         </div>
