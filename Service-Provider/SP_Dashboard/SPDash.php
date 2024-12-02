@@ -46,9 +46,19 @@ include '../connection.php';
             <div class="main-content">
                 <div class="dashboard">
                     <div class="left-section">
-                        <div class="card"><h3>Ongoing Projects</h3></div>
-                        <div class="card"><h3>Completed Projects</h3></div>
-                        <div class="card"><h3>Teams</h3></div>
+                    <div class="card">
+                        <h3>Projects</h3>
+                            <p>Assigned Projects : 14</p>
+                            <p>Ongoing Projects : 8</p>
+                            <p>Completed Projects : 6</p>
+                    </div>
+                    <div class="card">
+                        <h3>Appointments</h3>
+                            <p>No.of Appointments : 9</p>
+                            <p>Scheduled : 5</p>
+                            <p>Rejected : 2</p>
+                            <p>Cancelled : 2</p>
+                        </div>
                     </div>
                     <div class="right-section">
                         <div class="card clock-card">

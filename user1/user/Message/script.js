@@ -17,6 +17,43 @@ document.querySelector('.search-button').addEventListener('click', function () {
     });
 });
 
+// Open Create Chat Modal
+document.querySelector('.create-chat-button').addEventListener('click', function () {
+    document.getElementById('create-chat-modal').style.display = 'flex';
+});
+
+// Close Create Chat Modal
+document.querySelector('.close-create-chat-modal').addEventListener('click', function () {
+    document.getElementById('create-chat-modal').style.display = 'none';
+});
+
+// Close Create Chat Modal when clicking outside of it
+window.addEventListener('click', function (event) {
+    const modal = document.getElementById('create-chat-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Handle Create Chat Form Submission
+document.getElementById('create-chat-form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent page reload
+
+    // Get input values
+    const clientId = document.getElementById('provider-id').value;
+    const topic = document.getElementById('topic').value;
+    const message = document.getElementById('message').value;
+
+    // Log or send the values for further processing (e.g., AJAX to create a new chat)
+    console.log('Provider ID:', providerId);
+    console.log('Topic:', topic);
+    console.log('Message:', message);
+
+    // Close the modal after submission
+    document.getElementById('create-chat-modal').style.display = 'none';
+});
+
+
 
 // Add Chat Button to Each Row
 function addRow(providerId, topic, message, status) {

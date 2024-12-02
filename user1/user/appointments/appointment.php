@@ -141,17 +141,18 @@ include 'get_appointment.php';
             <td><?= htmlspecialchars($user['status']) ?></td>
             <td>
                 <?php if ($user['status'] == 'Pending'): ?>
-                    <button class='btn edit-btn' data-id='<?= htmlspecialchars($user['appointment_id']) ?>' 
+                    <form style="display: inline;">                   <button class='btn edit-btn' data-id='<?= htmlspecialchars($user['appointment_id']) ?>' 
         onclick="openUpdatePopup('<?= addslashes($user['appointment_id']) ?>', '<?= addslashes($user['service_type']) ?>', '<?= addslashes($user['appointment_date']) ?>', '<?= addslashes($user['message']) ?>')">
     Edit
-</button>
+</button></form>
+ 
                 <?php endif; ?>
                 
 
 <?php if ($user['provider_id'] !== null && ($user['status'] == 'Completed'||$user['status'] == 'Scheduled')): ?>
     <form method="POST" action="" style="display: inline;">
         <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
-        <button type="submit" class="btn cancel-btn">View</button>
+        <button type="submit" class="btn view-btn">View</button>
     </form>
 <?php endif; ?>
 <?php if ( $user['status'] == 'Scheduled'): ?>

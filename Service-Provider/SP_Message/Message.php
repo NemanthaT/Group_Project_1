@@ -51,8 +51,37 @@ include '../connection.php';
     <div class="message-controls">
         <input type="text" placeholder="Client ID/Topic">
         <button class="search-button">Search</button>
+        <button class="create-chat-button">Create Chat</button>
     </div>
-    
+
+    <!-- Create Chat Modal -->
+    <div id="create-chat-modal" class="modal">
+    <div class="modal-content">
+        <button class="close-create-chat-modal" title="Close">&times;</button>
+        <h3>Create New Chat</h3>
+        <form id="create-chat-form">
+            <div class="form-section">
+                <label for="client-id">Client ID:</label>
+                <input type="text" id="client-id" name="client-id" required>
+            </div>
+
+            <div class="form-section">
+                <label for="topic">Topic:</label>
+                <input type="text" id="topic" name="topic" required>
+            </div>
+
+            <div class="form-section">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <div class="form-footer">
+                <button type="submit" class="create-chat-button">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+  
     <table class="message-table">
         <thead>
             <tr>

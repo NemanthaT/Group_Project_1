@@ -151,6 +151,12 @@ if (isset($_GET['paper_id'])) {
                 <!-- Published Case Studies Section -->
                 <div class="published-case-studies">
                     <h3>Published Case Studies</h3>
+
+                        <div class="search-bar">
+                            <input type="text" id="searchInput" placeholder="Search case studies...">
+                                <button type="button" id="searchButton" onclick="searchCaseStudies()">Search</button>
+                        </div>
+
                     <?php foreach ($caseStudies as $case): ?>
                         <div class="case-study-card" id="case-<?php echo $case['paper_id']; ?>">
                             <!-- Display only the title -->

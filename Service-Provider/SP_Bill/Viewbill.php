@@ -2,12 +2,13 @@
 include '../Session/Session.php';
 include '../connection.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSA Lanka Consultancy - Add Bill</title>
+    <title>EDSA Lanka Consultancy</title>
     <link rel="stylesheet" href="Bill.css">
 </head>
 <body>
@@ -32,11 +33,13 @@ include '../connection.php';
         <div class="main-wrapper">
             <!-- Navbar -->
             <header>
-                <nav class="navbar">       
+                <nav class="navbar">
                     <a href="../Home/Homepage/HP.html">Home</a>
-                    <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                    <div class="notification">
+                        <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                    </div>
                     <div class="profile">
-                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
                     </div>
                     <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
@@ -44,8 +47,9 @@ include '../connection.php';
 
             <!-- Main Content -->
             <div class="main-content">
-                <div class="space"></div>
-                <div class="boxcontent"> 
+                <div class="view-bill-section">
+                    <center><h2>View Bill</h2></center>
+                    <div class="boxcontent"> 
     <div class="invoice-header">
         <div class="company-info">
             <h1>EDSA Lanka Consultancy</h1>
@@ -66,22 +70,18 @@ include '../connection.php';
         456 Galle Road<br>
         Ratmalana, Western Province 10380</p>
     </div>
-
     <table>
         <thead>
             <tr>
                 <th>Description</th>
-
                 <th style="width:20%">Amount (LKR)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Advance</td>
-
                 <td>19,000</td>
             </tr>
-
         </tbody>
     </table>
 
@@ -94,9 +94,9 @@ include '../connection.php';
         <button class="pay-button">Edit</button>
     </div>
     </div>
-
             </div>
-        </div>
-    </div>
+                </div>    
+         
+    <script src="#"></script>
 </body>
-</html>
+</html
