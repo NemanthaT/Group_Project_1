@@ -97,7 +97,6 @@ include("../connect.php");
     <th scope="col" style="width: 25%;">Full Name</th>
     <th scope="col" style="width: 10%;">Phone Number</th>
     <th scope="col" style="width: 25%;">Address</th>
-    <th scope="col" style="width: 25%;">Speciality</th>
     <th scope="col" style="width: 10%;">Action</th>
 </tr>
 </thead>
@@ -110,13 +109,11 @@ include("../connect.php");
             $full_name = $row['full_name'];
             $phone = $row['phone'];
             $address = $row['address'];
-            $speciality = $row['speciality'];
             $unique_id = uniqid(); // Generate a unique ID for the checkbox
             echo '<tr>
                 <th scope="row">' . $full_name . '</th>
                 <td>' . $phone . '</td>
                 <td>' . $address . '</td>
-                <td>' . $speciality . '</td>
                 <td>
                     <label for="' . $unique_id . '" class="checkbox-label">
                         <input type="checkbox" id="' . $unique_id . '" name="action[]" value="' . $full_name . '" class="hidden-checkbox">
