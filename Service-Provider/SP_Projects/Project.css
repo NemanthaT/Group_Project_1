@@ -545,19 +545,43 @@ body {
     background: darkgreen;
 }
 
+.filter-group {
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Space between elements */
+}
+
+.filter-group select,
+.filter-group input {
+    flex: 1; /* Allow input and select to grow */
+}
+
+.search-button {
+    padding: 10px 15px; /* Add padding to buttons */
+    background-color: #007bff; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+}
+
+.search-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .controls {
-        flex-direction: column;
+    .filter-group {
+        flex-direction: column; /* Stack elements vertically on small screens */
     }
-    
+
     .filter-group select,
-    .search-group input {
-        width: 100%;
+    .filter-group input {
+        width: 100%; /* Full width for inputs on small screens */
     }
     
-    .bills-grid {
-        grid-template-columns: 1fr;
+    .search-button {
+        width: 100%; /* Full width for buttons on small screens */
     }
 }
 

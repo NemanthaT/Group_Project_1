@@ -49,20 +49,18 @@ include '../connection.php';
                 <div class="project-section">
                     <center><h2>Project</h2></center>
                 
-    <div class="filter-group search-group">
-        <select id="status-filter">
-            <option value="all">All Projects</option>
-            <option value="paid">Ongoing</option>
-            <option value="unpaid">Completed</option>
-        </select>
-        <input type="text" placeholder="Search client ID or service..." id="search">
-        <button class="search-button">search </button>
-    </div>
-    <div class="search-group">
-       
-        <a href="AddProject.php"><button class="search-button">+ Projects</button></a>
-
-    </div>
+                    <div class="filter-group search-group">
+    <select id="status-filter">
+        <option value="all">All Projects</option>
+        <option value="paid">Ongoing</option>
+        <option value="unpaid">Completed</option>
+    </select>
+    <input type="text" placeholder="Search client ID or service..." id="search">
+    <button class="search-button">Search</button>
+    <a href="AddProject.php">
+        <button class="search-button">+ Projects</button>
+    </a>
+</div>
 
 <!-- Bills Grid -->
 <div class="bills-grid">
