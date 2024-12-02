@@ -1,19 +1,5 @@
 <?php
-include '../connect.php';
-if(isset($_POST['submit'])){
-  $worker_id=$_POST['worker_id'];
-  $title=$_POST['title'];
-  $content=$_POST['content'];
-
-  $sql="INSERT INTO `news` (worker_id,title,content) VALUES ('$worker_id','$title','$content')";
-  $result=mysqli_query($con,$sql);
-  if($result){
-    echo '<script>alert("News updated");</script>';
-  }
-  else{
-    echo '<script>alert("Nothing changed");</script>';
-  }
-}
+include("../connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,10 +8,10 @@ if(isset($_POST['submit'])){
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Update News</title>
-  <link rel="stylesheet" href="updatenews.css?version=10">
+  <link rel="stylesheet" href="updatenews.css?version=11">
   <link rel="stylesheet" href="../sidebar.css">
 </head>
-
+<body>
 <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
@@ -89,7 +75,7 @@ if(isset($_POST['submit'])){
       <!-- Navbar -->
       <div class="navbar">
       <div class="controls card1">
-            <h1>Add New</h1>
+            <h1>Past Updates</h1>
         </div>
         <a href="#">Home</a>
         <div class="profile">
@@ -100,26 +86,45 @@ if(isset($_POST['submit'])){
         <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
       <div class="main-container">
+    <div class="table-container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 15%;">Event_ID</th>
+                <th scope="col" style="width: 15%;">Title</th>
+                <th scope="col" style="width: 25%;">Date</th>
+                <th scope="col" style="width: 20%;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $sql = "SELECT * FROM events";
+            $result = mysqli_query($con, $sql);
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $event_id = $row['event_id'];
+                    $title = $row['title'];
+                    $event_date = $row['event_date'];
+                    echo '<tr>
+                        <th scope="row">' . $event_id . '</th>
+                        <td>' . $title . '</td>
+                        <td>' . $event_date. '</td>
+                        <td>
+                            <button><a href="update.php?update_id=' . $event_id . '">Update</a></button>
+                            <button><a href="delete.php?delete_id=' . $event_id . '">Delete</a></button>
+                        </td>
+                    </tr>';
+                }
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
 
-      <div class="boxcontainer">
-        <form action="" method="POST">
-          <br>
-        <center><label for="title">Title:</label></center>
-        <center><input type="text" id="title" name="title" placeholder="Enter the title" required readonly>
-            <br><br><br>
-            <label for="content">Content:</label><br>
-            <textarea id="content" name="content" placeholder="Enter the Content" required readonly></textarea>
-            <br><br></center>
-            <label for="worker_id" style="margin-left: 7.5%;">Worker_ID:</label>
-            <input type="number" id="worker_id" name="worker_id" placeholder="Enter the worker id" required>
-            <br><br><br>
-          <center><input type="submit"value="submit" name="submit" class="submit-button"></center>
-        </form>
     </div>
-</div>
-</div>
-</div>
-</div>
+    </div>
+    </div>
+
 
     <script src="dashboard.js"></script>
     <script src="../sidebar.js"></script>

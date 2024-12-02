@@ -38,7 +38,7 @@ include '../connection.php';
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     </div> 
                     <div class="profile">
-                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
                     </div>
                     <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
@@ -47,7 +47,10 @@ include '../connection.php';
             <!-- Main Content (Forum Page) -->
             <div class="main-content">
                 <div class="forum-section">
-                    <h2>Forum</h2>
+                    <center><h2>Forum</h2></center>
+
+                    <!-- Button to Open "Create New Thread" Modal -->
+                    <button type="button" onclick="openCreateThreadModal()">Create New Thread</button>
 
                     <!-- Forum Search -->
                     <div class="forum-search">
@@ -71,42 +74,99 @@ include '../connection.php';
                     <div class="forum-threads">
                         <h3>Recent Threads</h3>
                         <ul id="thread-list">
-                            <li data-category="General Discussions">
+                            <li data-category="General Discussions" id="thread-1">
                                 <h4>How to use our service effectively?</h4>
                                 <p>Started by <span class="username">User123</span> - 10 replies</p>
+                                <div class="button-container">
+                <button class="view-btn" onclick="viewThread('How to use our service effectively?', 'This is a detailed description of the thread content.', 123, 10)">View</button>
+                <!-- <button class="reply-btn" onclick="deleteThread('thread-1')">Reply</button> -->
+                <button class="delete-btn" onclick="deleteThread('thread-1')">Delete</button>
+            </div>
                             </li>
-                            <li data-category="Technical Support">
-                                <h4>Common issues and troubleshooting</h4>
-                                <p>Started by <span class="username">SupportTeam</span> - 5 replies</p>
-                            </li>
+                            <li data-category="Technical Support" id="thread-2">
+            <h4>Common issues and troubleshooting</h4>
+            <p>Started by <span class="username">SupportTeam</span> - 5 replies</p>
+            <button class="view-btn" onclick="viewThread('Common issues and troubleshooting', 'This thread discusses common troubleshooting steps.', 98, 5)">View</button>
+            <button class="delete-btn" onclick="deleteThread('thread-2')">Delete</button>
+        </li>
+        <li data-category="Product/Service Feedback" id="thread-3">
+            <h4>Feedback on our new feature</h4>
+            <p>Started by <span class="username">User456</span> - 2 replies</p>
+            <button class="view-btn" onclick="viewThread('Feedback on our new feature', 'Share your thoughts on our latest update.', 55, 2)">View</button>
+            <button class="delete-btn" onclick="deleteThread('thread-3')">Delete</button>
+        </li>
+        <li data-category="How-to Guides" id="thread-4">
+            <h4>Step-by-step guide for account setup</h4>
+            <p>Started by <span class="username">Admin</span> - 8 replies</p>
+            <button class="view-btn" onclick="viewThread('Step-by-step guide for account setup', 'A detailed guide to help you set up your account.', 200, 8)">View</button>
+            <button class="delete-btn" onclick="deleteThread('thread-4')">Delete</button>
+        </li>
+        <li data-category="Off-Topic" id="thread-5">
+            <h4>Weekend plans discussion</h4>
+            <p>Started by <span class="username">User789</span> - 15 replies</p>
+            <button class="view-btn" onclick="viewThread('Weekend plans discussion', 'Share your weekend plans!', 80, 15)">View</button>
+            <button class="delete-btn" onclick="deleteThread('thread-5')">Delete</button>
+        </li>
+        <li data-category="Technical Support" id="thread-6">
+            <h4>Issue with file uploads</h4>
+            <p>Started by <span class="username">User321</span> - 3 replies</p>
+            <button class="view-btn" onclick="viewThread('Issue with file uploads', 'Discuss problems related to uploading files.', 45, 3)">View</button>
+            <button class="delete-btn" onclick="deleteThread('thread-6')">Delete</button>
+        </li>
+        <li data-category="General Discussions" id="thread-7">
+            <h4>Tips for using the platform effectively</h4>
+            <p>Started by <span class="username">User654</span> - 12 replies</p>
+            <button class="view-btn" onclick="viewThread('Tips for using the platform effectively', 'Share your best practices for our platform.', 112, 12)">View</button>
+            <button class="delete-btn" onclick="deleteThread('thread-7')">Delete</button>
+        </li>
                         </ul>
                     </div>
 
-                    <!-- New Thread Form -->
-                    <div class="new-thread">
-                        <h3>Create a New Thread</h3>
-                        <form>
-                            <div class="form-group">
-                                <label for="thread-title">Title</label>
-                                <input type="text" id="thread-title" placeholder="Enter thread title">
-                            </div>
-                            <div class="form-group">
-                                <label for="thread-category">Category</label>
-                                <select id="thread-category">
-                                    <option value="General Discussions">General Discussions</option>
-                                    <option value="Technical Support">Technical Support</option>
-                                    <option value="Product/Service Feedback">Product/Service Feedback</option>
-                                    <option value="How-to Guides">How-to Guides</option>
-                                    <option value="Off-Topic">Off-Topic</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="thread-message">Message</label>
-                                <textarea id="thread-message" rows="5" placeholder="Enter your message"></textarea>
-                            </div>
-                            <button type="button" onclick="addThread()">Post Thread</button>
-                        </form>
-                    </div>
+                    <!-- Modal for Viewing Thread -->
+<div class="modal-overlay" id="modalOverlay" style="display: none;"></div>
+<div class="modal" id="modalForm" style="display: none;">
+    <h3>View Thread</h3>
+    <form>
+        <label for="modalTitle">Title:</label>
+        <input type="text" id="modalTitle" readonly>
+
+        <label for="modalContent">Content:</label>
+        <textarea id="modalContent" rows="5" readonly></textarea>
+
+        <label for="modalViews">Number of Views:</label>
+        <input type="text" id="modalViews" readonly>
+
+        <label for="modalReplies">Number of Replies:</label>
+        <input type="text" id="modalReplies" readonly>
+
+        <button type="button" onclick="closeModal()">Close</button>
+    </form>
+</div>
+
+<!-- Modal for Creating New Thread -->
+<div class="modal-overlay" id="createThreadModalOverlay" style="display: none;"></div>
+<div class="modal" id="createThreadModal" style="display: none;">
+    <h3>Create a New Thread</h3>
+    <form>
+        <label for="newThreadTitle">Title:</label>
+        <input type="text" id="newThreadTitle" placeholder="Enter thread title">
+
+        <label for="newThreadCategory">Category:</label>
+        <select id="newThreadCategory">
+            <option value="General Discussions">General Discussions</option>
+            <option value="Technical Support">Technical Support</option>
+            <option value="Product/Service Feedback">Product/Service Feedback</option>
+            <option value="How-to Guides">How-to Guides</option>
+            <option value="Off-Topic">Off-Topic</option>
+        </select>
+
+        <label for="newThreadMessage">Message:</label>
+        <textarea id="newThreadMessage" rows="5" placeholder="Enter your message"></textarea>
+
+        <button type="button" onclick="submitNewThread()">Create</button>
+        <button type="button" onclick="closeCreateThreadModal()" class="cancel-btn">Cancel</button>
+    </form>
+</div>
 
                 </div>
             </div>

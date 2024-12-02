@@ -27,7 +27,7 @@
             </a>
           </li>
           <li>
-            <a href="../servicerequest/servicerequest.html">
+            <a href="../servicerequest/servicerequest.php">
               <button>
                 <img src="../images/service.jpg" alt="servicerequest">
                 Service Requests
@@ -38,7 +38,7 @@
             <a href="../contactforums/contactforum.html">
               <button>
                 <img src="../images/contact forms.jpg" alt="contactforms">
-                Contact Forum
+                Contact Form
               </button>
             </a>
           </li>
@@ -72,10 +72,10 @@
       <div class="main-wrapper">
         <!-- Navbar -->
         <div class="navbar">
+        <div class="controls card1">
+            <h1>DashBoard</h1>
+        </div>
           <a href="#">Home</a>
-          <a href="#">
-            <img src="../images/notification.png" alt="Notifications">
-          </a>
           <div class="profile">
             <a href="../SP_Profile/Profile.html">
               <img src="../images/user.png" alt="Profile">
@@ -134,7 +134,7 @@
             </div>
               
             <div class="box2">
-              <div class="box4 glass-effect-3">
+              <div class="box4 glass-effect-4">
               <div class="time glass-effect-3">
                 <div id="clock">Loading...</div>
               </div>
