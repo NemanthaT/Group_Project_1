@@ -78,7 +78,6 @@ include '../session/session.php';
         <div class="main-wrapper">
             <!-- Navbar -->
             <div class="navbar">
-                <a href="../../../Home/Homepage/HP.html">Home</a>
                 <a href="#">
                     <img src="../images/notification.png" alt="Notifications">
                 </a>
