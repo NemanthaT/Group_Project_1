@@ -15,6 +15,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 400px;
+    max-width: 100%;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -30,7 +31,13 @@ body {
 }
 
 .form-group1 {
+    display: flex;
+    flex-direction: row;
     padding: 20px 20px 5px 20px;
+}
+.form-group1 p {
+    font-size: 1rem;
+    font-weight: bold;
 }
 .form-group2 {
     padding: 15px 20px 5px 20px;
@@ -88,6 +95,7 @@ body {
 }
 
 .form-footer {
+    /*background-color: #18A0FB;*/
     text-align: center;
     padding: 20px;
 }
@@ -113,7 +121,7 @@ footer {
 .blurry-background{
     width: 100vw;
     height: 100vh;
-    background-image: url("images/logo.png"); /* Adjust the path as needed */
+    background-image: url("../images/logo.png"); /* Adjust the path as needed */
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -121,4 +129,21 @@ footer {
     left: 0;
     filter: blur(10px);
     z-index: -1;
+}
+
+button{
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button:hover{
+    background-color:tomato;
+    color: white;
+}
+
+.bBtn{
+    background-color: #18A0FB;
 }

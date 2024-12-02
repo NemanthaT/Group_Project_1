@@ -103,7 +103,7 @@ if (isset($_POST['submit'])) { //check if form was submitted
                 </center>
             </div>
             <div class="form-footer">
-                <p>Don't have an account? <a href="Sign_up/Sign_up.php">Sign up</a></p>
+                <p>Don't have an account? <a href="Sign_up/switch.php">Sign up</a></p>
                 <p><a href="Forgot/forgot.php">Forgot password?</a></p>
             </div>
         </form>
