@@ -18,9 +18,9 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 
-.container:hover{
+/*.container:hover{
     transform: scale(1.4);
-}
+}*/
 
 .form-header {
     background-color: #18A0FB;

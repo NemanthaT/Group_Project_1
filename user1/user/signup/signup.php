@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $created_at = date('Y-m-d H:i:s');
     $password = rand(100000, 999999);
+    $username = $full_name;
 
     // Check for duplicate email
     $check_query = "SELECT * FROM clients WHERE email = '$email'";
@@ -21,13 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error_message = "Email is already registered.";
     } else {
         // Insert data into providerrequests table
-        $sql = "INSERT INTO clients (full_name, email, phone, address, password)
-                VALUES ('$full_name', '$email', '$phone', '$address', '$password')";
+        $sql = "INSERT INTO clients (full_name, username, email, phone, address, password)
+                VALUES ('$full_name', '$username', '$email', '$phone', '$address', '$password')";
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>
                     alert('Registration successful!');
-                    window.location.href = '../../../Home/Homepage/HP.html';
+                    window.location.href = ../../Home/Homepage/HP.html';
                   </script>";
             exit;
         } else {
