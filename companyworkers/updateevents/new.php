@@ -3,12 +3,14 @@ include '../connect.php';
 if(isset($_POST['submit'])){
   $worker_id=$_POST['worker_id'];
   $title=$_POST['title'];
-  $content=$_POST['content'];
+  $description=$_POST['description'];
+  $event_date=$_POST['event_date'];
 
-  $sql="INSERT INTO `news` (worker_id,title,content) VALUES ('$worker_id','$title','$content')";
+
+  $sql="INSERT INTO `events` (worker_id,title,description,event_date) VALUES ('$worker_id','$title','$description','$event_date')";
   $result=mysqli_query($con,$sql);
   if($result){
-    echo '<script>alert("News updated");</script>';
+    echo '<script>alert("events updated");</script>';
   }
   else{
     echo '<script>alert("Nothing changed");</script>';
@@ -21,11 +23,10 @@ if(isset($_POST['submit'])){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update News</title>
-  <link rel="stylesheet" href="updatenews.css?version=10">
+  <title>Update Events</title>
+  <link rel="stylesheet" href="updateevents.css?version=9">
   <link rel="stylesheet" href="../sidebar.css">
 </head>
-
 <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
@@ -35,7 +36,7 @@ if(isset($_POST['submit'])){
 
       <ul class="menu">
         <li>
-          <a href="../dashboard/dashboard.php">
+        <a href="../dashboard/dashboard.php">
             <button>
               <img src="../images/dashboard.png" alt="Dashboard">
               Dashboard
@@ -89,7 +90,7 @@ if(isset($_POST['submit'])){
       <!-- Navbar -->
       <div class="navbar">
       <div class="controls card1">
-            <h1>Add New</h1>
+            <h1>Update Events</h1>
         </div>
         <a href="#">Home</a>
         <div class="profile">
@@ -100,26 +101,28 @@ if(isset($_POST['submit'])){
         <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
       <div class="main-container">
-
-      <div class="boxcontainer">
+    
+    <div class="boxcontainer">
         <form action="" method="POST">
           <br>
         <center><label for="title">Title:</label></center>
-        <center><input type="text" id="title" name="title" placeholder="Enter the title" required readonly>
+        <center><input type="text" id="title" name="title" placeholder="Enter the title" required>
             <br><br><br>
-            <label for="content">Content:</label><br>
-            <textarea id="content" name="content" placeholder="Enter the Content" required readonly></textarea>
-            <br><br></center>
-            <label for="worker_id" style="margin-left: 7.5%;">Worker_ID:</label>
-            <input type="number" id="worker_id" name="worker_id" placeholder="Enter the worker id" required>
-            <br><br><br>
+            <div class="content-bottom">
+            <center><label for="description">Description</label>
+              <textarea name ="description" id="description" placeholder="Enter description Here"></textarea></center> 
+              <br><br>        
+              <label for="worker_id">Name:</label>
+              <input type="text" id="worker_id" name="worker_id" placeholder="Name" required>
+
+              <label for="date">Event-Date:</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+
+            <br><br>
           <center><input type="submit"value="submit" name="submit" class="submit-button"></center>
         </form>
     </div>
-</div>
-</div>
-</div>
-</div>
 
     <script src="dashboard.js"></script>
     <script src="../sidebar.js"></script>

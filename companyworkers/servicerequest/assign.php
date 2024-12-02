@@ -1,3 +1,57 @@
+<?php
+include '../connect.php';
+
+if (isset($_GET['check_id'])) {
+    $appointment_id = mysqli_real_escape_string($con, $_GET['check_id']);
+} else {
+    echo "No appointment ID provided.";
+    exit;
+}
+
+// Fetch the appointment details
+$sql = "SELECT * FROM `appointments` WHERE `appointment_id` = '$appointment_id'";
+$result = mysqli_query($con, $sql);
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $client_id = $row['client_id'];
+    $appointment_date = $row['appointment_date'];
+    $status = $row['status'];
+    $service_type = $row['service_type'];
+    $message = $row['message'];
+} else {
+    echo '<script>alert("No appointment found with the provided ID.");</script>';
+    exit;
+}
+
+if (isset($_POST['submit'])) {
+    $client_id = mysqli_real_escape_string($con, $_POST['client_id']);
+    $appointment_date = mysqli_real_escape_string($con, $_POST['appointment_date']);
+    $status = mysqli_real_escape_string($con, $_POST['status']);
+    $message = mysqli_real_escape_string($con, $_POST['message']);
+    $reply = mysqli_real_escape_string($con, $_POST['reply']); // New field
+
+    $sql = "UPDATE `appointments` SET 
+                client_id='$client_id', 
+                appointment_date='$appointment_date', 
+                status='$status', 
+                message='$message',
+                reply='$reply'
+            WHERE appointment_id='$appointment_id'";
+
+    if (mysqli_query($con, $sql)) {
+        echo '<script>
+            alert("Appointment updated successfully.");
+            window.location.href = "updatedelete.php";
+        </script>';
+        exit;
+    } else {
+        echo '<script>alert("Update failed: ' . mysqli_error($con) . '");</script>';
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +79,8 @@
           </a>
         </li>
         <li>
-          <a href="../servicerequest/servicerequest.html">
-            <button>
+        <a href="servicerequest.php">
+        <button>
               <img src="../images/service.jpg" alt="servicerequest">
               Service Requests
             </button>
@@ -70,10 +124,10 @@
     <div class="main-wrapper">
       <!-- Navbar -->
       <div class="navbar">
+        <div class="controls card1">
+            <h1>Assign</h1>
+        </div>
         <a href="#">Home</a>
-        <a href="#">
-          <img src="../images/notification.png" alt="Notifications">
-        </a>
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
@@ -88,20 +142,26 @@
             <div class="left">
                 <div class="form-top">
                     <label for="Appointment_ID">Appointment ID:</label>
-                    <input type="text" id="Appointment_ID" name="Appointment_ID" placeholder="Appointment ID" required><br><br>
+                    <input type="text" id="Appointment_ID" name="Appointment_ID" placeholder="Appointment ID" 
+                    required readonly value="<?php echo $appointment_id; ?>"><br><br>
                     <label for="Client_ID">Client ID:</label>
-                    <input type="text" id="Client_ID" name="Client_ID" placeholder="Client ID" required><br><br>
+                    <input type="text" id="Client_ID" name="Client_ID" placeholder="Client ID" 
+                    required readonly value="<?php echo $client_id; ?>"><br><br>
                     <label for="Date">Date:</label>
-                    <input type="text" id="Date" name="Date" placeholder="Date" required><br><br>
+                    <input type="text" id="Date" name="Date" placeholder="Date" 
+                    required readonly value="<?php echo $appointment_date; ?>"><br><br>
                     <label for="Status">Status:</label>
-                    <input type="text" id="Status" name="Status" placeholder="Status" required><br><br>
+                    <input type="text" id="Status" name="Status" placeholder="Status" 
+                    required readonly value="<?php echo $status; ?>"><br><br>
                     <label for="Type">Type:</label>
-                    <input type="text" id="Type" name="Type" placeholder="Type" required><br><br>
+                    <input type="text" id="Type" name="Type" placeholder="Type" 
+                    requiredreadonly value="<?php echo $service_type; ?>"><br><br>
                 </div>
             </div>
             <div class="right">
                 <center><label for="message">Message:</label><br>
-                <textarea id="message" name="message" placeholder="customer message" required></textarea>
+                <textarea id="message" name="message" placeholder="customer message" 
+                required readonly><?php echo $message; ?></textarea>
             </div>
         </div>
            
