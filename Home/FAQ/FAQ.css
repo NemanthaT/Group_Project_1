@@ -7,6 +7,7 @@
 
 /* Navbar */
 .navbar {
+    font-size: 1.3rem;
     width: 100%;
     background-color: white;
     color: #18A0FB;
@@ -25,6 +26,7 @@
 .Hcontainer a{
     color: #18A0FB;
     text-decoration: none;
+    font-weight: bold;
     font-size: 2.5vh;
     padding: 0.8vh 1.5vw;  /* Reduced padding to reduce gap between links */
     margin-left: 1.5vw;  /* Optional: Adds space between links */
