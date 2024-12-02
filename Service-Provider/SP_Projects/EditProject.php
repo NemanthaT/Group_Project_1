@@ -33,12 +33,12 @@ include '../connection.php';
             <!-- Navbar -->
             <header>
                 <nav class="navbar">       
-                        <a href="#">Home</a>
+                        <!-- <a href="#">Home</a> -->
                     <div class="notification">   
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     </div> 
                     <div class="profile">
-                        <a href="#"><img src="../images/user.png" alt="Profile"></a>
+                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
                     </div>
                     <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>

@@ -64,7 +64,7 @@ $result = $conn->query($sql);
             <!-- Navbar -->
             <header>
                 <nav class="navbar">
-                    <a href="../Home/Homepage/HP.html">Home</a>
+                    <!-- <a href="../Home/Homepage/HP.html">Home</a> -->
                     <div class="notification">
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     </div>

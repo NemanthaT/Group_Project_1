@@ -33,7 +33,7 @@ include '../connection.php';
             <!-- Navbar -->
             <header>
                 <nav class="navbar">       
-                        <a href="../Home/Homepage/HP.html">Home</a>
+                        <!-- <a href="../Home/Homepage/HP.html">Home</a> -->
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     <div class="profile">
                         <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
