@@ -1,62 +1,45 @@
 <?php
 include '../connect.php';
+  $appointment_id=$_GET['update_id'];
+  $sql="Select * from `appointments` where appointment_id='$appointment_id'";
+  $result=mysqli_query($con,$sql);
+  $row=mysqli_fetch_assoc($result);
+  $client_id=$row['client_id'];
+  $appointment_date=$row['appointment_date'];
+  $service_type=$row['service_type'];
+  $message=$row['message'];
+  
 
-if (isset($_GET['check_id'])) {
-    $appointment_id = mysqli_real_escape_string($con, $_GET['check_id']);
-} else {
-    echo "No appointment ID provided.";
+
+if(isset($_POST['submit'])){
+  $client_id=$_POST['client_id'];
+  $appointment_date=$_POST['appointment_date'];
+  $service_type=$_POST['service_type'];
+  $message=$row['message'];
+
+
+  $sql="update `appointments` set client_id='$client_id', appointment_date='$appointment_date', 
+  service_type='$service_type' where appointment_id='$appointment_id'";
+  $result=mysqli_query($con,$sql);
+  if ($result) {
+    echo '<script>
+        alert("News updated");
+        window.location.href = "servicerequest.php";
+    </script>';
     exit;
 }
 
-// Fetch the appointment details
-$sql = "SELECT * FROM `appointments` WHERE `appointment_id` = '$appointment_id'";
-$result = mysqli_query($con, $sql);
-
-if ($result && mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $client_id = $row['client_id'];
-    $appointment_date = $row['appointment_date'];
-    $status = $row['status'];
-    $service_type = $row['service_type'];
-    $message = $row['message'];
-} else {
-    echo '<script>alert("No appointment found with the provided ID.");</script>';
-    exit;
-}
-
-if (isset($_POST['submit'])) {
-    $client_id = mysqli_real_escape_string($con, $_POST['client_id']);
-    $appointment_date = mysqli_real_escape_string($con, $_POST['appointment_date']);
-    $status = mysqli_real_escape_string($con, $_POST['status']);
-    $message = mysqli_real_escape_string($con, $_POST['message']);
-    $reply = mysqli_real_escape_string($con, $_POST['reply']); // New field
-
-    $sql = "UPDATE `appointments` SET 
-                client_id='$client_id', 
-                appointment_date='$appointment_date', 
-                status='$status', 
-                message='$message',
-                reply='$reply'
-            WHERE appointment_id='$appointment_id'";
-
-    if (mysqli_query($con, $sql)) {
-        echo '<script>
-            alert("Appointment updated successfully.");
-            window.location.href = "updatedelete.php";
-        </script>';
-        exit;
-    } else {
-        echo '<script>alert("Update failed: ' . mysqli_error($con) . '");</script>';
-    }
+  else{
+    echo '<script>alert("Nothing changed");</script>';
+  }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" service_type="width=device-width, initial-scale=1.0">
   <title>Service Request Count</title>
   <link rel="stylesheet" href="servicerequest.css?version=3">
   <link rel="stylesheet" href="../sidebar.css?version=3">
@@ -150,12 +133,9 @@ if (isset($_POST['submit'])) {
                     <label for="Date">Date:</label>
                     <input type="text" id="Date" name="Date" placeholder="Date" 
                     required readonly value="<?php echo $appointment_date; ?>"><br><br>
-                    <label for="Status">Status:</label>
-                    <input type="text" id="Status" name="Status" placeholder="Status" 
-                    required readonly value="<?php echo $status; ?>"><br><br>
                     <label for="Type">Type:</label>
                     <input type="text" id="Type" name="Type" placeholder="Type" 
-                    requiredreadonly value="<?php echo $service_type; ?>"><br><br>
+                    required readonly value="<?php echo $service_type; ?>"><br><br>
                 </div>
             </div>
             <div class="right">

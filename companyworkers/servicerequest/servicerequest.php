@@ -29,7 +29,7 @@ include("../connect.php");
             </a>
           </li>
           <li>
-            <a href="../servicerequest.php">
+            <a href="servicerequest.php">
               <button>
                 <img src="../images/service.jpg" alt="servicerequest">
                 Service Requests
@@ -88,37 +88,45 @@ include("../connect.php");
 
         <div class="main-container">
 
+        <div class="table-container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 15%;">Appointment ID</th>
+                <th scope="col" style="width: 15%;">Client ID</th>
+                <th scope="col" style="width: 15%;">Date</th>
+                <th scope="col" style="width: 25%;">Type</th>
+                <th scope="col" style="width: 15%;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
             <?php
-            $sql = "SELECT appointment_id, appointment_date, created_at, service_type FROM appointments";
-            $result = $con->query($sql);
-
-            // Generate cards
-            if ($result->num_rows > 0) {
-            echo '<div class="card-container">';
-              while ($row = $result->fetch_assoc()) {
-              echo '
-              <div class="card">
-                  <!-- Update link dynamically if needed -->
-                  <h3>New Appointment</h3>
-                  <p>Appointment ID - ' . $row["appointment_id"] . '</p>
-                  <p>Date: ' . $row["appointment_date"] . '</p>
-                  <p>Time: ' . $row["created_at"] . '</p>
-                  <p>Type - ' . $row["service_type"] . '</p>
-                  <center>
-                      <button>
-                          <a href="assign.php?check_id=<?php echo $appointment_id; ?>">Check</a>
-                      </button>
-                  </center>
-              </div>';
-              }
-              echo '</div>';
-            } else {
-            echo "No appointments found.";
+            $sql = "SELECT * FROM appointments";
+            $result = mysqli_query($con, $sql);
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $appointment_id = $row['appointment_id'];
+                    $client_id = $row['client_id'];
+                    $appointment_date = $row['appointment_date'];
+                    $service_type = $row['service_type'];
+                    echo '<tr>
+                        <th scope="row">' . $appointment_id . '</th>
+                        <td>' . $client_id . '</td>
+                        <td>' . $appointment_date . '</td>
+                        <td>' . $service_type . '</td>
+                        <td>
+                            <button><a href="assign.php?update_id=' . $appointment_id . '">Check</a></button>
+                        </td>
+                    </tr>';
+                }
             }
             ?>
-        
-      </div>
+        </tbody>
+    </table>
+</div>
 
+        
+          </div>
       </div>
     </div>
 
