@@ -121,21 +121,23 @@
                 </div>
 
                 <div class="card">
-                    <div class="calendar-header">
-                        <button onclick="prevMonth()">‹</button>
-                        <h2 id="monthYear"></h2>
-                        <button onclick="nextMonth()">›</button>
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button onclick="prevMonth()">‹</button>
+                            <h2 id="monthYear"></h2>
+                            <button onclick="nextMonth()">›</button>
+                        </div>
+                        <div class="days">
+                            <div class="day">Sun</div>
+                            <div class="day">Mon</div>
+                            <div class="day">Tue</div>
+                            <div class="day">Wed</div>
+                            <div class="day">Thu</div>
+                            <div class="day">Fri</div>
+                            <div class="day">Sat</div>
+                        </div>
+                        <div class="days" id="dates"></div>
                     </div>
-                    <div class="days">
-                        <div class="day">Sun</div>
-                        <div class="day">Mon</div>
-                        <div class="day">Tue</div>
-                        <div class="day">Wed</div>
-                        <div class="day">Thu</div>
-                        <div class="day">Fri</div>
-                        <div class="day">Sat</div>
-                    </div>
-                    <div class="days" id="dates"></div>
                 </div>
 
                 <div class="card" id="sR">
