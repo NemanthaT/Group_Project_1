@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $created_at = date('Y-m-d H:i:s');
+    $password = rand(100000, 999999);
 
     // Check for duplicate email
     $check_query = "SELECT * FROM clients WHERE email = '$email'";
@@ -20,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error_message = "Email is already registered.";
     } else {
         // Insert data into providerrequests table
-        $sql = "INSERT INTO clients (full_name, email, phone, address)
-                VALUES ('$full_name', '$email', '$phone', '$address')";
+        $sql = "INSERT INTO clients (full_name, email, phone, address, password)
+                VALUES ('$full_name', '$email', '$phone', '$address', '$password')";
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>
@@ -70,12 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="address"><b>Address</b></label>
                         <input type="text" id="address" name="address" placeholder="Enter your address" required>
 
-                        <button type="button" id="next-btn" class="sign-up-btn">Next</button>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div id="step-2" style="display: none;">
-                        <button type="button" id="back-btn" class="sign-up-btn">Back</button>
                         <button type="submit" id="submit-btn" class="sign-up-btn">Sign up</button>
                     </div>
                 </form>
