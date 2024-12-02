@@ -29,8 +29,8 @@ include("../connect.php");
           </a>
         </li>
         <li>
-          <a href="../servicerequest/servicerequest.html">
-            <button>
+        <a href="../servicerequest/servicerequest.php">
+        <button>
               <img src="../images/service.jpg" alt="servicerequest">
               Service Requests
             </button>
@@ -74,10 +74,10 @@ include("../connect.php");
     <div class="main-wrapper">
       <!-- Navbar -->
       <div class="navbar">
+      <div class="controls card1">
+            <h1>Past Updates</h1>
+        </div>
         <a href="#">Home</a>
-        <a href="#">
-          <img src="../images/notification.png" alt="Notifications">
-        </a>
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
@@ -87,7 +87,7 @@ include("../connect.php");
       </div>
 
       <div class="main-container">
-    <div class="table-container">
+      <div class="table-container">
     <table class="table table-hover">
         <thead>
             <tr>

@@ -25,8 +25,8 @@
           </a>
         </li>
         <li>
-          <a href="../servicerequest/servicerequest.html">
-            <button>
+        <a href="../servicerequest/servicerequest.php">
+        <button>
               <img src="../images/service.jpg" alt="servicerequest">
               Service Requests
             </button>
@@ -70,10 +70,10 @@
     <div class="main-wrapper">
       <!-- Navbar -->
       <div class="navbar">
+      <div class="controls card1">
+            <h1>News</h1>
+        </div>
         <a href="#">Home</a>
-        <a href="#">
-          <img src="../images/notification.png" alt="Notifications">
-        </a>
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
@@ -88,7 +88,7 @@
             <div class="new glass-effect">
                   <img src="../images/new.jpg" alt="new" class="icon">
                     <p>Enter to add new news</p>
-                </div>
+            </div>
             </a>
             <a href="updatedelete.php" style="text-decoration: none; color: inherit;">
             <div class="new glass-effect">
@@ -96,7 +96,7 @@
                   <img src="../images/update.jpg" alt="new" class="icon1">
                   <img src="../images/delete.jpg" alt="new" class="icon1">
                   </div>
-                  <p1>Update or delete news</p1>
+                  <p>Update or delete news</p>
                 </div>
             </a>
         </div>
