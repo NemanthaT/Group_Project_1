@@ -306,15 +306,15 @@ body {
 
 
 .table thead th {
-  background-color: #4CAF50; /* Header background */
-  color: white; /* Header text color */
+  background-color: #f0f0f0;
+  color: rgb(0, 0, 0); /* Header text color */
   padding: 10px; /* Padding in header cells */
   border: 1px solid #ddd; /* Border around header cells */
   text-align: center; /* Center-align header text */
 }
 
 .table tbody tr:nth-child(odd) {
-  background-color: #f9f9f9; /* Light background for odd rows */
+  background-color: #ffffff; /* Light background for odd rows */
 }
 
 .table tbody tr:nth-child(even) {

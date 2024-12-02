@@ -125,27 +125,35 @@ li.Login a, li.Register a {
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none; /* Remove underline from links */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .kb-card img {
-    width: 100%;
-    height: 100%;
+    display: flex;
+    width: 50%;
+    height: 50%;
     object-fit: cover; /* Ensure the image covers the card */
 }
-
-.kb-text {
-    position: absolute; /* Position the text over the image */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the text */
-    color: #fff; /* White text for contrast */
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for better readability */
+kb
+.kb-text a {
+    display: flex;
+    flex-direction: column;
 }
 
 .kb-text h3 {
+    display: flex;
     font-size: 1.5em;
     font-weight: bold;
     margin: 0;
+}
+
+.kb-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Hover Effect */

@@ -1,7 +1,7 @@
 .calendar {
   width: 500px;
   height: 450px;
-  background-color: #fffefe21;
+  background-color: #ffffff;
   margin: auto;
   text-align: center;
   font-family: Arial, sans-serif;
@@ -13,7 +13,7 @@
 }
 
 .glass-effect {
-  background: rgba(0, 0, 0, 0.2); /* Semi-transparent white */
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
   border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
   backdrop-filter: blur(10px); /* Adds the blur effect */
   -webkit-backdrop-filter: blur(10px); /* Safari support */
@@ -86,7 +86,7 @@
 }
 
 .date.today {
-  background-color: #3498db;
+  background-color: #000000;
   color: white;
   font-weight: bold;
 }

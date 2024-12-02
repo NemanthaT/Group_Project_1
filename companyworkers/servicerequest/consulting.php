@@ -28,7 +28,7 @@ include("../connect.php");
           </a>
         </li>
         <li>
-        <a href="../ervicerequest.php">
+        <a href="servicerequest.php">
             <button>
               <img src="../images/service.jpg" alt="servicerequest">
               Service Requests
@@ -87,7 +87,7 @@ include("../connect.php");
       <div class="main-container">
 
       <div style="text-align: right;">
-        <input type="submit" value="Assign" name="submit" class="submit-button" onclick="window.location.href='assign.html';">
+        <input type="submit" value="Assign" name="submit" class="submit-button" onclick="window.location.href='assign.php';">
       </div>
 
 
