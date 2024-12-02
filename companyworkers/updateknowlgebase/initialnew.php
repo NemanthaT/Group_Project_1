@@ -86,7 +86,7 @@
             <a href="new.php" style="text-decoration: none; color: inherit;">
                 <div class="new glass-effect">
                   <img src="../images/new.jpg" alt="new" class="icon">
-                    <p>Enter to add new knowledge base</p>
+                    <p>Add New</p>
                 </div>
             </a>
             <a href="updatedelete.php" style="text-decoration: none; color: inherit;">
@@ -95,7 +95,7 @@
                   <img src="../images/update.jpg" alt="new" class="icon1">
                   <img src="../images/delete.jpg" alt="new" class="icon1">
                   </div>
-                  <p>Update or delete knowledge base</p>
+                  <p>Update or Delete</p>
                 </div>
             </a>
         </div>
