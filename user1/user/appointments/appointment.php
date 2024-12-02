@@ -84,7 +84,6 @@ include 'get_appointment.php';
         <div class="main-wrapper">
             <!-- Navbar -->
             <div class="navbar">
-                <a href="#">Home</a>
                 <a href="#">
                     <img src="../images/notification.png" alt="Notifications">
                 </a>
