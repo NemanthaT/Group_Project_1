@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
           <a href="../contactforums/contactforum.html">
             <button>
               <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forum
+              Contact Forms
             </button>
           </a>
         </li>
@@ -103,7 +103,6 @@ if(isset($_POST['submit'])){
       <div class="controls card1">
             <h1>Update</h1>
         </div>
-        <a href="#">Home</a>
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">

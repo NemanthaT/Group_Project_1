@@ -75,7 +75,6 @@
         <div class="controls card1">
             <h1>DashBoard</h1>
         </div>
-          <a href="#">Home</a>
           <div class="profile">
             <a href="../SP_Profile/Profile.html">
               <img src="../images/user.png" alt="Profile">

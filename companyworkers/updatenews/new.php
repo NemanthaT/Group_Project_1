@@ -54,7 +54,7 @@ if(isset($_POST['submit'])){
           <a href="../contactforums/contactforum.html">
             <button>
               <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forum
+              Contact Forms
             </button>
           </a>
         </li>
@@ -91,7 +91,7 @@ if(isset($_POST['submit'])){
       <div class="controls card1">
             <h1>Add New</h1>
         </div>
-        <a href="#">Home</a>
+        
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
@@ -105,10 +105,10 @@ if(isset($_POST['submit'])){
         <form action="" method="POST">
           <br>
         <center><label for="title">Title:</label></center>
-        <center><input type="text" id="title" name="title" placeholder="Enter the title" required readonly>
+        <center><input type="text" id="title" name="title" placeholder="Enter the title" required>
             <br><br><br>
             <label for="content">Content:</label><br>
-            <textarea id="content" name="content" placeholder="Enter the Content" required readonly></textarea>
+            <textarea id="content" name="content" placeholder="Enter the Content" required></textarea>
             <br><br></center>
             <label for="worker_id" style="margin-left: 7.5%;">Worker_ID:</label>
             <input type="number" id="worker_id" name="worker_id" placeholder="Enter the worker id" required>
