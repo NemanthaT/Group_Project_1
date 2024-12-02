@@ -38,7 +38,7 @@ include '../connection.php';
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     </div> 
                     <div class="profile">
-                        <a href="#"><img src="../images/user.png" alt="Profile"></a>
+                        <a href="Profile.php"><img src="../images/user.png" alt="Profile"></a>
                     </div>
                     <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
@@ -51,32 +51,28 @@ include '../connection.php';
     <div class="left-column">
         <!-- Profile Card -->
         <div class="profile-card">
-            <div class="profile-image">
-                <img src="../images/user.png" alt="User Profile">
-                <button class="edit-button">Edit</button>
-            </div>
-            <h3>Safran</h3>
-            <p>★★★★★</p>
-            <ul class="profile-info">
-                <li><strong>Name:</strong> Safran</li>
-                <li><strong>Gender:</strong> Male</li>
-                <li><strong>Address:</strong> 32 nelson place</li>
-                <li><strong>Email:</strong> Safran@gmail.com</li>
-                <li><strong>Contact Number:</strong> +941234567</li>
-            </ul>
-            <h4>Social Media</h4>
-            <ul class="social-media-links">
-                <a href="#"><img src="../images/facebook.jpg" alt="Facebook"></a>
-                <a href="#"><img src="../images/linkedin.png" alt="LinkedIn"></a>
-                <a href="#"><img src="../images/instagram.jpg" alt="Instagram"></a>
-            </ul>
-        </div>
+    <div class="profile-image">
+        <img src="../images/user.png" alt="User  Profile">
+        <button class="edit-button">Edit</button>
     </div>
+    <h3>Safran</h3>
+    <p>★★★★★</p> <!-- Star rating styled with CSS -->
+    <ul class="profile-info">
+        <li><strong>Name:</strong> Safran</li>
+        <li><strong>Gender:</strong> Male</li>
+        <li><strong>Email:</strong> Safran@gmail.com</li>
+        <li><strong>Contact Number:</strong> +941234567</li>
+        <li><strong>Address:</strong> 32 Nelson Place</li> <!-- Moved Address to the end for better order -->
+    </ul>
+    <h4>Social Media</h4>
+    <ul class="social-media-links">
+        <li><a href="#"><img src="../images/facebook.jpg" alt="Facebook"></a></li>
+        <li><a href="#"><img src="../images/linkedin.png" alt="LinkedIn"></a></li>
+        <li><a href="#"><img src="../images/instagram.jpg" alt="Instagram"></a></li>
+    </ul>
+</div>
 
-    <!-- Right Column -->
-    <div class="right-column">
-        <!-- Service Stats -->
-        <div class="service-stats">
+<div class="service-stats">
             <h3>Service Stats</h3>
             <ul>
                 <li>Completed: 10</li>
@@ -85,11 +81,16 @@ include '../connection.php';
                 <li>Cancelled: 1</li>
             </ul>
         </div>
+    </div>
 
+    <!-- Right Column -->
+    <div class="right-column">
+        <!-- Service Stats -->
+        
         <!-- Additional Info -->
         <div class="additional-info">
             <h3>Introduction</h3>
-            <p>Name and Title: Jane Doe, Business Consultant<br>
+            <p>Name and Title: Safran, Business Consultant<br>
                 Experience: "With over 10 years of experience in business strategy and process improvement, I specialize in helping organizations achieve sustainable growth."<br>
                 Mission Statement: "My goal is to empower businesses to maximize their potential through tailored consulting solutions."<br>
                 Contact Information: Email, Phone Number, Website<br></p>
@@ -100,18 +101,15 @@ include '../connection.php';
                 Services Offered:<br>
                 Business plan development<br>
                 Process improvement strategies<br>
-                Market analysis and expansion strategies<br>
                 One-on-one coaching for executives<br></p>
             <h3>Certifications/Licenses</h3>
             <p>Certified Management Consultant (CMC)<br>
-                Lean Six Sigma Black Belt<br>
                 Professional Certified Coach (PCC) – International Coaching Federation<br>
                 MBA in Strategic Management<br>
                 Licensed Business Advisor<br></p>
             <h3>Awards</h3>
             <p>Top Consultant Award – Local Business Network, 2021<br>
                 Excellence in Strategy Development – National Consulting Association, 2020<br>
-                Recognized Speaker – International Business Summit, 2022<br>
                 Outstanding Leadership Coaching Award – Regional Leadership Forum, 2019<br></p>
         </div>
     </div>

@@ -152,7 +152,7 @@ body {
     padding: 3vh 2vw; /* Padding for consistent spacing */
     background-color: #ecf0f4;
     height: calc(100vh - 9vh); /* Full viewport height minus navbar height */
-    overflow-y: hidden; /* Enable scrolling if content overflows */
+    overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
 /* Dashboard grid layout */
@@ -183,28 +183,35 @@ body {
     background-color: white;
     border-radius: 1vh;
     box-shadow: 0 0.4vh 1vh rgba(0, 0, 0, 0.1);
-    text-align: center;
+    /*text-align: center;*/
+    text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /*align-items: center;*/
+    align-items:flex-start;
+    /*justify-content: center;*/
+    justify-content: left;
     font-weight: bold;
     cursor: pointer;
-    padding: 9vh;
+   /* padding: 9vh;*/
+   padding: 20px;
     transition: transform 0.3s ease;
 }
 
 .card h3 {
-    font-size: 2vh;
+    /*font-size: 2vh;*/
+    font-size: 2rem;
     font-weight: bold;
     color: #333;
+    margin-top: 10px;
     margin-bottom: 2vh; /* Space between heading and the first paragraph */
     text-transform: uppercase;
 }
 
 /* Styling for p tags inside cards */
 .card p {
-    font-size: 1.8vh; /* Larger font for better readability */
+    /*font-size: 1.8vh; /* Larger font for better readability */
+    font-size: 1.5rem;
     color: #555;
     margin: 1vh 0; /* Even spacing between paragraphs */
     line-height: 1.5; /* Increased line height for better text clarity */
