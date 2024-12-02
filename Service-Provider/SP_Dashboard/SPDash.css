@@ -152,7 +152,7 @@ body {
     padding: 3vh 2vw; /* Padding for consistent spacing */
     background-color: #ecf0f4;
     height: calc(100vh - 9vh); /* Full viewport height minus navbar height */
-    overflow-y: hidden; /* Enable scrolling if content overflows */
+    overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
 /* Dashboard grid layout */
