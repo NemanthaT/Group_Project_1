@@ -100,7 +100,7 @@ main {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 2rem;
     margin-bottom: 20px;
 }
 
@@ -123,15 +123,21 @@ h1 {
 .about-text {
     flex: 2;
     text-align: left;
+    margin-bottom: 40px;
 }
 
 .about-text h2 {
-    font-size: 24px;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
 .about-text p {
     line-height: 1.6;
+    font-size: 1.3rem;
+}
+
+.about-us{
+    
 }
 
 /* Footer styling */
