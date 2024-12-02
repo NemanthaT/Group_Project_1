@@ -50,7 +50,32 @@ include '../connection.php';
                     <center><h2>Forum</h2></center>
 
                     <!-- Button to Open "Create New Thread" Modal -->
-                    <button type="button" onclick="openCreateThreadModal()">Create New Thread</button>
+<button type="button" onclick="openCreateThreadModal()">+ Create Thread</button>
+
+<!-- Modal for Creating New Thread -->
+<div class="modal-overlay" id="createThreadModalOverlay" style="display: none;"></div>
+<div class="modal create-thread-modal" id="createThreadModal" style="display: none;">
+    <h3>Create a New Thread</h3>
+    <form>
+        <label for="newThreadTitle">Title:</label>
+        <input type="text" id="newThreadTitle" class="input-field" placeholder="Enter thread title">
+
+        <label for="newThreadCategory">Category:</label>
+        <select id="newThreadCategory" class="input-field">
+            <option value="General Discussions">General Discussions</option>
+            <option value="Technical Support">Technical Support</option>
+            <option value="Product/Service Feedback">Product/Service Feedback</option>
+            <option value="How-to Guides">How-to Guides</option>
+            <option value="Off-Topic">Off-Topic</option>
+        </select>
+
+        <label for="newThreadMessage">Message:</label>
+        <textarea id="newThreadMessage" class="input-field" rows="5" placeholder="Enter your message"></textarea>
+
+        <button type="button" onclick="submitNewThread()" class="submit-btn">Create</button>
+        <button type="button" onclick="closeCreateThreadModal()" class="cancel-btn">Cancel</button>
+    </form>
+</div>
 
                     <!-- Forum Search -->
                     <div class="forum-search">
@@ -122,52 +147,26 @@ include '../connection.php';
                         </ul>
                     </div>
 
-                    <!-- Modal for Viewing Thread -->
+<!-- Modal for Viewing Thread -->
 <div class="modal-overlay" id="modalOverlay" style="display: none;"></div>
-<div class="modal" id="modalForm" style="display: none;">
+<div class="modal view-thread-modal" id="modalForm" style="display: none;">
     <h3>View Thread</h3>
     <form>
         <label for="modalTitle">Title:</label>
-        <input type="text" id="modalTitle" readonly>
+        <input type="text" id="modalTitle" class="input-field" readonly>
 
         <label for="modalContent">Content:</label>
-        <textarea id="modalContent" rows="5" readonly></textarea>
+        <textarea id="modalContent" class="input-field" rows="5" readonly></textarea>
 
         <label for="modalViews">Number of Views:</label>
-        <input type="text" id="modalViews" readonly>
+        <input type="text" id="modalViews" class="input-field" readonly>
 
         <label for="modalReplies">Number of Replies:</label>
-        <input type="text" id="modalReplies" readonly>
+        <input type="text" id="modalReplies" class="input-field" readonly>
 
-        <button type="button" onclick="closeModal()">Close</button>
+        <button type="button" onclick="closeModal()" class="close-btn">Close</button>
     </form>
 </div>
-
-<!-- Modal for Creating New Thread -->
-<div class="modal-overlay" id="createThreadModalOverlay" style="display: none;"></div>
-<div class="modal" id="createThreadModal" style="display: none;">
-    <h3>Create a New Thread</h3>
-    <form>
-        <label for="newThreadTitle">Title:</label>
-        <input type="text" id="newThreadTitle" placeholder="Enter thread title">
-
-        <label for="newThreadCategory">Category:</label>
-        <select id="newThreadCategory">
-            <option value="General Discussions">General Discussions</option>
-            <option value="Technical Support">Technical Support</option>
-            <option value="Product/Service Feedback">Product/Service Feedback</option>
-            <option value="How-to Guides">How-to Guides</option>
-            <option value="Off-Topic">Off-Topic</option>
-        </select>
-
-        <label for="newThreadMessage">Message:</label>
-        <textarea id="newThreadMessage" rows="5" placeholder="Enter your message"></textarea>
-
-        <button type="button" onclick="submitNewThread()">Create</button>
-        <button type="button" onclick="closeCreateThreadModal()" class="cancel-btn">Cancel</button>
-    </form>
-</div>
-
                 </div>
             </div>
         </div>
