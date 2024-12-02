@@ -63,6 +63,10 @@ body {
     height: 200px;
 }
 
+#sR td,#fo td,#tE td{
+    padding-left: 120px;
+}
+
 /*.card:hover {
     transform: scale(1.1);
     color: white;
@@ -149,17 +153,15 @@ canvas:hover {
 }
 
 .calendar {
-    width: 370px;
-    height: 400px;
+    height: auto;
+    width: auto;
     background-color: #fffefe21;
     margin: auto;
     text-align: center;
-    font-family: Arial, sans-serif;
-    border: 1px solid #00ffd5;
+    /*font-family: Arial, sans-serif;*/
     border-radius: 25px;
     padding: 20px;
     padding-top: 40px;
-    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3);
 }
 
 .calendar-header {
