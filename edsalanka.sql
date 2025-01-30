@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2024 at 04:36 AM
+-- Generation Time: Jan 30, 2025 at 11:28 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -55,7 +55,8 @@ CREATE TABLE `appointments` (
   `client_id` int(11) DEFAULT NULL,
   `appointment_date` datetime DEFAULT NULL,
   `status` varchar(255) DEFAULT 'Scheduled',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `message` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
