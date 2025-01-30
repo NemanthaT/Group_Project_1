@@ -40,7 +40,8 @@ include '../session/session.php';
                             Projects
                         </button>
                     </a>
-                </li>                <li>
+                </li>
+                <li>
                     <a href="../bill/bill.php">
                         <button >
                         <img src="../images/bill.png" alt="Bill">
@@ -50,7 +51,7 @@ include '../session/session.php';
                 </li>
                 <li>
                     <a href="../forum/forum.php">
-                    <button>
+                    <button class="active">
                         <img src="../images/forum.png" alt="Forum">
                         Forum
                     </button>
@@ -69,7 +70,7 @@ include '../session/session.php';
                             Reports
                         </button>
                     </a>
-                </li> -->
+                </li> --> 
             </ul>
         </div>
 
@@ -91,83 +92,77 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
 
-        <div class="profile-container">
-        <h1>Business Profile Details</h1>
-        
-        <div class="profile-section">
-            <h2>Business Details</h2>
-            <div class="profile-field">
-                <br>
-                <label>Business Name</label>
-                <div class="value" id="business_name_display">Green Solutions Pvt Ltd</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Business Type</label>
-                <div class="value" id="business_type_display">Limited Company</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Business Registration Number</label>
-                <div class="value" id="registration_number_display">BR/2024/5678</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Tax Identification Number (TIN)</label>
-                <div class="value" id="tax_id_display">987-654-321</div>
-            </div>
+        <div class="controls card1">
+            <h1>Message</h1>            
         </div>
 
-        <div class="profile-section">
-            <h2>Company Contact Information</h2>
-            <div class="profile-field">
-                <br>
-                <label>Business Email</label>
-                <div class="value" id="business_email_display">info@greensolutions.lk</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Business Phone Number</label>
-                <div class="value" id="business_phone_display">+94 11 456 7890</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Business Address</label>
-                <div class="value" id="business_address_display">123 Eco Street, Colombo 04, Sri Lanka</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Province</label>
-                <div class="value" id="province_display">Western Province</div>
-            </div>
-        </div>
+        <div class="message-section">
+    <h2>Message</h2>
+    <div class="message-controls">
+        <input type="text" placeholder="Provider ID/Topic">
+        <button class="search-button">Search</button>
+        <button class="create-chat-button">Create Chat</button>
+    </div>
 
-        <div class="profile-section">
-            <h2>Business Owner/Proprietor Details</h2>
-            <div class="profile-field">
-                <br>
-                <label>Full Name</label>
-                <div class="value" id="owner_name_display">Saman Kumara</div>
+    <!-- Create Chat Modal -->
+    <div id="create-chat-modal" class="modal">
+    <div class="modal-content">
+        <button class="close-create-chat-modal" title="Close">&times;</button>
+        <h3>Create New Chat</h3>
+        <form id="create-chat-form">
+            <div class="form-section">
+                <label for="client-id">Client ID:</label>
+                <input type="text" id="client-id" name="client-id" required>
             </div>
-            
-            <div class="profile-field">
-                <label>National Identity Card (NIC) Number</label>
-                <div class="value" id="owner_nic_display">199012345678</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Personal Phone Number</label>
-                <div class="value" id="owner_phone_display">+94 77 987 6543</div>
-            </div>
-        </div>
 
-        <div class="action-buttons">
-            <button class="action-button edit-button" onclick="enableEditing()">Edit Profile</button>
+            <div class="form-section">
+                <label for="topic">Topic:</label>
+                <input type="text" id="topic" name="topic" required>
+            </div>
+
+            <div class="form-section">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <div class="form-footer">
+                <button type="submit" class="create-chat-button">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+  
+    <table class="message-table">
+        <thead>
+            <tr>
+                <th>Provider ID</th>
+                <th>Topic</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="message-tbody">
+            <!-- Rows will be added dynamically -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Chat Modal -->
+<div id="chat-modal" class="modal">
+    <div class="modal-content">
+        <button class="close-chat-modal" title="Close">&times;</button>
+        <h3>Chat with Provider</h3>
+        <div class="chat-window" id="chat-window">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="chat-input-section">
+            <textarea id="chat-input" placeholder="Type your message..."></textarea>
+            <button id="send-chat" class="send-chat">Send</button>
         </div>
     </div>
-        </div>
+</div>
 
-    </div>
     <script src="script.js"></script>
 </body>
 </html>

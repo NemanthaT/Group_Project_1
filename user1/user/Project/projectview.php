@@ -57,12 +57,12 @@ include '../session/session.php';
                     </button>
                     </a>
                 </li>
-                <!-- <li>
+                <li><a href="../Message/Message.php">
                     <button>
-                        <img src="../images/knowledgebase.png" alt="Knowledge Base">
-                        Knowledge Base
-                    </button>
-                </li> -->
+                        <img src="../images/Message.png" alt="Message">
+                        Message
+                    </button></a>
+                </li>
                 <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
@@ -78,7 +78,6 @@ include '../session/session.php';
         <div class="main-wrapper">
             <!-- Navbar -->
             <div class="navbar">
-                <a href="#">Home</a>
                 <a href="#">
                     <img src="../images/notification.png" alt="Notifications">
                 </a>
@@ -87,7 +86,7 @@ include '../session/session.php';
                 <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>
+                <a href="../../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
     <div class=".main-container">
@@ -123,7 +122,7 @@ include '../session/session.php';
             <h2>Agreement</h2>
             <br>
             <div class="row center">
-                <img class="pdf" src="img/pdf.png" alt="">
+                <img class="pdf" src="../images/pdf.png" alt="">
                 <h3> Agrement.pdf</h3>
             </div>
         </div> <div class="box">
@@ -131,8 +130,8 @@ include '../session/session.php';
 <h2>Proposal</h2>
 <br>
 <div class="row center">
-    <img class="pdf" src="img/pdf.png" alt="">
-    <h3> Proposal.pdf</h3>
+<img class="pdf" src="../images/pdf.png" alt="">
+<h3> Proposal.pdf</h3>
 </div>
 </div>
     </div>
@@ -142,7 +141,7 @@ include '../session/session.php';
         <h2>Report</h2>
             <br>
                 <div class="row center">
-                    <img class="pdf" src="img/pdf.png" alt="">
+                <img class="pdf" src="../images/pdf.png" alt="">
                     <h3> Report.pdf</h3>
                 </div>
         </div>

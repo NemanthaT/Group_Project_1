@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['email'])) {
     // Redirect to login page if session does not have user_id
-    header("Location: ../../login/login.php");
+    header("Location: ../../../login/login.php");
     exit();
 }
 else 
@@ -22,7 +22,7 @@ else
         $_SESSION['client_id'] = $row['client_id'];
     } else {
         // Handle case where user is not found
-        header("Location: ../../login/login.php");
+        header("Location: ../../../login/login.php");
         exit();
     }
 
