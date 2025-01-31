@@ -117,7 +117,7 @@ footer {
 .blurry-background{
     width: 100vw;
     height: 100vh;
-    background-image: url("images/logo.png"); /* Adjust the path as needed */
+    background-image: url("images/logo.png");
     background-size: cover;
     background-position: center;
     position: fixed;
