@@ -22,7 +22,7 @@
                 <p style="margin: 5px 10px 10px 10px">If you are a registered user an e-mail will be sent your e-mail address.</p>
             </div>
             <div class="form-group1">
-                <label for="email">e-mail:</label>
+            <p style="margin: 5px 10px 10px 10px">Please enter your registered e-mail.</p>
                 <input type="text" id="email" name="email" required>
             </div>
             <div class="form-group">
