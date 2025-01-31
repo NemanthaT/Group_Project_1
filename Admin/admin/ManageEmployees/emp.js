@@ -1,5 +1,10 @@
+function hideList(){
+    document.getElementById('dA').style.display = "none";
+}
+
 function closeView(){
     document.getElementById('results').style.display = "none";
+    document.getElementById('dA').style.display = "block";
 }
 
 function closeForm(){
