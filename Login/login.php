@@ -71,42 +71,49 @@ if (isset($_POST['submit'])) { //check if form was submitted
 <body>
     <div class="blurry-background"></div>
     <div class="container">
-        <form action="login.php" method="post">
-            <div class="form-header">
-                <h2>Login</h2>
-            </div>
-            <div class="form-group1">
-                <label for="email">e-mail:</label>
-                <input type="text" id="email" name="email" required>
-            </div>
-            <div class="form-group2">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="showp">
-                <label for="showpassword">Show Password</label>
-                <input type="checkbox" onclick="myFunction()">
-                <script>
-                    function myFunction() {
-                        var x = document.getElementById("password");
-                        if (x.type === "password") {
-                            x.type = "text";
-                        } else {
-                            x.type = "password";
+        <div class="conLeft">
+            <center>
+            <img class="loginImg" src="login.png" alt="login">
+            </center>
+        </div>
+        <div class="conRight">
+            <form action="login.php" method="post">
+                <div class="form-header">
+                    <h2>Member Login</h2>
+                </div>
+                <div class="form-group">
+                    <center><input type="text" id="email" name="email" placeholder=" &#128100; E-mail" required></center>
+                </div>
+                <div class="form-group">
+                    <center><input type="password" id="password" name="password" placeholder=" &#128274; Password" required></center>
+                </div>
+                <div class="showp">
+                    <center>
+                    <label for="showpassword">Show Password</label>
+                    <input type="checkbox" onclick="myFunction()">
+                    </center>
+                    <script>
+                        function myFunction() {
+                            var x = document.getElementById("password");
+                            if (x.type === "password") {
+                                x.type = "text";
+                            } else {
+                                x.type = "password";
+                            }
                         }
-                    }
-                </script>
-            </div>
-            <div class="form-group">
-                <center>
-                    <button name="submit" type="submit">Login</button>
-                </center>
-            </div>
-            <div class="form-footer">
-                <p>Don't have an account? <a href="Sign_up/switch.php">Sign up</a></p>
-                <p><a href="Forgot/forgot.php">Forgot password?</a></p>
-            </div>
-        </form>
+                    </script>
+                </div>
+                <div class="form-group">
+                    <center>
+                        <button name="submit" type="submit">Login</button>
+                    </center>
+                </div>
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="Sign_up/switch.php">Sign up</a></p>
+                    <p><a href="Forgot/forgot.php">Forgot password?</a></p>
+                </div>
+            </form>
+        </div>
     </div>
     <footer>
         <p>&copy; 2024 EDSA Lanka Consultancy</p>
