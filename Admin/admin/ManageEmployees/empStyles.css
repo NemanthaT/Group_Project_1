@@ -58,6 +58,7 @@ form input {
     display: none;
     position: absolute;
     z-index: 100;
+    margin-top: 10%;
     margin-left: 20%;
     margin-right: auto;
     justify-content: center;
