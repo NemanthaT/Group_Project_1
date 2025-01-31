@@ -16,24 +16,46 @@ body {
     border-radius: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 40%;
-    height: 50%;
+    width: 50%;
+    height: 60%;
+    padding: 0px 10px;
 }
 
 .forms {
     width: 100%;
+    height: 60%;
     display: flex;
     flex-direction: row;
+    transition: background-color 0.8s ease-in-out,
 }
 
 .client {
+    border-radius: 15px 0px 0px 15px;
     display: flex;
     flex-direction: column;
+    height: 100%;
     width:50%;
+    padding-bottom: 20px;
 }
 
 .provider {
+    border-radius: 0px 15px 15px 0px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     width:50%;
+    padding-bottom: 20px;
+}
+
+#cl:hover {
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(to right, #09ff00, #61ff5c);
+}
+#prov:hover {
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(to right, #61ff5c,  #09ff00);
 }
 
 .form-header {
@@ -112,4 +134,21 @@ button:hover{
 .bBtn:hover{
     color: white;
     background-color: tomato;
+}
+
+a {
+    color: #18A0FB;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.backLink {
+    color: #18A0FB;
+    text-align: center;
+}
+
+p {
+    font-size: larger; 
 }
