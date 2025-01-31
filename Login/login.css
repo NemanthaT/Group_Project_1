@@ -11,43 +11,52 @@ body {
 
 .container {
     background-color: #ececec;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 400px;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
     transition: transform 0.2s ease-in-out;
 }
 
+.loginImg{
+    width: 50%;
+    height: 50%;
+    padding-top: 20%;
+}
+
+.conRight {
+    width: 50%;
+    height: auto;
+}
+
+.conLeft {
+    width: 50%;
+    height: auto;
+}
 /*.container:hover{
     transform: scale(1.4);
 }*/
 
 .form-header {
-    background-color: #18A0FB;
-    color: #ffffff;
+    /*background-color: #18A0FB;*/
+    font-size: larger;
+    color: #000000;
     text-align: center;
     padding: 20px;
 }
 
-.form-group1 {
-    padding: 20px 20px 5px 20px;
-}
-.form-group2 {
+.form-group {
+    align-items: center;
+    align-content: center;
     padding: 15px 20px 5px 20px;
 }
+
 .showp {
     padding: 0px 0px 5px 20px;
 }
-.form-group1 label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-}
-.form-group2 label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-}
+
 .showp label {
     display: inline;
     margin-bottom: 8px;
@@ -55,35 +64,30 @@ body {
 }
 
 
-.form-group1 input {
-    width: 100%;
-    padding: 10px;
+.form-group input {
+    width: 80%;
+    font-size: larger;
+    padding: 12px 20px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-.form-group2 input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 20px;
     box-sizing: border-box;
 }
 
 .form-group button {
     font-family: 'Segoe UI';
-    background-color: #18A0FB;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #18A0FB;
     padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
+    width: 80%;
     cursor: pointer;
-    font-size: 16px;
+    font-size: larger;
 }
 
 .form-group button:hover {
+    color: #ffffff;
     background-color: #18A0FB;
 }
 
