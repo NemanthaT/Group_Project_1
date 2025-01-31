@@ -37,8 +37,14 @@
                         <input type="text" name="username" placeholder="Enter Username" required><br>
                         <label for="role">Role:</label><br>
                         <input type="text" name="role" placeholder="Enter Role" required><br>
+                        <label for="address">Address:</label><br>
+                        <input type="text" name="address" placeholder="Enter Address" required><br>
+
+                        <label for="phoneNo">Phone No:</label><br>
+                        <input type="text" name="phoneNo" placeholder="Enter Phone Number" required><br>
                         <label for="email">Email:</label><br>
                         <input type="email" name="email" placeholder="Enter Email" required><br>
+
                         <center><button type="submit" name="addEmp" class="sBtn">Add</button></center>
                     </form>
 
@@ -48,10 +54,12 @@
                     $username = $_POST['username'];
                     $fullname = $_POST['fullname'];
                     $role = $_POST['role'];
+                    $address = $_POST['address'];
+                    $phoneNo = $_POST['phoneNo'];
                     $email = $_POST['email'];
                     $password = rand(100000, 999999);
                     //$password = password_hash($password, PASSWORD_DEFAULT);
-                    $sql = "INSERT INTO companyworkers (username, full_name, role, email, password) VALUES ('$username', '$fullname', '$role', '$email', '$password')";
+                    $sql = "INSERT INTO companyworkers (username, full_name, role, address, phoneNo, email, password) VALUES ('$username', '$fullname', '$role', '$address', '$phoneNo', '$email', '$password')";
                     if ($conn->query($sql) === TRUE) {
                         echo "<script>alert('New Employee Added Successfully!');</script>";
                     } else {
@@ -68,7 +76,7 @@
                     <div class="searchContainer">
                         <form action="" method="POST">
                             <input type="text" name="name" placeholder="Enter Name" required>
-                            <button class="sBtn" type="submit" name="search_name">Search</button>
+                            <button class="sBtn" type="submit" name="search_name" onclick="hideList()">Search</button>
                         </form>
                     </div>
                 </div>
@@ -205,7 +213,7 @@
                 </div>
                 
                 <!--List all the Employees-->
-                <div>
+                <div id="dA">
                     <?php
                         echo "<center><table class=\"displayArea\">
                         <tr>
