@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'  && isset($_POST['sP'])) {
                 <div >
                     <center>
                         <h2>Client</h2>
-                        <span style='font-size:100px;'>&#128100;</span><br>
+                        <span style='font-size:100px;'>&#128129;</span><br>
                         <button name="sC" type="submit">Signup</button>
                     </center>
 
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'  && isset($_POST['sP'])) {
                 <div >
                     <center>
                         <h2>Service Provider</h2>
-                        <span style='font-size:100px;'>&#128100;</span><br>
+                        <span style='font-size:100px;'>&#129333;</span><br>
                         <button name="sP" type="submit">Signup</button>
                     </center>
 
