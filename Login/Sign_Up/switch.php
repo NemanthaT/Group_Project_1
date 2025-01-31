@@ -10,10 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'  && isset($_POST['sP'])) {
     header('Location: Sign_UpP.php');
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'  && isset($_POST['back'])) {
-    header('Location: ../login.php');
-}
-
 ?>
 
 
@@ -28,32 +24,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'  && isset($_POST['back'])) {
 <body>
     <div class="blurry-background"></div>
     <div class="container">
-        <form action="" method="post">
-                <div class="form-header">
-                    <h2>Select Option</h2>
-                </div>
-                <div class="form-group1">
-                    <div class="client">
+        <div class="form-header">
+            <h2>Select Option</h2>
+        </div>
+        <div class="forms">
+            <form action="" class="client" method="post">
+                <div >
                     <center>
-                        <p>Client</p>
-                        <span style='font-size:100px;'>&#128100;</span>
+                        <h2>Client</h2>
+                        <span style='font-size:100px;'>&#128100;</span><br>
                         <button name="sC" type="submit">Signup</button>
                     </center>
 
-                    </div>
-                    <div class="provider">
+                </div>
+            </form>
+            <form action="" class="provider" method="post">
+                <div >
                     <center>
-                        <p>Service Provider</p>
-                        <span style='font-size:100px;'>&#128100;</span>
+                        <h2>Service Provider</h2>
+                        <span style='font-size:100px;'>&#128100;</span><br>
                         <button name="sP" type="submit">Signup</button>
                     </center>
 
-                    </div>
                 </div>
-                <div class="form-footer">
-                    <button name="back" type="submit" class="bBtn">Back</button>
-                </div>
-        </form>                                                                                         
+            </form>
+        </div>
+        <div class="form-footer">
+            <button onclick="window.location.href='../login.php'" class="bBtn">Back</button>
+        </div>
+                                                                                                 
     </div>
     <footer class="footer">
         <p>&copy; 2024 EDSA Lanka Consultancy</p>
