@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) { //check if form was submitted
                     <h2>Member Login</h2>
                 </div>
                 <div class="form-group">
-                    <center><input type="text" id="email" name="email" placeholder=" &#128100; E-mail" required></center>
+                    <center><input type="text" id="email" name="email" placeholder=" &#128231; E-mail" required></center>
                 </div>
                 <div class="form-group">
                     <center><input type="password" id="password" name="password" placeholder=" &#128274; Password" required></center>
