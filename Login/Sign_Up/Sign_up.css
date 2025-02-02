@@ -32,15 +32,30 @@ main {
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* Ensures it takes the full height of the window */
-    max-width: 700px; /* Increased max width for better readability */
+    max-width: 80vh; /* Increased max width for better readability */
     margin: 0 auto;
     padding: 0 20px;
     text-align: center;
 }
 
+.left {
+    width: 20%;
+    background-image: url("../../images/register.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 h1 {
+    color: white;
     font-size: 2em;
-    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin: 10px 10px 20px 10px;
+    border-radius: 10px;
+    background-image: url("../../images/sunset.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .form-section {
@@ -48,8 +63,8 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row;
+    width: 80%;
 }
 
 /* Sign-up Section */
