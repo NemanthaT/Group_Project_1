@@ -10,6 +10,10 @@ body {
     position: relative;
     min-height: 100vh;
     overflow-x: hidden; /* Prevent horizontal scrollbars */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 .blurry-background {
@@ -26,29 +30,48 @@ body {
 }
 
 /* Main Section */
-main {
+/*main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ensures it takes the full height of the window */
-    max-width: 700px; /* Increased max width for better readability */
+    min-height: 100vh;
+    max-width: 700px; 
     margin: 0 auto;
     padding: 0 20px;
     text-align: center;
+}*/
+
+.left {
+    width: 30%;
+    height: 587px;
+    background-color: red;
+    background-image: url("../../images/register.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
+
 h1 {
+    color: white;
     font-size: 2em;
-    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    border-radius: 10px;
+    background-image: url("../../images/sunset.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .form-section {
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    flex-direction: column;
+    flex-direction: row;
+    overflow: hidden;
+    border-radius: 10px; 
     width: 100%;
 }
 
@@ -58,9 +81,10 @@ h1 {
     border: 1px solid #ccc;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    width: 100%; /* Ensure it adapts to the container width */
-    max-width: 500px; /* Increased maximum width */
+    border-radius: 0px 10px 10px 0px;
+    width: 70%; /* Ensure it adapts to the container width */
+    height: 100%;
+    /*max-width: 500px; /* Increased maximum width */
 }
 
 .sign-up-btn {
