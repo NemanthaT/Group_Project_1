@@ -51,10 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="blurry-background"></div>
     <main>
-        <h1>Welcome to EDSA Lanka Consultancy</h1>
+        
         <div class="form-section">
-            <section class="sign-up">
-                <h2>Service Provider</h2>
+            <div class="left">
+
+            </div>
+            <div class="sign-up">
+                <h1>Welcome to EDSA Lanka Consultancy</h1>
                 <form id="signup-form" method="post" action="">
                     <!-- Step 1 -->
                     <div id="step-1">
@@ -133,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <button type="submit" id="submit-btn" class="sign-up-btn">Sign up</button>
                     </div>
                 </form>
-            </section>
+            </div>
         </div>
     </main>
     <footer class="footer">
