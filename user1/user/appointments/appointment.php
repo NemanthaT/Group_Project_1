@@ -162,7 +162,7 @@ include 'get_appointment.php';
 					</form>
 				<?php endif; ?>
 
-				<?php if ($user['provider_id'] !== null && $user['status'] == 'Cancelled'): ?>
+				<?php if ( $user['status'] == 'Cancelled'): ?>
 					<form method="POST" action="delete_appointment.php" style="display: inline;">
 						<input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
 						<button type="submit" class="btn cancel-btn">Delete</button>
