@@ -21,9 +21,6 @@ body {
   margin-top: 200px;
   margin-left: 75px;
   margin-right: 30px;
-=======
-.calendar {
-  width: 500px;
   height: 450px;
   background-color: #ffffff;
   margin: auto;
@@ -318,7 +315,6 @@ body {
 
 #clock {
   font-size: 2em;
-<<<<<<< HEAD
   color: #333;
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -328,7 +324,6 @@ body {
   background-color: #1dd2fb;
   margin-top: 5px;
 }
-=======
   font-family: Arial, sans-serif;
   padding: 20px;
   border-radius: 8px;
@@ -388,4 +383,3 @@ margin-left: 60px;
   display: flex;
 }
 
->>>>>>> 8331630d9741f2381f427313307b9fc79aa5eac6
