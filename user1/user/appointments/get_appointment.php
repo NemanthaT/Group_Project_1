@@ -10,7 +10,7 @@ if ($search === '') {
     $sql = "SELECT a.*, p.full_name 
             FROM appointments a 
             LEFT JOIN serviceproviders p ON a.provider_id = p.provider_id 
-            WHERE a.client_id = ?";
+            WHERE a.client_id = ? And a.status != 'Deleted'";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $_SESSION['client_id']);
 } else {
@@ -18,7 +18,7 @@ if ($search === '') {
     $sql = "SELECT a.*, p.full_name 
             FROM appointments a 
             LEFT JOIN serviceproviders p ON a.provider_id = p.provider_id 
-            WHERE a.client_id = ? AND a.appointment_id = ?";
+            WHERE a.client_id = ? AND a.appointment_id = ? And a.status != 'Deleted'";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii", $_SESSION['client_id'], $search);
 }

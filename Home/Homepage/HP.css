@@ -19,8 +19,8 @@
 }
 
 .Hcontainer {
-    max-width: 1200px;
-    width: auto;
+    /*max-width: 1200px;*/
+    width: 70%;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -556,4 +556,8 @@ p {
   .fa-instagram {
     background: #dd02aa;
     color: white;
+  }
+
+  .logo1{
+    width: 225px;
   }

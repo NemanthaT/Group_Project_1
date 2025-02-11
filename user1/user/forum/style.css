@@ -9,6 +9,7 @@
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     min-height: 100vh;
+    overflow-x: hidden;
   }
   
   /* Container Layout */
@@ -188,4 +189,122 @@
     background-size: cover;
   }
 
-  
+.controls h2, .controls h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.forum-search button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #18A0FB;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.forum-search button:hover {
+  background-color: #1071B1;
+}
+
+.forum-categories h3{
+  margin: 15px;
+}
+
+.forum-categories ul, .forum-threads ul {
+    list-style: none;
+    padding: 0;
+}
+
+.forum-categories ul li button {
+    display: block;
+    padding: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.forum-categories ul li button:hover {
+    background-color: #1071B1;
+}
+
+.forum-threads h3{
+  margin: 15px;
+}
+
+.forum-threads ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.forum-threads ul li h4 {
+    font-size: 18px;
+    color: #18A0FB;
+    margin-bottom: 5px;
+}
+
+.forum-search, .new-thread {
+    margin-top: 15px;
+}
+
+.forum-search input[type="text"], .new-thread input[type="text"], .forum-search button, .new-thread button, .new-thread select {
+    padding: 8px;
+    margin-right: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.new-thread {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.new-thread form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.new-thread .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-thread label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.new-thread input[type="text"],
+.new-thread select,
+.new-thread textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.new-thread button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.new-thread button:hover {
+    background-color: #1071B1;
+}

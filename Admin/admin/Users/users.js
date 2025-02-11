@@ -128,3 +128,7 @@ function closeView(){
     document.getElementById('hiddenView').style.display = "none";
     document.getElementById('displayArea').style.filter = "none";
 }
+
+window.addEventListener('scroll', function() {
+    document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
+});

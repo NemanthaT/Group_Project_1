@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
 
       <ul class="menu">
         <li>
-          <a href="../dashboard/dashboard.html">
+        <a href="../dashboard/dashboard.php">
             <button>
               <img src="../images/dashboard.png" alt="Dashboard">
               Dashboard
@@ -44,8 +44,8 @@ if(isset($_POST['submit'])){
           </a>
         </li>
         <li>
-          <a href="../servicerequest/servicerequest.html">
-            <button>
+        <a href="../servicerequest/servicerequest.php">
+        <button>
               <img src="../images/service.jpg" alt="servicerequest">
               Service Requests
             </button>
@@ -55,7 +55,7 @@ if(isset($_POST['submit'])){
           <a href="../contactforums/contactforum.html">
             <button>
               <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forum
+              Contact Forms
             </button>
           </a>
         </li>
@@ -89,10 +89,9 @@ if(isset($_POST['submit'])){
     <div class="main-wrapper">
       <!-- Navbar -->
       <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">
-          <img src="../images/notification.png" alt="Notifications">
-        </a>
+      <div class="controls card1">
+            <h1>Add New</h1>
+        </div>
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
@@ -111,7 +110,7 @@ if(isset($_POST['submit'])){
             <label for="content">Content:</label><br>
             <textarea id="content" name="content" placeholder="Enter the Content" required></textarea>
             <br><br></center>
-            <label for="worker_id" style="margin-left: 7.5%;">Worker_ID:</label>
+            <label for="worker_id" style="margin-left: 7.5%;">Worker ID:</label>
             <input type="number" id="worker_id" name="worker_id" placeholder="Enter the worker id" required>
             <br><br><br>
           <center><input type="submit"value="submit" name="submit" class="submit-button"></center>

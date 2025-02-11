@@ -1,0 +1,158 @@
+body {
+    font-family: 'Segoe UI', 'cursive';
+    background-color: white;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.container {
+    background-color: #ececec;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 50%;
+    height: 60%;
+    padding: 0px 10px;
+}
+
+.forms {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    transition: background-color 0.8s ease-in-out,
+}
+
+.client {
+    color: #ececec;
+    border-radius: 15px 0px 0px 15px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width:50%;
+    padding-bottom: 20px;
+}
+
+.provider {
+    color: #ececec;
+    border-radius: 0px 15px 15px 0px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width:50%;
+    padding-bottom: 20px;
+}
+
+#cl:hover {
+    cursor: pointer;
+    color: #18A0FB;
+    /*background: linear-gradient(to right, #09ff00, #61ff5c);*/
+    border: solid 1px #18A0FB;
+}
+#prov:hover {
+    cursor: pointer;
+    color: #18A0FB;
+    /*background: linear-gradient(to right, #61ff5c,  #09ff00);*/
+    border: solid 1px #18A0FB;
+}
+
+.form-header {
+    color: #000000;
+    text-align: center;
+    padding: 20px;
+}
+
+
+.forms p {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.form-footer {
+    /*background-color: #18A0FB;*/
+    text-align: center;
+    padding: 20px;
+}
+
+.form-footer a {
+    color: #18A0FB;
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #d3d3d3;
+    color: #576574;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #18A0FB;
+}
+
+.blurry-background{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/logo.png"); /* Adjust the path as needed */
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+button{
+    padding: 12px 20px;
+    font-size: larger;
+    font-weight: bold;
+    width: 40%;
+    color: #18A0FB;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 20px;
+}
+
+button:hover{
+    background-color:#18A0FB;
+    color: white;
+}
+
+.bBtn{
+    border-radius: 20px;
+    width: 30%;
+    margin-top: 20px;
+    color: tomato;
+    background-color: #ffffff;
+}
+.bBtn:hover{
+    color: white;
+    background-color: tomato;
+}
+
+a {
+    color: #18A0FB;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.backLink {
+    color: #18A0FB;
+    text-align: center;
+}
+
+p {
+    font-size: larger; 
+}

@@ -56,13 +56,11 @@ include '../session/session.php';
                     </button>
                     </a>
                 </li>
-                <li>
-                    <a href="">
+                <li><a href="../Message/Message.php">
                     <button>
-                        <img src="../images/knowledgebase.png" alt="Knowledge Base">
-                        Knowledge Base
-                    </button>
-                    </a>
+                        <img src="../images/Message.png" alt="Message">
+                        Message
+                    </button></a>
                 </li>
                 <!-- <li>
                     <a href="../reports/reports.php">
@@ -79,7 +77,6 @@ include '../session/session.php';
         <div class="main-wrapper">
             <!-- Navbar -->
             <div class="navbar">
-                <a href="#">Home</a>
                 <a href="#">
                     <img src="../images/notification.png" alt="Notifications">
                 </a>
@@ -88,7 +85,7 @@ include '../session/session.php';
                 <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>
+                <a href="../../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
     <div class=".main-container">
@@ -107,28 +104,28 @@ include '../session/session.php';
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Project Kickoff</strong>
+                        <strong>Project Kickoff Discussion</strong>
                         <span class="appointment-time">12 Dec, 10:00 AM</span>
                     </div>
                     <span class="status-badge status-upcoming">Upcoming</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Client Meeting</strong>
+                        <strong>Investment Portfolio Review</strong>
                         <span class="appointment-time">15 Dec, 2:00 PM</span>
                     </div>
                     <span class="status-badge status-pending">Pending</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Design Review</strong>
+                        <strong>Team Performance Review</strong>
                         <span class="appointment-time">18 Dec, 11:30 AM</span>
                     </div>
                     <span class="status-badge status-upcoming">Upcoming</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Budget Discussion</strong>
+                        <strong>Quarterly Financial Review</strong>
                         <span class="appointment-time">20 Dec, 9:00 AM</span>
                     </div>
                     <span class="status-badge status-upcoming">Upcoming</span>
@@ -142,11 +139,11 @@ include '../session/session.php';
                     <span class="icon">📋</span>
                 </div>
                 <div class="list-item">
-                    <span>Web Redesign</span>
+                    <span>Investment Portfolio Management Software</span>
                     <span class="status-badge status-upcoming">Upcoming</span>
                 </div>
                 <div class="list-item">
-                    <span>Mobile App</span>
+                    <span>Automated Financial Reporting System</span>
                     <span class="status-badge status-pending">Pending</span>
                 </div>
                 <div class="list-item">
@@ -161,18 +158,18 @@ include '../session/session.php';
                     <span class="icon">💰</span>
                 </div>
                 <div class="list-item">
-                    <span>Client A</span>
-                    <span>$5,000</span>
+                    <span>Training Session Payment</span>
+                    <span>Rs.5,000</span>
                     <span class="status-badge status-pending">Pending</span>
                 </div>
                 <div class="list-item">
-                    <span>Client B</span>
-                    <span>$3,500</span>
+                    <span>Subscription for Monthly Sessions</span>
+                    <span>Rs.3,500</span>
                     <span class="status-badge status-upcoming">Due Soon</span>
                 </div>
                 <div class="list-item">
-                    <span>Client C</span>
-                    <span>$2,200</span>
+                    <span>Payment for Personal Finance Session</span>
+                    <span>Rs.2,200</span>
                     <span class="status-badge status-overdue">Overdue</span>
                 </div>
             </div>
@@ -184,22 +181,22 @@ include '../session/session.php';
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>New Project Proposal</strong>
-                        <span class="appointment-time">Client D submitted a new proposal</span>
+                        <strong>Payment Due Reminder</strong>
+                        <span class="appointment-time">Your monthly payment of Rs.6,000 is due in 3 days. Please ensure timely payment.</span>
                     </div>
                     <span class="status-badge status-upcoming">New</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Payment Reminder</strong>
-                        <span class="appointment-time">Reminder sent to Client B</span>
+                        <strong>Transaction Confirmation</strong>
+                        <span class="appointment-time">Your recent transaction of Rs.4,000 to Mr.Rama Crish has been successfully processed.</span>
                     </div>
-                    <span class="status-badge status-pending">Sent</span>
+                    <span class="status-badge status-pending">Seen</span>
                 </div>
                 <div class="list-item">
                     <div class="appointment-details">
-                        <strong>Deadline Extension</strong>
-                        <span class="appointment-time">Mobile App project extension request</span>
+                        <strong>Agreement Uploaded</strong>
+                        <span class="appointment-time">Your agreement has been successfully uploaded. Please review the document and let us know if you have any questions or need further assistance.</span>
                     </div>
                     <span class="status-badge status-overdue">Pending</span>
                 </div>

@@ -19,9 +19,10 @@ function viewForum(id) {
             document.getElementById('displayArea').style.filter = "blur(10px)";
             document.getElementById('hiddenView').style.display = "block";
             document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
-            //document.getElementById("forumId").innerText = data.forum_id;
-            document.getElementById("forumTitle").innerText = data.title;
-            document.getElementById("clientId").innerText = data.user_id;
+            //document.getElementById("forumId").innerText = "Forum Id: " + data.forum_id;
+            document.getElementById("forumTitle").innerText = "Title: " + data.title;
+            document.getElementById("createdBy").innerText = "Created By: " + data.created_by;
+            document.getElementById("clientId").innerText = "User Id: " + data.user_id;
             document.getElementById("forumContent").innerText = data.content;
             //document.documentElement.scrollTop = 0;
         }
@@ -64,3 +65,7 @@ function closeView(){
     document.getElementById('hiddenView').style.display = "none";
     document.getElementById('displayArea').style.filter = "blur(0px)";
 }
+
+window.addEventListener('scroll', function() {
+    document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
+});

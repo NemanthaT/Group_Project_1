@@ -57,12 +57,12 @@ include '../session/session.php';
                     </button>
                     </a>
                 </li>
-                <!-- <li>
+                <li><a href="../Message/Message.php">
                     <button>
-                        <img src="../images/knowledgebase.png" alt="Knowledge Base">
-                        Knowledge Base
-                    </button>
-                </li> -->
+                        <img src="../images/Message.png" alt="Message">
+                        Message
+                    </button></a>
+                </li>
                 <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
@@ -78,7 +78,6 @@ include '../session/session.php';
         <div class="main-wrapper">
             <!-- Navbar -->
             <div class="navbar">
-                <a href="#">Home</a>
                 <a href="#">
                     <img src="../images/notification.png" alt="Notifications">
                 </a>
@@ -87,7 +86,7 @@ include '../session/session.php';
                 <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>
+                <a href="../../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
     <div class=".main-container">

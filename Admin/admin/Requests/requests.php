@@ -63,7 +63,7 @@
                     <center>
                         <table>
                             <tr>
-                                <th>Request Id</th>
+                                <!--<th>Request Id</th>-->
                                 <th>Field</th>
                                 <th>specialty</th>
                                 <th>Action</th>
@@ -74,7 +74,7 @@
 
                                 if($result->num_rows > 0) {
                                     while($row = $result->fetch_assoc()) {
-                                        echo "<tr><td>".$row["reqId"]."</td><td>".$row["field"]."</td><td>".$row["specialty"]."</td>
+                                        echo "<tr><!--<td>".$row["reqId"]."</td>--><td>".$row["field"]."</td><td>".$row["specialty"]."</td>
                                         <td class=\"actions\"><center><button class=\"accept\" onclick=\"accReq(" . $row['reqId'] . ")\">Accept</button>
                                         <button class=\"view\" onclick=\"viewReq(" . $row['reqId'] . ")\">View</button>
                                         <button class=\"del\" onclick=\"deleteReq(" . $row['reqId'] . ")\">Delete</button></center></td></tr>";

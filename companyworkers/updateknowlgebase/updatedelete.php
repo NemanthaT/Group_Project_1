@@ -21,7 +21,7 @@ include("../connect.php");
 
       <ul class="menu">
         <li>
-          <a href="../dashboard/dashboard.html">
+        <a href="../dashboard/dashboard.php">
             <button>
               <img src="../images/dashboard.png" alt="Dashboard">
               Dashboard
@@ -29,8 +29,8 @@ include("../connect.php");
           </a>
         </li>
         <li>
-          <a href="../servicerequest/servicerequest.html">
-            <button>
+        <a href="../servicerequest/servicerequest.php">
+        <button>
               <img src="../images/service.jpg" alt="servicerequest">
               Service Requests
             </button>
@@ -40,7 +40,7 @@ include("../connect.php");
           <a href="../contactforums/contactforum.html">
             <button>
               <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forum
+              Contact Forms
             </button>
           </a>
         </li>
@@ -74,10 +74,9 @@ include("../connect.php");
     <div class="main-wrapper">
       <!-- Navbar -->
       <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">
-          <img src="../images/notification.png" alt="Notifications">
-        </a>
+      <div class="controls card1">
+            <h1>Past Updates</h1>
+        </div>
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
@@ -85,10 +84,9 @@ include("../connect.php");
         </div>
         <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
-      <div class="main-container">
 
-    <div class="container" style="position: absolute; top: 100px;">
-    <div class="table-container">
+      <div class="main-container">
+      <div class="table-container">
     <table class="table table-hover">
         <thead>
             <tr>

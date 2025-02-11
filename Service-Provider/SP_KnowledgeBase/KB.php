@@ -1,5 +1,6 @@
 <?php
-require_once('../connection.php');
+include '../Session/Session.php';
+include '../connection.php';
 
 // Handle CRUD operations
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -98,12 +99,12 @@ if (isset($_GET['paper_id'])) {
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
             </div>
             <ul class="menu">
-                <li><a href="../SP_Dashboard/SPDash.html"><button><img src="../images/dashboard.jpg">Dashboard</button></a></li>
-                <li><a href="../Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
-                <li><a href="../Message/Message.html"><button><img src="../images/message.jpg">Message</button></a></li>
-                <li><a href="../SP_Projects/Project.html"><button><img src="../images/project.png">Project</button></a></li>
-                <li><a href="../SP_Bill/Bill.html"><button><img src="../images/bill.png">Bill</button></a></li>
-                <li><a href="../SP_Forum/Forum.html"><button><img src="../images/forum.png">Forum</button></a></li>
+                <li><a href="../SP_Dashboard/SPDash.php"><button><img src="../images/dashboard.png">Dashboard</button></a></li>
+                <li><a href="../SP_Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
+                <li><a href="../SP_Message/Message.php"><button><img src="../images/message.png">Message</button></a></li>
+                <li><a href="../SP_Projects/Project.php"><button><img src="../images/project.png">Project</button></a></li>
+                <li><a href="../SP_Bill/Bill.php"><button><img src="../images/bill.png">Bill</button></a></li>
+                <li><a href="../SP_Forum/Forum.php"><button><img src="../images/forum.png">Forum</button></a></li>
                 <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
             </ul>
         </div>
@@ -113,19 +114,20 @@ if (isset($_GET['paper_id'])) {
             <!-- Navbar -->
             <header>
                 <nav class="navbar">
-                    <a href="../Home/Homepage/HP.html">Home</a>
+                    <!-- <a href="../Home/Homepage/HP.html">Home</a> -->
                     <div class="notification">
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     </div>
                     <div class="profile">
-                        <a href="../SP_Profile/Profile.html"><img src="../images/user.png" alt="Profile"></a>
+                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
                     </div>
-                    <a href="../Login/Logout.php" class="logout">Logout</a>
+                    <a href="../../Login/Logout.php" class="logout">Logout</a>
                 </nav>
             </header>
 
             <!-- Main Content -->
             <div class="main-content">
+            <div class="KB-section">
                 <h2>Case Studies and Knowledge Resources</h2>
 
                 <!-- Form for Adding Case Studies -->
@@ -139,8 +141,8 @@ if (isset($_GET['paper_id'])) {
                         <label for="description">Description:</label>
                         <textarea id="description" name="description" rows="5" placeholder="Enter case study description" required></textarea>
 
-                        <label for="fileUpload">Upload File:</label>
-                        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.docx,.txt">
+                        <!-- <label for="fileUpload">Upload File:</label>
+                        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.docx,.txt"> -->
 
                         <button type="submit">Create Case Study</button>
                     </form>
@@ -149,6 +151,12 @@ if (isset($_GET['paper_id'])) {
                 <!-- Published Case Studies Section -->
                 <div class="published-case-studies">
                     <h3>Published Case Studies</h3>
+
+                        <div class="search-bar">
+                            <input type="text" id="searchInput" placeholder="Search case studies...">
+                                <button type="button" id="searchButton" onclick="searchCaseStudies()">Search</button>
+                        </div>
+
                     <?php foreach ($caseStudies as $case): ?>
                         <div class="case-study-card" id="case-<?php echo $case['paper_id']; ?>">
                             <!-- Display only the title -->
@@ -189,6 +197,7 @@ if (isset($_GET['paper_id'])) {
                 </form>
             </div>
             <?php endif; ?>
+        </div>
         </div>
 
         <script src="KB.js"></script>        

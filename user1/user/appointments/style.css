@@ -282,9 +282,9 @@ a {
 }
 
 /* Button Styles in Table */
-.edit-btn,
+.edit-btn,.view-btn
 .cancel-btn {
-  padding: 6px 12px;
+  padding: 10px 20px;
   margin: 0 5px;
   font-size: 14px;
 }
@@ -295,6 +295,9 @@ a {
 
 .cancel-btn {
   background-color: #dc3545;
+}
+.view-btn {
+  background-color: #505050;
 }
 
 /* Modal Container */

@@ -176,8 +176,17 @@ body {
 .main-content h2 {
     font-size: 4vh;
     margin-bottom: 3vh;
-    color: #18A0FB;
+    color: black;
     text-align: center;
+}
+
+.KB-section {
+    padding: 20px;
+    background-color: #fff6f6;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it spans the full width of the main content */
+    height: fit-content;
 }
 
 /* Form for Adding Case Studies */
@@ -199,7 +208,7 @@ body {
     display: block;
     font-size: 2.5vh;
     margin-bottom: 1vh;
-    color: #555;
+    color: black;
 }
 
 .case-study-form input,
@@ -252,6 +261,26 @@ body {
 }
 
 /* Published Case Studies Section */
+
+.search-bar input[type="text"],
+.search-bar button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.search-bar button{
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #145f9e;
+}
 .published-case-studies {
     background: white;
     border: 1px solid #ddd;
@@ -276,7 +305,7 @@ body {
 .case-study-card h4 {
     font-size: 2.5vh;
     margin-bottom: 1vh;
-    color: #18A0FB;
+    color: black;
 }
 
 .case-study-card p {
@@ -291,7 +320,6 @@ body {
 }
 
 .case-study-buttons button {
-    background-color: #18A0FB;
     color: white;
     font-size: 2.2vh;
     padding: 0.8vh 2vw;
@@ -300,24 +328,12 @@ body {
     cursor: pointer;
 }
 
-.case-study-buttons button:hover {
-    background-color: #145f9e;
-}
-
-.update-btn {
-    background-color: #ffa500; /* Orange for Update */
-}
-
-.update-btn:hover {
-    background-color: #cc8400;
-}
-
 .delete-btn {
-    background-color: #ff4d4d; /* Red for Delete */
+    background-color: red; /* Red for Delete */
 }
 
 .delete-btn:hover {
-    background-color: #cc0000;
+    background-color: #c82333;
 }
 
 .view-btn {
@@ -328,6 +344,7 @@ body {
     border: none;
     border-radius: 1vh;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .view-btn:hover {
@@ -406,7 +423,7 @@ body {
         }
 
         .modal button {
-            background-color: #4CAF50;
+            background-color: #18A0FB;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -416,25 +433,24 @@ body {
         }
 
         .modal button[type="button"] {
-            background-color: #f44336;
-            margin-right: 10px;
+            background-color: red;
         }
 
         /* Button Styles */
         .modal button:hover {
-            background-color: #45a049;
+            background-color: #145f9e;
         }
 
         /* Close the modal when the close button is clicked */
         .modal button[type="button"]:hover {
-            background-color: #d32f2f;
+            background-color: #ab0000;
         }
 
         /* Styling for the Read-Only State */
         .modal input[readonly],
         .modal textarea[readonly] {
             background-color: #f4f4f4;
-            cursor: not-allowed;
+            cursor: auto;
         }
 
         /* Hide the form and overlay when modal is closed */

@@ -17,7 +17,7 @@
 
       <ul class="menu">
         <li>
-          <a href="../dashboard/dashboard.html">
+        <a href="../dashboard/dashboard.php">
             <button>
               <img src="../images/dashboard.png" alt="Dashboard">
               Dashboard
@@ -25,8 +25,8 @@
           </a>
         </li>
         <li>
-          <a href="../servicerequest/servicerequest.html">
-            <button>
+        <a href="../servicerequest/servicerequest.php">
+        <button>
               <img src="../images/service.jpg" alt="servicerequest">
               Service Requests
             </button>
@@ -36,7 +36,7 @@
           <a href="../contactforums/contactforum.html">
             <button>
               <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forum
+              Contact Forms
             </button>
           </a>
         </li>
@@ -70,10 +70,9 @@
     <div class="main-wrapper">
       <!-- Navbar -->
       <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">
-          <img src="../images/notification.png" alt="Notifications">
-        </a>
+      <div class="controls card1">
+            <h1>News</h1>
+        </div>
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
@@ -85,13 +84,18 @@
       <div class="boxcontainer">
         <div class="boxes">
             <a href="new.php" style="text-decoration: none; color: inherit;">
-                <div class="new">
-                    Enter to add new knowledge base
-                </div>
+            <div class="new glass-effect">
+                  <img src="../images/new.jpg" alt="new" class="icon">
+                    <p>Enter to add new news</p>
+            </div>
             </a>
             <a href="updatedelete.php" style="text-decoration: none; color: inherit;">
-                <div class="new">
-                    Update or delete knowledge base
+            <div class="new glass-effect">
+                  <div class="updelete">
+                  <img src="../images/update.jpg" alt="new" class="icon1">
+                  <img src="../images/delete.jpg" alt="new" class="icon1">
+                  </div>
+                  <p>Update or delete news</p>
                 </div>
             </a>
         </div>

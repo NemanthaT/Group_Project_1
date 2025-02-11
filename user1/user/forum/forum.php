@@ -57,12 +57,12 @@ include '../session/session.php';
                     </button>
                     </a>
                 </li>
-                <!-- <li>
+                <li><a href="../Message/Message.php">
                     <button>
-                        <img src="../images/knowledgebase.png" alt="Knowledge Base">
-                        Knowledge Base
-                    </button>
-                </li> -->
+                        <img src="../images/Message.png" alt="Message">
+                        Message
+                    </button></a>
+                </li>
                 <!-- <li>
                     <a href="../reports/reports.php">
                         <button >
@@ -78,7 +78,6 @@ include '../session/session.php';
         <div class="main-wrapper">
             <!-- Navbar -->
             <div class="navbar">
-                <a href="#">Home</a>
                 <a href="#">
                     <img src="../images/notification.png" alt="Notifications">
                 </a>
@@ -87,7 +86,7 @@ include '../session/session.php';
                 <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>
+                <a href="../../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
     <div class=".main-container">
@@ -97,12 +96,65 @@ include '../session/session.php';
             <h1>Forum</h1>
         </div>
         <div class="controls">
+                    <div class="forum-search">
+                        <input type="text" id="search-input" placeholder="Search forum topics">
+                        <button onclick="searchTopics()">Search</button>
+                    </div>
 
-                
+                    <!-- Forum Categories -->
+                    <div class="forum-categories">
+                        <h3>Categories</h3>
+                        <ul id="category-list">
+                            <li><button onclick="filterByCategory('General Discussions')">General Discussions</button></li>
+                            <li><button onclick="filterByCategory('Technical Support')">Technical Support</button></li>
+                            <li><button onclick="filterByCategory('Product/Service Feedback')">Product/Service Feedback</button></li>
+                            <li><button onclick="filterByCategory('How-to Guides')">How-to Guides</button></li>
+                            <li><button onclick="filterByCategory('Off-Topic')">Off-Topic</button></li>
+                        </ul>
+                    </div>
 
+                    <!-- Forum Threads -->
+                    <div class="forum-threads">
+                        <h3>Recent Threads</h3>
+                        <ul id="thread-list">
+                            <li data-category="General Discussions">
+                                <h4>How to use our service effectively?</h4>
+                                <p>Started by <span class="username">User123</span> - 10 replies</p>
+                            </li>
+                            <li data-category="Technical Support">
+                                <h4>Common issues and troubleshooting</h4>
+                                <p>Started by <span class="username">SupportTeam</span> - 5 replies</p>
+                            </li>
+                        </ul>
+                    </div>
 
-        </div>
-
+                    <!-- New Thread Form -->
+                    <div class="new-thread">
+                        <h3>Create a New Thread</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="thread-title">Title</label>
+                                <input type="text" id="thread-title" placeholder="Enter thread title">
+                            </div>
+                            <div class="form-group">
+                                <label for="thread-category">Category</label>
+                                <select id="thread-category">
+                                    <option value="General Discussions">General Discussions</option>
+                                    <option value="Technical Support">Technical Support</option>
+                                    <option value="Product/Service Feedback">Product/Service Feedback</option>
+                                    <option value="How-to Guides">How-to Guides</option>
+                                    <option value="Off-Topic">Off-Topic</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="thread-message">Message</label>
+                                <textarea id="thread-message" rows="5" placeholder="Enter your message"></textarea>
+                            </div>
+                            <button type="button" onclick="addThread()">Post Thread</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
     </div>
     <script src="script.js"></script>
 </body>

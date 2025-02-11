@@ -1,13 +1,17 @@
 function filterAppointments() {
-    const filterValue = document.getElementById("clientFilter").value.toLowerCase();
+    const filterValue = document.getElementById("clientFilter").value.trim().toLowerCase();
     const rows = document.querySelectorAll("#appointment-tbody tr");
 
     rows.forEach(row => {
-        const clientID = row.querySelector(".client-id").textContent.toLowerCase();
-        const appointmentID = row.querySelector(".appointment-id").textContent.toLowerCase();
+        // Check both Appointment ID (first column) and Client ID (second column)
+        const appointmentIDCell = row.children[0]?.textContent.toLowerCase();
+        const clientIDCell = row.children[1]?.textContent.toLowerCase();
 
-        // Check if either the clientID or appointmentID includes the filterValue
-        if (clientID.includes(filterValue) || appointmentID.includes(filterValue)) {
+        // Show row if either matches the search input
+        if (
+            (appointmentIDCell && appointmentIDCell.includes(filterValue)) ||
+            (clientIDCell && clientIDCell.includes(filterValue))
+        ) {
             row.style.display = ""; // Show row
         } else {
             row.style.display = "none"; // Hide row

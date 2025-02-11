@@ -1,32 +1,13 @@
-<?php
-include '../connect.php';
-if(isset($_POST['submit'])){
-  $worker_id=$_POST['worker_id'];
-  $title=$_POST['title'];
-  $description=$_POST['description'];
-  $event_date=$_POST['event_date'];
-
-
-  $sql="INSERT INTO `events` (worker_id,title,description,event_date) VALUES ('$worker_id','$title','$description','$event_date')";
-  $result=mysqli_query($con,$sql);
-  if($result){
-    echo '<script>alert("events updated");</script>';
-  }
-  else{
-    echo '<script>alert("Nothing changed");</script>';
-  }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Update Events</title>
-  <link rel="stylesheet" href="updateevents.css?version=9">
+  <link rel="stylesheet" href="updatenews.css?version=11">
   <link rel="stylesheet" href="../sidebar.css">
 </head>
+<body>
 <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
@@ -36,7 +17,7 @@ if(isset($_POST['submit'])){
 
       <ul class="menu">
         <li>
-          <a href="../dashboard/dashboard.html">
+        <a href="../dashboard/dashboard.php">
             <button>
               <img src="../images/dashboard.png" alt="Dashboard">
               Dashboard
@@ -44,8 +25,8 @@ if(isset($_POST['submit'])){
           </a>
         </li>
         <li>
-          <a href="../servicerequest/servicerequest.html">
-            <button>
+        <a href="../servicerequest/servicerequest.php">
+        <button>
               <img src="../images/service.jpg" alt="servicerequest">
               Service Requests
             </button>
@@ -55,7 +36,7 @@ if(isset($_POST['submit'])){
           <a href="../contactforums/contactforum.html">
             <button>
               <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forum
+              Contact Forms
             </button>
           </a>
         </li>
@@ -89,10 +70,9 @@ if(isset($_POST['submit'])){
     <div class="main-wrapper">
       <!-- Navbar -->
       <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">
-          <img src="../images/notification.png" alt="Notifications">
-        </a>
+      <div class="controls card1">
+            <h1>News</h1>
+        </div>
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
@@ -101,28 +81,29 @@ if(isset($_POST['submit'])){
         <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
       <div class="main-container">
-    
-    <div class="boxcontainer">
-        <form action="" method="POST">
-          <br>
-        <center><label for="title">Title:</label></center>
-        <center><input type="text" id="title" name="title" placeholder="Enter the title" required>
-            <br><br><br>
-            <div class="content-bottom">
-            <center><label for="description">Description</label>
-              <textarea name ="description" id="description" placeholder="Enter description Here"></textarea></center> 
-              <br><br>        
-              <label for="worker_id">Worker_ID:</label>
-              <input type="number" id="worker_id" name="worker_id" placeholder="Worker ID" required>
-
-              <label for="date">Event-Date:</label>
-              <input type="date" id="date" name="date" required>
+      <div class="boxcontainer">
+        <div class="boxes">
+            <a href="new.php" style="text-decoration: none; color: inherit;">
+            <div class="new glass-effect">
+                  <img src="../images/new.jpg" alt="new" class="icon">
+                    <p>Enter to add new Event</p>
             </div>
-
-            <br><br>
-          <center><input type="submit"value="submit" name="submit" class="submit-button"></center>
-        </form>
+            </a>
+            <a href="updatedelete.php" style="text-decoration: none; color: inherit;">
+            <div class="new glass-effect">
+                  <div class="updelete">
+                  <img src="../images/update.jpg" alt="new" class="icon1">
+                  <img src="../images/delete.jpg" alt="new" class="icon1">
+                  </div>
+                  <p>Update or delete Event</p>
+                </div>
+            </a>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+    
 
     <script src="dashboard.js"></script>
     <script src="../sidebar.js"></script>
