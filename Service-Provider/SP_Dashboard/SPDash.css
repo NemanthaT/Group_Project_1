@@ -5,38 +5,36 @@
 }
 
 body {
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    overflow-x: hidden;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    min-height: 100vh; /* Ensure full viewport height */
+    min-height: 100vh;
 }
 
 .container {
     display: flex;
     width: 100%;
-    flex: 1; /* Allow the container to grow and fill available space */
-    flex-direction: row; /* Sidebar and main content side by side */
+    min-height: 100vh;
 }
 
 .sidebar {
     background-color: white;
-    color: white;
-    width: 20vw;           /* Sidebar width at 20% of viewport width */
-    padding: 3vh;          /* Sidebar padding at 3% of viewport height */
+    width: 220px; /* Reduced from 250px */
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: fixed;
     height: 100vh;
+    z-index: 10;
+    overflow-y: auto; /* Keep vertical scrolling */
+    overflow-x: hidden; /* Remove horizontal scrollbar */
 }
+
 
 .sidebar .logo img {
     width: 100%;
-    max-width: 20vw;       /* Max width in terms of viewport width */
-    margin-bottom: 5vh;
+    max-width: 180px; /* Adjusted for smaller sidebar */
+    margin-bottom: 25px;
 }
 
 .menu {
@@ -45,84 +43,89 @@ body {
 }
 
 .menu li {
-    margin-bottom: 2vh;
+    margin-bottom: 12px;
 }
 
 .menu a {
-    text-decoration: none; /* Remove the underline */
+    text-decoration: none;
 }
 
 .menu button {
-    display: flex;              /* Use flexbox for alignment */
-    align-items: center;        /* Align items vertically */
-    font-size: 2.5vh;           /* Adjusts the text size */
-    font-weight: bold;          /* Makes the text bold */
-    width: 100%;                /* Full button width */
-    padding: 1.5vh;             /* Button padding */
-    color: #333;                /* Text color */
-    background-color: #fff;     /* Button background */
-    border: none;               /* Remove borders */
-    cursor: pointer;            /* Pointer cursor on hover */
-    text-align: left;           /* Align text to the left */
-    border-radius: 1vh;         /* Rounded corners */
-    gap: 1vh;                   /* Space between image and text */
-    text-decoration: none;      /* Remove underline */
+    display: flex;
+    align-items: center;
+    font-size: 14px; /* Slightly reduced */
+    font-weight: bold;
+    width: 100%;
+    padding: 8px;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 5px;
+    gap: 8px;
 }
 
 .menu img {
-    width: auto;                /* Maintain aspect ratio */
-    height: 4vh;                /* Set a consistent height for images */
-    object-fit: contain;        /* Ensure images fit within the height */
-    margin-right: 1vh;          /* Add spacing between image and text */
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 .menu button:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     background-color: #18A0FB;
     color: white;
 }
 
 .navbar {
-    width: 80vw;  /* Width adjusted for sidebar */
     background-color: white;
     color: #18A0FB;
-    margin-left: 20vw;  /* Margin adjusted to sidebar width */
-    padding: 2vh 4vw;  /* Add some padding for better spacing */
+    padding: 10px 25px; /* Reduced height */
     position: fixed;
-    z-index: 2;
+    top: 0;
+    right: 0;
+    left: 220px; /* Adjusted for smaller sidebar */
+    z-index: 5;
     display: flex;
-    justify-content: flex-end; /* Align items to the right */
+    justify-content: flex-end;
     align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: 50px; /* Fixed height */
 }
 
 .navbar a {
     color: #18A0FB;
     text-decoration: none;
-    font-size: 2.5vh;
-    padding: 0.8vh 1.5vw;  /* Reduced padding to reduce gap between links */
-    margin-left: 1.5vw;  /* Optional: Adds space between links */
-    border-radius: 1vh;
+    font-size: 14px;
+    padding: 6px 12px;
+    margin-left: 12px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.navbar a:hover {
+.logout:hover {
     background-color: rgb(215, 236, 255);
 }
 
 .navbar a img {
-    max-width: 100%;
-    max-height: 100%;  /* Ensure the icon fits well */
-    width: 5vh;         /* Adjust width for consistent sizing */
-    height: 5vh;        /* Adjust height to maintain aspect ratio */
-    border-radius: 50%; /* Circular shape for profile icon */
+    width: 24px; /* Reduced size */
+    height: 24px; /* Reduced size */
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.profile a img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
 }
 
 .profile {
     display: flex;
     align-items: center;
-    margin-right: 1vw;
 }
 
 .profile a {
@@ -131,133 +134,87 @@ body {
     background-color: #fff;
     border: none;
     cursor: pointer;
-    border-radius: 50%;  /* Circular shape for profile */
-    width: 5vh;
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.profile a img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 50%;
-}
-
-/* Main content styling */
 .main-content {
-    width: 80vw; /* Matches the remaining space after the sidebar */
-    margin: 9vh 0 0 20vw; /* Top margin for the navbar and left margin for the sidebar */
-    padding: 3vh 2vw; /* Padding for consistent spacing */
+    margin-left: 220px; /* Adjusted for smaller sidebar */
+    padding: 60px 10px 10px; /* Adjusted top padding for smaller navbar */
     background-color: #ecf0f4;
-    height: calc(100vh - 9vh); /* Full viewport height minus navbar height */
-    overflow-y: auto; /* Enable scrolling if content overflows */
+    min-height: 100vh;
+    width: calc(100% - 150px); /* Adjusted for smaller sidebar */
 }
 
-/* Dashboard grid layout */
 .dashboard {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns */
-    gap: 3vh; /* Spacing between grid items */
-    width: 100%; /* Ensure it spans the full width of the main content */
-    height: 100%; /* Fully utilize the height of the main-content */
+    display: flex;
+    gap: 15px; /* Reduced gap */
+    width: 100%;
 }
 
-/* Left section with 3 equally-sized grids */
 .left-section {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);  /* Three equal rows */
-    gap: 3vh;
-}
-
-/* Right section with 2 grids */
-.right-section {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);  /* Top grid 1x height, bottom grid 2x height */
-    gap: 3vh;
-}
-
-/* General card styling */
-.card {
-    background-color: white;
-    border-radius: 1vh;
-    box-shadow: 0 0.4vh 1vh rgba(0, 0, 0, 0.1);
-    /*text-align: center;*/
-    text-align: left;
+    flex: 3;
     display: flex;
     flex-direction: column;
-    /*align-items: center;*/
-    align-items:flex-start;
-    /*justify-content: center;*/
-    justify-content: left;
-    font-weight: bold;
-    cursor: pointer;
-   /* padding: 9vh;*/
-   padding: 20px;
+    gap: 15px; /* Reduced gap */
+}
+
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Reduced gap */
+}
+
+.cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px; /* Reduced gap between cards */
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
     transition: transform 0.3s ease;
 }
 
 .card h3 {
-    /*font-size: 2vh;*/
-    font-size: 2rem;
+    font-size: 16px;
     font-weight: bold;
     color: #333;
-    margin-top: 10px;
-    margin-bottom: 2vh; /* Space between heading and the first paragraph */
+    margin-bottom: 8px;
     text-transform: uppercase;
 }
 
-/* Styling for p tags inside cards */
 .card p {
-    /*font-size: 1.8vh; /* Larger font for better readability */
-    font-size: 1.5rem;
+    font-size: 13px;
     color: #555;
-    margin: 1vh 0; /* Even spacing between paragraphs */
-    line-height: 1.5; /* Increased line height for better text clarity */
+    margin: 4px 0;
+    line-height: 1.3;
 }
 
-/* .card:hover {
-    transform: scale(1.05);
-    background-color: #18A0FB;
-    color: white;
-} */
+.appointment-history,
+.payment-history {
+    width: 100%;
+}
 
 .clock-card {
-    background-color: white;
-    border-radius: 1vh;
-    box-shadow: 0 0.4vh 1vh rgba(0, 0, 0, 0.1);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    padding: 5vh;
-    transition: transform 0.3s ease;
 }
-
-/* .clock-card:hover {
-    transform: scale(1.05);
-    background-color: #18A0FB;
-    color: white;
-} */
 
 #time {
-    font-size: 4vh; /* Large font for better visibility */
-    color: #333; /* Default color */
-    margin-top: 2vh; /* Space below the title */
+    font-size: 22px;
+    color: #333;
+    margin-top: 8px;
 }
 
-
 .calendar {
-    width: 35vw;
+    width: 100%;
     margin: auto;
     text-align: center;
-    font-family: Arial, sans-serif;
-    border: 0.2vh solid #ddd;
-    border-radius: 1vh;
-    padding: 2vh;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
     background-color: white;
 }
 
@@ -265,44 +222,42 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1vh;
+    margin-bottom: 8px;
 }
 
 .calendar-header button {
     background-color: #3498db;
     color: white;
     border: none;
-    padding: 0.5vh 1vw;
+    padding: 4px 8px;
     cursor: pointer;
-    border-radius: 0.5vh;
-}
-
-.calendar-header h2 {
-    margin: 0;
+    border-radius: 4px;
+    font-size: 12px;
 }
 
 .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 1vh;
-    margin-top: 1vh;
+    gap: 4px;
+    margin-top: 8px;
 }
 
-.day, .date {
-    padding: 1vh;
-    font-size: 1.2vh;
+.day,
+.date {
+    padding: 4px;
+    font-size: 11px;
     color: #333;
 }
 
 .day {
     font-weight: bold;
     background-color: #f4f4f4;
-    border-radius: 0.5vh;
+    border-radius: 4px;
 }
 
 .date {
     background-color: #e9f7fe;
-    border-radius: 0.5vh;
+    border-radius: 4px;
 }
 
 .date.other-month {
@@ -313,4 +268,109 @@ body {
     background-color: #3498db;
     color: white;
     font-weight: bold;
+}
+
+@media screen and (max-width: 1200px) {
+    .sidebar {
+        width: 180px;
+    }
+    .navbar {
+        left: 180px;
+    }
+    .menu button {
+        font-size: 13px;
+    }
+    .menu img {
+        width: 18px;
+        height: 18px;
+    }
+    .main-content {
+        margin-left: 180px;
+        width: calc(100% - 180px);
+    }
+    .cards-row {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allow cards to shrink */
+    }
+}
+
+@media screen and (max-width: 992px) { 
+    .sidebar {
+        width: 160px; /* Slightly reduce sidebar width instead of hiding */
+    }
+    .navbar {
+        left: 160px;
+    }
+    .menu button {
+        font-size: 12px;
+    }
+    .menu img {
+        width: 16px;
+        height: 16px;
+    }
+    .main-content {
+        margin-left: 160px;
+        width: calc(100% - 160px);
+    }
+    .cards-row {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Keep multiple columns */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100px; /* Reduce size but keep visible */
+    }
+    .navbar {
+        left: 100px;
+    }
+    .menu button {
+        font-size: 11px;
+    }
+    .menu img {
+        width: 14px;
+        height: 14px;
+    }
+    .main-content {
+        margin-left: 100px;
+        width: calc(100% - 100px);
+    }
+    .dashboard {
+        flex-wrap: wrap; /* Allow sections to shrink instead of stacking */
+    }
+    .left-section, .right-section {
+        flex: 1; /* Equal width instead of stacking */
+    }
+    .cards-row {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Smaller but responsive */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .sidebar {
+        width: 80px; /* Keep minimal sidebar */
+    }
+    .navbar {
+        left: 80px;
+    }
+    .menu button {
+        font-size: 10px;
+    }
+    .menu img {
+        width: 12px;
+        height: 12px;
+    }
+    .main-content {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+    }
+    .dashboard {
+        flex-direction: row; /* Keep row layout */
+        flex-wrap: wrap;
+    }
+    .left-section, .right-section {
+        flex: 1;
+    }
+    .cards-row {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Adjust for mobile */
+    }
 }
