@@ -19,7 +19,7 @@ body {
 
 .sidebar {
     background-color: white;
-    width: 220px; /* Reduced from 250px */
+    width: 220px; 
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -137,11 +137,13 @@ body {
 }
 
 .main-content {
-    margin-left: 220px; /* Adjusted for smaller sidebar */
-    padding: 60px 10px 10px; /* Adjusted top padding for smaller navbar */
+    margin-left: 220px; 
+    padding: 60px 5px; 
     background-color: #ecf0f4;
-    min-height: 100vh;
-    width: 100%; /* Adjusted for smaller sidebar */
+    height: 100vh; /* Full viewport height */
+    width: calc(100% - 220px); /* Calculate width based on sidebar */
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent scrolling on main content */
 }
 
 .appointment-section {
@@ -150,13 +152,16 @@ body {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 100%; /* Ensure it spans the full width of the main content */
-    height: fit-content;
+    height: calc(100vh - 70px); /* Subtract the top padding of main-content */
+    display: flex;
+    flex-direction: column;
 }
 
 .appointment-section h2 {
     font-size: 24px;
     color: #333;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .appointment-controls {
@@ -165,7 +170,16 @@ body {
     margin-bottom: 15px;
 }
 
-.appointment-controls input[type="text"],
+.appointment-controls input[type="text"]{
+    flex-grow: 1; /* Makes the input expand */
+    min-width: 250px; /* Ensures it's long enough */
+    max-width: 400px; /* Limits excessive width */
+    padding: 8px 15px; /* Adjust padding */
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 .appointment-controls button {
     padding: 8px 12px;
     font-size: 14px;
@@ -181,19 +195,50 @@ body {
 }
 
 .search-button:hover {
-    background-color: #555;
+    background-color: #0c1ebe;
+}
+
+.clear-button {
+    background-color: rgb(234, 67, 67);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.clear-button:hover {
+    background-color: #f60404;
+}
+
+.table-container {
+    flex-grow: 1;
+    overflow-y: auto; /* Vertical scroll */
+    border: 1px solid #ddd; /* Add border to container */
 }
 
 .appointment-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed; /* Prevent shrinking */
+}
+
+.appointment-table thead {
+    position: sticky;
+    top: 0;
+    background-color: #f0f0f0;
+    z-index: 1;
 }
 
 .appointment-table th,
 .appointment-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
+    border: none; /* Remove individual cell borders */
+    border-bottom: 1px solid #ddd; /* Add bottom border to cells */
+    padding: 12px 5px;
+    text-align: center; /* Center table contents */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
 }
 
 .appointment-table th {
