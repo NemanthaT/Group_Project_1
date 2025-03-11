@@ -56,29 +56,49 @@ $result = $conn->query($sql);
                 <li><a href="../SP_Forum/Forum.php"><button><img src="../images/forum.png">Forum</button></a></li>
                 <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
             </ul>
-        </div>
-
-        <!-- Main Content Wrapper -->
-        <div class="main-wrapper">
-            <!-- Navbar -->
-            <header>
-                <nav class="navbar">
-                    <div class="notification">
-                        <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+        </div>       
+    <!-- Navbar -->
+        <header>
+            <nav class="navbar">
+            <div class="calendar-icon">
+                    <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
+            <!-- Calendar Dropdown -->
+                 <!-- Calendar Dropdown -->
+                 <div id="calendarDropdown" class="calendar-dropdown">
+                    <h3>Calendar</h3>
+                    <div class="calendar-header">
+                        <button id="prevMonth">&lt;</button>
+                        <span id="currentMonth">March 2025</span>
+                        <button id="nextMonth">&gt;</button>
                     </div>
-                    <div class="profile">
-                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
+                    <div class="calendar-grid">
+                        <div class="weekdays">
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                            <div>Sun</div>
+                        </div>
+                        <div id="daysGrid" class="days"></div>
                     </div>
-                    <a href="../../Login/Logout.php" class="logout">Logout</a>
-                </nav>
-            </header>
-
-            <!-- Main Content -->
+                </div>
+                </div>
+                <div class="notification">
+                    <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                </div>
+                <div class="profile">
+                    <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
+                </div>
+                    <a href="../../Login/Logout.php" class="logout">Logout</a>                
+            </nav>
+        </header>
+        <!-- Main Content -->
             <div class="main-content">
                 <div class="appointment-section">
                     <center><h2>Appointments</h2></center>
-
-                    <!-- Search and Filter Controls -->
+                <!-- Search and Filter Controls -->
                     <div class="appointment-controls">
                         <input type="text" id="clientFilter" placeholder="Search by Client ID/Appointment ID">
                         <input type="date" id="appointmentDateFilter" placeholder="Filter by Appointment Date">
@@ -92,35 +112,32 @@ $result = $conn->query($sql);
                         <button class="search-button" onclick="filterAndSortAppointments()">Search</button>
                         <button class="clear-button" onclick="clearFilters()">Clear</button>
                     </div>
-
-                    <!-- Appointments Table -->
                     <div class="table-container"> 
                     <table class="appointment-table">
                         <thead>
                             <tr>
                                 <th>Appointment ID</th>
-                                <th>Client ID</th>
                                 <th>Appointment Date</th>
                                 <th>Status</th>
-                                <th>Created At</th>
+                                <th>Details</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="appointment-tbody">
                             <?php
                             if ($result && $result->num_rows > 0) {
+                                $result->data_seek(0); // Reset the result pointer
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . htmlspecialchars($row['appointment_id']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['client_id']) . "</td>";
                                     echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
                                     echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
+                                    echo "<td>
+                                            <a href='ViewApp.php?id=" . htmlspecialchars($row['appointment_id']) . "' class='view-btn'>View</a>
+                                          </td>";
                                     echo "<td>";
-
                                     // Dynamic actions based on status
                                     $status = strtolower($row['status']); 
-
                                     if ($status === 'pending') {
                                         echo "<form method='POST' style='display: inline;'>
                                                 <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
@@ -138,28 +155,22 @@ $result = $conn->query($sql);
                                                 <input type='hidden' name='status' value='Cancelled'>
                                                 <button type='submit' class='reject-btn'>Cancel</button>
                                               </form>";
-                                    } elseif ($status === 'rejected') {
-                                        echo "<span class='status-text rejected'>Rejected</span>";
-                                    } elseif ($status === 'cancelled') {
-                                        echo "<span class='status-text cancelled'>Cancelled</span>";
-                                    } elseif ($status === 'completed') {
-                                        echo "<span class='status-text cancelled'>Completed</span>";
-                                    } 
-
+                                    } elseif ($status === 'rejected' || $status === 'cancelled' || $status === 'completed') {
+                                        echo "<span class='status-text " . $status . "'>" . ucfirst($status) . "</span>";
+                                    }
                                     echo "</td>";
                                     echo "</tr>";
                                 }
                             } else {
-                                echo "<tr><td colspan='6'>No appointments found</td></tr>";
+                                echo "<tr><td colspan='5'>No appointments found</td></tr>";
                             }
                             ?>
                         </tbody>
                     </table>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <script src="App.js"></script>
+                </div>
+            </div>        
+    </div>   
+<script src="App.js"></script>
 </body>
 </html>
