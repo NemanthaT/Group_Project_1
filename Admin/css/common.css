@@ -293,6 +293,7 @@ button:hover{
 /*style for dropdown menu*/
 
 #dContent{
+    margin-left: 4.1%;
     display: none;
     height: auto;
     width:90%;
@@ -301,7 +302,8 @@ button:hover{
 }
 
 #dropdown{
-    margin-left: 90%;
+    margin-left: 80%;
+    margin-top: 1%;
     margin-bottom: 2%;
 }
 
@@ -310,7 +312,7 @@ button:hover{
     background-color: #3498DB;
     color: white;
     border: none;
-    cursor: pointer;
+    z-index: 1;
 }
 
 #dBtn:hover{
