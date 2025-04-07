@@ -132,3 +132,61 @@ function closeView(){
 window.addEventListener('scroll', function() {
     document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
 });
+
+function showDete(){
+    if(document.getElementById('dContent').style.display == "block"){
+        document.getElementById('dContent').style.display = "none";
+    }
+    else{
+        document.getElementById('dContent').style.display = "block";
+    }
+}
+
+function changeF(uType){
+    document.getElementById('dContent').style.display = "none";
+    
+    document.getElementById('dBtn').innerText=uType;
+    if(uType == "Choose"){
+        window.location.href = 'serviceProviders.php';
+    }
+
+    else{
+        if(uType == "Trainers"){
+            uType = "Training";
+        }
+        else if(uType == "Consultants"){
+            uType = "Consultant";
+        }
+        else if(uType == "Researchers"){
+            uType = "Research";
+        } 
+        // Send an AJAX request to the PHP script
+        fetch('listC.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'utype=' + encodeURIComponent(uType)
+        })
+        
+        .then(response => response.json())
+
+        .then(data => {
+            const tableBody = document.querySelector("#dTable tbody");
+            tableBody.innerHTML = '';
+
+            data.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.username}</td>
+                <td>${item.email}</td>
+                <td>${item.speciality}</td>
+                <td class="actions"><center><button class="view" onclick="viewSp('${item.provider_id}')">View</button>
+                <button class="del" onclick="deleteSp('${item.provider_id}')">Delete</button></center></td>
+            `;
+            tableBody.appendChild(row);
+            });
+        })
+    }
+
+}
