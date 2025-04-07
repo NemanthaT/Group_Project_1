@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2025 at 11:28 AM
+-- Generation Time: Apr 07, 2025 at 05:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,7 +41,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `username`, `password`, `email`, `full_name`, `created_at`) VALUES
-(1, 'admin', 'admin123', 'admin@123.com', 'Tharusha Nemantha', '2024-08-14 06:37:48');
+(1, 'admin', 'admin123', 'admin@123.com', 'Tharusha Nemantha', '2024-08-14 06:37:48'),
+(2, 'NemanthaT', 'admin', 'admin@gmail.com', 'Tharusha Nemantha', '2024-12-02 06:33:55');
 
 -- --------------------------------------------------------
 
@@ -54,10 +55,25 @@ CREATE TABLE `appointments` (
   `provider_id` int(11) DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL,
   `appointment_date` datetime DEFAULT NULL,
-  `status` varchar(255) DEFAULT 'Scheduled',
+  `status` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `message` varchar(200) NOT NULL
+  `service_type` varchar(100) NOT NULL,
+  `message` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`appointment_id`, `provider_id`, `client_id`, `appointment_date`, `status`, `created_at`, `service_type`, `message`) VALUES
+(1, 1, 1, '2024-11-25 10:00:00', 'Deleted', '2024-11-21 17:01:05', 'Consulting', 'Looking forward to discussing the new project requirements.'),
+(2, 1, 1, '2024-11-26 14:00:00', 'Completed', '2024-11-21 17:01:05', 'Teaching', 'Feedback on the recent session will be shared.'),
+(3, 3, 1, '2024-11-28 16:30:00', 'Deleted', '2024-11-21 17:01:05', 'Researching', 'The appointment was canceled due to unforeseen circumstances.'),
+(5, 1, 1, '2024-12-02 00:00:00', 'Cancelled', '2024-11-24 08:19:46', 'Researching', 'Feedback on the recent session will be shared.'),
+(8, 1, 1, '2024-11-27 00:00:00', 'Deleted', '2024-11-25 14:30:02', 'Consulting', 'Feedback on the recent session will be shared.'),
+(27, 1, 1, '2024-12-04 00:00:00', 'Cancelled', '2024-11-30 07:30:46', 'Training', ' i need to meet to discuss about consultency in finance '),
+(28, NULL, 1, '2024-12-06 00:00:00', 'Scheduled', '2024-11-30 10:21:29', 'Consulting', ' Feedback on the recent session will be shared.'),
+(29, NULL, 1, '2024-12-19 00:00:00', 'Rejected', '2024-12-02 09:45:15', 'Training', ' ');
 
 -- --------------------------------------------------------
 
@@ -67,7 +83,7 @@ CREATE TABLE `appointments` (
 
 CREATE TABLE `clients` (
   `client_id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `full_name` varchar(255) DEFAULT NULL,
@@ -81,7 +97,7 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`client_id`, `username`, `password`, `email`, `full_name`, `phone`, `address`, `created_at`) VALUES
-(1, 'tharu', 'tharusha@123', 'tharu@gmail.com', 'Tharusha Nemantha', '0711850441', 'kalutara', '2024-09-11 12:59:25'),
+(1, 'tharu', 'client@123', 'client@gmail.com', 'Tharusha Nemantha', '0711850441', 'kalutara', '2024-09-11 12:59:25'),
 (2, 'Tamasha', 'tamasha@123', 'tamasha@gmail.com', 'Tamasha Sipsandi', '0762878056', 'Kalutara Bombuwala', '2024-09-11 12:59:25'),
 (3, 'akila', 'akila@123', 'akila@gmail.com', 'Akila Udantha', '0711850341', 'Bombuwala Kalutara', '2024-09-11 13:01:58'),
 (4, 'thehasa', 'thehasa@123', 'thehasa@gmail.com', 'Thehasa Damsandi', '0762878085', 'Kiwlawatta Bombuwala', '2024-09-11 13:01:58'),
@@ -114,7 +130,10 @@ INSERT INTO `clients` (`client_id`, `username`, `password`, `email`, `full_name`
 (31, 'allen86', 'f7N22YRi#&', 'megan87@hotmail.com', 'James Peterson', '001-943-720-9848x610', 'USCGC Jones, FPO AE 76020', '2024-11-11 13:12:18'),
 (32, 'gparker', '!7XdEAJt@Y', 'harrisonphillip@yahoo.com', 'Hailey Nelson', '001-996-513-0484', '44962 Corey Branch Suite 249, South Karenside, IL 12345', '2024-11-11 13:12:18'),
 (33, 'kellykaren', 'R^Ms@8Efvy', 'smithvictoria@gmail.com', 'Michele Webb', '940.560.9302x935', '778 Matthew Freeway Apt. 958, Nathanville, OK 12345', '2024-11-11 13:12:18'),
-(34, 'austin47', '+U2tG4UyQ8', 'katherine38@gmail.com', 'Dale Cole', '001-096-432-0252', '0274 Nathan Islands Apt. 973, Lake Andrea, CO 12345', '2024-11-11 13:12:18');
+(34, 'austin47', '+U2tG4UyQ8', 'katherine38@gmail.com', 'Dale Cole', '001-096-432-0252', '0274 Nathan Islands Apt. 973, Lake Andrea, CO 12345', '2024-11-11 13:12:18'),
+(35, '', '', 'nemanth@gmail.com', 'Tharusha Nemantha', '0713954167', 'Kalutara', '2024-12-02 07:01:07'),
+(44, NULL, '306080', 'nemanthatharu@gmail.com', 'Tharusha Nemantha', '0713954167', 'Kalutara', '2024-12-02 08:24:23'),
+(45, NULL, '367996', 'safran16000014@gmail.com', 'safran  zahim', '0705083388', 'galle', '2024-12-02 09:43:21');
 
 -- --------------------------------------------------------
 
@@ -129,6 +148,8 @@ CREATE TABLE `companyworkers` (
   `email` varchar(255) NOT NULL,
   `full_name` varchar(255) DEFAULT NULL,
   `role` varchar(255) DEFAULT NULL,
+  `address` varchar(255) NOT NULL,
+  `phoneNo` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -136,40 +157,42 @@ CREATE TABLE `companyworkers` (
 -- Dumping data for table `companyworkers`
 --
 
-INSERT INTO `companyworkers` (`worker_id`, `username`, `password`, `email`, `full_name`, `role`, `created_at`) VALUES
-(3, 'c3', 'c123', 'c3@gmail.com', 'cthree', ' SE ', '2024-10-15 12:24:49'),
-(4, 'c4', 'c123', 'c4@gmail.com', 'cfour', 'Executive', '2024-10-15 12:24:49'),
-(5, 'johnsmith', 'p@ssword123', 'johnsmith@example.com', 'John Smith', ' HR ', '2024-11-11 13:25:19'),
-(6, 'janedoe', 'Pa$$w0rd!', 'janedoe@example.com', 'Jane Doe', 'Developer', '2024-11-11 13:25:19'),
-(7, 'bobmartin', 'Qwerty!234', 'bobmartin@example.com', 'Bob Martin', ' HR Manager ', '2024-11-11 13:25:19'),
-(8, 'lisajones', 'Secure*456', 'lisajones@example.com', 'Lisa Jones', 'Support', '2024-11-11 13:25:19'),
-(9, 'mikebrown', 'Admin#789', 'mikebrown@example.com', 'Mike Brown', 'Manager', '2024-11-11 13:25:19'),
-(10, 'susantaylor', 'MyPass$123', 'susantaylor@example.com', 'Susan Taylor', 'Developer', '2024-11-11 13:25:19'),
-(11, 'peterparker', 'Spider@456', 'peterparker@example.com', 'Peter Parker', 'Analyst', '2024-11-11 13:25:19'),
-(12, 'nancywilson', 'Nancy!123', 'nancywilson@example.com', 'Nancy Wilson', 'Support', '2024-11-11 13:25:19'),
-(13, 'kevinwhite', 'White@789', 'kevinwhite@example.com', 'Kevin White', 'Manager', '2024-11-11 13:25:19'),
-(14, 'andreagreen', 'Green#456', 'andreagreen@example.com', 'Andrea Green', 'Developer', '2024-11-11 13:25:19'),
-(15, 'paulwalker', 'Walker@123', 'paulwalker@example.com', 'Paul Walker', 'Analyst', '2024-11-11 13:25:19'),
-(16, 'stevesmith', 'Steve!789', 'stevesmith@example.com', 'Steve Smith', 'Support', '2024-11-11 13:25:19'),
-(17, 'sarahmiller', 'Miller@456', 'sarahmiller@example.com', 'Sarah Miller', 'Manager', '2024-11-11 13:25:19'),
-(18, 'davidmoore', 'Moore$123', 'davidmoore@example.com', 'David Moore', 'Developer', '2024-11-11 13:25:19'),
-(19, 'chloejames', 'Chloe@789', 'chloejames@example.com', 'Chloe James', 'Analyst', '2024-11-11 13:25:19'),
-(20, 'rachelhall', 'Rachel!123', 'rachelhall@example.com', 'Rachel Hall', 'Support', '2024-11-11 13:25:19'),
-(21, 'dannysmith', 'Danny#456', 'dannysmith@example.com', 'Danny Smith', 'Manager', '2024-11-11 13:25:19'),
-(22, 'emilyclark', 'Emily$789', 'emilyclark@example.com', 'Emily Clark', 'Developer', '2024-11-11 13:25:19'),
-(23, 'jacklewis', 'Jack@456', 'jacklewis@example.com', 'Jack Lewis', 'Analyst', '2024-11-11 13:25:19'),
-(24, 'daniellebrown', 'Danielle!123', 'daniellebrown@example.com', 'Danielle Brown', 'Support', '2024-11-11 13:25:19'),
-(25, 'brandonlee', 'Brandon$789', 'brandonlee@example.com', 'Brandon Lee', 'Manager', '2024-11-11 13:25:19'),
-(26, 'laurabaker', 'Laura@456', 'laurabaker@example.com', 'Laura Baker', 'Developer', '2024-11-11 13:25:19'),
-(27, 'ryanturner', 'Ryan#123', 'ryanturner@example.com', 'Ryan Turner', 'Analyst', '2024-11-11 13:25:19'),
-(28, 'jessicawood', 'Jessica@789', 'jessicawood@example.com', 'Jessica Wood', 'Support', '2024-11-11 13:25:19'),
-(29, 'tonyking', 'Tony!456', 'tonyking@example.com', 'Tony King', 'Manager', '2024-11-11 13:25:19'),
-(30, 'michellerogers', 'Michelle$123', 'michellerogers@example.com', 'Michelle Rogers', 'Developer', '2024-11-11 13:25:19'),
-(31, 'samuelbell', 'Samuel#789', 'samuelbell@example.com', 'Samuel Bell', 'Analyst', '2024-11-11 13:25:19'),
-(32, 'oliviaward', 'Olivia@456', 'oliviaward@example.com', 'Olivia Ward', 'Support', '2024-11-11 13:25:19'),
-(33, 'frankthomas', 'Frank!123', 'frankthomas@example.com', 'Frank Thomas', 'Manager', '2024-11-11 13:25:19'),
-(34, 'nataliegray', 'Natalie$789', 'nataliegray@example.com', 'Natalie Gray', 'Developer', '2024-11-11 13:25:19'),
-(35, 'hannahscott', 'Hannah@456', 'hannahscott@example.com', 'Hannah Scott', 'Analyst', '2024-11-11 13:25:19');
+INSERT INTO `companyworkers` (`worker_id`, `username`, `password`, `email`, `full_name`, `role`, `address`, `phoneNo`, `created_at`) VALUES
+(3, 'c3', 'worker', 'worker@gmail.com', 'cthree', ' hr ', '25, Galle Road, Colombo', '0771234567', '2024-10-15 12:24:49'),
+(4, 'c4', 'c123', 'c4@gmail.com', 'cfour', 'Executive', '102, Kandy Road, Peradeniya', '0719876543', '2024-10-15 12:24:49'),
+(5, 'johnsmith', 'p@ssword123', 'johnsmith@example.com', 'John Smith', ' HR ', '56, Main Street, Gampaha', '0751122334', '2024-11-11 13:25:19'),
+(6, 'janedoe', 'Pa$$w0rd!', 'janedoe@example.com', 'Jane Doe', 'Developer', '78, Lake View Avenue, Nuwara Eliya', '0762233445', '2024-11-11 13:25:19'),
+(7, 'bobmartin', 'Qwerty!234', 'bobmartin@example.com', 'Bob Martin', ' HR Manager ', '90, Beach Road, Negombo', '0773344556', '2024-11-11 13:25:19'),
+(8, 'lisajones', 'Secure*456', 'lisajones@example.com', 'Lisa Jones', 'Support', '33, Temple Road, Anuradhapura', '0714455667', '2024-11-11 13:25:19'),
+(9, 'mikebrown', 'Admin#789', 'mikebrown@example.com', 'Mike Brown', 'Manager', '45, Hospital Lane, Matara', '0755566778', '2024-11-11 13:25:19'),
+(10, 'susantaylor', 'MyPass$123', 'susantaylor@example.com', 'Susan Taylor', 'Developer', '120, Railway Avenue, Jaffna', '0766677889', '2024-11-11 13:25:19'),
+(11, 'peterparker', 'Spider@456', 'peterparker@example.com', 'Peter Parker', 'Analyst', '15, Station Road, Batticaloa', '0777788990', '2024-11-11 13:25:19'),
+(12, 'nancywilson', 'Nancy!123', 'nancywilson@example.com', 'Nancy Wilson', 'Support', '200, Church Street, Kegalle', '0718899001', '2024-11-11 13:25:19'),
+(13, 'kevinwhite', 'White@789', 'kevinwhite@example.com', 'Kevin White', 'Manager', '89, Market Road, Trincomalee', '0759900112', '2024-11-11 13:25:19'),
+(14, 'andreagreen', 'Green#456', 'andreagreen@example.com', 'Andrea Green', 'Developer', '77, University Road, Moratuwa', '0760112233', '2024-11-11 13:25:19'),
+(15, 'paulwalker', 'Walker@123', 'paulwalker@example.com', 'Paul Walker', 'Analyst', '19, Station Lane, Badulla', '0771223344', '2024-11-11 13:25:19'),
+(16, 'stevesmith', 'Steve!789', 'stevesmith@example.com', 'Steve Smith', 'Support', '60, Court Road, Ratnapura', '0712334455', '2024-11-11 13:25:19'),
+(17, 'sarahmiller', 'Miller@456', 'sarahmiller@example.com', 'Sarah Miller', 'Manager', '82, Kings Road, Kurunegala', '0753445566', '2024-11-11 13:25:19'),
+(18, 'davidmoore', 'Moore$123', 'davidmoore@example.com', 'David Moore', 'Developer', '39, New Bazaar Street, Kalutara', '0764556677', '2024-11-11 13:25:19'),
+(19, 'chloejames', 'Chloe@789', 'chloejames@example.com', 'Chloe James', 'Analyst', '58, Park Road, Polonnaruwa', '0775667788', '2024-11-11 13:25:19'),
+(20, 'rachelhall', 'Rachel!123', 'rachelhall@example.com', 'Rachel Hall', 'Support', '97, High Level Road, Maharagama', '0716778899', '2024-11-11 13:25:19'),
+(21, 'dannysmith', 'Danny#456', 'dannysmith@example.com', 'Danny Smith', 'Manager', '23, Town Hall Road, Hambantota', '0757889900', '2024-11-11 13:25:19'),
+(22, 'emilyclark', 'Emily$789', 'emilyclark@example.com', 'Emily Clark', 'Developer', '111, Cinnamon Gardens, Colombo 7', '0768990011', '2024-11-11 13:25:19'),
+(23, 'jacklewis', 'Jack@456', 'jacklewis@example.com', 'Jack Lewis', 'Analyst', '66, Green Path, Colombo 3', '0779001122', '2024-11-11 13:25:19'),
+(24, 'daniellebrown', 'Danielle!123', 'daniellebrown@example.com', 'Danielle Brown', 'Support', '150, Hospital Road, Kandy', '0710112233', '2024-11-11 13:25:19'),
+(25, 'brandonlee', 'Brandon$789', 'brandonlee@example.com', 'Brandon Lee', 'Manager', '48, College Avenue, Jaffna', '0751223344', '2024-11-11 13:25:19'),
+(26, 'laurabaker', 'Laura@456', 'laurabaker@example.com', 'Laura Baker', 'Developer', '77, Circular Road, Battaramulla', '0762334455', '2024-11-11 13:25:19'),
+(27, 'ryanturner', 'Ryan#123', 'ryanturner@example.com', 'Ryan Turner', 'Analyst', '99, Dharmapala Mawatha, Galle', '0773445566', '2024-11-11 13:25:19'),
+(28, 'jessicawood', 'Jessica@789', 'jessicawood@example.com', 'Jessica Wood', 'Support', '34, Thurstan Road, Colombo 7', '0714556677', '2024-11-11 13:25:19'),
+(29, 'tonyking', 'Tony!456', 'tonyking@example.com', 'Tony King', 'Manager', '81, Palm Grove, Matale', '0755667788', '2024-11-11 13:25:19'),
+(30, 'michellerogers', 'Michelle$123', 'michellerogers@example.com', 'Michelle Rogers', 'Developer', '42, Templers Road, Mount Lavinia', '0766778899', '2024-11-11 13:25:19'),
+(31, 'samuelbell', 'Samuel#789', 'samuelbell@example.com', 'Samuel Bell', 'Analyst', '135, Union Place, Colombo 2', '0777889900', '2024-11-11 13:25:19'),
+(32, 'oliviaward', 'Olivia@456', 'oliviaward@example.com', 'Olivia Ward', 'Support', '69, Sir James Peiris Mawatha, Colombo 2', '0718990011', '2024-11-11 13:25:19'),
+(33, 'frankthomas', 'Frank!123', 'frankthomas@example.com', 'Frank Thomas', 'Manager', '101, Queens Road, Nugegoda', '0759001122', '2024-11-11 13:25:19'),
+(34, 'nataliegray', 'Natalie$789', 'nataliegray@example.com', 'Natalie Gray', 'Developer', '56, Rose Street, Hatton', '0760112233', '2024-11-11 13:25:19'),
+(35, 'hannahscott', 'Hannah@456', 'hannahscott@example.com', 'Hannah Scott', 'Analyst', '145, Land Side, Puttalam', '0771223344', '2024-11-11 13:25:19'),
+(36, 'nemanthaT', '781163', 'ajaya@gmail.com', 'Ajay Ajay', 'hr', '75, Hill Street, Dehiwala', '0712334455', '2024-12-02 09:38:46'),
+(37, 'TamaS', '907572', 'tamashaS@gmail.com', 'Tamasha Sipsandi', 'Executive', 'Kalutara South', '0711960431', '2025-01-31 09:39:22');
 
 -- --------------------------------------------------------
 
@@ -199,6 +222,29 @@ CREATE TABLE `events` (
   `event_date` datetime DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`event_id`, `worker_id`, `title`, `description`, `event_date`, `created_at`) VALUES
+(3, 6, 'Product Launch Event', 'The official launch event for our new product line.', '2024-12-20 14:00:00', '2024-11-28 23:40:00'),
+(4, 7, 'Holiday Party', 'Celebrate the festive season with fun activities and good food.', '2024-12-22 18:00:00', '2024-11-28 23:45:00'),
+(5, 8, 'Leadership Training', 'A training session for employees aspiring to leadership roles.', '2025-01-05 11:00:00', '2024-11-28 23:50:00'),
+(7, 4, 'Safety Awareness Seminar', 'A seminar to promote safety measures in the workplace.', '2025-01-15 13:00:00', '2024-11-29 00:00:00'),
+(8, 5, 'Quarterly Review Meeting', 'Review the progress of projects and discuss future plans.', '2025-01-20 09:00:00', '2024-11-29 00:05:00'),
+(9, 6, 'Marketing Strategy Discussion', 'Brainstorming session for the upcoming marketing campaigns.', '2025-01-25 16:00:00', '2024-11-29 00:10:00'),
+(10, 7, 'Customer Appreciation Gala', 'An event to honor our most loyal customers.', '2025-01-30 19:00:00', '2024-11-29 00:15:00'),
+(11, 8, 'Innovation Day', 'Presentations and discussions on innovative ideas.', '2025-02-05 10:00:00', '2024-11-29 00:20:00'),
+(12, 9, 'Wellness Retreat', 'A retreat focused on employee wellness and mindfulness.', '2025-02-10 08:00:00', '2024-11-29 00:25:00'),
+(13, 4, 'Cybersecurity Workshop', 'Learn about the latest cybersecurity practices.', '2025-02-15 14:00:00', '2024-11-29 00:30:00'),
+(14, 5, 'Annual Sports Day', 'A day of fun and friendly competition.', '2025-02-20 09:00:00', '2024-11-29 00:35:00'),
+(15, 6, 'Cultural Festival', 'Showcasing the diverse cultures within our company.', '2025-02-25 17:00:00', '2024-11-29 00:40:00'),
+(16, 7, 'Board of Directors Meeting', 'Quarterly meeting for the board of directors.', '2025-03-01 11:00:00', '2024-11-29 00:45:00'),
+(17, 8, 'Hackathon', 'An internal event to develop innovative tech solutions.', '2025-03-05 08:00:00', '2024-11-29 00:50:00'),
+(18, 9, 'Employee Recognition Ceremony', 'Recognizing employees for their outstanding contributions.', '2025-03-10 18:00:00', '2024-11-29 00:55:00'),
+(19, 4, 'Budget Planning Session', 'Planning the budget for the next fiscal year.', '2025-03-15 10:00:00', '2024-11-29 01:00:00'),
+(20, 5, 'Earth Day Initiative', 'Activities and programs to support environmental sustainability.', '2025-04-22 09:30:00', '2024-11-29 01:05:00');
 
 -- --------------------------------------------------------
 
@@ -272,8 +318,35 @@ CREATE TABLE `knowledgebase` (
   `worker_id` int(11) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `content` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `knowledgebase`
+--
+
+INSERT INTO `knowledgebase` (`kb_id`, `worker_id`, `title`, `content`, `created_at`) VALUES
+(1, 4, 'abdefgh', '1234567', '2024-12-02 10:00:38'),
+(2, 5, 'Understanding Databases', 'This article explains the fundamentals of databases.', '2024-11-28 22:30:00'),
+(3, 6, 'How to Use PHPMyAdmin', 'Step-by-step guide on using PHPMyAdmin for database management.', '2024-11-28 22:45:00'),
+(4, 7, 'SQL Basics', 'An introduction to SQL commands and their usage.', '2024-11-28 23:00:00'),
+(5, 8, 'Advanced SQL Queries', 'Learn advanced queries like JOINs and subqueries.', '2024-11-28 23:15:00'),
+(6, 4, 'Database Optimization', 'Tips and tricks for optimizing database performance.', '2024-11-28 23:30:00'),
+(7, 9, 'Backup and Restore Databases', 'Guide on creating backups and restoring databases.', '2024-11-28 23:45:00'),
+(8, 4, 'Introduction to MariaDB', 'Overview of MariaDB and its features.', '2024-11-29 00:00:00'),
+(9, 6, 'Foreign Keys in SQL', 'Understanding the purpose and usage of foreign keys.', '2024-11-29 00:15:00'),
+(10, 7, 'Database Security', 'Best practices for securing databases.', '2024-11-29 00:30:00'),
+(11, 5, 'Indexes in Databases', 'How indexes improve database query performance.', '2024-11-29 00:45:00'),
+(12, 8, 'Relational vs Non-Relational Databases', 'Differences and use cases of relational and NoSQL databases.', '2024-11-29 01:00:00'),
+(13, 9, 'Using Stored Procedures', 'An introduction to stored procedures and their benefits.', '2024-11-29 01:15:00'),
+(14, 4, 'Triggers in SQL', 'Understanding triggers and their applications.', '2024-11-29 01:30:00'),
+(15, 6, 'Data Normalization', 'Explaining normalization and its importance in database design.', '2024-11-29 01:45:00'),
+(16, 7, 'Role of Primary Keys', 'Learn why primary keys are essential in relational databases.', '2024-11-29 02:00:00'),
+(17, 8, 'Data Types in SQL', 'Overview of data types available in SQL.', '2024-11-29 02:15:00'),
+(18, 9, 'Cross Joins Explained', 'A beginner-friendly explanation of cross joins.', '2024-11-29 02:30:00'),
+(19, 5, 'Full-Text Search in Databases', 'How to implement full-text search functionality.', '2024-11-29 02:45:00'),
+(21, 7, 'Database Design Principles', 'Core principles of designing efficient databases.dsafxv', '2024-11-29 03:15:00'),
+(26, 4, 'dsagfdb', 'wegsfdgsAX', '2024-12-02 02:36:43');
 
 -- --------------------------------------------------------
 
@@ -286,8 +359,33 @@ CREATE TABLE `news` (
   `worker_id` int(11) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `content` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`news_id`, `worker_id`, `title`, `content`, `created_at`) VALUES
+(2, 5, 'New Product Launch hloo', 'We are excited to announce the launch of our new product next month.neww', '2024-12-02 10:02:21'),
+(3, 6, 'Office Renovation Completed', 'Our main office has undergone a renovation to enhance workspaces.', '2024-11-29 04:00:00'),
+(4, 7, 'Employee of the Month', 'Congratulations to Sarah Johnson for being awarded Employee of the Month.', '2024-11-29 04:15:00'),
+(5, 8, 'Upcoming Holiday Notice', 'The office will be closed on December 25th for the holidays.', '2024-11-29 04:30:00'),
+(6, 9, 'New Partnership Announcement', 'We have partnered with TechCorp to enhance our services.', '2024-11-29 04:45:00'),
+(7, 4, 'Safety Training Scheduled', 'A mandatory safety training will be held on December 5th.', '2024-11-29 05:00:00'),
+(8, 5, 'Community Outreach Program', 'Join us for our annual community outreach event this weekend.', '2024-11-29 05:15:00'),
+(9, 6, 'Internal Software Update', 'The IT department has updated the internal software for better performance.', '2024-11-29 05:30:00'),
+(10, 7, 'Market Expansion Plans', 'We are planning to expand into three new international markets.', '2024-11-29 05:45:00'),
+(11, 8, 'Upcoming Webinar', 'Register for our webinar on modern workplace strategies.', '2024-11-29 06:00:00'),
+(12, 9, 'Customer Appreciation Event', 'A special event to thank our loyal customers will be held on December 10th.', '2024-11-29 06:15:00'),
+(13, 4, 'Health and Wellness Workshop', 'A workshop on maintaining health and wellness at work is scheduled for next week.', '2024-11-29 06:30:00'),
+(14, 5, 'Quarterly Financial Results', 'The financial results for Q3 will be published tomorrow.', '2024-11-29 06:45:00'),
+(15, 6, 'IT Security Best Practices', 'A guide to enhance cybersecurity awareness among employees.', '2024-11-29 07:00:00'),
+(16, 7, 'New CEO Announcement', 'We are pleased to welcome Jane Doe as our new CEO.', '2024-11-29 07:15:00'),
+(17, 8, 'Annual Picnic', 'The annual company picnic will be held on December 20th at Central Park.', '2024-11-29 07:30:00'),
+(18, 9, 'CSR Initiative', 'Details about our latest corporate social responsibility project.', '2024-11-29 07:45:00'),
+(19, 4, 'Employee Survey Results', 'The results of the recent employee survey are now available.aDsfgdhfgjhncbvxcdsfdvzDSADetrhfdgnbxvczDAsfgr', '2024-12-02 02:36:30'),
+(20, 5, 'Holiday Gift Distributiondsfg', 'Holiday gifts will be distributed to all employees on December 22nd.dfsdgvcxz', '2024-11-29 08:15:00');
 
 -- --------------------------------------------------------
 
@@ -336,7 +434,6 @@ CREATE TABLE `providerrequests` (
 --
 
 INSERT INTO `providerrequests` (`reqId`, `full_name`, `email`, `phone`, `address`, `field`, `specialty`) VALUES
-(8, 'Henry Adams', 'henryadams@example.com', '1234567897', '107 Birch St, Concord, NH 03301', 'Institutional Development', 'Researcher'),
 (10, 'Jackie Wilson', 'jackiewilson@example.com', '3456789019', '109 Oak St, Lincoln, NE 68501', 'Organizational Development', 'Consultant'),
 (11, 'Kevin Morgan', 'kevinmorgan@example.com', '4567890120', '110 Cedar St, Trenton, NJ 08608', 'Development Finance', 'Researcher'),
 (12, 'Laura Phillips', 'lauraphillips@example.com', '5678901231', '111 Elm St, Raleigh, NC 27601', 'Micro Finance', 'Trainer'),
@@ -357,7 +454,9 @@ INSERT INTO `providerrequests` (`reqId`, `full_name`, `email`, `phone`, `address
 (27, 'Alice Rose', 'alicerose@example.com', '4567890121', '213 Maple St, Salem, OR 97301', 'Development Finance', 'Trainer'),
 (28, 'Ben Stark', 'benstark@example.com', '5678901232', '214 Fir St, Helena, MT 59601', 'Micro Finance', 'Consultant'),
 (29, 'Cathy Taylor', 'cathytaylor@example.com', '6789012343', '215 Elm St, Boise, ID 83702', 'Gender Finance', 'Researcher'),
-(30, 'Daniel Urban', 'danielurban@example.com', '7890123454', '216 Walnut St, Austin, TX 73301', 'SME Development', 'Trainer');
+(30, 'Daniel Urban', 'danielurban@example.com', '7890123454', '216 Walnut St, Austin, TX 73301', 'SME Development', 'Trainer'),
+(32, 'Ajay Jude', 'ajaya@gmail.com', '0713954167', 'Colombo', 'Strategic and Operations Planning', 'Consultant'),
+(33, 'Tharusha Nemantha', 'nemanthatharu@gmail.com', '0713954167', 'Kalutara', 'Micro Finance', 'Researcher');
 
 -- --------------------------------------------------------
 
@@ -372,6 +471,21 @@ CREATE TABLE `researchpapers` (
   `content` text DEFAULT NULL,
   `published_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `researchpapers`
+--
+
+INSERT INTO `researchpapers` (`paper_id`, `provider_id`, `title`, `content`, `published_at`) VALUES
+(1, 1, 'Developing Data-Driven Investment Strategies', 'A research-based case study on how a consultancy firm collaborated with an asset management company to leverage big data in investment decision-making. The project involved analyzing historical market trends and training the company’s investment team on advanced analytics tools. The result was a portfolio that outperformed benchmarks by 15% over a fiscal year.', '2024-11-30 12:46:59'),
+(3, 1, 'Launching a Start-Up Incubation Training Program in FinTech', 'A consultancy firm designed and implemented a specialized training program for budding entrepreneurs in the FinTech sector. The program included modules on raising capital, financial modeling, and market analysis. Over a year, 60% of the participants successfully launched their start-ups, with several securing venture capital funding.', '2024-11-30 13:00:03'),
+(4, 1, 'Improving Financial Governance in Public Sector Projects', 'This case study examines how a consultancy firm collaborated with a government agency to enhance financial governance in infrastructure projects. The initiative involved researching governance gaps, implementing monitoring frameworks, and training officials on financial accountability. The result was improved project delivery times and significant reductions in budget overruns.', '2024-11-30 13:00:35'),
+(5, 1, 'Empowering Rural Entrepreneurs through Development Finance', 'This case study explores how a consultancy partnered with a development bank to design loan programs targeting rural entrepreneurs. The initiative provided low-interest loans alongside financial literacy training. Over two years, 500 entrepreneurs accessed funding, with a 95% repayment rate, contributing to local economic growth and employment generation.', '2024-11-30 13:13:21'),
+(6, 1, 'Promoting Financial Inclusion through Gender-Focused Investment', 'This case study highlights a consultancy\'s effort to design gender-sensitive financial products for a commercial bank. Through market research and workshops, the bank developed flexible savings and loan packages for women. Within a year, 25,000 women enrolled, with 60% using the funds for education and business expansion.\r\n\r\n', '2024-11-30 13:13:44'),
+(7, 1, 'Supporting SMEs with Customized Development Plans', 'A consultancy firm worked with regional SMEs to enhance their growth potential. Services included market analysis, funding access, and operational training. The case study documents the growth of a local textile SME, which doubled its production capacity and expanded its market reach by 30% in two years.', '2024-11-30 13:14:29'),
+(8, 1, 'Developing a Strategic Plan for a National Nonprofit Organization', 'A nonprofit organization enlisted a consultancy to create a strategic plan focused on expanding its services. The plan included setting measurable goals, optimizing resource allocation, and enhancing stakeholder engagement. Over three years, the nonprofit increased its outreach by 50% and secured consistent donor funding.', '2024-11-30 13:14:47'),
+(9, 1, 'Empowering Local Communities through Sustainable Development Project', 'This case study examines how a consultancy helped a rural community design and implement a clean water project. By facilitating stakeholder meetings and securing funding, the project benefited over 2,000 residents. Training on water resource management ensured long-term sustainability.', '2024-11-30 13:15:04'),
+(10, 1, 'Boosting Local Economies with Microfinance Innovations', 'A consultancy collaborated with a microfinance institution to digitize loan applications and repayment systems. This case study shows how mobile technology improved financial access for underserved populations, with loan disbursements growing by 70% in under two years.', '2024-11-30 13:15:25');
 
 -- --------------------------------------------------------
 
@@ -397,7 +511,7 @@ CREATE TABLE `serviceproviders` (
 --
 
 INSERT INTO `serviceproviders` (`provider_id`, `username`, `password`, `email`, `full_name`, `phone`, `address`, `field`, `speciality`, `created_at`) VALUES
-(1, 'serv1', 'serv1@123', 'serv1@gmail.com', 'Serv One', '0711850441', 'Colombo', '', 'Research', '2024-09-11 13:41:44'),
+(1, 'serv1', 'provider', 'provider@gmail.com', 'Serv One', '0711850441', 'Colombo', '', 'Research', '2024-09-11 13:41:44'),
 (2, 'serv2', 'serv2@123', 'serv2@gmail.com', 'Serv Two', '0762878056', 'Maharagama', '', 'Consultant', '2024-09-11 13:41:44'),
 (3, 'serv3', 'saada', 'serv3@gmail.com', 'Serv three', '04557412574', 'Kalutara', '', 'Research', '2024-11-11 13:21:23'),
 (4, 'serv4', 'serv4123', 'serv4@gmail.com', 'Serv four', NULL, 'Mathugama', '', 'Training', '2024-11-11 13:21:23'),
@@ -437,7 +551,8 @@ INSERT INTO `serviceproviders` (`provider_id`, `username`, `password`, `email`, 
 (38, 'Frank Miller', '851368', 'frankmiller@example.com', 'Frank Miller', '8901234565', '105 Fir St, Helena, MT 59601', 'SME Development', 'Trainer', '2024-11-20 06:26:08'),
 (39, 'Irene Scott', '181649', 'irenescott@example.com', 'Irene Scott', '2345678908', '108 Spruce St, Madison, WI 53703', 'Community Development', 'Trainer', '2024-11-22 09:59:18'),
 (40, 'Grace Lee', '865503', 'gracelee@example.com', 'Grace Lee', '9012345676', '106 Poplar St, Albany, NY 12207', 'Strategic and Operations Planning', 'Consultant', '2024-11-22 11:17:58'),
-(41, 'nemanthaT', '$2y$10$00MgtwFyopqsdhMwqj2kc.BS67ChVVbFhNEGqP3wIk4daNH6Pfh4i', 'tharusha1@gmail.com', 'Tharusha Nemantha', '0711850441', 'Kalutara', '', 'Consultant', '2024-11-28 07:23:02');
+(41, 'nemanthaT', '$2y$10$00MgtwFyopqsdhMwqj2kc.BS67ChVVbFhNEGqP3wIk4daNH6Pfh4i', 'tharusha1@gmail.com', 'Tharusha Nemantha', '0711850441', 'Kalutara', '', 'Consultant', '2024-11-28 07:23:02'),
+(42, 'Navindu Thila', '155231', 'navindu@gmail.com', 'Navindu Thila', '07123456789', 'Mathugama', 'Development Finance', 'Researcher', '2024-11-30 04:15:38');
 
 -- --------------------------------------------------------
 
@@ -624,25 +739,25 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `companyworkers`
 --
 ALTER TABLE `companyworkers`
-  MODIFY `worker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `worker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `contactforms`
@@ -654,7 +769,7 @@ ALTER TABLE `contactforms`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `forumreplies`
@@ -672,13 +787,13 @@ ALTER TABLE `forums`
 -- AUTO_INCREMENT for table `knowledgebase`
 --
 ALTER TABLE `knowledgebase`
-  MODIFY `kb_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `kb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -690,19 +805,19 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `providerrequests`
 --
 ALTER TABLE `providerrequests`
-  MODIFY `reqId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `reqId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `researchpapers`
 --
 ALTER TABLE `researchpapers`
-  MODIFY `paper_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `paper_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `serviceproviders`
 --
 ALTER TABLE `serviceproviders`
-  MODIFY `provider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `provider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `servicerequests`
