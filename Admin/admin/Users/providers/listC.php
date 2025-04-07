@@ -20,7 +20,7 @@ try {
         if (!empty($data)) {
             echo json_encode($data);
         } else {
-            echo json_encode(["error" => "No Providers found. $stmt"]);
+            echo json_encode(["error" => "No Providers found."]);
         }
 
         $stmt->close();

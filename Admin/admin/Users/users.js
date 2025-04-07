@@ -158,7 +158,7 @@ function changeF(uType){
             uType = "Consultant";
         }
         else if(uType == "Researchers"){
-            uType = "Research";
+            uType = "Researcher";
         } 
         // Send an AJAX request to the PHP script
         fetch('listC.php', {
