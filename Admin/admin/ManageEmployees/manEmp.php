@@ -156,7 +156,7 @@
                                             echo "<script>alert('Error: ".$conn->error."!');</script>";
                                         }
                                     } else {
-                                        echo "<script>alert('>Error: Invalid ID!');</script>";
+                                        echo "<script>alert('>Error: Employee not found!');</script>";
                                     }
                                 }
                             }

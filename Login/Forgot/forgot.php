@@ -36,7 +36,7 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 EDSA Lanka Consultancy</p>
+        <p class="foot">&copy; 2024 EDSA Lanka Consultancy</p>
     </footer>
 </body>
 

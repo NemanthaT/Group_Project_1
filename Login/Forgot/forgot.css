@@ -49,3 +49,15 @@ a:hover {
     color: #18A0FB;
     text-align: center;
 }
+
+.foot {
+    background-color: #d3d3d3;
+    color: #576574;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #18A0FB;
+    padding: 20px;
+    margin-bottom: 0px;
+}

@@ -30,6 +30,7 @@ body {
 }
 
 .client {
+    color: #ececec;
     border-radius: 15px 0px 0px 15px;
     display: flex;
     flex-direction: column;
@@ -39,6 +40,7 @@ body {
 }
 
 .provider {
+    color: #ececec;
     border-radius: 0px 15px 15px 0px;
     display: flex;
     flex-direction: column;
@@ -49,13 +51,15 @@ body {
 
 #cl:hover {
     cursor: pointer;
-    color: white;
-    background: linear-gradient(to right, #09ff00, #61ff5c);
+    color: #18A0FB;
+    /*background: linear-gradient(to right, #09ff00, #61ff5c);*/
+    border: solid 1px #18A0FB;
 }
 #prov:hover {
     cursor: pointer;
-    color: white;
-    background: linear-gradient(to right, #61ff5c,  #09ff00);
+    color: #18A0FB;
+    /*background: linear-gradient(to right, #61ff5c,  #09ff00);*/
+    border: solid 1px #18A0FB;
 }
 
 .form-header {

@@ -289,3 +289,47 @@ button:hover{
 #searchResults{
     margin-bottom: 20px;
 }
+
+/*style for dropdown menu*/
+
+#dContent{
+    margin-left: 4.1%;
+    display: none;
+    height: auto;
+    width:90%;
+    position: absolute;
+    z-index: 1;
+}
+
+#dropdown{
+    margin-left: 80%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+#dBtn{
+    width: 120px;
+    background-color: #3498DB;
+    color: white;
+    border: none;
+    z-index: 1;
+}
+
+#dBtn:hover{
+    background-color: #2980B9;
+}
+
+#dList{
+    list-style: none;
+}
+
+.lB{
+    justify-content: left;
+    background-color: #f1f1f1;
+    width: 120px;
+}
+
+.lb:hover{
+    background-color: #ddd;
+    cursor: pointer;
+}
