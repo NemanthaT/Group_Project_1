@@ -108,6 +108,9 @@ include("../connect.php");
                     $client_id = $row['client_id'];
                     $appointment_date = $row['appointment_date'];
                     $service_type = $row['service_type'];
+                    $
+                    
+                    $status = $row['status'];
                     echo '<tr>
                       <td>' . $appointment_id . '</td>
                       <td>' . $client_id . '</td>
