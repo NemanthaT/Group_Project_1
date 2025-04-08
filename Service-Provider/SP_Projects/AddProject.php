@@ -56,13 +56,8 @@ include '../connection.php';
             <input type="text" id="project_name" placeholder="Enter project name" required>
         </div>
         <div class="form-field">
-            <label for="client_company">Select Client Company</label>
-            <select id="client_company" required>
-                <option value="">Select a company</option>
-                <option value="Company A">Company A</option>
-                <option value="Company B">Company B</option>
-                <option value="Company C">Company C</option>
-            </select>
+            <label for="client_company">Client Id</label>
+            <input type="text" id="client_id" placeholder="Enter project name" required>
         </div>
         <div class="form-field">
             <label for="client_name">Client Name</label>
