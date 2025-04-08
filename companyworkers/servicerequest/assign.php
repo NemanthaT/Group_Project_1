@@ -1,8 +1,20 @@
 <?php
-include '../connect.php';
+
+  session_start(); 
+  require_once '../../config/config.php';
+
+  $username = $_SESSION['username'];
+  $email = $_SESSION['email'];
+
+  if (!isset($_SESSION['username'])) { // if not logged in
+      header("Location: ../../Login/Login.php");
+      exit;
+  }
+
+
   $appointment_id=$_GET['update_id'];
   $sql="Select * from `appointments` where appointment_id='$appointment_id'";
-  $result=mysqli_query($con,$sql);
+  $result=mysqli_query($conn,$sql);
   $row=mysqli_fetch_assoc($result);
   $client_id=$row['client_id'];
   $appointment_date=$row['appointment_date'];
@@ -20,7 +32,7 @@ if(isset($_POST['submit'])){
 
   $sql="update `appointments` set client_id='$client_id', appointment_date='$appointment_date', 
   service_type='$service_type' where appointment_id='$appointment_id'";
-  $result=mysqli_query($con,$sql);
+  $result=mysqli_query($conn,$sql);
   if ($result) {
     echo '<script>
         alert("News updated");
@@ -111,6 +123,7 @@ if(isset($_POST['submit'])){
             <h1>Assign</h1>
         </div>
         <div class="profile">
+          <p>Hi, <?php echo $username ?>!! 👋</p>
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
           </a>

@@ -1,5 +1,14 @@
 <?php
-include("../connect.php");
+  session_start(); 
+  require_once '../../config/config.php';
+
+  $username = $_SESSION['username'];
+  $email = $_SESSION['email'];
+
+  if (!isset($_SESSION['username'])) { // if not logged in
+      header("Location: ../../Login/Login.php");
+      exit;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -77,6 +86,7 @@ include("../connect.php");
             <h1>Researchers</h1>
         </div>
         <div class="profile">
+          <p>Hi, <?php echo $username ?>!! 👋</p>
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
           </a>
@@ -102,7 +112,7 @@ include("../connect.php");
 <tbody>
     <?php
     $sql = "SELECT * FROM serviceproviders WHERE speciality = 'Research'";
-    $result = mysqli_query($con, $sql);
+    $result = mysqli_query($conn, $sql);
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
             $full_name = $row['full_name'];

@@ -1,12 +1,22 @@
 <?php
-include '../connect.php';
+  session_start(); 
+  require_once '../../config/config.php';
+
+  $username = $_SESSION['username'];
+  $email = $_SESSION['email'];
+
+  if (!isset($_SESSION['username'])) { // if not logged in
+      header("Location: ../../Login/Login.php");
+      exit;
+  }
+  
 if(isset($_POST['submit'])){
   $worker_id=$_POST['worker_id'];
   $title=$_POST['title'];
-  $content=$_POST['content'];
+  $conntent=$_POST['content'];
 
-  $sql="INSERT INTO `news` (worker_id,title,content) VALUES ('$worker_id','$title','$content')";
-  $result=mysqli_query($con,$sql);
+  $sql="INSERT INTO `news` (worker_id,title,content) VALUES ('$worker_id','$title','$conntent')";
+  $result=mysqli_query($conn,$sql);
   if($result){
     echo '<script>alert("News updated");</script>';
   }
@@ -93,6 +103,7 @@ if(isset($_POST['submit'])){
         </div>
         
         <div class="profile">
+          <p>Hi, <?php echo $username ?>!! 👋</p>
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
           </a>
