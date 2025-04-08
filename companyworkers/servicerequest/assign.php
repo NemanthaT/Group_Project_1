@@ -41,8 +41,8 @@ if(isset($_POST['submit'])){
   <meta charset="UTF-8">
   <meta name="viewport" service_type="width=device-width, initial-scale=1.0">
   <title>Service Request Count</title>
-  <link rel="stylesheet" href="servicerequest.css?version=3">
-  <link rel="stylesheet" href="../sidebar.css?version=3">
+  <link rel="stylesheet" href="assign.css">
+  <!-- <link rel="stylesheet" href="../sidebar.css"> -->
 </head>
 <body>
   <div class="container">
@@ -118,52 +118,88 @@ if(isset($_POST['submit'])){
         <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
       <div class="main-container">
-        <form action="" method="POST">
-        <br>
-        <div class="form-container">
-            <div class="left">
-                <div class="form-top">
-                    <label for="Appointment_ID">Appointment ID:</label>
-                    <input type="text" id="Appointment_ID" name="Appointment_ID" placeholder="Appointment ID" 
-                    required readonly value="<?php echo $appointment_id; ?>"><br><br>
-                    <label for="Client_ID">Client ID:</label>
-                    <input type="text" id="Client_ID" name="Client_ID" placeholder="Client ID" 
-                    required readonly value="<?php echo $client_id; ?>"><br><br>
-                    <label for="Date">Date:</label>
-                    <input type="text" id="Date" name="Date" placeholder="Date" 
-                    required readonly value="<?php echo $appointment_date; ?>"><br><br>
-                    <label for="Type">Type:</label>
-                    <input type="text" id="Type" name="Type" placeholder="Type" 
-                    required readonly value="<?php echo $service_type; ?>"><br><br>
-                </div>
-            </div>
-            <div class="right">
-                <center><label for="message">Message:</label><br>
-                <textarea id="message" name="message" placeholder="customer message" 
-                required readonly><?php echo $message; ?></textarea>
-            </div>
-        </div>
-           
-            </center>
-            <center><label for="reply">reply:</label><br>
-            <textarea id="reply" name="reply" placeholder="customer reply" required></textarea>
-            <br><br></center>
-            <div class="down">
-            <div class="scrollable-panel">
-                <a href="consulting.php">Consulting</a>
-                <a href="reaserch.php">Reaserch</a>
-                <a href="training.php">Training</a>
-            </div>
+          <form action="" method="POST">
+          <br>
+          <div class="form-container">
+          <div class="left">
+              <div class="form-top">
+              <div class="info-field">
+              <span class="label">Appointment ID:</span>
+              <span class="value"><?php echo $appointment_id; ?></span>
+              </div>
+              
+              <div class="info-field">
+              <span class="label">Client ID:</span>
+              <span class="value"><?php echo $client_id; ?></span>
+              </div>
+              
+              <div class="info-field">
+              <span class="label">Company Name:</span>
+              <span class="value"></span>
+              </div>
+              
+              <div class="info-field">
+              <span class="label">Contact Phone:</span>
+              <span class="value"></span>
+              </div>
+              
+              <div class="info-field">
+              <span class="label">Date:</span>
+              <span class="value"><?php echo $appointment_date; ?></span>
+              </div>
+              
+              <div class="info-field">
+              <span class="label">Type:</span>
+              <span class="value"><?php echo $service_type; ?></span>
+              </div>
+              </div>
+          </div>
+          
+          <div class="right">
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" readonly><?php echo $message; ?></textarea>
+          </div>
+          </div>
+
+          <div class="reply-section">
+          <label for="reply">Reply:</label>
+          <textarea id="reply" name="reply" placeholder="Enter your reply here" required></textarea>
+          </div>
+
+          <div class="assignment-section">
+          <label for="assign-person">Assign To:</label>
+          <select id="assign-person" name="assign_person" required>
+              <option value="">Select a person</option>
+              <?php
+              // Fetch staff from database
+              $staff_query = "SELECT staff_id, staff_name FROM staff";
+              $staff_result = mysqli_query($con, $staff_query);
+              while($staff = mysqli_fetch_assoc($staff_result)) {
+              echo "<option value='".$staff['staff_id']."'>".$staff['staff_name']."</option>";
+              }
+              ?> 
+          </select>
+          </div>
+
+          <div class="down">
+          <div class="scrollable-panel">
+              <a href="consulting.php">Consulting</a>
+              <a href="reaserch.php">Research</a>
+              <a href="training.php">Training</a>
+          </div>
             <div class="names">
-                Assigned Names
+              Assigned Names
             </div>
-        </div>
-            <br><br><br>
-            <center><input type="submit"value="submit" name="submit" class="submit-button"></center>
             </div>
-        </div>
-    </div>
-    
+
+            <div class="submit-section">
+              <input type="submit" value="Submit" name="submit" class="submit-button">
+            </div>
+            <div class="submit-section">
+              <input type="submit" value="Submit" name="submit" class="submit-button">
+            </div>
+            </form>
+          </div>
 
   <script src="../sidebar.js"></script>
 
