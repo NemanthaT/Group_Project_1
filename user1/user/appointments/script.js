@@ -1,4 +1,5 @@
 function openPopup(id) {
+    console.log('Opening popup:', id);
     document.getElementById(id).style.display = 'flex';
 }
 
@@ -7,30 +8,34 @@ function closePopup(id) {
 }
 
 function formatDate(date) {
-    if (!date) return '';  // Handle empty values
-
+    if (!date) return '';  
+    
     let formattedDate = new Date(date);
+    if (isNaN(formattedDate)) return ''; // Handle invalid date format
+
     let year = formattedDate.getFullYear();
-    let month = (formattedDate.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-based, so we add 1
+    let month = (formattedDate.getMonth() + 1).toString().padStart(2, '0'); 
     let day = formattedDate.getDate().toString().padStart(2, '0');
 
-    return `${year}-${month}-${day}`;  // Return in the format YYYY-MM-DD
+    return `${year}-${month}-${day}`;
 }
 
-function openUpdatePopup(appointmentId, serviceSelect, appointmentDate, additionalMessage) {
 
+function openUpdatePopup(appointmentId, serviceSelect, appointmentDate, additionalMessage) {
+    console.log('Opening Update Popup');
     console.log('Appointment ID:', appointmentId);
     console.log('Service:', serviceSelect);
     console.log('Date:', appointmentDate);
     console.log('Message:', additionalMessage);
 
-    document.getElementById('editAppointmentid').value = appointmentId || ''; // Fallback to empty string
-    document.getElementById('editServiceSelect').value = serviceSelect || ''; // Ensure value is set
-    document.getElementById('editAppointmentDate').value = formatDate(appointmentDate) || '';  // Date field (ensure the format is correct)
-    document.getElementById('editAdditionalMessage').value = additionalMessage || ''; // Ensure message is set
+    document.getElementById('editAppointmentid').value = appointmentId || ''; 
+    document.getElementById('editServiceSelect').value = serviceSelect || ''; 
+    document.getElementById('editAppointmentDate').value = formatDate(appointmentDate) || '';  
+    document.getElementById('editAdditionalMessage').value = additionalMessage || ''; 
 
-    openPopup('EditAppointmentOverlay'); // Correct ID for the popup
+    openPopup('EditAppointmentOverlay'); 
 }
+
 
 // modal.js
 document.addEventListener('DOMContentLoaded', () => {
