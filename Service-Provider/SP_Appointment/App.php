@@ -27,9 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_id'], $_P
     exit;
 }
 
+
 // Query to retrieve appointments data
-$sql = "SELECT appointment_id, provider_id, client_id, appointment_date, status, created_at FROM appointments ORDER BY appointment_date ASC";
-$result = $conn->query($sql);
+$providerId = $_SESSION['provider_id']; 
+$sql = "SELECT appointment_id, provider_id, client_id, appointment_date, status, created_at FROM appointments WHERE provider_id = ? ORDER BY appointment_date ASC";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $providerId);
+$stmt->execute();
+$result = $stmt->get_result();
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
