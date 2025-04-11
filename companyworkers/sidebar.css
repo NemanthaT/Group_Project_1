@@ -141,14 +141,14 @@ body {
 
 /* Main Content Area */
 .main-wrapper {
-  width: 80vw;
+  width: 1500px;
   margin-left: 20vw;
   flex-direction: row;
   justify-content: center;
 }
 
 .main-container {
-  max-width: 100%;
+  max-width: 1500px;
   margin: 5vh;
   background: #fff;
   padding: 20px;
@@ -450,6 +450,7 @@ p{
   justify-items: center;
   margin-left: 100px;
   margin-bottom: 175px;
+  width: 1500px;
 
 }
 
