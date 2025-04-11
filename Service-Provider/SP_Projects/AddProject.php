@@ -65,10 +65,6 @@ include '../connection.php';
             <input type="text" id="project_name" placeholder="Enter project name" required>
         </div>
         <div class="form-field">
-            <label for="project_shortdiscription">Project Short Description</label>
-            <input type="text" id="project_shortdiscription" placeholder="Enter project short description" required>
-        </div>
-        <div class="form-field">
             <label for="project_description">Project Description</label>
             <textarea id="project_description" placeholder="Describe the project" required></textarea>
         </div>
