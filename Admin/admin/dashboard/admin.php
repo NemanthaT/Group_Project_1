@@ -6,7 +6,7 @@
     $email = $_SESSION['email'];
 
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../login/login.php");
+        header("Location: ../../../login/login.php");
         exit;
     }
 
@@ -45,7 +45,7 @@
                     <header>
                         <div class="user-info">
                             <p>Hi, <?php echo $username ?>!! 👋</p>
-                            <button name="submit" type="submit"><a href="../../../Home/Homepage/HP.html" class="logoutbutton">Logout</a></button>
+                            <button name="submit" type="submit"><a href="../../../Login/Logout.php" class="logoutbutton">Logout</a></button>
                         </div>
                     </header>
                 </div>

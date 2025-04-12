@@ -1,4 +1,15 @@
+<?php
+  session_start(); 
+  require_once '../../config/config.php';
 
+  $username = $_SESSION['username'];
+  $email = $_SESSION['email'];
+
+  if (!isset($_SESSION['username'])) { // if not logged in
+      header("Location: ../../Login/Login.php");
+      exit;
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +87,7 @@
             <h1>DashBoard</h1>
         </div>
           <div class="profile">
+            <p>Hi, <?php echo $username ?>!! 👋</p>
             <a href="../SP_Profile/Profile.html">
               <img src="../images/user.png" alt="Profile">
             </a>

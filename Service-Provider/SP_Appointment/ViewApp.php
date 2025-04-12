@@ -36,20 +36,12 @@ if (isset($_GET['id'])) {
     <title>EDSA Lanka Consultancy</title>
     <link rel="stylesheet" href="App.css">
     <style>
-
-    .main-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-    }
     .appointment-details {
         padding: 20px;
         background-color: white;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        width: 95%; /* Ensure it spans the full width of the main content */
+        width: 100%; /* Ensure it spans the full width of the main content */
         display: flex;
         flex-direction: column;
         align-items: center;
