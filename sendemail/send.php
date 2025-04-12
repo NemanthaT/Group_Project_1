@@ -15,13 +15,13 @@ if(isset($_POST["send"])){
     $mail->SMTPAuth = true; // Enable SMTP authentication
     $mail->Username = 'nemanthatharusha@gmail.com'; // SMTP username
     $mail->Password = 'bjhzwtcijimyaijm'; // SMTP password
-    $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
+    $mail->SMTPSecure = 'tls'; // Enable TLS encryption
     $mail->Port = 587; // TCP port to connect to
 
     $mail->setFrom('nemanthatharusha@gmail.com');
 
     $mail->addAddress($_POST["email"]); // Add a recipient
-    //$mail->addReplyTo(''); // Optional: Add a reply-to address
+    //$mail->addReplyTo(''); // Add a reply-to address
     $mail->Subject = $_POST["subject"]; // Subject
     $mail->Body = $_POST["message"]; // Message body
 
