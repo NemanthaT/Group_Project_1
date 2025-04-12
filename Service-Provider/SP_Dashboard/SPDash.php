@@ -93,7 +93,7 @@ include '../connection.php';
                 <div id="time">Loading...</div>
             </div>
 
-            <!-- Calendar -->
+            <!-- Calendar
             <div class="calendar">
                 <div class="calendar-header">
                     <button onclick="prevMonth()">‹</button>
@@ -110,7 +110,7 @@ include '../connection.php';
                     <div class="day">Sat</div>
                 </div>
                 <div class="days" id="dates"></div>
-            </div>
+            </div> -->
 
             <!-- Payment History -->
             <div class="card payment-history">
