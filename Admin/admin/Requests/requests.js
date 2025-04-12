@@ -94,6 +94,10 @@ function accReq(id) {
 
 }
 
+window.addEventListener('scroll', function() {
+    document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
+});
+
 function closeView(){
     document.getElementById('hiddenView').style.display = "none";
     document.getElementById('displayArea').style.filter = "blur(0px)";

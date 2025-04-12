@@ -1,6 +1,16 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+$sp_email=$_SESSION['email'];
+$sql= "SELECT PROVIDER_ID fROM serviceproviders WHERE email= ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $sp_email);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+$providerId = $row['PROVIDER_ID'];
+$_SESSION['provider_id'] = $providerId; 
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">

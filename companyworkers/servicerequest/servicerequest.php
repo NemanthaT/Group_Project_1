@@ -1,5 +1,14 @@
 <?php
-include("../connect.php");
+  session_start(); 
+  require_once '../../config/config.php';
+
+  $username = $_SESSION['username'];
+  $email = $_SESSION['email'];
+
+  if (!isset($_SESSION['username'])) { // if not logged in
+      header("Location: ../../Login/Login.php");
+      exit;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -8,8 +17,9 @@ include("../connect.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Request Count</title>
-    <link rel="stylesheet" href="servicerequest.css">
-    <link rel="stylesheet" href="../sidebar.css?version=2">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- <link rel="stylesheet" href="servicerequest.css"> -->
   </head>
   <body>
     <div class="container">
@@ -73,11 +83,12 @@ include("../connect.php");
 
       <div class="main-wrapper">
         <!-- Navbar -->
-        <div class="navbar">
+        <div class=" navbar1">
           <div class="controls card1">
             <h1>Service Requests</h1>
           </div>
           <div class="profile">
+            <p>Hi, <?php echo $username ?>!! 👋</p>
             <a href="../SP_Profile/Profile.html">
               <img src="../images/user.png" alt="Profile">
             </a>
@@ -86,51 +97,50 @@ include("../connect.php");
         </div>
 
         <div class="main-container">
-
-        <div class="table-container">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col" style="width: 15%;">Appointment ID</th>
-                <th scope="col" style="width: 15%;">Client ID</th>
-                <th scope="col" style="width: 15%;">Date</th>
-                <th scope="col" style="width: 25%;">Type</th>
-                <th scope="col" style="width: 15%;">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $sql = "SELECT * FROM appointments WHERE status = 'Pending'";
-            $result = mysqli_query($con, $sql);
-            if ($result) {
-                while ($row = mysqli_fetch_assoc($result)) {
+          <div class="table-container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Appointment ID</th>
+                  <th>Client ID</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $sql = "SELECT * FROM appointments WHERE status = 'Pending'";
+                $result = mysqli_query($con, $sql);
+                if ($result) {
+                  while ($row = mysqli_fetch_assoc($result)) {
                     $appointment_id = $row['appointment_id'];
                     $client_id = $row['client_id'];
                     $appointment_date = $row['appointment_date'];
                     $service_type = $row['service_type'];
+                    $
+                    
+                    $status = $row['status'];
                     echo '<tr>
-                        <th scope="row">' . $appointment_id . '</th>
-                        <td>' . $client_id . '</td>
-                        <td>' . $appointment_date . '</td>
-                        <td>' . $service_type . '</td>
-                        <td>
-                            <button><a href="assign.php?update_id=' . $appointment_id . '">Check</a></button>
-                        </td>
+                      <td>' . $appointment_id . '</td>
+                      <td>' . $client_id . '</td>
+                      <td>' . $appointment_date . '</td>
+                      <td>' . $service_type . '</td>
+                      <td>
+                        <button><a href="assign.php?update_id=' . $appointment_id . '">Check</a></button>
+                      </td>
                     </tr>';
+                  }
                 }
-            }
-            ?>
-        </tbody>
-    </table>
-</div>
-
-        
+                ?>
+              </tbody>
+            </table>
           </div>
+        </div>
       </div>
     </div>
 
     <script src="dashboard.js"></script>
     <script src="../sidebar.js"></script>
-
   </body>
 </html>

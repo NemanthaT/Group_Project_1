@@ -1,12 +1,12 @@
 <?php
     session_start(); 
-    require_once('../../config/config.php');
+    require_once('../../../config/config.php');
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../../login/login.php");
+        header("Location: ../../../login/login.php");
         exit;
     }
 
@@ -21,9 +21,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Clients</title>
-        <link rel="stylesheet" href="../../css/common.css">
-        <link rel="stylesheet" href="peopleStyles.css">
-        <script src="users.js"></script>   
+        <link rel="stylesheet" href="../../../css/common.css">
+        <link rel="stylesheet" href="../peopleStyles.css">
+        <script src="../users.js"></script>   
     </head>
 
     <body>

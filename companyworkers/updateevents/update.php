@@ -1,8 +1,17 @@
 <?php
-include '../connect.php';
+  session_start(); 
+  require_once '../../config/config.php';
+
+  $username = $_SESSION['username'];
+  $email = $_SESSION['email'];
+
+  if (!isset($_SESSION['username'])) { // if not logged in
+      header("Location: ../../Login/Login.php");
+      exit;
+  }
   $event_id=$_GET['update_id'];
   $sql="Select * from `events` where event_id='$event_id'";
-  $result=mysqli_query($con,$sql);
+  $result=mysqli_query($conn,$sql);
   $row=mysqli_fetch_assoc($result);
   $title=$row['title'];
   $event_date=$row['event_date'];
@@ -105,6 +114,7 @@ if(isset($_POST['submit'])){
             <h1>Update</h1>
         </div>
         <div class="profile">
+          <p>Hi, <?php echo $username ?>!! 👋</p>
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
           </a>

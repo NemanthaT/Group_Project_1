@@ -51,26 +51,22 @@ include '../connection.php';
                 
                     <div class="project-form-container">
     <form class="project-form">
+        
         <div class="form-field">
-            <label for="project_name">Project Name</label>
-            <input type="text" id="project_name" placeholder="Enter project name" required>
-        </div>
-        <div class="form-field">
-            <label for="client_company">Select Client Company</label>
-            <select id="client_company" required>
-                <option value="">Select a company</option>
-                <option value="Company A">Company A</option>
-                <option value="Company B">Company B</option>
-                <option value="Company C">Company C</option>
-            </select>
+            <label for="client_company">Client Id</label>
+            <input type="text" id="client_id" placeholder="Enter project name" required>
         </div>
         <div class="form-field">
             <label for="client_name">Client Name</label>
             <input type="text" id="client_name" placeholder="Enter client name" required>
         </div>
         <div class="form-field">
-            <label for="contact_number">Contact Number</label>
-            <input type="tel" id="contact_number" placeholder="Enter contact number" required>
+            <label for="project_name">Project Name</label>
+            <input type="text" id="project_name" placeholder="Enter project name" required>
+        </div>
+        <div class="form-field">
+            <label for="project_shortdiscription">Project Short Description</label>
+            <input type="text" id="project_shortdiscription" placeholder="Enter project short description" required>
         </div>
         <div class="form-field">
             <label for="project_description">Project Description</label>

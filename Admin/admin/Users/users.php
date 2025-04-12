@@ -30,11 +30,11 @@
                 <h1>Users</h1>
             </div>
             <div class="dashboard">
-                <div class="card" onclick="redirectTo('clients.php')">
+                <div class="card" onclick="redirectTo('clients/clients.php')">
                     <div class="icon"></div>
                     <p>Clients</p>
                 </div>
-                <div class="card" onclick="redirectTo('serviceProviders.php')">
+                <div class="card" onclick="redirectTo('providers/serviceProviders.php')">
                     <div class="icon"></div>
                     <p>Service Providers</p>
                 </div>

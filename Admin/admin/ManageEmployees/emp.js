@@ -1,5 +1,11 @@
 function hideList(){
-    document.getElementById('dA').style.display = "none";
+    if(document.getElementById('results').style.display != "none"){
+        document.getElementById('dA').style.display = "none";
+    }
+    else{
+        document.getElementById('dA').style.display = "block";
+    }
+    
 }
 
 function closeView(){
@@ -21,3 +27,7 @@ function showForm(){
 window.addEventListener('scroll', function() {
     document.getElementById('addEmp').style.marginTop = window.scrollY + "px";
 });
+
+window.onload = function() {
+    hideList();
+};

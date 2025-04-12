@@ -98,39 +98,13 @@ include '../session/session.php';
 
    <div class="dashboard">
         <div class="appointments-panel card">
-                <div class="card-header">
-                    <h2>Upcoming Appointments</h2>
-                    <span class="icon">📅</span>
-                </div>
-                <div class="list-item">
-                    <div class="appointment-details">
-                        <strong>Project Kickoff Discussion</strong>
-                        <span class="appointment-time">12 Dec, 10:00 AM</span>
-                    </div>
-                    <span class="status-badge status-upcoming">Upcoming</span>
-                </div>
-                <div class="list-item">
-                    <div class="appointment-details">
-                        <strong>Investment Portfolio Review</strong>
-                        <span class="appointment-time">15 Dec, 2:00 PM</span>
-                    </div>
-                    <span class="status-badge status-pending">Pending</span>
-                </div>
-                <div class="list-item">
-                    <div class="appointment-details">
-                        <strong>Team Performance Review</strong>
-                        <span class="appointment-time">18 Dec, 11:30 AM</span>
-                    </div>
-                    <span class="status-badge status-upcoming">Upcoming</span>
-                </div>
-                <div class="list-item">
-                    <div class="appointment-details">
-                        <strong>Quarterly Financial Review</strong>
-                        <span class="appointment-time">20 Dec, 9:00 AM</span>
-                    </div>
-                    <span class="status-badge status-upcoming">Upcoming</span>
-                </div>
+            <div class="card-header">
+            <h2>Upcoming Appointments</h2>
+                 <span class="icon">📅</span>
+            </div>
+            <?php include 'get_appointments.php'; ?>
         </div>
+
 
         <div class="main-content">
             <div class="card">

@@ -76,7 +76,7 @@
                     <div class="searchContainer">
                         <form action="" method="POST">
                             <input type="text" name="name" placeholder="Enter Name" required>
-                            <button class="sBtn" type="submit" name="search_name" onclick="hideList()">Search</button>
+                            <button class="sBtn" type="submit" name="search_name">Search</button>
                         </form>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                                             echo "<script>alert('Error: ".$conn->error."!');</script>";
                                         }
                                     } else {
-                                        echo "<script>alert('>Error: Invalid ID!');</script>";
+                                        echo "<script>alert('>Error: Employee not found!');</script>";
                                     }
                                 }
                             }

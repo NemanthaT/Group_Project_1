@@ -38,10 +38,6 @@ $result = $stmt->get_result();
 $stmt->close();
 ?>
 
-<!-- Query to retrieve appointments data
-$sql = "SELECT appointment_id, provider_id, client_id, appointment_date, status, created_at FROM appointments ORDER BY appointment_date ASC";
-$result = $conn->query($sql);
-?> -->
 
 <!DOCTYPE html>
 <html lang="en">
