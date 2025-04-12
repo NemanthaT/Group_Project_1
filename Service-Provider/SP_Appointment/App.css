@@ -240,6 +240,8 @@ body {
 }
 
 .appointment-section {
+    margin: auto;
+    max-width: 95%;
     padding: 20px;
     background-color: white;
     border-radius: 10px;

@@ -148,7 +148,7 @@ include 'get_appointment.php';
 					</form>
 				<?php endif; ?>
 
-				<?php if ($user['provider_id'] !== null && ($user['status'] == 'Completed' || $user['status'] == 'Scheduled')): ?>
+				<?php if ($user['provider_id'] !== null && ($user['status'] == 'Completed' || $user['status'] == 'Assigned' || $user['status'] == 'Scheduled')): ?>
 					<form method="POST" action="" style="display: inline;">
 						<input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
 						<button type="submit" class="btn view-btn">View</button>
