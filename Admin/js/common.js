@@ -136,3 +136,34 @@ function showTime() {
 }
 
 showTime();
+
+//Displaying and closing Error views
+function displayError(noticeType,message, divId){
+
+    console.log("displayError called with noticeType: " + noticeType + ", message: " + message + ", divId: " + divId);
+
+    document.getElementById('errorView').style.display = "block";
+    document.getElementById('overlay').style.display = "block";
+    document.getElementById(divId).style.filter = "blur(10px)";
+
+    let errorView = document.getElementById('errorView');
+    let h2 = errorView.querySelector("h2");
+    let p = errorView.querySelector("p");
+    if(noticeType == "error"){  
+        h2.style.color = "red";
+        h2.innerHTML = "Oops &#128165";
+        p.innerHTML = message;
+    }
+    if(noticeType == "success"){
+        h2.style.color = "green";
+        h2.innerHTML = "Success &#128175";
+        p.innerHTML = message;
+    }
+    
+}
+
+function closeError(divId){
+    document.getElementById('errorView').style.display = "none";
+    document.getElementById('overlay').style.display = "none";
+    document.getElementById(divId).style.filter = "blur(0px)";
+}
