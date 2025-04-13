@@ -58,7 +58,7 @@ form input {
     display: none;
     position: absolute;
     z-index: 100;
-    margin-top: 10%;
+    margin-top: 15%;
     margin-left: 20%;
     margin-right: auto;
     justify-content: center;
@@ -122,4 +122,14 @@ form input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#results{
+    display: none;
+}
+
+#errorView{
+    margin-top: 20%;
+    margin-left: 30%;
+    margin-right: 10%;
 }
