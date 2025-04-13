@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_result = mysqli_query($conn, $check_query);
 
     if (mysqli_num_rows($check_result) > 0) {
+        $checkSum= 1;
         $error_message = "Email is already registered.";
         echo "<script>
         document.addEventListener('DOMContentLoaded', () => {
