@@ -1,19 +1,16 @@
 <?php
-session_start();
-include '../../config/config.php'; // Database connection
+  session_start(); 
+  require_once '../../config/config.php';
 
-// Fetch the logged-in user's name
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    $query = "SELECT full_name FROM companyworkers WHERE username = '$username'";
-    $result = mysqli_query($conn, $query);
-    $user = mysqli_fetch_assoc($result);
-    $fullName = $user['full_name'] ?? 'User';
-} else {
-    header("Location: ../../Login/login.php");
-    exit;
-}
+  $username = $_SESSION['username'];
+  $email = $_SESSION['email'];
+
+  if (!isset($_SESSION['username'])) { // if not logged in
+      header("Location: ../../Login/Login.php");
+      exit;
+  }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,8 +104,14 @@ if (isset($_SESSION['username'])) {
       <div class="main-container">
 
         <div class="controls card1">
-          <h1>Welcome To EDSA Lanka</h1>
-          <h3>Welcome Back, <?php echo htmlspecialchars($fullName); ?>!</h3>
+            <h1>DashBoard</h1>
+        </div>
+          <div class="profile">
+            <a href="../SP_Profile/Profile.html">
+              <img src="../images/user.png" alt="Profile">
+            </a>
+          </div>
+          <a href="../../Login/Logout.php" class="logout">Logout</a>
         </div>
 
         <!-- Dashboard Content -->

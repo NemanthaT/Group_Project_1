@@ -1,5 +1,14 @@
 <?php
-include '../connect.php';
+  session_start(); 
+  require_once '../../config/config.php';
+
+  $username = $_SESSION['username'];
+  $email = $_SESSION['email'];
+
+  if (!isset($_SESSION['username'])) { // if not logged in
+      header("Location: ../../Login/Login.php");
+      exit;
+  }
 if(isset($_POST['submit'])){
   $worker_id=$_POST['worker_id'];
   $title=$_POST['title'];
@@ -8,7 +17,7 @@ if(isset($_POST['submit'])){
 
 
   $sql="INSERT INTO `events` (worker_id,title,description,event_date) VALUES ('$worker_id','$title','$description','$event_date')";
-  $result=mysqli_query($con,$sql);
+  $result=mysqli_query($conn,$sql);
   if($result){
     echo '<script>alert("events updated");</script>';
   }

@@ -1,21 +1,30 @@
 <?php
-include '../connect.php';
+  session_start(); 
+  require_once '../../config/config.php';
+
+  $username = $_SESSION['username'];
+  $email = $_SESSION['email'];
+
+  if (!isset($_SESSION['username'])) { // if not logged in
+      header("Location: ../../Login/Login.php");
+      exit;
+  }
   $news_id=$_GET['update_id'];
   $sql="Select * from `news` where news_id='$news_id'";
-  $result=mysqli_query($con,$sql);
+  $result=mysqli_query($conn,$sql);
   $row=mysqli_fetch_assoc($result);
   $worker_id=$row['worker_id'];
   $title=$row['title'];
-  $content=$row['content'];
+  $conntent=$row['content'];
 
 if(isset($_POST['submit'])){
   $worker_id=$_POST['worker_id'];
   $title=$_POST['title'];
-  $content=$_POST['content'];
+  $conntent=$_POST['content'];
 
   $sql="update `news` set worker_id='$worker_id', title='$title', 
-  content='$content' where news_id='$news_id'";
-  $result=mysqli_query($con,$sql);
+  content='$conntent' where news_id='$news_id'";
+  $result=mysqli_query($conn,$sql);
   if ($result) {
     echo '<script>
         alert("News updated");
@@ -105,6 +114,7 @@ if(isset($_POST['submit'])){
             <h1>Update</h1>
         </div>
         <div class="profile">
+          <p>Hi, <?php echo $username ?>!! 👋</p>
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
           </a>
@@ -124,7 +134,7 @@ if(isset($_POST['submit'])){
                 <label for="content">Content:</label><br>
                 <textarea id="content" name="content" 
                 placeholder="Enter the Content" required
-                autocomplete="off"><?php echo $content; ?></textarea>
+                autocomplete="off"><?php echo $conntent; ?></textarea>
             <br><br></center>
                 <label for="worker_id" style="margin-left: 7.5%;">Worker_ID:</label>
                 <input type="number" id="worker_id" name="worker_id" 

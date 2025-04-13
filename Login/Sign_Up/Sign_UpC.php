@@ -2,6 +2,8 @@
 session_start();
 require_once('../../config/config.php');
 
+define('JScript', 'Sign_Up.js');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve and sanitize form data
     $email = mysqli_real_escape_string($conn, $_POST['email-signup']);
@@ -18,7 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_result = mysqli_query($conn, $check_query);
 
     if (mysqli_num_rows($check_result) > 0) {
+        $checkSum= 1;
         $error_message = "Email is already registered.";
+        echo "<script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    displayError();
+                });
+              </script>";
     } else {
         // Insert data into providerrequests table
         $sql = "INSERT INTO clients (full_name, email, phone, address, password)
@@ -34,6 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
     }
+
+    //check for pending requests
+    $check_query = "SELECT * FROM providerrequests WHERE email = '$email'";
+    $check_result = mysqli_query($conn, $check_query);
+
     mysqli_close($conn);
 }
 ?>
@@ -45,12 +58,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy - Sign Up</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Sign_up.css">
+    <script src="Sign_Up.js"></script>
 </head>
 <body>
     <div class="blurry-background"></div>
     <main>
-        
-        <div class="form-section">
+
+        <div id="errorView">
+            <button id="closeError" onclick="closeError()">x</button>
+            <center>                    
+                <?php
+                    if($checkSum){
+                        echo "<h2>Oops!</h2>
+                              <p class='error'>".$error_message."</p>";
+                        $checkSum=0;
+                    }
+                ?>       
+            </center>
+                    
+        </div>
+    
+
+        <div class="form-section" id="form-section">
             <div class="left">
 
             </div>
