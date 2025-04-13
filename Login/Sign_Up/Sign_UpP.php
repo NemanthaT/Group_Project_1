@@ -20,6 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_num_rows($check_result) > 0) {
         $error_message = "Email is already registered.";
+        echo "<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            displayError();
+        });
+      </script>";
     } else {
         // Insert data into providerrequests table
         $sql = "INSERT INTO providerrequests (full_name, email, phone, address, field, specialty)
@@ -46,11 +51,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Sign_up.css">
+    <script src="Sign_Up.js"></script>
 </head>
 <body>
     <div class="blurry-background"></div>
     <main>
+        <div id="errorView">
+            <button id="closeError" onclick="closeError()">x</button>
+            <center>                    
+                <?php
+                    if($checkSum){
+                        echo "<h2>Oops!</h2>
+                              <p class='error'>".$error_message."</p>";
+                        $checkSum=0;
+                    }
+                ?>       
+            </center>
+                    
+        </div>
         
         <div class="form-section">
             <div class="left">

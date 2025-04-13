@@ -42,6 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
     }
+
+    //check for pending requests
+    $check_query = "SELECT * FROM providerrequests WHERE email = '$email'";
+    $check_result = mysqli_query($conn, $check_query);
+
     mysqli_close($conn);
 }
 ?>
@@ -53,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy - Sign Up</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="Sign_Up.css">
+    <link rel="stylesheet" href="Sign_up.css">
     <script src="Sign_Up.js"></script>
 </head>
 <body>
@@ -67,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if($checkSum){
                         echo "<h2>Oops!</h2>
                               <p class='error'>".$error_message."</p>";
+                        $checkSum=0;
                     }
                 ?>       
             </center>
