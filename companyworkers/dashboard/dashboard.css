@@ -1,265 +1,710 @@
-.calendar {
-  width: 500px;
-  height: 450px;
-  background-color: #ffffff;
-  margin: auto;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  border: 1px solid #00ffd5;
-  border-radius: 25px;
-  padding: 20px;
-  padding-top: 40px;
-  box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.3);
+/* Main Variables and Reset */
+:root {
+  --primary-color: #3498db;
+  --primary-light: #5dade2;
+  --primary-dark: #2980b9;
+  --secondary-color: #2ecc71;
+  --accent-color: #e74c3c;
+  --dark-bg: #34495e;
+  --light-bg: #ecf0f1;
+  --text-dark: #2c3e50;
+  --text-light: #f5f5f5;
+  --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --shadow-dark: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
 }
 
-.glass-effect {
-  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
-  backdrop-filter: blur(10px); /* Adds the blur effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  padding: 20px; /* Add some padding inside */
-}
-
-.glass-effect-2 {
-  background: rgba(255, 255, 255, 0.3); /* Glass effect */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 150px;
-  margin: 20px auto;
-}
-
-.calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.calendar-header button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 5px 20px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.calendar-header h2 {
+* {
   margin: 0;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
+body {
+  background-color: #f5f7fa;
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* New Header Styles */
+.main-header {
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-section img {
+    height: 50px;
+    width: auto;
+}
+
+.logo-section h1 {
+    color: #18A0FB;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.notification-icon,
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.logout-btn {
+    background-color: #18A0FB;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background-color: #1691e7;
+}
+
+/* Updated Sidebar Styles */
+.container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw; /* Ensure the container spans the full width of the screen */
+  padding-top: 80px; /* Match header height */
+}
+
+.sidebar {
+  background-color: white;
+  width: 20vw;
+  padding: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 80px; /* Position below header */
+  height: calc(100vh - 80px);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo img {
+  width: 100%;
+  max-width: 20vw;
+  margin-bottom: 5vh;
+}
+
+.menu {
+  list-style: none;
+  width: 100%;
+}
+
+.menu li {
+  margin-bottom: 2vh;
+}
+
+.menu button {
+  display: flex;
+  align-items: center;
+  font-size: 2.5vh;
+  font-weight: bold;
+  width: 100%;
+  padding: 1.5vh;
+  color: #333;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 1vh;
+  gap: 1vh;
+}
+
+.menu button.active,
+.menu button:hover {
+  background-color: #18A0FB;
+  color: white;
+}
+
+.menu button img {
+  width: auto;
+  height: 4vh;
+  object-fit: contain;
+  margin-right: 1vh;
+}
+
+/* Updated Navbar Styles */
+.navbar {
+  width: 80vw;
+  background-color: white;
+  color: #18A0FB;
+  margin-left: 0;
+  padding: 2vh 4vw;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+  color: #18A0FB;
+  text-decoration: none;
+  font-size: 2.5vh;
+  padding: 0.8vh 1.5vw;
+  margin-left: 1.5vw;
+  border-radius: 1vh;
+  display: flex;
+  align-items: center;
+}
+
+.navbar a:hover {
+  background-color: rgb(215, 236, 255);
+}
+
+.navbar a img {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+}
+
+.logout {
+  background-color: #18A0FB;
+  color: white !important;
+}
+
+/* Main Content Area */
+.main-wrapper {
+  width: 80vw;
+  margin-left: 20vw;
+  flex-direction: row;
+  justify-content: center;
   margin-top: 10px;
 }
 
-.day, .date {
-  padding: 10px;
-  font-size: 14px;
-  color: #333;
+.main-container {
+  max-width: 95%;
+  margin: 12vh auto;
+  padding: 20px;
 }
 
-.day {
-  font-weight: bold;
+.space {
   background-color: #f4f4f4;
-  border-radius: 4px;
-}
-
-.date {
-  background-color: #afe4ff;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.date.other-month {
-  color: #ccc;
-  text-align: center;
-}
-
-.date.today {
-  background-color: #000000;
-  color: white;
-  font-weight: bold;
-}
-
-.date:hover{
-  cursor: pointer;
-  background-color: tomato;
-  color: white;
-  box-shadow: 0px 5px 15px rgb(0, 238, 255)
-}
-
-/* Flip-clock counter styles */
-.counter-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-#dateDisplay {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.counter {
+  width: 100%;
+  padding: 5.5vh;
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
 }
 
-.flip-clock-digit {
-  background-color: #333;
-  color: white;
-  padding: 10px 15px;
-  margin: 0 2px;
-  border-radius: 5px;
-  font-weight: bold;
-  display: inline-block;
-  width: 40px;
-  text-align: center;
-}
-
-.counter {
-  text-align: center;
-  display: flex;
-  flex-direction: column; /* Arrange name and digits in a column */
-  gap: 10px; /* Space between name and numbers */
-}
-
-#dateDisplay1 {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.flip-counter {
-  display: flex; /* Display digits horizontally */
-  justify-content: center;
-  gap: 5px; /* Space between digits */
-}
-
-.flip-counter div {
-  width: 50px;
-  height: 70px;
-  background-color: #333;
-  color: white;
-  font-size: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  margin: 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-
-#counter1, #counter2, #counter3, #counter4, #counter5 {
-  display: inline-flex;
-}
-
-#counter1_digit1, #counter2_digit1, #counter3_digit1, #counter4_digit1, #counter5_digit1 {
-  font-size: 36px;
-  background-color: #333333;
-}
-
-#counter1_digit2, #counter2_digit2, #counter3_digit2, #counter4_digit2, #counter5_digit2 {
-  font-size: 36px;
-  background-color: #333333;
-}
-
-
-.digital-date {
-  font-size: 2.5em;
-  font-family: 'Arial', sans-serif;
-  color: #000000;
-  /* Match your theme */
-  text-align: center;
-  padding: 20px;
-  border-radius: 12px;
-  background: rgb(255, 255, 255); /* Glass effect */
-  border: 1px solid rgb(255, 255, 255);
-  backdrop-filter: blur(10px); /* Frosted glass effect */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-  margin: 20px auto;
-  width: fit-content;
-}
-
-
-
-.time {
-  color: #000000;
-  font-weight: bold;
-  text-align: center; /* Ensure proper alignment */
-}
-
-#clock {
-  font-size: 2em;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  border-radius: 8px;
-  display: inline-block;
-  color: #000000; /* Match text color with the glass effect */
-  text-align: center;
-  margin-top: 5px;
-  height: 5px;
-}
-
-.glass-effect-3 {
-  background: rgba(175, 228, 255, 1); /* Semi-transparent white */
-  border: 1px solid rgba(175, 228, 255, 1); /* Subtle border */
-  backdrop-filter: blur(10px); /* Adds the blur effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  padding: 20px; /* Add some padding inside */
-}
-
-.glass-effect-4 {
-  background: rgb(255, 255, 255); /* Semi-transparent white */
-  border: 1px solid rgba(175, 228, 255, 1); /* Subtle border */
-  backdrop-filter: blur(10px); /* Adds the blur effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  padding: 20px; /* Add some padding inside */
-}
-
-
-.box1{
-display: flex;
-flex-direction: row;
-gap : 70px;
-margin-left: 60px;
-}
-
-.box2{
+.controls {
+  width: 95%;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  width: 65vh;
- 
+  justify-content: center;
+  background-color: #fff;
+  margin: 10px auto;
+  border-radius: 8px;
 }
 
-.box3{
-  height: 150px;
-  width: 500px;
-  gap: 40px;
-  border-radius: 10px;
-  padding: 10px;
-  border-width: 2;
+.card1 {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  background-image: url("../images/sunset.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.box4{
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  margin-left: 250px; /* Match the sidebar width */
+  width: calc(100% - 250px); /* Ensure the main content takes the remaining space */
+  transition: margin-left var(--transition-speed);
+}
+
+.container.sidebar-collapsed .main-content {
+  margin-left: 5%; /* Adjust margin when sidebar is collapsed */
+  width: 95%; /* Expand main content when sidebar is collapsed */
+}
+
+/* Top Navigation Bar */
+.top-navbar {
+  background: #ffffff; /* White background */
+  border-bottom: 1px solid #e0e0e0; /* Add a subtle border */
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem; /* Adjust padding */
+  box-shadow: var(--shadow-light);
+  position: sticky;
+  top: 0;
+  z-index: 99;
 }
 
+.menu-toggle {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.page-title h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.date-time {
+  text-align: right;
+}
+
+#current-time {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+#current-date {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-light);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.profile-icon img:hover {
+  transform: scale(1.1);
+}
+
+.logout-btn {
+  background: var(--primary-color); /* Primary color for the logout button */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 0.5rem 1.5rem; /* Adjust padding */
+  font-size: 0.9rem; /* Adjust font size */
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--transition-speed);
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* Sidebar and main content */
+  gap: 2rem;
+  padding: 2rem;
+  background: #f9f9f9; /* Light background for the dashboard */
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three cards per row */
+  gap: 1.5rem; /* Adjust spacing between cards */
+  margin-top: 1rem; /* Add spacing from the top */
+  animation: fadeIn 0.6s ease-out;
+}
+
+.stat-card {
+  background: #ffffff; /* White background for cards */
+  border-radius: var(--border-radius); /* Rounded corners */
+  box-shadow: var(--shadow-light); /* Subtle shadow */
+  padding: 1.5rem; /* Add padding inside cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  animation: slideInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.stat-card h3 {
+  font-size: 1rem; /* Adjust font size */
+  color: var(--text-dark); /* Dark text color */
+  margin-bottom: 0.5rem; /* Add spacing below the title */
+}
+
+.stat-card p {
+  font-size: 0.9rem; /* Adjust font size */
+  color: #7f8c8d; /* Subtle text color */
+}
+
+.card-icon {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+}
+
+.service-requests .card-icon {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.contact-forums .card-icon {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.events .card-icon {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.news .card-icon {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.card-content {
+  flex: 1;
+  padding: 1.25rem;
+  padding-left: 1rem;
+}
+
+.card-content h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.card-date {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.counter-display {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.digit {
+  background: linear-gradient(to bottom, #2c3e50, #34495e);
+  color: white;
+  font-size: 1.75rem;
+  width: 40px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.digit:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.counter-display.large .digit {
+  width: 60px;
+  height: 80px;
+  font-size: 2.5rem;
+}
+
+.card-footer {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trend {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.trend.up {
+  color: var(--secondary-color);
+}
+
+.trend.down {
+  color: var(--accent-color);
+}
+
+/* Secondary Content */
+.secondary-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  animation: fadeIn 0.6s ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+}
+
+.widget {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+}
+
+.widget-header {
+  padding: 1rem 1.5rem;
+  background: var(--light-bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.widget-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.widget-content {
+  padding: 1.5rem;
+}
+
+/* Calendar Widget */
+.calendar-widget {
+  grid-row: 1; /* Place calendar in the first row */
+  max-width: 100%; /* Allow the calendar to take full width */
+  height: 400px; /* Increase the height of the calendar */
+  margin: 0 auto; /* Center the calendar horizontally */
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+}
+
+.calendar-widget .widget-header {
+  padding: 1rem;
+  background: var(--primary-color);
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.calendar-widget .calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.calendar-widget .calendar-nav-btn {
+  background: var(--primary-light);
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+
+.calendar-widget .calendar-nav-btn:hover {
+  background: var(--primary-dark);
+}
+
+.calendar-widget .calendar-grid {
+  padding: 0.5rem;
+}
+
+.calendar-widget .weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.calendar-widget .weekdays div {
+  padding: 0.5rem 0;
+  color: var(--text-dark);
+}
+
+.calendar-widget .calendar-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-widget .date {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.calendar-widget .date:hover {
+  background: var(--primary-light);
+  color: white;
+}
+
+.calendar-widget .date.today {
+  background: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+
+.calendar-widget .date.other-month {
+  color: #bdc3c7;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .secondary-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 15%; /* Reduce sidebar width for medium screens */
+  }
+
+  .main-content {
+    margin-left: 15%; /* Adjust main content margin */
+    width: 85%; /* Adjust main content width */
+  }
+
+  .dashboard-container {
+    grid-template-rows: auto auto; /* Stack calendar and cards vertically */
+  }
+
+  .calendar-widget {
+    height: 300px; /* Adjust calendar height for smaller screens */
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr; /* Stack cards vertically */
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 10%; /* Further reduce sidebar width for smaller screens */
+  }
+
+  .main-content {
+    margin-left: 10%; /* Adjust main content margin */
+    width: 90%; /* Adjust main content width */
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
+  }
+
+  .navbar-right {
+    gap: 1rem;
+  }
+
+  .date-time {
+    display: none;
+  }
+
+  .calendar-widget .calendar-nav {
+    padding: 0.5rem;
+  }
+
+  .calendar-widget .weekdays div,
+  .calendar-widget .date {
+    font-size: 0.7rem; /* Reduce font size for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .top-navbar {
+    padding: 1rem;
+  }
+
+  .page-title h1 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }

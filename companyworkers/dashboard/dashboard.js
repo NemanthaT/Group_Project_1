@@ -1,45 +1,83 @@
+// Current date and time variables
 let currentDate = new Date();
 const today = new Date();
 
-// Function to generate a random count for the counter
-function updateCounter(date, counterId) {
-  const dateDisplay = document.getElementById('dateDisplay' + counterId);
-  const counterDigit1 = document.getElementById('counter' + counterId + '_digit1');
-  const counterDigit2 = document.getElementById('counter' + counterId + '_digit2');
+// DOM ready function
+document.addEventListener('DOMContentLoaded', function () {
+  // Adjust sidebar toggle to match new layout
+  const menuToggle = document.querySelector('.menu-toggle');
+  const sidebar = document.querySelector('.sidebar');
 
-  // Set the date display in the format YYYY-MM-DD
-  const formattedDate = date.toISOString().split('T')[0];
-  
-  // Get the custom name for the counter
-  const customName = dateDisplay.getAttribute('data-name') || `Letters received on`;  // Default to "Letters received on"
-  
-  dateDisplay.textContent = `${customName} ${formattedDate}:`;
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function () {
+      sidebar.classList.toggle('collapsed');
+      document.querySelector('.main-content').classList.toggle('expanded');
+    });
+  }
 
-  // Generate a random count (just an example, different for each counter)
-  const randomCount = Math.floor(Math.random() * 100); // Random number between 0 and 99
+  // Initialize all dashboard components
+  initializeDateTime();
+  initializeCalendar();
 
-  // Split the count into two digits for display
-  const countString = randomCount.toString().padStart(2, '0');
-  counterDigit1.textContent = countString[0];
-  counterDigit2.textContent = countString[1];
+  // Add active class to current menu item
+  highlightCurrentPage();
+
+  // Add animations to elements when they come into view
+  animateOnScroll();
+});
+
+// Highlight the current page in navigation
+function highlightCurrentPage() {
+  const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll('.nav-menu li a');
+
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') && currentPath.includes(link.getAttribute('href'))) {
+      link.parentElement.classList.add('active');
+    }
+  });
 }
 
-// Function to update the current date counter by default
-function updateCurrentDateCounter() {
-  updateCounter(today, 1);  // For the current day, default counter 1
-  updateCounter(today, 2);  // For the current day, default counter 2
-  updateCounter(today, 3);  // For the current day, default counter 3
-  updateCounter(today, 4);  // For the current day, default counter 4
-  updateCounter(today, 5);  // For the current day, default counter 5
+// Initialize the date and time displays
+function initializeDateTime() {
+  updateTime();
+  setInterval(updateTime, 1000);
+  updateDateDisplay();
 }
 
-// Initial update of counters
-updateCurrentDateCounter();
+// Update the digital clock
+function updateTime() {
+  const now = new Date();
+  const options = {
+    timeZone: 'Asia/Colombo',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  };
+  const timeString = now.toLocaleTimeString('en-GB', options);
 
-// Calendar functions to render the calendar
+  const clockElement = document.getElementById('clock');
+  if (clockElement) {
+    clockElement.textContent = timeString;
+  }
+}
+
+// Update the date display
+function updateDateDisplay() {
+  const dateDisplay = document.getElementById('current-date');
+  if (dateDisplay) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    dateDisplay.textContent = today.toLocaleDateString('en-US', options);
+  }
+}
+
+// Calendar functions
 function renderCalendar() {
   const monthYear = document.getElementById('monthYear');
   const dates = document.getElementById('dates');
+
+  if (!monthYear || !dates) return;
 
   const month = currentDate.getMonth();
   const year = currentDate.getFullYear();
@@ -51,37 +89,49 @@ function renderCalendar() {
   const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
   const lastDateOfPrevMonth = new Date(year, month, 0).getDate();
 
+  // Previous month dates
   for (let i = firstDayOfMonth; i > 0; i--) {
-    const date = document.createElement('div');
-    date.classList.add('date', 'other-month');
-    date.textContent = lastDateOfPrevMonth - i + 1;
+    const date = createDateElement(lastDateOfPrevMonth - i + 1, true);
     dates.appendChild(date);
   }
 
+  // Current month dates
   for (let i = 1; i <= lastDateOfMonth; i++) {
-    const date = document.createElement('div');
-    date.classList.add('date');
-    date.textContent = i;
-
-    date.addEventListener('click', function() {
-      const clickedDate = new Date(year, month, i);
-      updateCounter(clickedDate, 1);  // Update counter 1 for clicked date
-      updateCounter(clickedDate, 2);  // Update counter 2 for clicked date
-      updateCounter(clickedDate, 3);  // Update counter 3 for clicked date
-      updateCounter(clickedDate, 4);  // Update counter 4 for clicked date
-      updateCounter(clickedDate, 5);  // Update counter 5 for clicked date
-    });
-
+    const date = createDateElement(i, false);
+    if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+      date.classList.add('today');
+    }
     dates.appendChild(date);
   }
 
+  // Next month dates
   const remainingCells = 42 - (firstDayOfMonth + lastDateOfMonth);
   for (let i = 1; i <= remainingCells; i++) {
-    const date = document.createElement('div');
-    date.classList.add('date', 'other-month');
-    date.textContent = i;
+    const date = createDateElement(i, true);
     dates.appendChild(date);
   }
+}
+
+function createDateElement(day, isOtherMonth) {
+  const date = document.createElement('div');
+  date.classList.add('date');
+  if (isOtherMonth) date.classList.add('other-month');
+  date.textContent = day;
+
+  // Add the data-date attribute
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const dayString = String(day).padStart(2, '0');
+  date.setAttribute('data-date', `${year}-${month}-${dayString}`);
+
+  if (!isOtherMonth) {
+    date.addEventListener('click', function () {
+      const clickedDate = date.getAttribute('data-date');
+      fetchDataForDate(clickedDate);
+    });
+  }
+
+  return date;
 }
 
 function prevMonth() {
@@ -94,48 +144,104 @@ function nextMonth() {
   renderCalendar();
 }
 
-renderCalendar();
-
-
-  // timeeeeeeeeeeeeeeeee
-  
-      function updateClock() {
-          const now = new Date();
-
-          // Convert to Sri Lanka time (UTC+5:30)
-          const options = { timeZone: 'Asia/Colombo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-          const sriLankaTime = now.toLocaleTimeString('en-GB', options);
-
-          // Display time
-          document.getElementById('clock').textContent = sriLankaTime ;
-      }
-
-      // Update clock every second
-      setInterval(updateClock, 1000);
-
-      // Initial call to display clock immediately
-      updateClock();
-
-      function toggleSidebar() {
-        document.querySelector('.sidebar').classList.toggle('active');
-      }
-
-//dateeeeeeeeeeeee
-
-function updateDateDisplay() {
-  const dateDisplay = document.getElementById('date-display');
-
-  // Get the current date
-  const currentDate = new Date();
-
-  // Format the date as YYYY-MM-DD
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-  const day = String(currentDate.getDate()).padStart(2, '0');
-
-  // Set the date in the format YYYY-MM-DD
-  dateDisplay.textContent = `${year}-${month}-${day}`;
+// Initialize calendar
+function initializeCalendar() {
+  renderCalendar();
 }
 
-// Update the date display on page load
-updateDateDisplay();
+// Animation on scroll
+function animateOnScroll() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  });
+
+  document.querySelectorAll('.stat-card, .widget').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// Fetch data for the selected date
+function fetchDataForDate(date) {
+  fetch('dashboard.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `selectedDate=${encodeURIComponent(date)}`,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      displayData(data);
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}
+
+// Display data in the dashboard container
+function displayData(data) {
+  const container = document.querySelector('.dashboard-container');
+  if (!container) {
+    console.error('Dashboard container not found!');
+    return;
+  }
+
+  let html = '<h2>Data for Selected Date</h2>';
+
+  // Service Requests
+  html += '<h3>Service Requests</h3>';
+  if (data.serviceRequests && data.serviceRequests.length > 0) {
+    html += '<ul>';
+    data.serviceRequests.forEach(request => {
+      html += `<li>Request ID: ${request.request_id}, Status: ${request.status}</li>`;
+    });
+    html += '</ul>';
+  } else {
+    html += '<p>No service requests found.</p>';
+  }
+
+  // Contact Forums
+  html += '<h3>Contact Forums</h3>';
+  if (data.contactForums && data.contactForums.length > 0) {
+    html += '<ul>';
+    data.contactForums.forEach(forum => {
+      html += `<li>Title: ${forum.title}, Content: ${forum.content}</li>`;
+    });
+    html += '</ul>';
+  } else {
+    html += '<p>No contact forums found.</p>';
+  }
+
+  // Events
+  html += '<h3>Events</h3>';
+  if (data.events && data.events.length > 0) {
+    html += '<ul>';
+    data.events.forEach(event => {
+      html += `<li>Title: ${event.title}, Description: ${event.description}</li>`;
+    });
+    html += '</ul>';
+  } else {
+    html += '<p>No events found.</p>';
+  }
+
+  // News
+  html += '<h3>News</h3>';
+  if (data.news && data.news.length > 0) {
+    html += '<ul>';
+    data.news.forEach(news => {
+      html += `<li>Title: ${news.title}, Content: ${news.content}</li>`;
+    });
+    html += '</ul>';
+  } else {
+    html += '<p>No news found.</p>';
+  }
+
+  container.innerHTML = html;
+}
