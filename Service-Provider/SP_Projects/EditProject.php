@@ -1,6 +1,42 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+
+$projectId = $_GET['project_id'];
+$providerId = $_SESSION['provider_id'];
+if (!isset($projectId)) {
+    die("Project ID not specified.");
+    header("Location: Project.php");
+}
+
+$sql = "SELECT project_id, project_name, project_description, project_phase, project_status, created_date FROM projects WHERE provider_id = '$providerId' AND project_id = '$projectId'";
+$result = $conn->query($sql);
+if ($result === false) {
+    die("Error: " . $conn->error);
+}
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Prepare and execute the SQL statement to delete the project
+    $deleteSql = "DELETE FROM projects WHERE project_id = ?";
+    $stmt = $conn->prepare($deleteSql);
+    $stmt->bind_param("i", $projectId);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Project deleted successfully!');</script>";
+        header("Location: Project.php");
+        exit();
+    } else {
+        echo "<script>alert('Error deleting project: " . $conn->error . "');</script>";
+    }
+
+    $stmt->close();
+} else {
+            
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +47,7 @@ include '../connection.php';
     <link rel="stylesheet" href="Project.css">
 </head>
 <body>
+
     <div class="container">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -155,8 +192,10 @@ include '../connection.php';
         <!-- Document Upload Section -->
         <div class="document-upload">
             <h2>Upload Documents</h2>
-            <input type="file" class="uploard" id="documentUpload" multiple />
+            <input type="file" class="uploard" id="documentUpload"  />
             <button class="btn btn-primary">Upload Document</button>
+            <label for="fileName"> File name </label>
+            <input type="text" class="file-name" id="fileName" placeholder="Enter file name" />
         </div>
 
         <!-- Document List Section -->

@@ -750,3 +750,155 @@ body {
     align-items: center;
     background-color: #f4f4f4;
 }
+
+
+/* Overlay Styles */
+.overlay {
+    display: none;
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .overlay-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: fit-content;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: #333;
+  }
+  
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  /* Button Styles in Table */
+  .edit-btn,.view-btn
+  .cancel-btn {
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 14px;
+  }
+  
+  .edit-btn {
+    background-color: #28a745;
+  }
+  
+  .cancel-btn {
+    background-color: #dc3545;
+  }
+  .view-btn {
+    background-color: #505050;
+  }
+  
+  /* Modal Container */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    width: 400px;
+    background: #f4f4f4;
+    border-radius: 15px;
+    text-align: center;
+    color: black;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease-in-out;
+  }
+  
+  /* Header */
+  .modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #b50000;
+  }
+  
+  /* Body */
+  .modal-body p {
+    margin: 15px 0;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  /* Footer Buttons */
+  .modal-footer {
+    margin-top: 20px;
+  }
+  .btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  } 
+  
+  .Success {
+    color: #28a745;
+  }
+    .Error {
+        color: #dc3545;
+    }  
+
+    .upload-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+    }
