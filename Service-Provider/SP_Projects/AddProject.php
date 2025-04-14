@@ -41,16 +41,13 @@ if (isset($_POST['submit'])) {
                     if (!is_dir($upload_dir)) {
                         mkdir($upload_dir, 0777, true);
                     }
-
+                    
                     if (move_uploaded_file($file_tmp, $upload_dir . $file_name)) {
                         $query_file_upload = "INSERT INTO `projectdocuments` (project_id, file_name, file_path) VALUES ('$project_id', '$document_name', '$upload_dir$file_name')";
                         $result_file_upload = mysqli_query($conn, $query_file_upload);
 
                         $query_log = "INSERT INTO projectstatuslogs (project_id, message , changed_at) VALUES ('$project_id', 'creating the project ', NOW());";
                         $result_log = mysqli_query($conn, $query_log);
-
-
-                
 
                         if ($result_file_upload) {
                             if ($result_log) {
