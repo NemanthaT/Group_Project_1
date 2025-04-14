@@ -1,6 +1,14 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+
+$providerId = $_SESSION['provider_id']; 
+$sql = "SELECT project_id, client_id, provider_id, project_name, project_description, project_phase, project_status, created_date FROM projects WHERE provider_id = '$providerId' ORDER BY created_date DESC";
+$result = $conn->query($sql);
+if ($result === false) {
+    die("Error: " . $conn->error);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +42,7 @@ include '../connection.php';
             <header>
                 <nav class="navbar">       
                     <!-- <a href="../Home/Homepage/HP.html">Home</a> -->
-                    <div class="notification">   
+                    <div class="notification">
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     </div> 
                     <div class="profile">
@@ -65,40 +73,32 @@ include '../connection.php';
 <!-- Bills Grid -->
 <div class="bills-grid">
 <!-- Bill Card 1 -->
-    <div class="bill-card">
-        <div class="bill-header">
-            <span class="payment-id">PAY002</span>
-            <span class="status unpaid">Unpaid</span>
-        </div>
-        <div class="bill-content">
-            <div class="bill-info">
-                <p><strong>Service:</strong> Financial consultancy for board of directers(stage 2)</p>
-                <p><strong>Amount:</strong> Rs 21,850</p>
-                <p><strong>Date:</strong> 2024-11-21</p>
-                <p><strong>Project ID:</strong> 001</p>
-            </div>                    <a href="EditProject.php">
-            <button class="pay-button green">View</button></a>
-        </div>
-    </div>
-
-    <!-- Bill Card 2 -->
-    <div class="bill-card">
-        <div class="bill-header">
-            <span class="payment-id">PAY001</span>
-            <span class="status paid">Paid</span>
-        </div>
-        <div class="bill-content">
-            <div class="bill-info">
-                <p><strong>Service:</strong> Financial consultancy for board of directers (advance)</p>
-                <p><strong>Amount:</strong> Rs 21,850</p>
-                <p><strong>Date:</strong> 2024-11-21</p>
-                <p><strong>Project ID:</strong> 001</p>
+    <?php if ($result->num_rows > 0): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <div class="bill-card">
+                <div class="bill-header">
+                    <span class="payment-id">PROJECT</span>
+                    <span class="status <?php echo strtolower($row['project_status']); ?>">
+                        <?php echo ucfirst($row['project_status']); ?>
+                    </span>
+                </div>
+                <div class="bill-content">
+                    <div class="bill-info">
+                        <p><strong>Service:</strong> <?php echo htmlspecialchars($row['project_name']); ?></p>
+                        <p><strong>Description:</strong> <?php echo htmlspecialchars($row['project_description']); ?></p>
+                        <p><strong>Date:</strong> <?php echo htmlspecialchars($row['created_date']); ?></p>
+                        <p><strong>Project ID:</strong> <?php echo htmlspecialchars($row['project_id']); ?></p>
+                    </div>
+                    <a href="EditProject.php?project_id=<?php echo $row['project_id']; ?>">
+                        <button class="pay-button green" >View</button>
+                    </a>
+                </div>
             </div>
-            <a href="EditProject.php">
-            <button class="pay-button green" >View</button>
-            </a>
-        </div>
-    </div>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p>No projects found.</p>
+    <?php endif; ?>
+
 </div>
             </div>    
 

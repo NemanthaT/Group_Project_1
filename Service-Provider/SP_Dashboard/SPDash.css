@@ -19,7 +19,7 @@ body {
 
 .sidebar {
     background-color: white;
-    width: 220px; /* Reduced from 250px */
+    width: 220px; 
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -81,67 +81,162 @@ body {
 .navbar {
     background-color: white;
     color: #18A0FB;
-    padding: 10px 25px; /* Reduced height */
+    padding: 10px 25px;
     position: fixed;
     top: 0;
     right: 0;
     left: 220px; /* Adjusted for smaller sidebar */
     z-index: 5;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Keep items on the right */
     align-items: center;
+    gap: 20px; /* Add even spacing between all navbar items */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    height: 50px; /* Fixed height */
+    height: 50px;
+}
+
+/* Reset margins for all direct children of navbar */
+.navbar > * {
+    margin: 0;
 }
 
 .navbar a {
     color: #18A0FB;
     text-decoration: none;
     font-size: 14px;
-    padding: 6px 12px;
-    margin-left: 12px;
+    padding: 6px 6px;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 0; /* Remove the left margin */
+}
+
+.navbar a img {
+    width: 24px;
+    height: 24px;
+    transition: background-color 0.3s;
+}
+
+/* Calendar styles */
+.calendar-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 16px;
+    z-index: 1000;
+}
+
+.calendar-dropdown h3 {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #18A0FB;
+}
+
+#currentMonth {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.days div {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    position: relative;
+}
+
+.days div:hover {
+    background-color: #f0f0f0;
+}
+
+.days div.today {
+    background-color: #18A0FB;
+    color: white;
+}
+
+.days div.has-event::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: #18A0FB;
+    border-radius: 50%;
+}
+
+.calendar-footer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.calendar-link {
+    color: #18A0FB;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.calendar-link:hover {
+    text-decoration: underline;
+}
+
+.dot {
+    color: #18A0FB;
+    margin: 0 8px;
 }
 
 .logout:hover {
     background-color: rgb(215, 236, 255);
 }
-
-.navbar a img {
-    width: 24px; /* Reduced size */
-    height: 24px; /* Reduced size */
-    border-radius: 50%;
-    transition: background-color 0.3s;
-}
-
-.profile a img {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-}
-
-.profile {
-    display: flex;
-    align-items: center;
-}
-
-.profile a {
-    padding: 0;
-    color: #333;
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
+/* Main content styling */
 .main-content {
-    margin-left: 220px; /* Adjusted for smaller sidebar */
-    padding: 60px 10px 10px; /* Adjusted top padding for smaller navbar */
+    margin-left: 220px; 
+    padding: 60px 5px; 
     background-color: #ecf0f4;
-    min-height: 100vh;
-    width: calc(100% - 150px); /* Adjusted for smaller sidebar */
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Calculate width based on sidebar */
+    box-sizing: border-box;
+    overflow: flex; 
 }
 
 .dashboard {
