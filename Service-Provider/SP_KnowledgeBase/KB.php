@@ -1,14 +1,19 @@
-<?php
+<?php 
 include '../Session/Session.php';
 include '../connection.php';
+
+// Check if provider is logged in
+if (!isset($_SESSION['provider_id'])) {
+    echo "Unauthorized. Please log in.";
+    exit;
+}
+
+$providerId = $_SESSION['provider_id']; // Logged-in provider's ID
 
 // Handle CRUD operations
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
-
-        // Replace with the actual logged-in provider ID
-        $providerId = 1; // You should retrieve this dynamically based on the logged-in user.
 
         // Create a new case study
         if ($action === 'create') {
@@ -18,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // File upload handling
             $uploadDir = '../uploads/';
             if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0777, true); // Ensure the upload directory exists
+                mkdir($uploadDir, 0777, true);
             }
 
             $filePath = null;
@@ -47,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = isset($_POST['title']) ? $_POST['title'] : '';
             $description = isset($_POST['description']) ? $_POST['description'] : '';
 
-            $stmt = $conn->prepare("UPDATE researchpapers SET title = ?, content = ? WHERE paper_id = ?");
-            $stmt->bind_param("ssi", $title, $description, $paperId);
+            $stmt = $conn->prepare("UPDATE researchpapers SET title = ?, content = ? WHERE paper_id = ? AND provider_id = ?");
+            $stmt->bind_param("ssii", $title, $description, $paperId, $providerId);
             $stmt->execute();
         }
 
@@ -56,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($action === 'delete') {
             $paperId = $_POST['paper_id'];
 
-            $stmt = $conn->prepare("DELETE FROM researchpapers WHERE paper_id = ?");
-            $stmt->bind_param("i", $paperId);
+            $stmt = $conn->prepare("DELETE FROM researchpapers WHERE paper_id = ? AND provider_id = ?");
+            $stmt->bind_param("ii", $paperId, $providerId);
             $stmt->execute();
         }
 
@@ -67,21 +72,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fetch all published case studies
-$result = $conn->query("SELECT * FROM researchpapers ORDER BY published_at DESC");
+// Fetch all published case studies for the logged-in provider
+$stmt = $conn->prepare("SELECT * FROM researchpapers WHERE provider_id = ? ORDER BY published_at DESC");
+$stmt->bind_param("i", $providerId);
+$stmt->execute();
+$result = $stmt->get_result();
 $caseStudies = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
 
 // If the case ID is set in the URL, fetch details for the modal form
 $modalCase = null;
 if (isset($_GET['paper_id'])) {
     $paperId = $_GET['paper_id'];
-    $stmt = $conn->prepare("SELECT * FROM researchpapers WHERE paper_id = ?");
-    $stmt->bind_param("i", $paperId);
+    $stmt = $conn->prepare("SELECT * FROM researchpapers WHERE paper_id = ? AND provider_id = ?");
+    $stmt->bind_param("ii", $paperId, $providerId);
     $stmt->execute();
     $result = $stmt->get_result();
     $modalCase = $result->fetch_assoc();
+    $stmt->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
