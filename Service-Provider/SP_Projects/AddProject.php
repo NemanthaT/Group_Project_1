@@ -26,12 +26,14 @@ if (isset($_POST['submit'])) {
 
             $result = mysqli_query($conn, $query_submit);
 
+
+
             if ($result) {
                 $project_id = mysqli_insert_id($conn);
 
                 // Handle file upload
                 if (isset($_FILES['upload_documents'])) {
-                    $upload_dir = '../../uploads/';
+                    $upload_dir = '../../uploads/' . $project_id . '/';
                     $document_name = $_POST['document_name'];
                     $file_name = $_FILES['upload_documents']['name'];
                     $file_tmp = $_FILES['upload_documents']['tmp_name'];
@@ -41,7 +43,7 @@ if (isset($_POST['submit'])) {
                     }
 
                     if (move_uploaded_file($file_tmp, $upload_dir . $file_name)) {
-                        $query_file_upload = "INSERT INTO `projectdocuments` (project_id, file_name, file_path) VALUES ('$project_id', '$document_name', '$file_name')";
+                        $query_file_upload = "INSERT INTO `projectdocuments` (project_id, file_name, file_path) VALUES ('$project_id', '$document_name', '$upload_dir$file_name')";
                         $result_file_upload = mysqli_query($conn, $query_file_upload);
 
                         $query_log = "INSERT INTO projectstatuslogs (project_id, message , changed_at) VALUES ('$project_id', 'creating the project ', NOW());";

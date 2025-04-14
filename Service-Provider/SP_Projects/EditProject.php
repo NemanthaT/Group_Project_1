@@ -9,33 +9,47 @@ if (!isset($projectId)) {
     header("Location: Project.php");
 }
 
-$sql = "SELECT project_id, project_name, project_description, project_phase, project_status, created_date FROM projects WHERE provider_id = '$providerId' AND project_id = '$projectId'";
-$result = $conn->query($sql);
-if ($result === false) {
+$sql = "SELECT * FROM projects WHERE provider_id = '$providerId' AND project_id = '$projectId'";
+$clientSql = "SELECT client_id, full_name, phone FROM clients WHERE client_id = (SELECT client_id FROM projects WHERE project_id = '$projectId')";
+$log = "SELECT * FROM projectstatuslogs WHERE project_id = '$projectId'ORDER BY changed_at DESC ;";
+$logfinal = "SELECT * FROM projectstatuslogs WHERE project_id = '$projectId' ORDER BY changed_at DESC LIMIT 1;";
+
+
+
+$presult = $conn->query($sql);
+$resultClient = $conn->query($clientSql);
+$logResult = $conn->query($log);
+$logfinalResult = $conn->query($logfinal);
+
+if ($resultClient === false) {
+    die("Error: " . $conn->error);
+}
+if ($presult === false) {
+    die("Error: " . $conn->error);
+}
+if ($logResult === false) {
     die("Error: " . $conn->error);
 }
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Prepare and execute the SQL statement to delete the project
-    $deleteSql = "DELETE FROM projects WHERE project_id = ?";
-    $stmt = $conn->prepare($deleteSql);
-    $stmt->bind_param("i", $projectId);
+    $client_row = $resultClient->fetch_assoc();
+    $prow = $presult->fetch_assoc();
+    $logfinal_row = $logfinalResult->fetch_assoc();
 
-    if ($stmt->execute()) {
-        echo "<script>alert('Project deleted successfully!');</script>";
-        header("Location: Project.php");
-        exit();
-    } else {
-        echo "<script>alert('Error deleting project: " . $conn->error . "');</script>";
-    }
-
-    $stmt->close();
-} else {
-            
-}
-
+    
+    
+    $project_name = $prow['project_name'];
+    $project_description = $prow['project_description'];
+    $project_phase = $prow['project_phase'];
+    $project_status = $prow['project_status'];
+    $created_date = $prow['created_date'];
+    $project_id = $prow['project_id'];
+    $client_name = $client_row['full_name'];
+    $client_phone = $client_row['phone'];
+    $client_id = $client_row['client_id'];
+    $start_date = $prow['created_date'];
+    $updated_date = $logfinal_row['changed_at'];
+    
 
 ?>
 <!DOCTYPE html>
@@ -88,11 +102,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Project Header -->
         <div class="project-header">
             <div>
-                <h1>Financial Consultancy Project Document</h1>
-                <p>Comprehensive project management and documentation system</p>
+                <h1><?php echo $project_name; ?></h1>
+                <p><?php echo $project_description; ?></p>
             </div>
             <div>
-                <span class="status-badge status-ongoing">Current Status: Ongoing</span>
+                <span class="status-badge status-ongoing">Current Status: <?php echo $project_status; ?></span>
             </div>
         </div>
 
@@ -102,23 +116,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h2>Project Overview</h2>
                 <div class="detail-item">
                     <label>Project Name:</label>
-                    <p>Financial Consultancy for Board of Directors</p>
+                    <p><?php echo $project_name; ?></p>
                 </div>
                 <div class="detail-item">
                     <label>Project ID:</label>
-                    <p>EDSA-001</p>
-                </div>
-                <div class="detail-item">
-                    <label>Client Company:</label>
-                    <p>Eagle Digital Finance Solutions </p>
+                    <p><?php echo $project_id; ?></p>
                 </div>
                 <div class="detail-item">
                     <label>Client Name:</label>
-                    <p>Amarabandu Rupasinha</p>
+                    <p><?php echo $client_name; ?></p>
                 </div>
                 <div class="detail-item">
                     <label>Client Phone Number:</label>
-                    <p>071 234 5161</p>
+                    <p><?php echo $client_phone; ?></p>
                 </div>
             </div>
 
@@ -126,19 +136,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h2>Project Status</h2>
                 <div class="detail-item">
                     <label>Current Status:</label>
-                    <span class="status-badge status-ongoing">Ongoing</span>
+                    <span class="status-badge status-ongoing"><?php echo $project_status; ?></span>
                 </div>
                 <div class="detail-item">
                     <label>Project Phase:</label>
-                    <p>Requirement Gathering</p>
+                    <p><?php echo $project_phase; ?></p>
                 </div>
                 <div class="detail-item">
                     <label>Start Date:</label>
-                    <p>2023-09-01</p>
+                    <p><?php echo $start_date; ?></p>
                 </div>
                 <div class="detail-item">
                     <label>Updated Date:</label>
-                    <p>2025-02-29</p>
+                    <p><?php echo $updated_date; ?></p>
                 </div>
             </div>
         </div>
@@ -149,7 +159,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!-- Project Phase Update -->
                 <div class="status-card">
                     <h3>Project Phase Update</h3>
-                    <select class="status-select" id="projectPhaseSelect">
+                    <form action="" method="post">
+                    <select class="status-select" id="projectPhaseSelect" name="projectPhaseSelect">
                         <option value="">Select Project Phase</option>
                         <option value="requirement-gathering">Requirement Gathering</option>
                         <option value="design">Design Phase</option>
@@ -158,49 +169,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="deployment">Deployment</option>
                         <option value="maintenance">Maintenance</option>
                     </select>
+                    <?php if (isset($_SESSION['phase'])): ?>
+                    <div class="alert alert-success"><?php echo $_SESSION['phase']; unset($_SESSION['phase']); ?></div>
+                    <?php unset($_SESSION['phase']); ?>
+                    <?php endif; ?>
                     <button class="btn btn-primary">Update Phase</button>
+                    </form>
                 </div>
 
                 <!-- Project Status Update -->
                 <div class="status-card">
                     <h3>Project Status Update</h3>
-                    <select class="status-select" id="projectStatusSelect">
+                    <form action="" method="post">
+                    <select class="status-select" id="projectStatusSelect" name="projectStatusSelect">
                         <option value="">Select Project Status</option>
                         <option value="ongoing">Ongoing</option>
                         <option value="completed">Completed</option>
                         <option value="on-hold">On Hold</option>
                         <option value="cancelled">Cancelled</option>
                     </select>
-                    <button class="btn btn-success">Update Status</button>
+                    <?php if (isset($_SESSION['status'])): ?>
+                    <div class="alert alert-success"><?php echo $_SESSION['status']; unset($_SESSION['status']); ?></div>
+                    <?php endif; ?>
+                    <button class="btn btn-success" >Update Status</button>
+                    </form>
+                    
                 </div>
             </div>
         </div>
 
-        <!-- Status Log Section -->
-        <div class="status-log">
-            <h2>Status Log</h2>
-            <div class="status-log-item">
-                <p>Phase updated to Requirement Gathering on 2023-09-01</p>
-                <span>By: Project Manager</span>
-            </div>
-            <div class="status-log-item">
-                <p>Status updated to Ongoing on 2023-09-15</p>
-                <span>By: Project Coordinator</span>
-            </div>
-        </div>
+
 
         <!-- Document Upload Section -->
         <div class="document-upload">
+            <br>
             <h2>Upload Documents</h2>
             <input type="file" class="uploard" id="documentUpload"  />
-            <button class="btn btn-primary">Upload Document</button>
             <label for="fileName"> File name </label>
-            <input type="text" class="file-name" id="fileName" placeholder="Enter file name" />
-        </div>
+            <input type="text" class="uploard" id="fileName" placeholder="Enter file name" />
+            <button class="btn btn-primary">Upload Document</button>
+
+            </div>
+        
 
         <!-- Document List Section -->
         <div class="document-list">
             <h2>Uploaded Documents</h2>
+            <br>
             <div class="document-list-item">
                 <span>Project Proposal.pdf</span>
                 <button class="btn btn-danger">Delete</button>
@@ -214,6 +229,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button class="btn btn-danger">Delete</button>
             </div>
         </div>
+                <!-- Status Log Section -->
+                <div class="status-log">
+            <h2>Status Log</h2>
+            <br>
+            <?php if ($logResult->num_rows > 0): ?>
+                <?php while ($log_row = $logResult->fetch_assoc()): ?>
+                    <div class="status-log-item">
+                    <p><?php echo htmlspecialchars($log_row['message']); ?></p>
+                    <span><?php echo htmlspecialchars($log_row['changed_at']); ?></span>
+                    </div>
+                   
+                   <?php  endwhile; ?>
+                   <?php else: ?>
+        <p>No projects found.</p>
+    <?php endif; ?>
+        </div>
     </div>
 
     <!-- Optional: Add JavaScript for interactivity -->
@@ -225,11 +256,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             const statusUpdateBtn = document.querySelector('.btn-success');
 
             phaseUpdateBtn.addEventListener('click', () => {
-                alert('Project Phase Update functionality to be implemented');
+                
+                <?php
+                    
+                    if (isset($_POST['projectPhaseSelect'])) {
+                        $updatePhase = $_POST['projectPhaseSelect'];
+                        $QupdatePhase = "UPDATE projects SET project_phase = '$updatePhase' WHERE project_id = $projectId ";
+                        mysqli_query($conn, $QupdatePhase);
+                        $logUpdatePhase = "INSERT INTO projectstatuslogs (project_id, message, changed_at) VALUES ('$projectId', 'Project phase updated to $updatePhase', NOW());";
+                        mysqli_query($conn, $logUpdatePhase);
+                        $_SESSION['phase'] = "Project phase updated successfully.";
+                        header("Location: EditProject.php?project_id=$projectId");
+                    }
+
+                    exit();
+                ?>
             });
 
             statusUpdateBtn.addEventListener('click', () => {
-                alert('Project Status Update functionality to be implemented');
+
+                
+                <?php
+                    if (isset($_POST['projectStatusSelect'])) {
+                        $updateStatus = $_POST['projectStatusSelect'];
+                        $QupdateStatus = "UPDATE projects SET project_status = '$updateStatus' WHERE project_id = $projectId ";
+                        mysqli_query($conn, $QupdateStatus);
+                        $logUpdateStatus = "INSERT INTO projectstatuslogs (project_id, message, changed_at) VALUES ('$projectId', 'Project status updated to $updateStatus', NOW());";
+                        mysqli_query($conn, $logUpdateStatus);  
+                        $_SESSION['status'] = "Project status updated successfully.";
+                        header("Location: EditProject.php?project_id=$projectId");
+            
+                    }
+
+                    exit();
+                ?>
             });
         });
     </script>
