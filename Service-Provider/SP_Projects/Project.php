@@ -9,7 +9,6 @@ if ($result === false) {
     die("Error: " . $conn->error);
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
