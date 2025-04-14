@@ -9,7 +9,6 @@ if ($result === false) {
     die("Error: " . $conn->error);
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +42,7 @@ if ($result === false) {
             <header>
                 <nav class="navbar">       
                     <!-- <a href="../Home/Homepage/HP.html">Home</a> -->
-                    <div class="notification">   
+                    <div class="notification">
                         <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
                     </div> 
                     <div class="profile">

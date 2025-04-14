@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($doc_id)) {
     
     $stmt->execute();
     $stmt->close();
+    
     $conn->close();
 
 
