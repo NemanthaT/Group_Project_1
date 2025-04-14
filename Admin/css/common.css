@@ -333,3 +333,65 @@ button:hover{
     background-color: #ddd;
     cursor: pointer;
 }
+
+/*close button styles*/
+#closeError{
+    color: red;
+    /*font-size: large;*/
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    margin-left: 90%;
+    margin-bottom: 1%;
+}
+
+#closeError:hover{
+    color: white;
+    background-color: red;
+    border: red;
+}
+
+#errorView{
+    display: none;
+    z-index: 2;
+    font-size: 1.5rem;
+    text-align: center;
+    position: absolute;
+    z-index: 100;
+    margin-top: 15%;
+    margin-left: 10%;
+    margin-right: auto;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #333;
+    height: auto;
+    width: 40%;
+}
+
+#errorView h2{
+    color: red;
+}
+
+#errorView p{
+    color: black;
+    padding: 0px;
+}
+#errorView hr{
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #333;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Optional: darkens background */
+    z-index: 1; /* Must be higher than the rest of your page */
+    pointer-events: all; /* Ensures it blocks clicks */
+}

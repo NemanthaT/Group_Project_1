@@ -1,9 +1,9 @@
 function hideList(){
-    if(document.getElementById('results').style.display != "none"){
-        document.getElementById('dA').style.display = "none";
+    if(document.getElementById('results').style.display == "none"){
+        document.getElementById('dA').style.display = "block";
     }
     else{
-        document.getElementById('dA').style.display = "block";
+        document.getElementById('dA').style.display = "none";
     }
     
 }

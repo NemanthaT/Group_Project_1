@@ -8,6 +8,7 @@
         header("Location: ../../login/login.php");
         exit;
     }
+    $afDiv = "mainContent";
 ?>
 
 <!DOCTYPE html>
@@ -18,15 +19,32 @@
     <title>Manage Employees</title>
     <link rel="stylesheet" href="../../css/common.css">
     <link rel="stylesheet" href="empStyles.css">
+    <script src="../../js/common.js"></script>
     <script src="emp.js"></script>
 </head>
 <body>
     <div class="bg">
         <!--blur Background image-->  
     </div>
+
+    <div id="overlay" class="overlay"></div>
     
+    <!--Error message {-->
+    <div id="errorView">
+        <button id="closeError" onclick="closeError('mainContent')">x</button>
+            
+                <h2>Hello</h2>
+                <hr>                
+                <p>MF</p>
+            
+                    
+    </div>
+    <!--}Error message -->
+
     <div class="main" id="main">
         <h1>Manage Employees</h1>
+
+        <!--Add Employee Form-->
         <div id="addEmp">
             <button id="closeView" onclick="closeForm()">x</button>
             <div id="addEmpForm">    
@@ -61,13 +79,29 @@
                     //$password = password_hash($password, PASSWORD_DEFAULT);
                     $sql = "INSERT INTO companyworkers (username, full_name, role, address, phoneNo, email, password) VALUES ('$username', '$fullname', '$role', '$address', '$phoneNo', '$email', '$password')";
                     if ($conn->query($sql) === TRUE) {
-                        echo "<script>alert('New Employee Added Successfully!');</script>";
+                        $noticeType = "success";
+                        $error_message = "New Employee Added Successfully!";
+                        echo "<script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    displayError('$noticeType', '$error_message', '$afDiv');
+                                });
+                              </script>";
                     } else {
-                        echo "<script>alert('Error: ".$conn->error."!');</script>";
+                        $noticeType = "error";
+                        $error_message = "Error: Connection Error occured!";
+                        echo "<script>
+
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    displayError('$noticeType', '$error_message', '$afDiv');
+                                });
+                              </script>";
                     }
                 }
             ?>
         </div>
+        <!--End of Add Employee Form-->
+
+
         <div id="mainContent">
             <div class ="mainTop">
                 <!--Search Employees and list them-->
@@ -96,7 +130,13 @@
                                 $id = $_POST['id'];
                                 //check whether given id is an integer
                                 if (!is_numeric($id)) {
-                                    echo "<script>alert('Error: Invalid ID!');</script>";
+                                    $noticeType = "error";
+                                    $error_message = "Enter A Numeric Value!";
+                                    echo "<script>
+                                                document.addEventListener('DOMContentLoaded', function() {
+                                                    displayError(" . json_encode($noticeType) . ", " . json_encode($error_message) . ", " . json_encode($afDiv) . ");
+                                                });
+                                            </script>";
                                 }
                                 else{
                                     $srch="SELECT * FROM companyworkers WHERE worker_id = $id ";
@@ -114,7 +154,13 @@
                                             echo "<script>alert('Error: ".$conn->error."!');</script>";
                                         }
                                     } else {
-                                        echo "<script>alert('Error: Invalid ID!');</script>";
+                                        $noticeType = "error";
+                                        $error_message = "No Employee found!!";
+                                        echo "<script>
+                                                    document.addEventListener('DOMContentLoaded', () => {
+                                                        displayError('$noticeType', '$error_message', '$afDiv');
+                                                    });
+                                                </script>";
                                     }
                                 }
                             }
@@ -151,12 +197,30 @@
                                         $chng = "UPDATE companyworkers SET role = " . " ' " . $role . " ' " . " WHERE worker_id = $id";
                                         $opert = $conn->query($chng);
                                         if ($opert===true) {
-                                            echo "<script>alert('Role Changed Successfully!');</script>"; ;
+                                            $noticeType = "success";
+                                            $error_message = "Role Changed Successfully!";
+                                            echo "<script>
+                                                    document.addEventListener('DOMContentLoaded', () => {
+                                                        displayError('$noticeType', '$error_message', '$afDiv');
+                                                    });
+                                                  </script>";
                                         } else {
-                                            echo "<script>alert('Error: ".$conn->error."!');</script>";
+                                            $noticeType = "error";
+                                            $error_message = "Error: ".$conn->error;
+                                            echo "<script>
+                                                    document.addEventListener('DOMContentLoaded', () => {
+                                                        displayError('$noticeType', '$error_message', '$afDiv');
+                                                    });
+                                                  </script>";
                                         }
                                     } else {
-                                        echo "<script>alert('>Error: Employee not found!');</script>";
+                                        $noticeType = "error";
+                                        $error_message = "No Employee found!!";
+                                        echo "<script>
+                                                    document.addEventListener('DOMContentLoaded', () => {
+                                                        displayError('$noticeType', '$error_message', '$afDiv');
+                                                    });
+                                                </script>";
                                     }
                                 }
                             }
@@ -166,6 +230,7 @@
                 </div>
 
             </div>
+
             <div id="form">
                 <button id="addEmpBtn" onclick="showForm()">Add Employee</button>
             </div>
