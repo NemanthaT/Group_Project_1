@@ -1,26 +1,24 @@
 <?php
-// Debug information - remove after fixing
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-// End debug information
-
 include '../Session/Session.php';
 include '../connection.php';
+
+//  Ensure session is started and provider is logged in
+if (!isset($_SESSION['provider_id'])) {
+    die("Unauthorized access. Please log in as a provider.");
+}
+
+$providerId = $_SESSION['provider_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
 
-        // Replace with the actual logged-in provider ID
-        $providerId = 1; // You should retrieve this dynamically based on the logged-in user.
-
-        // Create a new thread
+        //  Create a new thread
         if ($action === 'create') {
             $title = $_POST['title'];
             $category = $_POST['category'];
             $message = $_POST['message'];
 
-            // Ensure providerId and other fields are valid
             if (!empty($providerId) && !empty($title) && !empty($message) && !empty($category)) {
                 $stmt = $conn->prepare("INSERT INTO forums (title, content, created_by, user_id, category, created_at, views, replies) VALUES (?, ?, ?, ?, ?, NOW(), 0, 0)");
                 $stmt->bind_param("ssiss", $title, $message, $providerId, $providerId, $category);
@@ -48,23 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
         }
 
-        // Redirect back to avoid form resubmission issues
+        //  Redirect to avoid form resubmission
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
 }
 
-// Fetch all forum threads
-$result = $conn->query("SELECT * FROM forums ORDER BY created_at DESC");
-if ($result) {
-    $threads = $result->fetch_all(MYSQLI_ASSOC);
-} else {
-    // Handle database query error
-    $threads = [];
-    echo "Error fetching threads: " . $conn->error;
-}
+//  Fetch all forum threads created by the logged-in provider
+$stmt = $conn->prepare("SELECT * FROM forums WHERE user_id = ? ORDER BY created_at DESC");
+$stmt->bind_param("i", $providerId);
+$stmt->execute();
+$result = $stmt->get_result();
+$threads = $result->fetch_all(MYSQLI_ASSOC);
 
-// If the thread ID is set in the URL, fetch details for the modal form
+//  Fetch thread details for modal form if editing/viewing
 $modalThread = null;
 if (isset($_GET['forum_id'])) {
     $forumId = $_GET['forum_id'];
@@ -75,6 +70,7 @@ if (isset($_GET['forum_id'])) {
     $modalThread = $result->fetch_assoc();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -217,7 +213,7 @@ if (isset($_GET['forum_id'])) {
                             <?php foreach ($threads as $thread): ?>
                                 <li data-category="<?= htmlspecialchars($thread['category'] ?? 'General Discussions') ?>" id="thread-<?= $thread['forum_id'] ?>">
                                     <h4><?= htmlspecialchars($thread['title']) ?></h4>
-                                    <p>Started by <span class="username">User <?= htmlspecialchars($thread['created_by'] ?? 'Unknown') ?></span> - <?= $thread['replies'] ?? 0 ?> replies</p>
+                                    <p>Started by <span class="username">Service Provider <?= htmlspecialchars($thread['created_by'] ?? 'Unknown') ?></span> - <?= $thread['replies'] ?? 0 ?> replies</p>
                                     <div class="button-container">
                                         <button class="view-btn" onclick="viewThread('<?= htmlspecialchars(addslashes($thread['title'])) ?>', '<?= htmlspecialchars(addslashes($thread['content'])) ?>', <?= $thread['views'] ?? 0 ?>, <?= $thread['replies'] ?? 0 ?>)">View</button>
                                         <form action="" method="POST" style="display: inline;">
