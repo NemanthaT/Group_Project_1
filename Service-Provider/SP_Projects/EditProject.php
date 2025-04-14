@@ -75,11 +75,12 @@
                 mkdir($upload_dir, 0755, true);
             }
 
-            // Generate a unique filename to prevent overwriting
-            $new_file_name = time() . '_' . $file_name;
-            $upload_path = $upload_dir . $new_file_name;
+            // Corrected to use $file_name
+            $upload_path = $upload_dir . $file_name; 
 
             // Move the uploaded file
+            if (move_uploaded_file($_FILES['upload_documents']['tmp_name'], $upload_path)) {
+
             $query_file_upload = "INSERT INTO `projectdocuments` (project_id, file_name, file_path) VALUES (?, ?, ?)";
             $stmt = mysqli_prepare($conn, $query_file_upload);
 
@@ -98,7 +99,7 @@
 
             header("Location: EditProject.php?project_id=$projectId");
             exit();
-
+            }
         }
     }
 
