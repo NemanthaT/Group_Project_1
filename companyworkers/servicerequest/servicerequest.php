@@ -118,7 +118,7 @@
                     $client_id = $row['client_id'];
                     $appointment_date = $row['appointment_date'];
                     $service_type = $row['service_type'];
-                    $
+                    
                     
                     $status = $row['status'];
                     echo '<tr>
