@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2025 at 07:27 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Apr 07, 2025 at 05:25 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -73,22 +73,7 @@ INSERT INTO `appointments` (`appointment_id`, `provider_id`, `client_id`, `appoi
 (8, 1, 1, '2024-11-27 00:00:00', 'Deleted', '2024-11-25 14:30:02', 'Consulting', 'Feedback on the recent session will be shared.'),
 (27, 1, 1, '2024-12-04 00:00:00', 'Cancelled', '2024-11-30 07:30:46', 'Training', ' i need to meet to discuss about consultency in finance '),
 (28, NULL, 1, '2024-12-06 00:00:00', 'Scheduled', '2024-11-30 10:21:29', 'Consulting', ' Feedback on the recent session will be shared.'),
-(29, NULL, 1, '2024-12-19 00:00:00', 'Rejected', '2024-12-02 09:45:15', 'Training', ' '),
-(30, NULL, 1, '2025-04-25 00:00:00', 'Pending', '2025-04-09 18:56:38', 'Training', ' ');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bills`
---
-
-CREATE TABLE `bills` (
-  `bill_id` int(255) NOT NULL,
-  `project_id` int(255) NOT NULL,
-  `Description` varchar(255) NOT NULL,
-  `Amount` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(29, NULL, 1, '2024-12-19 00:00:00', 'Rejected', '2024-12-02 09:45:15', 'Training', ' ');
 
 -- --------------------------------------------------------
 
@@ -165,51 +150,49 @@ CREATE TABLE `companyworkers` (
   `role` varchar(255) DEFAULT NULL,
   `address` varchar(255) NOT NULL,
   `phoneNo` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` varchar(255) NOT NULL DEFAULT 'set'
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `companyworkers`
 --
 
-INSERT INTO `companyworkers` (`worker_id`, `username`, `password`, `email`, `full_name`, `role`, `address`, `phoneNo`, `created_at`, `status`) VALUES
-(3, 'c3', 'worker', 'worker@gmail.com', 'cthree', ' hr ', '25, Galle Road, Colombo', '0771234567', '2024-10-15 12:24:49', 'set'),
-(4, 'c4', 'c123', 'c4@gmail.com', 'cfour', 'Executive', '102, Kandy Road, Peradeniya', '0719876543', '2024-10-15 12:24:49', 'set'),
-(5, 'johnsmith', 'p@ssword123', 'johnsmith@example.com', 'John Smith', ' Data Entry ', '56, Main Street, Gampaha', '0751122334', '2024-11-11 13:25:19', 'set'),
-(6, 'janedoe', 'Pa$$w0rd!', 'janedoe@example.com', 'Jane Doe', ' HR ', '78, Lake View Avenue, Nuwara Eliya', '0762233445', '2024-11-11 13:25:19', 'set'),
-(7, 'bobmartin', 'Qwerty!234', 'bobmartin@example.com', 'Bob Martin', ' HR Manager ', '90, Beach Road, Negombo', '0773344556', '2024-11-11 13:25:19', 'set'),
-(8, 'lisajones', 'Secure*456', 'lisajones@example.com', 'Lisa Jones', 'Support', '33, Temple Road, Anuradhapura', '0714455667', '2024-11-11 13:25:19', 'set'),
-(9, 'mikebrown', 'Admin#789', 'mikebrown@example.com', 'Mike Brown', 'Manager', '45, Hospital Lane, Matara', '0755566778', '2024-11-11 13:25:19', 'set'),
-(10, 'susantaylor', 'MyPass$123', 'susantaylor@example.com', 'Susan Taylor', 'Developer', '120, Railway Avenue, Jaffna', '0766677889', '2024-11-11 13:25:19', 'set'),
-(11, 'peterparker', 'Spider@456', 'peterparker@example.com', 'Peter Parker', 'Analyst', '15, Station Road, Batticaloa', '0777788990', '2024-11-11 13:25:19', 'set'),
-(12, 'nancywilson', 'Nancy!123', 'nancywilson@example.com', 'Nancy Wilson', 'Support', '200, Church Street, Kegalle', '0718899001', '2024-11-11 13:25:19', 'set'),
-(13, 'kevinwhite', 'White@789', 'kevinwhite@example.com', 'Kevin White', 'Manager', '89, Market Road, Trincomalee', '0759900112', '2024-11-11 13:25:19', 'set'),
-(14, 'andreagreen', 'Green#456', 'andreagreen@example.com', 'Andrea Green', 'Developer', '77, University Road, Moratuwa', '0760112233', '2024-11-11 13:25:19', 'set'),
-(15, 'paulwalker', 'Walker@123', 'paulwalker@example.com', 'Paul Walker', 'Analyst', '19, Station Lane, Badulla', '0771223344', '2024-11-11 13:25:19', 'set'),
-(16, 'stevesmith', 'Steve!789', 'stevesmith@example.com', 'Steve Smith', 'Support', '60, Court Road, Ratnapura', '0712334455', '2024-11-11 13:25:19', 'unset'),
-(17, 'sarahmiller', 'Miller@456', 'sarahmiller@example.com', 'Sarah Miller', 'Manager', '82, Kings Road, Kurunegala', '0753445566', '2024-11-11 13:25:19', 'set'),
-(18, 'davidmoore', 'Moore$123', 'davidmoore@example.com', 'David Moore', 'Developer', '39, New Bazaar Street, Kalutara', '0764556677', '2024-11-11 13:25:19', 'set'),
-(19, 'chloejames', 'Chloe@789', 'chloejames@example.com', 'Chloe James', 'Analyst', '58, Park Road, Polonnaruwa', '0775667788', '2024-11-11 13:25:19', 'set'),
-(20, 'rachelhall', 'Rachel!123', 'rachelhall@example.com', 'Rachel Hall', 'Support', '97, High Level Road, Maharagama', '0716778899', '2024-11-11 13:25:19', 'set'),
-(21, 'dannysmith', 'Danny#456', 'dannysmith@example.com', 'Danny Smith', 'Manager', '23, Town Hall Road, Hambantota', '0757889900', '2024-11-11 13:25:19', 'set'),
-(22, 'emilyclark', 'Emily$789', 'emilyclark@example.com', 'Emily Clark', 'Developer', '111, Cinnamon Gardens, Colombo 7', '0768990011', '2024-11-11 13:25:19', 'set'),
-(23, 'jacklewis', 'Jack@456', 'jacklewis@example.com', 'Jack Lewis', 'Analyst', '66, Green Path, Colombo 3', '0779001122', '2024-11-11 13:25:19', 'set'),
-(24, 'daniellebrown', 'Danielle!123', 'daniellebrown@example.com', 'Danielle Brown', 'Support', '150, Hospital Road, Kandy', '0710112233', '2024-11-11 13:25:19', 'set'),
-(25, 'brandonlee', 'Brandon$789', 'brandonlee@example.com', 'Brandon Lee', 'Manager', '48, College Avenue, Jaffna', '0751223344', '2024-11-11 13:25:19', 'set'),
-(26, 'laurabaker', 'Laura@456', 'laurabaker@example.com', 'Laura Baker', 'Developer', '77, Circular Road, Battaramulla', '0762334455', '2024-11-11 13:25:19', 'set'),
-(27, 'ryanturner', 'Ryan#123', 'ryanturner@example.com', 'Ryan Turner', 'Analyst', '99, Dharmapala Mawatha, Galle', '0773445566', '2024-11-11 13:25:19', 'set'),
-(28, 'jessicawood', 'Jessica@789', 'jessicawood@example.com', 'Jessica Wood', 'Support', '34, Thurstan Road, Colombo 7', '0714556677', '2024-11-11 13:25:19', 'set'),
-(29, 'tonyking', 'Tony!456', 'tonyking@example.com', 'Tony King', 'Manager', '81, Palm Grove, Matale', '0755667788', '2024-11-11 13:25:19', 'set'),
-(30, 'michellerogers', 'Michelle$123', 'michellerogers@example.com', 'Michelle Rogers', 'Developer', '42, Templers Road, Mount Lavinia', '0766778899', '2024-11-11 13:25:19', 'set'),
-(31, 'samuelbell', 'Samuel#789', 'samuelbell@example.com', 'Samuel Bell', 'Analyst', '135, Union Place, Colombo 2', '0777889900', '2024-11-11 13:25:19', 'set'),
-(32, 'oliviaward', 'Olivia@456', 'oliviaward@example.com', 'Olivia Ward', 'Support', '69, Sir James Peiris Mawatha, Colombo 2', '0718990011', '2024-11-11 13:25:19', 'set'),
-(33, 'frankthomas', 'Frank!123', 'frankthomas@example.com', 'Frank Thomas', 'Manager', '101, Queens Road, Nugegoda', '0759001122', '2024-11-11 13:25:19', 'set'),
-(34, 'nataliegray', 'Natalie$789', 'nataliegray@example.com', 'Natalie Gray', 'Developer', '56, Rose Street, Hatton', '0760112233', '2024-11-11 13:25:19', 'set'),
-(35, 'hannahscott', 'Hannah@456', 'hannahscott@example.com', 'Hannah Scott', 'Analyst', '145, Land Side, Puttalam', '0771223344', '2024-11-11 13:25:19', 'set'),
-(36, 'nemanthaT', '781163', 'ajaya@gmail.com', 'Ajay Ajay', 'hr', '75, Hill Street, Dehiwala', '0712334455', '2024-12-02 09:38:46', 'set'),
-(37, 'TamaS', '907572', 'tamashaS@gmail.com', 'Tamasha Sipsandi', 'Executive', 'Kalutara South', '0711960431', '2025-01-31 09:39:22', 'set'),
-(38, 'neman', '161778', 'nemanthatharusha@gmail.com', 'Tharusha Nemantha', 'Data Entry', 'Saumya Darshana Galwalawatta Road Bombuwala Kalutara South', '0711850441', '2025-04-15 13:08:33', 'set');
+INSERT INTO `companyworkers` (`worker_id`, `username`, `password`, `email`, `full_name`, `role`, `address`, `phoneNo`, `created_at`) VALUES
+(3, 'c3', 'worker', 'worker@gmail.com', 'cthree', ' hr ', '25, Galle Road, Colombo', '0771234567', '2024-10-15 12:24:49'),
+(4, 'c4', 'c123', 'c4@gmail.com', 'cfour', 'Executive', '102, Kandy Road, Peradeniya', '0719876543', '2024-10-15 12:24:49'),
+(5, 'johnsmith', 'p@ssword123', 'johnsmith@example.com', 'John Smith', ' HR ', '56, Main Street, Gampaha', '0751122334', '2024-11-11 13:25:19'),
+(6, 'janedoe', 'Pa$$w0rd!', 'janedoe@example.com', 'Jane Doe', 'Developer', '78, Lake View Avenue, Nuwara Eliya', '0762233445', '2024-11-11 13:25:19'),
+(7, 'bobmartin', 'Qwerty!234', 'bobmartin@example.com', 'Bob Martin', ' HR Manager ', '90, Beach Road, Negombo', '0773344556', '2024-11-11 13:25:19'),
+(8, 'lisajones', 'Secure*456', 'lisajones@example.com', 'Lisa Jones', 'Support', '33, Temple Road, Anuradhapura', '0714455667', '2024-11-11 13:25:19'),
+(9, 'mikebrown', 'Admin#789', 'mikebrown@example.com', 'Mike Brown', 'Manager', '45, Hospital Lane, Matara', '0755566778', '2024-11-11 13:25:19'),
+(10, 'susantaylor', 'MyPass$123', 'susantaylor@example.com', 'Susan Taylor', 'Developer', '120, Railway Avenue, Jaffna', '0766677889', '2024-11-11 13:25:19'),
+(11, 'peterparker', 'Spider@456', 'peterparker@example.com', 'Peter Parker', 'Analyst', '15, Station Road, Batticaloa', '0777788990', '2024-11-11 13:25:19'),
+(12, 'nancywilson', 'Nancy!123', 'nancywilson@example.com', 'Nancy Wilson', 'Support', '200, Church Street, Kegalle', '0718899001', '2024-11-11 13:25:19'),
+(13, 'kevinwhite', 'White@789', 'kevinwhite@example.com', 'Kevin White', 'Manager', '89, Market Road, Trincomalee', '0759900112', '2024-11-11 13:25:19'),
+(14, 'andreagreen', 'Green#456', 'andreagreen@example.com', 'Andrea Green', 'Developer', '77, University Road, Moratuwa', '0760112233', '2024-11-11 13:25:19'),
+(15, 'paulwalker', 'Walker@123', 'paulwalker@example.com', 'Paul Walker', 'Analyst', '19, Station Lane, Badulla', '0771223344', '2024-11-11 13:25:19'),
+(16, 'stevesmith', 'Steve!789', 'stevesmith@example.com', 'Steve Smith', 'Support', '60, Court Road, Ratnapura', '0712334455', '2024-11-11 13:25:19'),
+(17, 'sarahmiller', 'Miller@456', 'sarahmiller@example.com', 'Sarah Miller', 'Manager', '82, Kings Road, Kurunegala', '0753445566', '2024-11-11 13:25:19'),
+(18, 'davidmoore', 'Moore$123', 'davidmoore@example.com', 'David Moore', 'Developer', '39, New Bazaar Street, Kalutara', '0764556677', '2024-11-11 13:25:19'),
+(19, 'chloejames', 'Chloe@789', 'chloejames@example.com', 'Chloe James', 'Analyst', '58, Park Road, Polonnaruwa', '0775667788', '2024-11-11 13:25:19'),
+(20, 'rachelhall', 'Rachel!123', 'rachelhall@example.com', 'Rachel Hall', 'Support', '97, High Level Road, Maharagama', '0716778899', '2024-11-11 13:25:19'),
+(21, 'dannysmith', 'Danny#456', 'dannysmith@example.com', 'Danny Smith', 'Manager', '23, Town Hall Road, Hambantota', '0757889900', '2024-11-11 13:25:19'),
+(22, 'emilyclark', 'Emily$789', 'emilyclark@example.com', 'Emily Clark', 'Developer', '111, Cinnamon Gardens, Colombo 7', '0768990011', '2024-11-11 13:25:19'),
+(23, 'jacklewis', 'Jack@456', 'jacklewis@example.com', 'Jack Lewis', 'Analyst', '66, Green Path, Colombo 3', '0779001122', '2024-11-11 13:25:19'),
+(24, 'daniellebrown', 'Danielle!123', 'daniellebrown@example.com', 'Danielle Brown', 'Support', '150, Hospital Road, Kandy', '0710112233', '2024-11-11 13:25:19'),
+(25, 'brandonlee', 'Brandon$789', 'brandonlee@example.com', 'Brandon Lee', 'Manager', '48, College Avenue, Jaffna', '0751223344', '2024-11-11 13:25:19'),
+(26, 'laurabaker', 'Laura@456', 'laurabaker@example.com', 'Laura Baker', 'Developer', '77, Circular Road, Battaramulla', '0762334455', '2024-11-11 13:25:19'),
+(27, 'ryanturner', 'Ryan#123', 'ryanturner@example.com', 'Ryan Turner', 'Analyst', '99, Dharmapala Mawatha, Galle', '0773445566', '2024-11-11 13:25:19'),
+(28, 'jessicawood', 'Jessica@789', 'jessicawood@example.com', 'Jessica Wood', 'Support', '34, Thurstan Road, Colombo 7', '0714556677', '2024-11-11 13:25:19'),
+(29, 'tonyking', 'Tony!456', 'tonyking@example.com', 'Tony King', 'Manager', '81, Palm Grove, Matale', '0755667788', '2024-11-11 13:25:19'),
+(30, 'michellerogers', 'Michelle$123', 'michellerogers@example.com', 'Michelle Rogers', 'Developer', '42, Templers Road, Mount Lavinia', '0766778899', '2024-11-11 13:25:19'),
+(31, 'samuelbell', 'Samuel#789', 'samuelbell@example.com', 'Samuel Bell', 'Analyst', '135, Union Place, Colombo 2', '0777889900', '2024-11-11 13:25:19'),
+(32, 'oliviaward', 'Olivia@456', 'oliviaward@example.com', 'Olivia Ward', 'Support', '69, Sir James Peiris Mawatha, Colombo 2', '0718990011', '2024-11-11 13:25:19'),
+(33, 'frankthomas', 'Frank!123', 'frankthomas@example.com', 'Frank Thomas', 'Manager', '101, Queens Road, Nugegoda', '0759001122', '2024-11-11 13:25:19'),
+(34, 'nataliegray', 'Natalie$789', 'nataliegray@example.com', 'Natalie Gray', 'Developer', '56, Rose Street, Hatton', '0760112233', '2024-11-11 13:25:19'),
+(35, 'hannahscott', 'Hannah@456', 'hannahscott@example.com', 'Hannah Scott', 'Analyst', '145, Land Side, Puttalam', '0771223344', '2024-11-11 13:25:19'),
+(36, 'nemanthaT', '781163', 'ajaya@gmail.com', 'Ajay Ajay', 'hr', '75, Hill Street, Dehiwala', '0712334455', '2024-12-02 09:38:46'),
+(37, 'TamaS', '907572', 'tamashaS@gmail.com', 'Tamasha Sipsandi', 'Executive', 'Kalutara South', '0711960431', '2025-01-31 09:39:22');
 
 -- --------------------------------------------------------
 
@@ -531,31 +514,30 @@ CREATE TABLE `providerrequests` (
 -- Dumping data for table `providerrequests`
 --
 
-INSERT INTO `providerrequests` (`reqId`, `full_name`, `email`, `phone`, `address`, `field`, `specialty`, `status`) VALUES
-(10, 'Jackie Wilson', 'jackiewilson@example.com', '3456789019', '109 Oak St, Lincoln, NE 68501', 'Organizational Development', 'Consultant', 'set'),
-(11, 'Kevin Morgan', 'kevinmorgan@example.com', '4567890120', '110 Cedar St, Trenton, NJ 08608', 'Development Finance', 'Researcher', 'set'),
-(12, 'Laura Phillips', 'lauraphillips@example.com', '5678901231', '111 Elm St, Raleigh, NC 27601', 'Micro Finance', 'Trainer', 'set'),
-(13, 'Michael Evans', 'michaelevans@example.com', '6789012342', '112 Maple St, Providence, RI 02903', 'Gender Finance', 'Consultant', 'set'),
-(14, 'Nina Turner', 'ninaturner@example.com', '7890123453', '113 Walnut St, Cheyenne, WY 82001', 'SME Development', 'Researcher', 'set'),
-(15, 'Oscar Long', 'oscarlong@example.com', '8901234564', '114 Fir St, Charleston, WV 25301', 'Strategic and Operations Planning', 'Trainer', 'set'),
-(16, 'Peter Grant', 'petergrant@example.com', '2345678910', '202 Pine St, Hartford, CT 06101', 'Institutional Development', 'Consultant', 'set'),
-(18, 'Rachel Ingram', 'rachelingram@example.com', '4567890132', '204 Elm St, Frankfort, KY 40601', 'Organizational Development', 'Trainer', 'set'),
-(19, 'Samuel Jennings', 'samueljennings@example.com', '5678901243', '205 Maple St, Columbus, OH 43201', 'Development Finance', 'Consultant', 'set'),
-(20, 'Tina Keller', 'tinakeller@example.com', '6789012354', '206 Walnut St, Raleigh, NC 27601', 'Micro Finance', 'Researcher', 'set'),
-(21, 'Ursula Lewis', 'ursulalewis@example.com', '7890123465', '207 Fir St, Charleston, WV 25301', 'Gender Finance', 'Trainer', 'set'),
-(22, 'Victor Martin', 'victormartin@example.com', '8901234576', '208 Poplar St, Albany, NY 12207', 'SME Development', 'Consultant', 'set'),
-(23, 'Wendy Nelson', 'wendynelson@example.com', '9012345687', '209 Birch St, Madison, WI 53703', 'Strategic and Operations Planning', 'Researcher', 'set'),
-(24, 'Xander Ortiz', 'xanderortiz@example.com', '1234567898', '210 Spruce St, Lincoln, NE 68501', 'Institutional Development', 'Trainer', 'set'),
-(25, 'Yara Price', 'yaraprice@example.com', '2345678909', '211 Oak St, Concord, NH 03301', 'Community Development', 'Consultant', 'set'),
-(26, 'Zane Quinn', 'zanequinn@example.com', '3456789010', '212 Cedar St, Springfield, IL 62701', 'Organizational Development', 'Researcher', 'set'),
-(27, 'Alice Rose', 'alicerose@example.com', '4567890121', '213 Maple St, Salem, OR 97301', 'Development Finance', 'Trainer', 'set'),
-(28, 'Ben Stark', 'benstark@example.com', '5678901232', '214 Fir St, Helena, MT 59601', 'Micro Finance', 'Consultant', 'set'),
-(29, 'Cathy Taylor', 'cathytaylor@example.com', '6789012343', '215 Elm St, Boise, ID 83702', 'Gender Finance', 'Researcher', 'set'),
-(30, 'Daniel Urban', 'danielurban@example.com', '7890123454', '216 Walnut St, Austin, TX 73301', 'SME Development', 'Trainer', 'set'),
-(40, 'Tharusha Nemantha', 'nemanathatharusha@gmail.com', '0711850441', 'Saumya Darshana Galwalawatta Road Bombuwala Kalutara South', 'Development Finance', 'Researcher', 'unset'),
-(41, 'Tharusha Nemantha', 'nemanatha@gmail.com', '0711850441', 'Saumya Darshana Galwalawatta Road Bombuwala Kalutara South', 'Development Finance', 'Researcher', 'unset'),
-(42, 'Tharusha Nemantha', 'nemana@gmail.com', '0711850441', 'Saumya Darshana Galwalawatta Road Bombuwala Kalutara South', 'Development Finance', 'Researcher', 'unset'),
-(43, 'Tharusha Nemantha', 'nemanthatharusha@gmail.com', '0711850441', 'Saumya Darshana Galwalawatta Road Bombuwala Kalutara South', 'Micro Finance', 'Consultant', 'unset');
+INSERT INTO `providerrequests` (`reqId`, `full_name`, `email`, `phone`, `address`, `field`, `specialty`) VALUES
+(10, 'Jackie Wilson', 'jackiewilson@example.com', '3456789019', '109 Oak St, Lincoln, NE 68501', 'Organizational Development', 'Consultant'),
+(11, 'Kevin Morgan', 'kevinmorgan@example.com', '4567890120', '110 Cedar St, Trenton, NJ 08608', 'Development Finance', 'Researcher'),
+(12, 'Laura Phillips', 'lauraphillips@example.com', '5678901231', '111 Elm St, Raleigh, NC 27601', 'Micro Finance', 'Trainer'),
+(13, 'Michael Evans', 'michaelevans@example.com', '6789012342', '112 Maple St, Providence, RI 02903', 'Gender Finance', 'Consultant'),
+(14, 'Nina Turner', 'ninaturner@example.com', '7890123453', '113 Walnut St, Cheyenne, WY 82001', 'SME Development', 'Researcher'),
+(15, 'Oscar Long', 'oscarlong@example.com', '8901234564', '114 Fir St, Charleston, WV 25301', 'Strategic and Operations Planning', 'Trainer'),
+(16, 'Peter Grant', 'petergrant@example.com', '2345678910', '202 Pine St, Hartford, CT 06101', 'Institutional Development', 'Consultant'),
+(17, 'Quincy Hall', 'quincyhall@example.com', '3456789021', '203 Cedar St, Richmond, VA 23218', 'Community Development', 'Researcher'),
+(18, 'Rachel Ingram', 'rachelingram@example.com', '4567890132', '204 Elm St, Frankfort, KY 40601', 'Organizational Development', 'Trainer'),
+(19, 'Samuel Jennings', 'samueljennings@example.com', '5678901243', '205 Maple St, Columbus, OH 43201', 'Development Finance', 'Consultant'),
+(20, 'Tina Keller', 'tinakeller@example.com', '6789012354', '206 Walnut St, Raleigh, NC 27601', 'Micro Finance', 'Researcher'),
+(21, 'Ursula Lewis', 'ursulalewis@example.com', '7890123465', '207 Fir St, Charleston, WV 25301', 'Gender Finance', 'Trainer'),
+(22, 'Victor Martin', 'victormartin@example.com', '8901234576', '208 Poplar St, Albany, NY 12207', 'SME Development', 'Consultant'),
+(23, 'Wendy Nelson', 'wendynelson@example.com', '9012345687', '209 Birch St, Madison, WI 53703', 'Strategic and Operations Planning', 'Researcher'),
+(24, 'Xander Ortiz', 'xanderortiz@example.com', '1234567898', '210 Spruce St, Lincoln, NE 68501', 'Institutional Development', 'Trainer'),
+(25, 'Yara Price', 'yaraprice@example.com', '2345678909', '211 Oak St, Concord, NH 03301', 'Community Development', 'Consultant'),
+(26, 'Zane Quinn', 'zanequinn@example.com', '3456789010', '212 Cedar St, Springfield, IL 62701', 'Organizational Development', 'Researcher'),
+(27, 'Alice Rose', 'alicerose@example.com', '4567890121', '213 Maple St, Salem, OR 97301', 'Development Finance', 'Trainer'),
+(28, 'Ben Stark', 'benstark@example.com', '5678901232', '214 Fir St, Helena, MT 59601', 'Micro Finance', 'Consultant'),
+(29, 'Cathy Taylor', 'cathytaylor@example.com', '6789012343', '215 Elm St, Boise, ID 83702', 'Gender Finance', 'Researcher'),
+(30, 'Daniel Urban', 'danielurban@example.com', '7890123454', '216 Walnut St, Austin, TX 73301', 'SME Development', 'Trainer'),
+(32, 'Ajay Jude', 'ajaya@gmail.com', '0713954167', 'Colombo', 'Strategic and Operations Planning', 'Consultant'),
+(33, 'Tharusha Nemantha', 'nemanthatharu@gmail.com', '0713954167', 'Kalutara', 'Micro Finance', 'Researcher');
 
 -- --------------------------------------------------------
 
@@ -651,12 +633,7 @@ INSERT INTO `serviceproviders` (`provider_id`, `username`, `password`, `email`, 
 (39, 'Irene Scott', '181649', 'irenescott@example.com', 'Irene Scott', '2345678908', '108 Spruce St, Madison, WI 53703', 'Community Development', 'Trainer', '2024-11-22 09:59:18'),
 (40, 'Grace Lee', '865503', 'gracelee@example.com', 'Grace Lee', '9012345676', '106 Poplar St, Albany, NY 12207', 'Strategic and Operations Planning', 'Consultant', '2024-11-22 11:17:58'),
 (41, 'nemanthaT', '$2y$10$00MgtwFyopqsdhMwqj2kc.BS67ChVVbFhNEGqP3wIk4daNH6Pfh4i', 'tharusha1@gmail.com', 'Tharusha Nemantha', '0711850441', 'Kalutara', '', 'Consultant', '2024-11-28 07:23:02'),
-(42, 'Navindu Thila', '155231', 'navindu@gmail.com', 'Navindu Thila', '07123456789', 'Mathugama', 'Development Finance', 'Researcher', '2024-11-30 04:15:38'),
-(46, 'nemanthatharu@gmail.com', '879278', 'nemanthatharu@gmail.com', 'Tharusha Nemantha', '0713954167', 'Kalutara', 'Micro Finance', 'Researcher', '2025-04-13 13:47:35'),
-(49, 'nemanathatharusha@gmail.com', '461567', 'nemanathatharusha@gmail.com', 'Tharusha Nemantha', '0711850441', 'Saumya Darshana Galwalawatta Road Bombuwala Kalutara South', 'Development Finance', 'Researcher', '2025-04-13 14:28:49'),
-(50, 'quincyhall@example.com', '204948', 'quincyhall@example.com', 'Quincy Hall', '3456789021', '203 Cedar St, Richmond, VA 23218', 'Community Development', 'Researcher', '2025-04-13 14:48:41'),
-(58, 'Ajay Jude', '187689', 'ajaya@gmail.com', 'Ajay Jude', '0713954167', 'Colombo', 'Strategic and Operations Planning', 'Consultant', '2025-04-13 15:20:20'),
-(61, 'Tharusha Nemantha', '811565', 'nemanthatharusha@gmail.com', 'Tharusha Nemantha', '0711850441', 'Saumya Darshana Galwalawatta Road Bombuwala Kalutara South', 'Micro Finance', 'Consultant', '2025-04-15 16:44:57');
+(42, 'Navindu Thila', '155231', 'navindu@gmail.com', 'Navindu Thila', '07123456789', 'Mathugama', 'Development Finance', 'Researcher', '2024-11-30 04:15:38');
 
 -- --------------------------------------------------------
 
@@ -868,13 +845,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT for table `bills`
---
-ALTER TABLE `bills`
-  MODIFY `bill_id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `clients`
@@ -886,7 +857,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `companyworkers`
 --
 ALTER TABLE `companyworkers`
-  MODIFY `worker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `worker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `contactforms`
@@ -946,7 +917,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `providerrequests`
 --
 ALTER TABLE `providerrequests`
-  MODIFY `reqId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `reqId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `researchpapers`
@@ -958,7 +929,7 @@ ALTER TABLE `researchpapers`
 -- AUTO_INCREMENT for table `serviceproviders`
 --
 ALTER TABLE `serviceproviders`
-  MODIFY `provider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `provider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `servicerequests`
