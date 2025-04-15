@@ -1,6 +1,19 @@
 
 <?php
 include '../session/session.php';
+include '../../connect/connect.php';
+
+
+$clientId = $_SESSION['client_id'];
+$sql = "SELECT * FROM projects WHERE client_id = '$clientId'";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
+$projects = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+
+$projectCount = count($projects);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,22 +110,25 @@ include '../session/session.php';
         </div>
                 <!-- project Grid -->
                 <div class="project-grid">
-            <!-- project Card 1 -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-id">P001</span>
-                    <span class="status green">Ongoing</span>
-                </div>
-                <div class="project-content">
-                    <div class="project-info">
-                        <h2><strong>Financial consultancy for board of directers</strong></h2> <br />
-                        <p>Financial Consultancy Program is a specialized service aimed at helping individuals or organizations make informed financial decisions, manage their finances more effectively, and achieve financial goals. Financial consultants or advisors provide expert advice on a range of financial matters, from budgeting and investment strategies to tax planning, risk management, and long-term financial planning.</p>
+            <?php foreach ($projects as $project): ?>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-id"><?php echo htmlspecialchars($project['project_id']); ?></span>
+                        <span class="status <?php echo $project['status'] === 'Ongoing' ? 'green' : 'red'; ?>">
+                            <?php echo htmlspecialchars($project['status']); ?>
+                        </span>
                     </div>
-                    <a href="projectview.php">
-                    <button class="pay-button" >view</button>
-                    </a>
+                    <div class="project-content">
+                        <div class="project-info">
+                            <h2><strong><?php echo htmlspecialchars($project['title']); ?></strong></h2> <br />
+                            <p><?php echo htmlspecialchars($project['description']); ?></p>
+                        </div>
+                        <a href="projectview.php?id=<?php echo urlencode($project['project_id']); ?>">
+                            <button class="pay-button">View</button>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
     <script src="script.js"></script>
