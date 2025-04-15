@@ -20,6 +20,7 @@
         <title>Provider Requests</title>       
         <link rel="stylesheet" href="../../css/common.css">
         <link rel="stylesheet" href="requests.css">
+        <script src="../../js/common.js"></script>
     </head>
 
     <body>

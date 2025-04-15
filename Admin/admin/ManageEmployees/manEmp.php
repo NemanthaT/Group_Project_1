@@ -27,6 +27,7 @@
         <!--blur Background image-->  
     </div>
 
+    <!--Overlay-->
     <div id="overlay" class="overlay"></div>
     
     <!--Error message {-->
@@ -124,22 +125,24 @@
             <!--Employee details-->
             <div id="searchResults">
                 <div id="results">
-                <button id="closeView" onclick="closeView()">x</button>
-                <center>
-                    <table class="displayArea" id="displayArea">
-                        <thead>
-                            <tr>
-                                <th>UId</th>
-                                <th>User Name</th>
-                                <th>Full Name</th>
-                                <th>Role</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- The search results will be populated here -->
-                        </tbody>
-                    </table>
+                    <center><h2>Search Results</h2></center>
+                    <button id="closeView" onclick="closeView()">x</button>
+                    <center>
+                        <table class="displayArea" id="displayArea">
+                            <thead>
+                                <tr>
+                                    <th>UId</th>
+                                    <th>User Name</th>
+                                    <th>Full Name</th>
+                                    <th>Role</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- The search results will be populated here -->
+                            </tbody>
+                        </table>
+                    </center>
                 </div>
                 
                 <!--List all the Employees-->
