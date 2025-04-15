@@ -1,5 +1,6 @@
 <?php
     require_once('../../config/config.php');
+    require_once('../../../sendemail/send.php');
     header('Content-Type: application/json'); // Set JSON response
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
@@ -23,9 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
             $insrt->bind_param("ssssssss", $genPsswd, $usrnm, $row["full_name"], $row["email"], $row["phone"], $row["address"], $row["field"], $row["specialty"]);
             $insrt->execute();
             $insrt->close();
-    
+            
+            // Send email to the user
+            $data = [
+                'email' => $row["email"],
+                'subject' => 'Account Created',
+                'message' => "Your account has been created successfully. Your username is: $usrnm and your password is: $genPsswd"
+            ];
+            sendEmail($data);
+
             // Delete the request from the providerrequests table
-            $stmt = $conn->prepare("DELETE FROM providerrequests WHERE reqId = ?");
+            $stmt = $conn->prepare("UPDATE providerrequests SET status = 'unset' WHERE reqId = ?");
             $stmt->bind_param("i", $id);
             $stmt->execute();
             $stmt->close();
@@ -36,6 +45,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
         }
     }
     $conn->close();
-    
 
 ?>
