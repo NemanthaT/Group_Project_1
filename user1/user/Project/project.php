@@ -110,25 +110,30 @@ $projectCount = count($projects);
         </div>
                 <!-- project Grid -->
                 <div class="project-grid">
-            <?php foreach ($projects as $project): ?>
+                <?php if ($result->num_rows > 0): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+            
                 <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-id"><?php echo htmlspecialchars($project['project_id']); ?></span>
-                        <span class="status <?php echo $project['status'] === 'Ongoing' ? 'green' : 'red'; ?>">
-                            <?php echo htmlspecialchars($project['status']); ?>
-                        </span>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-info">
-                            <h2><strong><?php echo htmlspecialchars($project['title']); ?></strong></h2> <br />
-                            <p><?php echo htmlspecialchars($project['description']); ?></p>
-                        </div>
-                        <a href="projectview.php?id=<?php echo urlencode($project['project_id']); ?>">
-                            <button class="pay-button">View</button>
-                        </a>
-                    </div>
+                <div class="project-header">
+                    <span class="project-id"><?php echo htmlspecialchars($row['project_id']); ?></span>
+                    <span class="status <?php echo $row['project_status'] === 'Ongoing' ? 'green' : 'red'; ?>">
+                        <?php echo htmlspecialchars($row['project_status']); ?>
+                    </span>
                 </div>
-            <?php endforeach; ?>
+                <div class="project-content">
+                    <div class="project-info">
+                        <h2><strong><?php echo htmlspecialchars($row['project_name']); ?></strong></h2> <br />
+                        <p><?php echo htmlspecialchars($row['project_description']); ?></p>
+                    </div>
+                    <a href="projectview.php?id=<?php echo urlencode($row['project_id']); ?>">
+                        <button class="pay-button">View</button>
+                    </a>
+                </div>
+            </div>
+            <?php endwhile; ?>
+            <?php endif; ?>
+
+
         </div>
     </div>
     <script src="script.js"></script>
