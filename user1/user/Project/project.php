@@ -5,14 +5,12 @@ include '../../connect/connect.php';
 
 
 $clientId = $_SESSION['client_id'];
-$sql = "SELECT * FROM projects WHERE client_id = '$clientId'";
+$sql = "SELECT * FROM projects WHERE client_id = '$clientId' ORDER By client_id asc";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
-$projects = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-$projectCount = count($projects);
 
 ?>
 <!DOCTYPE html>
@@ -87,6 +85,8 @@ $projectCount = count($projects);
             </ul>
         </div>
 
+        <!-- hi  -->
+         
         <!-- Main Content Area -->
         <div class="main-wrapper">
             <!-- Navbar -->
