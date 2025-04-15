@@ -1,4 +1,5 @@
 function viewClient(id) {
+    document.getElementById('overlay').style.display = "block";
     // Send an AJAX request to the PHP script
     fetch('cView.php', {
         method: 'POST',
@@ -60,6 +61,7 @@ function deleteClient(id) {
 
 //
 function viewSp(id) {
+    document.getElementById('overlay').style.display = "block";
     // Send an AJAX request to the PHP script
     fetch('spView.php', {
         method: 'POST',
@@ -126,6 +128,7 @@ function deleteSp(id) {
 
 function closeView(){
     document.getElementById('hiddenView').style.display = "none";
+    document.getElementById('overlay').style.display = "none";
     document.getElementById('displayArea').style.filter = "none";
 }
 
