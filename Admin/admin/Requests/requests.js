@@ -1,4 +1,5 @@
 function viewReq(id) {
+    document.getElementById('overlay').style.display = "block";
     // Send an AJAX request to the PHP script
     fetch('view_req.php', {
         method: 'POST',
@@ -100,5 +101,6 @@ window.addEventListener('scroll', function() {
 
 function closeView(){
     document.getElementById('hiddenView').style.display = "none";
+    document.getElementById('overlay').style.display = "none";
     document.getElementById('displayArea').style.filter = "blur(0px)";
 }

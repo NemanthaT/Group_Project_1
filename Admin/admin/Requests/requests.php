@@ -28,6 +28,9 @@
             <div class="bg">
                     <!--blur Background image-->  
             </div> 
+
+            <div id="overlay" class="overlay"></div>
+
             <div>
                 <h1>Provider Requests</h1>       
                 <div id="hiddenView">
@@ -70,7 +73,7 @@
                                 <th>Action</th>
                             </tr>
                             <?php
-                                $sql = "SELECT * FROM providerrequests";
+                                $sql = "SELECT * FROM providerrequests WHERE status LIKE 'set'";
                                 $result = $conn->query($sql);
 
                                 if($result->num_rows > 0) {
