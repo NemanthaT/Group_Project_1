@@ -111,7 +111,7 @@
               <tbody>
                 <?php
                 $sql = "SELECT * FROM appointments WHERE status = 'Pending'";
-                $result = mysqli_query($con, $sql);
+                $result = mysqli_query($conn, $sql);
                 if ($result) {
                   while ($row = mysqli_fetch_assoc($result)) {
                     $appointment_id = $row['appointment_id'];
