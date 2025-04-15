@@ -31,8 +31,6 @@
         die("Error: " . $conn->error);
     }
 
-   
-
     if (isset($_POST['projectStatusSelect'])) {
         $updateStatus = $_POST['projectStatusSelect'];
         $QupdateStatus = "UPDATE projects SET project_status = '$updateStatus' WHERE project_id = $projectId";
@@ -105,9 +103,7 @@
 
     $client_row = $resultClient->fetch_assoc();
     $logfinal_row = $logfinalResult->fetch_assoc();
-    
-
-    
+       
     $project_name = $prow['project_name'];
     $project_description = $prow['project_description'];
     $project_phase = $prow['project_phase'];
@@ -117,9 +113,8 @@
     $client_phone = $client_row['phone'];
     $client_id = $client_row['client_id'];
     $start_date = $prow['created_date'];
-    $updated_date = $logfinal_row['changed_at'];
-    
-    ?>
+    $updated_date = $logfinal_row['changed_at'];   
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,20 +142,42 @@
             </ul>
         </div>
 
-        <!-- Main Content Wrapper -->
-        <div class="main-wrapper">
-            <!-- Navbar -->
-            <header>
-                <nav class="navbar">
-                    <div class="notification">
-                        <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+        <!-- Navbar -->
+        <header>
+            <nav class="navbar">
+                <div class="calendar-icon">
+                    <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
+                    <!-- Calendar Dropdown -->
+                    <div id="calendarDropdown" class="calendar-dropdown">
+                        <h3>Calendar</h3>
+                        <div class="calendar-header">
+                            <button id="prevMonth">&lt;</button>
+                            <span id="currentMonth">March 2025</span>
+                            <button id="nextMonth">&gt;</button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="weekdays">
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                                <div>Sun</div>
+                            </div>
+                            <div id="daysGrid" class="days"></div>
+                        </div>
                     </div>
-                    <div class="profile">
-                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
-                    </div>
-                    <a href="../../Login/Logout.php" class="logout">Logout</a>
-                </nav>
-            </header>
+                </div>
+                <div class="notification">
+                    <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                </div>
+                <div class="profile">
+                    <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
+                </div>
+                <a href="../../Login/Logout.php" class="logout">Logout</a>                
+            </nav>
+        </header>
 
             <!-- Main Content -->
             <div class="main-content">

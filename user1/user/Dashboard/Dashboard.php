@@ -1,6 +1,19 @@
 
 <?php
-include '../session/session.php';
+    include '../session/session.php';
+    $email = $_SESSION['email'];
+
+    $sql= "SELECT client_id FROM clients WHERE email= ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $clientId = $row['client_id'];
+    $_SESSION['client_id'] = $clientId;
+    $stmt->close();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
