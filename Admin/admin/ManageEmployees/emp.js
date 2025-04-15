@@ -1,6 +1,8 @@
 function hideList(){
+    console.log("Hide list called");
     document.getElementById('results').style.display = "block";
     document.getElementById('dA').style.display = "none";
+    console.log("Hide list changed");
 }
 
 function closeView(){
@@ -28,7 +30,7 @@ window.addEventListener('scroll', function() {
 };*/
 
 //function to use the displayError function from common.js
-function showError(file, formData){
+function getError(file, formData){
     fetch(file , {
         method: "POST",
         body: formData
@@ -36,6 +38,7 @@ function showError(file, formData){
     .then(response => response.json())
     .then(data=>{
         displayError(data.noticeType, data.error_message, "mainContent");
+        console.log("Data received from server");
     })
     .catch(error => {
         console.error("Error:", error);
@@ -48,7 +51,7 @@ window.onload = function() {
         e.preventDefault(); // prevent full page reload
         hideList();
         var formData = new FormData(this);
-        console.log(formData);
+
       
         fetch("srchEmp.php", {
           method: "POST",
@@ -84,20 +87,23 @@ window.onload = function() {
     });
 
     document.getElementById("fm").addEventListener("submit", function(e) {
+        e.preventDefault(); // prevent full page reload
         var formData = new FormData(this);
-        console.log(formData);
-        showError("addEmp.php", formData);      
+ 
+        getError("addEmp.php", formData);      
     });
 
     document.getElementById("removeForm").addEventListener("submit", function(e) {
+        e.preventDefault(); // prevent full page reload
         var formData = new FormData(this);
-        console.log(formData);
-        showError("rmEmp.php", formData);      
+ 
+        getError("rmEmp.php", formData);      
     });
 
     document.getElementById("changeForm").addEventListener("submit", function(e) {
+        e.preventDefault(); // prevent full page reload
         var formData = new FormData(this);
-        console.log(formData);
-        showError("chgEmp.php", formData);      
+
+        getError("chgEmp.php", formData);      
     }); 
 };

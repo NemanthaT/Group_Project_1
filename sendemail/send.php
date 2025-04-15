@@ -8,10 +8,12 @@ require 'phpmailer/src/SMTP.php';
 require 'envLoader.php';
 loadEnv(__DIR__ . '.env'); // Load environment variables from .env file
 
-    $data = json_decode(file_get_contents("php://input"), true);
+    //$data = json_decode(file_get_contents("php://input"), true);
+    
+
+function sendEmail($data){
     $mail = new PHPMailer(true);
-
-
+    
     $email= $data['email'];
     $subject = $data['subject'];
     $message = $data['message'];
@@ -20,39 +22,41 @@ loadEnv(__DIR__ . '.env'); // Load environment variables from .env file
         throw new Exception("Invalid email address");
     }
 
-    $mail->isSMTP();
+        $mail->isSMTP();
 
-    $mail->Host = getenv('SMTP_HOST');
-    $mail->SMTPAuth = true;
-    $mail->Username = getenv('SMTP_USERNAME');
-    $mail->Password = getenv('SMTP_PASSWORD');
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = getenv('SMTP_PORT');
-    
+        $mail->Host = getenv('SMTP_HOST');
+        $mail->SMTPAuth = true;
+        $mail->Username = getenv('SMTP_USERNAME');
+        $mail->Password = getenv('SMTP_PASSWORD');
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = getenv('SMTP_PORT');
+        
 
-    $mail->setFrom('nemanthatharusha@gmail.com');
-    $mail->addAddress($email);
-    $mail->Subject = $subject;
-    $mail->isHTML(true);
-    $mail->Body = $message;
-    $mail->AltBody = strip_tags($message);
+        $mail->setFrom('nemanthatharusha@gmail.com');
+        $mail->addAddress($email);
+        $mail->Subject = $subject;
+        $mail->isHTML(true);
+        $mail->Body = $message;
+        $mail->AltBody = strip_tags($message);
 
-    try {
-    $mail->send();
+        try {
+        $mail->send();
 
-    $notMessage = "Email sent successfully!";
-    $notMessage = str_replace("'", "\'", $notMessage); // Escape single quotes for JavaScript
-    echo "<script>
-        console.log(" . json_encode($notMessage) . ");
-    </script>";
-} catch (Exception $e) {
-    $notMessage = "Email didn't send!";
-    $notMessage = str_replace("'", "\'", $notMessage); // Escape single quotes for JavaScript
-    echo "<script>
-        console.log(" . json_encode($notMessage) . ");
-        console.log(" . json_encode($email) . ");
-        console.log(" . json_encode($subject) . ");
-        console.log(" . json_encode($message) . ");
-    </script>";
+        $notMessage = "Email sent successfully!";
+        $notMessage = str_replace("'", "\'", $notMessage); // Escape single quotes for JavaScript
+        echo "<script>
+            console.log(" . json_encode($notMessage) . ");
+        </script>";
+    } catch (Exception $e) {
+        $notMessage = "Email didn't send!";
+        $notMessage = str_replace("'", "\'", $notMessage); // Escape single quotes for JavaScript
+        echo "<script>
+            console.log(" . json_encode($notMessage) . ");
+            console.log(" . json_encode($email) . ");
+            console.log(" . json_encode($subject) . ");
+            console.log(" . json_encode($message) . ");
+        </script>";
+    }
 }
+
 ?>
