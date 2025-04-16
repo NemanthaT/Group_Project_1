@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = rand(100000, 999999);
 
     // Check for duplicate email
-    $check_query = "SELECT * FROM clients WHERE email = '$email'";
+    $check_query = "SELECT * FROM pending_clients WHERE email = '$email'";
     $check_result = mysqli_query($conn, $check_query);
 
     if (mysqli_num_rows($check_result) > 0) {
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </script>";
     } else {
         // Insert data into providerrequests table
-        $sql = "INSERT INTO clients (full_name, email, phone, address, password)
+        $sql = "INSERT INTO pending_clients (full_name, email, phone, address, password)
                 VALUES ('$full_name', '$email', '$phone', '$address', '$password')";
 
         if (mysqli_query($conn, $sql)) {
