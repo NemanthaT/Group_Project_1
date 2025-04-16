@@ -98,6 +98,12 @@ li.Login a, li.Register a {
     background-color: #f9f9f9;
 }
 
+#news{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
 .news-heading {
     font-size: 2em;
     color: #18A0FB;
@@ -107,6 +113,8 @@ li.Login a, li.Register a {
 
 .news-item {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
     margin-bottom: 20px;
     background: #fff;
@@ -114,6 +122,8 @@ li.Login a, li.Register a {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 200px;
 }
 
 .news-image {
@@ -294,4 +304,12 @@ footer {
     .specialized-fields, .services-provided {
         width: 100%;
     }
+}
+
+#nHeading{
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: center;
 }
