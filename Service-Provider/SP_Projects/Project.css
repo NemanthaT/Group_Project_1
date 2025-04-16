@@ -283,6 +283,34 @@ body {
 .search-button:hover {
   background-color: #0056b3; /* Darker shade on hover */
   }
+
+  .clear-button {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.clear-button:hover {
+    background-color: #e0e0e0;
+}
+
+.clear-button:active {
+    transform: translateY(1px);
+}
+
+.no-projects-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #666;
+    grid-column: 1 / -1;
+} 
   
   /* Responsive Design */
   @media (max-width: 768px) {
