@@ -51,14 +51,14 @@ include '../session/session.php';
                 </li>
                 <li>
                     <a href="../forum/forum.php">
-                    <button class="active">
+                    <button >
                         <img src="../images/forum.png" alt="Forum">
                         Forum
                     </button>
                     </a>
                 </li>
                 <li><a href="../Message/Message.php">
-                    <button>
+                    <button class="active">
                         <img src="../images/Message.png" alt="Message">
                         Message
                     </button></a>
