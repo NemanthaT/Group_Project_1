@@ -29,8 +29,8 @@ include '../connection.php';
             </ul>
         </div>
 
-                <!-- Navbar -->
-                <header>
+        <!-- Navbar -->
+        <header>
             <nav class="navbar">
                 <div class="calendar-icon">
                     <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
@@ -66,95 +66,104 @@ include '../connection.php';
             </nav>
         </header>
 
-            <!-- Main Content -->
-            <div class="main-content">
+        <!-- Main Content -->
+        <div class="main-content">
             <div class="bill-section">
-    <center><h2>Bill</h2></center>
-    <div class="filter-group search-group">
-    <select id="status-filter">
-        <option value="all">All Bills</option>
-        <option value="paid">Paid</option>
-        <option value="unpaid">Unpaid</option>
-    </select>
-    <input type="text" placeholder="Project ID" id="search">
-    <button class="search-button">Search</button>
-    <div class="add-bill-button">
-        <a href="CreateBill.php"><button class="search-button">+ Add Bill</button></a>
-    </div>
-</div>
+                <center><h2>Bill</h2></center>
+                <div class="filter-group search-group">
+                    <select id="status-filter">
+                        <option value="all">All Bills</option>
+                        <option value="paid">Paid</option>
+                        <option value="unpaid">Unpaid</option>
+                    </select>
+                    <input type="text" placeholder="Project ID" id="search">
+                    <button class="search-button" id="search-btn">Search</button>
+                    <button class="clear-button" id="clear-filters">Clear</button>
+                    <div class="add-bill-button">
+                        <a href="CreateBill.php"><button class="search-button">+ Add Bill</button></a>
+                    </div>
+                </div>
                 <div class="bills-grid">
-        <!-- Bill Card 1 -->
-            <div class="bill-card">
-                <div class="bill-header">
-                    <span class="payment-id">PAY001</span>
-                    <span class="status unpaid">Unpaid</span>
-                </div>
-                <div class="bill-content">
-                    <div class="bill-info">
-                        <p><strong>Service:</strong> Financial consultancy for board of directers(stage 2)</p>
-                        <p><strong>Amount:</strong> Rs 21,850</p>
-                        <p><strong>Date:</strong> 2024-11-21</p>
-                        <p><strong>Project ID:</strong> 001</p>
-                    </div><a href="Viewbill.php">
-                    <button class="pay-button green">View</button></a>
-                </div>
-            </div>
-        
-            <!-- Bill Card 2 -->
-            <div class="bill-card">
-                <div class="bill-header">
-                    <span class="payment-id">PAY002</span>
-                    <span class="status paid">Paid</span>
-                </div>
-                <div class="bill-content">
-                    <div class="bill-info">
-                        <p><strong>Service:</strong> Social Media Marketing Strategy</p>
-                        <p><strong>Amount:</strong> Rs 15,500</p>
-                        <p><strong>Date:</strong> 2024-11-25</p>
-                        <p><strong>Project ID:</strong> 002</p>
+                    <!-- Bill Card 1 -->
+                    <div class="bill-card">
+                        <div class="bill-header">
+                            <span class="payment-id">PAY001</span>
+                            <span class="status unpaid">Unpaid</span>
+                        </div>
+                        <div class="bill-content">
+                            <div class="bill-info">
+                                <p><strong>Service:</strong> Financial consultancy for board of directers(stage 2)</p>
+                                <p><strong>Amount:</strong> Rs 21,850</p>
+                                <p><strong>Date:</strong> 2024-11-21</p>
+                                <p><strong>Project ID:</strong> 001</p>
+                            </div>
+                            <a href="Viewbill.php">
+                                <button class="pay-button green">View</button>
+                            </a>
+                        </div>
                     </div>
-                    <a href="Viewbill.php">
-                    <button class="pay-button green" >View</button>
-                    </a>
-                </div>
-            </div>
-            </div>    
-        <div class="bills-grid">
-            <!-- Bill Card 3 -->
-            <div class="bill-card">
-                <div class="bill-header">
-                    <span class="payment-id">PAY003</span>
-                    <span class="status paid">Paid</span>
-                </div>
-                <div class="bill-content">
-                    <div class="bill-info">
-                        <p><strong>Service:</strong> Corporate Leadership Training</p>
-                        <p><strong>Amount:</strong> Rs 30,000</p>
-                        <p><strong>Date:</strong> 2024-10-10</p>
-                        <p><strong>Project ID:</strong> 004</p>
+                
+                    <!-- Bill Card 2 -->
+                    <div class="bill-card">
+                        <div class="bill-header">
+                            <span class="payment-id">PAY002</span>
+                            <span class="status paid">Paid</span>
+                        </div>
+                        <div class="bill-content">
+                            <div class="bill-info">
+                                <p><strong>Service:</strong> Social Media Marketing Strategy</p>
+                                <p><strong>Amount:</strong> Rs 15,500</p>
+                                <p><strong>Date:</strong> 2024-11-25</p>
+                                <p><strong>Project ID:</strong> 002</p>
+                            </div>
+                            <a href="Viewbill.php">
+                                <button class="pay-button green">View</button>
+                            </a>
+                        </div>
                     </div>
-                    </div><a href="Viewbill.php">
-                    <button class="pay-button green">View</button></a>
-                </div>
+                </div>    
+                <div class="bills-grid">
+                    <!-- Bill Card 3 -->
+                    <div class="bill-card">
+                        <div class="bill-header">
+                            <span class="payment-id">PAY003</span>
+                            <span class="status paid">Paid</span>
+                        </div>
+                        <div class="bill-content">
+                            <div class="bill-info">
+                                <p><strong>Service:</strong> Corporate Leadership Training</p>
+                                <p><strong>Amount:</strong> Rs 30,000</p>
+                                <p><strong>Date:</strong> 2024-10-10</p>
+                                <p><strong>Project ID:</strong> 004</p>
+                            </div>
+                            <a href="Viewbill.php">
+                                <button class="pay-button green">View</button>
+                            </a>
+                        </div>
+                    </div>
 
-            <!-- Bill Card 4 -->
-            <div class="bill-card">
-                <div class="bill-header">
-                    <span class="payment-id">PAY004</span>
-                    <span class="status unpaid">Unpaid</span>
-                </div>
-                <div class="bill-content">
-                <div class="bill-info">
-    <p><strong>Service:</strong> Contract Review and Drafting</p>
-    <p><strong>Amount:</strong> Rs 18,750</p>
-    <p><strong>Date:</strong> 2024-11-29</p>
-    <p><strong>Project ID:</strong> 006</p>
-</div>
-                    </div><a href="Viewbill.php">
-                    <button class="pay-button green">View</button></a>
+                    <!-- Bill Card 4 -->
+                    <div class="bill-card">
+                        <div class="bill-header">
+                            <span class="payment-id">PAY004</span>
+                            <span class="status unpaid">Unpaid</span>
+                        </div>
+                        <div class="bill-content">
+                            <div class="bill-info">
+                                <p><strong>Service:</strong> Contract Review and Drafting</p>
+                                <p><strong>Amount:</strong> Rs 18,750</p>
+                                <p><strong>Date:</strong> 2024-11-29</p>
+                                <p><strong>Project ID:</strong> 006</p>
+                            </div>
+                            <a href="Viewbill.php">
+                                <button class="pay-button green">View</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-    <script src="#"></script>
+        </div>
+    </div>
+    <script src="Bill.js"></script>
 </body>
-</html
+</html>
