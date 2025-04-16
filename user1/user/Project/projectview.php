@@ -5,7 +5,7 @@ $projectId = $_GET['project_id'];
 
 $sqlproject = "SELECT * FROM `projects` WHERE `project_id` = ? ;";
 $sqlserviceproviders = "SELECT * FROM `serviceproviders` WHERE `provider_id` = ? ;";
-$sqllogin = "SELECT * FROM `projectstatuslogs` WHERE `project_id` = ? order by log_id desc;";
+$sqllog = "SELECT * FROM `projectstatuslogs` WHERE `project_id` = ? order by log_id desc;";
 
 
 $stmt = $conn->prepare($sqlproject);
@@ -29,6 +29,17 @@ $queryResult = $query->get_result();
 $serviceproviders = $queryResult->fetch_assoc();
 $ServiceProviderName = $serviceproviders['full_name'];
 $ServiceProviderContact = $serviceproviders['phone'];
+
+$querylog= $conn->prepare($sqllog);
+$querylog->bind_param("i", $projectId);
+$querylog->execute();
+$querylogResult = $querylog->get_result();
+$log = $querylogResult->fetch_assoc();
+$UpdatedDate = $log['changed_at'];
+
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -135,12 +146,12 @@ $ServiceProviderContact = $serviceproviders['phone'];
         <div class="row-container">
             <h2>Project Progress </h2>
             <hr><br>
-            <p><strong>Project Start Date:</strong><?php echo $ProjectStartDate; ?></p>
+            <p><strong>Project Start Date:</strong><?php echo $createdDate; ?></p>
             <p><strong>updated Date:</strong> <?php echo $UpdatedDate; ?></p>
             <div class="row">
-            <p ><strong>Project Status : </strong> <p class="green">  </p></p>
+            <p ><strong>Project Status : </strong> <?php echo $projectStatus; ?></p>
             </div>
-            <p><strong>Project pashe :</strong> Requirement Gathering</p>
+            <p><strong>Project Phase :</strong> <?php echo $projectPhase; ?></p>
     </div>
     </div>
     <div class="controls">
