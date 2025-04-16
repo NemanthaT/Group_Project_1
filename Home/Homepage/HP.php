@@ -9,9 +9,6 @@
 </head>
 <body>
     <div class="top">
-        <video autoplay muted loop class="bg-video">
-            <source src="bg_video.MOV" type="video/mp4">
-        </video>
         <!-- Navbar -->
         <nav class="navbar" id="nbar">
             <div class="Hcontainer">
@@ -19,37 +16,21 @@
                         <img src="img/logo.png" alt="EDSA Logo">
                 </div>
                 <ul class="header_item">
-                    <li><a href="../Homepage/HP.html">Home</a></li>
-                        <li><a href="../Our_Services/OS.html">Our Services</a></li>
-                        <li><a href="../Knowledge_Base/KB.html">Knowledge Base</a></li>
-                        <li><a href="../About_Us/AU.html">About Us</a></li>
+                        <li><a href="../Homepage/homePage.php" target="Homepage">Home</a></li>
+                        <li><a href="../Our_Services/OS.php" target="Homepage">Our Services</a></li>
+                        <li><a href="../News/News.php" target="Homepage">News</a></li>
+                        <li><a href="../Knowledge_Base/KB.php" target="Homepage">Knowledge Base</a></li>
+                        <li><a href="../About_Us/AU.php" target="Homepage">About Us</a></li>
                         <!--<li><a href="#">Community</a></li>-->
-                        <li><a href="../Contact_Us/CU.html">Contact Us</a></li>
+                        <li><a href="../Contact_Us/CU.php" target="Homepage">Contact Us</a></li>
                 </ul>
                 <a href="../../Login/login.php" class="logout">login</a>
             </div>
         </nav>
-        <section class="section1">
-            
-            <div class="text-content">
-                <h1>Digital, business and  <br>technology consulting that’s <br>unmatched</h1>
-                <br>
-                <button class="btn"><a href="#" class="reset-link ">Learn More</a> </button> 
-            </div>
-        </section>
-        <script> 
-            window.addEventListener('scroll', function() { 
-            var hDiv = document.getElementById('nbar'); 
-            if (window.scrollY > 30) { 
-                // Adjust the scroll position as needed 
-                hDiv.style.display = "none"; 
-            } 
-            else { 
-                hDiv.style.display = "block"; } 
-            }); 
-        </script>
     </div>
-
+    <div id=frame>
+        <iframe src="homePage.php" name="Homepage" title="Homepage"></iframe>
+    </div>
 <!--<main>-->
     <!-- Hero Section -->
     <!--<section class="hero">
@@ -94,66 +75,6 @@
     </section>
 </main>-->
 
-<div  class="content">
-    <section class="section2">
-        <div class="text-content box">
-            <h1 class="blue center"><br>Business and Technology Consulting Centered on You <br> </h1>
-            <div class="sec2">
-            <div class="card">
-                <img src="img/Website-Service-Icons-Business-Consulting.png" alt="">
-                <h1>Consulting</h1>
-                <h5>Envision, inspire and transform your business from the people to the processes.</h5>
-            </div>
-            <div class="card">
-                <img src="img/resurch.png" alt="">
-                <h1>Research</h1>
-                <h5>EDSA Lanka Consultancy provides research services, helping organizations and educational institutions make data-driven decisions to enhance their effectiveness.</h5>
-            </div>
-            <div class="card">
-                <img src="img/training.png" alt="">
-                <h1>Training</h1>
-                <h5>Our training programs are designed to equip individuals and organizations with the skills they need to succeed in today's competitive world. We offer customized training to suit various needs.</h5>
-            </div>
-        </div>
-        </div>
-    </section>
-    <section class="section3">
-        <div class="sec3">
-        <div class=" sec3img ">
-            
-            <img src="img/img.png" alt="">
-
-        </div>
-        <div class=" content3">
-            <div ><h1 class="blue">"Blended Well With Our Experts"</h1> </div>
-            <p>Centric resources were able to quickly assess our needs for an in-flight technology implementation and immediately add value to our program – spanning areas such as requirements definition to training. The resources worked well with a mix of internal stakeholders, project sponsors and technology experts to support an aggressive implementation timeline. Centric’s knowledge of the technology platform was crucial in their ability to drive us to a successful launch.</p>
-            <p class="gray small">Sheryl Markov, SVP, Head of Marketing Operations, Northern Trust<p>
-
-        </div>
-    </div>
-    </section>
-    <section class="section-4">
-        <div class="box padding margin ">
-            <div><h1 class="center blue"><br>Our Clients <br> </h1></div>
-            <div class="row">
-                <br>
-                <div class="flex card column">
-                    <img src="img/rigama.png" alt="" class="logo1">
-                    <p class="center "> Rigama<br>The Kaingdom of Raigam</p>
-                </div>
-                <div class="flex card column">
-                <img src="img/Vesess_logo.png" alt="" class="logo1">
-                <p class="center ">Vesess<br>Design and Technology Company</p>
-                </div>
-                <div class="flex card column">
-                    <img src="img/icici.png" alt="" class="logo1">
-                    <p class="center ">icici Bank<br>Offers Personal and Business Banking Products </p>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
 <div>
  <!-- Footer -->
  <footer>
@@ -162,12 +83,12 @@
         <div class="Fquick-links">
             <h3>Quick Links</h3>
             <ul>
-                <li><a href="../Our_Services/OS.html">Our Services</a></li>
-                <li><a href="../About_Us/AU.html">About Us</a></li>
-                <li><a href="../Knowledge_Base/KB.html">Knowledge Base</a></li>
-                <li><a href="../Contact_Us/CU.html">Contact Us</a></li>
-                <li><a href="../News/News.html">News</a></li>
-                <li><a href="../FAQ/FAQ.html">FAQ</a></li>
+                <li><a href="../Homepage/homePage.php" target="Homepage">Home</a></li>
+                <li><a href="../Our_Services/OS.php" target="Homepage">Our Services</a></li>
+                <li><a href="../News/News.php" target="Homepage">News</a></li>
+                <li><a href="../About_Us/AU.php" target="Homepage">About Us</a></li>
+                <li><a href="../Knowledge_Base/KB.php" target="Homepage">Knowledge Base</a></li>
+                <li><a href="../Contact_Us/CU.php" target="Homepage">Contact Us</a></li>
                 <!--<li><a href="#">Community</a></li>-->
             </ul>
         </div>
