@@ -27,6 +27,9 @@
             <div class="bg">
             
             </div>
+
+            <div id="overlay" class="overlay"></div>
+            
             <div>
                 <h1>Manage Forums</h1>
     

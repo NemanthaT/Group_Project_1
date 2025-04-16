@@ -27,6 +27,7 @@
         <!--blur Background image-->  
     </div>
 
+    <!--Overlay-->
     <div id="overlay" class="overlay"></div>
     
     <!--Error message {-->
@@ -67,37 +68,6 @@
                     </form>
 
             </div>
-            <?php
-                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addEmp'])) {
-                    $username = $_POST['username'];
-                    $fullname = $_POST['fullname'];
-                    $role = $_POST['role'];
-                    $address = $_POST['address'];
-                    $phoneNo = $_POST['phoneNo'];
-                    $email = $_POST['email'];
-                    $password = rand(100000, 999999);
-                    //$password = password_hash($password, PASSWORD_DEFAULT);
-                    $sql = "INSERT INTO companyworkers (username, full_name, role, address, phoneNo, email, password) VALUES ('$username', '$fullname', '$role', '$address', '$phoneNo', '$email', '$password')";
-                    if ($conn->query($sql) === TRUE) {
-                        $noticeType = "success";
-                        $error_message = "New Employee Added Successfully!";
-                        echo "<script>
-                                document.addEventListener('DOMContentLoaded', () => {
-                                    displayError('$noticeType', '$error_message', '$afDiv');
-                                });
-                              </script>";
-                    } else {
-                        $noticeType = "error";
-                        $error_message = "Error: Connection Error occured!";
-                        echo "<script>
-
-                                document.addEventListener('DOMContentLoaded', () => {
-                                    displayError('$noticeType', '$error_message', '$afDiv');
-                                });
-                              </script>";
-                    }
-                }
-            ?>
         </div>
         <!--End of Add Employee Form-->
 
@@ -108,7 +78,7 @@
                 <div class="section">
                     <h2>Search</h2>
                     <div class="searchContainer">
-                        <form action="" method="POST">
+                        <form action="" method="POST" id="searchForm">
                             <input type="text" name="name" placeholder="Enter Name" required>
                             <button class="sBtn" type="submit" name="search_name">Search</button>
                         </form>
@@ -119,52 +89,12 @@
                 <div class="section">
                     <h2>Remove Employees</h2>
                     <div class="searchContainer">
-                        <form action="" method="POST">
+                        <form action="" method="POST" id="removeForm">
                             <input type="text" name="id" placeholder="Enter ID" required>
                             <button class="rBtn" type="submit" name="remove">Remove</button>
                         </form>
                     </div>
-                    <div class="removeEmployee">
-                        <?php
-                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove'])) {
-                                $id = $_POST['id'];
-                                //check whether given id is an integer
-                                if (!is_numeric($id)) {
-                                    $noticeType = "error";
-                                    $error_message = "Enter A Numeric Value!";
-                                    echo "<script>
-                                                document.addEventListener('DOMContentLoaded', function() {
-                                                    displayError(" . json_encode($noticeType) . ", " . json_encode($error_message) . ", " . json_encode($afDiv) . ");
-                                                });
-                                            </script>";
-                                }
-                                else{
-                                    $srch="SELECT * FROM companyworkers WHERE worker_id = $id ";
-                                    $result = $conn->query($srch);
-        
-                                    //checking whether worker exists or not
-                                    if ($result->num_rows > 0) {
-                                        //Removing the worker
-                                        $del = "DELETE FROM companyworkers WHERE worker_id = $id";
-                                        $opert = $conn->query($del);
-                                        if ($opert===true) {
-                                            echo "<script>alert('Employee Deleted!');</script>";  
-                                        }
-                                        else {
-                                            echo "<script>alert('Error: ".$conn->error."!');</script>";
-                                        }
-                                    } else {
-                                        $noticeType = "error";
-                                        $error_message = "No Employee found!!";
-                                        echo "<script>
-                                                    document.addEventListener('DOMContentLoaded', () => {
-                                                        displayError('$noticeType', '$error_message', '$afDiv');
-                                                    });
-                                                </script>";
-                                    }
-                                }
-                            }
-                        ?>        
+                    <div class="removeEmployee">        
                     </div>
                 </div>
 
@@ -173,108 +103,46 @@
                 <div class="section">
                     <h2>Change Role</h2>
                     <div class="searchContainer">
-                        <form action="" method="POST">
+                        <form action="" method="POST" id="changeForm">
                             <input type="text" name="id" placeholder="Enter ID" required>
                             <input type="text" name="role" placeholder="Enter New Role" required>
                             <button class="chBtn" type="submit" name="change">Change</button>
                         </form>
                     </div>
-                        <div class="changeEmployeeRole">
-                        <?php
-                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change'])) {
-                                $id = $_POST['id'];
-                                if (!is_numeric($id)) {
-                                    echo "<script>alert('Error: Invalid ID!');</script>";
-                                }
-                                else{
-                                    $role = $_POST['role'];
-                                    $srch="SELECT * FROM companyworkers WHERE worker_id = $id ";
-                                    $result = $conn->query($srch);
-        
-                                    //checking whether worker exists or not
-                                    if ($result->num_rows > 0) {
-                                        //Changing the role
-                                        $chng = "UPDATE companyworkers SET role = " . " ' " . $role . " ' " . " WHERE worker_id = $id";
-                                        $opert = $conn->query($chng);
-                                        if ($opert===true) {
-                                            $noticeType = "success";
-                                            $error_message = "Role Changed Successfully!";
-                                            echo "<script>
-                                                    document.addEventListener('DOMContentLoaded', () => {
-                                                        displayError('$noticeType', '$error_message', '$afDiv');
-                                                    });
-                                                  </script>";
-                                        } else {
-                                            $noticeType = "error";
-                                            $error_message = "Error: ".$conn->error;
-                                            echo "<script>
-                                                    document.addEventListener('DOMContentLoaded', () => {
-                                                        displayError('$noticeType', '$error_message', '$afDiv');
-                                                    });
-                                                  </script>";
-                                        }
-                                    } else {
-                                        $noticeType = "error";
-                                        $error_message = "No Employee found!!";
-                                        echo "<script>
-                                                    document.addEventListener('DOMContentLoaded', () => {
-                                                        displayError('$noticeType', '$error_message', '$afDiv');
-                                                    });
-                                                </script>";
-                                    }
-                                }
-                            }
-                        ?>        
+                        <div class="changeEmployeeRole">        
                     </div>
 
                 </div>
 
             </div>
 
+            <!--Button for adding new employees-->
             <div id="form">
                 <button id="addEmpBtn" onclick="showForm()">Add Employee</button>
             </div>
+            <!--Button for adding new employees-->
+
+            <!--Employee details-->
             <div id="searchResults">
                 <div id="results">
-                    <?php
-
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['search_name'])) {
-                            $name = $_POST['name'];
-                    
-                            // Prepare and execute the SQL query
-                            $stmt = $conn->prepare("SELECT * FROM companyworkers WHERE full_name LIKE ?");
-                            $searchTerm = $name . "%";
-                            $stmt->bind_param("s", $searchTerm);
-                            $stmt->execute();
-                            $result = $stmt->get_result();
-                    
-                            // Close the statement
-                            $stmt->close();
-                            echo "<center><h2>Search Results</h2></center>";
-                            echo "<button id=\"closeView\" onclick=\"closeView()\">x</button>";
-                            echo "<center><table class=\"displayArea\">";
-                            if($result->num_rows > 0){
-                                //create table
-                                echo "<tr>
-                                        <th>UId</th>
-                                        <th>User Name</th>
-                                        <th>Full Name</th>
-                                        <th>Role</th>
-                                        <th>Email</th>
-                                    </tr>";
-                                // Output matching results
-                                while ($row = $result->fetch_assoc()) {
-                                    echo '<tr><td>'.$row['worker_id'] .'</td><td>'. $row['username'] .'</td><td>'. $row['full_name'] . '</td><td>'.$row['role'].'</td><td>'.$row['email'].'</td></tr>';
-                                }
-                            } 
-                        else{
-                                echo '<tr><td> </td><td> No Result Found </td><td> </td></tr>';
-                        }
-                        echo "</table></center>";
-                        echo "<hr>";
-                        }   
-
-                    ?>
+                    <center><h2>Search Results</h2></center>
+                    <button id="closeView" onclick="closeView()">x</button>
+                    <center>
+                        <table class="displayArea" id="displayArea">
+                            <thead>
+                                <tr>
+                                    <th>UId</th>
+                                    <th>User Name</th>
+                                    <th>Full Name</th>
+                                    <th>Role</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- The search results will be populated here -->
+                            </tbody>
+                        </table>
+                    </center>
                 </div>
                 
                 <!--List all the Employees-->
@@ -289,7 +157,7 @@
                             <th>Email</th>
                         </tr>";
 
-                        $sql = "SELECT * FROM companyworkers";
+                        $sql = "SELECT * FROM companyworkers WHERE status = 'set'";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {

@@ -20,6 +20,7 @@
         <title>Provider Requests</title>       
         <link rel="stylesheet" href="../../css/common.css">
         <link rel="stylesheet" href="requests.css">
+        <script src="../../js/common.js"></script>
     </head>
 
     <body>
@@ -27,6 +28,9 @@
             <div class="bg">
                     <!--blur Background image-->  
             </div> 
+
+            <div id="overlay" class="overlay"></div>
+
             <div>
                 <h1>Provider Requests</h1>       
                 <div id="hiddenView">
@@ -69,7 +73,7 @@
                                 <th>Action</th>
                             </tr>
                             <?php
-                                $sql = "SELECT * FROM providerrequests";
+                                $sql = "SELECT * FROM providerrequests WHERE status LIKE 'set'";
                                 $result = $conn->query($sql);
 
                                 if($result->num_rows > 0) {

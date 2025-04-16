@@ -1,7 +1,7 @@
 #hiddenView{
     display: none;
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     margin-left: 25%;
     padding: 10px;
     border-radius: 20px;

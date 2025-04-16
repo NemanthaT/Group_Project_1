@@ -111,14 +111,14 @@
               <tbody>
                 <?php
                 $sql = "SELECT * FROM appointments WHERE status = 'Pending'";
-                $result = mysqli_query($con, $sql);
+                $result = mysqli_query($conn, $sql);
                 if ($result) {
                   while ($row = mysqli_fetch_assoc($result)) {
                     $appointment_id = $row['appointment_id'];
                     $client_id = $row['client_id'];
                     $appointment_date = $row['appointment_date'];
                     $service_type = $row['service_type'];
-                    $
+                    
                     
                     $status = $row['status'];
                     echo '<tr>

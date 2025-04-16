@@ -1,6 +1,81 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+
+if (isset($_POST['submit'])) { 
+    $client_id = $_POST['client_id'];
+    $project_name = $_POST['project_name'];
+    $project_description = $_POST['project_description'];
+    $project_phase = $_POST['project_phase'];
+    $project_status = $_POST['project_status'];
+    $provider_id = $_SESSION['provider_id'];
+
+    // Fetch client name
+    $query_getclientname = "SELECT * FROM `clients` WHERE client_id = '$client_id'";
+    $result_clientname = mysqli_query($conn, $query_getclientname);
+
+    if (mysqli_num_rows($result_clientname) > 0) {
+        $client_data = mysqli_fetch_assoc($result_clientname);
+        $client_name = $client_data['full_name'];
+
+        if ($client_name) {
+            // Insert project details
+            $query_submit = "INSERT INTO `projects` (client_id, provider_id, project_name, project_description, project_phase, project_status) 
+                             VALUES ('$client_id', '$provider_id', '$project_name', '$project_description', '$project_phase', '$project_status')";
+
+            $result = mysqli_query($conn, $query_submit);
+
+            if ($result) {
+                $project_id = mysqli_insert_id($conn);
+
+                // Handle file upload
+                if (isset($_FILES['upload_documents']) && $_FILES['upload_documents']['name'] != '') {
+                    $upload_dir = '../../uploads/' . $project_id . '/';
+                    $document_name = $_POST['document_name'];
+                    $file_name = $_FILES['upload_documents']['name'];
+                    $file_tmp = $_FILES['upload_documents']['tmp_name'];
+
+                    if (!is_dir($upload_dir)) {
+                        mkdir($upload_dir, 0777, true);
+                    }
+                    
+                    if (move_uploaded_file($file_tmp, $upload_dir . $file_name)) {
+                        $query_file_upload = "INSERT INTO `projectdocuments` (project_id, file_name, file_path) VALUES ('$project_id', '$document_name', '$upload_dir$file_name')";
+                        $result_file_upload = mysqli_query($conn, $query_file_upload);
+
+                        $query_log = "INSERT INTO projectstatuslogs (project_id, message, changed_at) VALUES ('$project_id', 'creating the project', NOW());";
+                        $result_log = mysqli_query($conn, $query_log);
+
+                        if ($result_file_upload) {
+                            if ($result_log) {
+                                $successMsg = "$client_name's Project added successfully!";
+                            } else {
+                                $errorMsg = "Error logging project status: " . mysqli_error($conn);
+                            }
+                        } else {
+                            $errorMsg = "Error: " . mysqli_error($conn);
+                        }
+                    } else {
+                        $errorMsg = "File upload failed.";
+                    }
+                } else {
+                    $query_log = "INSERT INTO projectstatuslogs (project_id, message, changed_at) VALUES ('$project_id', 'creating the project', NOW());";
+                    $result_log = mysqli_query($conn, $query_log);
+                    
+                    if ($result_log) {
+                        $successMsg = "$client_name's Project added successfully!";
+                    } else {
+                        $errorMsg = "Error logging project status: " . mysqli_error($conn);
+                    }
+                }
+            } else {
+                $errorMsg = "Error: " . mysqli_error($conn);
+            }
+        }
+    } else {
+        $c_errorMsg = "Client ID not found.";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,67 +103,127 @@ include '../connection.php';
             </ul>
         </div>
 
-        <!-- Main Content Wrapper -->
-        <div class="main-wrapper">
-            <!-- Navbar -->
-            <header>
-                <nav class="navbar">       
-                    <!-- <a href="../Home/Homepage/HP.html">Home</a> -->
-                    <div class="notification">   
-                        <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
-                    </div> 
-                    <div class="profile">
-                        <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
+        <!-- Navbar -->
+        <header>
+            <nav class="navbar">
+                <div class="calendar-icon">
+                    <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
+                    <!-- Calendar Dropdown -->
+                    <div id="calendarDropdown" class="calendar-dropdown">
+                        <h3>Calendar</h3>
+                        <div class="calendar-header">
+                            <button id="prevMonth">&lt;</button>
+                            <span id="currentMonth">March 2025</span>
+                            <button id="nextMonth">&gt;</button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="weekdays">
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                                <div>Sun</div>
+                            </div>
+                            <div id="daysGrid" class="days"></div>
+                        </div>
                     </div>
-                    <a href="../../Login/Logout.php" class="logout">Logout</a>
-                </nav>
-            </header>
+                </div>
+                <div class="notification">
+                    <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+                </div>
+                <div class="profile">
+                    <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
+                </div>
+                <a href="../../Login/Logout.php" class="logout">Logout</a>                
+            </nav>
+        </header>
 
-            <!-- Main Content (Forum Page) -->
-            <div class="main-content">
-                <div class="project-section">
-                    <center><h2>Add Project</h2></center>
+        <!-- Main Content -->
+        <div class="main-content">
+            <?php if (!empty($successMsg)): ?>
+                <div class="success-message">
+                    <?= $successMsg ?>
+                    <?php unset($successMsg); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty($errorMsg)): ?>
+                <div class="error-message">
+                    <?= $errorMsg ?>
+                    <?php unset($errorMsg); ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="project-section">
+                <a href="Project.php" class="back-button">← Back to Projects</a>
+                <h2>Add Project</h2>
                 
-                    <div class="project-form-container">
-    <form class="project-form">
-        
-        <div class="form-field">
-            <label for="client_company">Client Id</label>
-            <input type="text" id="client_id" placeholder="Enter project name" required>
+                <form class="project-form" action="AddProject.php" method="post" enctype="multipart/form-data">
+                    <div class="form-field">
+                        <label for="client_id">Client ID</label>
+                        <input type="text" id="client_id" name="client_id" placeholder="Enter client ID" required>
+                        <?php if (!empty($c_errorMsg)): ?>
+                            <div class="field-error">
+                                <?= $c_errorMsg ?>
+                                <?php unset($c_errorMsg); ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+               
+                    <div class="form-field">
+                        <label for="project_name">Project Name</label>
+                        <input type="text" id="project_name" name="project_name" placeholder="Enter project name" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="project_description">Project Description</label>
+                        <textarea id="project_description" name="project_description" placeholder="Describe the project" required></textarea>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="project_phase">Select Project Phase</label>
+                        <select id="project_phase" name="project_phase" required>
+                            <option value="">Select a phase</option>
+                            <option value="Planning">Planning</option>
+                            <option value="Execution">Execution</option>
+                            <option value="Closure">Closure</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="project_status">Project Status Update</label>
+                        <input type="text" id="project_status" name="project_status" placeholder="Enter project status" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="upload_documents">Upload Documents</label>
+                        <div class="upload-container">
+                            <input type="text" id="document_name" name="document_name" placeholder="Upload name">
+                            <div class="file-input-wrapper">
+                                <input type="file" id="upload_documents" name="upload_documents" class="file-input">
+                                <label for="upload_documents" class="file-label">Choose File</label>
+                                <span id="file-name-display">No file chosen</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <a href="Project.php" class="cancel-button">Cancel</a>
+                        <button type="submit" name="submit" class="submit-button">Add Project</button>
+                    </div>
+                </form>
+            </div>  
         </div>
-        <div class="form-field">
-            <label for="client_name">Client Name</label>
-            <input type="text" id="client_name" placeholder="Enter client name" required>
-        </div>
-        <div class="form-field">
-            <label for="project_name">Project Name</label>
-            <input type="text" id="project_name" placeholder="Enter project name" required>
-        </div>
-        <div class="form-field">
-            <label for="project_description">Project Description</label>
-            <textarea id="project_description" placeholder="Describe the project" required></textarea>
-        </div>
-        <div class="form-field">
-            <label for="project_phase">Select Project Phase</label>
-            <select id="project_phase" required>
-                <option value="">Select a phase</option>
-                <option value="Planning">Planning</option>
-                <option value="Execution">Execution</option>
-                <option value="Closure">Closure</option>
-            </select>
-        </div>
-        <div class="form-field">
-            <label for="project_status">Project Status Update</label>
-            <input type="text" id="project_status" placeholder="Enter project status" required>
-        </div>
-        <div class="form-field">
-            <label for="upload_documents">Upload Documents</label>
-            <input type="file" id="upload_documents" multiple>
-        </div>
-        <button type="submit" class="submit-button">Add Project</button>
-    </for>
-</div>
-            </div>    
+    </div>
 
+    <script>
+        // Display selected filename
+        document.getElementById('upload_documents').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+            document.getElementById('file-name-display').textContent = fileName;
+        });
+    </script>
 </body>
 </html>

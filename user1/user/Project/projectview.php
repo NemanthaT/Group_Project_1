@@ -1,6 +1,51 @@
 
 <?php
 include '../session/session.php';
+$projectId = $_GET['project_id'];
+
+$sqlproject = "SELECT * FROM `projects` WHERE `project_id` = ? ;";
+$sqlserviceproviders = "SELECT * FROM `serviceproviders` WHERE `provider_id` = ? ;";
+$sqllog = "SELECT * FROM `projectstatuslogs` WHERE `project_id` = ? order by log_id desc;";
+$doc ="SELECT * from projectdocuments where project_id = '$projectId';";
+
+
+
+$stmt = $conn->prepare($sqlproject);
+$stmt->bind_param("i", $projectId);
+$stmt->execute();
+$result = $stmt->get_result();
+$result = $result->fetch_assoc();
+$provider_id = $result['provider_id'];
+$ProjectName = $result['project_name'];
+$ProjectID = $result['project_id'];
+
+$projectDescription = $result['project_description'];
+$createdDate = $result['created_date'];
+$projectStatus = $result['project_status'];
+$projectPhase = $result['project_phase'];
+
+$query = $conn->prepare($sqlserviceproviders);
+$query->bind_param("i", $provider_id);
+$query->execute();
+$queryResult = $query->get_result();
+$serviceproviders = $queryResult->fetch_assoc();
+$ServiceProviderName = $serviceproviders['full_name'];
+$ServiceProviderContact = $serviceproviders['phone'];
+
+$querylog= $conn->prepare($sqllog);
+$querylog->bind_param("i", $projectId);
+$querylog->execute();
+$querylogResult = $querylog->get_result();
+$log = $querylogResult->fetch_assoc();
+$UpdatedDate = $log['changed_at'];
+
+$docResult = $conn->query($doc);
+if ($docResult === false) {
+    die("Error: " . $conn->error);
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,62 +137,46 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
         <div class="controls header card1">
-            <h1>Financial consultancy for board of directers</h1>
+            <h1><?php echo $ProjectName; ?></h1>
         </div>
         <div class="row margin">
         <div class="row-container">
             <h2>Project Details</h2>
             <hr><br>
-            <p><strong>Project Name:</strong> Financial consultancy for board of directers</p>
-            <p><strong>Project ID:</strong> 001</p>
-            <p><strong>Service Provider Name :</strong> Rama Crish</p>
-            <p><strong>Service Provider Content Details :</strong> 0711234561</p>    
+            <p><strong>Project Name:</strong> <?php echo $ProjectName; ?></p>
+            <p><strong>Project ID:</strong> <?php echo $ProjectID; ?></p>
+            <p><strong>Service Provider Name :</strong> <?php echo $ServiceProviderName; ?></p>
+            <p><strong>Service Provider Content Details :</strong> <?php echo $ServiceProviderContact; ?></p>    
         </div>
         <div class="row-container">
             <h2>Project Progress </h2>
             <hr><br>
-            <p><strong>Project Start Date:</strong> 2021-09-01</p>
-            <p><strong>updated Date:</strong> 2021-09-30</p>
+            <p><strong>Project Start Date:</strong><?php echo $createdDate; ?></p>
+            <p><strong>updated Date:</strong> <?php echo $UpdatedDate; ?></p>
             <div class="row">
-            <p ><strong>Project Status : </strong> <p class="green"> Ongoing </p></p>
+            <p ><strong>Project Status : </strong> <?php echo $projectStatus; ?></p>
             </div>
-            <p><strong>Project pashe :</strong> Requirement Gathering</p>
+            <p><strong>Project Phase :</strong> <?php echo $projectPhase; ?></p>
     </div>
     </div>
-    <div class="controls">
-        <h1>Documents</h1>
+        <div class="controls">
+            <h1>Documents</h1>
+            <?php if ($docResult->num_rows > 0): ?>
+                <?php while ($doc_row = $docResult->fetch_assoc()): ?>
 
-        <div class="box">
-
-            <h2>Agreement</h2>
-            <br>
-            <div class="row center">
-                <img class="pdf" src="../images/pdf.png" alt="">
-                <h3> Agrement.pdf</h3>
-            </div>
-        </div> <div class="box">
-
-<h2>Proposal</h2>
-<br>
-<div class="row center">
-<img class="pdf" src="../images/pdf.png" alt="">
-<h3> Proposal.pdf</h3>
-</div>
-</div>
-    </div>
-    <div class="controls">
-        <h1>Report</h1>
-        <div class="box">
-        <h2>Report</h2>
-            <br>
-                <div class="row center">
-                <img class="pdf" src="../images/pdf.png" alt="">
-                    <h3> Report.pdf</h3>
+            <div class="box">
+                <h2><?php echo htmlspecialchars($doc_row['file_name']); ?></h2>
+                <br>
+                <a href="../<?php echo htmlspecialchars($doc_row['file_path']); ?>">
+                <div class="row center" >
+                    <img class="pdf" src="../images/pdf.png" alt="">
+                    <h3><?php echo htmlspecialchars($doc_row['file_name']); ?></h3>
                 </div>
+                </a>
+                <?php endwhile; ?>
+                <?php endif; ?>
+            </div> 
         </div>
-
-    </div>
-
     </div>
 </div>
     <script src="script.js"></script>

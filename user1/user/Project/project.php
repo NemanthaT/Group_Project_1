@@ -1,6 +1,17 @@
 
 <?php
 include '../session/session.php';
+include '../../connect/connect.php';
+
+
+$clientId = $_SESSION['client_id'];
+$sql = "SELECT * FROM projects WHERE client_id = '$clientId' ORDER By project_id desc";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
+$stmt->close();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,6 +85,8 @@ include '../session/session.php';
             </ul>
         </div>
 
+        <!-- hi  -->
+         
         <!-- Main Content Area -->
         <div class="main-wrapper">
             <!-- Navbar -->
@@ -97,24 +110,31 @@ include '../session/session.php';
         </div>
                 <!-- project Grid -->
                 <div class="project-grid">
-            <!-- project Card 1 -->
-            <div class="project-card">
+                <?php if ($result->num_rows > 0): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+            
+                <div class="project-card">
                 <div class="project-header">
-                    <span class="project-id">P001</span>
-                    <span class="status green">Ongoing</span>
+                    <span class="project-id"><?php echo htmlspecialchars($row['project_id']); ?></span>
+                    <span class="status <?php echo $row['project_status'] === 'Ongoing' ? 'green' : 'red'; ?>">
+                        <?php echo htmlspecialchars($row['project_status']); ?>
+                    </span>
                 </div>
                 <div class="project-content">
                     <div class="project-info">
-                        <h2><strong>Financial consultancy for board of directers</strong></h2> <br />
-                        <p>Financial Consultancy Program is a specialized service aimed at helping individuals or organizations make informed financial decisions, manage their finances more effectively, and achieve financial goals. Financial consultants or advisors provide expert advice on a range of financial matters, from budgeting and investment strategies to tax planning, risk management, and long-term financial planning.</p>
+                        <h2><strong><?php echo htmlspecialchars($row['project_name']); ?></strong></h2> <br />
+                        <p><?php echo htmlspecialchars($row['project_description']); ?></p>
                     </div>
-                    <a href="projectview.php">
-                    <button class="pay-button" >view</button>
+                    <a href="projectview.php?project_id=<?php echo urlencode($row['project_id']); ?>">
+                        <button class="pay-button" >View</button>
                     </a>
                 </div>
             </div>
+            <?php endwhile; ?>
+            <?php endif; ?>
+
+
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>

@@ -31,6 +31,9 @@
             <div class="bg">
                     <!--blur Background image-->  
             </div> 
+
+            <div id="overlay" class="overlay"></div>
+
             <div>
                 <h1>Service Providers</h1>
                 <div id="hiddenView">

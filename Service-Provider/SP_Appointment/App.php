@@ -107,7 +107,7 @@ $stmt->close();
                     <center><h2>Appointments</h2></center>
                 <!-- Search and Filter Controls -->
                     <div class="appointment-controls">
-                        <input type="text" id="clientFilter" placeholder="Search by Client ID/Appointment ID">
+                        <input type="text" id="clientFilter" placeholder="Search by Appointment ID">
                         <input type="date" id="appointmentDateFilter" placeholder="Filter by Appointment Date">
                         <select id="statusSort">
                             <option value="">Sort by Status</option>

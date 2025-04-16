@@ -6,7 +6,7 @@ header('Content-Type: application/json'); // Set JSON response
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $id = intval($_POST['id']);
 
-    $stmt = $conn->prepare("DELETE FROM providerrequests WHERE reqId = ?");
+    $stmt = $conn->prepare("UPDATE providerrequests SET status = 'unset' WHERE reqId = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();

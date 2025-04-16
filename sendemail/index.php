@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="../Admin/css/common.css">
     </head>
     <body>
-        <form class="" action="send.php" method="post">
+        <form class="" action="send2.php" method="post">
             Email: <input type="email" name="email" required><br>
             Subject: <input type="text" name="subject" required><br>
             Message: <input type="text" name="message" required></textarea><br>
