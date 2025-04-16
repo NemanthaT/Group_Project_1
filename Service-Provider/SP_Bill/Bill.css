@@ -227,7 +227,6 @@
     background-color: rgb(215, 236, 255);
   }
   
-  /* Keep original main content dimensions but make content fit */
   .main-content {
     margin-left: 220px;
     padding: 60px 5px 5px 5px; /* Adjusted padding */
@@ -253,7 +252,59 @@
     margin-bottom: 15px;
 }
 
-/* Bills Grid */
+/*--- Bill.php ----*/
+.search-button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.clear-button {
+background-color: #f1f1f1;
+color: #333;
+border: 1px solid #ddd;
+padding: 8px 16px;
+border-radius: 4px;
+cursor: pointer;
+margin-right: 10px;
+font-size: 14px;
+transition: all 0.3s ease;
+}
+
+.clear-button:hover {
+background-color: #e0e0e0;
+}
+
+.clear-button:active {
+transform: translateY(1px);
+}
+
+.no-bills-message {
+text-align: center;
+padding: 20px;
+font-size: 16px;
+color: #666;
+grid-column: 1 / -1;
+width: 100%;
+}
+
+.add-bill-button {
+  margin-left: auto; /* Pushes the button to the far right */
+  border-radius: 4px;
+}
+
+.add-bill-button:hover {
+  background-color: #0056b3;
+}
+
 .bills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -263,7 +314,6 @@
     margin: auto;
 }
 
-/* Bill Card */
 .bill-card {
     background: white;
     border-radius: 8px;
@@ -375,31 +425,7 @@
     width: 300px;
 }
 
-.search-button {
-    padding: 10px 20px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.search-button:hover {
-    background-color: #0056b3;
-}
-
-.add-bill-button {
-    margin-left: auto; /* Pushes the button to the far right */
-    border-radius: 4px;
-}
-
-.add-bill-button:hover {
-    background-color: #0056b3;
-}
-
-/* Add these styles to the existing Bill.css file for CreateBill.php*/
-
+/*--- CreateBill.php ---*/
 .create-bill-section {
     padding: 20px;
     background-color: white;
@@ -415,54 +441,136 @@
     margin-bottom: 15px;
 }
 
-.bill-form-container {
-    width: 95%;
-    background-color: #fcf9f9;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.create-bill-section {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.bill-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.back-link {
+  margin-bottom: 5px;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
+.back-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
 }
 
-.form-group label {
-    margin-bottom: 8px;
-    color: #333;
-    font-weight: bold;
+.back-link a:hover {
+  text-decoration: underline;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    width: 100%;
+.create-bill-section h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
+.simple-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.bill-form .pay-button {
-    align-self: flex-start;
-    width: auto;
-    padding: 12px 24px;
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
- /* Invoice Styles  viewbill.php*/
+.form-field label {
+  font-weight: 500;
+  color: #333;
+  font-size: 16px;
+}
 
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.cancel-button {
+  padding: 12px 24px;
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-button:hover {
+  background-color: #e0e0e0;
+}
+
+.submit-button {
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #0069d9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .create-bill-section {
+      padding: 15px;
+  }
+  
+  .form-actions {
+      flex-direction: column-reverse;
+  }
+  
+  .cancel-button,
+  .submit-button {
+      width: 100%;
+  }
+}
+
+ /*--- viewbill.php ---*/
 .view-bill-section {
     padding: 20px;
     background-color: #fcf9f9;
