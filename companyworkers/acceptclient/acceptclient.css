@@ -1,0 +1,430 @@
+/* JobConnect - Unified CSS for all pages */
+:root {
+    --primary-color: #4f46e5;
+    --primary-dark: #4338ca;
+    --secondary-color: #0ea5e9;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --text-color: #1f2937;
+    --text-dark: #2c3e50;
+    --light-text: #6b7280;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header Styles */
+.main-header {
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-section img {
+    height: 50px;
+    width: auto;
+}
+
+.logo-section h1 {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Header and Navbar Fixes */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.notification-icon,
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.notification-icon:hover,
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
+.logout-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #1691e7;
+}
+
+/* Main Wrapper */
+.main-wrapper {
+    margin-left: 20vw;
+    margin-top: 0;
+    padding-top: 20px;
+    width: 80vw;
+}
+
+/* Container Layout Fix */
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    padding-top: 80px;
+}
+
+/* Sidebar Position Fix */
+.sidebar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    height: calc(100vh - 80px);
+    width: 20vw;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.main-container {
+    max-width: 95%;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--bg-color);
+    border-radius: var(--radius);
+}
+
+.controls.card1 {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+.controls.card1 h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.controls.card1 h3 {
+    color: var(--light-text);
+}
+
+.dashboard-container {
+    padding: 1rem;
+}
+
+/* Accept Client Section */
+.accept-client-container {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    margin-top: 2rem;
+}
+
+.client-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.client-list h2 {
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.client-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    border-left: 4px solid var(--primary-color);
+}
+
+.client-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.client-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.client-info h3 {
+    color: var(--text-dark);
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.client-info p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--light-text);
+}
+
+/* Buttons */
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    align-self: start;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background: var(--gradient);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: var(--text-dark);
+}
+
+.btn-info {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* Client Grid */
+.client-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Stat Card */
+.stat-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+.filter-select {
+    min-width: 180px;
+    flex: 0 0 auto;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Client Requests Section */
+.client-requests-section {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Add animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .client-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .client-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-wrapper {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .header-right {
+        gap: 10px;
+    }
+
+    .notification-icon,
+    .profile-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .logout-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .client-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filters {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
+    .filter-select,
+    .search-input {
+        width: 100%;
+        min-width: 100%;
+    }
+}

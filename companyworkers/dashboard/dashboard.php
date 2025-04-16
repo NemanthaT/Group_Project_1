@@ -60,6 +60,14 @@ if (isset($_SESSION['username'])) {
           </a>
         </li>
         <li>
+          <a href="../acceptclient/acceptclient.php">
+            <button>
+              <img src="../images/dashboard.png" alt="Dashboard">
+              Accept Clients
+            </button>
+          </a>
+        </li>
+        <li>
           <a href="../servicerequest/servicerequest.php">
             <button>
               <img src="../images/service.jpg" alt="Service Requests">
