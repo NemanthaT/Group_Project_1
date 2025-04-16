@@ -1,6 +1,35 @@
 
 <?php
 include '../session/session.php';
+$projectId = $_GET['project_id'];
+
+$sqlproject = "SELECT * FROM `projects` WHERE `project_id` = ? ;";
+$sqlserviceproviders = "SELECT * FROM `serviceproviders` WHERE `provider_id` = ? ;";
+$sqllogin = "SELECT * FROM `projectstatuslogs` WHERE `project_id` = ? order by log_id desc;";
+
+
+$stmt = $conn->prepare($sqlproject);
+$stmt->bind_param("i", $projectId);
+$stmt->execute();
+$result = $stmt->get_result();
+$result = $result->fetch_assoc();
+$provider_id = $result['provider_id'];
+$ProjectName = $result['project_name'];
+$ProjectID = $result['project_id'];
+
+$projectDescription = $result['project_description'];
+$createdDate = $result['created_date'];
+$projectStatus = $result['project_status'];
+$projectPhase = $result['project_phase'];
+
+$query = $conn->prepare($sqlserviceproviders);
+$query->bind_param("i", $provider_id);
+$query->execute();
+$queryResult = $query->get_result();
+$serviceproviders = $queryResult->fetch_assoc();
+$ServiceProviderName = $serviceproviders['full_name'];
+$ServiceProviderContact = $serviceproviders['phone'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,24 +121,24 @@ include '../session/session.php';
     <div class=".main-container">
         <div class="space"></div>
         <div class="controls header card1">
-            <h1>Financial consultancy for board of directers</h1>
+            <h1><?php echo $ProjectName; ?></h1>
         </div>
         <div class="row margin">
         <div class="row-container">
             <h2>Project Details</h2>
             <hr><br>
-            <p><strong>Project Name:</strong> Financial consultancy for board of directers</p>
-            <p><strong>Project ID:</strong> 001</p>
-            <p><strong>Service Provider Name :</strong> Rama Crish</p>
-            <p><strong>Service Provider Content Details :</strong> 0711234561</p>    
+            <p><strong>Project Name:</strong> <?php echo $ProjectName; ?></p>
+            <p><strong>Project ID:</strong> <?php echo $ProjectID; ?></p>
+            <p><strong>Service Provider Name :</strong> <?php echo $ServiceProviderName; ?></p>
+            <p><strong>Service Provider Content Details :</strong> <?php echo $ServiceProviderContact; ?></p>    
         </div>
         <div class="row-container">
             <h2>Project Progress </h2>
             <hr><br>
-            <p><strong>Project Start Date:</strong> 2021-09-01</p>
-            <p><strong>updated Date:</strong> 2021-09-30</p>
+            <p><strong>Project Start Date:</strong><?php echo $ProjectStartDate; ?></p>
+            <p><strong>updated Date:</strong> <?php echo $UpdatedDate; ?></p>
             <div class="row">
-            <p ><strong>Project Status : </strong> <p class="green"> Ongoing </p></p>
+            <p ><strong>Project Status : </strong> <p class="green">  </p></p>
             </div>
             <p><strong>Project pashe :</strong> Requirement Gathering</p>
     </div>

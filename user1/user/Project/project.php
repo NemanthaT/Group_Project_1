@@ -5,7 +5,7 @@ include '../../connect/connect.php';
 
 
 $clientId = $_SESSION['client_id'];
-$sql = "SELECT * FROM projects WHERE client_id = '$clientId' ORDER By client_id asc";
+$sql = "SELECT * FROM projects WHERE client_id = '$clientId' ORDER By project_id desc";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -125,8 +125,8 @@ $stmt->close();
                         <h2><strong><?php echo htmlspecialchars($row['project_name']); ?></strong></h2> <br />
                         <p><?php echo htmlspecialchars($row['project_description']); ?></p>
                     </div>
-                    <a href="projectview.php?id=<?php echo urlencode($row['project_id']); ?>">
-                        <button class="pay-button">View</button>
+                    <a href="projectview.php?project_id=<?php echo urlencode($row['project_id']); ?>">
+                        <button class="pay-button" >View</button>
                     </a>
                 </div>
             </div>
@@ -136,6 +136,5 @@ $stmt->close();
 
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
