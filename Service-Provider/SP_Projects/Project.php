@@ -80,11 +80,14 @@ if ($result === false) {
                     <div class="filter-group search-group">
                         <select id="status-filter">
                             <option value="all">All Projects</option>
-                            <option value="paid">Ongoing</option>
-                            <option value="unpaid">Completed</option>
+                            <option value="ongoing">Ongoing</option>
+                            <option value="completed">Completed</option>
+                            <option value="on-hold">On Hold</option>
+                            <option value="cancelled">Cancelled</option>
                         </select>
                         <input type="text" placeholder="Search client ID or service..." id="search">
-                            <button class="search-button">Search</button>
+                        <button class="search-button" id="search-btn">Search</button>
+                        <button class="clear-button" id="clear-filters">Clear</button>
                         <a href="AddProject.php">
                             <button class="search-button">+ Projects</button>
                         </a>
@@ -110,7 +113,7 @@ if ($result === false) {
                                     <p><strong>Project ID:</strong> <?php echo htmlspecialchars($row['project_id']); ?></p>
                                 </div>
                                 <a href="EditProject.php?project_id=<?php echo $row['project_id']; ?>">
-                                    <button class="view-button" >View</button>
+                                    <button class="view-button">View</button>
                                 </a>
                             </div>
                         </div>
@@ -119,6 +122,7 @@ if ($result === false) {
                     <p>No projects found.</p>
                 <?php endif; ?>
                 </div>
-            </div>    
+            </div>   
+<script src="Project.js"></script> 
 </body>
 </html>
