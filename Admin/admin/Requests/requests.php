@@ -73,7 +73,7 @@
                                 <th>Action</th>
                             </tr>
                             <?php
-                                $sql = "SELECT * FROM providerrequests WHERE status LIKE 'set'";
+                                $sql = "SELECT * FROM providerrequests WHERE status LIKE 'set' ORDER BY reqId DESC"; // get all requests with status set
                                 $result = $conn->query($sql);
 
                                 if($result->num_rows > 0) {
