@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (mysqli_query($conn, $sql)) {
             echo "<script>
                     alert('Registration successful!');
-                    window.location.href = '../../Home/Homepage/HP.html';
+                    window.location.href = '../../Home/Homepage/HP.php';
                   </script>";
             exit;
         } else {

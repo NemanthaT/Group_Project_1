@@ -361,15 +361,6 @@ section {
     align-items: center;
 }
 
-.bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
 
 .text-content {
     position: relative;
@@ -561,3 +552,48 @@ p {
   .logo1{
     width: 225px;
   }
+
+  .frame {
+    width: 100%;
+    height: 92.5vh;
+    display: flex;
+}
+
+#frame{
+    width: 100%;
+    height: 92.5vh;
+}
+
+iframe {
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#upper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh; /* optional: gives full screen height */
+    overflow: hidden;
+}
+
+#upper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+#upper #text {
+    position: relative;
+    color: white;
+    text-align: left;
+    padding: 0;
+    z-index: 1;
+}
