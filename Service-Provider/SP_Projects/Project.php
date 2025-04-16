@@ -73,55 +73,52 @@ if ($result === false) {
             </nav>
         </header>
 
-            <!-- Main Content (Forum Page) -->
-            <div class="main-content">
-                <div class="project-section">
-                    <center><h2>Project</h2></center>
-                
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="project-section">
+                <center><h2>Project</h2></center>
                     <div class="filter-group search-group">
-    <select id="status-filter">
-        <option value="all">All Projects</option>
-        <option value="paid">Ongoing</option>
-        <option value="unpaid">Completed</option>
-    </select>
-    <input type="text" placeholder="Search client ID or service..." id="search">
-    <button class="search-button">Search</button>
-    <a href="AddProject.php">
-        <button class="search-button">+ Projects</button>
-    </a>
-</div>
-
-<!-- Bills Grid -->
-<div class="bills-grid">
-<!-- Bill Card 1 -->
-    <?php if ($result->num_rows > 0): ?>
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="bill-card">
-                <div class="bill-header">
-                    <span class="payment-id">PROJECT</span>
-                    <span class="status <?php echo strtolower($row['project_status']); ?>">
-                        <?php echo ucfirst($row['project_status']); ?>
-                    </span>
-                </div>
-                <div class="bill-content">
-                    <div class="bill-info">
-                        <p><strong>Service:</strong> <?php echo htmlspecialchars($row['project_name']); ?></p>
-                        <p><strong>Description:</strong> <?php echo htmlspecialchars($row['project_description']); ?></p>
-                        <p><strong>Date:</strong> <?php echo htmlspecialchars($row['created_date']); ?></p>
-                        <p><strong>Project ID:</strong> <?php echo htmlspecialchars($row['project_id']); ?></p>
+                        <select id="status-filter">
+                            <option value="all">All Projects</option>
+                            <option value="paid">Ongoing</option>
+                            <option value="unpaid">Completed</option>
+                        </select>
+                        <input type="text" placeholder="Search client ID or service..." id="search">
+                            <button class="search-button">Search</button>
+                        <a href="AddProject.php">
+                            <button class="search-button">+ Projects</button>
+                        </a>
                     </div>
-                    <a href="EditProject.php?project_id=<?php echo $row['project_id']; ?>">
-                        <button class="pay-button green" >View</button>
-                    </a>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                <!-- Project Card 1 -->
+                    <?php if ($result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <div class="project-card">
+                            <div class="project-header">
+                                <span class="project-id">PROJECT</span>
+                                <span class="status <?php echo strtolower($row['project_status']); ?>">
+                                    <?php echo ucfirst($row['project_status']); ?>
+                                </span>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-info">
+                                    <p><strong>Service:</strong> <?php echo htmlspecialchars($row['project_name']); ?></p>
+                                    <p><strong>Description:</strong> <?php echo htmlspecialchars($row['project_description']); ?></p>
+                                    <p><strong>Date:</strong> <?php echo htmlspecialchars($row['created_date']); ?></p>
+                                    <p><strong>Project ID:</strong> <?php echo htmlspecialchars($row['project_id']); ?></p>
+                                </div>
+                                <a href="EditProject.php?project_id=<?php echo $row['project_id']; ?>">
+                                    <button class="view-button" >View</button>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <p>No projects found.</p>
+                <?php endif; ?>
                 </div>
-            </div>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <p>No projects found.</p>
-    <?php endif; ?>
-
-</div>
             </div>    
-
 </body>
 </html>
