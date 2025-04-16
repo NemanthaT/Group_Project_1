@@ -6,6 +6,8 @@ $projectId = $_GET['project_id'];
 $sqlproject = "SELECT * FROM `projects` WHERE `project_id` = ? ;";
 $sqlserviceproviders = "SELECT * FROM `serviceproviders` WHERE `provider_id` = ? ;";
 $sqllog = "SELECT * FROM `projectstatuslogs` WHERE `project_id` = ? order by log_id desc;";
+$doc ="SELECT * from projectdocuments where project_id = '$projectId';";
+
 
 
 $stmt = $conn->prepare($sqlproject);
@@ -37,7 +39,10 @@ $querylogResult = $querylog->get_result();
 $log = $querylogResult->fetch_assoc();
 $UpdatedDate = $log['changed_at'];
 
-
+$docResult = $conn->query($doc);
+if ($docResult === false) {
+    die("Error: " . $conn->error);
+}
 
 
 
@@ -154,40 +159,24 @@ $UpdatedDate = $log['changed_at'];
             <p><strong>Project Phase :</strong> <?php echo $projectPhase; ?></p>
     </div>
     </div>
-    <div class="controls">
-        <h1>Documents</h1>
+        <div class="controls">
+            <h1>Documents</h1>
+            <?php if ($docResult->num_rows > 0): ?>
+                <?php while ($doc_row = $docResult->fetch_assoc()): ?>
 
-        <div class="box">
-
-            <h2>Agreement</h2>
-            <br>
-            <div class="row center">
-                <img class="pdf" src="../images/pdf.png" alt="">
-                <h3> Agrement.pdf</h3>
-            </div>
-        </div> <div class="box">
-
-<h2>Proposal</h2>
-<br>
-<div class="row center">
-<img class="pdf" src="../images/pdf.png" alt="">
-<h3> Proposal.pdf</h3>
-</div>
-</div>
-    </div>
-    <div class="controls">
-        <h1>Report</h1>
-        <div class="box">
-        <h2>Report</h2>
-            <br>
-                <div class="row center">
-                <img class="pdf" src="../images/pdf.png" alt="">
-                    <h3> Report.pdf</h3>
+            <div class="box">
+                <h2><?php echo htmlspecialchars($doc_row['file_name']); ?></h2>
+                <br>
+                <a href="../<?php echo htmlspecialchars($doc_row['file_path']); ?>">
+                <div class="row center" >
+                    <img class="pdf" src="../images/pdf.png" alt="">
+                    <h3><?php echo htmlspecialchars($doc_row['file_name']); ?></h3>
                 </div>
+                </a>
+                <?php endwhile; ?>
+                <?php endif; ?>
+            </div> 
         </div>
-
-    </div>
-
     </div>
 </div>
     <script src="script.js"></script>
