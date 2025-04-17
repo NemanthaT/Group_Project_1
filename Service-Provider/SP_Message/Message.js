@@ -10,6 +10,18 @@ document.querySelector('.search-button').addEventListener('click', function () {
     });
 });
 
+// Clear Filter Functionality
+document.querySelector('.clear-button').addEventListener('click', function () {
+    // Clear the search input
+    document.querySelector('#search-input').value = '';
+    
+    // Show all rows
+    const rows = document.querySelectorAll('#message-tbody tr');
+    rows.forEach(row => {
+        row.style.display = '';
+    });
+});
+
 // Open Create Chat Modal
 document.querySelector('.create-chat-button').addEventListener('click', function () {
     document.getElementById('create-chat-modal').style.display = 'flex';
