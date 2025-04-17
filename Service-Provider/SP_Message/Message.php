@@ -39,7 +39,7 @@ $stmt->close();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="OMGwidth=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
     <link rel="stylesheet" href="Message.css">
 </head>
@@ -104,6 +104,7 @@ $stmt->close();
                 <div class="message-controls">
                     <input type="text" placeholder="Client ID/Topic" id="search-input">
                     <button class="search-button">Search</button>
+                    <button class="clear-button" id="clear-button">Clear</button>
                     <button class="create-chat-button">Create Chat</button>
                 </div>
 
