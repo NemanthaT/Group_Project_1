@@ -1,8 +1,7 @@
 <?php
 include '../../connect/connect.php';
 
-// Query to get upcoming appointments
-$sql = "SELECT a.appointment_date, a.status, a.service_type, c.full_name AS client_name
+$sql = "SELECT * AS client_name
 FROM appointments a
 JOIN clients c ON a.client_id = c.client_id
 WHERE a.appointment_date >= NOW() 
@@ -29,7 +28,13 @@ if ($result === false) {
                     </div>
                     <span class="status-badge status-' . strtolower($row["status"]) . '">' . 
                         ucfirst(strtolower($row["status"])) . '</span>
-                  </div>';
+                  </div>
+                  
+                  
+                  <div class="list-item">
+                    <span>Investment Portfolio Management Software</span>
+                    <span class="status-badge status-upcoming">Upcoming</span>
+                </div>';
         }
     } else {
         echo '<div class="list-item">No appointments found</div>';
@@ -37,5 +42,8 @@ if ($result === false) {
 }
 
 $conn->close();
+
+
+
 ?>
 
