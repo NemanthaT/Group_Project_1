@@ -174,7 +174,7 @@ $result = $stmt->get_result();
     <?php while ($bill = $result->fetch_assoc()): 
         $status_class = $bill['status'] == 'paid' ? 'paid' : 'unpaid';
         $button_text = $bill['status'] == 'unpaid' ? 'Pay Bill' : 'View';
-        $button_link = $bill['status'] == 'unpaid' ? 'paybill.php?bill_id=' . $bill['bill_id'] : 'viewbill.php?bill_id=' . $bill['bill_id'];
+        $button_link = $bill['status'] == 'unpaid' ? 'paybill.php?bill_id=' . $bill['bill_id'] : 'paidbill.php?bill_id=' . $bill['bill_id'];
     ?>
         <div class="bill-card">
             <div class="bill-header">
