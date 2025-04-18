@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     
                     <div class="form-field">
                         <label for="project_id">Project ID</label>
-                        <input type="text" id="project_id" name="project_id" value="<?php echo htmlspecialchars($project_id); ?>" required>
+                        <input type="text" id="project_id" name="project_id" value="<?php echo htmlspecialchars($project_id); ?>" required readonly>
                     </div>
                     
                     <div class="form-field">
