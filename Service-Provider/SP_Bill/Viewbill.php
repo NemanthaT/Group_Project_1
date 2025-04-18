@@ -163,7 +163,7 @@ $total_due = $subtotal;
                     <div class="action-buttons">
                         <a href="editbill.php?bill_id=<?php echo $bill_id; ?>"><button class="pay-button">Edit</button></a>
                         <?php if ($bill['status'] === 'unpaid'): ?>
-                        <a href="process_payment.php?bill_id=<?php echo $bill_id; ?>"><button class="pay-button green">Mark as Paid</button></a>
+                        <a href="editbill.php?bill_id=<?php echo $bill_id; ?>"><button class="pay-button green">Mark as Paid</button></a>
                         <?php endif; ?>
                     </div>
                 </div>
