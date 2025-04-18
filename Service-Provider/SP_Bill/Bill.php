@@ -8,9 +8,9 @@ $status = isset($_GET['status']) ? $_GET['status'] : 'all';
 $project_id = isset($_GET['project_id']) ? trim($_GET['project_id']) : '';
 
 // Build the query dynamically
-$query = "SELECT * FROM bills WHERE provider_id = '" . $_SESSION['provider_id'] . "'";
-$params = [];
-$types = "";
+$query = "SELECT b.* FROM bills b JOIN projects p ON b.project_id = p.project_id WHERE p.provider_id = ?";
+$params = [$providerId];
+$types = "i";
 
 // Filter by status if not 'all'
 if ($status !== 'all' && ($status === 'paid' || $status === 'unpaid')) {
@@ -105,6 +105,7 @@ $result = $stmt->get_result();
         <!-- Main Content -->
         <div class="main-content">
         <?php
+        echo "<div class='welcome-message'>Welcome, " . htmlspecialchars($_SESSION['provider_id']) . "</div>";
                 if (isset($_SESSION['bill_errors'])) {
                     echo "<div class='create-bill-section' style='background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 15px;'>";
                     echo "<p style='margin: 0; font-size: 14px;'>" . (is_array($_SESSION['bill_errors']) ? implode(', ', $_SESSION['bill_errors']) : $_SESSION['bill_errors']) . "</p>";
