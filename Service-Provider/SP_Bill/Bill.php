@@ -2,12 +2,13 @@
 include '../Session/Session.php';
 include '../connection.php';
 
+$providerId = $_SESSION['provider_id'];
 // Get filters from GET parameters
 $status = isset($_GET['status']) ? $_GET['status'] : 'all';
 $project_id = isset($_GET['project_id']) ? trim($_GET['project_id']) : '';
 
 // Build the query dynamically
-$query = "SELECT * FROM bills WHERE 1=1";
+$query = "SELECT * FROM bills WHERE provider_id = '" . $_SESSION['provider_id'] . "'";
 $params = [];
 $types = "";
 
@@ -27,6 +28,9 @@ if ($project_id !== '') {
 
 // Prepare and execute the statement
 $stmt = $conn->prepare($query);
+if ($stmt === false) {
+    die("Error preparing statement: " . $conn->error);
+}
 if (!empty($params)) {
     $stmt->bind_param($types, ...$params);
 }
@@ -100,6 +104,14 @@ $result = $stmt->get_result();
 
         <!-- Main Content -->
         <div class="main-content">
+        <?php
+                if (isset($_SESSION['bill_errors'])) {
+                    echo "<div class='create-bill-section' style='background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 15px;'>";
+                    echo "<p style='margin: 0; font-size: 14px;'>" . (is_array($_SESSION['bill_errors']) ? implode(', ', $_SESSION['bill_errors']) : $_SESSION['bill_errors']) . "</p>";
+                    echo "</div>";
+                    unset($_SESSION['bill_errors']);
+                }
+                ?>
             <div class="bill-section">
                 <center><h2>Bill</h2></center>
                 <div class="filter-group search-group">

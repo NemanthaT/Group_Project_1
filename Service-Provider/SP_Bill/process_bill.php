@@ -27,26 +27,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("Location: Bill.php");
         exit;
     }
-
-    
-
-    $stmt = $conn->prepare("INSERT INTO bills (project_id, Description, Bill_Date, Amount, status) VALUES (?, ?, ?, ?, ?)");
-    if ($stmt) {
-        $stmt->bind_param("issds", $project_id, $description, $bill_date, $amount, $payment_status);
-        $stmt->execute();
-        $stmt->close();
-    } else {
-        // Handle prepare failure
-        $_SESSION['bill_errors'] = ["Failed to prepare the SQL statement."];
+    // Check if the project ID exists
+    $stmt = $conn->prepare("SELECT * FROM projects WHERE project_id = ? AND provider_id = ?");
+    $stmt->bind_param("ii", $project_id, $providerId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows === 0) {
+        // Project ID does not exist or you are not authorized.
+        $_SESSION['bill_errors'] = ["Project ID does not exist or you are not authorized."];
         header("Location: Bill.php");
         exit;
     }
+    else
+    {
+        $stmt = $conn->prepare("INSERT INTO bills (project_id, Description, Bill_Date, Amount, status) VALUES (?, ?, ?, ?, ?)");
+        if ($stmt) {
+            $stmt->bind_param("issds", $project_id, $description, $bill_date, $amount, $payment_status);
+            $stmt->execute();
+            $stmt->close();
+        } else {
+            // Handle prepare failure
+            $_SESSION['bill_errors'] = ["Failed to prepare the SQL statement."];
+            header("Location: Bill.php");
+            exit;
+        }
+    
+        // On success, clear old input
+        unset($_SESSION['bill_old']);
+        header("Location: Bill.php?success=1");
+        exit;
+    }
+    header("Location: Bill.php");
+    }
 
-    // On success, clear old input
-    unset($_SESSION['bill_old']);
-    header("Location: Bill.php?success=1");
-    exit;
-}
-header("Location: Bill.php");
 exit;
 ?>
