@@ -1,5 +1,7 @@
 <?php
 include '../Session/Session.php';
+include '../connection.php';
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -28,9 +30,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     
 
-    $stmt = $conn->prepare("INSERT INTO bills (project_id, Description, Bill_Date, Amount, status) VALUES ($project_id, $description, $bill_date, $amount, $payment_status)");
-    $stmt->execute();
-    $stmt->close();
+    $stmt = $conn->prepare("INSERT INTO bills (project_id, Description, Bill_Date, Amount, status) VALUES (?, ?, ?, ?, ?)");
+    if ($stmt) {
+        $stmt->bind_param("issds", $project_id, $description, $bill_date, $amount, $payment_status);
+        $stmt->execute();
+        $stmt->close();
+    } else {
+        // Handle prepare failure
+        $_SESSION['bill_errors'] = ["Failed to prepare the SQL statement."];
+        header("Location: Bill.php");
+        exit;
+    }
 
     // On success, clear old input
     unset($_SESSION['bill_old']);
