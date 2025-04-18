@@ -12,7 +12,7 @@ if (!isset($_GET['bill_id']) || empty($_GET['bill_id'])) {
 $bill_id = $_GET['bill_id'];
 
 // Fetch bill details with project and client information
-$query = "SELECT b.*, p.project_name, p.project_description, c.client_id 
+$query = "SELECT b.*, p.*, c.*
           FROM bills b
           JOIN projects p ON b.project_id = p.project_id
           JOIN clients c ON p.client_id = c.client_id
