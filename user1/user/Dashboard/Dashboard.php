@@ -125,18 +125,7 @@
                     <h2>Upcoming Projects</h2>
                     <span class="icon">📋</span>
                 </div>
-                <div class="list-item">
-                    <span>Investment Portfolio Management Software</span>
-                    <span class="status-badge status-upcoming">Upcoming</span>
-                </div>
-                <div class="list-item">
-                    <span>Automated Financial Reporting System</span>
-                    <span class="status-badge status-pending">Pending</span>
-                </div>
-                <div class="list-item">
-                    <span>E-commerce Platform</span>
-                    <span class="status-badge status-overdue">Overdue</span>
-                </div>
+                <?php include 'get_project.php'; ?>
             </div>
 
             <div class="card">

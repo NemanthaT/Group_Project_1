@@ -68,6 +68,16 @@ include '../connection.php';
 
         <!-- Main Content -->
         <div class="main-content">
+
+        
+                <?php
+                if (isset($_SESSION['bill_errors'])) {
+                    echo "<div class='create-bill-section' style='background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 15px;'>";
+                    echo "<p style='margin: 0; font-size: 14px;'>" . (is_array($_SESSION['bill_errors']) ? implode(', ', $_SESSION['bill_errors']) : $_SESSION['bill_errors']) . "</p>";
+                    echo "</div>";
+                    unset($_SESSION['bill_errors']);
+                }
+                ?>
             <div class="create-bill-section">
                 <div class="back-link">
                     <a href="Bill.php">← Back to Bills</a>
@@ -81,10 +91,6 @@ include '../connection.php';
                         <input type="text" id="project_id" name="project_id" placeholder="Enter project ID" required>
                     </div>
                     
-                    <div class="form-field">
-                        <label for="service">Service</label>
-                        <input type="text" id="service" name="service" placeholder="Enter service name" required>
-                    </div>
                     
                     <div class="form-field">
                         <label for="amount">Amount (Rs)</label>
@@ -104,9 +110,8 @@ include '../connection.php';
                     <div class="form-field">
                         <label for="payment_status">Payment Status</label>
                         <select id="payment_status" name="payment_status" required>
-                            <option value="">Select status</option>
+                            <option value="unpaid" selected>Unpaid</option>
                             <option value="paid">Paid</option>
-                            <option value="unpaid">Unpaid</option>
                         </select>
                     </div>
                     
