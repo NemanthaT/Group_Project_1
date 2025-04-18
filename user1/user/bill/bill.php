@@ -5,14 +5,48 @@ include '../session/session.php';
 // Get the logged-in client ID from session
 $client_id = $_SESSION['client_id'];
 
-// Fetch all bills for this client’s projects
+// Get filter parameters
+$status_filter = isset($_GET['status']) ? $_GET['status'] : 'all';
+$search_term = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Base SQL query
 $sql = "SELECT b.bill_id, b.Description, b.Bill_Date, b.Amount, b.status, b.project_id, p.project_name
         FROM bills b
         JOIN projects p ON b.project_id = p.project_id
-        WHERE p.client_id = ?
-        ORDER BY b.Bill_Date DESC";
+        WHERE p.client_id = ?";
+
+// Add status filter
+if ($status_filter != 'all') {
+    $sql .= " AND b.status = ?";
+}
+
+// Add search filter
+if (!empty($search_term)) {
+    $sql .= " AND (b.Description LIKE ? OR p.project_name LIKE ?)";
+}
+
+$sql .= " ORDER BY b.Bill_Date DESC";
+
+// Prepare statement
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $client_id);
+
+// Binding based on conditions
+if ($status_filter != 'all' && !empty($search_term)) {
+    // Both status filter and search term
+    $search_param = "%{$search_term}%";
+    $stmt->bind_param("isss", $client_id, $status_filter, $search_param, $search_param);
+} elseif ($status_filter != 'all') {
+    // Only status filter
+    $stmt->bind_param("is", $client_id, $status_filter);
+} elseif (!empty($search_term)) {
+    // Only search term
+    $search_param = "%{$search_term}%";
+    $stmt->bind_param("iss", $client_id, $search_param, $search_param);
+} else {
+    // No filters
+    $stmt->bind_param("i", $client_id);
+}
+
 $stmt->execute();
 $result = $stmt->get_result();
 
