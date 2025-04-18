@@ -152,6 +152,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <!-- Main Content -->
         <div class="main-content">
+        <div class="view-bill-section">
+
             <div class="edit-bill-section">
                 <div class="back-link">
                     <a href="Bill.php">← Back to Bills</a>
@@ -172,7 +174,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <p style="color:green;"><?php echo htmlspecialchars($success); ?></p>
                 </div>
                 <?php endif; ?>
-                <div>
                 <form action="editbill.php" method="POST" class="simple-form">
                     <input type="hidden" name="bill_id" value="<?php echo htmlspecialchars($bill_id); ?>">
                     
