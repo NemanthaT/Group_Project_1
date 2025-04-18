@@ -10,33 +10,37 @@ if (!isset($_SESSION['provider_id'])) {
 
 $providerId = $_SESSION['provider_id']; // Logged-in provider's ID
 
-// Handle CRUD operations
+// Fetch case study details
+$modalCase = null;
+if (isset($_GET['paper_id'])) {
+    $paperId = $_GET['paper_id'];
+    $stmt = $conn->prepare("SELECT * FROM researchpapers WHERE paper_id = ? AND provider_id = ?");
+    $stmt->bind_param("ii", $paperId, $providerId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $modalCase = $result->fetch_assoc();
+    $stmt->close();
+}
+
+if (!$modalCase) {
+    echo "Case study not found.";
+    exit;
+}
+
+// Handle case study update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['action'])) {
-        $action = $_POST['action'];
+    if (isset($_POST['action']) && $_POST['action'] === 'update') {
+        $paperId = $_POST['paper_id'];
+        $title = isset($_POST['title']) ? $_POST['title'] : '';
+        $description = isset($_POST['description']) ? $_POST['description'] : '';
 
-        // Delete a case study
-        if ($action === 'delete') {
-            $paperId = $_POST['paper_id'];
-
-            $stmt = $conn->prepare("DELETE FROM researchpapers WHERE paper_id = ? AND provider_id = ?");
-            $stmt->bind_param("ii", $paperId, $providerId);
-            $stmt->execute();
-        }
-
-        // Redirect back to avoid form resubmission issues
-        header("Location: " . $_SERVER['PHP_SELF']);
+        $stmt = $conn->prepare("UPDATE researchpapers SET title = ?, content = ? WHERE paper_id = ? AND provider_id = ?");
+        $stmt->bind_param("ssii", $title, $description, $paperId, $providerId);
+        $stmt->execute();
+        header("Location: KB.php");
         exit;
     }
 }
-
-// Fetch all published case studies for the logged-in provider
-$stmt = $conn->prepare("SELECT * FROM researchpapers WHERE provider_id = ? ORDER BY published_at DESC");
-$stmt->bind_param("i", $providerId);
-$stmt->execute();
-$result = $stmt->get_result();
-$caseStudies = $result->fetch_all(MYSQLI_ASSOC);
-$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +48,7 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSA Lanka Consultancy</title>
+    <title>View Case Study - EDSA Lanka Consultancy</title>
     <link rel="stylesheet" href="KB.css">
 </head>
 <body>
@@ -69,7 +73,6 @@ $stmt->close();
             <nav class="navbar">
                 <div class="calendar-icon">
                     <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
-                    <!-- Calendar Dropdown -->
                     <div id="calendarDropdown" class="calendar-dropdown">
                         <h3>Calendar</h3>
                         <div class="calendar-header">
@@ -104,38 +107,25 @@ $stmt->close();
         <!-- Main Content -->
         <div class="main-content">
             <div class="KB-section">
-                <h2>Case Studies and Knowledge Resources</h2>
+                <h2>View Case Study</h2>
 
-                <!-- Button to Create Case Study -->
-                <div class="case-study-actions">
-                    <a href="createKB.php" class="create-btn">Create Case Study</a>
-                </div>
+                <!-- Form for Viewing/Updating Case Study -->
+                <div class="case-study-form">
+                    <h3>View/Update Case Study</h3>
+                    <form method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="paper_id" id="paper_id" value="<?php echo $modalCase['paper_id']; ?>">
 
-                <!-- Published Case Studies Section -->
-                <div class="published-case-studies">
-                    <h3>Published Case Studies</h3>
-                    <div class="search-bar">
-                        <input type="text" id="searchInput" placeholder="Search case studies...">
-                        <button type="button" id="searchButton" onclick="searchCaseStudies()">Search</button>
-                    </div>
-                </div>        
-                <div class="published-case-studies-container">
-                    <?php foreach ($caseStudies as $case): ?>
-                        <div class="case-study-card" id="case-<?php echo $case['paper_id']; ?>">
-                            <!-- Display only the title -->
-                            <h4><?php echo htmlspecialchars($case['title']); ?></h4>
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($modalCase['title']); ?>" readonly>
 
-                            <!-- Buttons for actions -->
-                            <div class="case-study-buttons">
-                                <a href="ViewKB.php?paper_id=<?php echo $case['paper_id']; ?>" class="view-btn">View</a>
-                                <form method="POST" style="display:inline;" onsubmit="return confirmDelete(<?php echo $case['paper_id']; ?>);">
-                                    <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="paper_id" value="<?php echo $case['paper_id']; ?>">
-                                    <button type="submit" class="delete-btn">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" rows="5" readonly><?php echo htmlspecialchars($modalCase['content']); ?></textarea>
+
+                        <button type="button" onclick="toggleEdit()">Edit</button>
+                        <button type="submit">Update Case Study</button>
+                        <a href="KB.php" class="cancel-btn">Cancel</a>
+                    </form>
                 </div>
             </div>
         </div>
