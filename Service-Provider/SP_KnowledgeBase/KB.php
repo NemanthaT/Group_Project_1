@@ -117,6 +117,7 @@ $stmt->close();
                     <div class="search-bar">
                         <input type="text" id="searchInput" placeholder="Search case studies...">
                         <button type="button" id="searchButton" onclick="searchCaseStudies()">Search</button>
+                        <button type="button" id="clearButton" class="clear-btn" onclick="clearSearch()">Clear</button>
                     </div>
                 </div>        
                 <div class="published-case-studies-container">

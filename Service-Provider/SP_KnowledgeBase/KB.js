@@ -13,6 +13,15 @@ function searchCaseStudies() {
     });
 }
 
+function clearSearch() {
+    const input = document.getElementById('searchInput');
+    const caseStudies = document.querySelectorAll('.case-study-card');
+    input.value = ''; // Clear the search input
+    caseStudies.forEach(study => {
+        study.style.display = 'flex'; // Show all case studies
+    });
+}
+
 // Confirm delete before submitting
 function confirmDelete(paperId) {
     if (confirm("Are you sure you want to delete this case study?")) {
