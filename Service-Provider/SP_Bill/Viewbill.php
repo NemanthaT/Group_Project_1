@@ -1,6 +1,50 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+
+// Check if bill_id is provided in the URL
+if (!isset($_GET['bill_id']) || empty($_GET['bill_id'])) {
+    // Redirect to bills page if no bill_id provided
+    header("Location: Bill.php");
+    exit;
+}
+
+$bill_id = $_GET['bill_id'];
+
+// Fetch bill details with project and client information
+$query = "SELECT b.*, p.project_name, p.project_description, c.client_id 
+          FROM bills b
+          JOIN projects p ON b.project_id = p.project_id
+          JOIN clients c ON p.client_id = c.client_id
+          WHERE b.bill_id = ?";
+
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $bill_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    // Bill not found
+    header("Location: Bill.php?error=bill_not_found");
+    exit;
+}
+
+$bill = $result->fetch_assoc();
+
+// Format the bill date
+$bill_date = date("F j, Y", strtotime($bill['Bill_Date']));
+
+// Calculate due date (14 days after bill date)
+$due_date = date("F j, Y", strtotime($bill['Bill_Date'] . " +14 days"));
+
+// Format the invoice number
+$invoice_number = 'ED-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_pad($bill_id, 4, '0', STR_PAD_LEFT);
+
+// VAT calculation (15% VAT)
+$vat_rate = 0.15;
+$subtotal = $bill['Amount'];
+$vat_amount = $subtotal * $vat_rate;
+$total_due = $subtotal + $vat_amount;
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +73,8 @@ include '../connection.php';
             </ul>
         </div>
 
-                <!-- Navbar -->
-                <header>
+        <!-- Navbar -->
+        <header>
             <nav class="navbar">
                 <div class="calendar-icon">
                     <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
@@ -66,58 +110,67 @@ include '../connection.php';
             </nav>
         </header>
 
-            <!-- Main Content -->
-            <div class="main-content">
-                <div class="view-bill-section">
-                    <center><h2>View Bill</h2></center>
-                    <div class="boxcontent"> 
-    <div class="invoice-header">
-        <div class="company-info">
-            <h1>EDSA Lanka Consultancy</h1>
-            <p>No. 45, Lotus Road<br>Colombo 01, Sri Lanka</p>
-            <p>Tel: +94 11 234 5678</p>
-        </div>
-        <div class="invoice-details">
-            <h2>INVOICE</h2>
-            <p>Invoice Number: SD-2024-1127</p>
-            <p>Date: November 27, 2024</p>
-            <p>Due Date: December 15, 2024</p>
-        </div>
-    </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="view-bill-section">
+                <div class="back-link">
+                    <a href="Bill.php">← Back to Bills</a>
+                </div>
+                <center><h2>View Bill</h2></center>
+                <div class="boxcontent"> 
+                    <div class="invoice-header">
+                        <div class="company-info">
+                            <h1>EDSA Lanka Consultancy</h1>
+                            <p>No. 45, Lotus Road<br>Colombo 01, Sri Lanka</p>
+                            <p>Tel: +94 11 234 5678</p>
+                        </div>
+                        <div class="invoice-details">
+                            <h2>INVOICE</h2>
+                            <p>Invoice Number: <?php echo $invoice_number; ?></p>
+                            <p>Date: <?php echo $bill_date; ?></p>
+                            <p>Due Date: <?php echo $due_date; ?></p>
+                            <p>Status: <span class="<?php echo strtolower($bill['status']); ?>"><?php echo ucfirst($bill['status']); ?></span></p>
+                        </div>
+                    </div>
 
-    <div class="bill-to">
-        <h3>Bill To:</h3>
-        <p>Priyantha Gunawardena<br>
-        456 Galle Road<br>
-        Ratmalana, Western Province 10380</p>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th style="width:20%">Amount (LKR)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Advance</td>
-                <td>19,000</td>
-            </tr>
-        </tbody>
-    </table>
+                    <div class="bill-to">
+                        <h3>Bill To:</h3>
+                        <p>Client ID: <?php echo htmlspecialchars($bill['client_id']); ?><br>
+                        Project: <?php echo htmlspecialchars($bill['project_name']); ?><br>
+                        Project ID: <?php echo htmlspecialchars($bill['project_id']); ?></p>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th style="width:20%">Amount (LKR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><?php echo htmlspecialchars($bill['Description']); ?></td>
+                                <td><?php echo number_format($subtotal, 2); ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-    <div class="total-section">
-        <p>Subtotal: 19,000 LKR</p>
-        <p>VAT (15%): 2,850 LKR</p>
-        <strong>Total Due: 21,850 LKR</strong>
-    </div>
-    <div>
-        <button class="pay-button">Edit</button>
-    </div>
-    </div>
+                    <div class="total-section">
+                        <p>Subtotal: <?php echo number_format($subtotal, 2); ?> LKR</p>
+                        <p>VAT (15%): <?php echo number_format($vat_amount, 2); ?> LKR</p>
+                        <strong>Total Due: <?php echo number_format($total_due, 2); ?> LKR</strong>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <a href="editbill.php?bill_id=<?php echo $bill_id; ?>"><button class="pay-button">Edit</button></a>
+                        <?php if ($bill['status'] === 'unpaid'): ?>
+                        <a href="process_payment.php?bill_id=<?php echo $bill_id; ?>"><button class="pay-button green">Mark as Paid</button></a>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
-                </div>    
-         
+        </div>
+    </div>
     <script src="#"></script>
 </body>
-</html
+</html>
