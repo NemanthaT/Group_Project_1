@@ -15,48 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
 
-        // Create a new case study
-        if ($action === 'create') {
-            $title = $_POST['title'];
-            $description = $_POST['description'];
-
-            // File upload handling
-            $uploadDir = '../uploads/';
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0777, true);
-            }
-
-            $filePath = null;
-            if (!empty($_FILES['fileUpload']['name'])) {
-                $fileName = uniqid() . '_' . basename($_FILES['fileUpload']['name']);
-                $fileTmpName = $_FILES['fileUpload']['tmp_name'];
-                $filePath = $uploadDir . $fileName;
-                if (move_uploaded_file($fileTmpName, $filePath)) {
-                    echo "File uploaded successfully: " . htmlspecialchars($filePath);
-                } else {
-                    echo "Error uploading file.";
-                }
-            }
-
-            // Ensure providerId and other fields are valid
-            if (!empty($providerId) && !empty($title) && !empty($description)) {
-                $stmt = $conn->prepare("INSERT INTO researchpapers (provider_id, title, content, published_at) VALUES (?, ?, ?, NOW())");
-                $stmt->bind_param("iss", $providerId, $title, $description);
-                $stmt->execute();
-            }
-        }
-
-        // Update an existing case study
-        if ($action === 'update') {
-            $paperId = $_POST['paper_id'];
-            $title = isset($_POST['title']) ? $_POST['title'] : '';
-            $description = isset($_POST['description']) ? $_POST['description'] : '';
-
-            $stmt = $conn->prepare("UPDATE researchpapers SET title = ?, content = ? WHERE paper_id = ? AND provider_id = ?");
-            $stmt->bind_param("ssii", $title, $description, $paperId, $providerId);
-            $stmt->execute();
-        }
-
         // Delete a case study
         if ($action === 'delete') {
             $paperId = $_POST['paper_id'];
@@ -79,20 +37,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $caseStudies = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
-
-// If the case ID is set in the URL, fetch details for the modal form
-$modalCase = null;
-if (isset($_GET['paper_id'])) {
-    $paperId = $_GET['paper_id'];
-    $stmt = $conn->prepare("SELECT * FROM researchpapers WHERE paper_id = ? AND provider_id = ?");
-    $stmt->bind_param("ii", $paperId, $providerId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $modalCase = $result->fetch_assoc();
-    $stmt->close();
-}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -119,8 +64,8 @@ if (isset($_GET['paper_id'])) {
                 <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
             </ul>
         </div>
-            <!-- Navbar -->
-            <header>
+        <!-- Navbar -->
+        <header>
             <nav class="navbar">
                 <div class="calendar-icon">
                     <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
@@ -128,9 +73,9 @@ if (isset($_GET['paper_id'])) {
                     <div id="calendarDropdown" class="calendar-dropdown">
                         <h3>Calendar</h3>
                         <div class="calendar-header">
-                            <button id="prevMonth">&lt;</button>
+                            <button id="prevMonth"><</button>
                             <span id="currentMonth">March 2025</span>
-                            <button id="nextMonth">&gt;</button>
+                            <button id="nextMonth">></button>
                         </div>
                         <div class="calendar-grid">
                             <div class="weekdays">
@@ -156,36 +101,23 @@ if (isset($_GET['paper_id'])) {
             </nav>
         </header>
 
-            <!-- Main Content -->
-            <div class="main-content">
+        <!-- Main Content -->
+        <div class="main-content">
             <div class="KB-section">
                 <h2>Case Studies and Knowledge Resources</h2>
 
-                <!-- Form for Adding Case Studies -->
-                <div class="case-study-form">
-                    <h3>Create a New Case Study</h3>
-                    <form method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="action" value="create">
-                        <label for="title">Title:</label>
-                        <input type="text" id="title" name="title" placeholder="Enter case study title" required>
-
-                        <label for="description">Description:</label>
-                        <textarea id="description" name="description" rows="5" placeholder="Enter case study description" required></textarea>
-
-                        <!-- <label for="fileUpload">Upload File:</label>
-                        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.docx,.txt"> -->
-
-                        <button type="submit">Create Case Study</button>
-                    </form>
+                <!-- Button to Create Case Study -->
+                <div class="case-study-actions">
+                    <a href="createKB.php" class="create-btn">Create Case Study</a>
                 </div>
 
                 <!-- Published Case Studies Section -->
                 <div class="published-case-studies">
                     <h3>Published Case Studies</h3>
-                        <div class="search-bar">
-                            <input type="text" id="searchInput" placeholder="Search case studies...">
-                                <button type="button" id="searchButton" onclick="searchCaseStudies()">Search</button>
-                        </div>
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Search case studies...">
+                        <button type="button" id="searchButton" onclick="searchCaseStudies()">Search</button>
+                    </div>
                 </div>        
                 <div class="published-case-studies-container">
                     <?php foreach ($caseStudies as $case): ?>
@@ -195,7 +127,7 @@ if (isset($_GET['paper_id'])) {
 
                             <!-- Buttons for actions -->
                             <div class="case-study-buttons">
-                                <a href="?paper_id=<?php echo $case['paper_id']; ?>" class="view-btn">View</a>
+                                <a href="ViewKB.php?paper_id=<?php echo $case['paper_id']; ?>" class="view-btn">View</a>
                                 <form method="POST" style="display:inline;" onsubmit="return confirmDelete(<?php echo $case['paper_id']; ?>);">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="paper_id" value="<?php echo $case['paper_id']; ?>">
@@ -206,31 +138,9 @@ if (isset($_GET['paper_id'])) {
                     <?php endforeach; ?>
                 </div>
             </div>
-
-            <!-- Modal for View/Edit (only show if paper_id is present) -->
-            <?php if ($modalCase): ?>
-            <div class="modal-overlay" id="modalOverlay" style="display:block;"></div>
-            <div class="modal" id="modalForm" style="display:block;">
-                <h3>View/Update Case Study</h3>
-                <form method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="action" value="update">
-                    <input type="hidden" name="paper_id" id="paper_id" value="<?php echo $modalCase['paper_id']; ?>">
-
-                    <label for="modalTitle">Title:</label>
-                    <input type="text" id="modalTitle" name="title" value="<?php echo htmlspecialchars($modalCase['title']); ?>" readonly>
-
-                    <label for="modalDescription">Description:</label>
-                    <textarea id="modalDescription" name="description" rows="5" readonly><?php echo htmlspecialchars($modalCase['content']); ?></textarea>
-
-                    <button type="button" onclick="toggleEdit()">Edit</button>
-                    <button type="submit">Update Case Study</button>
-                    <button type="button" onclick="closeModal()">Close</button>
-                </form>
-            </div>
-            <?php endif; ?>
         </div>
-        </div>
+    </div>
 
-        <script src="KB.js"></script>        
-    </body>
+    <script src="KB.js"></script>        
+</body>
 </html>
