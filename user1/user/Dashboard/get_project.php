@@ -27,9 +27,4 @@ if ($result === false) {
 }
 
 $conn->close();
-
-
-
 ?>
-
-`
