@@ -4,7 +4,6 @@ include '../connection.php';
 
 // Check if bill_id is provided in the URL
 if (!isset($_GET['bill_id']) || empty($_GET['bill_id'])) {
-    // Redirect to bills page if no bill_id provided
     header("Location: Bill.php");
     exit;
 }
@@ -12,11 +11,15 @@ if (!isset($_GET['bill_id']) || empty($_GET['bill_id'])) {
 $bill_id = $_GET['bill_id'];
 
 // Fetch bill details with project and client information
-$query = "SELECT b.*, p.*, c.*
-          FROM bills b
-          JOIN projects p ON b.project_id = p.project_id
-          JOIN clients c ON p.client_id = c.client_id
-          WHERE b.bill_id = ?";
+$query = "SELECT 
+            b.*, 
+            p.project_name, 
+            c.full_name AS client_name, 
+            c.phone AS client_phone
+        FROM bills b
+        JOIN projects p ON b.project_id = p.project_id
+        JOIN clients c ON p.client_id = c.client_id
+        WHERE b.bill_id = ?";
 
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $bill_id);
@@ -24,7 +27,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    // Bill not found
     header("Location: Bill.php?error=bill_not_found");
     exit;
 }
@@ -40,11 +42,9 @@ $due_date = date("F j, Y", strtotime($bill['Bill_Date'] . " +14 days"));
 // Format the invoice number
 $invoice_number = 'ED-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_pad($bill_id, 4, '0', STR_PAD_LEFT);
 
-// VAT calculation (15% VAT)
-$vat_rate = 0.15;
+// Set subtotal and total due (no VAT)
 $subtotal = $bill['Amount'];
-$vat_amount = $subtotal * $vat_rate;
-$total_due = $subtotal + $vat_amount;
+$total_due = $subtotal;
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +78,6 @@ $total_due = $subtotal + $vat_amount;
             <nav class="navbar">
                 <div class="calendar-icon">
                     <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
-                    <!-- Calendar Dropdown -->
                     <div id="calendarDropdown" class="calendar-dropdown">
                         <h3>Calendar</h3>
                         <div class="calendar-header">
@@ -135,11 +134,13 @@ $total_due = $subtotal + $vat_amount;
 
                     <div class="bill-to">
                         <h3>Bill To:</h3>
-                        <p>Client ID: <?php echo htmlspecialchars($bill['client_id']); ?><br>
-                        Project: <?php echo htmlspecialchars($bill['project_name']); ?><br>
-                        Project ID: <?php echo htmlspecialchars($bill['project_id']); ?></p>
+                        <p>
+                            <?php echo htmlspecialchars($bill['client_name']); ?><br>
+                            Contact: <?php echo htmlspecialchars($bill['client_phone']); ?><br>
+                            Project: <?php echo htmlspecialchars($bill['project_name']); ?><br>
+                            Project ID: <?php echo htmlspecialchars($bill['project_id']); ?>
+                        </p>
                     </div>
-                    
                     <table>
                         <thead>
                             <tr>
@@ -156,8 +157,6 @@ $total_due = $subtotal + $vat_amount;
                     </table>
 
                     <div class="total-section">
-                        <p>Subtotal: <?php echo number_format($subtotal, 2); ?> LKR</p>
-                        <p>VAT (15%): <?php echo number_format($vat_amount, 2); ?> LKR</p>
                         <strong>Total Due: <?php echo number_format($total_due, 2); ?> LKR</strong>
                     </div>
                     
