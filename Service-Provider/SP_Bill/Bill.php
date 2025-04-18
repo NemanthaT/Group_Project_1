@@ -105,7 +105,6 @@ $result = $stmt->get_result();
         <!-- Main Content -->
         <div class="main-content">
         <?php
-        echo "<div class='welcome-message'>Welcome, " . htmlspecialchars($_SESSION['provider_id']) . "</div>";
                 if (isset($_SESSION['bill_errors'])) {
                     echo "<div class='create-bill-section' style='background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 15px;'>";
                     echo "<p style='margin: 0; font-size: 14px;'>" . (is_array($_SESSION['bill_errors']) ? implode(', ', $_SESSION['bill_errors']) : $_SESSION['bill_errors']) . "</p>";
