@@ -252,19 +252,17 @@ body {
 }
 
 .message-section {
-    margin: auto;
-    max-width: 100%;
-    padding: 30px; /* Match KB-section */
-    background-color: white;
-    border-radius: 16px; /* Match KB-section */
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.06); /* Match KB-section */
+    margin: 0 auto;
+    max-width: 1200px; /* Constrain width for larger screens */
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Softer shadow */
     width: 100%;
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 80px); /* Adjusted for better fit */
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e0 #f7fafc; /* Consistent with KB-section */
+    gap: 20px; /* Space between elements */
 }
 
 .message-section::-webkit-scrollbar {
