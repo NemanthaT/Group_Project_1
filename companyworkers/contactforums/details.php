@@ -1,5 +1,4 @@
 <?php
-// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -7,12 +6,18 @@ $dbname = "edsalanka";
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
 
-// Fetch contact forms with client names, latest first
-$sql = "SELECT cf.contact_id, cf.client_id, cf.subject, cf.created_at, c.full_name 
-        FROM contactforms cf 
-        LEFT JOIN clients c ON cf.client_id = c.client_id 
-        ORDER BY cf.created_at DESC";
-$result = $conn->query($sql);
+$contact_id = isset($_GET['contact_id']) ? intval($_GET['contact_id']) : 0;
+$form = null;
+if ($contact_id > 0) {
+    $sql = "SELECT cf.contact_id, cf.client_id, cf.subject, cf.message, cf.created_at, c.full_name 
+            FROM contactforms cf 
+            LEFT JOIN clients c ON cf.client_id = c.client_id 
+            WHERE cf.contact_id = $contact_id";
+    $result = $conn->query($sql);
+    if ($result && $result->num_rows > 0) {
+        $form = $result->fetch_assoc();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +25,7 @@ $result = $conn->query($sql);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Service Request Count</title>
-  <link rel="stylesheet" href="contactforums.css?version=1">
+  <link rel="stylesheet" href="contactforums.css?version=3">
   <link rel="stylesheet" href="../sidebar.css?version=1">
 </head>
 <body>
@@ -29,11 +34,11 @@ $result = $conn->query($sql);
     <div class="sidebar">
       <div class="logo">
         <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-      </div> 
+      </div>
 
       <ul class="menu">
         <li>
-          <a href="../dashboard/dashboard.php">
+            <a href="../dashboard/dashboard.php">
             <button>
               <img src="../images/dashboard.png" alt="Dashboard">
               Dashboard
@@ -87,8 +92,8 @@ $result = $conn->query($sql);
       <!-- Navbar -->
       <div class="navbar">
         <div class="controls card1">
-          <h1>Contact Forms</h1>
-      </div>
+            <h1>Contact Form Details</h1>
+        </div>
         <div class="profile">
           <a href="../SP_Profile/Profile.html">
             <img src="../images/user.png" alt="Profile">
@@ -97,34 +102,50 @@ $result = $conn->query($sql);
         <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
       <div class="main-container">
-        <?php
-        if ($result && $result->num_rows > 0) {
-          $count = 0;
-          echo '<div class="card-container">';
-          while($row = $result->fetch_assoc()) {
-            if ($count > 0 && $count % 4 == 0) {
-              echo '</div><div class="card-container">';
-            }
-            ?>
-            <div class="card">
-              <a href="details.php?contact_id=<?php echo urlencode($row['contact_id']); ?>">
-                <h3>Contact Form #<?php echo htmlspecialchars($row['contact_id']); ?></h3>
-                <p><strong>From:</strong> <?php echo htmlspecialchars($row['full_name'] ?? 'Unknown'); ?></p>
-                <p><strong>Subject:</strong> <?php echo htmlspecialchars($row['subject']); ?></p>
-                <p><strong>Date:</strong> <?php echo htmlspecialchars(substr($row['created_at'], 0, 10)); ?></p>
-              </a>
+        <?php if ($form): ?>
+        <div class="details-container">
+          <div class="form-header">
+            <div class="form-field">
+              <label for="contact_id">Contact ID</label>
+              <input type="text" id="contact_id" name="contact_id" value="<?php echo htmlspecialchars($form['contact_id']); ?>" readonly>
             </div>
-            <?php
-            $count++;
-          }
-          echo '</div>';
-        } else {
-          echo '<div class="no-forms"><p>No contact forms found</p></div>';
-        }
-        ?>
+            <div class="form-field">
+              <label for="Client_ID">Client Name</label>
+              <input type="text" id="Client_ID" name="Client_ID" value="<?php echo htmlspecialchars($form['full_name'] ?? 'Unknown'); ?>" readonly>
+            </div>
+            <div class="form-field">
+              <label for="Date">Date</label>
+              <input type="text" id="Date" name="Date" value="<?php echo htmlspecialchars(substr($form['created_at'], 0, 10)); ?>" readonly>
+            </div>
+          </div>
+
+          <div class="message-section">
+            <div class="message-box">
+              <label for="message">Customer Message</label>
+              <textarea id="message" name="message" readonly><?php echo htmlspecialchars($form['message']); ?></textarea>
+            </div>
+            
+            <div class="reply-box">
+              <label for="reply">Your Reply</label>
+              <textarea id="reply" name="reply" placeholder="Type your reply here..." required></textarea>
+            </div>
+          </div>
+
+          <div class="button-section">
+            <button type="submit" class="submit-button" name="submit">Send Reply</button>
+          </div>
+        </div>
+        <?php else: ?>
+          <div class="error-message">
+            <p>No contact form found.</p>
+            <a href="contactforum.php" class="back-button">Back to Contact Forms</a>
+          </div>
+        <?php endif; $conn->close(); ?>
       </div>
     </div>
   </div>
+
   <script src="../sidebar.js"></script>
+
 </body>
 </html>
