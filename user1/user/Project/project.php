@@ -115,7 +115,7 @@ $stmt->close();
             
                 <div class="project-card">
                 <div class="project-header">
-                    <span class="project-id"><?php echo htmlspecialchars($row['project_id']); ?></span>
+                    <span class="project-id">P <?php echo htmlspecialchars($row['project_id']); ?></span>
                     <span class="status <?php echo $row['project_status'] === 'Ongoing' ? 'green' : 'red'; ?>">
                         <?php echo htmlspecialchars($row['project_status']); ?>
                     </span>

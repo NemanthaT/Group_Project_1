@@ -1,24 +1,31 @@
 <?php
 include '../../connect/connect.php';
 
+$CLIENT_ID = $_SESSION['client_id'];
+
 // Query to get upcoming appointments
 $sql = "SELECT a.appointment_date, a.status, a.service_type, c.full_name AS client_name
 FROM appointments a
 JOIN clients c ON a.client_id = c.client_id
 WHERE a.appointment_date >= NOW() 
-AND a.status != 'Deleted'
+AND a.status != 'Deleted' and a.client_id = ?
 ORDER BY a.appointment_date ASC
 LIMIT 4";
 
-$result = $conn->query($sql);
+
+$result = $conn->prepare($sql);
+$result->bind_param("i", $CLIENT_ID);
+$result->execute();
+$res = $result->get_result();
+
 
 // Check if query was successful
-if ($result === false) {
+if ($res === false) {
     echo "Error: " . $conn->error;
 } else {
     // Now it's safe to check num_rows
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
+    if ($res->num_rows > 0) {
+        while($row = $res->fetch_assoc()) {
             // Format date
             $appointment_date = date("d M, g:i A", strtotime($row["appointment_date"]));
             

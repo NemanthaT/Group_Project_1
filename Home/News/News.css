@@ -5,7 +5,10 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-
+main{
+    width: 100vw;
+    height: 100vh;
+}
 /* Navbar */
 .navbar {
     font-size: 1.3rem;
@@ -93,62 +96,6 @@ li.Login a, li.Register a {
 
 /* Main Section */
 /* News Section */
-.news {
-    padding: 20px;
-    background-color: #f9f9f9;
-}
-
-#news{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-.news-heading {
-    font-size: 2em;
-    color: #18A0FB;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.news-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    height: 200px;
-}
-
-.news-image {
-    width: 200px;
-    height: 150px;
-    background-color: #ddd;
-    border-radius: 10px;
-}
-
-.news-content {
-    flex: 1;
-}
-
-.news-content h2 {
-    font-size: 1.5em;
-    color: #18A0FB;
-    margin-bottom: 10px;
-}
-
-.news-content p {
-    font-size: 1em;
-    line-height: 1.5;
-    color: #333;
-    margin-bottom: 10px;
-}
 
 /* Responsive Design for News Section */
 @media (max-width: 900px) {
@@ -306,10 +253,179 @@ footer {
     }
 }
 
+.news {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+#news{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.news-heading {
+    font-size: 2em;
+    color: #18A0FB;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.news-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 350px;
+}
+
+.news-image {
+    margin-top: 10px;
+    width: 300px;
+    height: 200px;
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+.news-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.news-content h2 {
+    font-size: 1.5em;
+    color: #18A0FB;
+    margin-bottom: 10px;
+}
+
+.news-content p {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#newsContent h2{
+    margin: 20px 0 20px  0;
+}
+
+#newsContent p{
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
 #nHeading{
     font-size: 2.5em;
     color: #333;
     margin-bottom: 20px;
     text-transform: uppercase;
     text-align: center;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    width: 10%;
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination-button:hover {
+    background-color: #007bff;
+}
+
+.pagination-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#pageInfo {
+    font-weight: bold;
+}
+
+#view{
+    z-index: 4;
+    display: none;
+    position: fixed;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#seeMBtn{
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#seeMBtn:hover{
+    background-color: #007bff;
+}
+
+#closeView{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-size: 1.4rem;
+    font-weight: bold;
+    width: 26px;
+    height: 26px;
+    margin-top: 1%;
+    margin-left: 96%;
+    margin-bottom: 1%;
+}
+
+#closeView:hover{
+    color: white;
+    background-color: red;
+    border: red;
+}
+
+#newsView {
+    background-color: white;
+    color: #000;
+    z-index: 4;
+    height: 50vh;
+    width: 40vw;
+    position: absolute;
+    border-radius: 10px;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Optional: darkens background */
+    z-index: 3; /* Must be higher than the rest of your page */
+    pointer-events: all; /* Ensures it blocks clicks */
 }

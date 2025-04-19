@@ -15,15 +15,17 @@
                 <div class="header_logo">
                         <img src="img/logo.png" alt="EDSA Logo">
                 </div>
-                <ul class="header_item">
-                        <li><a href="../Homepage/homePage.php" target="Homepage">Home</a></li>
-                        <li><a href="../Our_Services/OS.php" target="Homepage">Our Services</a></li>
-                        <li><a href="../News/News.php" target="Homepage">News</a></li>
-                        <li><a href="../Knowledge_Base/KB.php" target="Homepage">Knowledge Base</a></li>
-                        <li><a href="../About_Us/AU.php" target="Homepage">About Us</a></li>
-                        <!--<li><a href="#">Community</a></li>-->
-                        <li><a href="../Contact_Us/CU.php" target="Homepage">Contact Us</a></li>
-                </ul>
+                <div>
+                    <ul class="header_item">
+                            <li><a href="../Homepage/homePage.php" target="Homepage">Home</a></li>
+                            <li><a href="../Our_Services/OS.php" target="Homepage">Our Services</a></li>
+                            <li><a href="../News/News.php" target="Homepage">News</a></li>
+                            <li><a href="../Knowledge_Base/KB.php" target="Homepage">Knowledge Base</a></li>
+                            <li><a href="../About_Us/AU.php" target="Homepage">About Us</a></li>
+                            <!--<li><a href="#">Community</a></li>-->
+                            <li><a href="../Contact_Us/CU.php" target="Homepage">Contact Us</a></li>
+                    </ul>
+                </div>
                 <a href="../../Login/login.php" class="logout">login</a>
             </div>
         </nav>
