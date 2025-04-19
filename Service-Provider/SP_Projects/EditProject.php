@@ -191,6 +191,7 @@
         <!-- Main Content -->
         <div class="main-content">
             <div class="project-section">
+            <a href="Project.php" class="back-button">← Back to Projects</a>
                 <!-- Project Header -->
                 <div class="project-header-edit">
                     <div>
