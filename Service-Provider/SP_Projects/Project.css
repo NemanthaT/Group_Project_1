@@ -281,10 +281,20 @@ body {
 }
 
 /* Project.php */
-.center {
+.filter-group {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between; /* Pushes filter-controls to the left and add buttons to the right */
+  gap: 10px;
+  width: 100%;
+  flex-wrap: nowrap; /* Keep elements in one line */
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Spacing between elements */
+  flex: 1; /* Allow filter-controls to take up remaining space */
 }
 
 .filter-group select,
@@ -293,7 +303,8 @@ body {
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 2.2vh;
-  min-width: 200px;
+  flex: 1 1 150px; /* Flexible width, minimum 150px */
+  max-width: 200px; /* Cap the maximum width */
   transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
@@ -307,12 +318,12 @@ body {
 }
 
 .search-group input {
-  width: 300px;
+  flex: 2 1 200px; /* Slightly larger than select, minimum 200px */
+  max-width: 300px; /* Cap the maximum width */
 }
 
 .search-button {
-  width: 100px;
-  padding: 10px 20px;
+  padding: 10px 15px; /* Consistent padding */
   background: #18A0FB;
   color: white;
   border: none;
@@ -321,33 +332,34 @@ body {
   font-size: 2.2vh;
   font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 0 0 auto; /* Don't grow or shrink */
+  width: 110px; /* Fixed width for consistency */
 }
 
 .search-button:hover {
   background-color: #0c8de4;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(24, 160, 251, 0.2);
 }
 
 .clear-button {
   background-color: #6b7280;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-radius: 8px;
   cursor: pointer;
-  margin-right: 10px;
   font-size: 2.2vh;
   font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(107, 114, 128, 0.2);
+  flex: 0 0 auto; /* Don't grow or shrink */
+  width: 90px; /* Fixed width for consistency */
 }
 
 .clear-button:hover {
   background-color: #4b5563;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(107, 114, 128, 0.2);
 }
 
 .clear-button:active {
@@ -362,17 +374,22 @@ body {
   grid-column: 1 / -1;
 }
 
+.add-project-button {
+  margin-left: auto; /* Keeps the button on the right */
+  flex: 0 0 auto; /* Don't grow or shrink */
+}
+
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Use auto-fit to collapse empty cells */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-auto-rows: minmax(300px, auto);
   gap: 20px;
   padding: 2.5vh 10px;
-  width: 100%; /* Full width to remove centering margin */
-  margin: 0; /* Remove auto margin */
+  width: 100%;
+  margin: 0;
   overflow-y: auto;
   align-items: stretch;
-  justify-content: space-between; /* Distribute cards evenly across the row */
+  justify-content: space-between;
 }
 
 .projects-grid::-webkit-scrollbar {
@@ -397,7 +414,7 @@ body {
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  min-height: 300px;
+  min-height: 200px;
   height: 100%;
   width: 100%;
   max-width: 350px;
@@ -474,13 +491,12 @@ body {
   font-size: 2.2vh;
   font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(24, 160, 251, 0.2);
 }
 
 .view-button:hover {
   background: #0c8de4;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(24, 160, 251, 0.2);
 }
 
 /* AddProject.php */
