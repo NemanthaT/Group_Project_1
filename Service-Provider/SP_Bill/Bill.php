@@ -146,7 +146,7 @@ $result = $stmt->get_result();
                             echo            '<p><strong>Project ID:</strong> ' . htmlspecialchars($row['project_id']) . '</p>';
                             echo        '</div>';
                             echo        '<a href="Viewbill.php?bill_id=' . $row['bill_id'] . '">';
-                            echo            '<button class="pay-button green">View</button>';
+                            echo            '<button class="pay-button">View</button>';
                             echo        '</a>';
                             echo    '</div>';
                             echo '</div>';
