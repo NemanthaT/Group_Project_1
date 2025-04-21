@@ -1,5 +1,5 @@
 <?php
-    require_once('../../config/config.php');
+    require_once('../../../config/config.php');
     require_once('../../../sendemail/send.php');
     header('Content-Type: application/json'); // Set JSON response
 
