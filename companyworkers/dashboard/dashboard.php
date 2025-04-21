@@ -14,199 +14,238 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | EDSA Lanka Consultancy</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../sidebar.css">
-  <link rel="stylesheet" href="dashboard.css">
-  <style>
-    /* Add this style block to make the content black */
-    .main-header, .sidebar {
-      color: black;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDSA Lanka Consultancy</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <script src="dashboard.js"></script>
 </head>
 <body>
-  <div class="container">
-    <!-- Updated Header -->
-    <header class="main-header">
-      <div class="logo-section">
-        <img src="../images/logo.png" alt="EDSA Lanka Logo">
-        <h1>EDSA Lanka Consultancy</h1>
-      </div>
-      <div class="header-right">
-        <img src="../images/notification.png" alt="Notifications" class="notification-icon">
-        <img src="../images/user.png" alt="Profile" class="profile-icon">
-        <a href="../../Login/Logout.php" class="logout-btn">Logout</a>
-      </div>
+    <!-- Sidebar Toggle Button (for mobile) -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        ☰
+    </button>
+    
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <div style="width: 40px; height: 40px; background-color: #4f46e5; display: flex; align-items: center; justify-content: center; color: white; border-radius: 5px; margin-right: 15px;">E</div>
+            <span>EDSA Lanka</span>
+        </div>
+        <div class="sidebar-menu">
+            <a href="dashboard.html">
+                <div class="menu-item active">
+                    <span class="menu-icon">📊</span>
+                    <span>Dashboard</span>
+                </div>
+            </a>
+            <a href="../acceptclient/acceptclient.php">
+                <div class="menu-item">
+                    <span class="menu-icon">👥</span>
+                    <span>Accept Clients</span>
+                </div>
+            </a>
+            <a href="../contactforums/contactforum.php">
+                <div class="menu-item">
+                    <span class="menu-icon">💬</span>
+                    <span>Contact Forums</span>
+                </div>
+            </a>
+            <a href="../updateknowlgebase/initial.php">
+                <div class="menu-item">
+                    <span class="menu-icon">📚</span>
+                    <span>Knowledge Base</span>
+                </div>
+            </a>
+            <a href="../updatenews/initial.php">
+                <div class="menu-item">
+                    <span class="menu-icon">📰</span>
+                    <span>Update News</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-text">EDSA Lanka Consultancy</div>
+        <div class="user-area">
+          <p>Dashboard</p>
+            <div class="notification">
+                🔔
+                <span class="notification-count">3</span>
+            </div>
+            <div class="user-profile">
+                <div style="width: 40px; height: 40px; background-color: #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                    <?php echo strtoupper(substr($fullName, 0, 1)); ?>
+                </div>
+                <span><?php echo htmlspecialchars($fullName); ?></span>
+            </div>
+            <form action="../../Login/Logout.php" method="post" style="display:inline;">
+                <button class="logout-btn" type="submit">Logout</button>
+            </form>
+        </div>
     </header>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="logo">
-        <img src="../images/logo.png" alt="EDSA Lanka Logo">
-      </div>
-      <ul class="menu">
-        <li>
-          <a href="../dashboard/dashboard.php">
-            <button class="active">
-              <img src="../images/dashboard.png" alt="Dashboard">
-              Dashboard
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../acceptclient/acceptclient.php">
-            <button>
-              <img src="../images/dashboard.png" alt="Dashboard">
-              Accept Clients
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../servicerequest/servicerequest.php">
-            <button>
-              <img src="../images/service.jpg" alt="Service Requests">
-              Service Requests
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../contactforums/contactforum.html">
-            <button>
-              <img src="../images/contact forms.jpg" alt="Contact Forums">
-              Contact Forums
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateevents/updateevents.php">
-            <button>
-              <img src="../images/events.jpg" alt="Update Events">
-              Update Events
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateknowlgebase/initial.php">
-            <button>
-              <img src="../images/knowlegdebase.jpg" alt="Knowledge Base">
-              Knowledge Base
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updatenews/initial.php">
-            <button>
-              <img src="../images/news.jpg" alt="Update News">
-              Update News
-            </button>
-          </a>
-        </li>
-      </ul>
-    </aside>
-
-    <!-- Main Content Area -->
-    <div class="main-wrapper">
-      <div class="main-container">
-
-        <div class="controls card1">
-          <h1>Welcome To EDSA Lanka</h1>
-          <h3>Welcome Back, <?php echo htmlspecialchars($fullName); ?>!</h3>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Welcome Back, <?php echo htmlspecialchars($fullName); ?></h2>
+                <p>Here's an overview of your dashboard at EDSA Lanka Consultancy</p>
+            </div>
         </div>
 
-        <!-- Dashboard Content -->
-        <section class="dashboard-container">
-          <!-- Quick Stats -->
-          <div class="stats-grid">
-            <div class="stat-card service-requests">
-              <div class="card-icon">
-                <i class="fas fa-concierge-bell"></i>
-              </div>
-              <div class="card-content">
-                <h3>Service Requests</h3>
-                <p id="dateDisplay2" class="card-date"></p>
-                <div class="counter-display">
-                  <div id="counter2_digit1" class="digit">0</div>
-                  <div id="counter2_digit2" class="digit">0</div>
+        <!-- Key Metrics -->
+        <h3 class="section-title">Key Metrics</h3>
+        <div class="metrics-container">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon sr-bg">SR</div>
+                    <div>Service Requests</div>
                 </div>
-              </div>
-            </div>
-            <div class="stat-card contact-forums">
-              <div class="card-icon">
-                <i class="fas fa-comments"></i>
-              </div>
-              <div class="card-content">
-                <h3>Contact Forums</h3>
-                <p id="dateDisplay3" class="card-date"></p>
-                <div class="counter-display">
-                  <div id="counter3_digit1" class="digit">0</div>
-                  <div id="counter3_digit2" class="digit">0</div>
+                <div class="metric-data">
+                    <span class="metric-number">24</span>
+                    <span class="metric-change">↑12%</span>
                 </div>
-              </div>
+                <div class="metric-footer">Last 7 days</div>
             </div>
-            <div class="stat-card events">
-              <div class="card-icon">
-                <i class="fas fa-calendar-check"></i>
-              </div>
-              <div class="card-content">
-                <h3>Events</h3>
-                <p id="dateDisplay4" class="card-date"></p>
-                <div class="counter-display">
-                  <div id="counter4_digit1" class="digit">0</div>
-                  <div id="counter4_digit2" class="digit">0</div>
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon cf-bg">CF</div>
+                    <div>Contact Forums</div>
                 </div>
-              </div>
-            </div>
-            <div class="stat-card news">
-              <div class="card-icon">
-                <i class="fas fa-newspaper"></i>
-              </div>
-              <div class="card-content">
-                <h3>News</h3>
-                <p id="dateDisplay5" class="card-date"></p>
-                <div class="counter-display">
-                  <div id="counter5_digit1" class="digit">0</div>
-                  <div id="counter5_digit2" class="digit">0</div>
+                <div class="metric-data">
+                    <span class="metric-number">17</span>
+                    <span class="metric-change">↑8%</span>
                 </div>
-              </div>
+                <div class="metric-footer">Last 7 days</div>
             </div>
-          </div>
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon nw-bg">NW</div>
+                    <div>News</div>
+                </div>
+                <div class="metric-data">
+                    <span class="metric-number">9</span>
+                    <span class="metric-change">↑15%</span>
+                </div>
+                <div class="metric-footer">Last 7 days</div>
+            </div>
+        </div>
 
-          <!-- Calendar Widget -->
-          <div class="widget calendar-widget">
-            <div class="widget-header">
-              <h3><i class="fas fa-calendar-alt"></i> Calendar</h3>
-            </div>
-            <div class="widget-content">
-              <div class="calendar-nav">
-                <button onclick="prevMonth()" class="calendar-nav-btn"><i class="fas fa-chevron-left"></i></button>
-                <h4 id="monthYear"></h4>
-                <button onclick="nextMonth()" class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></button>
-              </div>
-              <div class="calendar-grid">
-                <div class="weekdays">
-                  <div>Sun</div>
-                  <div>Mon</div>
-                  <div>Tue</div>
-                  <div>Wed</div>
-                  <div>Thu</div>
-                  <div>Fri</div>
-                  <div>Sat</div>
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Calendar -->
+            <div class="dashboard-card">
+                <h3 class="section-title">Calendar</h3>
+                <div class="calendar-container">
+                    <div class="calendar-month" id="calendar-month">April 2025</div>
+                    <div class="calendar-grid">
+                        <div class="calendar-weekdays">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-days" id="calendar-days"></div>
+                    </div>
                 </div>
-                <div id="dates" class="calendar-dates"></div>
-              </div>
             </div>
-          </div>
-        </section>
-      </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-card">
+                <h3 class="section-title">Recent Activity</h3>
+                <div class="activity-feed">
+                    <div class="activity-item">
+                        <div class="activity-icon activity-bg-blue">
+                            ✓
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">New service request from ABC Corporation</div>
+                            <div class="activity-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon activity-bg-green">
+                            💬
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">New contact forum submission from John Smith</div>
+                            <div class="activity-time">4 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon activity-bg-purple">
+                            📰
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">New news article published: Industry Updates</div>
+                            <div class="activity-time">Yesterday</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCalendar();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        });
 
-  <script src="dashboard.js"></script>
+        function initializeCalendar() {
+            const now = new Date();
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                              "July", "August", "September", "October", "November", "December"];
+            
+            document.getElementById('calendar-month').textContent = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
+            
+            const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+            const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+            const daysContainer = document.getElementById('calendar-days');
+            daysContainer.innerHTML = '';
+
+            // Add empty cells for days before the first of the month
+            for (let i = 0; i < firstDay.getDay(); i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                daysContainer.appendChild(emptyDay);
+            }
+
+            // Add days of the month
+            for (let i = 1; i <= lastDay.getDate(); i++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                if (i === now.getDate()) {
+                    dayElement.classList.add('today');
+                }
+                dayElement.textContent = i;
+                daysContainer.appendChild(dayElement);
+            }
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            document.getElementById('current-date').textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+            document.getElementById('current-time').textContent = now.toLocaleTimeString();
+        }
+    </script>
 </body>
 </html>

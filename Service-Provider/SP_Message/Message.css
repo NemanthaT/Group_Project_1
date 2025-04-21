@@ -229,166 +229,141 @@ body {
     background-color: rgb(215, 236, 255);
 }
 
+/* Main content styling */
 .main-content {
     margin-left: 220px; 
     padding: 60px 5px; 
     background-color: #ecf0f4;
     height: 100vh; /* Full viewport height */
-    width: calc(100% - 220px); /* Calculate width based on sidebar */
+    width: 100%; /* Updated to match KB-section */
     box-sizing: border-box;
-    overflow: hidden; /* Prevent scrolling on main content */
+    overflow: flex; /* Match KB-section */
+}
+
+/* Main Content: Message Section */
+.main-content h2 {
+    font-size: 3.5vh; /* Match KB-section */
+    font-weight: 700; /* Match KB-section */
+    margin-bottom: 2.5vh; /* Match KB-section */
+    color: #2d3748; /* Consistent color */
+    text-align: center;
+    letter-spacing: 0.5px; /* Match KB-section */
+    position: relative; /* Match KB-section */
 }
 
 .message-section {
-    margin: auto;
-    max-width: 100%;
-    padding: 15px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Ensure it spans the full width of the main content */
-    height: calc(100vh - 70px); /* Subtract the top padding of main-content */
+    margin: 0 auto;
+    max-width: 1200px; /* Constrain width for larger screens */
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    width: 100%;
+    min-height: calc(100vh - 80px); /* Adjusted for better fit */
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    gap: 20px; /* Space between elements */
 }
 
-.message-section h2{
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
-    text-align: center;
+.message-section::-webkit-scrollbar {
+    width: 6px; /* Consistent with KB-section */
 }
 
+.message-section::-webkit-scrollbar-track {
+    background: #f7fafc;
+    border-radius: 10px; /* Match KB-section */
+}
+
+.message-section::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 10px; /* Match KB-section */
+}
+
+/* Header section with create button in top right */
 .message-controls {
     display: flex;
-    margin-bottom: 15px;
-    gap: 10px;
+    justify-content: space-between; /* Match case-study-header */
+    align-items: center;
+    margin-bottom: 2.5vh; /* Match case-study-header */
+    gap: 10px; /* Match search-bar */
+    flex-wrap: wrap;
 }
 
-.message-controls button,
 .message-controls input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
+    flex: 1;
+    padding: 12px 16px; /* Match search-bar */
+    font-size: 2.2vh; /* Match search-bar */
+    border: 1px solid #d1d5db; /* Match search-bar */
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Match search-bar */
 }
 
-.search-button {
+.message-controls input:focus {
+    border-color: #18A0FB;
+    box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.15); /* Match search-bar */
+    outline: none;
+}
+
+.message-controls button {
+    font-size: 2.2vh; /* Match search-bar */
+    font-weight: 500;
+    padding: 10px 20px; /* Match search-bar */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Match case-study-buttons */
+    text-decoration: none;
+}
+
+.search-button, .clear-button {
     background-color: #18A0FB;
     color: white;
     border: none;
     cursor: pointer;
 }
 
-.search-button:hover {
-    background-color: #1071B1;
+.search-button:hover, .clear-button:hover {
+    background-color: #0c8de4; /* Match search-bar */
+    transform: translateY(-2px); /* Match search-bar */
+    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3); /* Match search-bar */
+}
+
+.clear-button {
+    background-color: #6b7280; /* Match search-bar clear-btn */
+    box-shadow: 0 2px 4px rgba(107, 114, 128, 0.2); /* Match search-bar */
+}
+
+.clear-button:hover {
+    background-color: #4b5563; /* Match search-bar clear-btn */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3); /* Match search-bar */
 }
 
 /* Create Chat Button Styling */
-#create-chat-modal{
-    display: none;
-}
-
 .create-chat-button {
-    background-color: #18A0FB;
+    background-color: #18A0FB; /* Match create-btn */
     color: white;
+    font-size: 2.3vh; /* Match create-btn */
+    font-weight: 500;
+    padding: 1.2vh 3vw; /* Match create-btn */
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(24, 160, 251, 0.2); /* Match create-btn */
 }
 
 .create-chat-button:hover {
-    background-color: #1071B1;
+    background-color: #0c8de4; /* Match create-btn */
+    transform: translateY(-2px); /* Match create-btn */
+    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3); /* Match create-btn */
 }
 
 /* Create Chat Modal Styles */
-.close-create-chat-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background: none;
-    font-size: 20px;
-    color: #333; /* Dark color for contrast */
-    cursor: pointer;
-}
-
-.close-create-chat-modal:hover {
-    color: #ff0000; /* Change color on hover */
-}
-
-h3 {
-    margin-bottom: 20px; /* Space below the title */
-    font-size: 24px; /* Title size */
-    text-align: center; /* Center the title */
-}
-
-.form-section {
-    margin-bottom: 15px; /* Space between sections */
-}
-
-.form-section label {
-    display: block; /* Block display for label */
-    margin-bottom: 5px; /* Space below the label */
-    font-weight: bold; /* Bold text for labels */
-}
-
-.form-section input,
-.form-section textarea {
-    width: 100%; /* Full width */
-    padding: 10px; /* Padding for comfort */
-    border: 1px solid #ccc; /* Light border */
-    border-radius: 4px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-}
-
-.form-section textarea {
-    resize: vertical; /* Allow vertical resizing */
-    min-height: 100px; /* Minimum height for textarea */
-}
-
-.form-footer {
-    text-align: center; /* Center the footer content */
-}
-
-.message-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.message-table th,
-.message-table td {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 10px;
-}
-
-.message-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-.message-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.message-table .chat-button {
-    background-color: #18A0FB;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.message-table .chat-button:hover {
-    background-color: #1071B1;
-}
-
-/* Chat Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -397,69 +372,308 @@ h3 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    backdrop-filter: blur(3px);
 }
 
 .modal-content {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 400px;
+    padding: 2.5vh; /* Match case-study-form */
+    border-radius: 12px; /* Match case-study-form */
+    width: 500px;
     max-width: 90%;
     position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-#chat-modal{
+.close-create-chat-modal,
+.close-chat-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: #4b5563; /* Match case-study-form label color */
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-create-chat-modal:hover,
+.close-chat-modal:hover {
+    color: #e63946; /* Match delete-btn */
+}
+
+h3 {
+    font-size: 2.8vh; /* Match case-study-form h3 */
+    font-weight: 600;
+    margin-bottom: 2vh; /* Match case-study-form */
+    color: #1e293b; /* Match case-study-form */
+    border-bottom: 2px solid #e5e7eb; /* Match case-study-form */
+    padding-bottom: 10px; /* Match case-study-form */
+}
+
+.form-section {
+    margin-bottom: 2.5vh; /* Match case-study-form */
+}
+
+.form-section label {
+    display: block;
+    font-size: 2.3vh; /* Match case-study-form */
+    font-weight: 500; /* Match case-study-form */
+    margin-bottom: 1vh; /* Match case-study-form */
+    color: #4b5563; /* Match case-study-form */
+}
+
+.form-section input,
+.form-section textarea {
+    width: 100%;
+    padding: 1.2vh; /* Match case-study-form */
+    font-size: 2.2vh; /* Match case-study-form */
+    border: 1px solid #d1d5db; /* Match case-study-form */
+    border-radius: 8px;
+    margin-bottom: 2vh; /* Match case-study-form */
+    background-color: #fff; /* Match case-study-form */
+    transition: all 0.3s ease;
+}
+
+.form-section input:focus,
+.form-section textarea:focus {
+    border-color: #18A0FB;
+    box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.15); /* Match case-study-form */
+    outline: none;
+}
+
+.form-section textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 2.5vh; /* Match case-study-form button spacing */
+}
+
+.form-footer button {
+    background-color: #18A0FB; /* Match case-study-form button */
+    color: white;
+    font-size: 2.3vh; /* Match case-study-form */
+    font-weight: 500;
+    padding: 1.2vh 2.5vw; /* Match case-study-form */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(24, 160, 251, 0.2); /* Match case-study-form */
+    text-decoration: none;
+}
+
+.form-footer button:hover {
+    background-color: #0c8de4; /* Match case-study-form */
+    transform: translateY(-2px); /* Match case-study-form */
+    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3); /* Match case-study-form */
+}
+
+/* Message Table Styles */
+.message-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: linear-gradient(to bottom, #ffffff, #f9fafb); /* Match published-case-studies-container */
+    border: 1px solid #e5e7eb; /* Match published-case-studies-container */
+    border-radius: 12px; /* Match published-case-studies-container */
+    padding: 2.5vh; /* Match published-case-studies-container */
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Match published-case-studies-container */
+}
+
+.message-table:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08); /* Match published-case-studies-container */
+}
+
+.message-table th,
+.message-table td {
+    border: none;
+    text-align: left;
+    padding: 1.8vh; /* Match case-study-card */
+}
+
+.message-table th {
+    background-color: #f7fafc;
+    font-weight: 600;
+    color: #4b5563; /* Match case-study-card p color */
+    font-size: 2.2vh; /* Match case-study-card p */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e5e7eb; /* Match case-study-form h3 */
+}
+
+.message-table td {
+    border-bottom: 1px solid #e5e7eb; /* Match published-case-studies-container */
+    color: #1e293b; /* Match case-study-card h4 */
+    font-size: 2.2vh; /* Match case-study-card p */
+}
+
+.message-table tr:last-child td {
+    border-bottom: none;
+}
+
+.message-table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.message-table tr:hover {
+    background-color: #f1f5f9; /* Match case-study-card hover */
+}
+
+.message-table .chat-button {
+    background-color: #18A0FB;
+    color: white;
+    font-size: 2.2vh; /* Match case-study-buttons */
+    font-weight: 500;
+    padding: 0.8vh 2vw; /* Match case-study-buttons */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Match case-study-buttons */
+}
+
+.message-table .chat-button:hover {
+    background-color: #0c8de4; /* Match view-btn */
+    transform: translateY(-2px); /* Match view-btn */
+    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3); /* Match view-btn */
+}
+
+/* Chat Modal Styles */
+#chat-modal, #create-chat-modal {
     display: none;
 }
 
-.close-chat-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #333;
-    cursor: pointer;
+.chat-window {
+    height: 350px;
+    overflow-y: auto;
+    background: linear-gradient(to bottom, #ffffff, #f9fafb); /* Match published-case-studies-container */
+    border: 1px solid #e5e7eb; /* Match published-case-studies-container */
+    padding: 2.5vh; /* Match published-case-studies-container */
+    margin-bottom: 2.5vh; /* Match case-study-form */
+    border-radius: 12px; /* Match published-case-studies-container */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f7fafc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Match published-case-studies-container */
 }
 
-.chat-window {
-    height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #f9f9f9;
+.chat-window:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08); /* Match published-case-studies-container */
+}
+
+.chat-window::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+    background: #f7fafc;
+    border-radius: 10px; /* Match published-case-studies-container */
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 10px; /* Match published-case-studies-container */
 }
 
 .chat-input-section {
     display: flex;
-    gap: 10px;
+    gap: 1vw; /* Match case-study-buttons */
 }
 
 #chat-input {
     flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 1.2vh; /* Match case-study-form input */
+    border: 1px solid #d1d5db; /* Match case-study-form input */
+    border-radius: 8px;
+    font-size: 2.2vh; /* Match case-study-form input */
     resize: none;
+    min-height: 60px;
+    transition: all 0.3s ease;
+    background-color: #fff; /* Match case-study-form input */
+}
+
+#chat-input:focus {
+    border-color: #18A0FB;
+    box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.15); /* Match case-study-form input */
+    outline: none;
 }
 
 .send-chat {
     background-color: #18A0FB;
     color: white;
+    font-size: 2.3vh; /* Match case-study-form button */
+    font-weight: 500;
+    padding: 1.2vh 2.5vw; /* Match case-study-form button */
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(24, 160, 251, 0.2); /* Match case-study-form button */
 }
 
 .send-chat:hover {
-    background-color: #1071B1;
+    background-color: #0c8de4; /* Match case-study-form button */
+    transform: translateY(-2px); /* Match case-study-form button */
+    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3); /* Match case-study-form button */
+}
+
+.chat-window p {
+    margin: 10px 0;
+    padding: 12px 15px;
+    border-radius: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+    position: relative;
+    line-height: 1.5;
+    font-size: 2.2vh; /* Match case-study-card p */
+    transition: all 0.3s ease;
+}
+
+.chat-window p.sent {
+    background-color: #bee3f8;
+    color: #1e293b; /* Match case-study-card h4 */
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+}
+
+.chat-window p.received {
+    background-color: #e2e8f0;
+    color: #4b5563; /* Match case-study-card p */
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+}
+
+.chat-window p.sent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: #bee3f8;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.chat-window p.received::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: #e2e8f0;
+    border-left: 0;
+    border-bottom: 0;
 }

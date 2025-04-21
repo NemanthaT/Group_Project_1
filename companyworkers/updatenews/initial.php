@@ -15,15 +15,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update News</title>
-  <link rel="stylesheet" href="updatenews.css?version=11">
-  <link rel="stylesheet" href="../sidebar.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>News Management | EDSA Lanka Consultancy</title>
+  <link rel="stylesheet" href="../dashboard/dashboard.css">
+  <link rel="stylesheet" href="updatenews.css">
 </head>
 <body>
-<div class="container">
+  <div class="container">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo-section">
+        <img src="../images/logo.png" alt="EDSA Lanka Logo">
+        <h1>EDSA Lanka Consultancy</h1>
+      </div>
+      <div class="header-right">
+        <div class="user-profile">
+          <img src="../images/user.png" alt="Profile" class="profile-icon">
+          <span class="user-name"><?php echo htmlspecialchars($username); ?></span>
+        </div>
+        <a href="../../Login/Logout.php" class="logout-btn">Logout</a>
+      </div>
+    </header>
+
     <!-- Sidebar -->
-    <div class="sidebar">
+    <aside class="sidebar">
       <div class="logo">
         <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
       </div>
@@ -78,24 +93,18 @@
           </a>
         </li>
       </ul>
-    </div>
+    </aside>
 
+    <!-- Main Content Area -->
     <div class="main-wrapper">
-      <!-- Navbar -->
-      <div class="navbar">
-      <div class="controls card1">
-            <h1>News</h1>
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <h1>News Management</h1>
+          <p>Choose an option to manage news content</p>
         </div>
-        <div class="profile">
-          <p>Hi, <?php echo $username ?>!! 👋</p>
-          <a href="../SP_Profile/Profile.html">
-            <img src="../images/user.png" alt="Profile">
-          </a>
-        </div>
-        <a href="../../Login/Logout.php" class="logout">Logout</a>
       </div>
-      <div class="main-container">
-      <div class="boxcontainer">
+
+      <div class="dashboard-content">
         <div class="boxes">
             <a href="new.php" style="text-decoration: none; color: inherit;">
             <div class="new glass-effect">
@@ -116,11 +125,5 @@
       </div>
     </div>
   </div>
-</div>
-    
-
-    <script src="dashboard.js"></script>
-    <script src="../sidebar.js"></script>
-
-    </body>
+</body>
 </html>

@@ -1,267 +1,256 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; /*removes any default space (margin) around the outside of an element.*/
+    padding: 0; /*removes any default space (padding) inside an element, between the content and its border.*/
+    box-sizing: border-box; /*The width and height include padding and border*/
 }
 
 body {
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    overflow-x: hidden;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    min-height: 100vh; /* Ensure full viewport height */
+    min-height: 100vh; /* will always take up at least the full height of the screen, even if the content inside it is less than that height.*/
 }
 
 .container {
-    display: flex;
-    width: 100%;
-    flex: 1; /* Allow the container to grow and fill available space */
-    flex-direction: row; /* Sidebar and main content side by side */
+    display: flex;/*It changes the behavior of all direct children of .container — they become flex items, and by default, they’ll line up horizontally in a row.*/
+    width: 100%; /*means the element will stretch to take up 100% of the width of its parent container, It doesn’t mean 100% of the screen — it means 100% of the space its inside.*/
+    min-height: 100vh; /*sets the element’s height to 100% of the viewport height (the visible part of the browser window).*/
 }
 
 .sidebar {
     background-color: white;
-    color: white;
-    width: 20vw;           /* Sidebar width at 20% of viewport width */
-    padding: 3vh;          /* Sidebar padding at 3% of viewport height */
+    width: 300px; 
+    padding: 25px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
+    flex-direction: column; /* flex-direction: column; is used with display: flex to change the direction of flex items from the default horizontal row to a vertical column. */
+    position: fixed; /*doesn’t move when you scroll.*/
     height: 100vh;
+    z-index: 10; /*This controls the stacking order (which elements appear in front of others).*/
+    overflow-y: auto; /* Keep vertical scrolling */
+    overflow-x: hidden; /* Remove horizontal scrollbar */
 }
 
 .sidebar .logo img {
     width: 100%;
-    max-width: 20vw;       /* Max width in terms of viewport width */
-    margin-bottom: 5vh;
+    max-width: 300px; 
+    margin-bottom: 40px; /*creates a gap between the bottom of the current element and the next element below it, here adds 40 pixels of space below an element.*/
 }
 
 .menu {
-    list-style: none;
+    list-style: none; /*removes the default bullets or numbers from HTML lists*/
     width: 100%;
 }
 
 .menu li {
-    margin-bottom: 2vh;
+    margin-bottom: 12px;
 }
 
 .menu a {
-    text-decoration: none; /* Remove the underline */
+    text-decoration: none; /*removes underlines (or other decorations) from text — most commonly used on links.*/
 }
 
 .menu button {
-    display: flex;              /* Use flexbox for alignment */
-    align-items: center;        /* Align items vertically */
-    font-size: 2.5vh;           /* Adjusts the text size */
-    font-weight: bold;          /* Makes the text bold */
-    width: 100%;                /* Full button width */
-    padding: 1.5vh;             /* Button padding */
-    color: #333;                /* Text color */
-    background-color: #fff;     /* Button background */
-    border: none;               /* Remove borders */
-    cursor: pointer;            /* Pointer cursor on hover */
-    text-align: left;           /* Align text to the left */
-    border-radius: 1vh;         /* Rounded corners */
-    gap: 1vh;                   /* Space between image and text */
-    text-decoration: none;      /* Remove underline */
+    display: flex;
+    align-items: center; /*a Flexbox property used to vertically center items within a flex container*/
+    font-size: 20px; /* controls how large the text inside the element appears*/
+    font-weight: bold; /*increases the thickness of the text*/
+    width: 100%;
+    padding: 15px; /*Adds 15 pixels of space on all four sides (top, right, bottom, and left) inside the element, between the content (like text) and the element's border.*/
+    color: #333; /*Sets the text color */
+    background-color: #fff; /*Sets the background color of the element*/
+    border: none; /* Removes any border around the element. It makes sure there's no border showing by default.*/
+    cursor: pointer; /*Changes the mouse cursor to a hand pointer when hovering over the element, indicating it's clickable (like a button).*/
+    text-align: left; /*Aligns the text inside the element to the left. If there’s more than one line of text, it will start from the left side.*/
+    border-radius: 5px; /*Rounds the corners of the element with a radius of 5 pixels. This makes the edges of the element (like a button) appear curved rather than sharp.*/
+    gap: 8px; /*Adds an 8-pixel space between items inside a flex container or grid. This only works if the element is a flexbox or grid container. It's useful for creating space between child elements.*/
 }
 
 .menu img {
-    width: auto;                /* Maintain aspect ratio */
-    height: 4vh;                /* Set a consistent height for images */
-    object-fit: contain;        /* Ensure images fit within the height */
-    margin-right: 1vh;          /* Add spacing between image and text */
+    width: 40px;
+    height: 40px;
+    object-fit: contain; /*object-fit: contain; is a CSS property used to control how content (like an image or video) fits within its container, while maintaining its aspect ratio.*/
 }
 
 .menu button:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /*a CSS property used to scale an element by a specified factor., here increases the size of the element by 5%.*/
     background-color: #18A0FB;
     color: white;
 }
 
 .navbar {
-    width: 80vw;  /* Width adjusted for sidebar */
     background-color: white;
     color: #18A0FB;
-    margin-left: 20vw;  /* Margin adjusted to sidebar width */
-    padding: 2vh 4vw;  /* Add some padding for better spacing */
+    padding: 10px 25px;
     position: fixed;
-    z-index: 2;
+    right: 0; /*This positions the element 0 pixels from the right edge of its containing element,  it aligns the element's right side with the right edge of the container.*/
+    left: 300px; /*This positions the element 300 pixels from the left edge of its containing element.*/
+    z-index: 5;
     display: flex;
-    justify-content: flex-end; /* Align items to the right */
+    justify-content: flex-end; /*a Flexbox property. It aligns the flex items (child elements of a flex container) at the end of the container along the main axis,here the child elements will move to the end of the container(far right if it's a row, bottom if it's a column)*/
     align-items: center;
+    gap: 20px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /*Adds a shadow effect to the element. box-shadow: offset-x offset-y blur-radius spread-radius color; */
+    height: 100px;
 }
 
 .navbar a {
     color: #18A0FB;
     text-decoration: none;
-    font-size: 2.5vh;
-    padding: 0.8vh 1.5vw;  /* Reduced padding to reduce gap between links */
-    margin-left: 1.5vw;  /* Optional: Adds space between links */
-    border-radius: 1vh;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.navbar a:hover {
-    background-color: rgb(215, 236, 255);
+.navbar a img {
+    width: 35px;
+    height: 35px;
 }
 
-.notification {
+.navbar img:hover {
+    transform: scale(1.1); /*a CSS property used to scale an element by a specified factor., here increases the size of the element by 5%.*/
+    color: white;
+}
+
+/* Calendar styles */
+.calendar-dropdown {
+    display: none;
+    position: absolute;
+    width: 360px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    padding: 20px;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease-in-out;
+}
+
+.calendar-dropdown h3 {
+    margin: 0 0 12px 0;
+    font-size: 22px;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.calendar-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-right: 1vw;
+    margin-bottom: 20px;
 }
 
-.notification a {
-    padding: 0;
-    color: #333;
-    background-color: #fff;
+.calendar-header button {
+    background: none;
     border: none;
     cursor: pointer;
-    border-radius: 50%;  /* Circular shape for profile */
-    width: 5vh;
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.notification a img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 50%;
-}
-
-.profile {
-    display: flex;
-    align-items: center;
-    margin-right: 1vw;
-}
-
-.profile a {
-    padding: 0;
-    color: #333;
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;  /* Circular shape for profile */
-    width: 5vh;
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.profile a img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 50%;
-}
-
-/* Main content styling */
-.main-content {
-    width: 80vw;
-    margin: 9vh 0 0 20vw;
-    padding: 3vh 2vw 8vh 2vw;  /* Added bottom padding for footer spacing */
-    background-color: #ecf0f4;
-    overflow-y: auto;
-}
-
-/* Footer styling */
-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;   /* Align content starting from the left */
-    width: 80vw;               /* Align width to the main content */
-    margin-left: 20vw;         /* Offset by the sidebar width */
-    background-color: white;
+    font-size: 22px;
     color: #18A0FB;
-    padding: 2vh 2vw;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    bottom: 0;                 /* Position it at the bottom */
-    z-index: 1;                /* Ensure it overlaps other content */
+    transition: color 0.2s ease;
 }
 
-.Fcontainer {
-    display: flex;
-    justify-content: space-between; /* Spread out the items */
-    align-items: flex-start;
-    width: 100%;
+.calendar-header button:hover {
+    color: #0d8ce0;
 }
 
-.Fquick-links,
-.Fcontact-info {
-    flex: 1; /* Allow equal space for links and contact info */
-    padding: 0 1vw;
-}
-
-.Fquick-links ul,
-.Fcontact-info ul {
-    list-style: none;
-    padding: 0;
-}
-
-.Fquick-links ul li,
-.Fcontact-info ul li {
-    margin-bottom: 1vh;
-}
-
-.Fquick-links a {
-    color: #333;
-    text-decoration: none;
-    font-size: 2.5vh;
-}
-
-.Fquick-links a:hover {
-    text-decoration: underline;
-}
-
-.Fcontact-info h3,
-.Fquick-links h3 {
-    margin-bottom: 1vh;
-    font-size: 5vh;
-}
-
-.Fcontact-info ul li {
-    font-size: 2.5vh;
+#currentMonth {
+    font-weight: 600;
+    font-size: 20px;
     color: #333;
 }
 
-.Fsocial-media {
-    margin-top: 1vh;
-    display: flex;
-    gap: 1vw;
-}
-
-.Fsocial-media a img {
-    width: 3vh;
-    height: 3vh;
-    object-fit: contain;
-    transition: transform 0.2s ease;
-}
-
-.Fsocial-media a img:hover {
-    transform: scale(1.1);
-}
-
-/* Footer Logo */
-.Flogo img {
-    width: 20vw;
-    object-fit: contain;
-}
-
-/* Copyright Section */
-.Fcopyright {
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
     text-align: center;
-    font-size: 2vh;
+    font-weight: 600;
+    color: #888;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.days div {
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    position: relative;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    font-size: 14px;
     color: #333;
-    width: 100%;
-    margin-top: 2vh;
-    border-top: 0.1vh solid #ddd;
-    padding-top: 1vh;
+}
+
+.days div:hover {
+    background-color: #e9f5ff;
+    transform: scale(1.05);
+}
+
+.days div.today {
+    background-color: #18A0FB;
+    color: #fff;
+    font-weight: bold;
+}
+
+.days div.has-event::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: #18A0FB;
+    border-radius: 50%;
+}
+
+.calendar-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.calendar-link {
+    color: #18A0FB;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.calendar-link:hover {
+    text-decoration: underline;
+    color: #0d8ce0;
+}
+
+.dot {
+    color: #18A0FB;
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+
+.logout:hover {
+    transform: scale(1.1); /*a CSS property used to scale an element by a specified factor., here increases the size of the element by 5%.*/
+    color: white;
+    background-color: #0c8de4;
+}
+
+/*------------ Main content styling -----------*/
+.main-content {
+    margin-left: 250px; 
+    padding: 110px 5px 10px 5px; 
+    height: 100vh; 
+    width: 100%; 
+    box-sizing: border-box; 
+    overflow: flex; 
 }

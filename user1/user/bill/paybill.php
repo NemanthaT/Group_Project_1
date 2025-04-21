@@ -1,7 +1,43 @@
 
 <?php
 include '../session/session.php';
+
+if (!isset($_GET['bill_id']) || empty($_GET['bill_id'])) {
+    echo "No bill selected.";
+    exit;
+}
+$bill_id = $_GET['bill_id'];
+
+// Fetch bill, project, and client info
+$sql = "SELECT 
+            b.*, 
+            p.project_name, 
+            c.full_name, 
+            c.phone, 
+            c.address 
+        FROM bills b
+        JOIN projects p ON b.project_id = p.project_id
+        JOIN clients c ON p.client_id = c.client_id
+        WHERE b.bill_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $bill_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    echo "Bill not found.";
+    exit;
+}
+$bill = $result->fetch_assoc();
+
+// Date formatting
+$bill_date = date("F d, Y", strtotime($bill['Bill_Date']));
+$due_date = date("F d, Y", strtotime($bill['Bill_Date'] . " +14 days"));
+$invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_pad($bill['bill_id'], 4, '0', STR_PAD_LEFT);
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +45,8 @@ include '../session/session.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka - Appointment Management</title>
     <link rel="stylesheet" href="style.css">
+    <script src="../../../payment/pay.js"></script>
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 </head>
 <body>
         <div class="sidebar">
@@ -93,58 +131,71 @@ include '../session/session.php';
 
         </div>
        <div class="boxcontent"> 
-    <div class="invoice-header">
-        <div class="company-info">
-            <h1>EDSA Lanka Consultancy</h1>
-            <p>No. 45, Lotus Road<br>Colombo 01, Sri Lanka</p>
-            <p>Tel: +94 11 234 5678</p>
+        <div  id="invoice-section">
+       <div class="invoice-header">
+                <div class="company-info">
+                    <h1>EDSA Lanka Consultancy</h1>
+                    <p>No. 45, Lotus Road<br>Colombo 01, Sri Lanka</p>
+                    <p>Tel: +94 11 234 5678</p>
+                </div>
+                <div class="invoice-details">
+                    <h2>INVOICE</h2>
+                    <p>Invoice Number: <?php echo $invoice_number; ?></p>
+                    <p>Date: <?php echo $bill_date; ?></p>
+                    <p>Due Date: <?php echo $due_date; ?></p>
+                </div>
+            </div>
+
+            <div class="bill-to">
+                <h3>Bill To:</h3>
+                <p>
+                    <?php echo htmlspecialchars($bill['full_name']); ?><br>
+                    <?php echo htmlspecialchars($bill['address']); ?><br>
+                    Contact: <?php echo htmlspecialchars($bill['phone']); ?>
+                </p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th style="width:20%">Amount (LKR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo htmlspecialchars($bill['Description']); ?></td>
+                        <td><?php echo number_format($bill['Amount'], 2); ?></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="total-section">
+                <strong>Total Due: <?php echo number_format($bill['Amount'], 2); ?> LKR</strong>
+            </div>
+
         </div>
-        <div class="invoice-details">
-            <h2>INVOICE</h2>
-            <p>Invoice Number: SD-2024-1127</p>
-            <p>Date: November 27, 2024</p>
-            <p>Due Date: December 15, 2024</p>
-        </div>
-    </div>
+        <div>
+                <?php if ($bill['status'] === 'unpaid'): ?>
+                    <button onclick="paymentGateway(<?php echo $bill['bill_id'] ?>)" class="pay-button">Pay Now</button>
+                <?php else: ?>
+                    <span class="paid-label">Paid</span>
+                <?php endif; ?>
+                <button onclick="printInvoice()" class="pay-button">Print Invoice</button>
 
-    <div class="bill-to">
-        <h3>Bill To:</h3>
-        <p>Priyantha Gunawardena<br>
-        456 Galle Road<br>
-        Ratmalana, Western Province 10380</p>
-    </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Description</th>
-
-                <th style="width:20%">Amount (LKR)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Advance</td>
-
-                <td>4,500,000</td>
-            </tr>
-
-        </tbody>
-    </table>
-
-    <div class="total-section">
-        <p>Subtotal: 19,000 LKR</p>
-        <p>VAT (15%): 2,850 LKR</p>
-        <strong>Total Due: 21,850 LKR</strong>
-    </div>
-    <div>
-        <button class="pay-button">Pay Now</button>
-    </div>
-    </div>
+            </div>
             </div>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+    <script>
+function printInvoice() {
+    var printContents = document.getElementById('invoice-section').innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+ //   document.body.innerHTML = originalContents;
+    location.reload();
+}
+</script>
 </body>
 </html>

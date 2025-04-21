@@ -191,148 +191,34 @@
   }
 
   .message-section {
-    width: 95%;
-    max-width: 1200px;
-    margin: 20px auto;
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.message-section h2{
-  margin-bottom: 8px;
+    margin: 20px;
 }
 
 .message-controls {
     display: flex;
-    margin-bottom: 15px;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
-.message-controls button,
 .message-controls input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.search-button {
-    background-color: #18A0FB;
+.search-button, .create-chat-button, .send-chat {
+    padding: 8px 16px;
+    background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-.search-button:hover {
-    background-color: #1071B1;
+.search-button:hover, .create-chat-button:hover, .send-chat:hover {
+    background-color: #0056b3;
 }
 
-.message-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.message-table th,
-.message-table td {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 10px;
-}
-
-.message-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-.message-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.message-table .chat-button {
-    background-color: #18A0FB;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.message-table .chat-button:hover {
-    background-color: #1071B1;
-}
-
-/* Create Chat Button Styling */
-#create-chat-modal{
-  display: none;
-}
-
-.create-chat-button {
-  background-color: #18A0FB;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.create-chat-button:hover {
-  background-color: #1071B1;
-}
-
-/* Create Chat Modal Styles */
-.close-create-chat-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: none;
-  background: none;
-  font-size: 20px;
-  color: #333; /* Dark color for contrast */
-  cursor: pointer;
-}
-
-.close-create-chat-modal:hover {
-  color: #ff0000; /* Change color on hover */
-}
-
-h3 {
-  margin-bottom: 20px; /* Space below the title */
-  font-size: 24px; /* Title size */
-  text-align: center; /* Center the title */
-}
-
-.form-section {
-  margin-bottom: 15px; /* Space between sections */
-}
-
-.form-section label {
-  display: block; /* Block display for label */
-  margin-bottom: 5px; /* Space below the label */
-  font-weight: bold; /* Bold text for labels */
-}
-
-.form-section input,
-.form-section textarea {
-  width: 100%; /* Full width */
-  padding: 10px; /* Padding for comfort */
-  border: 1px solid #ccc; /* Light border */
-  border-radius: 4px; /* Rounded corners */
-  font-size: 16px; /* Font size */
-}
-
-.form-section textarea {
-  resize: vertical; /* Allow vertical resizing */
-  min-height: 100px; /* Minimum height for textarea */
-}
-
-.form-footer {
-  text-align: center; /* Center the footer content */
-}
-
-/* Chat Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -341,44 +227,94 @@ h3 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
 }
 
 .modal-content {
-    background: white;
+    background-color: white;
     padding: 20px;
-    border-radius: 10px;
-    width: 400px;
+    border-radius: 8px;
+    width: 500px;
     max-width: 90%;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-#chat-modal{
-  display: none;
-}
-
-.close-chat-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #333;
+.close-create-chat-modal, .close-chat-modal {
+    float: right;
+    font-size: 20px;
     cursor: pointer;
 }
 
-.chat-window {
-    height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    padding: 10px;
+.form-section {
     margin-bottom: 15px;
-    background-color: #f9f9f9;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-section input, .form-section textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-footer {
+    text-align: right;
+}
+
+.message-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.message-table th, .message-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.message-table th {
+    background-color: #f4f4f4;
+}
+
+.chat-button {
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chat-button:hover {
+    background-color: #218838;
+}
+
+.chat-window {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.chat-window p {
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.chat-window p.sent {
+    background-color: #d1e7dd;
+    text-align: right;
+}
+
+.chat-window p.received {
+    background-color: #f8d7da;
+    text-align: left;
 }
 
 .chat-input-section {
@@ -388,22 +324,5 @@ h3 {
 
 #chat-input {
     flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
     resize: none;
-}
-
-.send-chat {
-    background-color: #18A0FB;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.send-chat:hover {
-    background-color: #1071B1;
 }

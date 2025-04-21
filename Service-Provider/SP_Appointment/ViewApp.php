@@ -35,117 +35,7 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
     <link rel="stylesheet" href="App.css">
-    <style>
-    .appointment-details {
-        padding: 20px;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        width: 100%; /* Ensure it spans the full width of the main content */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-    }
-    
-    .appointment-header {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        margin-bottom: 30px;
-    }
-    
-    .appointment-title {
-        font-size: 28px; /* Bigger font */
-        font-weight: bold;
-        color: #333;
-        text-align: center;
-        margin-top: 20px;
-    }
-    
-    .status-badge {
-        position: absolute;
-        right: 20px;
-        top: 0;
-        padding: 8px 15px;
-        border-radius: 4px;
-        font-size: 20px;
-        font-weight: bold;
-        color: white;
-    }
-    
-    .appointment-info, .client-details {
-        width: 80%;
-        font-size: 18px; /* Bigger font */
-    }
-    
-    .appointment-info {
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid #eee;
-    }
-    
-    .client-details {
-        margin-top: 20px;
-    }
-    
-    .detail-row {
-        display: flex;
-        margin-bottom: 25px;
-        font-size: 18px; /* Bigger font */
-    }
-    
-    .detail-label {
-        font-weight: bold;
-        width: 180px;
-        margin-bottom: 5px;
-    }
-    
-    .detail-value {
-        flex: 1;
-        margin-bottom: 5px;
-    }
-    
-    .back-button {
-        background-color: #18A0FB;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: auto;
-        align-self: center;
-        text-align: center; /* Ensures text inside is centered */
-    }
-    
-    .back-button:hover {
-        background-color:rgb(6, 66, 231);
-    }
-    
-    .status-pending {
-        background-color: #FFC107;
-    }
-    
-    .status-scheduled {
-        background-color: #2196F3;
-    }
-    
-    .status-completed {
-        background-color: #4CAF50;
-    }
-    
-    .status-rejected {
-        background-color: #F44336;
-    }
-    
-    .status-cancelled {
-        background-color: #9E9E9E;
-    }
-</style>
-
+    <link rel="stylesheet" href="../Common template/SP_common.css">
 </head>
 <body>
     <div class="container">
@@ -202,7 +92,7 @@ if (isset($_GET['id'])) {
         </header>
         <div class="main-content">
        
-    <div class="appointment-details">
+    <div class="appointment-section">
         <div class="appointment-header">
             <div class="appointment-title">Appointment ID <?php echo htmlspecialchars($appointment['appointment_id']); ?></div>
             <div class="status-badge status-<?php echo strtolower($appointment['status']); ?>">

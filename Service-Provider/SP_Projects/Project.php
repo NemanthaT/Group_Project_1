@@ -88,14 +88,12 @@ if ($result === false) {
                         <input type="text" placeholder="Search client ID or service..." id="search">
                         <button class="search-button" id="search-btn">Search</button>
                         <button class="clear-button" id="clear-filters">Clear</button>
-                        <a href="AddProject.php">
-                            <button class="search-button">+ Projects</button>
-                        </a>
+                        <div class="add-project-button">
+                            <a href="AddProject.php"><button class="search-button">+ Add Project</button></a>
+                        </div>
                     </div>
-
-                <!-- Projects Grid -->
-                <div class="projects-grid">
-                <!-- Project Card 1 -->
+                    <div class="projects-grid">
+                    <!-- Project Card 1 -->
                     <?php if ($result->num_rows > 0): ?>
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <div class="project-card">
