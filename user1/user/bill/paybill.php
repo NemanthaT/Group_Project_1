@@ -128,7 +128,8 @@ $invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_p
         <div class="space">
 
         </div>
-       <div class="boxcontent" id="invoice-section"> 
+       <div class="boxcontent"> 
+        <div  id="invoice-section">
        <div class="invoice-header">
                 <div class="company-info">
                     <h1>EDSA Lanka Consultancy</h1>
@@ -181,7 +182,8 @@ $invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_p
                 <button onclick="printInvoice()" class="pay-button">Print Invoice</button>
 
             </div>
-    </div>
+            </div>
+        </div>
 
     <script>
 function printInvoice() {
@@ -189,7 +191,7 @@ function printInvoice() {
     var originalContents = document.body.innerHTML;
     document.body.innerHTML = printContents;
     window.print();
-    document.body.innerHTML = originalContents;
+ //   document.body.innerHTML = originalContents;
     location.reload();
 }
 </script>
