@@ -12,11 +12,10 @@
     $result = $conn->query($query);
 
     if ($result) {
-        echo json_encode(array("status" => "success", "message" => "Payment status updated successfully."));
-        header("Location: http://localhost/Group_Project_1/user1/user/bill/bill.php");
+        echo json_encode("Success");
         exit();
     } else {
-        echo json_encode(array("status" => "error", "message" => "Failed to update payment status."));
+        echo json_encode("Error");
     }
     $conn->close();
 
