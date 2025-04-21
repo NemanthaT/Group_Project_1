@@ -12,8 +12,8 @@
     $result = $conn->query($query);
 
     if ($result) {
-        header("Location: http://localhost/Group_Project_1/user1/user/bill/bill.php");
         echo json_encode(array("status" => "success", "message" => "Payment status updated successfully."));
+        header("Location: http://localhost/Group_Project_1/user1/user/bill/bill.php");
         exit();
     } else {
         echo json_encode(array("status" => "error", "message" => "Failed to update payment status."));
