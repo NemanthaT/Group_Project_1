@@ -57,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy - Sign Up</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Sign_up.css">
     <script src="Sign_Up.js"></script>
 </head>
@@ -82,6 +81,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="form-section" id="form-section">
             <div class="left">
+                <div class="left-content">
+                    <h2>Join as a Client</h2>
+                    <p>Find the right professional services for your needs.</p>
+                    
+                    <ul class="benefit-list">
+                        <li>Access to verified service providers</li>
+                        <li>Seamless booking experience</li>
+                        <li>Secure payment system</li>
+                        <li>Direct communication with professionals</li>
+                    </ul>
+                </div>
 
             </div>
             <div class="sign-up">
@@ -105,7 +115,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="address"><b>Address</b></label>
                         <input type="text" id="address" name="address" placeholder="Enter your address" required>
 
-                        <center><button type="submit" id="submit-btn" class="sign-up-btn">Sign up</button></center>
+                        <center><button type="submit" id="submit-btn" class="sign-up-btn">Sign up</button><br>
+                                <a href="switch.php" class="back-link">Back to account selection</a>
+                        </center>
                     </div>
                 </form>
             </div>
