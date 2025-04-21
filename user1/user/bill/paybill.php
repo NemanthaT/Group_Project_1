@@ -45,6 +45,8 @@ $invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_p
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka - Appointment Management</title>
     <link rel="stylesheet" href="style.css">
+    <script src="../../../payment/pay.js"></script>
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 </head>
 <body>
         <div class="sidebar">
@@ -174,7 +176,7 @@ $invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_p
         </div>
         <div>
                 <?php if ($bill['status'] === 'unpaid'): ?>
-                    <button class="pay-button">Pay Now</button>
+                    <button onclick="paymentGateway(<?php echo $bill['bill_id'] ?>)" class="pay-button">Pay Now</button>
                 <?php else: ?>
                     <span class="paid-label">Paid</span>
                 <?php endif; ?>

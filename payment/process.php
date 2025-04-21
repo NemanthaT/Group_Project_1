@@ -8,9 +8,9 @@
 
     $input = json_decode(file_get_contents("php://input"), true);
 
-    $project_id = $input['project_id'];
+    $project_id = $input['bill_id'];
 
-    $query = "UPDATE projects SET status = 'Paid' WHERE project_id = '$project_id'";
+    $query = "UPDATE bills SET status = 'Paid' WHERE bill_id = '$project_id'";
     $result = $conn->query($query);
 
     if ($result) {
