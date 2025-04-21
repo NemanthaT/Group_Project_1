@@ -32,15 +32,21 @@ $users = $result->fetch_all(MYSQLI_ASSOC); // Fetch all results as associative a
 
 // Get status counts
 $statusCounts = [];
-$query = "SELECT status, COUNT(*) as count FROM appointments GROUP BY status";
-$result = $conn->query($query);
+$query = "SELECT status, COUNT(*) as count FROM appointments WHERE client_id = ? AND status != 'Deleted' GROUP BY status";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $_SESSION['client_id']);
+$stmt->execute();
+$result = $stmt->get_result();
 while ($row = $result->fetch_assoc()) {
     $statusCounts[$row['status']] = $row['count'];
 }
 
 // Get total appointments
-$totalQuery = "SELECT COUNT(*) as total FROM appointments";
-$totalResult = $conn->query($totalQuery);
+$totalQuery = "SELECT COUNT(*) as total FROM appointments WHERE client_id = ? AND status != 'Deleted'";
+$stmt = $conn->prepare($totalQuery);
+$stmt->bind_param("i", $_SESSION['client_id']);
+$stmt->execute();
+$totalResult = $stmt->get_result();
 $totalAppointments = $totalResult->fetch_assoc()['total'];
 
 

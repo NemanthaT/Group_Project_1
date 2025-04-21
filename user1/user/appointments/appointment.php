@@ -107,6 +107,10 @@ include 'get_appointment.php';
                     <h3>Rejected</h3>
                     <p><?= $statusCounts['Rejected'] ?? 0 ?></p>
                 </div>
+                <div class="card">
+                    <h3>Assigned</h3>
+                    <p><?= $statusCounts['Assigned'] ?? 0 ?></p>
+                </div>
             </div>
 
             <div class="main-container">
