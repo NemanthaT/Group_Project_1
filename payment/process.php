@@ -6,16 +6,14 @@
         exit();
     }
 
-    $input = json_decode(file_get_contents("php://input"), true);
+    $id = $_POST['id'];
 
-    $project_id = $input['bill_id'];
-
-    $query = "UPDATE bills SET status = 'Paid' WHERE bill_id = '$project_id'";
+    $query = "UPDATE bills SET status = 'paid' WHERE bill_id = '$id'";
     $result = $conn->query($query);
 
     if ($result) {
-        header("Location: http://localhost/Group_Project_1/payment/sample.php");
         echo json_encode(array("status" => "success", "message" => "Payment status updated successfully."));
+        header("Location: http://localhost/Group_Project_1/user1/user/bill/bill.php");
         exit();
     } else {
         echo json_encode(array("status" => "error", "message" => "Failed to update payment status."));
