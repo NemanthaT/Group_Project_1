@@ -1,146 +1,166 @@
 <?php
-  session_start(); 
-  require_once '../../config/config.php';
+session_start(); 
+require_once '../../config/config.php';
 
-  $username = $_SESSION['username'];
-  $email = $_SESSION['email'];
-
-  if (!isset($_SESSION['username'])) { // if not logged in
-      header("Location: ../../Login/Login.php");
-      exit;
-  }
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/Login.php");
+    exit;
+}
+$username = $_SESSION['username'];
+$email = $_SESSION['email'] ?? '';
+$query = "SELECT full_name FROM companyworkers WHERE username = '$username'";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+$fullName = $user['full_name'] ?? 'User';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Service Requests | EDSA Lanka Consultancy</title>
+  <link rel="stylesheet" href="servicerequest.css">
+  <link rel="stylesheet" href="../sidebar.css">
   <link rel="stylesheet" href="../dashboard/dashboard.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header class="main-header">
-      <div class="logo-section">
-        <img src="../images/logo.png" alt="EDSA Lanka Logo">
-        <h1>EDSA Lanka Consultancy</h1>
-      </div>
-      <div class="header-right">
-        <div class="notification-wrapper">
-          <img src="../images/notification.png" alt="Notifications" class="notification-icon">
-          <span class="notification-badge">3</span>
-        </div>
-        <div class="user-profile">
-          <img src="../images/user.png" alt="Profile" class="profile-icon">
-          <span class="user-name"><?php echo htmlspecialchars($username); ?></span>
-        </div>
-        <a href="../../Login/Logout.php" class="logout-btn">Logout</a>
-      </div>
-    </header>
+  <!-- Sidebar Toggle Button (for mobile) -->
+  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+  <div class="overlay" id="overlay"></div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="logo">
-        <img src="../images/logo.png" alt="EDSA Lanka Logo">
-      </div>
-      <ul class="menu">
-        <li>
-          <a href="../dashboard/dashboard.php">
-            <img src="../images/dashboard.png" alt="Dashboard">
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li>
-          <a href="servicerequest.php" class="active">
-            <img src="../images/service.jpg" alt="Service Requests">
-            <span>Service Requests</span>
-          </a>
-        </li>
-        <li>
-          <a href="../contactforums/contactforum.html">
-            <img src="../images/contact.png" alt="Contact Forums">
-            <span>Contact Forums</span>
-          </a>
-        </li>
-        <li>
-          <a href="../updateknowlgebase/initial.php">
-            <img src="../images/knowledge.png" alt="Knowledge Base">
-            <span>Knowledge Base</span>
-          </a>
-        </li>
-        <li>
-          <a href="../updatenews/initial.php">
-            <img src="../images/news.jpg" alt="Update News">
-            <span>Update News</span>
-          </a>
-        </li>
-      </ul>
-    </aside>
-
-    <!-- Main Content Area -->
-    <div class="main-wrapper">
-      <div class="welcome-banner">
-        <div class="welcome-text">
-          <h1>Service Requests</h1>
-          <p>Manage and assign service requests to service providers</p>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div style="width: 40px; height: 40px; background-color: #4f46e5; display: flex; align-items: center; justify-content: center; color: white; border-radius: 5px; margin-right: 15px;">E</div>
+      <span>EDSA Lanka</span>
+    </div>
+    <div class="sidebar-menu">
+      <a href="../dashboard/dashboard.php">
+        <div class="menu-item">
+          <span class="menu-icon">📊</span>
+          <span>Dashboard</span>
         </div>
-        <div class="date-display">
-          <div class="current-date" id="currentDate"></div>
-          <div class="current-time" id="currentTime"></div>
+      </a>
+      <a href="../acceptclient/acceptclient.php">
+        <div class="menu-item">
+          <span class="menu-icon">👥</span>
+          <span>Accept Clients</span>
         </div>
-      </div>
+      </a>
+      <a href="servicerequest.php">
+        <div class="menu-item active">
+          <span class="menu-icon">📝</span>
+          <span>Service Requests</span>
+        </div>
+      </a>
+      <a href="../contactforums/contactforum.php">
+        <div class="menu-item">
+          <span class="menu-icon">💬</span>
+          <span>Contact Forums</span>
+        </div>
+      </a>
+      <a href="../updateknowlgebase/initial.php">
+        <div class="menu-item">
+          <span class="menu-icon">📚</span>
+          <span>Knowledge Base</span>
+        </div>
+      </a>
+      <a href="../updatenews/initial.php">
+        <div class="menu-item">
+          <span class="menu-icon">📰</span>
+          <span>Update News</span>
+        </div>
+      </a>
+    </div>
+  </div>
 
-      <!-- Main Content -->
-      <div class="dashboard-content">
-        <section class="stats-section">
-          <h2>Service Requests List</h2>
-          <div class="table-container">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Appointment ID</th>
-                  <th>Client ID</th>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                $sql = "SELECT * FROM appointments WHERE status = 'Pending'";
-                $result = mysqli_query($conn, $sql);
-                if ($result) {
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $appointment_id = $row['appointment_id'];
-                    $client_id = $row['client_id'];
-                    $appointment_date = $row['appointment_date'];
-                    $service_type = $row['service_type'];
-                    
-                    
-                    $status = $row['status'];
-                    echo '<tr>
-                      <td>' . $appointment_id . '</td>
-                      <td>' . $client_id . '</td>
-                      <td>' . $appointment_date . '</td>
-                      <td>' . $service_type . '</td>
-                      <td>
-                        <button><a href="assign.php?update_id=' . $appointment_id . '">Check</a></button>
-                      </td>
-                    </tr>';
-                  }
-                }
-                ?>
-              </tbody>
-            </table>
-          </div>
-        </section>
+  <!-- Header -->
+  <header>
+    <div class="logo-text">EDSA Lanka Consultancy</div>
+    <div class="user-area">
+      <p>Service Requests</p>
+      <div class="notification">
+        🔔
+        <span class="notification-count">3</span>
       </div>
+      <div class="user-profile">
+        <div style="width: 40px; height: 40px; background-color: #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+          <?php echo strtoupper(substr($fullName, 0, 1)); ?>
+        </div>
+        <span><?php echo htmlspecialchars($fullName); ?></span>
+      </div>
+      <form action="../../Login/Logout.php" method="post" style="display:inline;">
+        <button class="logout-btn" type="submit">Logout</button>
+      </form>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="welcome-banner" style="margin-bottom: 30px;">
+      <div class="welcome-text">
+        <h2>Service Requests</h2>
+        <p>Manage and assign service requests to service providers</p>
+      </div>
+      <div class="date-time" style="text-align:right;">
+        <div id="currentDate"></div>
+        <div id="currentTime"></div>
+      </div>
+    </div>
+    <h3 class="section-title">Service Requests List</h3>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Appointment ID</th>
+            <th>Client ID</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          $sql = "SELECT * FROM appointments WHERE status = 'Pending'";
+          $result = mysqli_query($conn, $sql);
+          if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+              $appointment_id = $row['appointment_id'];
+              $client_id = $row['client_id'];
+              $appointment_date = $row['appointment_date'];
+              $service_type = $row['service_type'];
+              echo '<tr>
+                <td>' . $appointment_id . '</td>
+                <td>' . $client_id . '</td>
+                <td>' . $appointment_date . '</td>
+                <td>' . $service_type . '</td>
+                <td>
+                  <button><a href="assign.php?update_id=' . $appointment_id . '">Check</a></button>
+                </td>
+              </tr>';
+            }
+          }
+          ?>
+        </tbody>
+      </table>
     </div>
   </div>
 
   <script>
+    // Sidebar toggle for mobile
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    sidebarToggle.addEventListener('click', function() {
+      sidebar.classList.toggle('open');
+      overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+    });
+    overlay.addEventListener('click', function() {
+      sidebar.classList.remove('open');
+      overlay.style.display = 'none';
+    });
+
+    // Date/time display
     function updateDateTime() {
       const now = new Date();
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -150,7 +170,6 @@
         minute: '2-digit'
       });
     }
-
     document.addEventListener('DOMContentLoaded', function() {
       updateDateTime();
       setInterval(updateDateTime, 60000);
