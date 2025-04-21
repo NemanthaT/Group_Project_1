@@ -9,6 +9,19 @@
         exit;
     }
     $afDiv = "mainContent";
+
+    // Pagination logic
+    $records_per_page = 10;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset = ($page - 1) * $records_per_page;
+
+    // Get total number of records
+    $total_records = $conn->query("SELECT COUNT(*) as total FROM companyworkers WHERE status = 'set'")->fetch_assoc()['total'];
+    $total_pages = ceil($total_records / $records_per_page);
+
+    // Get paginated data
+    $sql = "SELECT * FROM companyworkers WHERE status = 'set' LIMIT $offset, $records_per_page";
+    $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -157,19 +170,30 @@
                             <th>Email</th>
                         </tr>";
 
-                        $sql = "SELECT * FROM companyworkers WHERE status = 'set'";
-                        $result = $conn->query($sql);
-
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo '<tr><td>'.$row['worker_id'] .'</td><td>'. $row['username'] .'</td><td>'. $row['full_name'] . '</td><td>'.$row['role'].'</td><td>'.$row['email'].'</td></tr>';
                             }
                         } else {
-                            echo "0 results";
+                            echo "<tr><td colspan='5'>0 results</td></tr>";
                         }
 
+                        echo "</table>";
 
-                        echo "</table></center>";
+                        // Pagination links
+                        echo '<div class="pagination">';
+                        if ($page > 1) {
+                            echo '<a href="?page='.($page - 1).'">&laquo; Previous</a>';
+                        }
+                        
+                        for ($i = 1; $i <= $total_pages; $i++) {
+                            echo '<a href="?page='.$i.'"'.($i == $page ? ' class="active"' : '').'>'.$i.'</a>';
+                        }
+                        
+                        if ($page < $total_pages) {
+                            echo '<a href="?page='.($page + 1).'">Next &raquo;</a>';
+                        }
+                        echo '</div></center>';
                     ?>
                 </div>
             </div>

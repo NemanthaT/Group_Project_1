@@ -10,6 +10,18 @@
         exit;
     }
 
+    // Pagination logic
+    $records_per_page = 10;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset = ($page - 1) * $records_per_page;
+
+    // Get total number of records
+    $total_records = $conn->query("SELECT COUNT(*) as total FROM forums")->fetch_assoc()['total'];
+    $total_pages = ceil($total_records / $records_per_page);
+
+    // Get paginated data
+    $sql = "SELECT * FROM forums ORDER BY forum_id DESC LIMIT $offset, $records_per_page";
+    $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -33,15 +45,6 @@
             <div>
                 <h1>Manage Forums</h1>
     
-                <!--This section was replaced by js code-->
-                <!--<div class="searchContainer">
-                    <form action="" method="POST">
-                        <input type="text" name="id" placeholder="Enter Forum ID" required>
-                        <button type="submit" name="view">View</button>
-                        <button type="submit" name="delete">Delete</button>
-                    </form>
-                </div>-->
-    
                 <div id="hiddenView">
                     <button id="closeView" onclick="closeView()">x</button>
                     <center>
@@ -57,44 +60,17 @@
                     
                 </div>
     
-                <!--This section was replaced by js code-->
-                <?php /*        
-                            if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['view'])) {
-                                $id=$_POST['id'];
-                                $sql = "SELECT * FROM forums WHERE forum_id = $id";
-                                $opert=$conn->query($sql);
-                                $row = $opert->fetch_assoc();
-                                echo "<div class=\"viewSpace\">";
-                                echo "<p><b>Viewing Forum ID: </b>". $row["forum_id"]."</p>";
-                                echo "<p><b>Title: </b>". $row["title"]."</p>";
-                                echo "<p><b>Client ID: </b>". $row["user_id"]."</p>";
-                                echo "<p><b>Content: </b>" . "<div class=\"content\"><p>" . $row["content"]."</p></div>" . "</p>";
-                                echo "</div>"; 
-                            }
-                            if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['delete'])) {
-                                $id=$_POST['id'];
-                                $sql = "DELETE FROM forums WHERE forum_id = $id";
-                                $opert=$conn->query($sql);
-                                echo "Deleting";
-                            } */
-                        
-                ?>
                 <div id="displayArea">
                     <center>
                         <table>
                             <tr>
-                                <!--<th>Forum Id</th>-->
                                 <th>Title</th>
-                                <!--<th>Client ID</th>-->
                                 <th>Action</th>
                             </tr>
                             <?php
-                                $sql = "SELECT * FROM forums";
-                                $result = $conn->query($sql);
-    
                                 if($result->num_rows > 0) {
                                     while($row = $result->fetch_assoc()) {
-                                        echo "<tr><!--<td>".$row["forum_id"]."</td>--><td>".$row["title"]."</td><!--<td>".$row["user_id"]."</td>-->
+                                        echo "<tr><td>".$row["title"]."</td>
                                         <td class=\"actions\"><center><button class=\"view\" onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
                                         <button class=\"del\" onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
                                     }
@@ -102,9 +78,28 @@
                                 else{
                                     echo "<tr><td></td><td><center>0 results</center></td><td></td></tr>";
                                 }
-    
                             ?>
                         </table>
+
+                        <!-- Pagination links -->
+                        <div class="pagination">
+                            <?php if ($page > 1): ?>
+                                <a href="?page=<?php echo $page - 1; ?>">&laquo; Previous</a>
+                            <?php endif; ?>
+                            
+                            <?php 
+                                // Show page numbers
+                                for ($i = 1; $i <= $total_pages; $i++):
+                            ?>
+                                <a href="?page=<?php echo $i; ?>" <?php if ($i == $page) echo 'class="active"'; ?>>
+                                    <?php echo $i; ?>
+                                </a>
+                            <?php endfor; ?>
+                            
+                            <?php if ($page < $total_pages): ?>
+                                <a href="?page=<?php echo $page + 1; ?>">Next &raquo;</a>
+                            <?php endif; ?>
+                        </div>
                     </center>
                 </div>
             </div>
