@@ -7,19 +7,19 @@
         $id = $_POST['id'];
         if (!is_numeric($id)) {
             $noticeType = "error";
-            $error_message = "Enter a Valid ID!";
+            $error_message = "Enter a Numeric ID!";
             $data = ['noticeType' => $noticeType, 'error_message' => $error_message];
             echo json_encode($data);
 
         } else {
             $role = $_POST['role'];
-            $srch = "SELECT * FROM companyworkers WHERE worker_id = $id ";
+            $srch = "SELECT * FROM companyworkers WHERE worker_id = $id AND status = 'set' ";
             $result = $conn->query($srch);
 
             //checking whether worker exists or not
             if ($result->num_rows > 0) {
                 //Changing the role
-                $chng = "UPDATE companyworkers SET role = " . " ' " . $role . " ' " . " WHERE worker_id = $id";
+                $chng = "UPDATE companyworkers SET role = " . " ' " . $role . " ' " . " WHERE worker_id = $id AND status = 'set' ";
                 $opert = $conn->query($chng);
 
                 if ($opert === true) {

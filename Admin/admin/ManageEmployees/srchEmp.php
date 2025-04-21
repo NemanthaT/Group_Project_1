@@ -8,7 +8,7 @@
         $name = $_POST['name'];
 
         // Prepare and execute the SQL query
-        $stmt = $conn->prepare("SELECT * FROM companyworkers WHERE full_name LIKE ?");
+        $stmt = $conn->prepare("SELECT * FROM companyworkers WHERE full_name LIKE ? AND status = 'set'");
         $searchTerm = "%" . $name . "%";
         $stmt->bind_param("s", $searchTerm);
         $stmt->execute();
