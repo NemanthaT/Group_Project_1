@@ -53,6 +53,12 @@ if (isset($_SESSION['username'])) {
                     <span>Accept Clients</span>
                 </div>
             </a>
+            <a href="../servicerequest/servicerequest.php">
+                <div class="menu-item">
+                    <span class="menu-icon">👥</span>
+                    <span>Service Request</span>
+                </div>
+            </a>
             <a href="../contactforums/contactforum.php">
                 <div class="menu-item">
                     <span class="menu-icon">💬</span>
