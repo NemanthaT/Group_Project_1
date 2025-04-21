@@ -1,6 +1,6 @@
 <?php
     session_start(); 
-    require_once('../../config/config.php');
+    require_once('../../../config/config.php');
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
