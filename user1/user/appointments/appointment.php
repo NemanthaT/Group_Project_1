@@ -92,6 +92,25 @@ include 'get_appointment.php';
             <div class="main-container controls card1">
                 <h1>Appointment Management</h1>
             </div>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Total Appointments</h3>
+                    <p>120</p>
+                </div>
+                <div class="card">
+                    <h3>Completed</h3>
+                    <p>80</p>
+                </div>
+                <div class="card">
+                    <h3>Pending</h3>
+                    <p>25</p>
+                </div>
+                <div class="card">
+                    <h3>Rejected</h3>
+                    <p>15</p>
+                </div>
+            </div>
+
             <div class="main-container">
                 <div class="search-container">
                     <div>
