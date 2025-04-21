@@ -95,19 +95,17 @@ include 'get_appointment.php';
             <div class="dashboard-cards">
                 <div class="card">
                     <h3>Total Appointments</h3>
-                    <p>120</p>
-                </div>
+                    <p><?= $totalAppointments ?></p></div>
                 <div class="card">
                     <h3>Completed</h3>
-                    <p>80</p>
-                </div>
+                    <p><?= $statusCounts['Completed'] ?? 0 ?></p></div>
                 <div class="card">
                     <h3>Pending</h3>
-                    <p>25</p>
+                    <p><?= $statusCounts['Pending'] ?? 0 ?></p>
                 </div>
                 <div class="card">
                     <h3>Rejected</h3>
-                    <p>15</p>
+                    <p><?= $statusCounts['Rejected'] ?? 0 ?></p>
                 </div>
             </div>
 

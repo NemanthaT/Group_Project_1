@@ -1,6 +1,7 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+include '../Common template/SP_common.php';
 
 // Initialize message variable
 $message = "";
@@ -27,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_id'], $_P
     exit;
 }
 
-
 // Query to retrieve appointments data
 $providerId = $_SESSION['provider_id']; 
 $sql = "SELECT appointment_id, provider_id, client_id, appointment_date, status, created_at FROM appointments WHERE provider_id = ? ORDER BY appointment_date ASC";
@@ -38,7 +38,7 @@ $result = $stmt->get_result();
 $stmt->close();
 ?>
 
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,10 +46,11 @@ $stmt->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
     <link rel="stylesheet" href="App.css">
+    <link rel="stylesheet" href="../Common template/SP_common.css">
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar -->
+        Sidebar 
         <div class="sidebar">
             <div class="logo">
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -64,48 +65,51 @@ $stmt->close();
                 <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
             </ul>
         </div>       
-    <!-- Navbar -->
+      
         <header>
             <nav class="navbar">
+            
             <div class="calendar-icon">
-                    <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
-            <!-- Calendar Dropdown -->
-                 <!-- Calendar Dropdown -->
-                 <div id="calendarDropdown" class="calendar-dropdown">
+                <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
+               
+                <div id="calendarDropdown" class="calendar-dropdown">
                     <h3>Calendar</h3>
-                    <div class="calendar-header">
-                        <button id="prevMonth">&lt;</button>
-                        <span id="currentMonth">March 2025</span>
-                        <button id="nextMonth">&gt;</button>
-                    </div>
-                    <div class="calendar-grid">
-                        <div class="weekdays">
-                            <div>Mon</div>
-                            <div>Tue</div>
-                            <div>Wed</div>
-                            <div>Thu</div>
-                            <div>Fri</div>
-                            <div>Sat</div>
-                            <div>Sun</div>
+                        <div class="calendar-header">
+                            <button id="prevMonth">&lt;</button>
+                            <span id="currentMonth">March 2025</span>
+                            <button id="nextMonth">&gt;</button>
                         </div>
+                        <div class="calendar-grid">
+                            <div class="weekdays">
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                                <div>Sun</div>
+                            </div>
                         <div id="daysGrid" class="days"></div>
-                    </div>
+                        </div>
                 </div>
-                </div>
-                <div class="notification">
-                    <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
-                </div>
-                <div class="profile">
-                    <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
-                </div>
-                    <a href="../../Login/Logout.php" class="logout">Logout</a>                
+            </div>
+           
+            <div class="notification">
+                <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+            </div>
+        
+            <div class="profile">
+                <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
+            </div>
+                <a href="../../Login/Logout.php" class="logout">Logout</a>                
             </nav>
         </header>
+ -->
         <!-- Main Content -->
             <div class="main-content">
                 <div class="appointment-section">
                     <center><h2>Appointments</h2></center>
-                <!-- Search and Filter Controls -->
+                    <!-- Search and Filter Controls -->
                     <div class="appointment-controls">
                         <input type="text" id="clientFilter" placeholder="Search by Appointment ID">
                         <input type="date" id="appointmentDateFilter" placeholder="Filter by Appointment Date">
@@ -126,7 +130,6 @@ $stmt->close();
                                 <th>Appointment ID</th>
                                 <th>Appointment Date</th>
                                 <th>Status</th>
-                                <th>Details</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -135,13 +138,10 @@ $stmt->close();
                             if ($result && $result->num_rows > 0) {
                                 $result->data_seek(0); // Reset the result pointer
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
+                                    echo "<tr onclick=\"window.location='ViewApp.php?id=" . htmlspecialchars($row['appointment_id']) . "'\" style='cursor: pointer;'>";
                                     echo "<td>" . htmlspecialchars($row['appointment_id']) . "</td>";
                                     echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
                                     echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-                                    echo "<td>
-                                            <a href='ViewApp.php?id=" . htmlspecialchars($row['appointment_id']) . "' class='view-btn'>View</a>
-                                          </td>";
                                     echo "<td>";
                                     // Dynamic actions based on status
                                     $status = strtolower($row['status']); 
@@ -160,7 +160,7 @@ $stmt->close();
                                         echo "<form method='POST' style='display: inline;'>
                                                 <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
                                                 <input type='hidden' name='status' value='Cancelled'>
-                                                <button type='submit' class='reject-btn'>Cancel</button>
+                                                <button type='submit' class='cancel-btn'>Cancel</button>
                                               </form>";
                                     } elseif ($status === 'rejected' || $status === 'cancelled' || $status === 'completed') {
                                         echo "<span class='status-text " . $status . "'>" . ucfirst($status) . "</span>";
