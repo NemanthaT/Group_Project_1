@@ -9,249 +9,6 @@ main{
     width: 100vw;
     height: 100vh;
 }
-/* Navbar */
-.navbar {
-    font-size: 1.3rem;
-    width: 100%;
-    background-color: white;
-    color: #18A0FB;
-    box-shadow: 0 0 2px black;
-}
-
-.Hcontainer {
-    /*max-width: 1200px;*/
-    width: 70%;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.Hcontainer a{
-    color: #18A0FB;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 2.5vh;
-    padding: 0.8vh 1.5vw;  /* Reduced padding to reduce gap between links */
-    margin-left: 1.5vw;  /* Optional: Adds space between links */
-    border-radius: 1vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.Hcontainer a:hover {
-    background-color: rgb(215, 236, 255);
-}
-
-/* Logo */
-.header_logo img {
-    height: 75px;
-}
-
-/* Navigation Links */
-.header_item {
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.header_item li {
-    margin-left: 15px;
-}
-
-.header_item a {
-    padding: 5px 10px;
-    border-radius: 7px;
-    color: #000000;
-    font-size: 1em;
-    text-decoration: none;
-}
-
-/* Menu Toggle Button */
-.menu_toggle {
-    display: none;
-}
-
-.menu_toggle img {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Add Border to Login and Register Classes */
-li.Login a, li.Register a {
-    padding: 5px 20px;
-    border: 2px solid;
-    background-color: #18A0FB;
-    color: #F0F8FF;
-}
-
-.header_item a:hover {
-    background-color: rgb(215, 236, 255);
-    color: #18A0FB;
-}
-
-/* Main Section */
-/* News Section */
-
-/* Responsive Design for News Section */
-@media (max-width: 900px) {
-    .news-item {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .news-image {
-        width: 100%;
-        height: auto;
-        margin-bottom: 15px;
-    }
-
-    .news-content {
-        text-align: center;
-    }
-}
-
-
-/* Footer styling */
-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;   /* Align content starting from the left */
-    width: 100%;               /* Align width to the main content */
-   
-    background-color: white;
-    color: #18A0FB;
-    padding: 2vh 2vw;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    bottom: 0;                 /* Position it at the bottom */
-    z-index: 1;                /* Ensure it overlaps other content */
-}
-
-.Fcontainer {
-    display: flex;
-    justify-content: space-between; /* Spread out the items */
-    align-items: flex-start;
-    width: 100%;
-}
-
-.Fquick-links,
-.Fcontact-info {
-    flex: 1; /* Allow equal space for links and contact info */
-    padding: 0 1vw;
-}
-
-.Fquick-links ul,
-.Fcontact-info ul {
-    list-style: none;
-    padding: 0;
-}
-
-.Fquick-links ul li,
-.Fcontact-info ul li {
-    margin-bottom: 1vh;
-}
-
-.Fquick-links a {
-    color: #333;
-    text-decoration: none;
-    font-size: 2.5vh;
-}
-
-.Fquick-links a:hover {
-    text-decoration: underline;
-}
-
-.Fcontact-info h3,
-.Fquick-links h3 {
-    margin-bottom: 1vh;
-    font-size: 5vh;
-}
-
-.Fcontact-info ul li {
-    font-size: 2.5vh;
-    color: #333;
-}
-
-.Fsocial-media {
-    margin-top: 1vh;
-    display: flex;
-    gap: 1vw;
-}
-
-.Fsocial-media a img {
-    width: 3vh;
-    height: 3vh;
-    object-fit: contain;
-    transition: transform 0.2s ease;
-}
-
-.Fsocial-media a img:hover {
-    transform: scale(1.1);
-}
-
-/* Footer Logo */
-.Flogo img {
-    width: 20vw;
-    object-fit: contain;
-}
-
-/* Copyright Section */
-.Fcopyright {
-    text-align: center;
-    font-size: 2vh;
-    color: #333;
-    width: 100%;
-    margin-top: 2vh;
-    border-top: 0.1vh solid #ddd;
-    padding-top: 1vh;
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-    .header_item {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .header_item.active {
-        display: flex;
-    }
-
-    .menu_toggle {
-        display: flex;
-    }
-
-    .menu_toggle img {
-        display: flex;
-    }
-
-    .header_item li {
-        text-align: center;
-        margin: 10px 0;
-    }
-
-    .Flinks {
-        flex-direction: column;
-    }
-
-    .Flink {
-        flex-direction: column;
-    }
-
-    .form-section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .specialized-fields, .services-provided {
-        width: 100%;
-    }
-}
 
 .news {
     padding: 20px;
@@ -428,4 +185,68 @@ footer {
     background: rgba(0, 0, 0, 0.4); /* Optional: darkens background */
     z-index: 3; /* Must be higher than the rest of your page */
     pointer-events: all; /* Ensures it blocks clicks */
+}
+
+/* News Section */
+
+/* Responsive Design for News Section */
+@media (max-width: 900px) {
+    .news-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .news-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .news-content {
+        text-align: center;
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .header_item {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .header_item.active {
+        display: flex;
+    }
+
+    .menu_toggle {
+        display: flex;
+    }
+
+    .menu_toggle img {
+        display: flex;
+    }
+
+    .header_item li {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .Flinks {
+        flex-direction: column;
+    }
+
+    .Flink {
+        flex-direction: column;
+    }
+
+    .form-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .specialized-fields, .services-provided {
+        width: 100%;
+    }
 }
