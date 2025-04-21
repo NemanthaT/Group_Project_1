@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error_message = "Email is already registered.";
     } else {
         // Insert data into providerrequests table
-        $sql = "INSERT INTO clients (full_name, username, email, phone, address, password)
+        $sql = "INSERT INTO pending_clients (full_name, username, email, phone, address, password)
                 VALUES ('$full_name', '$username', '$email', '$phone', '$address', '$password')";
 
         if (mysqli_query($conn, $sql)) {

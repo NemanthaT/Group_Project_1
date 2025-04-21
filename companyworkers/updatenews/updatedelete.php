@@ -15,10 +15,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>News History | EDSA Lanka Consultancy</title>
   <link rel="stylesheet" href="../dashboard/dashboard.css">
-  <link rel="stylesheet" href="updatenews.css">
 </head>
 <body>
   <div class="container">
@@ -29,6 +28,10 @@
         <h1>EDSA Lanka Consultancy</h1>
       </div>
       <div class="header-right">
+        <div class="notification-wrapper">
+          <img src="../images/notification.png" alt="Notifications" class="notification-icon">
+          <span class="notification-badge">3</span>
+        </div>
         <div class="user-profile">
           <img src="../images/user.png" alt="Profile" class="profile-icon">
           <span class="user-name"><?php echo htmlspecialchars($username); ?></span>
@@ -40,7 +43,7 @@
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="logo">
-        <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
+        <img src="../images/logo.png" alt="EDSA Lanka Logo">
       </div>
 
       <ul class="menu">
@@ -100,12 +103,12 @@
       <div class="welcome-banner">
         <div class="welcome-text">
           <h1>News History</h1>
-          <p>View and manage all news articles</p>
+          <p>Manage and track all news articles</p>
         </div>
       </div>
 
       <div class="dashboard-content">
-        <div class="table-container">
+        <div class="news-table-container">
           <table class="table">
             <thead>
                 <tr>
