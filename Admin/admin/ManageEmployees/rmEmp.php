@@ -1,5 +1,5 @@
 <?php
-    require_once('../../config/config.php');
+    require_once('../../../config/config.php');
     $afDiv = "mainContent";
     header('Content-Type: application/json');
 
