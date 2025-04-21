@@ -35,6 +35,9 @@ $bill_date = date("F d, Y", strtotime($bill['Bill_Date']));
 $due_date = date("F d, Y", strtotime($bill['Bill_Date'] . " +14 days"));
 $invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_pad($bill['bill_id'], 4, '0', STR_PAD_LEFT);
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,7 +170,9 @@ $invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_p
             <div class="total-section">
                 <strong>Total Due: <?php echo number_format($bill['Amount'], 2); ?> LKR</strong>
             </div>
-            <div>
+
+        </div>
+        <div>
                 <?php if ($bill['status'] === 'unpaid'): ?>
                     <button class="pay-button">Pay Now</button>
                 <?php else: ?>
@@ -176,7 +181,6 @@ $invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_p
                 <button onclick="printInvoice()" class="pay-button">Print Invoice</button>
 
             </div>
-        </div>
     </div>
 
     <script>
@@ -188,5 +192,6 @@ function printInvoice() {
     document.body.innerHTML = originalContents;
     location.reload();
 }
-</script></body>
+</script>
+</body>
 </html>
