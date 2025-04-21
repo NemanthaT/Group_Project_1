@@ -35,6 +35,7 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
     <link rel="stylesheet" href="App.css">
+    <link rel="stylesheet" href="../Common template/SP_common.css">
 </head>
 <body>
     <div class="container">
