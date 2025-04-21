@@ -7,8 +7,8 @@
     $email = $_SESSION['email'];
 
     //Get the user details
-    $query[0] = "SELECT * FROM clients WHERE email='$email'";
-    $result[0] = $conn->query($query[0]);
+    $query0 = "SELECT * FROM clients WHERE email='$email'";
+    $result0 = $conn->query($query0);
 
     //Get the bill details
     if (!isset($_GET['id'])) {
@@ -16,18 +16,18 @@
         exit;
     }
     $bill_id = $_GET['id'];
-    $query[1] = "SELECT * FROM bills WHERE bill_id ='$bill_id'";
-    $result[1] = $conn->query($query[1]);
+    $query1 = "SELECT * FROM bills WHERE bill_id ='$bill_id'";
+    $result1 = $conn->query($query1);
 
-    $clRow = $result[0]->fetch_assoc();
-    $bRow = $result[1]->fetch_assoc();
+    $clRow = $result0->fetch_assoc();
+    $bRow = $result1->fetch_assoc();
 
     //get the project details
     $project_id = $bRow['project_id'];
-    $query[2] = "SELECT * FROM projects WHERE project_id ='$project_id'";
-    $result[2] = $conn->query($query[2]);
+    $query2 = "SELECT * FROM projects WHERE project_id ='$project_id'";
+    $result2 = $conn->query($query2);
 
-    $prRow = $result[2]->fetch_assoc();
+    $prRow = $result2->fetch_assoc();
 
     /*$amount = 3000;
     $merchant_id = "1230029";
