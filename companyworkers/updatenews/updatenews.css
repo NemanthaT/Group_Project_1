@@ -53,9 +53,9 @@
     background: var(--card-bg);
     padding: 2rem;
     border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow);
     max-width: 800px;
-    margin: 0 auto;
+    margin: 1.5rem auto;
 }
 
 .form-group {
@@ -182,4 +182,67 @@
 .icon1 {
     width: 48px;
     height: 48px;
+}
+
+/* News specific styles */
+.news-table-container {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin: 1.5rem;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.table th {
+    background: var(--bg-light);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-dark);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table tr:hover {
+    background: var(--bg-light);
+}
+
+.table button {
+    margin: 0 0.25rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.table button a {
+    text-decoration: none;
+    color: var(--text-light);
+}
+
+/* Update button */
+.table button:first-child {
+    background: var(--primary-color);
+}
+
+/* Delete button */
+.table button:last-child {
+    background: #ef4444;
+}
+
+.table button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
 }

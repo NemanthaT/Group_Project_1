@@ -29,4 +29,20 @@ $stmt->execute();
 // Get the result
 $result = $stmt->get_result();
 $users = $result->fetch_all(MYSQLI_ASSOC); // Fetch all results as associative array
+
+// Get status counts
+$statusCounts = [];
+$query = "SELECT status, COUNT(*) as count FROM appointments GROUP BY status";
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
+    $statusCounts[$row['status']] = $row['count'];
+}
+
+// Get total appointments
+$totalQuery = "SELECT COUNT(*) as total FROM appointments";
+$totalResult = $conn->query($totalQuery);
+$totalAppointments = $totalResult->fetch_assoc()['total'];
+
+
+
 ?>
