@@ -78,5 +78,6 @@ if (isset($_GET['id'])) {
         </div>
     </div>  <!--this is the </div> of container in the common file, don't remove it-->
 <script src="App.js"></script>
+<script src="../Common template/Calendar.js"></script>
 </body>
 </html>
