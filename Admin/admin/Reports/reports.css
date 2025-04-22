@@ -10,9 +10,9 @@ table td{
 
     justify-content: space-between;
     padding: 10px 5px 10px 5px;
-    margin: 40px 50px 20px 50px;
+    margin: 5px 50px 5px 50px;
     border-radius: 20px;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
 
 .section{

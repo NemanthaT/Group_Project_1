@@ -1,4 +1,18 @@
 <?php
+  session_start();
+  require_once '../../config/config.php';
+  
+  if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/Login.php");
+    exit;
+  }
+  
+  $username = $_SESSION['username'];
+  $query = "SELECT full_name FROM companyworkers WHERE username = '$username'";
+  $result = mysqli_query($conn, $query);
+  $user = mysqli_fetch_assoc($result);
+  $fullName = $user['full_name'] ?? 'User';
+
   include '../connect.php';
   $appointment_id = $_GET['update_id'];
   $sql = "SELECT a.*, c.full_name as client_name, c.phone 
@@ -100,18 +114,16 @@
   <header>
     <div class="logo-text">EDSA Lanka Consultancy</div>
     <div class="user-area">
-      <p>Assign Service Provider</p>
+      <p>Service Requests</p>
       <div class="notification">
         🔔
         <span class="notification-count">3</span>
       </div>
       <div class="user-profile">
         <div style="width: 40px; height: 40px; background-color: #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
-          <?php
-          echo strtoupper(substr($client_name ?? 'U', 0, 1));
-          ?>
+          <?php echo strtoupper(substr($fullName, 0, 1)); ?>
         </div>
-        <span><?php echo htmlspecialchars($client_name ?? 'User'); ?></span>
+        <span><?php echo htmlspecialchars($fullName); ?></span>
       </div>
       <form action="../../Login/Logout.php" method="post" style="display:inline;">
         <button class="logout-btn" type="submit">Logout</button>

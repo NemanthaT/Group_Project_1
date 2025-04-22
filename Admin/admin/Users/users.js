@@ -15,6 +15,7 @@ function viewClient(id) {
             alert(data.error);
             document.documentElement.scrollTop = 0;
         } else {
+            console.log(data);
             // Display forum details in the designated area
             window.addEventListener('scroll', function() {});
             document.getElementById('displayArea').style.filter = "blur(10px)";

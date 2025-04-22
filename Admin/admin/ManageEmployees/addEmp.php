@@ -24,4 +24,10 @@
             echo json_encode($data);
         }
     }
+    else {
+        $noticeType = "error";
+        $error_message = "Error: Method is wrong!";
+        $data = ['noticeType' => $noticeType, 'error_message' => $error_message];
+        echo json_encode($data);
+    }
 ?>

@@ -87,7 +87,7 @@ window.onload = function() {
     });
 
     document.getElementById("fm").addEventListener("submit", function(e) {
-        e.preventDefault(); // prevent full page reload
+        //e.preventDefault(); // prevent full page reload
         var formData = new FormData(this);
  
         getError("addEmp.php", formData);      
