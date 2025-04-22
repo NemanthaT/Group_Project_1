@@ -2,7 +2,6 @@
 include '../Session/Session.php';
 include '../connection.php';
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $providerId = $_SESSION['provider_id'];
@@ -11,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $description = trim($_POST['description']);
     $bill_date = $_POST['bill_date'];
     $payment_status = $_POST['payment_status'];
-
     $errors = [];
+
     if (empty($project_id)) $errors[] = "Project ID is required.";
     if (!is_numeric($amount) || $amount <= 0) $errors[] = "Amount must be a positive number.";
     if (empty($description)) $errors[] = "Description is required.";
@@ -50,15 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION['bill_errors'] = ["Failed to prepare the SQL statement."];
             header("Location: Bill.php");
             exit;
-        }
-    
+        }    
         // On success, clear old input
         unset($_SESSION['bill_old']);
         header("Location: Bill.php?success=1");
         exit;
     }
-    header("Location: Bill.php");
-    }
-
+}
 exit;
 ?>
