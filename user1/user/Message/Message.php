@@ -108,8 +108,7 @@ $stmt->close();
         <!-- Main Content Area -->
         <div class="main-wrapper">
             <!-- Navbar -->
-            <div class="navbar">
-                <a href="#">
+            <div class="navbar" style="z-index: 0;">  <a href="#">
                     <img src="../images/notification.png" alt="Notifications">
                 </a>
                 <div class="profile">

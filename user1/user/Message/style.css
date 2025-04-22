@@ -87,6 +87,7 @@
     margin-left: 0;
     padding: 2vh 4vw;
     position: fixed;
+    z-index: -1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
