@@ -36,6 +36,11 @@
     color: #155724;
 }
 
+.status-completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
 .status-pending {
     background-color: #fff3cd;
     color: #856404;
@@ -73,7 +78,7 @@
 }
 
 .back-button {
-    background-color: #6c757d;
+    background-color: #00b12c;
     color: #ffffff;
     border: none;
     border-radius: 50px;
@@ -88,6 +93,6 @@
 }
 
 .back-button:hover {
-    background-color: #5a6268;
+    background-color: #00c010;
     box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
 }

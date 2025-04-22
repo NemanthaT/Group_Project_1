@@ -48,10 +48,8 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
                 <div class="appointment-info">
-                    <div class="detail-row">
-                        <div class="detail-label">Provider ID:</div>
-                        <div class="detail-value"><?php echo htmlspecialchars($appointment['provider_id']); ?></div>
-                    </div>
+ 
+                    <br>
                     <div class="detail-row">
                         <div class="detail-label">Client ID:</div>
                         <div class="detail-value"><?php echo htmlspecialchars($appointment['client_id']); ?></div>
