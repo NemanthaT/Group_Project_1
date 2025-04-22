@@ -20,6 +20,32 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
 }
 
+// Add this new function to your existing script
+function openViewPopup(providerId, providerName, providerPhone, appointmentDate, additionalMessage) {
+    console.log('Opening View Popup');
+    console.log('Provider ID:', providerId);
+    console.log('Provider Name:', providerName);
+    console.log('Phone:', providerPhone);
+    console.log('Date:', appointmentDate);
+    console.log('Message:', additionalMessage);
+
+    // Set values in the view modal
+    document.getElementById('viewProviderName').textContent = providerName || 'N/A';
+    document.getElementById('viewProviderPhone').textContent = providerPhone || 'N/A';
+    document.getElementById('viewAppointmentDate').textContent = formatDate(appointmentDate) || 'N/A';
+    document.getElementById('viewAdditionalMessage').textContent = additionalMessage || 'N/A';
+    
+    // Add click event for chat button
+    document.getElementById('chatButton').onclick = function() {
+        // You can replace this with your chat functionality
+        window.location.href = 'chat.php?provider=' + providerId;
+    };
+
+    // Use your existing openPopup function
+    openPopup('viewAppointmentOverlay');
+}
+
+
 
 function openUpdatePopup(appointmentId, serviceSelect, appointmentDate, additionalMessage) {
     console.log('Opening Update Popup');

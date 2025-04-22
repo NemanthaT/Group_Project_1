@@ -51,7 +51,7 @@ $stmt->close();
             <ul class="menu">
                 <li>
                     <a href="../Dashboard/Dashboard.php">
-                        <button>
+                        <button class="active">
                             <img src="../images/dashboard.png" alt="Dashboard">
                             Dashboard
                         </button>
@@ -89,7 +89,7 @@ $stmt->close();
                     </a>
                 </li>
                 <li><a href="../Message/Message.php">
-                    <button  class="active">
+                    <button>
                         <img src="../images/Message.png" alt="Message">
                         Message
                     </button></a>
