@@ -141,26 +141,27 @@
     color: white !important;
   }
   
-  /* Main Content Area */
-  .main-wrapper {
-    width: 80vw;
-    margin-left: 20vw;
-    flex-direction: row;
-    justify-content: center;
-  }
-  
-  .main-container {
-    max-width: 95%;
-    margin: 12vh;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 20px;
-  }
+/* Main Content Area */
+.main-wrapper {
+  width: 80vw;
+  margin-left: 20vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.main-container {
+  max-width: 95%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+}
   .space{
     background-color: #f4f4f4;
     width: 100%;
