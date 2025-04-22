@@ -4,7 +4,7 @@
 
     $projectId = $_GET['project_id'];
     $doc_id = $_GET['doc_id'];
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($doc_id)) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($doc_id)) {
     $document_id = $_POST['document_id'];
 
 
@@ -20,7 +20,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($doc_id)) {
     
     $conn->close();
 
-
-    header("Location: EditProject.php?project_id=" . $_GET['project_id']);
-    
+    header("Location: EditProject.php?project_id=" . $_GET['project_id']);   
 }
