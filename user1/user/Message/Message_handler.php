@@ -1,7 +1,6 @@
 <?php
-include '../session/session.php';
-include '../connection.php';
-
+    include '../session/session.php';
+    include '../../connect/connect.php';
 if (!isset($_SESSION['client_id'])) {
     echo "Unauthorized";
     exit;

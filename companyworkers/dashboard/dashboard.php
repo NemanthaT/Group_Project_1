@@ -13,8 +13,37 @@ if (isset($_SESSION['username'])) {
     header("Location: ../../Login/login.php");
     exit;
 }
-?>
 
+// AJAX endpoint for metrics by date
+if (isset($_GET['fetch_metrics_by_date']) && isset($_GET['date'])) {
+    $date = mysqli_real_escape_string($conn, $_GET['date']);
+    $appointments_count = 0;
+    $news_count = 0;
+    $contactforums_count = 0;
+
+    // Appointments (service requests) count
+    $q1 = mysqli_query($conn, "SELECT COUNT(*) AS cnt FROM appointments WHERE DATE(appointment_date) = '$date'");
+    if ($row = mysqli_fetch_assoc($q1)) $appointments_count = (int)$row['cnt'];
+
+    // News count
+    $q2 = mysqli_query($conn, "SELECT COUNT(*) AS cnt FROM news WHERE DATE(created_at) = '$date'");
+    if ($row = mysqli_fetch_assoc($q2)) $news_count = (int)$row['cnt'];
+
+    // Contactforms count (fix table name if needed)
+    $q3 = mysqli_query($conn, "SELECT COUNT(*) AS cnt FROM contactforms WHERE DATE(created_at) = '$date'");
+    if ($row = mysqli_fetch_assoc($q3)) $contactforums_count = (int)$row['cnt'];
+
+    // Debug: Uncomment to see output in browser
+    // error_log("Date: $date, Appointments: $appointments_count, News: $news_count, Contactforms: $contactforums_count");
+
+    echo json_encode([
+        'appointments' => $appointments_count,
+        'news' => $news_count,
+        'contactforums' => $contactforums_count
+    ]);
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,17 +142,17 @@ if (isset($_SESSION['username'])) {
 
         <!-- Key Metrics -->
         <h3 class="section-title">Key Metrics</h3>
-        <div class="metrics-container">
+        <div class="metrics-container" id="metrics-container">
             <div class="metric-card">
                 <div class="metric-header">
                     <div class="metric-icon sr-bg">SR</div>
                     <div>Service Requests</div>
                 </div>
                 <div class="metric-data">
-                    <span class="metric-number">24</span>
-                    <span class="metric-change">↑12%</span>
+                    <span class="metric-number" id="metric-appointments">0</span>
+                    <span class="metric-change" id="metric-appointments-change"></span>
                 </div>
-                <div class="metric-footer">Last 7 days</div>
+                <div class="metric-footer" id="metric-appointments-footer">Selected date</div>
             </div>
             <div class="metric-card">
                 <div class="metric-header">
@@ -131,10 +160,10 @@ if (isset($_SESSION['username'])) {
                     <div>Contact Forums</div>
                 </div>
                 <div class="metric-data">
-                    <span class="metric-number">17</span>
-                    <span class="metric-change">↑8%</span>
+                    <span class="metric-number" id="metric-contactforums">0</span>
+                    <span class="metric-change" id="metric-contactforums-change"></span>
                 </div>
-                <div class="metric-footer">Last 7 days</div>
+                <div class="metric-footer" id="metric-contactforums-footer">Selected date</div>
             </div>
             <div class="metric-card">
                 <div class="metric-header">
@@ -142,10 +171,10 @@ if (isset($_SESSION['username'])) {
                     <div>News</div>
                 </div>
                 <div class="metric-data">
-                    <span class="metric-number">9</span>
-                    <span class="metric-change">↑15%</span>
+                    <span class="metric-number" id="metric-news">0</span>
+                    <span class="metric-change" id="metric-news-change"></span>
                 </div>
-                <div class="metric-footer">Last 7 days</div>
+                <div class="metric-footer" id="metric-news-footer">Selected date</div>
             </div>
         </div>
 
@@ -155,7 +184,11 @@ if (isset($_SESSION['username'])) {
             <div class="dashboard-card">
                 <h3 class="section-title">Calendar</h3>
                 <div class="calendar-container">
-                    <div class="calendar-month" id="calendar-month">April 2025</div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                        <button id="calendar-prev" style="background:none;border:none;font-size:1.3rem;cursor:pointer;">&#8592;</button>
+                        <div class="calendar-month" id="calendar-month">April 2025</div>
+                        <button id="calendar-next" style="background:none;border:none;font-size:1.3rem;cursor:pointer;">&#8594;</button>
+                    </div>
                     <div class="calendar-grid">
                         <div class="calendar-weekdays">
                             <div>Sun</div>
@@ -207,21 +240,77 @@ if (isset($_SESSION['username'])) {
         </div>
     </div>
     <script>
+        // --- Metrics AJAX update ---
+        function fetchMetricsByDate(dateStr) {
+            // Show loading indicator
+            document.getElementById('metric-appointments').textContent = '...';
+            document.getElementById('metric-contactforums').textContent = '...';
+            document.getElementById('metric-news').textContent = '...';
+
+            fetch('dashboard.php?fetch_metrics_by_date=1&date=' + encodeURIComponent(dateStr))
+                .then(res => {
+                    if (!res.ok) throw new Error('Network response was not ok');
+                    return res.json();
+                })
+                .then(data => {
+                    // Debug: log the data
+                    console.log('Metrics for', dateStr, data);
+
+                    document.getElementById('metric-appointments').textContent = data.appointments;
+                    document.getElementById('metric-contactforums').textContent = data.contactforums;
+                    document.getElementById('metric-news').textContent = data.news;
+                    document.getElementById('metric-appointments-change').textContent = '';
+                    document.getElementById('metric-contactforums-change').textContent = '';
+                    document.getElementById('metric-news-change').textContent = '';
+                    document.getElementById('metric-appointments-footer').textContent = 'Selected date: ' + dateStr;
+                    document.getElementById('metric-contactforums-footer').textContent = 'Selected date: ' + dateStr;
+                    document.getElementById('metric-news-footer').textContent = 'Selected date: ' + dateStr;
+                })
+                .catch(err => {
+                    // Debug: log the error
+                    console.error('Error fetching metrics:', err);
+                    document.getElementById('metric-appointments').textContent = '!';
+                    document.getElementById('metric-contactforums').textContent = '!';
+                    document.getElementById('metric-news').textContent = '!';
+                });
+        }
+
+        // --- Calendar navigation and rendering for all months/years ---
+        let calendarYear, calendarMonth;
+        let selectedDayElement = null;
         document.addEventListener('DOMContentLoaded', function() {
-            initializeCalendar();
-            updateDateTime();
-            setInterval(updateDateTime, 1000);
+            const today = new Date();
+            calendarYear = today.getFullYear();
+            calendarMonth = today.getMonth();
+            renderCalendar(calendarYear, calendarMonth);
+
+            // Fetch metrics for today on load
+            fetchMetricsByDate(today.toISOString().slice(0,10));
+
+            document.getElementById('calendar-prev').onclick = function() {
+                calendarMonth--;
+                if (calendarMonth < 0) {
+                    calendarMonth = 11;
+                    calendarYear--;
+                }
+                renderCalendar(calendarYear, calendarMonth);
+            };
+            document.getElementById('calendar-next').onclick = function() {
+                calendarMonth++;
+                if (calendarMonth > 11) {
+                    calendarMonth = 0;
+                    calendarYear++;
+                }
+                renderCalendar(calendarYear, calendarMonth);
+            };
         });
 
-        function initializeCalendar() {
-            const now = new Date();
+        function renderCalendar(year, month) {
             const monthNames = ["January", "February", "March", "April", "May", "June",
-                              "July", "August", "September", "October", "November", "December"];
-            
-            document.getElementById('calendar-month').textContent = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
-            
-            const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
-            const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+                "July", "August", "September", "October", "November", "December"];
+            document.getElementById('calendar-month').textContent = `${monthNames[month]} ${year}`;
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
             const daysContainer = document.getElementById('calendar-days');
             daysContainer.innerHTML = '';
 
@@ -233,15 +322,42 @@ if (isset($_SESSION['username'])) {
             }
 
             // Add days of the month
+            const today = new Date();
             for (let i = 1; i <= lastDay.getDate(); i++) {
                 const dayElement = document.createElement('div');
                 dayElement.className = 'calendar-day';
-                if (i === now.getDate()) {
+                if (
+                    year === today.getFullYear() &&
+                    month === today.getMonth() &&
+                    i === today.getDate()
+                ) {
                     dayElement.classList.add('today');
                 }
                 dayElement.textContent = i;
+                dayElement.tabIndex = 0; // Make focusable for accessibility
+
+                // Add click event to fetch metrics for this date and highlight selection
+                dayElement.onclick = function() {
+                    // Remove previous selection
+                    if (selectedDayElement) {
+                        selectedDayElement.classList.remove('selected');
+                    }
+                    dayElement.classList.add('selected');
+                    selectedDayElement = dayElement;
+
+                    const mm = (month+1).toString().padStart(2,'0');
+                    const dd = i.toString().padStart(2,'0');
+                    const dateStr = `${year}-${mm}-${dd}`;
+                    // Debug: log the selected date
+                    console.log('Selected date:', dateStr);
+                    fetchMetricsByDate(dateStr);
+                };
+
                 daysContainer.appendChild(dayElement);
             }
+
+            // Clear selection highlight when month changes
+            selectedDayElement = null;
         }
 
         function updateDateTime() {
@@ -253,5 +369,13 @@ if (isset($_SESSION['username'])) {
             document.getElementById('current-time').textContent = now.toLocaleTimeString();
         }
     </script>
+    <style>
+        /* Add this style for selected calendar day */
+        .calendar-day.selected {
+            background-color: #10b981 !important;
+            color: #fff !important;
+            font-weight: bold;
+        }
+    </style>
 </body>
 </html>
