@@ -1,19 +1,15 @@
 <?php
+$servername = "mysql-edsa.alwaysdata.net";
+$username = "edsa";
+$password = "123@safran"; 
+$dbname = "edsa_lanka"; 
 
-$localserver="localhost";
-$user = "root";
-$password="";
-$dbname="edsalanka";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 
-    $conn = new mysqli($localserver,$user,$password,$dbname);
-
-    if ($conn->connect_error) {
-        echo"connection not succesfull";
-        die($conn->connect_error);
-       
-
-    }else{
-        //echo"connection ----succesfull";
-    }
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 ?>
