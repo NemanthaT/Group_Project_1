@@ -37,7 +37,7 @@
             <div>
                 <h1>Service Providers</h1>
                 <div id="hiddenView">
-                    <button id="closeView" onclick="closeView()">x</button>
+                    <button id="closeView" onclick="closeView()">✕</button>
                     <center>
                     <table>
                         <tr><th class="c_th">Provider ID:</th> <td id="spId"></td></tr>

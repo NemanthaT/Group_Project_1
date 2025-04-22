@@ -80,7 +80,7 @@
                                 // Create the chart
                                 const ctx = document.getElementById('usersChart').getContext('2d');
                                 new Chart(ctx, {
-                                    type: 'pie', // Chart type: 'bar', 'line', 'pie', etc.
+                                    type: 'doughnut', // Chart type: 'bar', 'line', 'pie', etc.
                                     data: {
                                         labels: labels,
                                         datasets: [{
