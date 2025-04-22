@@ -161,9 +161,15 @@ include 'get_appointment.php';
                                     <?php endif; ?>
 
                                     <?php if ($user['provider_id'] !== null && ($user['status'] == 'Completed' || $user['status'] == 'Assigned' || $user['status'] == 'Scheduled')): ?>
-                                        <form method="POST" action="" style="display: inline;">
+                                        <form method="POST" action="cancel_appointment" style="display: inline;">
                                             <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
-                                            <button type="submit" class="btn view-btn">View</button>
+                                            <button type="button" class="btn view-btn" data-id="<?= htmlspecialchars($user['appointment_id']) ?>" 
+                    onclick="openViewPopup(
+                        '<?= htmlspecialchars(addslashes($apt['full_name'])) ?>',
+                        '<?= htmlspecialchars(addslashes($apt['phone'])) ?>',
+                        '<?= htmlspecialchars(addslashes($apt['appointment_date'])) ?>'
+                    )"
+                >View</button>                                      
                                         </form>
                                     <?php endif; ?>
 
@@ -246,6 +252,28 @@ include 'get_appointment.php';
                     </form>
                 </div>
             </div>
+
+            <div id="viewAppointmentOverlay" class="overlay">
+        <div class="overlay-content">
+            <span class="close-btn" onclick="closePopup('viewAppointmentOverlay')">&times;</span>
+            <h2>Provider Details</h2>
+            <div class="form-group">
+                <label>Provider Name:</label>
+                <p id="viewProviderName" class="detail-text"></p>
+            </div>
+            <div class="form-group">
+                <label>Phone Number:</label>
+                <p id="viewProviderPhone" class="detail-text"></p>
+            </div>
+            <div class="form-group">
+                <label>Appointment Date:</label>
+                <p id="viewAppointmentDate" class="detail-text"></p>
+            </div>
+            <div class="form-group" style="text-align:center; margin-top:30px;">
+                <button class="btn" id="chatButton" style="background-color:#28a745;">Chat with Provider</button>
+            </div>
+        </div>
+    </div>
         </div>
     </div>
 

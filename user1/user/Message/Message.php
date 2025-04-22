@@ -1,6 +1,6 @@
 <?php
-include '../session/session.php';
-
+    include '../session/session.php';
+    include '../../connect/connect.php';
 // Check if client is logged in
 if (!isset($_SESSION['client_id'])) {
     echo "Unauthorized. Please log in.";
