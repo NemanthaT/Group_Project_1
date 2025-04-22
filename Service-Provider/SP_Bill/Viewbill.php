@@ -109,7 +109,7 @@ $total_due = $subtotal;
                     </div>
                     
                     <div class="action-buttons">
-                        <a href="editbill.php?bill_id=<?php echo $bill_id; ?>"><button class="pay-button">Edit</button></a>
+                        <a href="EditBill.php?bill_id=<?php echo $bill_id; ?>"><button class="pay-button">Edit</button></a>
                         
                     </div>
                 </div>
