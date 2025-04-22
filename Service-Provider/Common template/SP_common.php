@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSA Lanka Consultancy</title>
-    <link rel="stylesheet" href="App.css">
-    <link rel="stylesheet" href="../Common template/SP_common.css">
-</head>
-<body>
     <div class="container">
         Sidebar 
         <div class="sidebar">
@@ -63,3 +53,4 @@
                 <a href="../../Login/Logout.php" class="logout">Logout</a>                
             </nav>
         </header>
+<!-- </div> of container is present in the all the other files(the last </div>) dont remove it -->
