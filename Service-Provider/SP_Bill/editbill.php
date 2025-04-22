@@ -93,127 +93,69 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
+    <?php include '../Common template/SP_common.php'; ?>
+    <link rel="stylesheet" href="../Common template/SP_common.css">
     <link rel="stylesheet" href="Bill.css">
 </head>
-<body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-            </div>
-            <ul class="menu">
-                <li><a href="../SP_Dashboard/SPDash.php"><button><img src="../images/dashboard.png">Dashboard</button></a></li>
-                <li><a href="../SP_Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
-                <li><a href="../SP_Message/Message.php"><button><img src="../images/message.png">Message</button></a></li>
-                <li><a href="../SP_Projects/Project.php"><button><img src="../images/project.png">Project</button></a></li>
-                <li><a href="../SP_Bill/Bill.php"><button><img src="../images/bill.png">Bill</button></a></li>
-                <li><a href="../SP_Forum/Forum.php"><button><img src="../images/forum.png">Forum</button></a></li>
-                <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
-            </ul>
-        </div>
-
-        <!-- Navbar -->
-        <header>
-            <nav class="navbar">
-                <div class="calendar-icon">
-                    <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
-                    <!-- Calendar Dropdown -->
-                    <div id="calendarDropdown" class="calendar-dropdown">
-                        <h3>Calendar</h3>
-                        <div class="calendar-header">
-                            <button id="prevMonth">&lt;</button>
-                            <span id="currentMonth">March 2025</span>
-                            <button id="nextMonth">&gt;</button>
-                        </div>
-                        <div class="calendar-grid">
-                            <div class="weekdays">
-                                <div>Mon</div>
-                                <div>Tue</div>
-                                <div>Wed</div>
-                                <div>Thu</div>
-                                <div>Fri</div>
-                                <div>Sat</div>
-                                <div>Sun</div>
-                            </div>
-                            <div id="daysGrid" class="days"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="notification">
-                    <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
-                </div>
-                <div class="profile">
-                    <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
-                </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>                
-            </nav>
-        </header>
-
-        <!-- Main Content -->
+<body> 
         <div class="main-content">
-        <div class="view-bill-section">
+            <div class="bill-section">                
+                    <div class="back-link">
+                        <a href="Bill.php">← Back to Bills</a>
+                    </div>               
+                    <h2>Edit Bill</h2>
+                        <?php if (!empty($errors)): ?>
+                            <div class="error-messages">
+                                <?php foreach($errors as $error): ?>
+                                    <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($success): ?>
+                            <div class="success-message">
+                                <p style="color:green;"><?php echo htmlspecialchars($success); ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <form action="editbill.php" method="POST" class="simple-form">
+                            <input type="hidden" name="bill_id" value="<?php echo htmlspecialchars($bill_id); ?>">
 
-            <div class="edit-bill-section">
-                <div class="back-link">
-                    <a href="Bill.php">← Back to Bills</a>
-                </div>
-                
-                <h2>Edit Bill</h2>
-                
-                <?php if (!empty($errors)): ?>
-                <div class="error-messages">
-                    <?php foreach($errors as $error): ?>
-                    <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
-                    <?php endforeach; ?>
-                </div>
-                <?php endif; ?>
-                
-                <?php if ($success): ?>
-                <div class="success-message">
-                    <p style="color:green;"><?php echo htmlspecialchars($success); ?></p>
-                </div>
-                <?php endif; ?>
-                <form action="editbill.php" method="POST" class="simple-form">
-                    <input type="hidden" name="bill_id" value="<?php echo htmlspecialchars($bill_id); ?>">
+                            <div class="form-field">
+                                <label for="project_id">Project ID</label>
+                                <input type="text" id="project_id" name="project_id" value="<?php echo htmlspecialchars($project_id); ?>" required readonly>
+                            </div>
                     
-                    <div class="form-field">
-                        <label for="project_id">Project ID</label>
-                        <input type="text" id="project_id" name="project_id" value="<?php echo htmlspecialchars($project_id); ?>" required readonly>
-                    </div>
+                            <div class="form-field">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" rows="4" required><?php echo htmlspecialchars($description); ?></textarea>
+                            </div>
                     
-                    <div class="form-field">
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" rows="4" required><?php echo htmlspecialchars($description); ?></textarea>
-                    </div>
+                            <div class="form-field">
+                                <label for="amount">Amount (Rs)</label>
+                                <input type="number" id="amount" name="amount" value="<?php echo htmlspecialchars($amount); ?>" min="1" step="0.01" required>
+                            </div>
                     
-                    <div class="form-field">
-                        <label for="amount">Amount (Rs)</label>
-                        <input type="number" id="amount" name="amount" value="<?php echo htmlspecialchars($amount); ?>" min="1" step="0.01" required>
-                    </div>
+                            <div class="form-field">
+                                <label for="bill_date">Bill Date</label>
+                                <input type="date" id="bill_date" name="bill_date" value="<?php echo htmlspecialchars($bill_date); ?>" required>
+                            </div>
                     
-                    <div class="form-field">
-                        <label for="bill_date">Bill Date</label>
-                        <input type="date" id="bill_date" name="bill_date" value="<?php echo htmlspecialchars($bill_date); ?>" required>
-                    </div>
+                            <div class="form-field">
+                                <label for="status">Payment Status</label>
+                                <select id="status" name="status" required>
+                                    <option value="unpaid" <?php if($status == 'unpaid') echo 'selected'; ?>>Unpaid</option>
+                                    <option value="paid" <?php if($status == 'paid') echo 'selected'; ?>>Paid</option>
+                                </select>
+                            </div>
                     
-                    <div class="form-field">
-                        <label for="status">Payment Status</label>
-                        <select id="status" name="status" required>
-                            <option value="unpaid" <?php if($status == 'unpaid') echo 'selected'; ?>>Unpaid</option>
-                            <option value="paid" <?php if($status == 'paid') echo 'selected'; ?>>Paid</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button type="button" class="cancel-button" onclick="window.location.href='Viewbill.php?bill_id=<?php echo $bill_id; ?>'">Cancel</button>
-                        <button type="submit" class="submit-button">Update Bill</button>
-                    </div>
-                </form>
+                            <div class="form-actions">
+                                <button type="button" class="cancel-button" onclick="window.location.href='Viewbill.php?bill_id=<?php echo $bill_id; ?>'">Cancel</button>
+                                <button type="submit" class="submit-button">Update Bill</button>
+                            </div>
+                        </form>                
             </div>
         </div>
-        </div>
-    </div>
+    </div>   <!--this is the </div> of container in the common file, don't remove it-->
+<script src="Bill.js"></script>
+<script src="../Common template/Calendar.js"></script>
 </body>
 </html>
-
