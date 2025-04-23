@@ -1,6 +1,11 @@
 function viewReq(id) {
     document.getElementById('overlay').style.display = "block";
-    // Send an AJAX request to the PHP script
+
+    // Show preloader
+    const preloader = document.getElementById('popupPreloader');
+    preloader.classList.remove('fade-out');
+    preloader.style.display = "flex";
+
     fetch('view_req.php', {
         method: 'POST',
         headers: {
@@ -10,25 +15,34 @@ function viewReq(id) {
     })
     .then(response => response.json())
     .then(data => {
-        // Check if data contains error
         if (data.error) {
             alert(data.error);
         } else {
-            // Display forum details in the hidden area
             window.addEventListener('scroll', function() {});
             document.getElementById('displayArea').style.filter = "blur(10px)";
-            document.getElementById('hiddenView').style.display = "block";
-            document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
+            const popup = document.getElementById('hiddenView');
+            popup.style.display = "block";
+            popup.style.marginTop = window.scrollY + "px";
+
             document.getElementById("reqId").innerText = data.reqId;
             document.getElementById("reqName").innerText = data.full_name;
             document.getElementById("reqEmail").innerText = data.email;
             document.getElementById("reqTel").innerText = data.phone;
             document.getElementById("reqField").innerText = data.field;
             document.getElementById("reqSpec").innerText = data.specialty;
-            //document.documentElement.scrollTop = 0;
+            document.getElementById("hiddenViewActions").innerHTML = `
+                <button class="accept" onclick="accReq(${data.reqId})">Accept</button>
+                <button class="del" onclick="deleteReq(${data.reqId})">Delete</button>
+            `;
+
+            // Hide preloader with fade out
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = "none";
+            }, 500);
         }
     })
-    .catch(error => console.error('Error fetching forum data:', error));
+    .catch(error => console.error('Error fetching request data:', error));
 }
 
 function deleteReq(id) {

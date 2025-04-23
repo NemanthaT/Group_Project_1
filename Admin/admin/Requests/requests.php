@@ -6,7 +6,7 @@
     $email = $_SESSION['email'];
 
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../../login/login.php");
+        header("Location: ../../../login/login.php");
         exit;
     }
 
@@ -31,14 +31,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Provider Requests</title>       
         <link rel="stylesheet" href="../../css/common.css">
+        <link rel="stylesheet" href="../../css/preloader.css">
         <link rel="stylesheet" href="requests.css">
         <script src="../../js/common.js"></script>
+        <script src="../../js/preloader.js"></script>
     </head>
 
     <body>
-        <div class="main">
+        <div class="main" id="main">
             <div class="bg">
                     <!--blur Background image-->  
+            </div>
+            <div id="preloader">
+                <div class="spinner"></div>
+            </div>
+            <div id="popupPreloader">
+                <div class="spinner"></div>
             </div> 
 
             <div id="overlay" class="overlay"></div>
@@ -46,34 +54,39 @@
             <div>
                 <h1>Provider Requests</h1>       
                 <div id="hiddenView">
-                    <button id="closeView" onclick="closeView()">x</button>
-                    <center>
-                    <table>
-                        <tr>
-                            <th>Request ID:</th> <td id="reqId"></td>
-                        </tr>
 
-                        <tr>
-                            <th>Name:</th> <td id="reqName"></td>
-                        </tr>
+                    <div id="hiddenViewHeader">
+                        <h2>Request Details</h2>
+                        <button id="closeView" onclick="closeView()">x</button>
+                    </div>
+                    <div id="hiddenViewDetails">
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Request ID</p> <p id="reqId" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Name</p> <p id="reqName" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Email</p> <p id="reqEmail" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Tel</p> <p id="reqTel" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Field</p> <p id="reqField" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Specialty</p> <p id="reqSpec" class="detes"></p>
+                        </div>
+                    </div>
+                    <div id="hiddenViewActions">
 
-                        <tr>
-                            <th><b>Email:</th> <td id="reqEmail"></td>
-                        </tr>
-
-                        <tr>
-                            <th><b>Tel:</th> <td id="reqTel"></td>
-                        </tr>
-
-                        <tr>
-                            <th><b>Field:</th> <td id="reqField"></td>
-                        </tr>
-
-                        <tr>
-                            <th><b>specialty</th> <td id="reqSpec"></td>
-                        </tr>
-                    </table>
-                    </center>
+                    </div>
                 </div>
                 <div id="displayArea">
                     <center>

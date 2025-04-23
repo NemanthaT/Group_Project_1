@@ -1,6 +1,11 @@
 function viewClient(id) {
     document.getElementById('overlay').style.display = "block";
-    // Send an AJAX request to the PHP script
+
+    // Show preloader
+    const preloader = document.getElementById('popupPreloader');
+    preloader.classList.remove('fade-out');
+    preloader.style.display = "flex";
+
     fetch('cView.php', {
         method: 'POST',
         headers: {
@@ -10,26 +15,35 @@ function viewClient(id) {
     })
     .then(response => response.json())
     .then(data => {
-        // Check if data contains error
         if (data.error) {
             alert(data.error);
             document.documentElement.scrollTop = 0;
         } else {
             console.log(data);
-            // Display forum details in the designated area
+
+            // Hide preloader and show content
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = "none"; // Hide preloader after fade
+            }, 500); // Duration should match the fade-out transition
+
+            // Display client details in the designated area
             window.addEventListener('scroll', function() {});
             document.getElementById('displayArea').style.filter = "blur(10px)";
             document.getElementById('hiddenView').style.display = "block";
             document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
+
             document.getElementById("cId").innerText = data.client_id;
             document.getElementById("uName").innerText = data.username;
             document.getElementById("fName").innerText = data.full_name;
             document.getElementById("email").innerText = data.email;
-            document.getElementById("address").innerText = data.address;
-            //document.documentElement.scrollTop = 0;
+            document.getElementById("address").innerText = "📍 " + data.address;
+            document.getElementById("hiddenViewActions").innerHTML = `
+                <button class="del" onclick="deleteClient(${data.client_id})">Delete</button>
+            `;
         }
     })
-    .catch(error => console.error('Error fetching forum data:', error));
+    .catch(error => console.error('Error fetching client data:', error));
 }
 
 function deleteClient(id) {
@@ -63,7 +77,12 @@ function deleteClient(id) {
 //
 function viewSp(id) {
     document.getElementById('overlay').style.display = "block";
-    // Send an AJAX request to the PHP script
+
+    // Show preloader
+    const preloader = document.getElementById('popupPreloader');
+    preloader.classList.remove('fade-out');
+    preloader.style.display = "flex";
+
     fetch('spView.php', {
         method: 'POST',
         headers: {
@@ -73,27 +92,36 @@ function viewSp(id) {
     })
     .then(response => response.json())
     .then(data => {
-        // Check if data contains error
+        // If there's an error in the response
         if (data.error) {
             alert(data.error);
             document.documentElement.scrollTop = 0;
         } else {
-            // Display forum details in the designated area
+            // Hide preloader and show content
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = "none"; // Hide preloader after fade
+            }, 500);
+
+            // Display service provider details in the designated area
             window.addEventListener('scroll', function() {});
             document.getElementById('displayArea').style.filter = "blur(10px)";
             document.getElementById('hiddenView').style.display = "block";
             document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
+
             document.getElementById("spId").innerText = data.provider_id;
             document.getElementById("uName").innerText = data.username;
             document.getElementById("fName").innerText = data.full_name;
             document.getElementById("email").innerText = data.email;
-            document.getElementById("address").innerText = data.address;
+            document.getElementById("address").innerText = "📍 " + data.address;
             document.getElementById("specialty").innerText = data.speciality;
             document.getElementById("field").innerText = data.field;
-            //document.documentElement.scrollTop = 0;
+            document.getElementById("hiddenViewActions").innerHTML = `
+                <button class="del" onclick="deleteSp(${data.provider_id})">Delete</button>
+            `;
         }
     })
-    .catch(error => console.error('Error fetching forum data:', error));
+    .catch(error => console.error('Error fetching provider data:', error));
 }
 
 function deleteSp(id) {

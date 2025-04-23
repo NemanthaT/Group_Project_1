@@ -6,7 +6,7 @@
     $email = $_SESSION['email'];
 
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../../login/login.php");
+        header("Location: ../../../login/login.php");
         exit;
     }
 
@@ -31,13 +31,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Clients</title>
         <link rel="stylesheet" href="../../css/common.css">
+        <link rel="stylesheet" href="../../css/preloader.css">
+        <script src="../../js/preloader.js"></script>
         <link rel="stylesheet" href="forums.css">  
     </head>
 
     <body>
-        <div class="main">
+        <div class="main" id="main">
             <div class="bg">
             
+            </div>
+
+            <div id="preloader">
+                <div class="spinner"></div>
+            </div>
+            <div id="popupPreloader">
+                <div class="spinner"></div>
             </div>
 
             <div id="overlay" class="overlay"></div>
@@ -46,7 +55,12 @@
                 <h1>Manage Forums</h1>
     
                 <div id="hiddenView">
-                    <button id="closeView" onclick="closeView()">x</button>
+
+                    <div id="hiddenViewHeader">
+                        <h2>Forum Details</h2>
+                        <button id="closeView" onclick="closeView()">x</button>
+                    </div>
+                    
                     <center>
                     
                         <p class="forum_th" id="forumId"></p>

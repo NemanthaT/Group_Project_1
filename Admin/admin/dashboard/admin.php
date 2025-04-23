@@ -31,7 +31,7 @@
                 </div>
                 <nav>
                     <ul>
-                        <li class="dropDown" id="dD1" ><a href="dashboard.php" target="Dashboard">&#9875 Dashboard</a></li>
+                        <li class="dropDown" id="dD1" ><a href="dashboard2.php" target="Dashboard">&#9875 Dashboard</a></li>
                         <li class="dropDown" id="dD2" ><a href="../Users/users.php" target="Dashboard">&#128113 Users</a></li>
                         <li class="dropDown" id="dD3" ><a href="../ManageEmployees/manEmp.php" target="Dashboard">&#9997 Manage Employees</a></li>
                         <li class="dropDown" id="dD4" ><a href="../Requests/requests.php" target="Dashboard"><span style="color:green">&#129159</span> Provider Requests</a></li>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="frame">
                     <div id=frame>
-                        <iframe src="dashboard.php" name="Dashboard" title="Dashboard"></iframe>
+                        <iframe src="dashboard2.php" name="Dashboard" title="Dashboard"></iframe>
                     </div>
                     <!--<div class="right" id="arrow"></div>
                     <div id="content">

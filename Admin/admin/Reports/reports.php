@@ -7,7 +7,7 @@
     $email = $_SESSION['email'];
 
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../../login/login.php");
+        header("Location: ../../../login/login.php");
         exit;
     }
 
@@ -24,16 +24,25 @@
         <title>Reports</title>
         <link rel="stylesheet" href="../../css/common.css">
         <link rel="stylesheet" href="reports.css">
+        <link rel="stylesheet" href="../../css/preloader.css">
         <link rel="stylesheet" href="../../../Error/error.css">
         <script src="../../../Error/error.js"></script>
         <script src="reports.js"></script>
+        <script src="../../js/preloader.js"></script>
     </head>
 
     <body>
-        <div class="main">
+        <div class="main" id="main">
             <div class="bg">
                     <!--blur Background image-->  
             </div>
+            <div id="preloader">
+                <div class="spinner"></div>
+            </div>
+            <div id="popupPreloader">
+                <div class="spinner"></div>
+            </div>
+            
             <h1>Payments</h1> 
             <div class ="mainTop">
 
