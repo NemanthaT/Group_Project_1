@@ -40,6 +40,11 @@ $sql = "SELECT COUNT(*) FROM providerrequests";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $pendingRequests = $row["COUNT(*)"];
+
+// Get total forums and their counts
+$sql1 = "SELECT COUNT(*) FROM forums";
+$result = $conn->query($sql1);
+$row1 = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +97,7 @@ $pendingRequests = $row["COUNT(*)"];
             <div class="stat-card card-blue">
                 <div class="stat-info">
                     <h3>Earnings (Monthly)</h3>
-                    <p>$<?php echo number_format($totalEarnings); ?></p>
+                    <p>Rs.<?php echo number_format($totalEarnings); ?>.00</p>
                 </div>
                 <div class="stat-icon">
                     <i class="fas fa-calendar"></i>
@@ -102,25 +107,22 @@ $pendingRequests = $row["COUNT(*)"];
             <div class="stat-card card-green">
                 <div class="stat-info">
                     <h3>Earnings (Annual)</h3>
-                    <p>$<?php echo number_format($annualEarnings); ?></p>
+                    <p>Rs.<?php echo number_format($annualEarnings); ?>.00</p>
                 </div>
                 <div class="stat-icon">
                     <i class="fas fa-dollar-sign"></i>
                 </div>
             </div>
 
-            <!--<div class="stat-card card-teal">
-                    <div class="stat-info">
-                        <h3>Tasks</h3>
-                        <p>50%</p>
-                        <div class="progress">
-                            <div class="progress-bar" style="width: 50%"></div>
-                        </div>
-                    </div>
-                    <div class="stat-icon">
-                        <i class="fas fa-clipboard-list"></i>
-                    </div>
-                </div>-->
+            <div class="stat-card card-teal">
+                <div class="stat-info">
+                    <h3>Forums</h3>
+                    <p>Total: <?php echo $row1['COUNT(*)']; ?></p>
+                </div>
+                <div class="stat-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+            </div>
 
             <div class="stat-card card-yellow">
                 <div class="stat-info">
@@ -132,73 +134,81 @@ $pendingRequests = $row["COUNT(*)"];
                 </div>
             </div>
         </div>
+        <div id="downContent">
+            <div id="charts">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h2>User Statistics</h2>
+                    </div>
+                    <div class="chart-content">
+                        <div class="users-stats">
+                            <?php
+                            $sql = "SELECT COUNT(*) FROM clients";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $clients = $row["COUNT(*)"];
 
-        <div class="chart-card">
-            <div class="chart-header">
-                <h2>User Statistics</h2>
-            </div>
-            <div class="chart-content">
-                <div class="users-stats">
-                    <?php
-                    $sql = "SELECT COUNT(*) FROM clients";
-                    $result = $conn->query($sql);
-                    $row = $result->fetch_assoc();
-                    $clients = $row["COUNT(*)"];
+                            $sql = "SELECT COUNT(*) FROM serviceproviders";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $serviceProviders = $row["COUNT(*)"];
 
-                    $sql = "SELECT COUNT(*) FROM serviceproviders";
-                    $result = $conn->query($sql);
-                    $row = $result->fetch_assoc();
-                    $serviceProviders = $row["COUNT(*)"];
+                            $sql = "SELECT COUNT(*) FROM companyworkers";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $employees = $row["COUNT(*)"];
 
-                    $sql = "SELECT COUNT(*) FROM companyworkers";
-                    $result = $conn->query($sql);
-                    $row = $result->fetch_assoc();
-                    $employees = $row["COUNT(*)"];
+                            $data = [
+                                "clients" => $clients,
+                                "serviceProviders" => $serviceProviders,
+                                "employees" => $employees
+                            ];
 
-                    $data = [
-                        "clients" => $clients,
-                        "serviceProviders" => $serviceProviders,
-                        "employees" => $employees
-                    ];
-
-                    // Pass the data to JavaScript
-                    echo "<script>const chartData = " . json_encode($data) . ";</script>";
-                    ?>
-                    <div class="users-table">
-                        <div class="user-stat-row">
-                            <div class="user-stat-label">Clients</div>
-                            <div class="user-stat-value"><?php echo $clients; ?></div>
+                            // Pass the data to JavaScript
+                            echo "<script>const chartData = " . json_encode($data) . ";</script>";
+                            ?>
+                            <div class="users-table">
+                                <div class="user-stat-row">
+                                    <div class="user-stat-label">Clients</div>
+                                    <div class="user-stat-value"><?php echo $clients; ?></div>
+                                </div>
+                                <div class="user-stat-row">
+                                    <div class="user-stat-label">Service Providers</div>
+                                    <div class="user-stat-value"><?php echo $serviceProviders; ?></div>
+                                </div>
+                                <div class="user-stat-row">
+                                    <div class="user-stat-label">Employees</div>
+                                    <div class="user-stat-value"><?php echo $employees; ?></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="user-stat-row">
-                            <div class="user-stat-label">Service Providers</div>
-                            <div class="user-stat-value"><?php echo $serviceProviders; ?></div>
-                        </div>
-                        <div class="user-stat-row">
-                            <div class="user-stat-label">Employees</div>
-                            <div class="user-stat-value"><?php echo $employees; ?></div>
+                        <div class="users-chart-container">
+                            <canvas id="usersChart"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="users-chart-container">
-                    <canvas id="usersChart"></canvas>
-                </div>
-            </div>
-        </div>
 
-        <!-- Charts
-            <div class="charts-container">
+               <!-- Charts-->
+
                 <div class="chart-card">
                     <div class="chart-header">
                         <h2>Earnings Overview</h2>
-                        <div class="chart-actions">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
                     </div>
                     <div class="chart-content">
                         <canvas id="earningsChart"></canvas>
                     </div>
                 </div>
-
+            </div>
+            <div id="notifications">
+                <div class="chart-header">
+                    <h2>Notifications</h2>
+                </div>
+                <div class="chart-content">
+                    <canvas id="earningsChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!--    
                 <div class="chart-card">
                     <div class="chart-header">
                         <h2>Revenue Sources</h2>
