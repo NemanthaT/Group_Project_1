@@ -119,8 +119,8 @@ $result = $conn->query($sql);
         }
         ?>
         <div class="card">
-          <a href="details.php?id=<?php echo urlencode($row['id']); ?>">
-            <h3>Contact Forum #<?php echo htmlspecialchars($row['id']); ?></h3>
+          <a href="details.php?id=<?php echo urlencode($row['cf_id']); ?>">
+            <h3>Contact Forum #<?php echo htmlspecialchars($row['cf_id']); ?></h3>
             <p><strong>Full Name:</strong> <?php echo htmlspecialchars($row['full_name']); ?></p>
             <p><strong>Phone:</strong> <?php echo htmlspecialchars($row['phone_number']); ?></p>
             <p><strong>Email:</strong> <?php echo htmlspecialchars($row['email']); ?></p>
@@ -139,9 +139,9 @@ $result = $conn->query($sql);
   <script src="../sidebar.js"></script>
   <script>
     // Sidebar toggle for mobile
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
+    const sidebarToggle = document.getElementByid('sidebarToggle');
+    const sidebar = document.getElementByid('sidebar');
+    const overlay = document.getElementByid('overlay');
     sidebarToggle.addEventListener('click', function() {
       sidebar.classList.toggle('open');
       overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';

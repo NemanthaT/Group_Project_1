@@ -26,63 +26,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSA Lanka Consultancy - About Us</title>
+    <title>EDSA Lanka Consultancy - Contact Us</title>
     <link rel="stylesheet" href="CU.css">
 </head>
 
 <body>
-    <!-- Main Content -->
     <main class="contact-main">
-        <h1>Contact Us</h1>
+        <h1>Get in Touch</h1>
         <div class="contact-container">
-            <!-- Contact Information Section -->
             <div class="contact-info">
                 <h2>Contact Information</h2>
-                <p>Say something to start a live chat!</p>
+                <p>We'd love to hear from you. Please fill out the form or reach us using our contact information.</p>
                 <ul>
-                    <li>0772345678</li>
-                    <li>123@gmail.com</li>
-                    <li>120 street rd., Galle</li>
+                    <li class="phone">+94 77 234 5678</li>
+                    <li class="email">info@edsalanka.com</li>
+                    <li class="location">120 Street Road, Galle, Sri Lanka</li>
                 </ul>
             </div>
 
-            <!-- Contact Form Section -->
             <div class="contact-form">
                 <?php if ($success): ?>
-                    <div class="success-message" style="color: green; margin-bottom: 20px;">
-                        Thank you for contacting us! We have received your message.
+                    <div class="success-message">
+                        Thank you for contacting us! We'll get back to you soon.
                     </div>
                 <?php elseif ($error): ?>
-                    <div class="error-message" style="color: red; margin-bottom: 20px;">
+                    <div class="error-message">
                         <?php echo htmlspecialchars($error); ?>
                     </div>
                 <?php endif; ?>
+                
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="full_name">Full Name</label>
-                        <input type="text" id="full_name" name="full_name" required>
+                        <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
                         <label for="phone_number">Phone Number</label>
-                        <input type="text" id="phone_number" name="phone_number" required>
+                        <input type="tel" id="phone_number" name="phone_number" placeholder="Enter your phone number" required>
                     </div>
                     <div class="form-group">
-                        <label for="reason">Reason</label>
-                        <textarea id="reason" name="reason" rows="5" required></textarea>
+                        <label for="reason">How can we help you?</label>
+                        <textarea id="reason" name="reason" rows="4" placeholder="Tell us about your inquiry" required></textarea>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Send Message</button>
                 </form>
             </div>
         </div>
     </main>
 </body>
-
 </html>
