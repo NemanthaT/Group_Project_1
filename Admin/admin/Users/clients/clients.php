@@ -37,7 +37,7 @@
             <div>
                 <h1>Clients</h1>
                 <div id="hiddenView">
-                    <button id="closeView" onclick="closeView()">x</button>
+                    <button id="closeView" onclick="closeView()">✕</button>
                     <center>
                     <table>
                         <tr><th class="c_th">Client ID:</th> <td id="cId"></td></tr>

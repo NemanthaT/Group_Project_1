@@ -60,7 +60,7 @@
 
         <!--Add Employee Form-->
         <div id="addEmp">
-            <button id="closeView" onclick="closeForm()">x</button>
+            <button id="closeView" onclick="closeForm()">✕</button>
             <div id="addEmpForm">    
                     <form action="" method="POST" id="fm">
                         <label for="fullname">Full Name:</label><br>

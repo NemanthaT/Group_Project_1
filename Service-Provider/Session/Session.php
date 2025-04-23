@@ -22,7 +22,7 @@ else
         $_SESSION['provider_id'] = $row['provider_id'];
     } else {
         // Handle case where user is not found
-        header("Location: ../Login/login.php");
+        header("Location: ../../Login/login.php");
         exit();
     }
     $stmt->close();
