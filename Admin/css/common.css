@@ -4,6 +4,8 @@
     padding: 0;
 }
 #main{
+    margin-right: 10% !important;
+    margin-left: 10% !important;
     width: 80% !important;
 }
 body {
@@ -217,10 +219,10 @@ button:hover{
     border-radius: 30px !important;
     color: red;
     /*font-size: large;*/
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     margin-left: 92%;
     margin-bottom: 2%;
 }
@@ -260,9 +262,29 @@ button:hover{
 }
 /*hidden view styles*/
 #hiddenView{
+    display: none;
     position: absolute;
     z-index: 1;
-    border-radius: 0px !important;
+    margin-left: 10%;
+    margin-right: 20%;
+    width: 50%;
+    border-radius: 10px 10px 0px 0px  !important;
+    background-color: #ffffff;
+    border: 2px solid #333;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+#hiddenViewHeader{
+    padding: 10px;
+    height: 5%;
+    background-image: linear-gradient(to right, #0076fd, #1882fb, #4ea0ff);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#hiddenViewHeader h2{
+    color: white !important;
 }
 
 /*style for background*/
@@ -396,7 +418,7 @@ button:hover{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Optional: darkens background */
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1; /* Must be higher than the rest of your page */
     pointer-events: all; /* Ensures it blocks clicks */
 }

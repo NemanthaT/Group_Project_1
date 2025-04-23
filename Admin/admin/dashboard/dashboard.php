@@ -6,7 +6,7 @@
     $email = $_SESSION['email'];
 
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: login.php");
+        header("Location: ../../../login/login.php");
         exit;
     }
 
@@ -19,6 +19,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin Dashboard</title>
         <link rel="stylesheet" href="dashboard.css">
+        <link rel="stylesheet" href="../../css/preloader.css">
+        <script src="../../js/preloader.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
     </head>
@@ -31,6 +33,9 @@
             <!--Left side of the dashboard-->
             <div class="bg">
                 <!--blur Background image-->  
+            </div>
+            <div id="preloader">
+                <div class="spinner"></div>
             </div>
             <div id="contentLeft">
                 <div class="card">
