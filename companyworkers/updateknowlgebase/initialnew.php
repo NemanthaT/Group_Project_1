@@ -9,6 +9,9 @@
       header("Location: ../../Login/Login.php");
       exit;
   }
+
+  // Get the selected category from session (if set)
+  $selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
 ?>
 
 <!DOCTYPE html>

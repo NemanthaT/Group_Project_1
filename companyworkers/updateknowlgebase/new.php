@@ -10,13 +10,22 @@
       exit;
   }
 
-  if(isset($_POST['submit'])){
-      $worker_id=$_POST['worker_id'];
-      $title=$_POST['title'];
-      $content=$_POST['content'];
+  // Get the selected section from session
+  $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
 
-      $sql="INSERT INTO `knowledgebase` (worker_id,title,content) VALUES ('$worker_id','$title','$content')";
-      $result=mysqli_query($conn,$sql);
+  // Get worker_id of logged-in user (no stmt)
+  $worker_id = null;
+  $result_worker = mysqli_query($conn, "SELECT worker_id FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'");
+  if ($row = mysqli_fetch_assoc($result_worker)) {
+      $worker_id = $row['worker_id'];
+  }
+
+  if(isset($_POST['submit'])){
+      $title = mysqli_real_escape_string($conn, $_POST['title']);
+      $content = mysqli_real_escape_string($conn, $_POST['content']);
+      // Use $section and $worker_id
+      $sql = "INSERT INTO `knowledgebase` (worker_id, section, title, content) VALUES ('$worker_id', '$section', '$title', '$content')";
+      $result = mysqli_query($conn, $sql);
       if($result){
           echo '<script>alert("Knowledgebase updated");</script>';
       }
@@ -125,17 +134,32 @@
                 <form action="" method="POST" class="knowledge-form">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" id="title" name="title" placeholder="Enter the title" required>
+                        <select id="title" name="title" required>
+                            <option value="">Select a title</option>
+                            <option value="development finance">Development Finance</option>
+                            <option value="micro finance">Micro Finance</option>
+                            <option value="organizational development">Organizational Development</option>
+                            <option value="sme development">SME Development</option>
+                            <option value="gender finance">Gender Finance</option>
+                            <option value="institutional development">Institutional Development</option>
+                            <option value="community development">Community Development</option>
+                            <option value="strategic and operational planning">Strategic and Operational Planning</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="content">Content</label>
-                        <textarea id="content" name="content" placeholder="Enter the Content" required></textarea>
+                        <textarea id="content" name="content" placeholder="Enter the content" required></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="worker_id">Worker ID</label>
-                        <input type="number" id="worker_id" name="worker_id" placeholder="Enter the worker id" required>
+                        <input type="text" id="worker_id" name="worker_id" value="<?php echo htmlspecialchars($worker_id); ?>" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="section">Section</label>
+                        <input type="text" id="section" name="section" value="<?php echo htmlspecialchars($section); ?>" readonly>
                     </div>
 
                     <div class="form-actions">
