@@ -1,6 +1,7 @@
 <?php
-    include '../session/session.php';
-    include '../../connect/connect.php';
+include '../session/session.php';
+include '../../connect/connect.php';
+
 if (!isset($_SESSION['client_id'])) {
     echo "Unauthorized";
     exit;
@@ -21,7 +22,7 @@ if ($action === 'create_chat') {
     }
 
     // Check if provider exists
-    $query = "SELECT provider_id FROM providers WHERE provider_id = ?";
+    $query = "SELECT provider_id FROM serviceproviders WHERE provider_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $providerId);
     $stmt->execute();
@@ -32,13 +33,25 @@ if ($action === 'create_chat') {
     }
     $stmt->close();
 
+    // Check if thread already exists for this provider
+    $query = "SELECT thread_id FROM chat_threads WHERE client_id = ? AND provider_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ii", $clientId, $providerId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        echo "Chat thread already exists for this provider";
+        $stmt->close();
+        exit;
+    }
+    $stmt->close();
+
     // Start transaction
     $conn->begin_transaction();
     try {
-        // Create or get existing thread
+        // Create new thread
         $query = "INSERT INTO chat_threads (provider_id, client_id, topic) 
-                  VALUES (?, ?, ?) 
-                  ON DUPLICATE KEY UPDATE thread_id = LAST_INSERT_ID(thread_id)";
+                  VALUES (?, ?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("iis", $providerId, $clientId, $topic);
         $stmt->execute();
@@ -132,6 +145,43 @@ if ($action === 'create_chat') {
         $class = $message['sender_type'] === 'client' ? 'sent' : 'received';
         echo "<p class='$class'>$sender: " . htmlspecialchars($message['message_text']) . 
              "<br><small>" . $message['sent_at'] . "</small></p>";
+    }
+} elseif ($action === 'fetch_threads') {
+    // Fetch all threads with latest message and status
+    $query = "SELECT t.thread_id, t.provider_id, t.topic, 
+                     (SELECT m.message_text 
+                      FROM chat_messages m 
+                      WHERE m.thread_id = t.thread_id 
+                      ORDER BY m.sent_at DESC 
+                      LIMIT 1) AS last_message,
+                     (SELECT m.status 
+                      FROM chat_messages m 
+                      WHERE m.thread_id = t.thread_id 
+                      ORDER BY m.sent_at DESC 
+                      LIMIT 1) AS status
+              FROM chat_threads t
+              WHERE t.client_id = ?
+              ORDER BY (SELECT MAX(m.sent_at) 
+                        FROM chat_messages m 
+                        WHERE m.thread_id = t.thread_id) DESC";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $clientId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $threads = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    // Output threads as HTML table rows
+    foreach ($threads as $thread) {
+        $lastMessage = htmlspecialchars($thread['last_message'] ?? 'No messages yet');
+        $status = htmlspecialchars($thread['status'] ?? 'Unseen');
+        echo "<tr>" .
+             "<td>" . htmlspecialchars($thread['provider_id']) . "</td>" .
+             "<td>" . htmlspecialchars($thread['topic']) . "</td>" .
+             "<td>" . $lastMessage . "</td>" .
+             "<td>" . $status . "</td>" .
+             "<td><button class=\"chat-button\" data-thread-id=\"" . $thread['thread_id'] . "\" data-provider-id=\"" . $thread['provider_id'] . "\">Chat</button></td>" .
+             "</tr>";
     }
 }
 ?>
