@@ -5,7 +5,7 @@
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../../login/login.php");
+        header("Location: ../../../login/login.php");
         exit;
     }
     $afDiv = "mainContent";
@@ -31,13 +31,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Employees</title>
     <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/preloader.css">
     <link rel="stylesheet" href="empStyles.css">
     <script src="../../js/common.js"></script>
+    <script src="../../js/preloader.js"></script>
     <script src="emp.js"></script>
 </head>
 <body>
     <div class="bg">
         <!--blur Background image-->  
+    </div>
+
+    <div id="preloader">
+        <div class="spinner"></div>
     </div>
 
     <!--Overlay-->
