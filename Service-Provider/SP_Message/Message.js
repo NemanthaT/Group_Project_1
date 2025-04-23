@@ -55,7 +55,8 @@ document.getElementById('create-chat-form').addEventListener('submit', function 
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert(xhr.responseText);
             if (xhr.responseText === 'Chat created successfully') {
-                location.reload(); // Refresh to show new thread
+                fetchThreads(); // Immediately update thread list
+                document.getElementById('create-chat-form').reset();
             }
         }
     };
@@ -68,10 +69,10 @@ document.getElementById('create-chat-form').addEventListener('submit', function 
 // Open Chat Modal
 let currentThreadId = null;
 let pollingInterval = null;
-document.querySelectorAll('.chat-button').forEach(button => {
-    button.addEventListener('click', function () {
-        currentThreadId = this.getAttribute('data-thread-id');
-        const clientId = this.getAttribute('data-client-id');
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('chat-button')) {
+        currentThreadId = event.target.getAttribute('data-thread-id');
+        const clientId = event.target.getAttribute('data-client-id');
         document.getElementById('chat-client-id').textContent = clientId;
         document.getElementById('chat-modal').style.display = 'flex';
         document.getElementById('chat-window').innerHTML = '';
@@ -81,7 +82,7 @@ document.querySelectorAll('.chat-button').forEach(button => {
 
         // Start polling for new messages
         pollingInterval = setInterval(() => fetchMessages(currentThreadId), 3000);
-    });
+    }
 });
 
 // Close Chat Modal
@@ -112,6 +113,7 @@ document.getElementById('send-chat').addEventListener('click', function () {
             if (xhr.responseText === 'Message sent') {
                 document.getElementById('chat-input').value = '';
                 fetchMessages(currentThreadId);
+                fetchThreads(); // Update thread list for last message and status
             } else {
                 alert(xhr.responseText);
             }
@@ -135,3 +137,22 @@ function fetchMessages(threadId) {
     };
     xhr.send(`action=fetch_messages&thread_id=${threadId}`);
 }
+
+// Fetch Threads Dynamically
+function fetchThreads() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'Message_handler.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById('message-tbody').innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send('action=fetch_threads');
+}
+
+// Start polling for thread updates
+setInterval(fetchThreads, 5000);
+
+// Initial thread fetch
+document.addEventListener('DOMContentLoaded', fetchThreads);
