@@ -119,6 +119,12 @@ while ($row = mysqli_fetch_assoc($res)) {
                     <span>Dashboard</span>
                 </div>
             </a>
+            <a href="../servicerequest/servicerequest.php">
+                <div class="menu-item">
+                    <span class="menu-icon">🔧</span>
+                    <span>Service Requests</span>
+                </div>
+            </a>
             <a href="../acceptclient/acceptclient.php">
                 <div class="menu-item active">
                     <span class="menu-icon">👥</span>
@@ -127,7 +133,7 @@ while ($row = mysqli_fetch_assoc($res)) {
             </a>
             <a href="../contactforums/contactforum.php">
                 <div class="menu-item">
-                    <span class="menu-icon">💬</span>
+                    <span class="menu-icon">📝</span>
                     <span>Contact Forums</span>
                 </div>
             </a>

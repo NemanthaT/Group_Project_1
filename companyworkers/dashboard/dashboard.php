@@ -76,21 +76,21 @@ if (isset($_GET['fetch_metrics_by_date']) && isset($_GET['date'])) {
                     <span>Dashboard</span>
                 </div>
             </a>
+            <a href="../servicerequest/servicerequest.php">
+                <div class="menu-item">
+                    <span class="menu-icon">🔧</span>
+                    <span>Service Requests</span>
+                </div>
+            </a>
             <a href="../acceptclient/acceptclient.php">
                 <div class="menu-item">
                     <span class="menu-icon">👥</span>
                     <span>Accept Clients</span>
                 </div>
             </a>
-            <a href="../servicerequest/servicerequest.php">
-                <div class="menu-item">
-                    <span class="menu-icon">👥</span>
-                    <span>Service Request</span>
-                </div>
-            </a>
             <a href="../contactforums/contactforum.php">
                 <div class="menu-item">
-                    <span class="menu-icon">💬</span>
+                    <span class="menu-icon">📝</span>
                     <span>Contact Forums</span>
                 </div>
             </a>
@@ -208,33 +208,62 @@ if (isset($_GET['fetch_metrics_by_date']) && isset($_GET['date'])) {
             <div class="dashboard-card">
                 <h3 class="section-title">Recent Activity</h3>
                 <div class="activity-feed">
-                    <div class="activity-item">
-                        <div class="activity-icon activity-bg-blue">
-                            ✓
+                    <?php
+                    // Fetch 10 most recent messages from appointments
+                    $recent_appointments = [];
+                    $res1 = mysqli_query($conn, "SELECT message, appointment_date, created_at FROM appointments WHERE message IS NOT NULL AND message != '' ORDER BY created_at DESC LIMIT 10");
+                    while ($row = mysqli_fetch_assoc($res1)) {
+                        $recent_appointments[] = [
+                            'type' => 'Service Request',
+                            'icon' => '📊',
+                            'message' => $row['message'],
+                            'time' => $row['created_at']
+                        ];
+                    }
+
+                    // Fetch 10 most recent messages from contactforms
+                    $recent_contactforms = [];
+                    $res2 = mysqli_query($conn, "SELECT message, created_at FROM contactforms WHERE message IS NOT NULL AND message != '' ORDER BY created_at DESC LIMIT 10");
+                    while ($row = mysqli_fetch_assoc($res2)) {
+                        $recent_contactforms[] = [
+                            'type' => 'Contact Forum',
+                            'icon' => '💬',
+                            'message' => $row['message'],
+                            'time' => $row['created_at']
+                        ];
+                    }
+
+                    // Merge and sort by time descending, then take top 10
+                    $recent = array_merge($recent_appointments, $recent_contactforms);
+                    usort($recent, function($a, $b) {
+                        return strtotime($b['time']) - strtotime($a['time']);
+                    });
+                    $recent = array_slice($recent, 0, 8);
+
+                    // Helper for relative time
+                    function timeAgo($datetime) {
+                        $timestamp = strtotime($datetime);
+                        $diff = time() - $timestamp;
+                        if ($diff < 60) return $diff . " seconds ago";
+                        if ($diff < 3600) return floor($diff/60) . " minutes ago";
+                        if ($diff < 86400) return floor($diff/3600) . " hours ago";
+                        return date("Y-m-d", $timestamp);
+                    }
+
+                    foreach ($recent as $item) {
+                        ?>
+                        <div class="activity-item">
+                            <div class="activity-icon <?php echo $item['type'] === 'Service Request' ? 'activity-bg-blue' : 'activity-bg-green'; ?>">
+                                <?php echo $item['icon']; ?>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title"><?php echo htmlspecialchars($item['type']); ?>: <?php echo htmlspecialchars($item['message']); ?></div>
+                                <div class="activity-time"><?php echo timeAgo($item['time']); ?></div>
+                            </div>
                         </div>
-                        <div class="activity-content">
-                            <div class="activity-title">New service request from ABC Corporation</div>
-                            <div class="activity-time">2 hours ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon activity-bg-green">
-                            💬
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">New contact forum submission from John Smith</div>
-                            <div class="activity-time">4 hours ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon activity-bg-purple">
-                            📰
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">New news article published: Industry Updates</div>
-                            <div class="activity-time">Yesterday</div>
-                        </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>

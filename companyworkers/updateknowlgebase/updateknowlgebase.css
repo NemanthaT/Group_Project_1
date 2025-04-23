@@ -49,3 +49,167 @@
     border-radius: 5px;
 
 }
+
+/* Category Cards Styling */
+.category-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.category-card {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    background-color: #f1f5f9;
+    transform: translateY(-2px);
+}
+
+.category-icon {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    background-color: #e2e8f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-details h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.category-details p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Form Styling */
+.knowledge-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    min-height: 200px;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.submit-button {
+    background-color: #2563eb;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Table Styling */
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: #475569;
+}
+
+.table tr:hover {
+    background-color: #f1f5f9;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.action-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.update-btn {
+    background-color: #2563eb;
+}
+
+.delete-btn {
+    background-color: #dc2626;
+}
+
+.update-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.delete-btn:hover {
+    background-color: #b91c1c;
+}

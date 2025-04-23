@@ -41,21 +41,21 @@ $fullName = $user['full_name'] ?? 'User';
           <span>Dashboard</span>
         </div>
       </a>
+      <a href="servicerequest.php">
+        <div class="menu-item active">
+          <span class="menu-icon">🔧</span>
+          <span>Service Requests</span>
+        </div>
+      </a>
       <a href="../acceptclient/acceptclient.php">
         <div class="menu-item">
           <span class="menu-icon">👥</span>
           <span>Accept Clients</span>
         </div>
       </a>
-      <a href="servicerequest.php">
-        <div class="menu-item active">
-          <span class="menu-icon">📝</span>
-          <span>Service Requests</span>
-        </div>
-      </a>
       <a href="../contactforums/contactforum.php">
         <div class="menu-item">
-          <span class="menu-icon">💬</span>
+          <span class="menu-icon">📝</span>
           <span>Contact Forums</span>
         </div>
       </a>

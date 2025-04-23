@@ -5,7 +5,7 @@
   $username = $_SESSION['username'];
   $email = $_SESSION['email'];
 
-  if (!isset($_SESSION['username'])) { // if not logged in
+  if (!isset($_SESSION['username'])) {
       header("Location: ../../Login/Login.php");
       exit;
   }
@@ -14,132 +14,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Knowledgebase</title>
-  <link rel="stylesheet" href="updateknowlgebase.css?version=14">
-  <link rel="stylesheet" href="../sidebar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base History | EDSA Lanka Consultancy</title>
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <link rel="stylesheet" href="updateknowlgebase.css">
 </head>
 <body>
-<div class="container">
+    <!-- Sidebar Toggle Button (for mobile) -->
+    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+    
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+    
     <!-- Sidebar -->
-    <div class="sidebar">
-      <div class="logo">
-        <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-      </div>
-
-      <ul class="menu">
-        <li>
-        <a href="../dashboard/dashboard.php">
-            <button>
-              <img src="../images/dashboard.png" alt="Dashboard">
-              Dashboard
-            </button>
-          </a>
-        </li>
-        <li>
-        <a href="../servicerequest/servicerequest.php">
-        <button>
-              <img src="../images/service.jpg" alt="servicerequest">
-              Service Requests
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../contactforums/contactforum.html">
-            <button>
-              <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forms
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateevents/updateevents.php">
-            <button>
-              <img src="../images/events.jpg" alt="events">
-              Update Events
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateknowlgebase/initial.php">
-          <button>
-            <img src="../images/knowlegdebase.jpg" alt="knowldgedebase">
-            Update Knowledge Base
-          </button>
-          </a>  
-        </li>
-        <li>
-          <a href="../updatenews/initial.php">
-          <button>
-            <img src="../images/news.jpg" alt="News">
-            Update News
-          </button>
-          </a>
-        </li>
-      </ul>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <div style="width: 40px; height: 40px; background-color: #4f46e5; display: flex; align-items: center; justify-content: center; color: white; border-radius: 5px; margin-right: 15px;">E</div>
+            <span>EDSA Lanka</span>
+        </div>
+        <div class="sidebar-menu">
+            <a href="../dashboard/dashboard.php">
+                <div class="menu-item">
+                    <span class="menu-icon">📊</span>
+                    <span>Dashboard</span>
+                </div>
+            </a>
+            <a href="../servicerequest/servicerequest.php">
+                <div class="menu-item">
+                    <span class="menu-icon">🔧</span>
+                    <span>Service Requests</span>
+                </div>
+            </a>
+            <a href="../acceptclient/acceptclient.php">
+                <div class="menu-item">
+                    <span class="menu-icon">👥</span>
+                    <span>Accept Clients</span>
+                </div>
+            </a>
+            <a href="../contactforums/contactforum.html">
+                <div class="menu-item">
+                    <span class="menu-icon">📝</span>
+                    <span>Contact Forms</span>
+                </div>
+            </a>
+            <a href="../updateknowlgebase/initial.php">
+                <div class="menu-item active">
+                    <span class="menu-icon">📚</span>
+                    <span>Update Knowledge Base</span>
+                </div>
+            </a>
+            <a href="../updatenews/initial.php">
+                <div class="menu-item">
+                    <span class="menu-icon">📰</span>
+                    <span>Update News</span>
+                </div>
+            </a>
+        </div>
     </div>
 
-    <div class="main-wrapper">
-      <!-- Navbar -->
-      <div class="navbar">
-      <div class="controls card1">
-            <h1>Past Updates</h1>
+    <!-- Header -->
+    <header>
+        <div class="logo-text">EDSA Lanka Consultancy</div>
+        <div class="user-area">
+            <div class="notification">
+                🔔
+                <span class="notification-count">3</span>
+            </div>
+            <div class="user-profile">
+                <div style="width: 40px; height: 40px; background-color: #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                    <?php echo strtoupper(substr($username, 0, 1)); ?>
+                </div>
+                <span><?php echo htmlspecialchars($username); ?></span>
+            </div>
+            <a href="../../Login/Logout.php" class="logout-btn">Logout</a>
         </div>
-        <div class="profile">
-         <p>Hi, <?php echo $username ?>!! 👋</p>
-          <a href="../SP_Profile/Profile.html">
-            <img src="../images/user.png" alt="Profile">
-          </a>
-        </div>
-        <a href="../../Login/Logout.php" class="logout">Logout</a>
-      </div>
+    </header>
 
-      <div class="main-container">
-      <div class="table-container">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col" style="width: 15%;">Knowldgebase_ID</th>
-                <th scope="col" style="width: 15%;">Worker_ID</th>
-                <th scope="col" style="width: 25%;">Title</th>
-                <th scope="col" style="width: 20%;">Date Created</th>
-                <th scope="col" style="width: 20%;">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $sql = "SELECT * FROM knowledgebase";
-            $result = mysqli_query($conn, $sql);
-            if ($result) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $kb_id = $row['kb_id'];
-                    $worker_id = $row['worker_id'];
-                    $title = $row['title'];
-                    $date_created = $row['created_at'];
-                    echo '<tr>
-                        <th scope="row">' . $kb_id . '</th>
-                        <td>' . $worker_id . '</td>
-                        <td>' . $title . '</td>
-                        <td>' . $date_created . '</td>
-                        <td>
-                            <button><a href="update.php?update_id=' . $kb_id . '">Update</a></button>
-                            <button><a href="delete.php?delete_id=' . $kb_id . '">Delete</a></button>
-                        </td>
-                    </tr>';
-                }
-            }
-            ?>
-          </tbody>
-        </table>
-      </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Knowledge Base History</h2>
+                <p>Manage and track all knowledge base entries</p>
+            </div>
+        </div>
+
+        <!-- Knowledge Base Table -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card" style="grid-column: span 2;">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Knowledge Base ID</th>
+                                <th>Worker ID</th>
+                                <th>Title</th>
+                                <th>Date Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $sql = "SELECT * FROM knowledgebase";
+                            $result = mysqli_query($conn, $sql);
+                            if ($result) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '<tr>
+                                        <td>' . $row['kb_id'] . '</td>
+                                        <td>' . $row['worker_id'] . '</td>
+                                        <td>' . $row['title'] . '</td>
+                                        <td>' . $row['created_at'] . '</td>
+                                        <td>
+                                            <button class="action-btn update-btn"><a href="update.php?update_id=' . $row['kb_id'] . '">Update</a></button>
+                                            <button class="action-btn delete-btn"><a href="delete.php?delete_id=' . $row['kb_id'] . '">Delete</a></button>
+                                        </td>
+                                    </tr>';
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  </div>
-  </div>
 
-    <script src="dashboard.js"></script>
-    <script src="../sidebar.js"></script>
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').style.display = 
+                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
+        });
 
-    </body>
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('active');
+            this.style.display = 'none';
+        });
+    </script>
+</body>
 </html>
