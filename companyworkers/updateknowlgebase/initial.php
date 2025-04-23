@@ -9,6 +9,13 @@
       header("Location: ../../Login/Login.php");
       exit;
   }
+
+  // Handle category selection and store in session
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['category'])) {
+      $_SESSION['knowledgebase_category'] = $_POST['category'];
+      header("Location: initialnew.php");
+      exit;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -104,11 +111,16 @@
             </div>
         </div>
 
+        <!-- Hidden form for category selection -->
+        <form id="categoryForm" method="POST" style="display:none;">
+            <input type="hidden" name="category" id="categoryInput" value="">
+        </form>
+
         <!-- Knowledge Base Categories -->
         <div class="dashboard-grid">
             <div class="dashboard-card">
                 <h3 class="section-title">Training Resources</h3>
-                <a href="initialnew.php" class="category-link">
+                <a href="javascript:void(0);" class="category-link" onclick="selectCategory('training')">
                     <div class="category-card">
                         <div class="category-icon">📚</div>
                         <div class="category-details">
@@ -120,7 +132,7 @@
             </div>
             <div class="dashboard-card">
                 <h3 class="section-title">Consulting Resources</h3>
-                <a href="initialnew.php" class="category-link">
+                <a href="javascript:void(0);" class="category-link" onclick="selectCategory('consultant')">
                     <div class="category-card">
                         <div class="category-icon">💼</div>
                         <div class="category-details">
@@ -145,6 +157,11 @@
             document.getElementById('sidebar').classList.remove('active');
             this.style.display = 'none';
         });
+
+        function selectCategory(category) {
+            document.getElementById('categoryInput').value = category;
+            document.getElementById('categoryForm').submit();
+        }
     </script>
 </body>
 </html>

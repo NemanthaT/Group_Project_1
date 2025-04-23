@@ -9,25 +9,25 @@
       header("Location: ../../Login/Login.php");
       exit;
   }
-  $kb_id=$_GET['update_id'];
-  $sql="Select * from `knowledgebase` where kb_id='$kb_id'";
-  $result=mysqli_query($conn,$sql);
-  $row=mysqli_fetch_assoc($result);
-  $worker_id=$row['worker_id'];
-  $title=$row['title'];
-  $conntent=$row['content'];
+
+  // Use correct primary key
+  $id = $_GET['update_id'];
+  $sql = "SELECT * FROM `knowledgebase` WHERE id='$id'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+  $worker_id = $row['worker_id'];
+  $title = $row['title'];
+  $content = $row['content'];
 
   if(isset($_POST['submit'])){
-    $worker_id=$_POST['worker_id'];
-    $title=$_POST['title'];
-    $conntent=$_POST['content'];
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $content = mysqli_real_escape_string($conn, $_POST['content']);
 
-    $sql="update `knowledgebase` set worker_id='$worker_id', title='$title', 
-    content='$conntent' where kb_id='$kb_id'";
-    $result=mysqli_query($conn,$sql);
+    $sql = "UPDATE `knowledgebase` SET title='$title', content='$content' WHERE id='$id'";
+    $result = mysqli_query($conn, $sql);
     if($result){
       echo '<script>
-      alert("News updated");
+      alert("Knowledgebase updated");
       window.location.href = "updatedelete.php";
       </script>';
     }
@@ -133,22 +133,29 @@
                 <form action="" method="POST" class="knowledge-form">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" id="title" name="title" 
-                               placeholder="Enter the title" required 
-                               value="<?php echo htmlspecialchars($title); ?>">
+                        <select id="title" name="title" required size="5" style="overflow-y:auto; height:120px;">
+                            <option value="">Select a title</option>
+                            <option value="development finance" <?php if($title == 'development finance') echo 'selected'; ?>>Development Finance</option>
+                            <option value="micro finance" <?php if($title == 'micro finance') echo 'selected'; ?>>Micro Finance</option>
+                            <option value="organizational development" <?php if($title == 'organizational development') echo 'selected'; ?>>Organizational Development</option>
+                            <option value="sme development" <?php if($title == 'sme development') echo 'selected'; ?>>SME Development</option>
+                            <option value="gender finance" <?php if($title == 'gender finance') echo 'selected'; ?>>Gender Finance</option>
+                            <option value="institutional development" <?php if($title == 'institutional development') echo 'selected'; ?>>Institutional Development</option>
+                            <option value="community development" <?php if($title == 'community development') echo 'selected'; ?>>Community Development</option>
+                            <option value="strategic and operational planning" <?php if($title == 'strategic and operational planning') echo 'selected'; ?>>Strategic and Operational Planning</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="content">Content</label>
                         <textarea id="content" name="content" 
-                                placeholder="Enter the Content" required><?php echo htmlspecialchars($conntent); ?></textarea>
+                                placeholder="Enter the Content" required><?php echo htmlspecialchars($content); ?></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="worker_id">Worker ID</label>
-                        <input type="number" id="worker_id" name="worker_id" 
-                               placeholder="Enter the worker id" required
-                               value="<?php echo htmlspecialchars($worker_id); ?>">
+                        <input type="text" id="worker_id" name="worker_id" 
+                               value="<?php echo htmlspecialchars($worker_id); ?>" readonly>
                     </div>
 
                     <div class="form-actions">

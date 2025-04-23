@@ -9,6 +9,9 @@
       header("Location: ../../Login/Login.php");
       exit;
   }
+
+  // Get the selected section from session
+  $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +109,7 @@
         <div class="dashboard-grid">
             <div class="dashboard-card" style="grid-column: span 2;">
                 <div class="table-container">
-                    <table class="table">
+                    <table class="table" id="knowledgeTable">
                         <thead>
                             <tr>
                                 <th>Knowledge Base ID</th>
@@ -118,18 +121,22 @@
                         </thead>
                         <tbody>
                             <?php
+                            // Only show entries for the selected section
                             $sql = "SELECT * FROM knowledgebase";
+                            if ($section) {
+                                $sql .= " WHERE section = '" . mysqli_real_escape_string($conn, $section) . "'";
+                            }
                             $result = mysqli_query($conn, $sql);
                             if ($result) {
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo '<tr>
-                                        <td>' . $row['kb_id'] . '</td>
+                                    echo '<tr data-id="' . $row['id'] . '">
+                                        <td>' . $row['id'] . '</td>
                                         <td>' . $row['worker_id'] . '</td>
                                         <td>' . $row['title'] . '</td>
                                         <td>' . $row['created_at'] . '</td>
                                         <td>
-                                            <button class="action-btn update-btn"><a href="update.php?update_id=' . $row['kb_id'] . '">Update</a></button>
-                                            <button class="action-btn delete-btn"><a href="delete.php?delete_id=' . $row['kb_id'] . '">Delete</a></button>
+                                            <button class="action-btn update-btn"><a href="update.php?update_id=' . $row['id'] . '&section=' . urlencode($section) . '">Update</a></button>
+                                            <button class="action-btn delete-btn delete-row-btn" data-id="' . $row['id'] . '">Delete</button>
                                         </td>
                                     </tr>';
                                 }
@@ -153,6 +160,29 @@
         document.getElementById('overlay').addEventListener('click', function() {
             document.getElementById('sidebar').classList.remove('active');
             this.style.display = 'none';
+        });
+
+        // AJAX delete functionality
+        document.querySelectorAll('.delete-row-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!confirm('Are you sure you want to delete this entry?')) return;
+                var row = btn.closest('tr');
+                var id = btn.getAttribute('data-id');
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'delete.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        if (xhr.responseText.trim() === 'success') {
+                            row.style.display = 'none';
+                        } else {
+                            alert('Failed to delete entry.');
+                        }
+                    }
+                };
+                xhr.send('delete_id=' + encodeURIComponent(id));
+            });
         });
     </script>
 </body>
