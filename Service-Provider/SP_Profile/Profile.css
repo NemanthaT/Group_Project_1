@@ -1,253 +1,26 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    overflow-x: hidden;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    min-height: 100vh;
-}
-
-.container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-}
-
-.sidebar {
-    background-color: white;
-    width: 220px; 
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    height: 100vh;
-    z-index: 10;
-    overflow-y: auto; /* Keep vertical scrolling */
-    overflow-x: hidden; /* Remove horizontal scrollbar */
-}
-
-
-.sidebar .logo img {
-    width: 100%;
-    max-width: 180px; /* Adjusted for smaller sidebar */
-    margin-bottom: 25px;
-}
-
-.menu {
-    list-style: none;
-    width: 100%;
-}
-
-.menu li {
-    margin-bottom: 12px;
-}
-
-.menu a {
-    text-decoration: none;
-}
-
-.menu button {
-    display: flex;
-    align-items: center;
-    font-size: 14px; /* Slightly reduced */
-    font-weight: bold;
-    width: 100%;
-    padding: 8px;
-    color: #333;
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    border-radius: 5px;
-    gap: 8px;
-}
-
-.menu img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-}
-
-.menu button:hover {
-    transform: scale(1.05);
-    background-color: #18A0FB;
-    color: white;
-}
-
-.navbar {
-    background-color: white;
-    color: #18A0FB;
-    padding: 10px 25px;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 220px; /* Adjusted for smaller sidebar */
-    z-index: 5;
-    display: flex;
-    justify-content: flex-end; /* Keep items on the right */
-    align-items: center;
-    gap: 20px; /* Add even spacing between all navbar items */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    height: 50px;
-}
-
-/* Reset margins for all direct children of navbar */
-.navbar > * {
-    margin: 0;
-}
-
-.navbar a {
-    color: #18A0FB;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 6px 6px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 0; /* Remove the left margin */
-}
-
-.navbar a img {
-    width: 24px;
-    height: 24px;
-    transition: background-color 0.3s;
-}
-
-/* Calendar styles */
-.calendar-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 300px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 16px;
-    z-index: 1000;
-}
-
-.calendar-dropdown h3 {
-    margin: 0 0 16px 0;
-    font-size: 18px;
-    color: #333;
-}
-
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.calendar-header button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #18A0FB;
-}
-
-#currentMonth {
-    font-weight: 500;
-    font-size: 16px;
-}
-
-.weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-.days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-}
-
-.days div {
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    position: relative;
-}
-
-.days div:hover {
-    background-color: #f0f0f0;
-}
-
-.days div.today {
-    background-color: #18A0FB;
-    color: white;
-}
-
-.days div.has-event::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    background-color: #18A0FB;
-    border-radius: 50%;
-}
-
-.calendar-footer {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #eee;
-    text-align: center;
-}
-
-.calendar-link {
-    color: #18A0FB;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.calendar-link:hover {
-    text-decoration: underline;
-}
-
-.dot {
-    color: #18A0FB;
-    margin: 0 8px;
-}
-
-.logout:hover {
-    background-color: rgb(215, 236, 255);
-}
-
-/* Main content styling */
-.main-content {
-    margin-left: 220px; 
-    padding: 60px 5px; 
-    background-color: #ecf0f4;
-    height: 100vh; /* Full viewport height */
-    width: calc(100% - 220px); /* Calculate width based on sidebar */
-    box-sizing: border-box;
-    overflow: hidden; /* Prevent scrolling on main content */
-}
-
 .profile-section {
-    display: grid;
-    grid-template-columns: 1fr 2fr; /* Two columns: 1 for left, 2 for right */
-    gap: 10px; /* Space between columns */
-    margin: 10vh 1vw 2vh 21vw; /* Adjusted top margin for gap under navbar */
-    padding-top: 2vh; /* Optional padding for added space */
-}
-
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    min-height: 88vh;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .profile-section h2 {
+    font-size: 2.8vh; 
+    font-weight: 700;
+    margin-bottom: 2vh;
+    color: #2d3748;
+    text-align: center;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+  
 /* Left Column Styling */
 .left-column {
     display: flex;
@@ -258,176 +31,193 @@ body {
 /* Profile Card Styling */
 .profile-card {
     width: 100%;
-    background-color: #ffffff; /* White background */
-    padding: 30px; /* Increased padding for a more spacious look */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
-    text-align: center; /* Center text */
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
     position: relative;
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* Profile Image Styling */
 .profile-image {
     position: relative;
-    margin-bottom: 20px; /* Increased space below profile image */
+    margin-bottom: 2vh;
 }
 
 .profile-image img {
-    width: 100px; /* Fixed size for profile image */
-    height: 100px; /* Fixed height for consistency */
-    border-radius: 50%; /* Circular image */
-    border: 2px solid #18A0FB; /* Border around image */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #18A0FB;
 }
 
 /* Edit Button Styling */
 .edit-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #18A0FB; /* Button color */
-    color: white; /* Text color */
-    border: none; /* No border */
-    padding: 6px 12px; /* Increased padding for better touch area */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+    top: 15px;
+    right: 15px;
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.8vh;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
 .edit-button:hover {
-    transform: scale(1.05); /* Slightly larger on hover */
-    background-color: #0f7cba; /* Darker blue on hover */
+    background-color: #0c8de4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
 }
 
 /* Profile Info Styling */
 .profile-info {
-    list-style: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 20px 0; /* Margin for spacing */
-    text-align: left; /* Align text to the left for better readability */
+    list-style: none;
+    padding: 0;
+    margin: 2vh 0;
+    text-align: left;
 }
 
 .profile-info li {
-    margin: 10px 0; /* Space between items */
-    font-size: 1.1em; /* Slightly larger font size */
-    color: #333; /* Darker text color for better contrast */
+    margin: 1vh 0;
+    font-size: 1.8vh;
+    color: #4b5563;
 }
 
 /* Styled Paragraph for Ratings */
 .profile-card p {
-    font-size: 1.5em; /* Increase font size for ratings */
-    color: #FFD700; /* Gold color for star ratings */
-    margin: 10px 0; /* Margin for spacing */
+    font-size: 2vh;
+    color: #FFD700;
+    margin: 1vh 0;
 }
 
 /* Social Media Links Styling */
 .social-media-links {
-    list-style: none; /* Remove bullets from the list */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
-    display: flex; /* Flex container for social media icons */
-    justify-content: center; /* Center items */
-    gap: 15px; /* Space between icons */
-    margin-top: 15px; /* Space above social media links */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1.5vh;
 }
 
 .social-media-links a {
-    text-decoration: none; /* Remove underline from links */
+    text-decoration: none;
 }
 
 .social-media-links a img {
-    width: 30px; /* Fixed size for icons */
-    height: 30px; /* Fixed height for icons */
-    object-fit: contain; /* Maintain aspect ratio */
-    transition: transform 0.2s ease; /* Smooth transition for hover effect */
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    transition: all 0.3s ease;
 }
 
 .social-media-links a img:hover {
-    transform: scale(1.1); /* Slightly larger on hover */
+    transform: translateY(-2px);
 }
 
 /* Right Column Styling */
 .right-column {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Increased space between sections */
+    gap: 20px;
 }
 
 /* Service Stats Styling */
 .service-stats {
-    background-color: #ffffff; /* White background */
-    padding: 30px; /* Increased padding for a more spacious look */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
-    transition: transform 0.2s; /* Smooth transition for hover effect */
-    margin-top: 20px; /* Space above the service stats */
-    width: 100%; /* Ensure it takes full width of the column */
+    background: linear-gradient(to bottom, #ffffff, #f9fafb);
+    padding: 2vh;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    margin-top: 2vh;
+    width: 100%;
+    border: 1px solid #e5e7eb;
 }
 
 .service-stats:hover {
-    transform: scale(1.02); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .service-stats h3 {
-    margin-bottom: 20px; /* Space below heading */
-    color: #18A0FB; /* Heading color */
-    font-size: 1.8em; /* Increase font size for heading */
-    text-align: center; /* Center-align the heading */
+    margin-bottom: 2vh;
+    color: #2d3748;
+    font-size: 2.8vh;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
 }
 
 .service-stats ul {
-    list-style: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .service-stats ul li {
-    margin: 15px 0; /* Increased space between items for better readability */
-    font-size: 1.2em; /* Increase font size for readability */
-    color: #555; /* Darker color for text */
-    display: flex; /* Flexbox for alignment */
-    justify-content: space-between; /* Align items on both sides */
-    padding: 5px 10px; /* Padding around each item */
-    border-radius: 5px; /* Slight rounding for list items */
-    transition: background-color 0.2s; /* Smooth transition for hover effect */
+    margin: 1vh 0;
+    font-size: 1.8vh;
+    color: #4b5563;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6vh 1vw;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .service-stats ul li:hover {
-    background-color: #f0f8ff; /* Light blue background on hover */
+    background-color: #f1f5f9;
 }
 
 /* Additional Info Styling */
 .additional-info {
-    background-color: #ffffff; /* White background */
-    padding: 30px; /* Padding for content */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
-    flex-grow: 1; /* Ensures additional-info takes more space */
-    overflow-y: auto; /* Enable scrolling if content overflows */
-    transition: transform 0.2s; /* Smooth transition for hover effect */
+    background: linear-gradient(to bottom, #ffffff, #f9fafb);
+    padding: 2vh;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    flex-grow: 1;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
 }
 
 .additional-info:hover {
-    transform: scale(1.02); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .additional-info h3 {
-    margin-bottom: 15px; /* Space below heading */
-    color: #18A0FB; /* Heading color */
-    font-size: 1.8em; /* Increase font size for heading */
+    margin-bottom: 1.5vh;
+    color: #2d3748;
+    font-size: 2.8vh;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .additional-info p {
-    margin: 10px 0; /* Space between paragraphs */
-    line-height: 1.6; /* Improve line height for readability */
-    color: #666; /* Darker color for text */
+    margin: 1vh 0;
+    line-height: 1.5;
+    color: #4b5563;
+    font-size: 1.8vh;
 }
 
 /* List Item Styling for Additional Info */
 .additional-info h3 + p {
-    margin-top: 5px; /* Slightly more space after headings */
+    margin-top: 0.8vh;
 }
 
 /* Additional Info Services Offered */
 .additional-info h3 + p + h3 + p {
-    margin-top: 15px; /* More space before services offered */
+    margin-top: 1.5vh;
 }

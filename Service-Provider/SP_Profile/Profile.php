@@ -8,64 +8,12 @@ include '../connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
-    <link rel="stylesheet" href="profile.css">
+    <?php include '../Common template/SP_common.php'; ?>
+    <link rel="stylesheet" href="../Common template/SP_common.css">
+    <link rel="stylesheet" href="Profile.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-            </div>
-            <ul class="menu">
-                <li><a href="../SP_Dashboard/SPDash.php"><button><img src="../images/dashboard.png">Dashboard</button></a></li>
-                <li><a href="../SP_Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
-                <li><a href="../SP_Message/Message.php"><button><img src="../images/message.png">Message</button></a></li>
-                <li><a href="../SP_Projects/Project.php"><button><img src="../images/project.png">Project</button></a></li>
-                <li><a href="../SP_Bill/Bill.php"><button><img src="../images/bill.png">Bill</button></a></li>
-                <li><a href="../SP_Forum/Forum.php"><button><img src="../images/forum.png">Forum</button></a></li>
-                <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
-            </ul>
-        </div>
-
-        <header>
-            <nav class="navbar">
-                <div class="calendar-icon">
-                    <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
-                    <!-- Calendar Dropdown -->
-                    <div id="calendarDropdown" class="calendar-dropdown">
-                        <h3>Calendar</h3>
-                        <div class="calendar-header">
-                            <button id="prevMonth">&lt;</button>
-                            <span id="currentMonth">March 2025</span>
-                            <button id="nextMonth">&gt;</button>
-                        </div>
-                        <div class="calendar-grid">
-                            <div class="weekdays">
-                                <div>Mon</div>
-                                <div>Tue</div>
-                                <div>Wed</div>
-                                <div>Thu</div>
-                                <div>Fri</div>
-                                <div>Sat</div>
-                                <div>Sun</div>
-                            </div>
-                            <div id="daysGrid" class="days"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="notification">
-                    <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
-                </div>
-                <div class="profile">
-                    <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
-                </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>                
-            </nav>
-        </header>
-
-
-    <!-- Main Content -->
+<div class="main-content">
     <div class="profile-section">
     <!-- Left Column -->
     <div class="left-column">
@@ -134,7 +82,9 @@ include '../connection.php';
         </div>
     </div>
 </div>
-
-    <script src="Edit.js"></script>
+</div>
+</div>   <!--this is the </div> of container in the common file, don't remove it-->
+<script src="Edit.js"></script>
+<script src="../Common template/Calendar.js"></script>
 </body>
 </html>
