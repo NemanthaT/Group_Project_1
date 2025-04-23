@@ -67,7 +67,7 @@ $result = $conn->query($sql);
       <a href="../updateknowlgebase/initial.php">
         <div class="menu-item">
           <span class="menu-icon">📚</span>
-          <span>Update Knowledge Base</span>
+          <span>Knowledge Base</span>
         </div>
       </a>
       <a href="../updatenews/initial.php">

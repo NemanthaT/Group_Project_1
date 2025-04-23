@@ -55,7 +55,7 @@
                     <span>Accept Clients</span>
                 </div>
             </a>
-            <a href="../contactforums/contactforum.html">
+            <a href="../contactforums/contactforum.php">
                 <div class="menu-item">
                     <span class="menu-icon">📝</span>
                     <span>Contact Forums</span>

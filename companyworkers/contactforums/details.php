@@ -5,7 +5,14 @@ include '../../sendemail/send.php'; // Include the sendEmail function
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require '../../vendor/autoload.php'; // Adjust path if needed
+
+$autoloadPath = '../../vendor/autoload.php';
+$composerWarning = '';
+if (file_exists($autoloadPath)) {
+    require $autoloadPath;
+} else {
+    $composerWarning = "Warning: Composer autoload file not found at $autoloadPath. Some features may not work. Please run 'composer install' in the project root.";
+}
 
 // Check if user is logged in
 if (!isset($_SESSION['username'])) {
@@ -80,6 +87,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response_message'])) 
 
 </head>
 <body>
+    <?php if (!empty($composerWarning)): ?>
+        <div style="background: #fff3cd; color: #856404; padding: 10px 20px; border: 1px solid #ffeeba; margin: 20px; border-radius: 5px;">
+            <?php echo htmlspecialchars($composerWarning); ?>
+        </div>
+    <?php endif; ?>
     <!-- Sidebar Toggle Button -->
     <button class="sidebar-toggle" id="sidebarToggle">☰</button>
     <div class="overlay" id="overlay"></div>
@@ -118,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response_message'])) 
             <a href="../updateknowlgebase/initial.php">
                 <div class="menu-item">
                     <span class="menu-icon">📚</span>
-                    <span>Update Knowledge Base</span>
+                    <span>Knowledge Base</span>
                 </div>
             </a>
             <a href="../updatenews/initial.php">
