@@ -5,12 +5,14 @@
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 
+    $_SESSION['nRC'] = 'none';
+
     if (!isset($_SESSION['username'])) { // if not logged in
         header("Location: ../../../../login/login.php");
         exit;
     }
 
-    $sql = "SELECT * FROM clients";
+    $sql = "SELECT * FROM clients WHERE status = 'set'";
     $result = $conn->query($sql);
 
 ?>
