@@ -4,9 +4,18 @@ document.querySelector('.search-button').addEventListener('click', function () {
     const rows = document.querySelectorAll('#message-tbody tr');
 
     rows.forEach(row => {
-        const providerId = row.children[0].textContent.toLowerCase();
+        const providerName = row.children[0].textContent.toLowerCase();
         const topic = row.children[1].textContent.toLowerCase();
-        row.style.display = (providerId.includes(searchValue) || topic.includes(searchValue)) ? '' : 'none';
+        row.style.display = (providerName.includes(searchValue) || topic.includes(searchValue)) ? '' : 'none';
+    });
+});
+
+// Clear Filter Functionality
+document.querySelector('.clear-button').addEventListener('click', function () {
+    document.querySelector('#search-input').value = '';
+    const rows = document.querySelectorAll('#message-tbody tr');
+    rows.forEach(row => {
+        row.style.display = '';
     });
 });
 
@@ -43,18 +52,17 @@ document.getElementById('create-chat-form').addEventListener('submit', function 
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert(xhr.responseText);
             if (xhr.responseText === 'Chat created successfully') {
-                fetchThreads(); // Immediately update thread list
+                fetchThreads();
                 document.getElementById('create-chat-form').reset();
+                document.getElementById('create-chat-modal').style.display = 'none';
             }
         }
     };
     const data = `action=create_chat&provider_id=${encodeURIComponent(providerId)}&topic=${encodeURIComponent(topic)}&message=${encodeURIComponent(message)}`;
     xhr.send(data);
-
-    document.getElementById('create-chat-modal').style.display = 'none';
 });
 
-// Open Chat Modal
+// Open Chat Panel
 let currentThreadId = null;
 let pollingInterval = null;
 document.addEventListener('click', function (event) {
@@ -73,19 +81,11 @@ document.addEventListener('click', function (event) {
     }
 });
 
-// Close Chat Modal
+// Close Chat Panel
 document.querySelector('.close-chat-modal').addEventListener('click', function () {
     document.getElementById('chat-modal').style.display = 'none';
     clearInterval(pollingInterval);
-});
-
-// Close Chat Modal on Outside Click
-window.addEventListener('click', function (event) {
-    const modal = document.getElementById('chat-modal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-        clearInterval(pollingInterval);
-    }
+    currentThreadId = null;
 });
 
 // Send Chat Message
@@ -101,7 +101,7 @@ document.getElementById('send-chat').addEventListener('click', function () {
             if (xhr.responseText === 'Message sent') {
                 document.getElementById('chat-input').value = '';
                 fetchMessages(currentThreadId);
-                fetchThreads(); // Update thread list for last message and status
+                fetchThreads();
             } else {
                 alert(xhr.responseText);
             }
@@ -143,4 +143,25 @@ function fetchThreads() {
 setInterval(fetchThreads, 5000);
 
 // Initial thread fetch
-document.addEventListener('DOMContentLoaded', fetchThreads);
+document.addEventListener('DOMContentLoaded', function () {
+    fetchThreads();
+
+    // Check for provider_id in URL and open chat panel if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const providerId = urlParams.get('provider_id');
+    if (providerId) {
+        // Wait for threads to load before attempting to find the chat button
+        setTimeout(() => {
+            const chatButton = document.querySelector(`.chat-button[data-provider-id="${providerId}"]`);
+            if (chatButton) {
+                chatButton.click(); // Trigger click to open chat panel
+            } else {
+                // If no thread exists, prompt to create a new chat
+                if (confirm(`No chat thread exists for Provider ID ${providerId}. Would you like to create a new chat?`)) {
+                    document.getElementById('create-chat-modal').style.display = 'flex';
+                    document.getElementById('provider-id').value = providerId; // Pre-fill provider ID
+                }
+            }
+        }, 1000); // Delay to ensure threads are loaded
+    }
+});
