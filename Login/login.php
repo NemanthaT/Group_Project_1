@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) { //check if form was submitted
     if ($userType && $userData) {
         $_SESSION['username'] = $userData['username'];
         $_SESSION['email'] = $userData['email'];
-
+        $_SESSION['userType'] = $userType; // Store user type in session
         // Update last login
         $email = $userData['email'];
         $updateQuery = "UPDATE $userType SET last_login = NOW() WHERE email = '$email'";
