@@ -115,7 +115,7 @@ table tr:nth-child(odd) {
 .searchContainer{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 /*form styles*/
@@ -270,7 +270,8 @@ button:hover{
     width: 50%;
     border-radius: 10px 10px 0px 0px  !important;
     background-color: #ffffff;
-    border: 2px solid #333;
+    border-left: 4px solid #333;
+    border-right: 4px solid #333;
     overflow: hidden;
     padding-bottom: 20px;
 }
