@@ -264,16 +264,33 @@
 }
 
 /*--------------- ViewApp.php ---------------------*/
+.back-link a {
+    color: #18A0FB;
+    text-decoration: none;
+    font-size: 2.5vh; 
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 2.5vh;
+}
+  
+.back-link a:hover {
+    color: #0c8de4;
+    transform: translateX(-3px);
+}
+
 .appointment-header {
     width: 100%;
     display: flex;
-    justify-content: space-between; /* From first snippet */
+    justify-content: center;
     align-items: center;
     position: relative;
     margin: 2.5vh;
-    border-bottom: 2px solid #e5e7eb; /* From second snippet, updated border */
-    padding-bottom: 15px; /* From first snippet */
-    margin-bottom: 20px; /* From first snippet */
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .appointment-title {
@@ -364,7 +381,7 @@
     font-size: 2.4vh;
 }
 
-.back-button {
+.chat-button {
     background-color: #18A0FB;
     color: white;
     font-size: 2.5vh;
@@ -380,13 +397,13 @@
     display: block; /* From first snippet */
 }
 
-.back-button:hover {
+.chat-button:hover {
     background-color: #0c8de4;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
 }
 
-.back-button:focus {
+.chat-button:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.15);
 }
