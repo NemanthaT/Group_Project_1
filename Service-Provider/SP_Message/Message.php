@@ -46,70 +46,74 @@ $stmt->close();
     <link rel="stylesheet" href="Message.css">
 </head>
 <body>
-        <div class="main-content">
-            <div class="message-section">
-                <h2>Message</h2>
-                <div class="message-controls">
-                    <input type="text" placeholder="Client ID/Topic" id="search-input">
-                    <button class="search-button">Search</button>
-                    <button class="clear-button" id="clear-button">Clear</button>
-                    <button class="create-chat-button">Create Chat</button>
-                </div>
-
-                <!-- Create Chat Modal -->
-                <div id="create-chat-modal" class="modal">
-                    <div class="modal-content">
-                        <button class="close-create-chat-modal" title="Close">×</button>
-                        <h3>Create New Chat</h3>
-                        <form id="create-chat-form">
-                            <div class="form-section">
-                                <label for="client-id">Client ID:</label>
-                                <input type="text" id="client-id" name="client-id" required>
-                            </div>
-                            <div class="form-section">
-                                <label for="topic">Topic:</label>
-                                <input type="text" id="topic" name="topic" required>
-                            </div>
-                            <div class="form-section">
-                                <label for="message">Message:</label>
-                                <textarea id="message" name="message" required></textarea>
-                            </div>
-                            <div class="form-footer">
-                                <button type="submit" class="create-chat-button">Create</button>
-                            </div>
-                        </form>
+    <div class="main-content">
+        <div class="message-section">
+            <h2>Messages</h2>
+            <div class="split-container">
+                <!-- Left Panel: Thread List -->
+                <div class="thread-panel">
+                    <div class="message-controls">
+                        <input type="text" placeholder="Client ID/Topic" id="search-input">
+                        <button class="search-button">Search</button>
+                        <button class="clear-button" id="clear-button">Clear</button>
+                        <button class="create-chat-button">Create Chat</button>
                     </div>
+
+                    <!-- Create Chat Modal -->
+                    <div id="create-chat-modal" class="modal">
+                        <div class="modal-content">
+                            <button class="close-create-chat-modal" title="Close">×</button>
+                            <h3>Create New Chat</h3>
+                            <form id="create-chat-form">
+                                <div class="form-section">
+                                    <label for="client-id">Client ID:</label>
+                                    <input type="text" id="client-id" name="client-id" required>
+                                </div>
+                                <div class="form-section">
+                                    <label for="topic">Topic:</label>
+                                    <input type="text" id="topic" name="topic" required>
+                                </div>
+                                <div class="form-section">
+                                    <label for="message">Message:</label>
+                                    <textarea id="message" name="message" required></textarea>
+                                </div>
+                                <div class="form-footer">
+                                    <button type="submit" class="create-chat-button">Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <table class="message-table">
+                        <thead>
+                            <tr>
+                                <th>Client ID</th>
+                                <th>Topic</th>
+                                <th>Last Message</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="message-tbody">
+                            <?php foreach ($threads as $thread): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($thread['client_id']); ?></td>
+                                    <td><?php echo htmlspecialchars($thread['topic']); ?></td>
+                                    <td><?php echo htmlspecialchars($thread['last_message'] ?? 'No messages yet'); ?></td>
+                                    <td><?php echo htmlspecialchars($thread['status'] ?? 'Unseen'); ?></td>
+                                    <td><button class="chat-button" data-thread-id="<?php echo $thread['thread_id']; ?>" data-client-id="<?php echo $thread['client_id']; ?>">Chat</button></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
 
-                <table class="message-table">
-                    <thead>
-                        <tr>
-                            <th>Client ID</th>
-                            <th>Topic</th>
-                            <th>Last Message</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="message-tbody">
-                        <?php foreach ($threads as $thread): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($thread['client_id']); ?></td>
-                                <td><?php echo htmlspecialchars($thread['topic']); ?></td>
-                                <td><?php echo htmlspecialchars($thread['last_message'] ?? 'No messages yet'); ?></td>
-                                <td><?php echo htmlspecialchars($thread['status'] ?? 'Unseen'); ?></td>
-                                <td><button class="chat-button" data-thread-id="<?php echo $thread['thread_id']; ?>" data-client-id="<?php echo $thread['client_id']; ?>">Chat</button></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Chat Modal -->
-            <div id="chat-modal" class="modal">
-                <div class="modal-content">
-                    <button class="close-chat-modal" title="Close">×</button>
-                    <h3>Chat with Client <span id="chat-client-id"></span></h3>
+                <!-- Right Panel: Chat Window -->
+                <div class="chat-panel" id="chat-panel" style="display: none;">
+                    <div class="chat-header">
+                        <h3>Chat with Client <span id="chat-client-id"></span></h3>
+                        <button class="close-chat-panel" title="Close">×</button>
+                    </div>
                     <div class="chat-window" id="chat-window">
                         <!-- Chat messages will be displayed here -->
                     </div>
@@ -120,8 +124,8 @@ $stmt->close();
                 </div>
             </div>
         </div>
-    </div>   <!--this is the </div> of container in the common file, don't remove it-->
-<script src="Message.js"></script>
-<script src="../Common template/Calendar.js"></script>
+    </div>
+    <script src="Message.js"></script>
+    <script src="../Common template/Calendar.js"></script>
 </body>
 </html>
