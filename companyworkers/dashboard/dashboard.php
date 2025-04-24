@@ -206,10 +206,7 @@ if (isset($_GET['fetch_recent_activity'])) {
         <div class="logo-text">EDSA Lanka Consultancy</div>
         <div class="user-area">
           <p>Dashboard</p>
-            <div class="notification">
-                🔔
-                <span class="notification-count">3</span>
-            </div>
+          <a href="../myaccount/acc.php">My Account</a>
             <div class="user-profile">
                 <div style="width: 40px; height: 40px; background-color: #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
                     <?php echo strtoupper(substr($fullName, 0, 1)); ?>
