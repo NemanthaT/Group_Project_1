@@ -11,13 +11,19 @@ if (!isset($_SESSION['username'])) { // if not logged in
 }
 
 // Get total earnings
-$sql = "SELECT SUM(amount) FROM payments";
+$sql = "SELECT SUM(Amount) FROM bills where 
+        status = 'paid' AND MONTH(paid_on) = MONTH(CURDATE()) 
+        AND YEAR(paid_on) = YEAR(CURDATE())";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$totalEarnings = $row["SUM(amount)"] ?? 0;
+$totalEarnings = $row["SUM(Amount)"] ?? 0;
 
-// Calculate annual earnings (simplified example)
-$annualEarnings = $totalEarnings * 12; // Just multiplying by 12 as an example
+// Calculate annual earnings
+$sql = "SELECT SUM(Amount) FROM bills where 
+        status = 'paid' AND YEAR(paid_on) = YEAR(CURDATE())";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$annualEarnings = $row["SUM(Amount)"] ?? 0;
 
 // Get user counts
 $sql = "SELECT COUNT(*) FROM clients";
@@ -56,6 +62,11 @@ $sql = "SELECT COUNT(*) FROM forums WHERE created_at > (SELECT last_logout FROM 
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $newForumCount = $row["COUNT(*)"];
+//Get the new paid bill count
+$sql = "SELECT COUNT(*) FROM bills WHERE paid_on > (SELECT last_logout FROM admins WHERE email = '$email') AND status = 'paid'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$newPaidBillCount = $row["COUNT(*)"];
 
 ?>
 
@@ -226,6 +237,9 @@ $newForumCount = $row["COUNT(*)"];
                         if($newForumCount > 0) {
                             echo "<p id=\"notice\"><a href=\"../Forums/Forums.php\" ><i class=\"fas fa-book\"></i>  $newForumCount new forums.<a/></p>";
                         }
+                        if($newPaidBillCount > 0) {
+                            echo "<p id=\"notice\"><a href=\"../Reports/reports.php\" ><i class=\"fas fa-money-bill-wave\"></i>  $newPaidBillCount new paid bills.<a/></p>";
+                        }
                     ?>
                 </div>
             </div>
@@ -254,98 +268,7 @@ $newForumCount = $row["COUNT(*)"];
 
     <script>
         // Earnings Chart
-        /*const earningsCtx = document.getElementById('earningsChart').getContext('2d');
-        new Chart(earningsCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Earnings',
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(78, 115, 223, 0.05)",
-                    borderColor: "rgba(78, 115, 223, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-                    fill: true
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        left: 10,
-                        right: 25,
-                        top: 25,
-                        bottom: 0
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false,
-                            drawBorder: false
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            maxTicksLimit: 5,
-                            padding: 10,
-                            callback: function(value) {
-                                return '$' + value;
-                            }
-                        },
-                        grid: {
-                            color: "rgb(234, 236, 244)",
-                            zeroLineColor: "rgb(234, 236, 244)",
-                            drawBorder: false,
-                            borderDash: [2],
-                            zeroLineBorderDash: [2]
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: "rgb(255,255,255)",
-                        bodyColor: "#858796",
-                        titleMarginBottom: 10,
-                        titleColor: '#6e707e',
-                        titleFontSize: 14,
-                        borderColor: '#dddfeb',
-                        borderWidth: 1,
-                        xPadding: 15,
-                        yPadding: 15,
-                        displayColors: false,
-                        intersect: false,
-                        mode: 'index',
-                        caretPadding: 10,
-                        callbacks: {
-                            label: function(context) {
-                                var label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.y !== null) {
-                                    label += '$' + context.parsed.y;
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Revenue Sources Chart
+        /*
         /*const revenueCtx = document.getElementById('revenueSourcesChart').getContext('2d');
         new Chart(revenueCtx, {
             type: 'doughnut',
