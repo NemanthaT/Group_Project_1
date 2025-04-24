@@ -53,4 +53,4 @@
                 <a href="../../Login/Logout.php" class="logout">Logout</a>                
             </nav>
         </header>
-<!-- </div> of container is present in the all the other files(the last </div>) dont remove it -->
+<!-- </div> of container is present in the all the other files(the last </div>) dont remove it{ALTER TABLE forums ADD COLUMN category VARCHAR(100) NOT NULL;} -->

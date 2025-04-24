@@ -11,13 +11,19 @@ if (!isset($_SESSION['username'])) { // if not logged in
 }
 
 // Get total earnings
-$sql = "SELECT SUM(amount) FROM payments";
+$sql = "SELECT SUM(Amount) FROM bills where 
+        status = 'paid' AND MONTH(paid_on) = MONTH(CURDATE()) 
+        AND YEAR(paid_on) = YEAR(CURDATE())";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$totalEarnings = $row["SUM(amount)"] ?? 0;
+$totalEarnings = $row["SUM(Amount)"] ?? 0;
 
-// Calculate annual earnings (simplified example)
-$annualEarnings = $totalEarnings * 12; // Just multiplying by 12 as an example
+// Calculate annual earnings
+$sql = "SELECT SUM(Amount) FROM bills where 
+        status = 'paid' AND YEAR(paid_on) = YEAR(CURDATE())";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$annualEarnings = $row["SUM(Amount)"] ?? 0;
 
 // Get user counts
 $sql = "SELECT COUNT(*) FROM clients";
@@ -40,6 +46,28 @@ $sql = "SELECT COUNT(*) FROM providerrequests";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $pendingRequests = $row["COUNT(*)"];
+
+// Get total forums and their counts
+$sql = "SELECT COUNT(*) FROM forums";
+$result = $conn->query($sql);
+$row1 = $result->fetch_assoc();
+
+// Get time difference between last login and provider request and count the number of requests
+$sql = "SELECT COUNT(*) FROM providerrequests WHERE createdAt > (SELECT last_logout FROM admins WHERE email = '$email')";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$pendingRN = $row["COUNT(*)"];
+// Get the new forum count
+$sql = "SELECT COUNT(*) FROM forums WHERE created_at > (SELECT last_logout FROM admins WHERE email = '$email')";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$newForumCount = $row["COUNT(*)"];
+//Get the new paid bill count
+$sql = "SELECT COUNT(*) FROM bills WHERE paid_on > (SELECT last_logout FROM admins WHERE email = '$email') AND status = 'paid'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$newPaidBillCount = $row["COUNT(*)"];
+
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +120,7 @@ $pendingRequests = $row["COUNT(*)"];
             <div class="stat-card card-blue">
                 <div class="stat-info">
                     <h3>Earnings (Monthly)</h3>
-                    <p>$<?php echo number_format($totalEarnings); ?></p>
+                    <p>Rs.<?php echo number_format($totalEarnings); ?>.00</p>
                 </div>
                 <div class="stat-icon">
                     <i class="fas fa-calendar"></i>
@@ -102,25 +130,22 @@ $pendingRequests = $row["COUNT(*)"];
             <div class="stat-card card-green">
                 <div class="stat-info">
                     <h3>Earnings (Annual)</h3>
-                    <p>$<?php echo number_format($annualEarnings); ?></p>
+                    <p>Rs.<?php echo number_format($annualEarnings); ?>.00</p>
                 </div>
                 <div class="stat-icon">
                     <i class="fas fa-dollar-sign"></i>
                 </div>
             </div>
 
-            <!--<div class="stat-card card-teal">
-                    <div class="stat-info">
-                        <h3>Tasks</h3>
-                        <p>50%</p>
-                        <div class="progress">
-                            <div class="progress-bar" style="width: 50%"></div>
-                        </div>
-                    </div>
-                    <div class="stat-icon">
-                        <i class="fas fa-clipboard-list"></i>
-                    </div>
-                </div>-->
+            <div class="stat-card card-teal">
+                <div class="stat-info">
+                    <h3>Forums</h3>
+                    <p>Total: <?php echo $row1['COUNT(*)']; ?></p>
+                </div>
+                <div class="stat-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+            </div>
 
             <div class="stat-card card-yellow">
                 <div class="stat-info">
@@ -132,73 +157,94 @@ $pendingRequests = $row["COUNT(*)"];
                 </div>
             </div>
         </div>
+        <div id="downContent">
+            <div id="charts">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h2>User Statistics</h2>
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="chart-content">
+                        <div class="users-stats">
+                            <?php
+                            $sql = "SELECT COUNT(*) FROM clients";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $clients = $row["COUNT(*)"];
 
-        <div class="chart-card">
-            <div class="chart-header">
-                <h2>User Statistics</h2>
-            </div>
-            <div class="chart-content">
-                <div class="users-stats">
-                    <?php
-                    $sql = "SELECT COUNT(*) FROM clients";
-                    $result = $conn->query($sql);
-                    $row = $result->fetch_assoc();
-                    $clients = $row["COUNT(*)"];
+                            $sql = "SELECT COUNT(*) FROM serviceproviders";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $serviceProviders = $row["COUNT(*)"];
 
-                    $sql = "SELECT COUNT(*) FROM serviceproviders";
-                    $result = $conn->query($sql);
-                    $row = $result->fetch_assoc();
-                    $serviceProviders = $row["COUNT(*)"];
+                            $sql = "SELECT COUNT(*) FROM companyworkers";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $employees = $row["COUNT(*)"];
 
-                    $sql = "SELECT COUNT(*) FROM companyworkers";
-                    $result = $conn->query($sql);
-                    $row = $result->fetch_assoc();
-                    $employees = $row["COUNT(*)"];
+                            $data = [
+                                "clients" => $clients,
+                                "serviceProviders" => $serviceProviders,
+                                "employees" => $employees
+                            ];
 
-                    $data = [
-                        "clients" => $clients,
-                        "serviceProviders" => $serviceProviders,
-                        "employees" => $employees
-                    ];
-
-                    // Pass the data to JavaScript
-                    echo "<script>const chartData = " . json_encode($data) . ";</script>";
-                    ?>
-                    <div class="users-table">
-                        <div class="user-stat-row">
-                            <div class="user-stat-label">Clients</div>
-                            <div class="user-stat-value"><?php echo $clients; ?></div>
+                            // Pass the data to JavaScript
+                            echo "<script>const chartData = " . json_encode($data) . ";</script>";
+                            ?>
+                            <div class="users-table">
+                                <div class="user-stat-row">
+                                    <div class="user-stat-label">Clients</div>
+                                    <div class="user-stat-value"><?php echo $clients; ?></div>
+                                </div>
+                                <div class="user-stat-row">
+                                    <div class="user-stat-label">Service Providers</div>
+                                    <div class="user-stat-value"><?php echo $serviceProviders; ?></div>
+                                </div>
+                                <div class="user-stat-row">
+                                    <div class="user-stat-label">Employees</div>
+                                    <div class="user-stat-value"><?php echo $employees; ?></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="user-stat-row">
-                            <div class="user-stat-label">Service Providers</div>
-                            <div class="user-stat-value"><?php echo $serviceProviders; ?></div>
-                        </div>
-                        <div class="user-stat-row">
-                            <div class="user-stat-label">Employees</div>
-                            <div class="user-stat-value"><?php echo $employees; ?></div>
+                        <div class="users-chart-container">
+                            <canvas id="usersChart"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="users-chart-container">
-                    <canvas id="usersChart"></canvas>
-                </div>
-            </div>
-        </div>
 
-        <!-- Charts
-            <div class="charts-container">
+               <!-- Charts-->
+
                 <div class="chart-card">
                     <div class="chart-header">
                         <h2>Earnings Overview</h2>
-                        <div class="chart-actions">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
+                        <i class="fas fa-hand-holding-usd"></i>
                     </div>
                     <div class="chart-content">
                         <canvas id="earningsChart"></canvas>
                     </div>
                 </div>
-
+            </div>
+            <div id="notifications">
+                <div class="chart-header">
+                    <h2>Notifications</h2>
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="notContent">
+                    <?php
+                        if($pendingRN > 0) {
+                            echo "<p id=\"notice\"><a href=\"../Requests/requests.php\" ><i class=\"fas fa-address-book\"></i>  You have $pendingRN new provider Requests.<a/></p>";
+                        }
+                        if($newForumCount > 0) {
+                            echo "<p id=\"notice\"><a href=\"../Forums/Forums.php\" ><i class=\"fas fa-book\"></i>  $newForumCount new forums.<a/></p>";
+                        }
+                        if($newPaidBillCount > 0) {
+                            echo "<p id=\"notice\"><a href=\"../Reports/reports.php\" ><i class=\"fas fa-money-bill-wave\"></i>  $newPaidBillCount new paid bills.<a/></p>";
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <!--    
                 <div class="chart-card">
                     <div class="chart-header">
                         <h2>Revenue Sources</h2>
@@ -222,98 +268,7 @@ $pendingRequests = $row["COUNT(*)"];
 
     <script>
         // Earnings Chart
-        /*const earningsCtx = document.getElementById('earningsChart').getContext('2d');
-        new Chart(earningsCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Earnings',
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(78, 115, 223, 0.05)",
-                    borderColor: "rgba(78, 115, 223, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-                    fill: true
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        left: 10,
-                        right: 25,
-                        top: 25,
-                        bottom: 0
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false,
-                            drawBorder: false
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            maxTicksLimit: 5,
-                            padding: 10,
-                            callback: function(value) {
-                                return '$' + value;
-                            }
-                        },
-                        grid: {
-                            color: "rgb(234, 236, 244)",
-                            zeroLineColor: "rgb(234, 236, 244)",
-                            drawBorder: false,
-                            borderDash: [2],
-                            zeroLineBorderDash: [2]
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: "rgb(255,255,255)",
-                        bodyColor: "#858796",
-                        titleMarginBottom: 10,
-                        titleColor: '#6e707e',
-                        titleFontSize: 14,
-                        borderColor: '#dddfeb',
-                        borderWidth: 1,
-                        xPadding: 15,
-                        yPadding: 15,
-                        displayColors: false,
-                        intersect: false,
-                        mode: 'index',
-                        caretPadding: 10,
-                        callbacks: {
-                            label: function(context) {
-                                var label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.y !== null) {
-                                    label += '$' + context.parsed.y;
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Revenue Sources Chart
+        /*
         /*const revenueCtx = document.getElementById('revenueSourcesChart').getContext('2d');
         new Chart(revenueCtx, {
             type: 'doughnut',
