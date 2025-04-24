@@ -147,8 +147,8 @@ if ($action === 'create_chat') {
              "<br><small>" . $message['sent_at'] . "</small></p>";
     }
 } elseif ($action === 'fetch_threads') {
-    // Fetch all threads with latest message and status
-    $query = "SELECT t.thread_id, t.client_id, t.topic, 
+    // Fetch all threads with latest message, status, and client name
+    $query = "SELECT t.thread_id, t.client_id, c.full_name, t.topic, 
                      (SELECT m.message_text 
                       FROM chat_messages m 
                       WHERE m.thread_id = t.thread_id 
@@ -160,6 +160,7 @@ if ($action === 'create_chat') {
                       ORDER BY m.sent_at DESC 
                       LIMIT 1) AS status
               FROM chat_threads t
+              JOIN clients c ON t.client_id = c.client_id
               WHERE t.provider_id = ?
               ORDER BY (SELECT MAX(m.sent_at) 
                         FROM chat_messages m 
@@ -176,7 +177,7 @@ if ($action === 'create_chat') {
         $lastMessage = htmlspecialchars($thread['last_message'] ?? 'No messages yet');
         $status = htmlspecialchars($thread['status'] ?? 'Unseen');
         echo "<tr>" .
-             "<td>" . htmlspecialchars($thread['client_id']) . "</td>" .
+             "<td>" . htmlspecialchars($thread['full_name']) . "</td>" .
              "<td>" . htmlspecialchars($thread['topic']) . "</td>" .
              "<td>" . $lastMessage . "</td>" .
              "<td>" . $status . "</td>" .
