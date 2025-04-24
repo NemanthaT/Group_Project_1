@@ -367,3 +367,11 @@ body {
 #notice a:hover {
   color: #fff;
 }
+
+.noNoti{
+  color: rgb(253, 41, 41) !important;
+}
+
+.noNoti:hover{
+  background-color: #fff !important;
+}
