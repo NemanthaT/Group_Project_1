@@ -6,10 +6,11 @@ include '../connection.php';
 if (isset($_GET['id'])) {
     $appointment_id = $_GET['id'];
     
-    // Fetch appointment details
-    $query = "SELECT appointment_id, provider_id, client_id, appointment_date, status, created_at, service_type, message 
-              FROM appointments 
-              WHERE appointment_id = ?";
+    // Fetch appointment details with client name
+    $query = "SELECT a.appointment_id, a.client_id, a.appointment_date, a.status, a.created_at, a.service_type, a.message, c.full_name 
+              FROM appointments a
+              LEFT JOIN clients c ON a.client_id = c.client_id
+              WHERE a.appointment_id = ?";
     
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $appointment_id);
@@ -42,6 +43,9 @@ if (isset($_GET['id'])) {
         <div class="main-content">
             <div class="appointment-section">
                 <div class="appointment-header">
+                <div class="back-link">
+                    <a href="App.php">← Back to Appointments</a>
+                </div>
                     <div class="appointment-title">Appointment ID <?php echo htmlspecialchars($appointment['appointment_id']); ?></div>
                     <div class="status-badge status-<?php echo strtolower($appointment['status']); ?>">
                         <?php echo htmlspecialchars($appointment['status']); ?>
@@ -49,12 +53,12 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="appointment-info">
                     <div class="detail-row">
-                        <div class="detail-label">Provider ID:</div>
-                        <div class="detail-value"><?php echo htmlspecialchars($appointment['provider_id']); ?></div>
-                    </div>
-                    <div class="detail-row">
                         <div class="detail-label">Client ID:</div>
                         <div class="detail-value"><?php echo htmlspecialchars($appointment['client_id']); ?></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Client Name:</div>
+                        <div class="detail-value"><?php echo htmlspecialchars($appointment['full_name'] ?? 'Not specified'); ?></div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Appointment Date:</div>
@@ -73,7 +77,7 @@ if (isset($_GET['id'])) {
                         <div class="detail-value"><?php echo htmlspecialchars($appointment['message'] ?? 'Not specified'); ?></div>
                     </div>
                 </div>
-                <button class="back-button" onclick="window.location.href='App.php'">Back to Appointments</button>
+                <button class="chat-button" onclick="window.location.href='../SP_Message/Message.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">Chat</button>
             </div>                   
         </div>
     </div>  <!--this is the </div> of container in the common file, don't remove it-->
