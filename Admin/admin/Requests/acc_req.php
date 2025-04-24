@@ -28,18 +28,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
             // Send email to the user
             $data = [
                 'email' => $row["email"],
-                'subject' => 'Account Created',
+                'subject' => "Account Created",
                 'message' => "Your account has been created successfully. Your username is: $usrnm and your password is: $genPsswd"
             ];
-            sendEmail($data);
-
+            
             // Delete the request from the providerrequests table
             $stmt = $conn->prepare("UPDATE providerrequests SET status = 'unset' WHERE reqId = ?");
             $stmt->bind_param("i", $id);
             $stmt->execute();
             $stmt->close();
     
-            echo json_encode(["message" => "Request accepted and added as a service provider."]);
+            echo json_encode($data);
         } else {
             echo json_encode(["error" => "No requests with this ID."]);
         }
