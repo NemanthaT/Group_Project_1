@@ -10,8 +10,8 @@ if (!isset($_SESSION['provider_id'])) {
 
 $providerId = $_SESSION['provider_id'];
 
-// Fetch chat threads for the provider
-$query = "SELECT t.thread_id, t.client_id, t.topic, 
+// Fetch chat threads for the provider with client name
+$query = "SELECT t.thread_id, t.client_id, c.full_name, t.topic, 
                  (SELECT m.message_text 
                   FROM chat_messages m 
                   WHERE m.thread_id = t.thread_id 
@@ -23,6 +23,7 @@ $query = "SELECT t.thread_id, t.client_id, t.topic,
                   ORDER BY m.sent_at DESC 
                   LIMIT 1) AS status
           FROM chat_threads t
+          JOIN clients c ON t.client_id = c.client_id
           WHERE t.provider_id = ?
           ORDER BY (SELECT MAX(m.sent_at) 
                     FROM chat_messages m 
@@ -53,7 +54,7 @@ $stmt->close();
                 <!-- Left Panel: Thread List -->
                 <div class="thread-panel">
                     <div class="message-controls">
-                        <input type="text" placeholder="Client ID/Topic" id="search-input">
+                        <input type="text" placeholder="Client Name/Topic" id="search-input">
                         <button class="search-button">Search</button>
                         <button class="clear-button" id="clear-button">Clear</button>
                         <button class="create-chat-button">Create Chat</button>
@@ -87,7 +88,7 @@ $stmt->close();
                     <table class="message-table">
                         <thead>
                             <tr>
-                                <th>Client ID</th>
+                                <th>Client Name</th>
                                 <th>Topic</th>
                                 <th>Last Message</th>
                                 <th>Status</th>
@@ -97,7 +98,7 @@ $stmt->close();
                         <tbody id="message-tbody">
                             <?php foreach ($threads as $thread): ?>
                                 <tr>
-                                    <td><?php echo htmlspecialchars($thread['client_id']); ?></td>
+                                    <td><?php echo htmlspecialchars($thread['full_name']); ?></td>
                                     <td><?php echo htmlspecialchars($thread['topic']); ?></td>
                                     <td><?php echo htmlspecialchars($thread['last_message'] ?? 'No messages yet'); ?></td>
                                     <td><?php echo htmlspecialchars($thread['status'] ?? 'Unseen'); ?></td>
