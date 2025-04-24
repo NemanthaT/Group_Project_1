@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
     <title>EDSA Lanka Consultancy</title>
     <?php include '../Common template/SP_common.php'; ?>
     <link rel="stylesheet" href="../Common template/SP_common.css">
-    <link rel="stylesheet" href="view.css">
+    <link rel="stylesheet" href="App.css">
 </head>
 <body> 
         <div class="main-content">
