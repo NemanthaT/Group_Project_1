@@ -30,7 +30,7 @@ $fullName = $user['full_name'] ?? 'User';
 // Get contact forum details from contactforums table
 if (isset($_GET['id'])) {
     $forum_id = intval($_GET['id']);
-    $sql = "SELECT * FROM contactforums WHERE id = $forum_id";
+    $sql = "SELECT * FROM contactforums WHERE cf_id = $forum_id";
     $result = mysqli_query($conn, $sql);
     $forum = mysqli_fetch_assoc($result);
 
