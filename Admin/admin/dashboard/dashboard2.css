@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  color: #4e73df;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f6f7fb;
@@ -139,6 +144,10 @@ body {
   padding-bottom: 15px;
   border-bottom: 1px solid #eaecf4;
   margin-bottom: 15px;
+}
+
+.chart-header i {
+  color: #4e73df;
 }
 
 .chart-header h2 {
@@ -334,4 +343,27 @@ body {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.notContent{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#notice{
+  width: 100%;
+  padding: 5px;
+  height: fit-content;
+  border-radius: 5px;
+}
+
+#notice:hover {
+  color:#d1d3e2;
+  background-color: #789afd;
+  cursor: pointer;
+}
+
+#notice a:hover {
+  color: #fff;
 }

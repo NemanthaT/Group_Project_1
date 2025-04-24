@@ -42,9 +42,21 @@ $row = $result->fetch_assoc();
 $pendingRequests = $row["COUNT(*)"];
 
 // Get total forums and their counts
-$sql1 = "SELECT COUNT(*) FROM forums";
-$result = $conn->query($sql1);
+$sql = "SELECT COUNT(*) FROM forums";
+$result = $conn->query($sql);
 $row1 = $result->fetch_assoc();
+
+// Get time difference between last login and provider request and count the number of requests
+$sql = "SELECT COUNT(*) FROM providerrequests WHERE createdAt > (SELECT last_logout FROM admins WHERE email = '$email')";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$pendingRN = $row["COUNT(*)"];
+// Get the new forum count
+$sql = "SELECT COUNT(*) FROM forums WHERE created_at > (SELECT last_logout FROM admins WHERE email = '$email')";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$newForumCount = $row["COUNT(*)"];
+
 ?>
 
 <!DOCTYPE html>
@@ -139,6 +151,7 @@ $row1 = $result->fetch_assoc();
                 <div class="chart-card">
                     <div class="chart-header">
                         <h2>User Statistics</h2>
+                        <i class="fas fa-chart-line"></i>
                     </div>
                     <div class="chart-content">
                         <div class="users-stats">
@@ -193,6 +206,7 @@ $row1 = $result->fetch_assoc();
                 <div class="chart-card">
                     <div class="chart-header">
                         <h2>Earnings Overview</h2>
+                        <i class="fas fa-hand-holding-usd"></i>
                     </div>
                     <div class="chart-content">
                         <canvas id="earningsChart"></canvas>
@@ -202,9 +216,17 @@ $row1 = $result->fetch_assoc();
             <div id="notifications">
                 <div class="chart-header">
                     <h2>Notifications</h2>
+                    <i class="fas fa-bell"></i>
                 </div>
-                <div class="chart-content">
-                    <canvas id="earningsChart"></canvas>
+                <div class="notContent">
+                    <?php
+                        if($pendingRN > 0) {
+                            echo "<p id=\"notice\"><a href=\"../Requests/requests.php\" ><i class=\"fas fa-address-book\"></i>  You have $pendingRN new provider Requests.<a/></p>";
+                        }
+                        if($newForumCount > 0) {
+                            echo "<p id=\"notice\"><a href=\"../Forums/Forums.php\" ><i class=\"fas fa-book\"></i>  $newForumCount new forums.<a/></p>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>
