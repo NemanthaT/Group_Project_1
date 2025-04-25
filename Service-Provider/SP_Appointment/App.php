@@ -28,9 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_id'], $_P
     exit;
 }
 
-// Query to retrieve appointments data
-$providerId = $_SESSION['provider_id']; 
-$sql = "SELECT appointment_id, provider_id, client_id, DATE(appointment_date) AS appointment_date, status, created_at FROM appointments WHERE provider_id = ? ORDER BY appointment_date ASC";
+// Query to retrieve appointments data with client full name
+$providerId = $_SESSION['provider_id'];
+$sql = "SELECT a.appointment_id, a.provider_id, a.client_id, DATE(a.appointment_date) AS appointment_date, a.status, a.created_at, c.full_name 
+        FROM appointments a 
+        JOIN clients c ON a.client_id = c.client_id 
+        WHERE a.provider_id = ? 
+        ORDER BY a.appointment_date ASC";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $providerId);
 $stmt->execute();
@@ -54,23 +58,24 @@ $stmt->close();
                 <center><h2>Appointments</h2></center>
                     <!-- Search and Filter Controls -->
                     <div class="appointment-controls">
-                        <input type="text" id="clientFilter" placeholder="Search by Appointment ID">
-                        <input type="date" id="appointmentDateFilter" placeholder="Filter by Appointment Date">
-                        <select id="statusSort">
+                        <!-- Commented out for future reference: Filter by Client Name or Appointment ID -->
+                        <!-- <input type="text" id="clientFilter" placeholder="Search by Client Name"> -->
+                        <input type="date" id="appointmentDateFilter" placeholder="Filter by Appointment Date" onchange="filterAndSortAppointments()">
+                        <select id="statusSort" onchange="filterAndSortAppointments()">
                             <option value="">Sort by Status</option>
                             <option value="pending">Pending</option>
                             <option value="scheduled">Scheduled</option>
                             <option value="cancelled">Cancelled</option>
                             <option value="rejected">Rejected</option>
                         </select>
-                        <button class="search-button" onclick="filterAndSortAppointments()">Search</button>
+                        <!-- <button class="search-button" onclick="filterAndSortAppointments()">Search</button> if button needed -->
                         <button class="clear-button" onclick="clearFilters()">Clear</button>
                     </div>
                     <div class="table-container">
     <table class="appointment-table">
         <thead>
             <tr>
-                <th>Appointment ID</th>
+                <th>Client Name</th>
                 <th>Appointment Date</th>
                 <th>Status</th>
                 <th>Actions</th>
@@ -82,7 +87,7 @@ $stmt->close();
             $result->data_seek(0);
             while ($row = $result->fetch_assoc()) {
                 echo "<tr onclick=\"window.location='ViewApp.php?id=" . htmlspecialchars($row['appointment_id']) . "'\">";
-                echo "<td>" . htmlspecialchars($row['appointment_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['full_name']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['status']) . "</td>";
                 echo "<td>";
@@ -111,7 +116,7 @@ $stmt->close();
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='5'>No appointments found</td></tr>";
+            echo "<tr><td colspan='4'>No appointments found</td></tr>";
         }
         ?>
         </tbody>
