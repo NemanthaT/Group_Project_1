@@ -1,17 +1,21 @@
 <?php
-  session_start(); 
-  require_once '../../config/config.php';
+session_start();
+include '../../config/config.php';
 
-  $username = $_SESSION['username'];
-  $email = $_SESSION['email'];
+// Check if user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/login.php");
+    exit;
+}
 
-  if (!isset($_SESSION['username'])) {
-      header("Location: ../../Login/Login.php");
-      exit;
-  }
+// Get user details
+$username = $_SESSION['username'];
+$query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+$fullName = $user['full_name'] ?? 'User';
 
-  // Get the selected category from session (if set)
-  $selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
+$selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
 ?>
 
 <!DOCTYPE html>

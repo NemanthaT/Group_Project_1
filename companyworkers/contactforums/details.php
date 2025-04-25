@@ -122,14 +122,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response_message'])) 
                     </li>
                 <li>
                     <a href="../acceptclient/acceptclient.php">
-                        <button class="active">
+                        <button>
                         <span class="menu-icon">👥</span>
                             Client Accept
                         </button>
                     </a>
                 </li>                <li>
                     <a href="../contactforums/contactforum.php">
-                        <button >
+                        <button class="active">
                         <span class="menu-icon">💬</span>
                         Conact Forum
                         </button>

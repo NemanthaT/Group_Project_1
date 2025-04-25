@@ -1,17 +1,27 @@
 <?php
-  session_start(); 
-  require_once '../../config/config.php';
+session_start();
+include '../../config/config.php';
 
-  $username = $_SESSION['username'];
-  $email = $_SESSION['email'];
+// Check if user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/login.php");
+    exit;
+}
 
-  if (!isset($_SESSION['username'])) {
-      header("Location: ../../Login/Login.php");
-      exit;
-  }
+// Get user details
+$username = $_SESSION['username'];
+$query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+$fullName = $user['full_name'] ?? 'User';
 
-  // Get the selected section from session
-  $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/Login.php");
+    exit;
+}
+
+// Get the selected section from session
+$section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +34,7 @@
     <link rel="stylesheet" href="../sidebar.css">
     <link rel="stylesheet" href="updateknowlgebase.css">
 </head>
-<>
+<body>
     <!-- Sidebar Toggle Button (for mobile) -->
     <button class="sidebar-toggle" id="sidebarToggle">☰</button>
     
@@ -35,134 +45,135 @@
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-            </div>
-            
-            <ul class="menu">
-                <li>
-                    <a href="../Dashboard/Dashboard.php">
-                        <button>
-                        <span class="menu-icon">📊</span>
-                            Dashboard
-                        </button>
-                    </a>
-                </li>
-                <li>
-                    <a href="../servicerequest/servicerequest.php">
-                        <button >
-                        <span class="menu-icon">🔧</span>
-                            Service Requests
-                        </button>
-                    </a>
-                    </li>
-                <li>
-                    <a href="../acceptclient/acceptclient.php">
-                        <button >
-                        <span class="menu-icon">👥</span>
-                            Client Accept
-                        </button>
-                    </a>
-                </li>                <li>
-                    <a href="../contactforums/contactforum.php">
-                        <button >
-                        <span class="menu-icon">💬</span>
-                        Conact Forum
-                        </button>
-                    </a>
-                </li>
-                <li>
-                    <a href="../updateknowlgebase/initial.php">
-                    <button class="active">
-                    <span class="menu-icon">📚</span>
-                    Update Knowldgebase
-                    </button>
-                    </a>
-                </li>
-                <li><a href="../updatenews/initial.php">
-                    <button>
-                    <span class="menu-icon">📰</span>
-                    Update News
-                    </button></a>
-                </li>
-            </ul>
         </div>
+            
+        <ul class="menu">
+            <li>
+                <a href="../Dashboard/Dashboard.php">
+                    <button>
+                    <span class="menu-icon">📊</span>
+                        Dashboard
+                    </button>
+                </a>
+            </li>
+            <li>
+                <a href="../servicerequest/servicerequest.php">
+                    <button >
+                    <span class="menu-icon">🔧</span>
+                        Service Requests
+                    </button>
+                </a>
+            </li>
+            <li>
+                <a href="../acceptclient/acceptclient.php">
+                    <button >
+                    <span class="menu-icon">👥</span>
+                        Client Accept
+                    </button>
+                </a>
+            </li>
+            <li>
+                <a href="../contactforums/contactforum.php">
+                    <button >
+                    <span class="menu-icon">💬</span>
+                    Conact Forum
+                    </button>
+                </a>
+            </li>
+            <li>
+                <a href="../updateknowlgebase/initial.php">
+                <button class="active">
+                <span class="menu-icon">📚</span>
+                Update Knowldgebase
+                </button>
+                </a>
+            </li>
+            <li><a href="../updatenews/initial.php">
+                <button>
+                <span class="menu-icon">📰</span>
+                Update News
+                </button></a>
+            </li>
+        </ul>
+    </div>
 
     <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
-            <div class="navbar">
-                <div class="profile">
-                <a href="#">
-                    <div class="profile-name"><?php echo htmlspecialchars($fullName); ?></div>
-                <img src="../images/user.png" alt="Profile">
-                    </a>
-                </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="profile">
+            <a href="#">
+                <div class="profile-name"><?php echo htmlspecialchars($fullName); ?></div>
+            <img src="../images/user.png" alt="Profile">
+                </a>
             </div>
+            <a href="../../Login/Logout.php" class="logout">Logout</a>
+        </div>
         
 
-    <div class=".main-container">
-        <div class="space"></div>
+        <div class=".main-container">
+            <div class="space"></div>
 
-        <div class="controls card1">
-        <div class="welcome-banner">
-            <div class="welcome-text">
-                <h2>Knowledge Base History</h2>
-                <p>Manage and track all knowledge base entries</p>
-            </div>
+            <div class="controls card1">
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h2>Knowledge Base History</h2>
+                    <p>Manage and track all knowledge base entries</p>
+                </div>
                 <div class="date-time" style="text-align:right;">
-                <div id="currentDate"></div>
-                <div id="currentTime"></div>
+                    <div id="currentDate"></div>
+                    <div id="currentTime"></div>
+                </div>
+            </div>
             </div>
         </div>
-        </div>
-    </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
+        <!-- Main Content -->
+        <div class="main-content">
 
-        <!-- Knowledge Base Table -->
-        <div class="dashboard-grid">
-            <div class="dashboard-card" style="grid-column: span 2;">
-                <div class="table-container">
-                    <table class="table" id="knowledgeTable">
-                        <thead>
-                            <tr>
-                                <th>Knowledge Base ID</th>
-                                <th>Worker ID</th>
-                                <th>Title</th>
-                                <th>Date Created</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Only show entries for the selected section
-                            $sql = "SELECT * FROM knowledgebase";
-                            if ($section) {
-                                $sql .= " WHERE section = '" . mysqli_real_escape_string($conn, $section) . "'";
-                            }
-                            $result = mysqli_query($conn, $sql);
-                            if ($result) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo '<tr data-id="' . $row['id'] . '">
-                                        <td>' . $row['id'] . '</td>
-                                        <td>' . $row['worker_id'] . '</td>
-                                        <td>' . $row['title'] . '</td>
-                                        <td>' . $row['created_at'] . '</td>
-                                        <td>
-                                            <button class="action-btn update-btn"><a href="update.php?update_id=' . $row['id'] . '&section=' . urlencode($section) . '">Update</a></button>
-                                            <button class="action-btn delete-btn delete-row-btn" data-id="' . $row['id'] . '">Delete</button>
-                                        </td>
-                                    </tr>';
+            <!-- Knowledge Base Table -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="table-container">
+                        <table class="table" id="knowledgeTable">
+                            <thead>
+                                <tr>
+                                    <th>Knowledge Base ID</th>
+                                    <th>Worker ID</th>
+                                    <th>Title</th>
+                                    <th>Date Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // Only show entries for the selected section
+                                $sql = "SELECT * FROM knowledgebase";
+                                if ($section) {
+                                    $sql .= " WHERE section = '" . mysqli_real_escape_string($conn, $section) . "'";
                                 }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                                $result = mysqli_query($conn, $sql);
+                                if ($result) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo '<tr data-id="' . $row['id'] . '">
+                                            <td>' . $row['id'] . '</td>
+                                            <td>' . $row['worker_id'] . '</td>
+                                            <td>' . $row['title'] . '</td>
+                                            <td>' . $row['created_at'] . '</td>
+                                            <td>
+                                                <button class="action-btn update-btn"><a href="update.php?update_id=' . $row['id'] . '&section=' . urlencode($section) . '">Update</a></button>
+                                                <button class="action-btn delete-btn delete-row-btn" data-id="' . $row['id'] . '">Delete</button>
+                                            </td>
+                                        </tr>';
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     
 
