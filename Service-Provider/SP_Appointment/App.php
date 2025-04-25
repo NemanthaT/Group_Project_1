@@ -1,6 +1,7 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+include '../Common template/SP_common.php';
 
 // Initialize message variable
 $message = "";
@@ -29,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_id'], $_P
 
 // Query to retrieve appointments data
 $providerId = $_SESSION['provider_id']; 
-$sql = "SELECT appointment_id, provider_id, client_id, appointment_date, status, created_at FROM appointments WHERE provider_id = ? ORDER BY appointment_date ASC";
+$sql = "SELECT appointment_id, provider_id, client_id, DATE(appointment_date) AS appointment_date, status, created_at FROM appointments WHERE provider_id = ? ORDER BY appointment_date ASC";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $providerId);
 $stmt->execute();
@@ -43,7 +44,6 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
-    <?php include '../Common template/SP_common.php'; ?>
     <link rel="stylesheet" href="../Common template/SP_common.css">
     <link rel="stylesheet" href="App.css">
 </head>

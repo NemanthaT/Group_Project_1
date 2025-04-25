@@ -1,6 +1,7 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+include '../Common template/SP_common.php';
 
 // Check if bill_id is provided in the URL
 if (!isset($_GET['bill_id']) || empty($_GET['bill_id'])) {
@@ -53,7 +54,6 @@ $total_due = $subtotal;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
-    <?php include '../Common template/SP_common.php'; ?>
     <link rel="stylesheet" href="../Common template/SP_common.css">
     <link rel="stylesheet" href="Bill.css">
 </head>
