@@ -78,6 +78,8 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
                 <button class="chat-button" onclick="window.location.href='../SP_Message/Message.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">Chat</button>
+                <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">+ Project</button>
+
             </div>                   
         </div>
     </div>  <!--this is the </div> of container in the common file, don't remove it-->
