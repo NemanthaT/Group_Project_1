@@ -52,7 +52,7 @@
                         <button id="closeView" onclick="closeView()">x</button>
                     </div>
                     <div id="userPic">
-                        
+                        <img src="" alt="User Image">
                     </div>
                     <div id="hiddenViewDetails">
                         <div class="hiddenViewContent">
