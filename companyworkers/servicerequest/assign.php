@@ -200,9 +200,23 @@
           <textarea id="message" name="message" readonly><?php echo $message; ?></textarea>
         </div>
 
-        <!-- Assign Person Section -->
+        <!-- Map service type to provider speciality -->
         <?php
-          $providers_query = "SELECT provider_id, full_name FROM serviceproviders";
+          function mapServiceToSpeciality($service_type) {
+            $mapping = [
+              'Training' => 'Training',
+              'Consulting' => 'Consultant', 
+              'Researching' => 'Researcher'
+            ];
+            return $mapping[$service_type] ?? '';
+          }
+
+          $required_speciality = mapServiceToSpeciality($service_type);
+          
+          // Modified query to filter by speciality
+          $providers_query = "SELECT provider_id, full_name 
+                            FROM serviceproviders 
+                            WHERE speciality = '$required_speciality'";
           $providers_result = mysqli_query($con, $providers_query);
           if (!$providers_result) {
             die("Providers query failed: " . mysqli_error($con));
