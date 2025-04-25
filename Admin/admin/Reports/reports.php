@@ -217,22 +217,26 @@ $resultR = $conn->query($sqlR);
         <div>
             <center>
                 <table>
-                    <tr>
-                        <th>Description</th>
-                        <th>Bill Date</th>
-                        <th>Amount</th>
-                        <th>Paid On</th>
-                    </tr>
-                    <?php
-                    if ($resultR->num_rows > 0) {
-                        while ($row = $resultR->fetch_assoc()) {
-                            echo "<tr><td>" . $row["Description"] . "</td><td>" . $row["Bill_Date"] . "</td><td>" . $row["Amount"] . "</td><td>" . $row["paid_on"] . "</td></tr>";
-                        }
-                    } else {
-                        echo "0 results";
-                    }
-                    $conn->close();
-                    ?>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Bill Date</th>
+                            <th>Amount</th>
+                            <th>Paid On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            if ($resultR->num_rows > 0) {
+                                while ($row = $resultR->fetch_assoc()) {
+                                    echo "<tr><td>" . $row["Description"] . "</td><td>" . $row["Bill_Date"] . "</td><td>" . $row["Amount"] . "</td><td>" . $row["paid_on"] . "</td></tr>";
+                                }
+                            } else {
+                                echo "0 results";
+                            }
+                            $conn->close();
+                        ?>
+                    </tbody>
                 </table>
             </center>
         </div>

@@ -93,24 +93,28 @@
                 <div id="displayArea">
                     <center>
                         <table>
-                            <tr>
-                                <th>Field</th>
-                                <th>specialty</th>
-                                <th>Action</th>
-                            </tr>
-                            <?php
-                                if($result->num_rows > 0) {
-                                    while($row = $result->fetch_assoc()) {
-                                        echo "<tr><td>".$row["field"]."</td><td>".$row["specialty"]."</td>
-                                        <td class=\"actions\"><center><button class=\"accept\" onclick=\"accReq(" . $row['reqId'] . ")\">Accept</button>
-                                        <button class=\"view\" onclick=\"viewReq(" . $row['reqId'] . ")\">View</button>
-                                        <button class=\"del\" onclick=\"deleteReq(" . $row['reqId'] . ")\">Delete</button></center></td></tr>";
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>specialty</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<tr><td>".$row["field"]."</td><td>".$row["specialty"]."</td>
+                                            <td class=\"actions\"><center><button class=\"accept\" onclick=\"accReq(" . $row['reqId'] . ")\">Accept</button>
+                                            <button class=\"view\" onclick=\"viewReq(" . $row['reqId'] . ")\">View</button>
+                                            <button class=\"del\" onclick=\"deleteReq(" . $row['reqId'] . ")\">Delete</button></center></td></tr>";
+                                        }
                                     }
-                                }
-                                else{
-                                    echo "<tr><td></td><td>0 results</td><td></td></tr>";
-                                }
-                            ?>
+                                    else{
+                                        echo "<tr><td></td><td>0 results</td><td></td></tr>";
+                                    }
+                                ?>
+                            </tbody>
                         </table>
 
                         <!-- Pagination links -->

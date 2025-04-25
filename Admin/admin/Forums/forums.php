@@ -79,22 +79,26 @@
                 <div id="displayArea">
                     <center>
                         <table>
-                            <tr>
-                                <th>Title</th>
-                                <th>Action</th>
-                            </tr>
-                            <?php
-                                if($result->num_rows > 0) {
-                                    while($row = $result->fetch_assoc()) {
-                                        echo "<tr><td>".$row["title"]."</td>
-                                        <td class=\"actions\"><center><button class=\"view\" onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
-                                        <button class=\"del\" onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<tr><td>".$row["title"]."</td>
+                                            <td class=\"actions\"><center><button class=\"view\" onclick=\"viewForum(" . $row['forum_id'] . ")\">View</button>
+                                            <button class=\"del\" onclick=\"deleteForum(" . $row['forum_id'] . ")\">Delete</button></center></td></tr>";
+                                        }
                                     }
-                                }
-                                else{
-                                    echo "<tr><td></td><td><center>0 results</center></td><td></td></tr>";
-                                }
-                            ?>
+                                    else{
+                                        echo "<tr><td></td><td><center>0 results</center></td><td></td></tr>";
+                                    }
+                                ?>
+                            </tbody>
                         </table>
 
                         <!-- Pagination links -->

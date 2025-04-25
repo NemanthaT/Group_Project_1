@@ -20,7 +20,7 @@
     $total_pages = ceil($total_records / $records_per_page);
 
     // Get paginated data
-    $sql = "SELECT * FROM companyworkers WHERE status = 'set' LIMIT $offset, $records_per_page";
+    $sql = "SELECT full_name, email, role FROM companyworkers WHERE status = 'set' LIMIT $offset, $records_per_page";
     $result = $conn->query($sql);
 ?>
 
@@ -150,11 +150,9 @@
                         <table class="displayArea" id="displayArea">
                             <thead>
                                 <tr>
-                                    <th>UId</th>
-                                    <th>User Name</th>
                                     <th>Full Name</th>
-                                    <th>Role</th>
                                     <th>Email</th>
+                                    <th>Role</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -168,23 +166,24 @@
                 <div id="dA">
                     <?php
                         echo "<center><table class=\"displayArea\">
+                        <thead>
                         <tr>
-                            <th>UId</th>
-                            <th>User Name</th>
                             <th>Full Name</th>
-                            <th>Role</th>
                             <th>Email</th>
-                        </tr>";
+                            <th>Role</th>   
+                        </tr>
+                        </thead>
+                        <tbody>";
 
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                                echo '<tr><td>'.$row['worker_id'] .'</td><td>'. $row['username'] .'</td><td>'. $row['full_name'] . '</td><td>'.$row['role'].'</td><td>'.$row['email'].'</td></tr>';
+                                echo '<tr><td>'. $row['full_name'] . '</td><td>'.$row['email'].'</td><td>'.$row['role'].'</td></tr>';
                             }
                         } else {
                             echo "<tr><td colspan='5'>0 results</td></tr>";
                         }
 
-                        echo "</table>";
+                        echo "</tbody> </table>";
 
                         // Pagination links
                         echo '<div class="pagination">';
