@@ -9,9 +9,9 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
-  }
-  
-  .profile-section h2 {
+}
+
+.profile-section h2 {
     font-size: 2.8vh; 
     font-weight: 700;
     margin-bottom: 2vh;
@@ -19,11 +19,12 @@
     text-align: center;
     letter-spacing: 0.5px;
     position: relative;
-  }
-  
+}
+
 /* Left Column Styling */
 .left-column {
     display: flex;
+    flex: 0.8;
     flex-direction: column;
     align-items: center;
 }
@@ -55,6 +56,18 @@
     height: 100px;
     border-radius: 50%;
     border: 2px solid #18A0FB;
+    transition: all 0.3s ease;
+}
+
+/* Profile Image in Edit Mode */
+.profile-image.editing img {
+    cursor: pointer;
+}
+
+.profile-image.editing img:hover {
+    opacity: 0.8;
+    border-color: #0c8de4;
+    box-shadow: 0 0 10px rgba(24, 160, 251, 0.3);
 }
 
 /* Edit Button Styling */
@@ -93,6 +106,28 @@
     margin: 1vh 0;
     font-size: 1.8vh;
     color: #4b5563;
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for Input Fields in Edit Mode (Profile Info) */
+.profile-info li input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1.8vh;
+    color: #4b5563;
+    background-color: #f9fafb;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.profile-info li input:focus {
+    outline: none;
+    border-color: #18A0FB;
+    box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.1);
+    background-color: #ffffff;
 }
 
 /* Styled Paragraph for Ratings */
@@ -131,6 +166,7 @@
 /* Right Column Styling */
 .right-column {
     display: flex;
+    flex: 2;
     flex-direction: column;
     gap: 20px;
 }
@@ -205,11 +241,39 @@
     letter-spacing: 0.5px;
 }
 
+/* Styling for Static Text in Additional Info */
 .additional-info p {
     margin: 1vh 0;
     line-height: 1.5;
     color: #4b5563;
     font-size: 1.8vh;
+}
+
+/* Styling for Input Fields and Textareas in Edit Mode (Additional Info) */
+.additional-info input,
+.additional-info textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1.8vh;
+    color: #4b5563;
+    background-color: #f9fafb;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    resize: vertical; /* Allow vertical resizing for textarea */
+}
+
+.additional-info textarea {
+    min-height: 80px; /* Minimum height for textareas */
+}
+
+.additional-info input:focus,
+.additional-info textarea:focus {
+    outline: none;
+    border-color: #18A0FB;
+    box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.1);
+    background-color: #ffffff;
 }
 
 /* List Item Styling for Additional Info */
