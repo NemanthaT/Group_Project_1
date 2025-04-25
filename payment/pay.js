@@ -3,16 +3,18 @@ function paymentGateway(bill_id) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      if (confirm("You will directed to the portal!! Are you sure you want to proceed?")) {
-
-        if(xhttp.responseText) {
+      if (
+        confirm(
+          "You will directed to the portal!! Are you sure you want to proceed?"
+        )
+      ) {
+        if (xhttp.responseText) {
           var response = JSON.parse(xhttp.responseText);
-        }
-        else{
+        } else {
           alert("Error: No response from server.");
           return;
         }
-        
+
         //console.log(response); // Log the response for debugging
 
         // Payment completed. It can be a successful failure.
@@ -24,18 +26,17 @@ function paymentGateway(bill_id) {
           fetch("http://localhost/Group_project_1/payment/process.php", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/x-www-form-urlencoded",
             },
-            body: `id=${orderId}`
+            body: `id=${encodeURIComponent(orderId)}`,
           })
-            .then(response => response.text())
-            .then(result => {
+            .then((response) => response.text())
+            .then((result) => {
               console.log("Response from PHP:", result);
             })
-            .catch(error => {
+            .catch((error) => {
               console.error("Error:", error);
             });
-
         };
 
         // Payment window closed
@@ -54,38 +55,42 @@ function paymentGateway(bill_id) {
         var [firstName, lastName] = fullName.split(" ");
         // Put the payment variables here
         var payment = {
-          "sandbox": true,
-          "merchant_id": response["merchant_id"], // Replace with your Merchant ID retrieved from backend
-          "return_url": "http://localhost/Group_Project_1/user1/user/bill/bill.php",     // Important
-          "cancel_url": "http://localhost/Group_Project_1/user1/user/bill/bill.php",     // Important
-          "notify_url": "http://sample.com/notify",
-          "order_id": response["order_id"], // *Replace with generated order ID retrieved from backend
-          "items": response["items"], // *Replace with generated items retrieved from backend
-          "amount": response["amount"], // *Replace with generated amount retrieved from backend
-          "currency": response["currency"], // *Replace with generated currency retrieved from backend
-          "hash": response["hash"], // *Replace with generated hash retrieved from backend
-          "first_name": firstName,
-          "last_name": lastName,
-          "email": response["email"], // *Replace with generated email retrieved from backend
-          "phone": response["phone"], // *Replace with generated phone retrieved from backend,
-          "address": response["address"], // *Replace with generated address retrieved from backend
-          "city": "Undefined",
-          "country": "Sri Lanka",
-          "delivery_address": "No. 46, Galle road, Kalutara South",
-          "delivery_city": "Kalutara",
-          "delivery_country": "Sri Lanka",
-          "custom_1": "",
-          "custom_2": ""
+          sandbox: true,
+          merchant_id: response["merchant_id"], // Replace with your Merchant ID retrieved from backend
+          return_url: "http://localhost/Group_Project_1/payment/sample.php", // Important
+          cancel_url:
+            "http://localhost/Group_Project_1/user1/user/bill/bill.php", // Important
+          notify_url: "http://sample.com/notify",
+          order_id: response["order_id"], // *Replace with generated order ID retrieved from backend
+          items: response["items"], // *Replace with generated items retrieved from backend
+          amount: response["amount"], // *Replace with generated amount retrieved from backend
+          currency: response["currency"], // *Replace with generated currency retrieved from backend
+          hash: response["hash"], // *Replace with generated hash retrieved from backend
+          first_name: firstName,
+          last_name: lastName,
+          email: response["email"], // *Replace with generated email retrieved from backend
+          phone: response["phone"], // *Replace with generated phone retrieved from backend,
+          address: response["address"], // *Replace with generated address retrieved from backend
+          city: "Undefined",
+          country: "Sri Lanka",
+          delivery_address: "No. 46, Galle road, Kalutara South",
+          delivery_city: "Kalutara",
+          delivery_country: "Sri Lanka",
+          custom_1: "",
+          custom_2: "",
         };
 
         payhere.startPayment(payment);
-      }
-      else {
+      } else {
         // Do nothing
-        alert("Delete canceled.");
+        alert("Payment Cancelled.");
       }
     }
   };
-  xhttp.open("GET", "http://localhost/Group_project_1/payment/pay.php?id=" + bill_id, true);
+  xhttp.open(
+    "GET",
+    "http://localhost/Group_project_1/payment/pay.php?id=" + bill_id,
+    true
+  );
   xhttp.send();
 }

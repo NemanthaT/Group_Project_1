@@ -5,12 +5,14 @@
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 
+    $_SESSION['nRC'] = 'none';
+
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../../../login/login.php");
+        header("Location: ../../../../login/login.php");
         exit;
     }
 
-    $sql = "SELECT * FROM clients";
+    $sql = "SELECT * FROM clients WHERE status = 'set'";
     $result = $conn->query($sql);
 
 ?>
@@ -22,32 +24,59 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Clients</title>
         <link rel="stylesheet" href="../../../css/common.css">
+        <link rel="stylesheet" href="../../../css/preloader.css">
         <link rel="stylesheet" href="../peopleStyles.css">
-        <script src="../users.js"></script>   
+        <script src="../users.js"></script>
+        <script src="../../../js/preloader.js"></script> 
     </head>
 
     <body>
-        <div class="main">
+        <div class="main" id="main">
             <div class="bg">
                     <!--blur Background image-->  
+            </div>
+            <div id="preloader">
+                <div class="spinner"></div>
+            </div>
+            <div id="popupPreloader">
+                <div class="spinner"></div>
             </div>
 
             <div id="overlay" class="overlay"></div>
             
             <div>
                 <h1>Clients</h1>
-                <div id="hiddenView">
-                    <button id="closeView" onclick="closeView()">✕</button>
-                    <center>
-                    <table>
-                        <tr><th class="c_th">Client ID:</th> <td id="cId"></td></tr>
-                        <tr><th class="c_th">Username:</th> <td id="uName"></td></tr>
-                        <tr><th class="c_th">Full Name:</th> <td id="fName"></td></tr>
-                        <tr><th class="c_th">email:</th><td id="email"></td></tr>
-                        <tr><th class="c_th">Address:</th><td id="address"></td></tr>
-                    </table>
-                    </center>
-                    
+                <div id="hiddenView">                    
+                    <div id="hiddenViewHeader">
+                        <h2>User Details</h2>
+                        <button id="closeView" onclick="closeView()">x</button>
+                    </div>
+                    <div id="userPic">
+                        
+                    </div>
+                    <div id="hiddenViewDetails">
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Client ID</p> <p id="cId" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Username</p> <p id="uName" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Full name</p> <p id="fName" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">email</p> <p id="email" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Address</p> <p id="address" class="detes"></p>
+                        </div>
+                    </div>
+                    <div id="hiddenViewActions">
+                    </div>
                 </div>
                 <div id="displayArea">
                     <center>

@@ -1,126 +1,155 @@
-/* Existing styles */
-.form-top {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* Professional UI Variables */
+:root {
+    --primary-color: #4f46e5;
+    --primary-dark: #3730a3;
+    --secondary-color: #64748b;
+    --bg-light: #f4f6fa;
+    --card-bg: #fff;
+    --text-dark: #22223b;
+    --text-muted: #6c757d;
+    --text-light: #fff;
+    --border-color: #e5e7eb;
+    --radius: 12px;
+    --radius-sm: 6px;
+    --shadow-sm: 0 2px 8px rgba(60,72,88,0.07);
+    --shadow-md: 0 4px 16px rgba(60,72,88,0.10);
+    --transition: all 0.2s cubic-bezier(.4,0,.2,1);
+}
+
+/* Layout containers */
+.main-container, .main-wrapper {
+    padding: 32px;
+    background: var(--bg-light);
+    min-height: 100vh;
+    box-sizing: border-box;
     width: 100%;
+}
+
+.form-container, .down, .scrollable-panel {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-bottom: 24px;
+    margin-left: 0;
+}
+
+.form-top, .form-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 16px;
 }
 
 .form-bottom {
-    display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 30px;
-}
-
-.form-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-top: 30px;
-    margin-left: 100px;
-}
-
-.navbar1 {
-    width: 80vw;
-    background-color: white;
-    color: #18A0FB;
-    margin-left: 0;
-    padding: 2vh 4vw;
-    z-index: 2;
-    display: flex;
     justify-content: flex-end;
-    align-items: center;
-  }
+    margin-top: 24px;
+}
 
-#message {
-    width: 500px;
+#message, #reply {
+    width: 100%;
+    min-width: 280px;
+    max-width: 600px;
     height: 100px;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    margin-left: 100px;
-}
-
-#reply {
-    height: 100px;
-    margin-top: 10px;
-    margin-bottom: 30px;
-}
-
-.scrollable-panel {
-    margin-left: 100px;
-}
-
-.down {
-    display: flex;
-    flex-direction: row;
-    gap: 300px;
-    margin-left: 100px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--card-bg);
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin: 0 0 24px 0;
+    resize: vertical;
 }
 
 .names {
     width: 350px;
     height: 150px;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+    padding: 16px;
+    color: var(--text-dark);
 }
 
-/* New styles for table responsiveness */
+.navbar1 {
+    width: 100%;
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 16px 32px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
+}
+
+/* Table Styles */
 .table-container {
-    width: 90%;
+    width: 100%;
     overflow-x: auto;
-    margin-bottom: 20px;
     background: var(--card-bg);
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
-    padding: 1.5rem;
+    padding: 2rem;
     margin-top: 1rem;
 }
 
 .table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px; /* Ensures table doesn't get too small */
+    min-width: 700px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
 }
 
 .table th, .table td {
-    padding: 1rem;
+    padding: 1.1rem 1rem;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
+    font-size: 1rem;
 }
 
 .table th {
-    font-weight: 600;
-    color: var(--text-dark);
+    font-weight: 700;
+    color: var(--primary-color);
     background: var(--bg-light);
+    letter-spacing: 0.03em;
 }
 
 .table td {
-    color: var(--text-muted);
+    color: var(--text-dark);
+    background: var(--card-bg);
 }
 
 .table thead tr {
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #ddd;
+    background-color: var(--bg-light);
+    border-bottom: 2px solid var(--primary-color);
 }
 
-.table tbody tr:hover,
-.table tr:hover {
-    background: var(--bg-light);
+.table tbody tr {
+    transition: var(--transition);
+}
+
+.table tbody tr:hover {
+    background: #eef2ff;
 }
 
 .table td button,
 .table button {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.2rem;
     background: var(--primary-color);
     color: var(--text-light);
     border: none;
     border-radius: var(--radius-sm);
     cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
     transition: var(--transition);
+    box-shadow: 0 1px 4px rgba(79,70,229,0.08);
 }
 
 .table td button:hover,
@@ -135,34 +164,45 @@
     display: block;
 }
 
-/* Ensure main container has proper spacing */
-.main-container {
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Make sure the main wrapper takes appropriate space */
-.main-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-}
-
-/* Additional responsive adjustments */
-@media screen and (max-width: 768px) {
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
     .form-container, .down {
         flex-direction: column;
-        margin-left: 20px;
+        gap: 20px;
     }
-    
-    #message {
-        width: 90%;
+    .table-container {
+        padding: 1rem;
+    }
+    .main-container, .main-wrapper {
+        padding: 12px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form-container, .down, .scrollable-panel {
+        flex-direction: column;
         margin-left: 0;
+        gap: 16px;
     }
-    
-    .scrollable-panel {
-        margin-left: 20px;
+    #message, #reply {
+        max-width: 100%;
+        min-width: 0;
     }
+    .table {
+        min-width: 400px;
+        font-size: 0.95rem;
+    }
+    .table-container {
+        padding: 0.5rem;
+    }
+}
+
+/* Miscellaneous improvements */
+::-webkit-scrollbar {
+    width: 8px;
+    background: var(--bg-light);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
 }

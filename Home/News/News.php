@@ -15,6 +15,9 @@
                 <div>
                     <h1 id="nHeading">News</h1>
                 </div>
+                <div id="preloader">
+                    <div class="spinner"></div>
+                </div>
 
                 <div id="overlay" class="overlay"></div>
                 <div id="view">

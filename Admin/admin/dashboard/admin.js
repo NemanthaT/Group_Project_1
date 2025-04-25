@@ -83,12 +83,18 @@ function nextMonth() {
 // Initial calendar render
 renderCalendar();
 
-function changeBgColor(id) {
-    const element = document.getElementById(id);
-    if(element.style.backgroundColor === "white"){
-        element.style.backgroundColor = "blue";
-    }
-    else{
-        element.style.backgroundColor = "white";
-    }
-}
+// Add event listeners for sidebar items
+// Wait for the DOM to load
+document.addEventListener("DOMContentLoaded", function () {
+  const items = document.querySelectorAll(".dropDown");
+
+  items.forEach(item => {
+    item.addEventListener("click", function () {
+      // Remove 'active' from all items
+      items.forEach(i => i.classList.remove("active"));
+      
+      // Add 'active' to the clicked item
+      this.classList.add("active");
+    });
+  });
+});

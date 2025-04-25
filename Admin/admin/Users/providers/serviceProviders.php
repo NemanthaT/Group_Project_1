@@ -1,16 +1,18 @@
 <?php
     session_start(); 
-    require_once('../../../config/config.php');
+    require_once('../../../../config/config.php');
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 
+    $_SESSION['nRSP'] = 'none';
+
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../../../login/login.php");
+        header("Location: ../../../../login/login.php");
         exit;
     }
 
-    $sql = "SELECT * FROM serviceproviders";
+    $sql = "SELECT * FROM serviceproviders WHERE status = 'set'";
     $result = $conn->query($sql);
 
 ?>
@@ -22,34 +24,65 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Service Providers</title>
         <link rel="stylesheet" href="../../../css/common.css">
+        <link rel="stylesheet" href="../../../css/preloader.css">
         <link rel="stylesheet" href="../peopleStyles.css">
         <script src="../users.js"></script>
+        <script src="../../../js/preloader.js"></script>
     </head>
 
     <body>
-        <div class="main">
+        <div class="main" id="main">
             <div class="bg">
                     <!--blur Background image-->  
-            </div> 
+            </div>
+            <div id="preloader">
+                <div class="spinner"></div>
+            </div>
+            <div id="popupPreloader">
+                <div class="spinner"></div>
+            </div>
 
             <div id="overlay" class="overlay"></div>
 
             <div>
                 <h1>Service Providers</h1>
                 <div id="hiddenView">
-                    <button id="closeView" onclick="closeView()">✕</button>
-                    <center>
-                    <table>
-                        <tr><th class="c_th">Provider ID:</th> <td id="spId"></td></tr>
-                        <tr><th class="c_th">Username:</th> <td id="uName"></td></tr>
-                        <tr><th class="c_th">Full Name:</th> <td id="fName"></td></tr>
-                        <tr><th class="c_th">email:</th><td id="email"></td></tr>
-                        <tr><th class="c_th">Address:</th><td id="address"></td></tr>
-                        <tr><th class="c_th">Specialty:</th><td id="specialty"></td></tr>
-                        <tr><th class="c_th">Field:</th><td id="field"></td></tr>
-                    </table>
-                    </center>
                     
+                    <div id="hiddenViewHeader">
+                        <h2>User Details</h2>
+                        <button id="closeView" onclick="closeView()">x</button>
+                    </div>
+                    <div id="hiddenViewDetails">
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Provider ID</p> <p id="spId" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Username</p> <p id="uName" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Full name</p> <p id="fName" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">email</p> <p id="email" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Address</p> <p id="address" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Specialty</p> <p id="specialty" class="detes"></p>
+                        </div>
+                        <hr>
+                        <div class="hiddenViewContent">
+                            <p id="deteHead">Field</p> <p id="field" class="detes"></p>
+                        </div>
+                    </div>
+                    <div id="hiddenViewActions">
+                    </div>
                 </div>
                 <div id="dropdown" class="dropdown">
                     <p>Filter by: <button id="dBtn" onclick="showDete()">Choose</button></p>

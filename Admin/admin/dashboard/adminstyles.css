@@ -143,6 +143,16 @@ a:hover {
     display: block;
 }
 
+/* Highlighted sidebar item */
+.active {
+    background-color: #007bff; /* Change to your preferred color */
+    color: white;
+  }
+  
+.active a {
+    color: white !important; /* Optional: make sure text is white */
+}
+
 .frame {
     width: 100%;
     height: 92.5vh;
@@ -155,7 +165,7 @@ a:hover {
 }
 
 iframe {
-    background-color:#f4f4f4;
+    /*background-color:#f4f4f4;*/
     width: 100%;
     height: 100%;
     border: none;

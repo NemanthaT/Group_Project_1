@@ -87,30 +87,30 @@
 
 /* Table Container */
 .table-container {
-    flex-grow: 1; /*Flexbox property that tells a flex item how much space it should take up compared to the other items inside the same container*/
+    flex-grow: 1;
     overflow-y: auto;
-    background: linear-gradient(to bottom, #ffffff, #f9fafb); 
-    border: 1px solid #e5e7eb; 
+    background: linear-gradient(to bottom, #ffffff, #f9fafb);
+    border: 1px solid #e5e7eb;
     border-radius: 12px;
-    padding: 2.5vh; 
+    padding: 2.5vh;
     transition: all 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .table-container:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08); 
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .appointment-table {
     width: 100%;
-    border-collapse: separate; /* CSS property is used with HTML tables and defines how the borders of table cells behave */
+    border-collapse: separate;
     border-spacing: 0;
 }
 
 .appointment-table thead {
     position: sticky;
     top: 0;
-    background-color: #f7fafc; 
+    background-color: #f7fafc;
     z-index: 1;
 }
 
@@ -118,33 +118,60 @@
 .appointment-table td {
     border: none;
     text-align: center;
-    padding: 1.8vh; 
-    font-size: 2.2vh; 
+    padding: 1.8vh;
+    font-size: 2.2vh;
 }
 
 .appointment-table th {
     font-weight: 600;
-    color: #4b5563; 
+    color: #4b5563;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-bottom: 2px solid #e5e7eb; 
+    border-bottom: 2px solid #e5e7eb;
 }
 
 .appointment-table td {
-    border-bottom: 1px solid #e5e7eb; 
-    color: #1e293b; 
+    border-bottom: 1px solid #e5e7eb;
+    color: #1e293b;
+    position: relative; /* For positioning the arrow */
 }
 
 .appointment-table tr:last-child td {
-    border-bottom: none; 
+    border-bottom: none;
 }
 
 .appointment-table tr:nth-child(even) {
-    background-color: #f8fafc; 
+    background-color: #f8fafc;
 }
 
 .appointment-table tr:hover {
-    background-color: #f1f5f9; 
+    background-color: #e6f0ff; 
+    cursor: pointer; 
+    transition: background-color 0.2s ease;
+}
+
+.appointment-table tr:hover td:first-child::before {
+    content: '→'; 
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3vh;
+    color: #3b82f6; 
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.appointment-table td:first-child::before {
+    content: '→';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3vh;
+    color: #3b82f6;
+    opacity: 0; 
+    transition: opacity 0.2s ease;
 }
 
 .view-btn, .accept-btn, .reject-btn, .cancel-btn {
@@ -237,113 +264,146 @@
 }
 
 /*--------------- ViewApp.php ---------------------*/
+.back-link a {
+    color: #18A0FB;
+    text-decoration: none;
+    font-size: 2.5vh; 
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 2.5vh;
+}
+  
+.back-link a:hover {
+    color: #0c8de4;
+    transform: translateX(-3px);
+}
+
 .appointment-header {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    margin: 2.5vh; 
+    margin: 2.5vh;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .appointment-title {
-    font-size: 3.2vh; 
+    font-size: 3.2vh;
     font-weight: 600;
-    color: #1e293b; 
+    color: #1e293b;
     text-align: center;
-    border-bottom: 2px solid #e5e7eb; 
     padding-bottom: 10px;
-    margin-bottom: 2vh; 
+    margin-bottom: 2vh;
 }
 
 .status-badge {
     position: absolute;
     right: 100px;
-    padding: 0.8vh 2vw; 
-    border-radius: 8px;
-    font-size: 2.4vh; 
+    padding: 0.8vh 2vw;
+    border-radius: 50px; /* From first snippet */
+    font-size: 2.4vh;
     font-weight: 500;
     color: #ffffff;
     text-transform: capitalize;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .status-badge.status-pending {
-    background-color: #f59e0b; 
+    background-color: #f59e0b;
 }
 
 .status-badge.status-scheduled {
-    background-color: #18A0FB; 
+    background-color: #18A0FB;
 }
 
 .status-badge.status-completed {
-    background-color: #22c55e; 
+    background-color: #22c55e;
 }
 
 .status-badge.status-rejected {
-    background-color: #ef4444; 
+    background-color: #ef4444;
 }
 
 .status-badge.status-cancelled {
-    background-color: #6b7280; 
+    background-color: #6b7280;
+}
+
+.status-badge.status-confirmed { /* Added from first snippet */
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-assigned { /* Added from first snippet */
+    background-color: #cce5ff;
+    color: #004085;
 }
 
 .appointment-info {
-    font-size: 3vh; 
-    color: #1e293b; 
-    align-self: center;
+    font-size: 3vh;
+    color: #1e293b;
     flex-grow: 1;
-    margin: 0vh 5vh 5vh 5vh; 
+    margin: 0vh 5vh 5vh 5vh;
     padding-bottom: 1.2vh;
-    border-bottom: 1px solid #e5e7eb; 
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 25px; /* From first snippet */
 }
 
 .detail-row {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 2vh; 
-    gap: 1vw; 
+    margin-bottom: 2vh;
+    gap: 1vw;
+    border-bottom: 1px solid #f0f0f0; /* From first snippet */
+    padding: 12px 0; /* From first snippet */
 }
 
 .detail-label {
-    font-weight: 500; 
-    width: 150px;
-    color: #4b5563; 
-    font-size: 2.4vh; 
+    font-weight: 500;
+    width: 20%; 
+    color: #4b5563;
+    font-size: 2.4vh;
 }
 
 .detail-value {
     flex: 1;
-    color: #4b5563; 
+    width: 80%; 
+    color: #4b5563;
     line-height: 1.5;
     word-break: break-word;
     overflow-wrap: anywhere;
     max-width: 100%;
-    font-size: 2.4vh; 
+    font-size: 2.4vh;
 }
 
-.back-button {
-    background-color: #18A0FB; 
+.chat-button {
+    background-color: #18A0FB;
     color: white;
-    font-size: 2.5vh; 
+    font-size: 2.5vh;
     font-weight: 500;
-    padding: 1.2vh 2.5vw; 
+    padding: 1.2vh 2.5vw;
     border: none;
-    border-radius: 8px;
+    border-radius: 50px; /* From first snippet */
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(24, 160, 251, 0.2); 
+    box-shadow: 0 2px 4px rgba(24, 160, 251, 0.2);
     align-self: center;
-    margin-bottom: 2.5vh;
+    margin: 20px auto 2.5vh; /* Merged margins, prioritizing first snippet's auto */
+    display: block; /* From first snippet */
 }
 
-.back-button:hover {
-    background-color: #0c8de4; 
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3); 
+.chat-button:hover {
+    background-color: #0c8de4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
 }
 
-.back-button:focus {
+.chat-button:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.15); 
+    box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.15);
 }

@@ -1,103 +1,151 @@
 <?php
 session_start();
-include '../../config/config.php'; // Database connection
+include '../../config/config.php';
+include '../../sendemail/send.php'; // Include the sendEmail function
 
-// Fetch the logged-in user's name
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    $query = "SELECT full_name FROM companyworkers WHERE username = '$username'";
-    $result = mysqli_query($conn, $query);
-    $user = mysqli_fetch_assoc($result);
-    $fullName = $user['full_name'] ?? 'User';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$autoloadPath = '../../vendor/autoload.php';
+$composerWarning = '';
+if (file_exists($autoloadPath)) {
+    require $autoloadPath;
 } else {
+    $composerWarning = "Warning: Composer autoload file not found at $autoloadPath. Some features may not work. Please run 'composer install' in the project root.";
+}
+
+// Check if user is logged in
+if (!isset($_SESSION['username'])) {
     header("Location: ../../Login/login.php");
     exit;
 }
 
+// Get user details
+$username = $_SESSION['username'];
+$query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+$fullName = $user['full_name'] ?? 'User';
 
-$contact_id = isset($_GET['contact_id']) ? intval($_GET['contact_id']) : 0;
-$form = null;
-if ($contact_id > 0) {
-    $sql = "SELECT cf.contact_id, cf.client_id, cf.subject, cf.message, cf.created_at, c.full_name 
-            FROM contactforms cf 
-            LEFT JOIN clients c ON cf.client_id = c.client_id 
-            WHERE cf.contact_id = $contact_id";
-    $result = $conn->query($sql);
-    if ($result && $result->num_rows > 0) {
-        $form = $result->fetch_assoc();
+// Get contact forum details from contactforums table
+if (isset($_GET['id'])) {
+    $forum_id = intval($_GET['id']);
+    $sql = "SELECT * FROM contactforums WHERE cf_id = $forum_id";
+    $result = mysqli_query($conn, $sql);
+    $forum = mysqli_fetch_assoc($result);
+
+    if (!$forum) {
+        header("Location: contactforum.php");
+        exit;
     }
+} else {
+    header("Location: contactforum.php");
+    exit;
 }
 
-// Dummy user for header (replace with session logic as in dashboard.php)
-$fullName = "Company Worker";
+// Handle response form submission
+$responseSuccess = false;
+$responseError = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response_message'])) {
+    $responseMessage = trim($_POST['response_message']);
+    $to = $forum['email'];
+    $subject = "Response to your Contact Forum Submission";
+    $body = "Dear " . $forum['full_name'] . ",<br><br>";
+    $body .= nl2br(htmlspecialchars($responseMessage)) . "<br><br>";
+    $body .= "Best regards,<br>EDSA Lanka Consultancy";
+
+    if (!empty($responseMessage)) {
+        // Prepare data for sendEmail
+        $data = [
+            'email' => $to,
+            'subject' => $subject,
+            'message' => $body
+        ];
+        // Capture output buffer to check for success/failure
+        ob_start();
+        sendEmail($data);
+        $output = ob_get_clean();
+        if (strpos($output, 'Email sent successfully!') !== false) {
+            $responseSuccess = true;
+        } else {
+            $responseError = "Failed to send the email. Please try again.";
+        }
+    } else {
+        $responseError = "Response message cannot be empty.";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Form Details</title>
-  <link rel="stylesheet" href="contactforums.css?version=3">
-  <link rel="stylesheet" href="../sidebar.css?version=1">
-  <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Forum Details</title>
+    <link rel="stylesheet" href="../sidebar.css">
+    <link rel="stylesheet" href="details.css">
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+
 </head>
 <body>
-  <!-- Sidebar Toggle Button (for mobile) -->
-  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
-  <div class="overlay" id="overlay"></div>
+    <?php if (!empty($composerWarning)): ?>
+        <div style="background: #fff3cd; color: #856404; padding: 10px 20px; border: 1px solid #ffeeba; margin: 20px; border-radius: 5px;">
+            <?php echo htmlspecialchars($composerWarning); ?>
+        </div>
+    <?php endif; ?>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+    <div class="overlay" id="overlay"></div>
 
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div style="width: 40px; height: 40px; background-color: #4f46e5; display: flex; align-items: center; justify-content: center; color: white; border-radius: 5px; margin-right: 15px;">E</div>
-      <span>EDSA Lanka</span>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <div style="width: 40px; height: 40px; background-color: #4f46e5; display: flex; align-items: center; justify-content: center; color: white; border-radius: 5px; margin-right: 15px;">E</div>
+            <span>EDSA Lanka</span>
+        </div>
+        <div class="sidebar-menu">
+            <a href="../dashboard/dashboard.php">
+                <div class="menu-item">
+                    <span class="menu-icon">📊</span>
+                    <span>Dashboard</span>
+                </div>
+            </a>
+            <a href="../servicerequest/servicerequest.php">
+                <div class="menu-item">
+                    <span class="menu-icon">🔧</span>
+                    <span>Service Requests</span>
+                </div>
+            </a>
+            <a href="../acceptclient/acceptclient.php">
+                <div class="menu-item">
+                    <span class="menu-icon">👥</span>
+                    <span>Accept Clients</span>
+                </div>
+            </a>
+            <a href="contactforum.php">
+                <div class="menu-item active">
+                    <span class="menu-icon">📝</span>
+                    <span>Contact Forums</span>
+                </div>
+            </a>
+            <a href="../updateknowlgebase/initial.php">
+                <div class="menu-item">
+                    <span class="menu-icon">📚</span>
+                    <span>Knowledge Base</span>
+                </div>
+            </a>
+            <a href="../updatenews/initial.php">
+                <div class="menu-item">
+                    <span class="menu-icon">📰</span>
+                    <span>Update News</span>
+                </div>
+            </a>
+        </div>
     </div>
-    <div class="sidebar-menu">
-      <a href="../dashboard/dashboard.php">
-        <div class="menu-item">
-          <span class="menu-icon">📊</span>
-          <span>Dashboard</span>
-        </div>
-      </a>
-      <a href="../servicerequest/servicerequest.php">
-        <div class="menu-item">
-          <span class="menu-icon">📝</span>
-          <span>Service Requests</span>
-        </div>
-      </a>
-      <a href="contactforum.php">
-        <div class="menu-item active">
-          <span class="menu-icon">💬</span>
-          <span>Contact Forms</span>
-        </div>
-      </a>
-      <a href="../updateevents/updateevents.php">
-        <div class="menu-item">
-          <span class="menu-icon">📅</span>
-          <span>Update Events</span>
-        </div>
-      </a>
-      <a href="../updateknowlgebase/initial.php">
-        <div class="menu-item">
-          <span class="menu-icon">📚</span>
-          <span>Update Knowledge Base</span>
-        </div>
-      </a>
-      <a href="../updatenews/initial.php">
-        <div class="menu-item">
-          <span class="menu-icon">📰</span>
-          <span>Update News</span>
-        </div>
-      </a>
-    </div>
-  </div>
 
-  <!-- Header -->
-  <header>
-  <header>
-    <div class="logo-text">EDSA Lanka Consultancy</div>
-    <div class="user-area">
-          <p>Details</p>
+    <!-- Header -->
+    <header>
+        <div class="logo-text">EDSA Lanka Consultancy</div>
+        <div class="user-area">
             <div class="notification">
                 🔔
                 <span class="notification-count">3</span>
@@ -112,71 +160,82 @@ $fullName = "Company Worker";
                 <button class="logout-btn" type="submit">Logout</button>
             </form>
         </div>
-  </header>
+    </header>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="welcome-banner" style="margin-bottom: 30px;">
-      <div class="welcome-text">
-        <h2>Contact Form Details</h2>
-        <p>View and reply to the selected contact form.</p>
-      </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Contact Forum Details</h2>
+                <p>View complete information about this contact forum submission.</p>
+            </div>
+        </div>
+
+        <div class="details-container">
+            <div class="details-header">
+                <div class="meta-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">Date Submitted</span>
+                        <span class="meta-value"><?php echo date('F j, Y g:i A', strtotime($forum['created_at'])); ?></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-content">
+                <section class="info-section">
+                    <h3>Contact Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Full Name</span>
+                            <span class="info-value"><?php echo htmlspecialchars($forum['full_name']); ?></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <span class="info-value"><?php echo htmlspecialchars($forum['email']); ?></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Phone Number</span>
+                            <span class="info-value"><?php echo htmlspecialchars($forum['phone_number']); ?></span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="divider"></div>
+
+                <section class="message-section">
+                    <h3>Message</h3>
+                    <div class="content-box">
+                        <div class="content-item">
+                            <div class="message-box">
+                                <?php echo nl2br(htmlspecialchars($forum['reason'])); ?>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Respond to Message Form -->
+                <section class="message-section">
+                    <h3>Respond to User</h3>
+                    <?php if ($responseSuccess): ?>
+                        <div style="color: green; margin-bottom: 1rem;">Response sent successfully to <?php echo htmlspecialchars($forum['email']); ?>.</div>
+                    <?php elseif ($responseError): ?>
+                        <div style="color: red; margin-bottom: 1rem;"><?php echo htmlspecialchars($responseError); ?></div>
+                    <?php endif; ?>
+                    <form method="post" style="margin-top: 1rem;">
+                        <textarea name="response_message" rows="6" style="width:100%;padding:1rem;border-radius:8px;border:1px solid #e5e7eb;font-size:1rem;" placeholder="Type your response here..." required><?php echo isset($_POST['response_message']) ? htmlspecialchars($_POST['response_message']) : ''; ?></textarea>
+                        <button type="submit" class="back-button" style="margin-top:1rem;">Send Response</button>
+                    </form>
+                </section>
+            </div>
+
+            <div class="actions">
+                <a href="contactforum.php" class="back-button">
+                    <span class="icon">←</span>
+                    Back to Contact Forums
+                </a>
+            </div>
+        </div>
     </div>
-    <?php if ($form): ?>
-    <div class="details-container">
-      <div class="form-header">
-        <div class="form-field">
-          <label for="contact_id">Contact ID</label>
-          <input type="text" id="contact_id" name="contact_id" value="<?php echo htmlspecialchars($form['contact_id']); ?>" readonly>
-        </div>
-        <div class="form-field">
-          <label for="Client_ID">Client Name</label>
-          <input type="text" id="Client_ID" name="Client_ID" value="<?php echo htmlspecialchars($form['full_name'] ?? 'Unknown'); ?>" readonly>
-        </div>
-        <div class="form-field">
-          <label for="Date">Date</label>
-          <input type="text" id="Date" name="Date" value="<?php echo htmlspecialchars(substr($form['created_at'], 0, 10)); ?>" readonly>
-        </div>
-      </div>
 
-      <div class="message-section">
-        <div class="message-box">
-          <label for="message">Customer Message</label>
-          <textarea id="message" name="message" readonly><?php echo htmlspecialchars($form['message']); ?></textarea>
-        </div>
-        
-        <div class="reply-box">
-          <label for="reply">Your Reply</label>
-          <textarea id="reply" name="reply" placeholder="Type your reply here..." required></textarea>
-        </div>
-      </div>
-
-      <div class="button-section">
-        <button type="submit" class="submit-button" name="submit">Send Reply</button>
-      </div>
-    </div>
-    <?php else: ?>
-      <div class="error-message">
-        <p>No contact form found.</p>
-        <a href="contactforum.php" class="back-button">Back to Contact Forms</a>
-      </div>
-    <?php endif; $conn->close(); ?>
-  </div>
-
-  <script src="../sidebar.js"></script>
-  <script>
-    // Sidebar toggle for mobile
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    sidebarToggle.addEventListener('click', function() {
-      sidebar.classList.toggle('open');
-      overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
-    });
-    overlay.addEventListener('click', function() {
-      sidebar.classList.remove('open');
-      overlay.style.display = 'none';
-    });
-  </script>
+    <script src="../sidebar.js"></script>
 </body>
 </html>

@@ -14,11 +14,8 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 
-// Fetch contact forms with client names, latest first
-$sql = "SELECT cf.contact_id, cf.client_id, cf.subject, cf.created_at, c.full_name 
-        FROM contactforms cf 
-        LEFT JOIN clients c ON cf.client_id = c.client_id 
-        ORDER BY cf.created_at DESC";
+// Fetch contact forums, latest first
+$sql = "SELECT * FROM contactforums ORDER BY created_at DESC";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -26,7 +23,7 @@ $result = $conn->query($sql);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Forms</title>
+  <title>Contact Forums</title>
   <link rel="stylesheet" href="contactforums.css?version=1">
   <link rel="stylesheet" href="../sidebar.css?version=1">
   <link rel="stylesheet" href="../dashboard/dashboard.css">
@@ -49,6 +46,12 @@ $result = $conn->query($sql);
           <span>Dashboard</span>
         </div>
       </a>
+      <a href="../servicerequest/servicerequest.php">
+        <div class="menu-item">
+          <span class="menu-icon">🔧</span>
+            <span>Service Requests</span>
+        </div>
+      </a>
       <a href="../acceptclient/acceptclient.php">
         <div class="menu-item">
           <span class="menu-icon">👥</span>
@@ -57,14 +60,14 @@ $result = $conn->query($sql);
       </a>
       <a href="contactforum.php">
         <div class="menu-item active">
-          <span class="menu-icon">💬</span>
-          <span>Contact Forms</span>
+          <span class="menu-icon">📝</span>
+          <span>Contact Forums</span>
         </div>
       </a>
       <a href="../updateknowlgebase/initial.php">
         <div class="menu-item">
           <span class="menu-icon">📚</span>
-          <span>Update Knowledge Base</span>
+          <span>Knowledge Base</span>
         </div>
       </a>
       <a href="../updatenews/initial.php">
@@ -101,11 +104,11 @@ $result = $conn->query($sql);
   <div class="main-content">
     <div class="welcome-banner" style="margin-bottom: 30px;">
       <div class="welcome-text">
-        <h2>Contact Forms</h2>
-        <p>View and manage all client contact forms here.</p>
+        <h2>Contact Forums</h2>
+        <p>View and manage all contact forum submissions here.</p>
       </div>
     </div>
-    <h3 class="section-title">All Contact Forms</h3>
+    <h3 class="section-title">All Contact Forums</h3>
     <?php
     if ($result && $result->num_rows > 0) {
       echo '<div class="card-container">';
@@ -116,10 +119,11 @@ $result = $conn->query($sql);
         }
         ?>
         <div class="card">
-          <a href="details.php?contact_id=<?php echo urlencode($row['contact_id']); ?>">
-            <h3>Contact Form #<?php echo htmlspecialchars($row['contact_id']); ?></h3>
-            <p><strong>From:</strong> <?php echo htmlspecialchars($row['full_name'] ?? 'Unknown'); ?></p>
-            <p><strong>Subject:</strong> <?php echo htmlspecialchars($row['subject']); ?></p>
+          <a href="details.php?id=<?php echo urlencode($row['cf_id']); ?>">
+            <h3>Contact Forum #<?php echo htmlspecialchars($row['cf_id']); ?></h3>
+            <p><strong>Full Name:</strong> <?php echo htmlspecialchars($row['full_name']); ?></p>
+            <p><strong>Phone:</strong> <?php echo htmlspecialchars($row['phone_number']); ?></p>
+            <p><strong>Email:</strong> <?php echo htmlspecialchars($row['email']); ?></p>
             <p><strong>Date:</strong> <?php echo htmlspecialchars(substr($row['created_at'], 0, 10)); ?></p>
           </a>
         </div>
@@ -128,16 +132,16 @@ $result = $conn->query($sql);
       }
       echo '</div>';
     } else {
-      echo '<div class="no-forms"><p>No contact forms found</p></div>';
+      echo '<div class="no-forms"><p>No contact forums found</p></div>';
     }
     ?>
   </div>
   <script src="../sidebar.js"></script>
   <script>
     // Sidebar toggle for mobile
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
+    const sidebarToggle = document.getElementByid('sidebarToggle');
+    const sidebar = document.getElementByid('sidebar');
+    const overlay = document.getElementByid('overlay');
     sidebarToggle.addEventListener('click', function() {
       sidebar.classList.toggle('open');
       overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';

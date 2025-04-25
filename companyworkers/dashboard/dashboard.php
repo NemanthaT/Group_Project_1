@@ -14,33 +14,125 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 
+// Helper for relative time
+function timeAgo($datetime) {
+    $timestamp = strtotime($datetime);
+    $diff = time() - $timestamp;
+    if ($diff < 60) return $diff . " seconds ago";
+    if ($diff < 3600) return floor($diff/60) . " minutes ago";
+    if ($diff < 86400) return floor($diff/3600) . " hours ago";
+    return date("Y-m-d", $timestamp);
+}
+
+// Function to render recent activity HTML
+function renderRecentActivity($conn) {
+    $recent_appointments = [];
+    $res1 = mysqli_query($conn, "SELECT message, appointment_date, created_at FROM appointments WHERE message IS NOT NULL AND message != '' ORDER BY created_at DESC LIMIT 10");
+    while ($row = mysqli_fetch_assoc($res1)) {
+        $recent_appointments[] = [
+            'type' => 'Service Request',
+            'icon' => '📊',
+            'message' => $row['message'],
+            'time' => $row['created_at']
+        ];
+    }
+
+    $recent_contactforms = [];
+    $res2 = mysqli_query($conn, "SELECT reason, created_at FROM contactforums WHERE reason IS NOT NULL AND reason != '' ORDER BY created_at DESC LIMIT 10");
+    while ($row = mysqli_fetch_assoc($res2)) {
+        $recent_contactforms[] = [
+            'type' => 'Contact Forum',
+            'icon' => '💬',
+            'message' => $row['reason'],
+            'time' => $row['created_at']
+        ];
+    }
+
+    $recent_clients = [];
+    $res3 = mysqli_query($conn, "SELECT full_name, email, created_at FROM clients WHERE status = 'set' ORDER BY created_at DESC LIMIT 10");
+    while ($row = mysqli_fetch_assoc($res3)) {
+        $recent_clients[] = [
+            'type' => 'Accepted Client',
+            'icon' => '🧑‍💼',
+            'message' => $row['full_name'] . ' (' . $row['email'] . ')',
+            'time' => $row['created_at']
+        ];
+    }
+
+    $recent_cf_replies = [];
+    $res4 = mysqli_query($conn, "SHOW COLUMNS FROM contactforum_replies LIKE 'message'");
+    if (mysqli_num_rows($res4) > 0) {
+        $res4data = mysqli_query($conn, "SELECT message, created_at FROM contactforum_replies WHERE message IS NOT NULL AND message != '' ORDER BY created_at DESC LIMIT 10");
+        while ($row = mysqli_fetch_assoc($res4data)) {
+            $recent_cf_replies[] = [
+                'type' => 'Contact Forum Reply',
+                'icon' => '✉️',
+                'message' => $row['message'],
+                'time' => $row['created_at']
+            ];
+        }
+    }
+
+    $recent = array_merge($recent_appointments, $recent_contactforms, $recent_clients, $recent_cf_replies);
+    usort($recent, function($a, $b) {
+        return strtotime($b['time']) - strtotime($a['time']);
+    });
+    $recent = array_slice($recent, 0, 8);
+
+    foreach ($recent as $item) {
+        $colorClass = 'activity-bg-blue';
+        if ($item['type'] === 'Contact Forum' || $item['type'] === 'Contact Forum Reply') {
+            $colorClass = 'activity-bg-green';
+        } elseif ($item['type'] === 'Accepted Client') {
+            $colorClass = 'activity-bg-purple';
+        }
+        ?>
+        <div class="activity-item">
+            <div class="activity-icon <?php echo $colorClass; ?>">
+                <?php echo $item['icon']; ?>
+            </div>
+            <div class="activity-content">
+                <div class="activity-title"><?php echo htmlspecialchars($item['type']); ?>: <?php echo htmlspecialchars($item['message']); ?></div>
+                <div class="activity-time"><?php echo timeAgo($item['time']); ?></div>
+            </div>
+        </div>
+        <?php
+    }
+}
+
 // AJAX endpoint for metrics by date
 if (isset($_GET['fetch_metrics_by_date']) && isset($_GET['date'])) {
     $date = mysqli_real_escape_string($conn, $_GET['date']);
     $appointments_count = 0;
-    $news_count = 0;
+    $accepted_clients_count = 0;
     $contactforums_count = 0;
 
-    // Appointments (service requests) count
-    $q1 = mysqli_query($conn, "SELECT COUNT(*) AS cnt FROM appointments WHERE DATE(appointment_date) = '$date'");
+    // Appointments (service requests) count - use created_at instead of appointment_date
+    $q1 = mysqli_query($conn, "SELECT COUNT(*) AS cnt FROM appointments WHERE DATE(created_at) = '$date'");
     if ($row = mysqli_fetch_assoc($q1)) $appointments_count = (int)$row['cnt'];
 
-    // News count
-    $q2 = mysqli_query($conn, "SELECT COUNT(*) AS cnt FROM news WHERE DATE(created_at) = '$date'");
-    if ($row = mysqli_fetch_assoc($q2)) $news_count = (int)$row['cnt'];
+    // Accepted clients count (clients created on this date and status is 'set')
+    $q2 = mysqli_query($conn, "SELECT COUNT(*) AS cnt FROM clients WHERE DATE(created_at) = '$date' AND status = 'set'");
+    if ($row = mysqli_fetch_assoc($q2)) $accepted_clients_count = (int)$row['cnt'];
 
-    // Contactforms count (fix table name if needed)
-    $q3 = mysqli_query($conn, "SELECT COUNT(*) AS cnt FROM contactforms WHERE DATE(created_at) = '$date'");
+    // Contactforums count
+    $q3 = mysqli_query($conn, "SELECT COUNT(*) AS cnt FROM contactforums WHERE DATE(created_at) = '$date'");
     if ($row = mysqli_fetch_assoc($q3)) $contactforums_count = (int)$row['cnt'];
-
-    // Debug: Uncomment to see output in browser
-    // error_log("Date: $date, Appointments: $appointments_count, News: $news_count, Contactforms: $contactforums_count");
 
     echo json_encode([
         'appointments' => $appointments_count,
-        'news' => $news_count,
+        'accepted_clients' => $accepted_clients_count,
         'contactforums' => $contactforums_count
     ]);
+    exit;
+}
+
+// AJAX endpoint for recent activity
+if (isset($_GET['fetch_recent_activity'])) {
+    ob_start();
+    renderRecentActivity($conn);
+    $html = ob_get_clean();
+    echo $html;
     exit;
 }
 ?>
@@ -76,21 +168,21 @@ if (isset($_GET['fetch_metrics_by_date']) && isset($_GET['date'])) {
                     <span>Dashboard</span>
                 </div>
             </a>
+            <a href="../servicerequest/servicerequest.php">
+                <div class="menu-item">
+                    <span class="menu-icon">🔧</span>
+                    <span>Service Requests</span>
+                </div>
+            </a>
             <a href="../acceptclient/acceptclient.php">
                 <div class="menu-item">
                     <span class="menu-icon">👥</span>
                     <span>Accept Clients</span>
                 </div>
             </a>
-            <a href="../servicerequest/servicerequest.php">
-                <div class="menu-item">
-                    <span class="menu-icon">👥</span>
-                    <span>Service Request</span>
-                </div>
-            </a>
             <a href="../contactforums/contactforum.php">
                 <div class="menu-item">
-                    <span class="menu-icon">💬</span>
+                    <span class="menu-icon">📝</span>
                     <span>Contact Forums</span>
                 </div>
             </a>
@@ -114,10 +206,7 @@ if (isset($_GET['fetch_metrics_by_date']) && isset($_GET['date'])) {
         <div class="logo-text">EDSA Lanka Consultancy</div>
         <div class="user-area">
           <p>Dashboard</p>
-            <div class="notification">
-                🔔
-                <span class="notification-count">3</span>
-            </div>
+          <a href="../myaccount/acc.php">My Account</a>
             <div class="user-profile">
                 <div style="width: 40px; height: 40px; background-color: #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
                     <?php echo strtoupper(substr($fullName, 0, 1)); ?>
@@ -137,6 +226,10 @@ if (isset($_GET['fetch_metrics_by_date']) && isset($_GET['date'])) {
             <div class="welcome-text">
                 <h2>Welcome Back, <?php echo htmlspecialchars($fullName); ?></h2>
                 <p>Here's an overview of your dashboard at EDSA Lanka Consultancy</p>
+            </div>
+                <div class="date-time" style="text-align:right;">
+                <div id="currentDate"></div>
+                <div id="currentTime"></div>
             </div>
         </div>
 
@@ -167,14 +260,14 @@ if (isset($_GET['fetch_metrics_by_date']) && isset($_GET['date'])) {
             </div>
             <div class="metric-card">
                 <div class="metric-header">
-                    <div class="metric-icon nw-bg">NW</div>
-                    <div>News</div>
+                    <div class="metric-icon nw-bg">AC</div>
+                    <div>Accepted Clients</div>
                 </div>
                 <div class="metric-data">
-                    <span class="metric-number" id="metric-news">0</span>
-                    <span class="metric-change" id="metric-news-change"></span>
+                    <span class="metric-number" id="metric-acceptedclients">0</span>
+                    <span class="metric-change" id="metric-acceptedclients-change"></span>
                 </div>
-                <div class="metric-footer" id="metric-news-footer">Selected date</div>
+                <div class="metric-footer" id="metric-acceptedclients-footer">Selected date</div>
             </div>
         </div>
 
@@ -208,174 +301,10 @@ if (isset($_GET['fetch_metrics_by_date']) && isset($_GET['date'])) {
             <div class="dashboard-card">
                 <h3 class="section-title">Recent Activity</h3>
                 <div class="activity-feed">
-                    <div class="activity-item">
-                        <div class="activity-icon activity-bg-blue">
-                            ✓
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">New service request from ABC Corporation</div>
-                            <div class="activity-time">2 hours ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon activity-bg-green">
-                            💬
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">New contact forum submission from John Smith</div>
-                            <div class="activity-time">4 hours ago</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon activity-bg-purple">
-                            📰
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">New news article published: Industry Updates</div>
-                            <div class="activity-time">Yesterday</div>
-                        </div>
-                    </div>
+                    <?php renderRecentActivity($conn); ?>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        // --- Metrics AJAX update ---
-        function fetchMetricsByDate(dateStr) {
-            // Show loading indicator
-            document.getElementById('metric-appointments').textContent = '...';
-            document.getElementById('metric-contactforums').textContent = '...';
-            document.getElementById('metric-news').textContent = '...';
-
-            fetch('dashboard.php?fetch_metrics_by_date=1&date=' + encodeURIComponent(dateStr))
-                .then(res => {
-                    if (!res.ok) throw new Error('Network response was not ok');
-                    return res.json();
-                })
-                .then(data => {
-                    // Debug: log the data
-                    console.log('Metrics for', dateStr, data);
-
-                    document.getElementById('metric-appointments').textContent = data.appointments;
-                    document.getElementById('metric-contactforums').textContent = data.contactforums;
-                    document.getElementById('metric-news').textContent = data.news;
-                    document.getElementById('metric-appointments-change').textContent = '';
-                    document.getElementById('metric-contactforums-change').textContent = '';
-                    document.getElementById('metric-news-change').textContent = '';
-                    document.getElementById('metric-appointments-footer').textContent = 'Selected date: ' + dateStr;
-                    document.getElementById('metric-contactforums-footer').textContent = 'Selected date: ' + dateStr;
-                    document.getElementById('metric-news-footer').textContent = 'Selected date: ' + dateStr;
-                })
-                .catch(err => {
-                    // Debug: log the error
-                    console.error('Error fetching metrics:', err);
-                    document.getElementById('metric-appointments').textContent = '!';
-                    document.getElementById('metric-contactforums').textContent = '!';
-                    document.getElementById('metric-news').textContent = '!';
-                });
-        }
-
-        // --- Calendar navigation and rendering for all months/years ---
-        let calendarYear, calendarMonth;
-        let selectedDayElement = null;
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date();
-            calendarYear = today.getFullYear();
-            calendarMonth = today.getMonth();
-            renderCalendar(calendarYear, calendarMonth);
-
-            // Fetch metrics for today on load
-            fetchMetricsByDate(today.toISOString().slice(0,10));
-
-            document.getElementById('calendar-prev').onclick = function() {
-                calendarMonth--;
-                if (calendarMonth < 0) {
-                    calendarMonth = 11;
-                    calendarYear--;
-                }
-                renderCalendar(calendarYear, calendarMonth);
-            };
-            document.getElementById('calendar-next').onclick = function() {
-                calendarMonth++;
-                if (calendarMonth > 11) {
-                    calendarMonth = 0;
-                    calendarYear++;
-                }
-                renderCalendar(calendarYear, calendarMonth);
-            };
-        });
-
-        function renderCalendar(year, month) {
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"];
-            document.getElementById('calendar-month').textContent = `${monthNames[month]} ${year}`;
-            const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
-            const daysContainer = document.getElementById('calendar-days');
-            daysContainer.innerHTML = '';
-
-            // Add empty cells for days before the first of the month
-            for (let i = 0; i < firstDay.getDay(); i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day empty';
-                daysContainer.appendChild(emptyDay);
-            }
-
-            // Add days of the month
-            const today = new Date();
-            for (let i = 1; i <= lastDay.getDate(); i++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day';
-                if (
-                    year === today.getFullYear() &&
-                    month === today.getMonth() &&
-                    i === today.getDate()
-                ) {
-                    dayElement.classList.add('today');
-                }
-                dayElement.textContent = i;
-                dayElement.tabIndex = 0; // Make focusable for accessibility
-
-                // Add click event to fetch metrics for this date and highlight selection
-                dayElement.onclick = function() {
-                    // Remove previous selection
-                    if (selectedDayElement) {
-                        selectedDayElement.classList.remove('selected');
-                    }
-                    dayElement.classList.add('selected');
-                    selectedDayElement = dayElement;
-
-                    const mm = (month+1).toString().padStart(2,'0');
-                    const dd = i.toString().padStart(2,'0');
-                    const dateStr = `${year}-${mm}-${dd}`;
-                    // Debug: log the selected date
-                    console.log('Selected date:', dateStr);
-                    fetchMetricsByDate(dateStr);
-                };
-
-                daysContainer.appendChild(dayElement);
-            }
-
-            // Clear selection highlight when month changes
-            selectedDayElement = null;
-        }
-
-        function updateDateTime() {
-            const now = new Date();
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            
-            document.getElementById('current-date').textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
-            document.getElementById('current-time').textContent = now.toLocaleTimeString();
-        }
-    </script>
-    <style>
-        /* Add this style for selected calendar day */
-        .calendar-day.selected {
-            background-color: #10b981 !important;
-            color: #fff !important;
-            font-weight: bold;
-        }
-    </style>
 </body>
 </html>

@@ -66,58 +66,57 @@ $stmt->close();
                         <button class="search-button" onclick="filterAndSortAppointments()">Search</button>
                         <button class="clear-button" onclick="clearFilters()">Clear</button>
                     </div>
-                    <div class="table-container"> 
-                        <table class="appointment-table">
-                            <thead>
-                                <tr>
-                                    <th>Appointment ID</th>
-                                    <th>Appointment Date</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="appointment-tbody">
-                            <?php
-                            if ($result && $result->num_rows > 0) {
-                                $result->data_seek(0); // Reset the result pointer
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr onclick=\"window.location='ViewApp.php?id=" . htmlspecialchars($row['appointment_id']) . "'\" style='cursor: pointer;'>";
-                                    echo "<td>" . htmlspecialchars($row['appointment_id']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
-                                    echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-                                    echo "<td>";
-                                    // Dynamic actions based on status
-                                    $status = strtolower($row['status']); 
-                                    if ($status === 'pending') {
-                                        echo "<form method='POST' style='display: inline;'>
-                                                <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
-                                                <input type='hidden' name='status' value='Scheduled'>
-                                                <button type='submit' class='accept-btn'>Accept</button>
-                                              </form>";
-                                        echo "<form method='POST' style='display: inline;'>
-                                                <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
-                                                <input type='hidden' name='status' value='Rejected'>
-                                                <button type='submit' class='reject-btn'>Reject</button>
-                                              </form>";
-                                    } elseif ($status === 'scheduled') {
-                                        echo "<form method='POST' style='display: inline;'>
-                                                <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
-                                                <input type='hidden' name='status' value='Cancelled'>
-                                                <button type='submit' class='cancel-btn'>Cancel</button>
-                                              </form>";
-                                    } elseif ($status === 'rejected' || $status === 'cancelled' || $status === 'completed') {
-                                        echo "<span class='status-text " . $status . "'>" . ucfirst($status) . "</span>";
-                                    }
-                                    echo "</td>";
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='5'>No appointments found</td></tr>";
-                            }
-                            ?>
-                            </tbody>
-                        </table>
-                    </div>
+                    <div class="table-container">
+    <table class="appointment-table">
+        <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Appointment Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="appointment-tbody">
+        <?php
+        if ($result && $result->num_rows > 0) {
+            $result->data_seek(0);
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr onclick=\"window.location='ViewApp.php?id=" . htmlspecialchars($row['appointment_id']) . "'\">";
+                echo "<td>" . htmlspecialchars($row['appointment_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+                echo "<td>";
+                $status = strtolower($row['status']);
+                if ($status === 'pending') {
+                    echo "<form method='POST' style='display: inline;'>
+                            <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
+                            <input type='hidden' name='status' value='Scheduled'>
+                            <button type='submit' class='accept-btn'>Accept</button>
+                          </form>";
+                    echo "<form method='POST' style='display: inline;'>
+                            <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
+                            <input type='hidden' name='status' value='Rejected'>
+                            <button type='submit' class='reject-btn'>Reject</button>
+                          </form>";
+                } elseif ($status === 'scheduled') {
+                    echo "<form method='POST' style='display: inline;'>
+                            <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
+                            <input type='hidden' name='status' value='Cancelled'>
+                            <button type='submit' class='cancel-btn'>Cancel</button>
+                          </form>";
+                } elseif ($status === 'rejected' || $status === 'cancelled' || $status === 'completed') {
+                    echo "<span class='status-text " . $status . "'>" . ucfirst($status) . "</span>";
+                }
+                echo "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='5'>No appointments found</td></tr>";
+        }
+        ?>
+        </tbody>
+    </table>
+</div>
             </div>                  
         </div>   
     </div>   <!--this is the </div> of container in the common file, don't remove it-->

@@ -85,7 +85,7 @@
       </a>
       <a href="servicerequest.php">
         <div class="menu-item active">
-          <span class="menu-icon">📝</span>
+          <span class="menu-icon">🔧</span>
           <span>Service Requests</span>
         </div>
       </a>

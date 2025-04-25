@@ -23,70 +23,35 @@
                     Below, you can explore the types of training we provide through our website:
                 </p>
                 <div class="training-types">
-                    <div class="training-item">
-                        <button class="faq-question">
-                            Development Finance<i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>In-depth sessions on structuring and managing finance for development projects, ensuring sustainability and growth.</p>
-                        </div>
-                    </div>
-                    <div class="training-item">
-                        <button class="faq-question">
-                            Micro Finance <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Specialized training on creating financial services for small-scale entrepreneurs and individuals.</p>
-                        </div>
-                    </div>
-                    <div class="training-item">
-                        <button class="faq-question">
-                            Organizational Development <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Programs designed to improve efficiency, structure, and culture within organizations.</p>
-                        </div>
-                    </div>
-                    <div class="training-item">
-                        <button class="faq-question">
-                            SME Development <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Workshops and modules focused on supporting small and medium enterprises through growth strategies and operational improvements.</p>
-                        </div>
-                    </div>
-                    <div class="training-item">
-                        <button class="faq-question">
-                            Gender Finance <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Courses and materials designed to improve financial inclusion and opportunities for women and underrepresented groups.</p>
-                        </div>
-                    </div>
-                    <div class="training-item">
-                        <button class="faq-question">
-                            Institutional Development<i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Training focused on enhancing the capabilities and efficiency of institutions through tailored solutions.</p>
-                        </div>
-                    </div>
-                    <div class="training-item">
-                        <button class="faq-question">
-                            Community Development<i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Programs and strategies focused on building stronger, more sustainable communities.</p>
-                        </div>
-                    </div>
-                    <div class="training-item">
-                        <button class="faq-question">
-                            Strategic and Operational Planning<i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Comprehensive training on creating and implementing strategies to achieve organizational goals.</p>
-                        </div>
-                    </div>
+                    <?php
+                    require_once('../../../config/config.php');
+                    $titles = [
+                        'development finance',
+                        'micro finance',
+                        'organizational development',
+                        'sme development',
+                        'gender finance',
+                        'institutional development',
+                        'community development',
+                        'strategic and operational planning'
+                    ];
+
+                    foreach ($titles as $titleKey) {
+                        $titleDisplay = ucwords(str_replace('_', ' ', $titleKey));
+                        $sql = "SELECT content FROM knowledgebase WHERE section = 'training' AND title = '" . mysqli_real_escape_string($conn, $titleKey) . "' ORDER BY created_at DESC LIMIT 1";
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($result);
+                        echo '<div class="training-item">';
+                        echo '<button class="faq-question">' . $titleDisplay . ' <i class="fas fa-chevron-down"></i></button>';
+                        echo '<div class="faq-answer">';
+                        if ($row && !empty($row['content'])) {
+                            echo '<p>' . htmlspecialchars($row['content']) . '</p>';
+                        } else {
+                            echo '<p style="color:#888;">No content available.</p>';
+                        }
+                        echo '</div></div>';
+                    }
+                    ?>
                 </div>
             </div>
         </section>
