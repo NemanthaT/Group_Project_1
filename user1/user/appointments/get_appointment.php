@@ -7,7 +7,9 @@ $search = $_POST['searchInput'] ?? '';
 // Prepare the SQL query
 if ($search === '') {
     // Query to fetch all appointments for the client
-    $sql = "SELECT a.*, p.full_name 
+    $sql = "SELECT a.appointment_id, a.provider_id, a.client_id,
+            DATE(a.appointment_date) AS appointment_date, a.status,
+            DATE(a.created_at) AS created_at, a.service_type, a.message, p.full_name 
             FROM appointments a 
             LEFT JOIN serviceproviders p ON a.provider_id = p.provider_id 
             WHERE a.client_id = ? And a.status != 'Deleted'";

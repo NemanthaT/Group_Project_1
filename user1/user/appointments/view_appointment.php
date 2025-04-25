@@ -6,7 +6,7 @@
     // Fetch appointment and provider details in one query
     // Fetch appointment and provider details in one query
     $stmt = $conn->prepare(
-        "SELECT a.appointment_id, a.service_type, a.appointment_date, a.message, a.status, 
+        "SELECT a.appointment_id, a.service_type, DATE(a.appointment_date) AS appointment_date, a.message, a.status, 
                 p.full_name, p.phone 
         FROM appointments a 
         LEFT JOIN serviceproviders p ON a.provider_id = p.provider_id 
