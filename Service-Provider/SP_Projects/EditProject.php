@@ -242,9 +242,10 @@
                     <div class="document-upload">
                         <h2>Upload Documents</h2>
                         <div>
-                            <input type="file" class="upload" id="upload_documents" name="upload_documents" />
                             <label for="fileName">File name:</label>
                             <input type="text" class="upload" id="fileName" name="fileName" placeholder="Enter file name" />
+                            <input type="file" class="" id="upload_documents" name="upload_documents" required style="margin-top: 10px; padding: 5px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;" />
+
                             <button type="submit" class="btn btn-primary" name="submit_document">Upload Document</button>
                         </div>
                     </div>
