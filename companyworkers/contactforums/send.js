@@ -20,7 +20,7 @@ window.onload = function() {
         .then((response) => response.text())
         .then((result) => {
             console.log("Email result:", result);
-            alert("Request accepted and email sent");
+            alert("Email sent");
         })
     });
 }
