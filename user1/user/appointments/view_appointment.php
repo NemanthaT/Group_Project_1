@@ -168,7 +168,7 @@
         
         <div style="text-align: center; margin-top: 40px;">
             <?php if ($provider_name): ?>
-                <a href="chat.php?provider=<?= urlencode($provider_name) ?>" style="display: inline-block; background-color: #28a745; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-size: 16px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);">Chat with Provider</a>
+                <a href="../Message/Message.php" style="display: inline-block; background-color: #28a745; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-size: 16px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);">Chat with Provider</a>
             <?php endif; ?>
         </div>
         
