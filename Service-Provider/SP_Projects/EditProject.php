@@ -10,6 +10,7 @@
     // ini_set('error_log', '../error_log.txt');
     include '../Session/Session.php';
     include '../connection.php';
+    include '../Common template/SP_common.php';
 
     $projectId = $_GET['project_id'];
     $providerId = $_SESSION['provider_id'];

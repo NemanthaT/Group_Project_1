@@ -51,12 +51,7 @@ if (isset($_GET['id'])) {
                         <?php echo htmlspecialchars($appointment['status']); ?>
                     </div>
                 </div>
-                <div class="appointment-info">
-<<<<<<< HEAD
- 
-                    <br>
-=======
->>>>>>> 46029a9be75fff547bf5c00c49cf5ed405dd1e0d
+                <div class="appointment-info">                    
                     <div class="detail-row">
                         <div class="detail-label">Client ID:</div>
                         <div class="detail-value"><?php echo htmlspecialchars($appointment['client_id']); ?></div>
