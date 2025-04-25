@@ -19,10 +19,13 @@
 
         if ($result && $result2) {
             echo json_encode("Success");
+
             exit();
         } else {
             echo json_encode("Error");
         }
+        header("Location: ../user/bill/paybill.php");
+
         $conn->close();
     }
     echo json_encode("Invalid Request");

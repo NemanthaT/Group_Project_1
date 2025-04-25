@@ -134,10 +134,10 @@
         <h2 style="color: #2c3e50; text-align: center; margin-bottom: 30px; font-size: 28px; border-bottom: 2px solid #eaeaea; padding-bottom: 15px;">Appointment Details</h2>
         
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0; border-radius: 8px; overflow: hidden;">
-            <tr style="background-color: #f8f9fa;">
+            <!-- <tr style="background-color: #f8f9fa;">
                 <th style="padding: 15px; text-align: left; border: 1px solid #e9ecef; width: 40%; color: #495057; font-weight: 600;">Appointment ID</th>
                 <td style="padding: 15px; border: 1px solid #e9ecef; color: #495057;"><?= htmlspecialchars($id) ?></td>
-            </tr>
+            </tr> -->
             <tr>
                 <th style="padding: 15px; text-align: left; border: 1px solid #e9ecef; background-color: #f8f9fa; color: #495057; font-weight: 600;">Service</th>
                 <td style="padding: 15px; border: 1px solid #e9ecef; color: #495057;"><?= htmlspecialchars($service) ?></td>
