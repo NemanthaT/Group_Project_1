@@ -203,12 +203,11 @@
                             <form action="EditProject.php?project_id=<?php echo $projectId; ?>" method="post">
                                 <select class="status-select" id="projectPhaseSelect" name="projectPhaseSelect">
                                     <option value="">Select Project Phase</option>
-                                    <option value="requirement-gathering">Requirement Gathering</option>
-                                    <option value="design">Design Phase</option>
-                                    <option value="development">Development</option>
-                                    <option value="testing">Testing</option>
-                                    <option value="deployment">Deployment</option>
-                                    <option value="maintenance">Maintenance</option>
+                                    <option value="Initiation">Initiation</option>
+                                    <option value="Planning">Planning</option>
+                                    <option value="Execution">Execution</option>
+                                    <option value="Monitoring">Monitoring</option>
+                                    <option value="Closure">Closure</option>
                                 </select>
                                 <?php if (isset($_SESSION['phase'])): ?>
                                     <div class="alert alert-success"><?php echo $_SESSION['phase']; unset($_SESSION['phase']); ?></div>
