@@ -68,8 +68,8 @@ let pollingInterval = null;
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('chat-button')) {
         currentThreadId = event.target.getAttribute('data-thread-id');
-        const clientId = event.target.getAttribute('data-client-id');
-        document.getElementById('chat-client-id').textContent = clientId;
+        const clientName = event.target.getAttribute('data-client-name');
+        document.getElementById('chat-client-name').textContent = clientName;
         document.getElementById('chat-panel').style.display = 'flex';
         document.getElementById('chat-window').innerHTML = '';
 
