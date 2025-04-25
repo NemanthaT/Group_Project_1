@@ -46,16 +46,16 @@ if (isset($_GET['id'])) {
                 <div class="back-link">
                     <a href="App.php">← Back to Appointments</a>
                 </div>
-                    <div class="appointment-title">Appointment ID <?php echo htmlspecialchars($appointment['appointment_id']); ?></div>
+                    <div class="appointment-title">Appointment  <?php echo htmlspecialchars($appointment['appointment_id']); ?></div>
                     <div class="status-badge status-<?php echo strtolower($appointment['status']); ?>">
                         <?php echo htmlspecialchars($appointment['status']); ?>
                     </div>
                 </div>
                 <div class="appointment-info">                    
-                    <div class="detail-row">
+                    <!-- <div class="detail-row">
                         <div class="detail-label">Client ID:</div>
-                        <div class="detail-value"><?php echo htmlspecialchars($appointment['client_id']); ?></div>
-                    </div>
+                        <div class="detail-value"><?php //echo htmlspecialchars($appointment['client_id']); ?></div>
+                    </div> -->
                     <div class="detail-row">
                         <div class="detail-label">Client Name:</div>
                         <div class="detail-value"><?php echo htmlspecialchars($appointment['full_name'] ?? 'Not specified'); ?></div>
