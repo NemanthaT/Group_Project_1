@@ -213,3 +213,16 @@
 .delete-btn:hover {
     background-color: #b91c1c;
 }
+
+.dashboard-grid-new {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px;
+  }
+  
+  .dashboard-card-new {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }

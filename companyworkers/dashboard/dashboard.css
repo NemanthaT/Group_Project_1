@@ -22,8 +22,7 @@ body {
 }
 /* Main Content */
 .main-content {
-  margin-left: 280px;
-  margin-top: 80px;
+  min-width: 100%;
   padding: 30px;
   width: calc(100% - 280px);
   transition: all 0.3s ease;
