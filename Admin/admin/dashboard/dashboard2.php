@@ -67,6 +67,38 @@ $sql = "SELECT COUNT(*) FROM bills WHERE paid_on > (SELECT last_logout FROM admi
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $newPaidBillCount = $row["COUNT(*)"];
+// Get the new registerd clients count
+$sql = "SELECT COUNT(*) FROM clients WHERE created_at > (SELECT last_logout FROM admins WHERE email = '$email')";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$newRegisteredClientsCount = $row["COUNT(*)"];
+// Get the new registerd service providers count
+$sql = "SELECT COUNT(*) FROM serviceproviders WHERE created_at > (SELECT last_logout FROM admins WHERE email = '$email')";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$newRegisteredServiceProvidersCount = $row["COUNT(*)"];
+
+$_SESSION['pR'] = NULL;
+$_SESSION['nF'] = NULL;
+$_SESSION['nPB'] = NULL;
+$_SESSION['nRC'] = NULL;
+$_SESSION['nRSP'] = NULL;
+
+if ($_SESSION['pR']!== 'none') {
+    $_SESSION['pR'] = $pendingRN;
+}
+if ($_SESSION['nF']!== 'none') {
+    $_SESSION['nF'] = $newForumCount;
+}
+if ($_SESSION['nPB']!== 'none') {
+    $_SESSION['nPB'] = $newPaidBillCount;
+}
+if ($_SESSION['nRC']!== 'none') {
+    $_SESSION['nRC'] = $newRegisteredClientsCount;
+}
+if ($_SESSION['nRSP']!== 'none') {
+    $_SESSION['nRSP'] = $newRegisteredServiceProvidersCount;
+}
 
 ?>
 
@@ -232,13 +264,22 @@ $newPaidBillCount = $row["COUNT(*)"];
                 <div class="notContent">
                     <?php
                         if($pendingRN > 0) {
-                            echo "<p id=\"notice\"><a href=\"../Requests/requests.php\" ><i class=\"fas fa-address-book\"></i>  You have $pendingRN new provider Requests.<a/></p>";
+                            echo "<p id=\"notice\"><a href=\"../Requests/requests.php\" ><i class=\"fas fa-address-book\"></i>  You have ". $_SESSION['pR'] . " new provider Requests.<a/></p>";
                         }
                         if($newForumCount > 0) {
-                            echo "<p id=\"notice\"><a href=\"../Forums/Forums.php\" ><i class=\"fas fa-book\"></i>  $newForumCount new forums.<a/></p>";
+                            echo "<p id=\"notice\"><a href=\"../Forums/forums.php\" ><i class=\"fas fa-book\"></i>  " . $_SESSION['nF'] . " new forums.<a/></p>";
                         }
                         if($newPaidBillCount > 0) {
-                            echo "<p id=\"notice\"><a href=\"../Reports/reports.php\" ><i class=\"fas fa-money-bill-wave\"></i>  $newPaidBillCount new paid bills.<a/></p>";
+                            echo "<p id=\"notice\"><a href=\"../Reports/reports.php\" ><i class=\"fas fa-money-bill-wave\"></i>  ". $_SESSION['nPB'] ." new paid bills.<a/></p>";
+                        }
+                        if($newRegisteredClientsCount > 0) {
+                            echo "<p id=\"notice\"><a href=\"../Users/clients/clients.php\" ><i class=\"fas fa-user\"></i>  " . $_SESSION['nRC'] . " new registered clients.<a/></p>";
+                        }
+                        if($newRegisteredServiceProvidersCount > 0) {
+                            echo "<p id=\"notice\"><a href=\"../Users/providers/serviceproviders.php\" ><i class=\"fas fa-user\"></i>  " . $_SESSION['nRSP'] . " new registered service providers.<a/></p>";
+                        }
+                        if($_SESSION['pR'] == 0 && $_SESSION['nF'] == 0 && $_SESSION['nPB'] == 0 && $_SESSION['nRC'] == 0 && $_SESSION['nRSP'] == 0) {
+                            echo "<p id=\"notice\" class=\"noNoti\"><i class=\"fas fa-bell-slash\"></i>  No new notifications.</p>";
                         }
                     ?>
                 </div>

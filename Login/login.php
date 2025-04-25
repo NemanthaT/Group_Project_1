@@ -12,9 +12,9 @@ if (isset($_POST['submit'])) { //check if form was submitted
     // Define the queries for each user type
     $queries = [
         'admins' => "SELECT * FROM admins WHERE email='$Email'",
-        'companyworkers' => "SELECT * FROM companyworkers WHERE email='$Email'",
-        'clients' => "SELECT * FROM clients WHERE email='$Email'",
-        'serviceproviders' => "SELECT * FROM serviceproviders WHERE email='$Email'"
+        'companyworkers' => "SELECT * FROM companyworkers WHERE email='$Email' AND status='set'",
+        'clients' => "SELECT * FROM clients WHERE email='$Email' AND status='set'",
+        'serviceproviders' => "SELECT * FROM serviceproviders WHERE email='$Email' AND status='set'"
     ];
 
     $redirects = [

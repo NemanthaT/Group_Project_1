@@ -5,12 +5,14 @@
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 
+    $_SESSION['nRSP'] = 'none';
+
     if (!isset($_SESSION['username'])) { // if not logged in
         header("Location: ../../../../login/login.php");
         exit;
     }
 
-    $sql = "SELECT * FROM serviceproviders";
+    $sql = "SELECT * FROM serviceproviders WHERE status = 'set'";
     $result = $conn->query($sql);
 
 ?>
@@ -25,7 +27,7 @@
         <link rel="stylesheet" href="../../../css/preloader.css">
         <link rel="stylesheet" href="../peopleStyles.css">
         <script src="../users.js"></script>
-        <script src="../../../js/common.js"></script>
+        <script src="../../../js/preloader.js"></script>
     </head>
 
     <body>
@@ -38,7 +40,7 @@
             </div>
             <div id="popupPreloader">
                 <div class="spinner"></div>
-            </div> 
+            </div>
 
             <div id="overlay" class="overlay"></div>
 

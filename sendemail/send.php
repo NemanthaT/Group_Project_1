@@ -11,6 +11,15 @@
 
     //$data = json_decode(file_get_contents("php://input"), true);
 
+    // Check if the request method is POST and the data is set
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['data'])) {
+        $data = json_decode($_POST['data'], true);
+        if ($data) {
+            sendEmail($data);
+        } else {
+            echo json_encode(["error" => "Invalid data format"]);
+        }
+    }
 
     function sendEmail($data) {
         

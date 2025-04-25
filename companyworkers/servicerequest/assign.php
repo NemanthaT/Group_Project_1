@@ -213,7 +213,7 @@
           <option value="">Select a person</option>
           <?php while ($provider = mysqli_fetch_assoc($providers_result)) { ?>
             <option value="<?php echo $provider['provider_id']; ?>">
-              <?php echo $provider['full_name']; ?>
+              <?php echo $provider['full_name']; ?> (<?php echo $provider['provider_id']; ?>) 
             </option>
           <?php } ?>
         </select><br /><br />
