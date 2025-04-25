@@ -6,14 +6,14 @@ include '../../sendemail/send.php'; // Include the sendEmail function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$autoloadPath = '../../vendor/autoload.php';
+/*$autoloadPath = '../../vendor/autoload.php';
 $composerWarning = '';
 if (file_exists($autoloadPath)) {
     require $autoloadPath;
 } else {
     $composerWarning = "Warning: Composer autoload file not found at $autoloadPath. Some features may not work. Please run 'composer install' in the project root.";
 }
-
+*/
 // Check if user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: ../../Login/login.php");
@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response_message'])) 
     <link rel="stylesheet" href="../sidebar.css">
     <link rel="stylesheet" href="details.css">
     <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <script src="send.js"></script>
 
 </head>
 <body>
@@ -234,7 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response_message'])) 
                     <?php elseif ($responseError): ?>
                         <div style="color: red; margin-bottom: 1rem;"><?php echo htmlspecialchars($responseError); ?></div>
                     <?php endif; ?>
-                    <form id="send_Response" method="post" style="margin-top: 1rem;">
+                    <form id="send_Response" method="POST" style="margin-top: 1rem;">
                         <input class="send_Mail" name="sendMail" type="email" value="<?php echo htmlspecialchars($forum['email']); ?>" required>
                         <textarea name="response_message" rows="6" style="width:100%;padding:1rem;border-radius:8px;border:1px solid #e5e7eb;font-size:1rem;" placeholder="Type your response here..." required><?php echo isset($_POST['response_message']) ? htmlspecialchars($_POST['response_message']) : ''; ?></textarea>
                         <button type="submit" class="back-button" style="margin-top:1rem;">Send Response</button>
@@ -252,6 +253,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response_message'])) 
     </div>
 
     <script src="../sidebar.js"></script>
-    <script src="send.js"></script>
 </body>
 </html>
