@@ -234,7 +234,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response_message'])) 
                     <?php elseif ($responseError): ?>
                         <div style="color: red; margin-bottom: 1rem;"><?php echo htmlspecialchars($responseError); ?></div>
                     <?php endif; ?>
-                    <form method="post" style="margin-top: 1rem;">
+                    <form id="send_Response" method="post" style="margin-top: 1rem;">
+                        <input class="send_Mail" name="sendMail" type="email" value="<?php echo htmlspecialchars($forum['email']); ?>" required>
                         <textarea name="response_message" rows="6" style="width:100%;padding:1rem;border-radius:8px;border:1px solid #e5e7eb;font-size:1rem;" placeholder="Type your response here..." required><?php echo isset($_POST['response_message']) ? htmlspecialchars($_POST['response_message']) : ''; ?></textarea>
                         <button type="submit" class="back-button" style="margin-top:1rem;">Send Response</button>
                     </form>
@@ -251,5 +252,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response_message'])) 
     </div>
 
     <script src="../sidebar.js"></script>
+    <script src="send.js"></script>
 </body>
 </html>

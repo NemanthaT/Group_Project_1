@@ -78,25 +78,25 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $newRegisteredServiceProvidersCount = $row["COUNT(*)"];
 
-$_SESSION['pR'] = NULL;
+/*$_SESSION['pR'] = NULL;
 $_SESSION['nF'] = NULL;
 $_SESSION['nPB'] = NULL;
 $_SESSION['nRC'] = NULL;
-$_SESSION['nRSP'] = NULL;
+$_SESSION['nRSP'] = NULL;*/
 
-if ($_SESSION['pR']!== 'none') {
+if ($_SESSION['pR']!== NULL && $pendingRN > 0) {
     $_SESSION['pR'] = $pendingRN;
 }
-if ($_SESSION['nF']!== 'none') {
+if ($_SESSION['nF']!== 'none' && $newForumCount > 0) {
     $_SESSION['nF'] = $newForumCount;
 }
-if ($_SESSION['nPB']!== 'none') {
+if ($_SESSION['nPB']!== 'none' && $newPaidBillCount > 0) {
     $_SESSION['nPB'] = $newPaidBillCount;
 }
-if ($_SESSION['nRC']!== 'none') {
+if ($_SESSION['nRC']!== 'none' && $newRegisteredClientsCount > 0) {
     $_SESSION['nRC'] = $newRegisteredClientsCount;
 }
-if ($_SESSION['nRSP']!== 'none') {
+if ($_SESSION['nRSP']!== 'none' && $newRegisteredServiceProvidersCount > 0) {
     $_SESSION['nRSP'] = $newRegisteredServiceProvidersCount;
 }
 
@@ -137,7 +137,7 @@ if ($_SESSION['nRSP']!== 'none') {
                     <i class="fas fa-envelope"></i>
                     <span class="badge">3</span>
                 </div>
-                <span><?php echo $username; ?></span>
+                <span><?php //echo $username; ?></span>
                 <img src="../../Images/profile-placeholder.png" alt="Profile">
             </div>
         </div>-->

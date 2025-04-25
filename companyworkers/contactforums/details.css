@@ -259,3 +259,7 @@
         margin: 0.5rem;
     }
 }
+
+.send_Mail{
+    display: none;
+}
