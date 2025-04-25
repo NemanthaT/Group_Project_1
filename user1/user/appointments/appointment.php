@@ -135,7 +135,7 @@
                             <!-- <th>Appointment ID</th> -->
                             <th>Service</th>
                             <th>Appointment Date</th>
-                            <th>Message</th>
+                            <!-- <th>Message</th> -->
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -146,7 +146,7 @@
                                 <!-- <td>//<?//= htmlspecialchars($user['appointment_id']) ?></td> -->
                                 <td><?= htmlspecialchars($user['service_type']) ?></td>
                                 <td><?= htmlspecialchars($user['appointment_date']) ?></td>
-                                <td><?= htmlspecialchars($user['message']) ?></td>
+                                <!-- <td><?//= htmlspecialchars($user['message']) ?></td> -->
                                 <td><?= htmlspecialchars($user['status']) ?></td>
                                 <td>
                                     <?php if ($user['status'] == 'Pending'): ?>
