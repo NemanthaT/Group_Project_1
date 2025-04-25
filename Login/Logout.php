@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-require_once '../config/config.php'; //connect to database
+require_once ('../config/config.php'); //connect to database
 
 // Define a constant for the homepage URL
 define('HOMEPAGE_URL', '../Home/Homepage/HP.php');

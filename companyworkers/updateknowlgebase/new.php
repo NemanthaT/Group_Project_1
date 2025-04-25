@@ -1,38 +1,49 @@
 <?php
-  session_start(); 
-  require_once '../../config/config.php';
+session_start();
+include '../../config/config.php';
 
-  $username = $_SESSION['username'];
-  $email = $_SESSION['email'];
+// Check if user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/login.php");
+    exit;
+}
 
-  if (!isset($_SESSION['username'])) {
-      header("Location: ../../Login/Login.php");
-      exit;
-  }
+// Get user details
+$username = $_SESSION['username'];
+$query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+$fullName = $user['full_name'] ?? 'User';
 
-  // Get the selected section from session
-  $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
+$email = $_SESSION['email'];
 
-  // Get worker_id of logged-in user (no stmt)
-  $worker_id = null;
-  $result_worker = mysqli_query($conn, "SELECT worker_id FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'");
-  if ($row = mysqli_fetch_assoc($result_worker)) {
-      $worker_id = $row['worker_id'];
-  }
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/Login.php");
+    exit;
+}
 
-  if(isset($_POST['submit'])){
-      $title = mysqli_real_escape_string($conn, $_POST['title']);
-      $content = mysqli_real_escape_string($conn, $_POST['content']);
-      // Use $section and $worker_id
-      $sql = "INSERT INTO `knowledgebase` (worker_id, section, title, content) VALUES ('$worker_id', '$section', '$title', '$content')";
-      $result = mysqli_query($conn, $sql);
-      if($result){
-          echo '<script>alert("Knowledgebase updated");</script>';
-      }
-      else{
-          echo '<script>alert("Nothing changed");</script>';
-      }
-  }
+// Get the selected section from session
+$section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
+
+// Get worker_id of logged-in user (no stmt)
+$worker_id = null;
+$result_worker = mysqli_query($conn, "SELECT worker_id FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'");
+if ($row = mysqli_fetch_assoc($result_worker)) {
+    $worker_id = $row['worker_id'];
+}
+
+if (isset($_POST['submit'])) {
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $content = mysqli_real_escape_string($conn, $_POST['content']);
+    // Use $section and $worker_id
+    $sql = "INSERT INTO `knowledgebase` (worker_id, section, title, content) VALUES ('$worker_id', '$section', '$title', '$content')";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        echo '<script>alert("Knowledgebase updated");</script>';
+    } else {
+        echo '<script>alert("Nothing changed");</script>';
+    }
+}
 ?>
 
 <!DOCTYPE html>
