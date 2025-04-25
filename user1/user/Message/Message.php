@@ -118,6 +118,7 @@ $stmt->close();
         </div>
 
         <div class="main-content">
+            <br><br><br><br><br><br><br>
             <div class="message-section">
                 <h2>Messages</h2>
                 <div class="split-container">
