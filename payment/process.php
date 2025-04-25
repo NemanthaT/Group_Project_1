@@ -19,10 +19,12 @@
 
         if ($result && $result2) {
             echo json_encode("Success");
+
             exit();
         } else {
             echo json_encode("Error");
         }
+
         $conn->close();
     }
     echo json_encode("Invalid Request");

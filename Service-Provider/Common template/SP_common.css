@@ -1,43 +1,43 @@
 * {
-    margin: 0; /*removes any default space (margin) around the outside of an element.*/
-    padding: 0; /*removes any default space (padding) inside an element, between the content and its border.*/
-    box-sizing: border-box; /*The width and height include padding and border*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     overflow-x: hidden;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    min-height: 100vh; /* will always take up at least the full height of the screen, even if the content inside it is less than that height.*/
+    min-height: 100vh;
 }
 
 .container {
-    display: flex;/*It changes the behavior of all direct children of .container — they become flex items, and by default, they’ll line up horizontally in a row.*/
-    width: 100%; /*means the element will stretch to take up 100% of the width of its parent container, It doesn’t mean 100% of the screen — it means 100% of the space its inside.*/
-    min-height: 100vh; /*sets the element’s height to 100% of the viewport height (the visible part of the browser window).*/
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
 }
 
 .sidebar {
     background-color: white;
-    width: 300px; 
+    width: 300px;
     padding: 25px;
     display: flex;
-    flex-direction: column; /* flex-direction: column; is used with display: flex to change the direction of flex items from the default horizontal row to a vertical column. */
-    position: fixed; /*doesn’t move when you scroll.*/
+    flex-direction: column;
+    position: fixed;
     height: 100vh;
-    z-index: 10; /*This controls the stacking order (which elements appear in front of others).*/
-    overflow-y: auto; /* Keep vertical scrolling */
-    overflow-x: hidden; /* Remove horizontal scrollbar */
+    z-index: 10;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .sidebar .logo img {
     width: 100%;
-    max-width: 300px; 
-    margin-bottom: 40px; /*creates a gap between the bottom of the current element and the next element below it, here adds 40 pixels of space below an element.*/
+    max-width: 300px;
+    margin-bottom: 40px;
 }
 
 .menu {
-    list-style: none; /*removes the default bullets or numbers from HTML lists*/
+    list-style: none;
     width: 100%;
 }
 
@@ -46,33 +46,33 @@ body {
 }
 
 .menu a {
-    text-decoration: none; /*removes underlines (or other decorations) from text — most commonly used on links.*/
+    text-decoration: none;
 }
 
 .menu button {
     display: flex;
-    align-items: center; /*a Flexbox property used to vertically center items within a flex container*/
-    font-size: 20px; /* controls how large the text inside the element appears*/
-    font-weight: bold; /*increases the thickness of the text*/
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
     width: 100%;
-    padding: 15px; /*Adds 15 pixels of space on all four sides (top, right, bottom, and left) inside the element, between the content (like text) and the element's border.*/
-    color: #333; /*Sets the text color */
-    background-color: #fff; /*Sets the background color of the element*/
-    border: none; /* Removes any border around the element. It makes sure there's no border showing by default.*/
-    cursor: pointer; /*Changes the mouse cursor to a hand pointer when hovering over the element, indicating it's clickable (like a button).*/
-    text-align: left; /*Aligns the text inside the element to the left. If there’s more than one line of text, it will start from the left side.*/
-    border-radius: 5px; /*Rounds the corners of the element with a radius of 5 pixels. This makes the edges of the element (like a button) appear curved rather than sharp.*/
-    gap: 8px; /*Adds an 8-pixel space between items inside a flex container or grid. This only works if the element is a flexbox or grid container. It's useful for creating space between child elements.*/
+    padding: 15px;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 5px;
+    gap: 8px;
 }
 
 .menu img {
     width: 40px;
     height: 40px;
-    object-fit: contain; /*object-fit: contain; is a CSS property used to control how content (like an image or video) fits within its container, while maintaining its aspect ratio.*/
+    object-fit: contain;
 }
 
 .menu button:hover {
-    transform: scale(1.1); /*a CSS property used to scale an element by a specified factor., here increases the size of the element by 5%.*/
+    transform: scale(1.1);
     background-color: #18A0FB;
     color: white;
 }
@@ -82,14 +82,14 @@ body {
     color: #18A0FB;
     padding: 10px 25px;
     position: fixed;
-    right: 0; /*This positions the element 0 pixels from the right edge of its containing element,  it aligns the element's right side with the right edge of the container.*/
-    left: 300px; /*This positions the element 300 pixels from the left edge of its containing element.*/
+    right: 0;
+    left: 300px;
     z-index: 5;
     display: flex;
-    justify-content: flex-end; /*a Flexbox property. It aligns the flex items (child elements of a flex container) at the end of the container along the main axis,here the child elements will move to the end of the container(far right if it's a row, bottom if it's a column)*/
+    justify-content: flex-end;
     align-items: center;
-    gap: 20px; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /*Adds a shadow effect to the element. box-shadow: offset-x offset-y blur-radius spread-radius color; */
+    gap: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     height: 100px;
 }
 
@@ -100,11 +100,22 @@ body {
     padding: 10px 15px;
     border-radius: 5px;
     display: flex;
+    align-items: center; 
 }
 
 .navbar a img {
     width: 35px;
     height: 35px;
+    transition: transform 0.3s ease;
+}
+
+.navbar .profile img {
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%; 
+    border: 2px solid #18A0FB; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease;
 }
 
 .navbar img:hover {
@@ -238,19 +249,31 @@ body {
     font-size: 18px;
 }
 
+.profile {
+    display: flex;
+    align-items: center; 
+}
+
+.username {
+    font-size: 25px; 
+    font-weight: 500;
+    color: black; 
+    margin-left: 10px;
+    text-transform: capitalize;
+}
 
 .logout:hover {
-    transform: scale(1.1); /*a CSS property used to scale an element by a specified factor., here increases the size of the element by 5%.*/
+    transform: scale(1.1);
     color: white;
     background-color: #0c8de4;
 }
 
 /*------------ Main content styling -----------*/
 .main-content {
-    margin-left: 250px; 
-    padding: 110px 5px 10px 5px; 
-    height: 100vh; 
-    width: 100%; 
-    box-sizing: border-box; 
-    overflow: flex; 
+    margin-left: 300px;
+    padding: 110px 5px 10px 5px;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: flex;
 }

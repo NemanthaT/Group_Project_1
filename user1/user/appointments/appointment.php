@@ -118,10 +118,11 @@
             <div class="main-container">
                 <div class="search-container">
                     <div>
-                        <form action="appointment.php" method="POST">
+
+                        <!-- <form action="appointment.php" method="POST">
                             <input type="text" id="searchInput" name="searchInput" class="searchInput" placeholder="Appointment ID" value="<?= htmlspecialchars($_POST['searchInput'] ?? '') ?>">
                             <button id="Search" class="btn">Search</button>
-                        </form>
+                        </form> -->
                     </div>
                     <div>
                         <button id="addAppointmentBtn" class="btn" onclick="openPopup('addAppointmentOverlay')">Add Appointment</button>
@@ -131,10 +132,10 @@
                 <table class="appointment-table">
                     <thead>
                         <tr>
-                            <th>Appointment ID</th>
+                            <!-- <th>Appointment ID</th> -->
                             <th>Service</th>
                             <th>Appointment Date</th>
-                            <th>Message</th>
+                            <!-- <th>Message</th> -->
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -142,10 +143,10 @@
                     <tbody id="appointmentList">
                         <?php foreach ($users as $user): ?>
                             <tr>
-                                <td><?= htmlspecialchars($user['appointment_id']) ?></td>
+                                <!-- <td>//<?//= htmlspecialchars($user['appointment_id']) ?></td> -->
                                 <td><?= htmlspecialchars($user['service_type']) ?></td>
                                 <td><?= htmlspecialchars($user['appointment_date']) ?></td>
-                                <td><?= htmlspecialchars($user['message']) ?></td>
+                                <!-- <td><?//= htmlspecialchars($user['message']) ?></td> -->
                                 <td><?= htmlspecialchars($user['status']) ?></td>
                                 <td>
                                     <?php if ($user['status'] == 'Pending'): ?>
@@ -225,10 +226,10 @@
                     <span class="close-btn" onclick="closePopup('EditAppointmentOverlay')">&times;</span>
                     <h2>Edit Appointment</h2>
                     <form id="appointmentForm" action="update_appointment.php" method="POST">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="editAppointmentid">Appointment ID</label>
                             <input type="text" id="editAppointmentid" name="editAppointmentid" readonly required>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="editServiceSelect">Select a Service</label>
                             <select id="editServiceSelect" name="editServiceSelect" required>

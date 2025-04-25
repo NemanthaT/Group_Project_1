@@ -78,13 +78,13 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $newRegisteredServiceProvidersCount = $row["COUNT(*)"];
 
-/*$_SESSION['pR'] = NULL;
+$_SESSION['pR'] = NULL;
 $_SESSION['nF'] = NULL;
 $_SESSION['nPB'] = NULL;
 $_SESSION['nRC'] = NULL;
-$_SESSION['nRSP'] = NULL;*/
+$_SESSION['nRSP'] = NULL;
 
-if ($_SESSION['pR']!== NULL && $pendingRN > 0) {
+if ($_SESSION['pR']!== 'none' && $pendingRN > 0) {
     $_SESSION['pR'] = $pendingRN;
 }
 if ($_SESSION['nF']!== 'none' && $newForumCount > 0) {
