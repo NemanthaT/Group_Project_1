@@ -24,7 +24,6 @@
         } else {
             echo json_encode("Error");
         }
-        header("Location: ../user/bill/paybill.php");
 
         $conn->close();
     }
