@@ -4,16 +4,16 @@
     padding: 25px;
     background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     width: 100%;
     min-height: 88vh;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between elements */
+    gap: 20px;
 }
 
 .appointment-section h2 {
-    font-size: 3.5vh;
+    font-size: 2.8vh; /* Updated to match .message-section h2 */
     font-weight: 700;
     margin-bottom: 2.5vh;
     color: #2d3748;
@@ -25,66 +25,71 @@
 /* Appointment Controls */
 .appointment-controls {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
-    gap: 10px; 
-    flex-wrap: wrap; /*allows flex items (like boxes or elements inside a flex container) to wrap to the next line when there's not enough horizontal space.*/
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 /* .appointment-controls input#clientFilter, */
 .appointment-controls input#appointmentDateFilter,
 .appointment-controls select#statusSort {
-    /* flex: 0 1 150px; Reduced length: flex-grow=0, flex-shrink=1, flex-basis=150px - to reduce the length of the input field */
     flex: 1;
-    min-width: 200px; 
-    padding: 12px 16px; 
-    font-size: 2.2vh; 
-    border: 1px solid #d1d5db; 
+    min-width: 200px;
+    padding: 10px 14px; /* Updated to match .message-controls input */
+    font-size: 1.8vh; /* Updated to match .message-controls input */
+    border: 1px solid #d1d5db;
     border-radius: 8px;
 }
 
 .appointment-controls select#statusSort {
-    appearance: none; 
+    appearance: none;
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%234b5563%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E');
-    background-repeat: no-repeat; 
-    background-position: right 12px center; 
-    background-size: 12px; 
-
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
 }
 
 .appointment-controls button {
-    font-size: 2.2vh; 
+    font-size: 1.8vh; /* Updated to match .message-controls button */
     font-weight: 500;
-    padding: 10px 20px; 
+    padding: 10px 15px; /* Updated to match .message-controls button */
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-decoration: none;
 }
 
 /* .search-button {
-    background-color: #18A0FB; 
+    background-color: #18A0FB;
     color: white;
 }
 
 .search-button:hover {
-    background-color: #0c8de4; 
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3); 
+    background-color: #0c8de4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
 } */
 
 .clear-button {
-    background-color: #6b7280; 
+    background-color: #6b7280;
     color: white;
-    /* margin-left: 1000px; to move the clear button to the right of the input fields, comment display in appointment-controls to achieve this  */
+    font-size: 1.8vh; /* Updated to match .message-controls button */
+    padding: 10px 15px; /* Updated to match .message-controls button */
 }
 
+/* .clear-button {
+    background-color: #6b7280;
+    color: white;
+    margin-left: 1000px; 
+} */
+
 .clear-button:hover {
-    background-color: #4b5563; 
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3); 
+    background-color: #4b5563;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3);
 }
 
 /* Table Container */
@@ -135,7 +140,7 @@
 .appointment-table td {
     border-bottom: 1px solid #e5e7eb;
     color: #1e293b;
-    position: relative; /* For positioning the arrow */
+    position: relative;
 }
 
 .appointment-table tr:last-child td {
@@ -147,19 +152,19 @@
 }
 
 .appointment-table tr:hover {
-    background-color: #e6f0ff; 
-    cursor: pointer; 
+    background-color: #e6f0ff;
+    cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
 .appointment-table tr:hover td:first-child::before {
-    content: '→'; 
+    content: '→';
     position: absolute;
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 3vh;
-    color: #3b82f6; 
+    color: #3b82f6;
     opacity: 1;
     transition: opacity 0.2s ease;
 }
@@ -172,104 +177,104 @@
     transform: translateY(-50%);
     font-size: 3vh;
     color: #3b82f6;
-    opacity: 0; 
+    opacity: 0;
     transition: opacity 0.2s ease;
 }
 
 .view-btn, .accept-btn, .reject-btn, .cancel-btn {
-    font-size: 2.2vh; 
+    font-size: 2.2vh;
     font-weight: 500;
-    padding: 0.8vh 2vw; 
+    padding: 0.8vh 2vw;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     display: inline-block;
 }
 
 .view-btn {
-    background-color: #3b82f6; /* Vibrant blue */
+    background-color: #3b82f6;
     color: #ffffff;
 }
 
 .view-btn:hover {
-    background-color: #1d4ed8; /* Darker blue on hover */
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); /* Enhanced shadow with matching hue */
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
 .accept-btn {
-    background-color: #22c55e; /* Fresh green */
+    background-color: #22c55e;
     color: #ffffff;
 }
 
 .accept-btn:hover {
-    background-color: #16a34a; /* Deeper green on hover */
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4); /* Enhanced shadow with matching hue */
+    background-color: #16a34a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
 }
 
 .reject-btn {
-    background-color: #ef4444; /* Bold red */
+    background-color: #ef4444;
     color: #ffffff;
 }
 
 .reject-btn:hover {
-    background-color: #b91c1c; /* Darker red on hover */
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); /* Enhanced shadow with matching hue */
+    background-color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
 }
 
 .cancel-btn {
-    background-color: #6b7280; /* Sleek gray */
+    background-color: #6b7280;
     color: #ffffff;
 }
 
 .cancel-btn:hover {
-    background-color: #4b5563; /* Darker gray on hover */
-    transform: translateY(-2px); 
-    box-shadow: 0 4px 12px rgba(75, 85, 99, 0.4); /* Enhanced shadow with matching hue */
+    background-color: #4b5563;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(75, 85, 99, 0.4);
 }
 
 .status-text {
-    font-size: 2.2vh; 
-    font-weight: 600; 
-    padding: 0.8vh 2vw; 
+    font-size: 2.2vh;
+    font-weight: 600;
+    padding: 0.8vh 2vw;
     display: inline-block;
     text-transform: capitalize;
     text-align: center;
-    background-color: transparent; 
-    border-radius: 0; 
-    transition: color 0.3s ease; 
+    background-color: transparent;
+    border-radius: 0;
+    transition: color 0.3s ease;
 }
 
 .status-text.pending {
-    color: #f97316; 
+    color: #f97316;
 }
 
 .status-text.scheduled {
-    color: #06b6d4; 
+    color: #06b6d4;
 }
 
 .status-text.completed {
-    color: #10b981; 
+    color: #10b981;
 }
 
 .status-text.rejected {
-    color: #e11d48; 
+    color: #e11d48;
 }
 
 .status-text.cancelled {
-    color: #6b7280; 
+    color: #6b7280;
 }
 
 /*--------------- ViewApp.php ---------------------*/
 .back-link a {
     color: #18A0FB;
     text-decoration: none;
-    font-size: 2.5vh; 
+    font-size: 2vh; /* Updated to match .message-table td (2vh) */
     display: inline-flex;
     align-items: center;
     transition: all 0.3s ease;
@@ -277,7 +282,7 @@
     top: 0;
     left: 2.5vh;
 }
-  
+
 .back-link a:hover {
     color: #0c8de4;
     transform: translateX(-3px);
@@ -296,7 +301,7 @@
 }
 
 .appointment-title {
-    font-size: 3.2vh;
+    font-size: 2.8vh; /* Updated to match .message-section h2 (2.8vh) */
     font-weight: 600;
     color: #1e293b;
     text-align: center;
@@ -308,8 +313,8 @@
     position: absolute;
     right: 100px;
     padding: 0.8vh 2vw;
-    border-radius: 50px; /* From first snippet */
-    font-size: 2.4vh;
+    border-radius: 50px;
+    font-size: 2vh; /* Updated to match .message-table td (2vh) */
     font-weight: 500;
     color: #ffffff;
     text-transform: capitalize;
@@ -336,24 +341,24 @@
     background-color: #6b7280;
 }
 
-.status-badge.status-confirmed { /* Added from first snippet */
+.status-badge.status-confirmed {
     background-color: #d4edda;
     color: #155724;
 }
 
-.status-badge.status-assigned { /* Added from first snippet */
+.status-badge.status-assigned {
     background-color: #cce5ff;
     color: #004085;
 }
 
 .appointment-info {
-    font-size: 3vh;
+    font-size: 2vh; /* Updated to match .message-table td (2vh) */
     color: #1e293b;
     flex-grow: 1;
     margin: 0vh 5vh 5vh 5vh;
     padding-bottom: 1.2vh;
-    border-bottom: 1px solid #e5e7eb;
-    margin-bottom: 25px; /* From first snippet */
+    /* border-bottom: 1px solid #e5e7eb; */
+    margin-bottom: 25px;
 }
 
 .detail-row {
@@ -361,42 +366,46 @@
     align-items: flex-start;
     margin-bottom: 2vh;
     gap: 1vw;
-    border-bottom: 1px solid #f0f0f0; /* From first snippet */
-    padding: 12px 0; /* From first snippet */
+    border-bottom: 1px solid #f0f0f0;
+    padding: 12px 0;
 }
 
 .detail-label {
     font-weight: 500;
-    width: 20%; 
+    width: 20%;
     color: #4b5563;
-    font-size: 2.4vh;
+    font-size: 2vh; /* Updated to match .message-table td (2vh) */
 }
 
 .detail-value {
     flex: 1;
-    width: 80%; 
+    width: 80%;
     color: #4b5563;
     line-height: 1.5;
     word-break: break-word;
     overflow-wrap: anywhere;
     max-width: 100%;
-    font-size: 2.4vh;
+    font-size: 2vh; /* Updated to match .message-table td (2vh) */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 20px 30px 100px;
 }
 
 .chat-button {
     background-color: #18A0FB;
     color: white;
-    font-size: 2.5vh;
+    font-size: 2.2vh; 
     font-weight: 500;
-    padding: 1.2vh 2.5vw;
+    padding: 7px 30px; 
     border: none;
-    border-radius: 50px; /* From first snippet */
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(24, 160, 251, 0.2);
-    align-self: center;
-    margin: 20px auto 2.5vh; /* Merged margins, prioritizing first snippet's auto */
-    display: block; /* From first snippet */
 }
 
 .chat-button:hover {

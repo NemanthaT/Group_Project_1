@@ -77,9 +77,10 @@ if (isset($_GET['id'])) {
                         <div class="detail-value"><?php echo htmlspecialchars($appointment['message'] ?? 'Not specified'); ?></div>
                     </div>
                 </div>
-                <button class="chat-button" onclick="window.location.href='../SP_Message/Message.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">Chat</button>
-                <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">+ Project</button>
-
+                <div class="button-group">
+                    <button class="chat-button" onclick="window.location.href='../SP_Message/Message.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">Chat with Client</button>
+                    <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">+ Project</button>
+                </div>
             </div>                   
         </div>
     </div>  <!--this is the </div> of container in the common file, don't remove it-->
