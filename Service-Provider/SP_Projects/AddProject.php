@@ -1,6 +1,9 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+include '../Common template/SP_common.php';
+
+$client_id = $_GET['client_id'] ?? null;
 
 if (isset($_POST['submit'])) { 
     $client_id = $_POST['client_id'];
@@ -83,7 +86,6 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
-    <?php include '../Common template/SP_common.php'; ?>
     <link rel="stylesheet" href="../Common template/SP_common.css">
     <link rel="stylesheet" href="Project.css">
 </head>
@@ -108,16 +110,18 @@ if (isset($_POST['submit'])) {
                 <h2>Add Project</h2>
                 
                 <form class="project-form" action="AddProject.php" method="post" enctype="multipart/form-data">
-                    <div class="form-field">
-                        <label for="client_id">Client ID</label>
-                        <input type="text" id="client_id" name="client_id" placeholder="Enter client ID" required>
-                        <?php if (!empty($c_errorMsg)): ?>
-                            <div class="field-error">
-                                <?= $c_errorMsg ?>
-                                <?php unset($c_errorMsg); ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+                    <?php if (!$client_id): ?>
+                        <div class="form-field">
+                            <label for="client_id">Client ID</label>
+                            <input type="text" id="client_id" name="client_id" placeholder="Enter client ID" required>
+                            <?php if (!empty($c_errorMsg)): ?>
+                                <div class="field-error">
+                                    <?= $c_errorMsg ?>
+                                    <?php unset($c_errorMsg); ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
                
                     <div class="form-field">
                         <label for="project_name">Project Name</label>

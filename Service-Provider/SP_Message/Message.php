@@ -1,6 +1,7 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+include '../Common template/SP_common.php';
 
 // Check if provider is logged in
 if (!isset($_SESSION['provider_id'])) {
@@ -42,7 +43,6 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
-    <?php include '../Common template/SP_common.php'; ?>
     <link rel="stylesheet" href="../Common template/SP_common.css">
     <link rel="stylesheet" href="Message.css">
 </head>
@@ -54,10 +54,12 @@ $stmt->close();
                 <!-- Left Panel: Thread List -->
                 <div class="thread-panel">
                     <div class="message-controls">
-                        <input type="text" placeholder="Client Name/Topic" id="search-input">
-                        <button class="search-button">Search</button>
+                        <input type="text" placeholder="Client Name/Topic" id="search-input" oninput="filterMessages()">
+                        <!-- Commented out for future reference: Search button -->
+                        <!-- <button class="search-button">Search</button> -->
                         <button class="clear-button" id="clear-button">Clear</button>
-                        <button class="create-chat-button">Create Chat</button>
+                        <!-- Commented out for future reference: Create Chat button -->
+                        <!-- <button class="create-chat-button">Create Chat</button> -->
                     </div>
 
                     <!-- Create Chat Modal -->
@@ -66,9 +68,9 @@ $stmt->close();
                             <button class="close-create-chat-modal" title="Close">×</button>
                             <h3>Create New Chat</h3>
                             <form id="create-chat-form">
-                                <div class="form-section">
+                                <div class="form-section" style="display: none;">
                                     <label for="client-id">Client ID:</label>
-                                    <input type="text" id="client-id" name="client-id" required>
+                                    <input type="text" id="client-id" name="client-id" required readonly>
                                 </div>
                                 <div class="form-section">
                                     <label for="topic">Topic:</label>
@@ -79,7 +81,7 @@ $stmt->close();
                                     <textarea id="message" name="message" required></textarea>
                                 </div>
                                 <div class="form-footer">
-                                    <button type="submit" class="create-chat-button">Create</button>
+                                    <button type="submit" class="create-chat-submit-button">Create</button>
                                 </div>
                             </form>
                         </div>
@@ -102,7 +104,7 @@ $stmt->close();
                                     <td><?php echo htmlspecialchars($thread['topic']); ?></td>
                                     <td><?php echo htmlspecialchars($thread['last_message'] ?? 'No messages yet'); ?></td>
                                     <td><?php echo htmlspecialchars($thread['status'] ?? 'Unseen'); ?></td>
-                                    <td><button class="chat-button" data-thread-id="<?php echo $thread['thread_id']; ?>" data-client-id="<?php echo $thread['client_id']; ?>">Chat</button></td>
+                                    <td><button class="chat-button" data-thread-id="<?php echo $thread['thread_id']; ?>" data-client-id="<?php echo $thread['client_id']; ?>" data-client-name="<?php echo htmlspecialchars($thread['full_name']); ?>">Chat</button></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -112,7 +114,7 @@ $stmt->close();
                 <!-- Right Panel: Chat Window -->
                 <div class="chat-panel" id="chat-panel" style="display: none;">
                     <div class="chat-header">
-                        <h3>Chat with Client <span id="chat-client-id"></span></h3>
+                        <h3>Chat with <span id="chat-client-name"></span></h3>
                         <button class="close-chat-panel" title="Close">×</button>
                     </div>
                     <div class="chat-window" id="chat-window">

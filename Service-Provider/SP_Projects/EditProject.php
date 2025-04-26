@@ -10,6 +10,7 @@
     // ini_set('error_log', '../error_log.txt');
     include '../Session/Session.php';
     include '../connection.php';
+    include '../Common template/SP_common.php';
 
     $projectId = $_GET['project_id'];
     $providerId = $_SESSION['provider_id'];
@@ -202,12 +203,11 @@
                             <form action="EditProject.php?project_id=<?php echo $projectId; ?>" method="post">
                                 <select class="status-select" id="projectPhaseSelect" name="projectPhaseSelect">
                                     <option value="">Select Project Phase</option>
-                                    <option value="requirement-gathering">Requirement Gathering</option>
-                                    <option value="design">Design Phase</option>
-                                    <option value="development">Development</option>
-                                    <option value="testing">Testing</option>
-                                    <option value="deployment">Deployment</option>
-                                    <option value="maintenance">Maintenance</option>
+                                    <option value="Initiation">Initiation</option>
+                                    <option value="Planning">Planning</option>
+                                    <option value="Execution">Execution</option>
+                                    <option value="Monitoring">Monitoring</option>
+                                    <option value="Closure">Closure</option>
                                 </select>
                                 <?php if (isset($_SESSION['phase'])): ?>
                                     <div class="alert alert-success"><?php echo $_SESSION['phase']; unset($_SESSION['phase']); ?></div>
@@ -241,9 +241,10 @@
                     <div class="document-upload">
                         <h2>Upload Documents</h2>
                         <div>
-                            <input type="file" class="upload" id="upload_documents" name="upload_documents" />
                             <label for="fileName">File name:</label>
                             <input type="text" class="upload" id="fileName" name="fileName" placeholder="Enter file name" />
+                            <input type="file" class="" id="upload_documents" name="upload_documents" required style="margin-top: 10px; padding: 5px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; font-size: 14px;" />
+
                             <button type="submit" class="btn btn-primary" name="submit_document">Upload Document</button>
                         </div>
                     </div>

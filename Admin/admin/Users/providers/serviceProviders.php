@@ -52,6 +52,9 @@
                         <h2>User Details</h2>
                         <button id="closeView" onclick="closeView()">x</button>
                     </div>
+                    <div id="userPic">
+                        <img src="" alt="User Image">
+                    </div>
                     <div id="hiddenViewDetails">
                         <div class="hiddenViewContent">
                             <p id="deteHead">Provider ID</p> <p id="spId" class="detes"></p>
@@ -105,20 +108,20 @@
                                     <th>Email</th>
                                     <th>Specialty</th>
                                     <th>Actions</th>
-                                </tr>
+                                </tr>                              
                             </thead>
                             <tbody>
 
-                            <?php
-                                if ($result->num_rows > 0) {
-                                    while($row = $result->fetch_assoc()) {
-                                        echo "<tr><!--<td>" . $row["provider_id"]. "</td>--><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td><td>" . $row["speciality"]."</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewSp(".$row["provider_id"].")\">View</button><button class=\"del\" onclick=\"deleteSp(".$row["provider_id"].")\">Delete</button></center></td></tr>";
+                                <?php
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<tr><!--<td>" . $row["provider_id"]. "</td>--><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td><td>" . $row["speciality"]."</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewSp(".$row["provider_id"].")\">View</button><button class=\"del\" onclick=\"deleteSp(".$row["provider_id"].")\">Delete</button></center></td></tr>";
+                                        }
+                                    } else {
+                                        echo "0 results";
                                     }
-                                } else {
-                                    echo "0 results";
-                                }
-                                $conn->close();
-                            ?>
+                                    $conn->close();
+                                ?>
                             </tbody>
                         </table>
                     </center>

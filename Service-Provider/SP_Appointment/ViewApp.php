@@ -46,21 +46,16 @@ if (isset($_GET['id'])) {
                 <div class="back-link">
                     <a href="App.php">← Back to Appointments</a>
                 </div>
-                    <div class="appointment-title">Appointment ID <?php echo htmlspecialchars($appointment['appointment_id']); ?></div>
+                    <div class="appointment-title">Appointment  <?php echo htmlspecialchars($appointment['appointment_id']); ?></div>
                     <div class="status-badge status-<?php echo strtolower($appointment['status']); ?>">
                         <?php echo htmlspecialchars($appointment['status']); ?>
                     </div>
                 </div>
-                <div class="appointment-info">
-<<<<<<< HEAD
- 
-                    <br>
-=======
->>>>>>> 46029a9be75fff547bf5c00c49cf5ed405dd1e0d
-                    <div class="detail-row">
+                <div class="appointment-info">                    
+                    <!-- <div class="detail-row">
                         <div class="detail-label">Client ID:</div>
-                        <div class="detail-value"><?php echo htmlspecialchars($appointment['client_id']); ?></div>
-                    </div>
+                        <div class="detail-value"><?php //echo htmlspecialchars($appointment['client_id']); ?></div>
+                    </div> -->
                     <div class="detail-row">
                         <div class="detail-label">Client Name:</div>
                         <div class="detail-value"><?php echo htmlspecialchars($appointment['full_name'] ?? 'Not specified'); ?></div>
@@ -83,6 +78,8 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
                 <button class="chat-button" onclick="window.location.href='../SP_Message/Message.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">Chat</button>
+                <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">+ Project</button>
+
             </div>                   
         </div>
     </div>  <!--this is the </div> of container in the common file, don't remove it-->

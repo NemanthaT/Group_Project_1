@@ -1,6 +1,7 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+include '../Common template/SP_common.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 

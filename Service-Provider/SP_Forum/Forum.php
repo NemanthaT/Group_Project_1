@@ -1,6 +1,7 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+include '../Common template/SP_common.php';
 
 // Ensure session is started and provider is logged in
 if (!isset($_SESSION['provider_id'])) {
@@ -74,7 +75,6 @@ if (isset($_GET['forum_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
-    <?php include '../Common template/SP_common.php'; ?>
     <link rel="stylesheet" href="../Common template/SP_common.css">
     <link rel="stylesheet" href="Forum.css">
 </head>

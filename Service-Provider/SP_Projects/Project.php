@@ -1,6 +1,7 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+include '../Common template/SP_common.php';
 
 $providerId = $_SESSION['provider_id']; 
 $sql = "SELECT project_id, client_id, provider_id, project_name, project_description, project_phase, project_status, created_date FROM projects WHERE provider_id = '$providerId' ORDER BY created_date DESC";
@@ -16,7 +17,6 @@ if ($result === false) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
-    <?php include '../Common template/SP_common.php'; ?>
     <link rel="stylesheet" href="../Common template/SP_common.css">
     <link rel="stylesheet" href="Project.css">
 </head>

@@ -109,6 +109,8 @@ function viewSp(id) {
             document.getElementById('hiddenView').style.display = "block";
             document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
 
+            document.querySelector("#userPic img").src = data.profile_image;
+            console.log('profile path: ' + data.profile_image);
             document.getElementById("spId").innerText = data.provider_id;
             document.getElementById("uName").innerText = data.username;
             document.getElementById("fName").innerText = data.full_name;

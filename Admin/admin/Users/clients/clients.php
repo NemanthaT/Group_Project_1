@@ -52,7 +52,7 @@
                         <button id="closeView" onclick="closeView()">x</button>
                     </div>
                     <div id="userPic">
-                        
+                        <img src="" alt="User Image">
                     </div>
                     <div id="hiddenViewDetails">
                         <div class="hiddenViewContent">
@@ -81,23 +81,27 @@
                 <div id="displayArea">
                     <center>
                         <table>
-                            <tr>
-                                <!--<th>UId</th>-->
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Actions</th>
+                            <thead>
+                                <tr>
+                                    <!--<th>UId</th>-->
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
 
-                            </tr>
-                        <?php
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo "<tr><!--<td>" . $row["client_id"]. "</td>--><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewClient(".$row["client_id"].")\">View</button><button class=\"del\" onclick=\"deleteClient(".$row["client_id"].")\">Delete</button></center></td></tr>";
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                        ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<tr><!--<td>" . $row["client_id"]. "</td>--><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td><td class=\"actions\"><center><button class=\"view\" onclick=\"viewClient(".$row["client_id"].")\">View</button><button class=\"del\" onclick=\"deleteClient(".$row["client_id"].")\">Delete</button></center></td></tr>";
+                                        }
+                                    } else {
+                                        echo "0 results";
+                                    }
+                                    $conn->close();
+                                ?>
+                            </tbody>
                         </table>
                     </center>
                 </div>

@@ -6,7 +6,7 @@
     // Fetch appointment and provider details in one query
     // Fetch appointment and provider details in one query
     $stmt = $conn->prepare(
-        "SELECT a.appointment_id, a.service_type, a.appointment_date, a.message, a.status, 
+        "SELECT a.appointment_id, a.service_type, DATE(a.appointment_date) AS appointment_date, a.message, a.status, 
                 p.full_name, p.phone 
         FROM appointments a 
         LEFT JOIN serviceproviders p ON a.provider_id = p.provider_id 
@@ -168,7 +168,7 @@
         
         <div style="text-align: center; margin-top: 40px;">
             <?php if ($provider_name): ?>
-                <a href="chat.php?provider=<?= urlencode($provider_name) ?>" style="display: inline-block; background-color: #28a745; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-size: 16px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);">Chat with Provider</a>
+                <a href="../Message/Message.php" style="display: inline-block; background-color: #28a745; color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-size: 16px; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);">Chat with Provider</a>
             <?php endif; ?>
         </div>
         

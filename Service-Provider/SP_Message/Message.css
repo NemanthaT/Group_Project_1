@@ -339,7 +339,8 @@ h3 {
 
 .chat-window {
     flex: 1;
-    overflow-y: auto;
+    overflow-y:scroll;
+    max-height: 533px;
     background: linear-gradient(to bottom, #ffffff, #f9fafb);
     border: 1px solid #e5e7eb;
     padding: 2vh;
