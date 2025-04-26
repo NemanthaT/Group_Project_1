@@ -191,10 +191,11 @@
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    margin: 0px 5px;
 }
 
-.view-btn {
+/* .view-btn {
     background-color: #3b82f6;
     color: #ffffff;
 }
@@ -203,7 +204,7 @@
     background-color: #1d4ed8;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-}
+} */
 
 .accept-btn {
     background-color: #22c55e;
@@ -326,7 +327,7 @@
 }
 
 .status-badge.status-scheduled {
-    background-color: #18A0FB;
+    background-color: #250bee;
 }
 
 .status-badge.status-completed {
