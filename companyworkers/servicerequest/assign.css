@@ -245,3 +245,17 @@ select {
     color: #333;
   }
   
+  .submit-button {
+    background-color: #52afec;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .submit-button:hover {
+    background-color: #2980b9;
+  }
