@@ -94,6 +94,12 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
                 Update News
                 </button></a>
             </li>
+            <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">🛠️</span>
+                    Service Providers
+                    </button></a>
+            </li>
         </ul>
     </div>
 
@@ -102,8 +108,7 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
         <!-- Navbar -->
         <div class="navbar">
             <div class="profile">
-            <a href="#">
-                <div class="profile-name"><?php echo htmlspecialchars($fullName); ?></div>
+            <a href="../myaccount/acc.php">
             <img src="../images/user.png" alt="Profile">
                 </a>
             </div>
@@ -138,8 +143,8 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
                         <table class="table" id="knowledgeTable">
                             <thead>
                                 <tr>
-                                    <th>Knowledge Base ID</th>
-                                    <th>Worker ID</th>
+                                    <th class="hidden">Knowledge Base ID</th>
+                                    <th class="hidden">Worker ID</th>
                                     <th>Title</th>
                                     <th>Date Created</th>
                                     <th>Actions</th>
@@ -156,8 +161,8 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
                                 if ($result) {
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         echo '<tr data-id="' . $row['id'] . '">
-                                            <td>' . $row['id'] . '</td>
-                                            <td>' . $row['worker_id'] . '</td>
+                                            <td class="hidden">' . $row['id'] . '</td>
+                                            <td class="hidden">' . $row['worker_id'] . '</td>
                                             <td>' . $row['title'] . '</td>
                                             <td>' . $row['created_at'] . '</td>
                                             <td>
