@@ -221,7 +221,7 @@ if (isset($_GET['fetch_recent_activity'])) {
             <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
-                <a href="#">
+                <a href="../myaccount/acc.php">
                     <div class="profile-name"><?php echo htmlspecialchars($fullName); ?></div>
                 <img src="../images/user.png" alt="Profile">
                     </a>
