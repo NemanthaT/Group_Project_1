@@ -88,6 +88,12 @@ $fullName = $user['full_name'] ?? 'User';
                     Update News
                     </button></a>
                 </li>
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">📰</span>
+                    Service Providers
+                    </button></a>
+                </li>
             </ul>
         </div>
 
@@ -132,8 +138,8 @@ $fullName = $user['full_name'] ?? 'User';
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">News_ID</th>
-                                <th scope="col">Worker_ID</th>
+                                <th scope="col" class="hidden">News_ID</th>
+                                <th scope="col" class="hidden">Worker_ID</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Date Created</th>
                                 <th scope="col">Action</th>
@@ -150,8 +156,8 @@ $fullName = $user['full_name'] ?? 'User';
                                     $title = $row['title'];
                                     $date_created = $row['created_at'];
                                     echo '<tr>
-                                        <th scope="row">' . $news_id . '</th>
-                                        <td>' . $worker_id . '</td>
+                                        <th scope="row" class="hidden">' . $news_id . '</th>
+                                        <td class="hidden">' . $worker_id . '</td>
                                         <td>' . $title . '</td>
                                         <td>' . $date_created . '</td>
                                         <td>
@@ -182,5 +188,6 @@ $fullName = $user['full_name'] ?? 'User';
             this.style.display = 'none';
         });
     </script>
+
 </body>
 </html>

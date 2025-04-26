@@ -89,6 +89,12 @@ $selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['kno
                     Update News
                     </button></a>
                 </li>
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">📰</span>
+                    Service Providers
+                    </button></a>
+                </li>
             </ul>
         </div>
 

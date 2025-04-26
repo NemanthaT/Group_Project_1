@@ -85,6 +85,12 @@ $result = $conn->query($sql);
                     Update News
                     </button></a>
                 </li>
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">📰</span>
+                    Service Providers
+                    </button></a>
+                </li>
             </ul>
         </div>
 

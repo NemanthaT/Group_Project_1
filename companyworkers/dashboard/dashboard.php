@@ -207,6 +207,12 @@ if (isset($_GET['fetch_recent_activity'])) {
                     Update News
                     </button></a>
                 </li>
+                <li><a href="../serviceproviders/view.php">
+                    <button>
+                    <span class="menu-icon">📰</span>
+                    Service Providers
+                    </button></a>
+                </li>
             </ul>
         </div>
 
@@ -312,7 +318,7 @@ if (isset($_GET['fetch_recent_activity'])) {
 
             <!-- Recent Activity -->
             <div class="dashboard-card">
-                <h3 class="section-title">Recent Activity</h3>
+                <h3 class="section-title">Notifications</h3>
                 <div class="activity-feed">
                     <?php renderRecentActivity($conn); ?>
                 </div>
