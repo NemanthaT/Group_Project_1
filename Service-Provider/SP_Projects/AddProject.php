@@ -110,7 +110,9 @@ if (isset($_POST['submit'])) {
                 <h2>Add Project</h2>
                 
                 <form class="project-form" action="AddProject.php" method="post" enctype="multipart/form-data">
-                    <?php if (!$client_id): ?>
+                    <?php if ($client_id): ?>
+                        <input type="hidden" name="client_id" value="<?php echo htmlspecialchars($client_id); ?>">
+                    <?php else: ?>
                         <div class="form-field">
                             <label for="client_id">Client ID</label>
                             <input type="text" id="client_id" name="client_id" placeholder="Enter client ID" required>
