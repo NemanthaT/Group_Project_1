@@ -514,6 +514,7 @@ CREATE TABLE `news` (
   `worker_id` int(11) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `content` text DEFAULT NULL,
+  `image_path` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
