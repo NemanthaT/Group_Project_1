@@ -110,7 +110,7 @@ $conn->close();
     </div>
 </div>
 </div>
-<script src="Edit.js"></script>
+<script src="Profile.js"></script>
 <script src="../Common template/Calendar.js"></script>
 </body>
 </html>
