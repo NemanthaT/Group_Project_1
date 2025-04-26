@@ -54,10 +54,12 @@ $stmt->close();
                 <!-- Left Panel: Thread List -->
                 <div class="thread-panel">
                     <div class="message-controls">
-                        <input type="text" placeholder="Client Name/Topic" id="search-input">
-                        <button class="search-button">Search</button>
+                        <input type="text" placeholder="Client Name/Topic" id="search-input" oninput="filterMessages()">
+                        <!-- Commented out for future reference: Search button -->
+                        <!-- <button class="search-button">Search</button> -->
                         <button class="clear-button" id="clear-button">Clear</button>
-                        <button class="create-chat-button">Create Chat</button>
+                        <!-- Commented out for future reference: Create Chat button -->
+                        <!-- <button class="create-chat-button">Create Chat</button> -->
                     </div>
 
                     <!-- Create Chat Modal -->
@@ -66,9 +68,9 @@ $stmt->close();
                             <button class="close-create-chat-modal" title="Close">×</button>
                             <h3>Create New Chat</h3>
                             <form id="create-chat-form">
-                                <div class="form-section">
+                                <div class="form-section" style="display: none;">
                                     <label for="client-id">Client ID:</label>
-                                    <input type="text" id="client-id" name="client-id" required>
+                                    <input type="text" id="client-id" name="client-id" required readonly>
                                 </div>
                                 <div class="form-section">
                                     <label for="topic">Topic:</label>
@@ -79,7 +81,7 @@ $stmt->close();
                                     <textarea id="message" name="message" required></textarea>
                                 </div>
                                 <div class="form-footer">
-                                    <button type="submit" class="create-chat-button">Create</button>
+                                    <button type="submit" class="create-chat-submit-button">Create</button>
                                 </div>
                             </form>
                         </div>

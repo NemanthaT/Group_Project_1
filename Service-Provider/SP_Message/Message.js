@@ -1,3 +1,5 @@
+// Commented out for future reference: Search button click event
+/*
 // Search Functionality
 document.querySelector('.search-button').addEventListener('click', function () {
     const searchValue = document.querySelector('#search-input').value.trim().toLowerCase();
@@ -9,7 +11,28 @@ document.querySelector('.search-button').addEventListener('click', function () {
         row.style.display = (clientName.includes(searchValue) || topic.includes(searchValue)) ? '' : 'none';
     });
 });
+*/
 
+// Search Functionality: Filter as user types
+function filterMessages() {
+    const searchValue = document.querySelector('#search-input').value.trim().toLowerCase();
+    const rows = document.querySelectorAll('#message-tbody tr');
+
+    rows.forEach(row => {
+        const clientName = row.children[0].textContent.toLowerCase();
+        const topic = row.children[1].textContent.toLowerCase();
+        row.style.display = (clientName.includes(searchValue) || topic.includes(searchValue)) ? '' : 'none';
+    });
+}
+
+// Clear Filter Functionality
+document.querySelector('.clear-button').addEventListener('click', function () {
+    document.querySelector('#search-input').value = '';
+    filterMessages(); // Reapply filtering to reset the table
+});
+
+// Commented out for future reference: Original clear button functionality
+/*
 // Clear Filter Functionality
 document.querySelector('.clear-button').addEventListener('click', function () {
     document.querySelector('#search-input').value = '';
@@ -18,11 +41,15 @@ document.querySelector('.clear-button').addEventListener('click', function () {
         row.style.display = '';
     });
 });
+*/
 
+// Commented out for future reference: Create Chat button event
+/*
 // Open Create Chat Modal
 document.querySelector('.create-chat-button').addEventListener('click', function () {
     document.getElementById('create-chat-modal').style.display = 'flex';
 });
+*/
 
 // Close Create Chat Modal
 document.querySelector('.close-create-chat-modal').addEventListener('click', function () {
@@ -51,10 +78,17 @@ document.getElementById('create-chat-form').addEventListener('submit', function 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert(xhr.responseText);
-            if (xhr.responseText === 'Chat created successfully') {
+            if (xhr.responseText.includes('Chat created successfully')) {
                 fetchThreads();
                 document.getElementById('create-chat-form').reset();
                 document.getElementById('create-chat-modal').style.display = 'none';
+                // Find and click the new thread's chat button
+                setTimeout(() => {
+                    const chatButton = document.querySelector(`.chat-button[data-client-id="${clientId}"]`);
+                    if (chatButton) {
+                        chatButton.click(); // Open the chat panel for the new thread
+                    }
+                }, 1000); // Delay to ensure threads are loaded
             }
         }
     };
@@ -142,25 +176,23 @@ function fetchThreads() {
 // Start polling for thread updates
 setInterval(fetchThreads, 5000);
 
-// Initial thread fetch
+// Initial thread fetch with URL parameter handling
 document.addEventListener('DOMContentLoaded', function () {
     fetchThreads();
 
-    // Check for client_id in URL and open chat panel if present
+    // Check for client_id in URL and handle chat panel or modal
     const urlParams = new URLSearchParams(window.location.search);
     const clientId = urlParams.get('client_id');
     if (clientId) {
-        // Wait for threads to load before attempting to find the chat button
+        // Wait for threads to load before checking
         setTimeout(() => {
             const chatButton = document.querySelector(`.chat-button[data-client-id="${clientId}"]`);
             if (chatButton) {
-                chatButton.click(); // Trigger click to open chat panel
+                chatButton.click(); // Open the chat panel for existing thread
             } else {
-                // If no thread exists, prompt to create a new chat
-                if (confirm(`No chat thread exists for Client ID ${clientId}. Would you like to create a new chat?`)) {
-                    document.getElementById('create-chat-modal').style.display = 'flex';
-                    document.getElementById('client-id').value = clientId; // Pre-fill client ID
-                }
+                // Open the create chat modal and pre-fill client ID
+                document.getElementById('create-chat-modal').style.display = 'flex';
+                document.getElementById('client-id').value = clientId;
             }
         }, 1000); // Delay to ensure threads are loaded
     }
