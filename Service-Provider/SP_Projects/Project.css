@@ -12,7 +12,7 @@
 }
 
 .project-section h2 {
-  font-size: 2.8vh; /* Reduced from 3.5vh */
+  font-size: 2.8vh; /* Matched to project page */
   font-weight: 700;
   margin-bottom: 2vh;
   color: #2d3748;
@@ -38,12 +38,12 @@
 
 .filter-group select,
 .search-group input {
-  padding: 10px 14px; /* Slightly reduced padding */
+  padding: 10px 14px; /* Matched to project page */
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
-  flex: 1 1 150px;
-  max-width: 200px;
+  font-size: 1.8vh; /* Matched to project page */
+  flex: 1 1 0;
+  min-width: 150px;
   transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
@@ -58,17 +58,19 @@
 }
 
 .filter-group select:focus,
-.search-group input:focus {
+.search-group input:focus { /* Corrected typo from .search-group input-conscious */
   border-color: #18A0FB;
   box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.15);
   outline: none;
 }
 
 .search-group input {
-  flex: 2 1 200px;
-  max-width: 300px;
+  flex: 2 1 0;
+  min-width: 200px;
 }
 
+/* Commented out search button styles */
+/*
 .search-button {
   padding: 10px 15px;
   background-color: #18A0FB;
@@ -76,7 +78,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh;
   font-weight: 500;
   transition: all 0.3s ease;
   flex: 0 0 auto;
@@ -90,6 +92,7 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
 }
+*/
 
 .clear-button {
   background-color: #6b7280;
@@ -98,7 +101,7 @@
   padding: 10px 15px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   font-weight: 500;
   transition: all 0.3s ease;
   flex: 0 0 auto;
@@ -120,16 +123,16 @@
 .no-projects-message {
   text-align: center;
   padding: 2.5vh;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   font-weight: 600;
   color: #4b5563;
   grid-column: 1 / -1;
 }
 
-.add-project-button {
+/* .add-project-button {
   margin-left: auto;
   flex: 0 0 auto;
-}
+} */
 
 .projects-grid {
   display: grid;
@@ -151,12 +154,6 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
-@media (max-width: 1200px) {
-  .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-}
-
 .project-card {
   background: #ffffff;
   border-radius: 12px;
@@ -171,16 +168,12 @@
   max-width: 350px;
 }
 
-.project-card.hidden {
-  display: none;
-}
-
 .project-card:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .project-header {
-  padding: 1.5vh; /* Slightly reduced padding */
+  padding: 1.5vh;
   background-color: #f7fafc;
   display: flex;
   justify-content: space-between;
@@ -191,15 +184,15 @@
 .project-id {
   font-weight: 600;
   color: #4b5563;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .status {
-  padding: 0.6vh 1.5vw; /* Reduced padding */
+  padding: 0.6vh 1.5vw;
   border-radius: 8px;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   font-weight: 600;
   text-transform: capitalize;
   text-align: center;
@@ -224,7 +217,7 @@
 }
 
 .project-content {
-  padding: 1.5vh; /* Slightly reduced padding */
+  padding: 1.5vh;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -232,9 +225,9 @@
 }
 
 .project-info p {
-  margin-bottom: 1vh; /* Slightly reduced margin */
+  margin-bottom: 1vh;
   color: #4b5563;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
 }
 
 .project-info strong {
@@ -244,14 +237,14 @@
 
 .view-button {
   width: 100%;
-  padding: 0.6vh 1.5vw; /* Reduced padding */
-  margin-top: 1.5vh; /* Reduced margin */
+  padding: 0.6vh 1.5vw;
+  margin-top: 1.5vh;
   background-color: #3b82f6;
   color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   font-weight: 500;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -267,27 +260,27 @@
 .success-message {
   background-color: #f7fafc;
   color: #4b5563;
-  padding: 2vh; /* Slightly reduced padding */
+  padding: 2vh;
   border-radius: 8px;
-  margin-bottom: 2vh; /* Slightly reduced margin */
+  margin-bottom: 2vh;
   border-left: 4px solid #22c55e;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
 }
 
 .error-message {
   background-color: #f7fafc;
   color: #4b5563;
-  padding: 2vh; /* Slightly reduced padding */
+  padding: 2vh;
   border-radius: 8px;
-  margin-bottom: 2vh; /* Slightly reduced margin */
+  margin-bottom: 2vh;
   border-left: 4px solid #ef4444;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
 }
 
 .back-button {
   color: #18A0FB;
   text-decoration: none;
-  font-size: 2vh; /* Reduced from 2.5vh */
+  font-size: 2vh; /* Matched to project page */
   display: inline-flex;
   align-items: center;
   transition: all 0.3s ease;
@@ -334,14 +327,14 @@
 .form-field {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1vh; /* Slightly reduced margin */
+  margin-bottom: 1vh;
 }
 
 .form-field label {
-  margin-bottom: 0.8vh; /* Slightly reduced margin */
+  margin-bottom: 0.8vh;
   color: #4b5563;
   font-weight: 600;
-  font-size: 2vh; /* Reduced from 2.4vh */
+  font-size: 2vh; /* Matched to project page */
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -349,10 +342,10 @@
 .form-field input,
 .form-field select,
 .form-field textarea {
-  padding: 10px 14px; /* Slightly reduced padding */
+  padding: 10px 14px; /* Matched to project page */
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   transition: all 0.3s ease;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -378,13 +371,13 @@
 
 .form-field textarea {
   resize: vertical;
-  min-height: 100px; /* Slightly reduced height */
+  min-height: 100px;
 }
 
 .field-error {
   color: #ef4444;
-  font-size: 1.6vh; /* Reduced from 2vh */
-  margin-top: 0.4vh; /* Slightly reduced margin */
+  font-size: 1.6vh; /* Matched to project page */
+  margin-top: 0.4vh;
 }
 
 .upload-container {
@@ -397,7 +390,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 0.4vh; /* Slightly reduced margin */
+  margin-top: 0.4vh;
 }
 
 .file-input {
@@ -410,13 +403,13 @@
 }
 
 .file-label {
-  padding: 8px 14px; /* Reduced padding */
+  padding: 8px 14px;
   background-color: #ffffff;
   color: #3b82f6;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   transition: all 0.3s ease;
   display: inline-block;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -428,7 +421,7 @@
 }
 
 #file-name-display {
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   color: #4b5563;
 }
 
@@ -436,17 +429,17 @@
   display: flex;
   justify-content: flex-end;
   gap: 15px;
-  margin-top: 1.5vh; /* Slightly reduced margin */
+  margin-top: 1.5vh;
 }
 
 .submit-button {
-  padding: 10px 20px; /* Reduced padding */
+  padding: 10px 20px;
   background-color: #3b82f6;
   color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   font-weight: 500;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -460,13 +453,13 @@
 }
 
 .cancel-button {
-  padding: 10px 20px; /* Reduced padding */
+  padding: 10px 20px;
   background-color: #6b7280;
   color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   font-weight: 500;
   text-decoration: none;
   display: inline-flex;
@@ -485,7 +478,7 @@
 .project-header-edit {
   background-color: #f7fafc;
   color: #4b5563;
-  padding: 2vh; /* Slightly reduced padding */
+  padding: 2vh;
   border-radius: 12px 12px 0 0;
   display: flex;
   justify-content: space-between;
@@ -495,8 +488,8 @@
 }
 
 .project-header-edit h1 {
-  font-size: 2.5vh; /* Reduced from 3.2vh */
-  margin-bottom: 0.4vh; /* Slightly reduced margin */
+  font-size: 2.5vh; /* Matched to project page */
+  margin-bottom: 0.4vh;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -504,7 +497,7 @@
 
 .project-header-edit p {
   opacity: 0.8;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   color: #4b5563;
 }
 
@@ -527,7 +520,7 @@
 
 .detail-card {
   background-color: #ffffff;
-  padding: 2vh; /* Slightly reduced padding */
+  padding: 2vh;
   border-radius: 12px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -540,8 +533,8 @@
 
 .detail-card h2 {
   margin-top: 0;
-  margin-bottom: 1vh; /* Slightly reduced margin */
-  font-size: 2.2vh; /* Reduced from 2.8vh */
+  margin-bottom: 1vh;
+  font-size: 2.2vh; /* Matched to project page */
   color: #4b5563;
   text-align: left;
   text-transform: uppercase;
@@ -549,15 +542,15 @@
 }
 
 .detail-item {
-  margin-bottom: 1vh; /* Slightly reduced margin */
+  margin-bottom: 1vh;
 }
 
 .detail-item label {
   font-weight: 600;
   display: block;
-  margin-bottom: 0.4vh; /* Slightly reduced margin */
+  margin-bottom: 0.4vh;
   color: #4b5563;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -565,14 +558,14 @@
 .detail-item p {
   margin: 0;
   color: #1e293b;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
 }
 
 .status-badge {
   display: inline-block;
-  padding: 0.6vh 1.5vw; /* Reduced padding */
+  padding: 0.6vh 1.5vw;
   border-radius: 8px;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   font-weight: 600;
   text-align: center;
   background-color: transparent;
@@ -596,7 +589,7 @@
 }
 
 .status-update-section {
-  padding: 2vh; /* Slightly reduced padding */
+  padding: 2vh;
   background-color: #f7fafc;
   border-top: 2px solid #e5e7eb;
   border-bottom: 2px solid #e5e7eb;
@@ -612,7 +605,7 @@
   background-color: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  padding: 2vh; /* Slightly reduced padding */
+  padding: 2vh;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
@@ -623,20 +616,20 @@
 
 .status-card h3 {
   margin-top: 0;
-  margin-bottom: 1vh; /* Slightly reduced margin */
+  margin-bottom: 1vh;
   color: #4b5563;
-  font-size: 2vh; /* Reduced from 2.4vh */
+  font-size: 2vh; /* Matched to project page */
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .status-select {
   width: 100%;
-  padding: 10px 14px; /* Reduced padding */
-  margin-bottom: 1vh; /* Slightly reduced margin */
+  padding: 10px 14px; /* Matched to project page */
+  margin-bottom: 1vh;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   color: #1e293b;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -656,13 +649,13 @@
 .upload {
   display: inline-block;
   width: auto;
-  padding: 10px 14px; /* Reduced padding */
-  margin-bottom: 1vh; /* Slightly reduced margin */
+  padding: 10px 14px; /* Matched to project page */
+  margin-bottom: 1vh;
   margin-right: 10px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   background-color: #ffffff;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
@@ -673,7 +666,7 @@
 }
 
 input[type="file"].upload {
-  padding: 10px;
+  padding: 10px; /* Not matched, as it’s not an input field in the same context */
   opacity: 0;
   width: 0.1px;
   height: 0.1px;
@@ -684,13 +677,13 @@ input[type="file"].upload {
 .btn {
   color: #ffffff;
   border: none;
-  padding: 10px 20px; /* Reduced padding */
+  padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1vh; /* Slightly reduced margin */
+  margin-top: 1vh;
   font-weight: 500;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-decoration: none;
 }
@@ -732,7 +725,7 @@ input[type="file"].upload {
 }
 
 .document-upload {
-  padding: 2vh; /* Slightly reduced padding */
+  padding: 2vh;
   background-color: #f7fafc;
   border-bottom: 2px solid #e5e7eb;
   overflow-y: auto;
@@ -740,24 +733,24 @@ input[type="file"].upload {
 
 .document-upload h2 {
   margin-top: 0;
-  margin-bottom: 1.5vh; /* Slightly reduced margin */
+  margin-bottom: 1.5vh;
   text-align: left;
-  font-size: 2.2vh; /* Reduced from 2.8vh */
+  font-size: 2.2vh; /* Matched to project page */
   color: #4b5563;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .document-list {
-  padding: 2vh; /* Slightly reduced padding */
+  padding: 2vh;
   overflow-y: auto;
 }
 
 .document-list h2 {
   margin-top: 0;
-  margin-bottom: 1.5vh; /* Slightly reduced margin */
+  margin-bottom: 1.5vh;
   text-align: left;
-  font-size: 2.2vh; /* Reduced from 2.8vh */
+  font-size: 2.2vh; /* Matched to project page */
   color: #4b5563;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -768,9 +761,9 @@ input[type="file"].upload {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 1.5vh; /* Slightly reduced padding */
+  padding: 1.5vh;
   border-radius: 8px;
-  margin-bottom: 1vh; /* Slightly reduced margin */
+  margin-bottom: 1vh;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
@@ -785,7 +778,7 @@ input[type="file"].upload {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   color: #3b82f6;
   text-decoration: none;
 }
@@ -796,7 +789,7 @@ input[type="file"].upload {
 
 .status-log {
   margin-top: 0;
-  padding: 2vh; /* Slightly reduced padding */
+  padding: 2vh;
   background-color: #f7fafc;
   border-radius: 0 0 12px 12px;
   overflow-y: auto;
@@ -804,9 +797,9 @@ input[type="file"].upload {
 
 .status-log h2 {
   margin-top: 0;
-  margin-bottom: 1.5vh; /* Slightly reduced margin */
+  margin-bottom: 1.5vh;
   text-align: left;
-  font-size: 2.2vh; /* Reduced from 2.8vh */
+  font-size: 2.2vh; /* Matched to project page */
   color: #4b5563;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -814,8 +807,8 @@ input[type="file"].upload {
 
 .status-log-item {
   background-color: #ffffff;
-  margin-bottom: 1vh; /* Slightly reduced margin */
-  padding: 1.5vh; /* Slightly reduced padding */
+  margin-bottom: 1vh;
+  padding: 1.5vh;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
@@ -831,22 +824,22 @@ input[type="file"].upload {
 .status-log-item p {
   margin: 0;
   flex: 1;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   color: #1e293b;
 }
 
 .status-log-item span {
   color: #4b5563;
-  font-size: 1.6vh; /* Reduced from 2vh */
+  font-size: 1.6vh; /* Matched to project page */
   white-space: nowrap;
-  margin-left: 1vh; /* Slightly reduced margin */
+  margin-left: 1vh;
 }
 
 .alert {
-  padding: 1vh 1.5vw; /* Reduced padding */
-  margin-bottom: 1.5vh; /* Slightly reduced margin */
+  padding: 1vh 1.5vw;
+  margin-bottom: 1.5vh;
   border-radius: 8px;
-  font-size: 1.8vh; /* Reduced from 2.2vh */
+  font-size: 1.8vh; /* Matched to project page */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
