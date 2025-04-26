@@ -10,6 +10,12 @@
         exit;
     }
 
+    $_SESSION['pR'] = NULL;
+    $_SESSION['nF'] = NULL;
+    $_SESSION['nPB'] = NULL;
+    $_SESSION['nRC'] = NULL;
+    $_SESSION['nRSP'] = NULL;
+
 ?>
 
 <!DOCTYPE html>
