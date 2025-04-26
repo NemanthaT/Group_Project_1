@@ -1,49 +1,49 @@
 <?php
-    session_start(); 
-    require_once('../../config/config.php');
+session_start();
+require_once('../../../config/config.php');
 
-    $username = $_SESSION['username'];
-    $email = $_SESSION['email'];
+$username = $_SESSION['username'];
+$email = $_SESSION['email'];
 
-    if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../../login/login.php");
-        exit;
-    }
-    
+if (!isset($_SESSION['username'])) { // if not logged in
+    header("Location: ../../../login/login.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Dashboard</title>
-        <link rel="stylesheet" href="users.css">
-        <link rel="stylesheet" href="../../css/common.css">
-    </head>
-    <body>
-        <div class="main">
-            <div class="bg">
-                <!--blur Background image-->  
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="users.css">
+    <link rel="stylesheet" href="../../css/common.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-header">
+            <h1>Choose Account Type</h1>
+        </div>
+
+        <div class="forms">
+            <div class="account-option" onclick="redirectTo('clients/clients.php')">
+                <h2>Client</h2>
+                <div class="icon-container">👤</div>
             </div>
-            <div class="header">
-                <h1>Users</h1>
-            </div>
-            <div class="dashboard">
-                <div class="card" onclick="redirectTo('clients/clients.php')">
-                    <div class="icon"></div>
-                    <p>Clients</p>
-                </div>
-                <div class="card" onclick="redirectTo('providers/serviceProviders.php')">
-                    <div class="icon"></div>
-                    <p>Service Providers</p>
-                </div>
-                <!--<div class="card" onclick="redirectTo('companyWorkers.php')">
-                    <div class="icon"></div>
-                    <p>Company Workers</p>
-                </div>-->
+
+            <div class="account-option" onclick="redirectTo('providers/serviceProviders.php')">
+                <h2>Service Provider</h2>
+                <div class="icon-container">🧑‍💼</div>
             </div>
         </div>
-        <script src="../../js/common.js"></script>
-    </body>
+    </div>
+    </div>
+    <script src="../../js/common.js"></script>
+</body>
+
 </html>

@@ -8,21 +8,83 @@
 }
 
 #hiddenView{
-    display: none;
-    position: absolute;
-    margin-left: 25%;
-    padding: 10px;
-    border-radius: 20px;
-    width: 50%;
-    height: auto;
-    /*background-color: rgb(221, 219, 219);*/
-    /*background-color: #fffefe21;
-    /*border: 1px solid #d8d8d8;*/
-    /*border: 1px solid #00ffd5;*/
-    background-color: #ffffff;
-    border: 1px solid #333;
+    width: 40%;
+    margin-left: 20% !important;
 }
 
-.action{
-    background-color: transparent !important;
+#userPic{
+    width: 90px;
+    align-content: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgb(167, 167, 167);
+    height: 90px;
+    border-radius: 90px;
+    margin-top: 5%;
+    margin-right: 2%;
+    margin-left: 10%;
+}
+
+#userPic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#hiddenViewDetails{
+    font-size: 1.2rem;
+    width: 80%;
+    margin: 0 10% 0 10%;
+}
+
+.hiddenViewContent {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    margin-bottom: 2.5%;
+}
+
+#hiddenViewActions {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+#deteHead{
+    font-weight: bold;
+    color: rgb(48, 48, 48);
+    width: 35%;
+    margin-top: 2.5%;
+    margin-right: 2.5%;
+}
+
+.detes{
+    color: black;
+    margin-top: 2.5%;
+    height: auto;
+}
+
+#hiddenViewActions .accept{
+    height: auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border: 1px solid rgb(3, 202, 3) !important;
+}
+#hiddenViewActions .del{
+    height: auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border: 1px solid red !important;
+}
+
+hr{
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgba(97, 97, 97, 0.123); 
+    border: none;
+    height: 1px;
+}
+
+#closeView{
+    margin: 0 2% 0 0 !important;
 }

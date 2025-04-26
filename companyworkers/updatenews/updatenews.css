@@ -1,7 +1,6 @@
-.boxcontainer{
+.boxcontainer {
     width: 1200px;
 }
-
 
 .container label {
     font-size: 1.75rem;
@@ -9,7 +8,7 @@
 }
 
 .container textarea {
-    width:100%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -32,20 +31,222 @@
 .submit-button:hover {
     background-color: darkblue; /* Change color on hover */
 }
+
 #worker_id {
     font-size: 100%;      /* Increase font size */
     padding: 10px;        /* Add padding inside the input */
-    width: 20%;         /* Set the width of the input box */
+    width: 20%;           /* Set the width of the input box */
     border: 1px solid #ccc; /* Optional: Customize border */
     border-radius: 5px;   /* Optional: Add rounded corners */
-     /* Add some margin to the left of the input */
 }
 
-#title{
+#title {
     font-size: 100%;
     padding: 10px;
     width: 50%;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
 
+/* Additional styles for news management */
+.news-form {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 800px;
+    margin: 1.5rem auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group textarea {
+    height: 300px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.submit-button {
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-button:hover {
+    background: var(--primary-dark);
+}
+
+/* Table styles for updatedelete.php */
+.table-container {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    margin-top: 1.5rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table th {
+    font-weight: 600;
+    background: var(--bg-light);
+}
+
+.table tr:hover {
+    background: var(--bg-light);
+}
+
+/* Initial page boxes */
+.boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.glass-effect {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.glass-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+}
+
+.updelete {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.icon1 {
+    width: 48px;
+    height: 48px;
+}
+
+/* News specific styles */
+.news-table-container {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin: 1.5rem;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.table th {
+    background: var(--bg-light);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-dark);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table tr:hover {
+    background: var(--bg-light);
+}
+
+.table button {
+    margin: 0 0.25rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.table button a {
+    text-decoration: none;
+    color: var(--text-light);
+}
+
+/* Update button */
+.table button:first-child {
+    background: var(--primary-color);
+}
+
+/* Delete button */
+.table button:last-child {
+    background: #ef4444;
+}
+
+.table button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.hidden {
+    display: none;
 }

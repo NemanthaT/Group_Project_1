@@ -1,8 +1,9 @@
 <?php
 include '../Session/Session.php';
 include '../connection.php';
+include '../Common template/SP_common.php';
 
-//  Ensure session is started and provider is logged in
+// Ensure session is started and provider is logged in
 if (!isset($_SESSION['provider_id'])) {
     die("Unauthorized access. Please log in as a provider.");
 }
@@ -12,20 +13,19 @@ $providerId = $_SESSION['provider_id'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
-
-        //  Create a new thread
+        // Create a new thread
         if ($action === 'create') {
             $title = $_POST['title'];
-            $category = $_POST['category'];
             $message = $_POST['message'];
+            $category = $_POST['category'];
 
             if (!empty($providerId) && !empty($title) && !empty($message) && !empty($category)) {
-                $stmt = $conn->prepare("INSERT INTO forums (title, content, created_by, user_id, category, created_at, views, replies) VALUES (?, ?, ?, ?, ?, NOW(), 0, 0)");
-                $stmt->bind_param("ssiss", $title, $message, $providerId, $providerId, $category);
+                $createdBy = 'ServiceProvider';
+                $stmt = $conn->prepare("INSERT INTO forums (title, content, created_by, user_id, category, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
+                $stmt->bind_param("sssiss", $title, $message, $createdBy, $providerId, $category);
                 $stmt->execute();
             }
         }
-
         // Update an existing thread
         if ($action === 'update') {
             $forumId = $_POST['forum_id'];
@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("ssi", $title, $content, $forumId);
             $stmt->execute();
         }
-
         // Delete a thread
         if ($action === 'delete') {
             $forumId = $_POST['forum_id'];
@@ -45,21 +44,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("i", $forumId);
             $stmt->execute();
         }
-
-        //  Redirect to avoid form resubmission
+        // Redirect to avoid form resubmission
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
 }
 
-//  Fetch all forum threads created by the logged-in provider
+// Fetch all forum threads created by the logged-in provider
 $stmt = $conn->prepare("SELECT * FROM forums WHERE user_id = ? ORDER BY created_at DESC");
 $stmt->bind_param("i", $providerId);
 $stmt->execute();
 $result = $stmt->get_result();
 $threads = $result->fetch_all(MYSQLI_ASSOC);
 
-//  Fetch thread details for modal form if editing/viewing
+// Fetch thread details for modal form if editing/viewing
 $modalThread = null;
 if (isset($_GET['forum_id'])) {
     $forumId = $_GET['forum_id'];
@@ -71,77 +69,37 @@ if (isset($_GET['forum_id'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
+    <link rel="stylesheet" href="../Common template/SP_common.css">
     <link rel="stylesheet" href="Forum.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-            </div>
-            <ul class="menu">
-                <li><a href="../SP_Dashboard/SPDash.php"><button><img src="../images/dashboard.png">Dashboard</button></a></li>
-                <li><a href="../SP_Appointment/App.php"><button><img src="../images/appointment.png">Appointment</button></a></li>
-                <li><a href="../SP_Message/Message.php"><button><img src="../images/message.png">Message</button></a></li>
-                <li><a href="../SP_Projects/Project.php"><button><img src="../images/project.png">Project</button></a></li>
-                <li><a href="../SP_Bill/Bill.php"><button><img src="../images/bill.png">Bill</button></a></li>
-                <li><a href="../SP_Forum/Forum.php"><button><img src="../images/forum.png">Forum</button></a></li>
-                <li><a href="../SP_KnowledgeBase/KB.php"><button><img src="../images/knowledgebase.png">KnowledgeBase</button></a></li>
-            </ul>
-        </div>
-
-        <!-- Navbar -->
-        <header>
-            <nav class="navbar">
-                <div class="calendar-icon">
-                    <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
-                    <!-- Calendar Dropdown -->
-                    <div id="calendarDropdown" class="calendar-dropdown">
-                        <h3>Calendar</h3>
-                        <div class="calendar-header">
-                            <button id="prevMonth">&lt;</button>
-                            <span id="currentMonth">March 2025</span>
-                            <button id="nextMonth">&gt;</button>
-                        </div>
-                        <div class="calendar-grid">
-                            <div class="weekdays">
-                                <div>Mon</div>
-                                <div>Tue</div>
-                                <div>Wed</div>
-                                <div>Thu</div>
-                                <div>Fri</div>
-                                <div>Sat</div>
-                                <div>Sun</div>
-                            </div>
-                            <div id="daysGrid" class="days"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="notification">
-                    <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
-                </div>
-                <div class="profile">
-                    <a href="../SP_Profile/Profile.php"><img src="../images/user.png" alt="Profile"></a>
-                </div>
-                <a href="../../Login/Logout.php" class="logout">Logout</a>                
-            </nav>
-        </header>
-
-        <!-- Main Content (Forum Page) -->
         <div class="main-content">
             <div class="forum-section">
                 <center><h2>Forum</h2></center>
+                <div class="filter-group search-group">
+                    <input type="text" id="searchInput" placeholder="Search forum topics">
+                    <button class="search-button" id="searchButton" onclick="searchTopics()">Search</button>
+                    <button class="clear-button" id="clearButton" onclick="clearSearch()">Clear</button>
+                    <button class="search-button"onclick="openCreateThreadModal()">+ Create Thread</button>
+                </div>
 
-                <!-- Button to Open "Create New Thread" Modal -->
-                <button type="button" onclick="openCreateThreadModal()">+ Create Thread</button>
+                <!-- Forum Categories -->
+                <div class="forum-categories">
+                    <h3>Categories</h3>
+                    <ul id="category-list">
+                        <li><button onclick="filterByCategory('General Discussions')">General Discussions</button></li>
+                        <li><button onclick="filterByCategory('Technical Support')">Technical Support</button></li>
+                        <li><button onclick="filterByCategory('Product/Service Feedback')">Product/Service Feedback</button></li>
+                        <li><button onclick="filterByCategory('How-to Guides')">How-to Guides</button></li>
+                        <li><button onclick="filterByCategory('Off-Topic')">Off-Topic</button></li>
+                    </ul>
+                </div>    
 
                 <!-- Modal for Creating New Thread -->
                 <div class="modal-overlay" id="createThreadModalOverlay" style="display: none;"></div>
@@ -183,24 +141,6 @@ if (isset($_GET['forum_id'])) {
                     <button type="button" onclick="closeModal()" class="cancel-btn">Close</button>
                 </div>
 
-                <!-- Forum Search -->
-                <div class="forum-search">
-                    <input type="text" id="search-input" placeholder="Search forum topics">
-                    <button onclick="searchTopics()">Search</button>
-                </div>
-
-                <!-- Forum Categories -->
-                <div class="forum-categories">
-                    <h3>Categories</h3>
-                    <ul id="category-list">
-                        <li><button onclick="filterByCategory('General Discussions')">General Discussions</button></li>
-                        <li><button onclick="filterByCategory('Technical Support')">Technical Support</button></li>
-                        <li><button onclick="filterByCategory('Product/Service Feedback')">Product/Service Feedback</button></li>
-                        <li><button onclick="filterByCategory('How-to Guides')">How-to Guides</button></li>
-                        <li><button onclick="filterByCategory('Off-Topic')">Off-Topic</button></li>
-                    </ul>
-                </div>
-
                 <!-- Forum Threads -->
                 <div class="forum-threads">
                     <h3>Recent Threads</h3>
@@ -229,8 +169,8 @@ if (isset($_GET['forum_id'])) {
                 </div>
             </div>
         </div>
-    </div>
-
-    <script src="Forum.js"></script>
+    </div>   <!--this is the </div> of container in the common file, don't remove it-->
+<script src="Forum.js"></script>
+<script src="../Common template/Calendar.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
     session_start(); 
-    require_once('../../config/config.php');
+    require_once('../../../config/config.php');
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
@@ -9,6 +9,12 @@
         header("Location: ../../../login/login.php");
         exit;
     }
+
+    $_SESSION['pR'] = NULL;
+    $_SESSION['nF'] = NULL;
+    $_SESSION['nPB'] = NULL;
+    $_SESSION['nRC'] = NULL;
+    $_SESSION['nRSP'] = NULL;
 
 ?>
 
@@ -31,7 +37,7 @@
                 </div>
                 <nav>
                     <ul>
-                        <li class="dropDown" id="dD1" ><a href="dashboard.php" target="Dashboard">&#9875 Dashboard</a></li>
+                        <li class="dropDown" id="dD1" ><a href="dashboard2.php" target="Dashboard">&#9875 Dashboard</a></li>
                         <li class="dropDown" id="dD2" ><a href="../Users/users.php" target="Dashboard">&#128113 Users</a></li>
                         <li class="dropDown" id="dD3" ><a href="../ManageEmployees/manEmp.php" target="Dashboard">&#9997 Manage Employees</a></li>
                         <li class="dropDown" id="dD4" ><a href="../Requests/requests.php" target="Dashboard"><span style="color:green">&#129159</span> Provider Requests</a></li>
@@ -51,7 +57,7 @@
                 </div>
                 <div class="frame">
                     <div id=frame>
-                        <iframe src="dashboard.php" name="Dashboard" title="Dashboard"></iframe>
+                        <iframe src="dashboard2.php" name="Dashboard" title="Dashboard"></iframe>
                     </div>
                     <!--<div class="right" id="arrow"></div>
                     <div id="content">

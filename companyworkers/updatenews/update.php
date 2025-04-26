@@ -17,136 +17,183 @@
   $title=$row['title'];
   $conntent=$row['content'];
 
-if(isset($_POST['submit'])){
-  $worker_id=$_POST['worker_id'];
-  $title=$_POST['title'];
-  $conntent=$_POST['content'];
+  if(isset($_POST['submit'])){
+    $worker_id=$_POST['worker_id'];
+    $title=$_POST['title'];
+    $conntent=$_POST['content'];
 
-  $sql="update `news` set worker_id='$worker_id', title='$title', 
-  content='$conntent' where news_id='$news_id'";
-  $result=mysqli_query($conn,$sql);
-  if ($result) {
-    echo '<script>
-        alert("News updated");
-        window.location.href = "updatedelete.php";
-    </script>';
-    exit;
-}
-
-  else{
-    echo '<script>alert("Nothing changed");</script>';
+    $sql="update `news` set worker_id='$worker_id', title='$title', 
+    content='$conntent' where news_id='$news_id'";
+    $result=mysqli_query($conn,$sql);
+    if ($result) {
+      echo '<script>
+          alert("News updated");
+          window.location.href = "updatedelete.php";
+      </script>';
+      exit;
+    } else {
+      echo '<script>alert("Nothing changed");</script>';
+    }
   }
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update News</title>
-  <link rel="stylesheet" href="updatenews.css?version=10">
-  <link rel="stylesheet" href="../sidebar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update News | EDSA Lanka Consultancy</title>
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <link rel="stylesheet" href="updatenews.css">
 </head>
-<div class="container">
+<body>
+    <!-- Sidebar Toggle Button (for mobile) -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        ☰
+    </button>
+    
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+    
     <!-- Sidebar -->
     <div class="sidebar">
-      <div class="logo">
-        <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-      </div>
+        <div class="logo">
+            <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
+            </div>
+            
+            <ul class="menu">
+                <li>
+                    <a href="../Dashboard/Dashboard.php">
+                        <button >
+                        <span class="menu-icon">📊</span>
+                            Dashboard
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a href="../servicerequest/servicerequest.php">
+                        <button >
+                        <span class="menu-icon">🔧</span>
+                            Service Requests
+                        </button>
+                    </a>
+                    </li>
+                <li>
+                    <a href="../acceptclient/acceptclient.php">
+                        <button >
+                        <span class="menu-icon">👥</span>
+                            Client Accept
+                        </button>
+                    </a>
+                </li>                <li>
+                    <a href="../contactforums/contactforum.php">
+                        <button >
+                        <span class="menu-icon">💬</span>
+                        Conact Forum
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a href="../updateknowlgebase/initial.php">
+                    <button >
+                    <span class="menu-icon">📚</span>
+                    Update Knowldgebase
+                    </button >
+                    </a>
+                </li>
+                <li><a href="../updatenews/initial.php">
+                    <button class="active">
+                    <span class="menu-icon">📰</span>
+                    Update News
+                    </button></a>
+                </li>
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">🛠️</span>
+                    Service Providers
+                    </button></a>
+                </li>
+            </ul>
+        </div>
 
-      <ul class="menu">
-        <li>
-          <a href="../dashboard/dashboard.php">
-            <button>
-              <img src="../images/dashboard.png" alt="Dashboard">
-              Dashboard
-            </button>
-          </a>
-        </li>
-        <li>
-        <a href="../servicerequest/servicerequest.php">
-        <button>
-              <img src="../images/service.jpg" alt="servicerequest">
-              Service Requests
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../contactforums/contactforum.html">
-            <button>
-              <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forms
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateevents/updateevents.php">
-            <button>
-              <img src="../images/events.jpg" alt="events">
-              Update Events
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateknowlgebase/initial.php">
-          <button>
-            <img src="../images/knowlegdebase.jpg" alt="knowldgedebase">
-            Update Knowledge Base
-          </button>
-          </a>  
-        </li>
-        <li>
-          <a href="../updatenews/initial.php">
-          <button>
-            <img src="../images/news.jpg" alt="News">
-            Update News
-          </button>
-          </a>
-        </li>
-      </ul>
-    </div>
-
+    <!-- Header -->
     <div class="main-wrapper">
-      <!-- Navbar -->
-      <div class="navbar">
-      <div class="controls card1">
-            <h1>Update</h1>
-        </div>
-        <div class="profile">
-          <p>Hi, <?php echo $username ?>!! 👋</p>
-          <a href="../SP_Profile/Profile.html">
-            <img src="../images/user.png" alt="Profile">
-          </a>
-        </div>
-        <a href="../../Login/Logout.php" class="logout">Logout</a>
-      </div>
-      <div class="main-container">
+            <!-- Navbar -->
+            <div class="navbar">
+                <div class="profile">
+                <a href="../myaccount/acc.php">
+                <img src="../images/user.png" alt="Profile">
+                    </a>
+                </div>
+                <a href="../../Login/Logout.php" class="logout">Logout</a>
+            </div>
+        
 
-      <div class="boxcontainer">
-        <form action="" method="POST">
-          <br>
-        <center><label for="title">Title:</label></center>
-        <center><input type="text" id="title" name="title" 
-                placeholder="Enter the title" required 
-                autocomplete="off" value="<?php echo $title; ?>">
-            <br><br><br>
-                <label for="content">Content:</label><br>
-                <textarea id="content" name="content" 
-                placeholder="Enter the Content" required
-                autocomplete="off"><?php echo $conntent; ?></textarea>
-            <br><br></center>
-                <label for="worker_id" style="margin-left: 7.5%;">Worker_ID:</label>
-                <input type="number" id="worker_id" name="worker_id" 
-                placeholder="Enter the worker id" required
-                autocomplete="off" value="<?php echo $worker_id; ?>">
-            <br><br><br>
-        <center><input type="submit"value="Update" name="submit" class="submit-button"></center>
-        </form>
+    <div class=".main-container">
+        <div class="space"></div>
+
+        <div class="controls card1">
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Update News</h2>
+                <p>Edit existing news article</p>
+            </div>
+                <div class="date-time" style="text-align:right;">
+                <div id="currentDate"></div>
+                <div id="currentTime"></div>
+            </div>
+        </div>
+        </div>
     </div>
 
-    <script src="dashboard.js"></script>
-    <script src="../sidebar.js"></script>
+    <!-- Main Content -->
+    <div class="main-content">
 
-    </body>
+        <!-- Form Content -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card" style="grid-column: span 2;">
+                <form action="" method="POST" class="news-form">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" 
+                               placeholder="Enter the title" required 
+                               value="<?php echo htmlspecialchars($title); ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" 
+                                placeholder="Enter the Content" required><?php echo htmlspecialchars($conntent); ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="worker_id"></label>
+                        <input type="hidden" id="worker_id" name="worker_id" 
+                               placeholder="Enter the worker id" required
+                               value="<?php echo htmlspecialchars($worker_id); ?>">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" name="submit" class="submit-button">Update News</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').style.display = 
+                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('active');
+            this.style.display = 'none';
+        });
+    </script>
+</body>
 </html>

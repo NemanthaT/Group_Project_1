@@ -1,25 +1,32 @@
 <?php
     include "../config/config.php"; //connect to database
+    header('Content-Type: application/json');
+
     session_start();
     if (!isset($_SESSION['email'])) {
         header("Location: ../Login/login.php"); // Redirect to login page if not logged in
         exit();
     }
 
-    $input = json_decode(file_get_contents("php://input"), true);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+        $id = intval($_POST['id']);
 
-    $project_id = $input['project_id'];
+        $query = "UPDATE bills SET status = 'paid' WHERE bill_id = '$id'";
+        $query2 = "UPDATE bills SET paid_on = NOW() WHERE bill_id = '$id'";
+        
+        $result = $conn->query($query);
+        $result2 = $conn->query($query2);
 
-    $query = "UPDATE projects SET status = 'Paid' WHERE project_id = '$project_id'";
-    $result = $conn->query($query);
+        if ($result && $result2) {
+            echo json_encode("Success");
 
-    if ($result) {
-        header("Location: http://localhost/Group_Project_1/payment/sample.php");
-        echo json_encode(array("status" => "success", "message" => "Payment status updated successfully."));
-        exit();
-    } else {
-        echo json_encode(array("status" => "error", "message" => "Failed to update payment status."));
+            exit();
+        } else {
+            echo json_encode("Error");
+        }
+
+        $conn->close();
     }
-    $conn->close();
-
+    echo json_encode("Invalid Request");
+    exit();
 ?>

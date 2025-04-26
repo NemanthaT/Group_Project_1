@@ -1,36 +1,20 @@
 <?php
-include '../connect.php';
+session_start();
+require_once '../../config/config.php';
 
-if (isset($_GET['delete_id'])) {
-    // Sanitize the input
-    $kb_id = intval($_GET['delete_id']); // Convert to integer to prevent SQL injection
+if (!isset($_SESSION['username'])) {
+    http_response_code(403);
+    exit('error');
+}
 
-    // Verify the ID is valid
-    if ($kb_id > 0) {
-        // Correct column name (replace `kb_id` with your actual column name)
-        $sql = "DELETE FROM `knowledgebase` WHERE kb_id = $kb_id";
-
-        // Debugging: Display the query (comment this out in production)
-        echo "Executing query: $sql";
-
-        // Execute the query
-        $result = mysqli_query($conn, $sql);
-
-        if ($result) {
-            // Redirect to the updatedelete.php page on success
-            echo "<script>
-                    alert('Deleted Successfully');
-                    window.location.href = 'updatedelete.php';
-                  </script>";
-            exit();
-        } else {
-            // Display the error message
-            echo "Error: " . mysqli_error($conn);
-        }
+if (isset($_POST['delete_id'])) {
+    $id = intval($_POST['delete_id']);
+    $sql = "DELETE FROM knowledgebase WHERE id = $id";
+    if (mysqli_query($conn, $sql)) {
+        echo 'success';
     } else {
-        echo "Invalid ID provided.";
+        echo 'error';
     }
 } else {
-    echo "No ID provided.";
+    echo 'error';
 }
-?>

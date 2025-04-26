@@ -64,18 +64,16 @@ window.onload = function() {
             console.log(data);
             if (data === "error") {
                 console.log("No data");
-                tableBody.innerHTML = '<tr><td colspan="5"><center>No results found</center></td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="3"><center>No results found</center></td></tr>';
             }
             else{
                 console.log("Data");
                 data.forEach(item => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
-                    <td>${item.worker_id}</td>
-                    <td>${item.username}</td>
                     <td>${item.full_name}</td>
-                    <td>${item.role}</td>
                     <td>${item.email}</td>
+                    <td>${item.role}</td>
                 `;
                 tableBody.appendChild(row);
                 });
@@ -87,7 +85,7 @@ window.onload = function() {
     });
 
     document.getElementById("fm").addEventListener("submit", function(e) {
-        e.preventDefault(); // prevent full page reload
+        //e.preventDefault(); // prevent full page reload
         var formData = new FormData(this);
  
         getError("addEmp.php", formData);      

@@ -1,54 +1,6 @@
 <?php
 session_start();
 require_once('../../config/config.php');
-
-define('JScript', 'Sign_Up.js');
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve and sanitize form data
-    $email = mysqli_real_escape_string($conn, $_POST['email-signup']);
-    $first_name = mysqli_real_escape_string($conn, $_POST['first-name']);
-    $last_name = mysqli_real_escape_string($conn, $_POST['last-name']);
-    $full_name = $first_name . ' ' . $last_name;
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $address = mysqli_real_escape_string($conn, $_POST['address']);
-    $created_at = date('Y-m-d H:i:s');
-    $password = rand(100000, 999999);
-
-    // Check for duplicate email
-    $check_query = "SELECT * FROM clients WHERE email = '$email'";
-    $check_result = mysqli_query($conn, $check_query);
-
-    if (mysqli_num_rows($check_result) > 0) {
-        $checkSum= 1;
-        $error_message = "Email is already registered.";
-        echo "<script>
-                document.addEventListener('DOMContentLoaded', () => {
-                    displayError();
-                });
-              </script>";
-    } else {
-        // Insert data into providerrequests table
-        $sql = "INSERT INTO clients (full_name, email, phone, address, password)
-                VALUES ('$full_name', '$email', '$phone', '$address', '$password')";
-
-        if (mysqli_query($conn, $sql)) {
-            echo "<script>
-                    alert('Registration successful!');
-                    window.location.href = '../../Home/Homepage/HP.html';
-                  </script>";
-            exit;
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-    }
-
-    //check for pending requests
-    $check_query = "SELECT * FROM providerrequests WHERE email = '$email'";
-    $check_result = mysqli_query($conn, $check_query);
-
-    mysqli_close($conn);
-}
 ?>
 
 <!DOCTYPE html>
@@ -57,31 +9,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy - Sign Up</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Sign_up.css">
     <script src="Sign_Up.js"></script>
 </head>
 <body>
     <div class="blurry-background"></div>
-    <main>
-
-        <div id="errorView">
+    <div id="errorView">
             <button id="closeError" onclick="closeError()">x</button>
             <center>                    
-                <?php
-                    if($checkSum){
-                        echo "<h2>Oops!</h2>
-                              <p class='error'>".$error_message."</p>";
-                        $checkSum=0;
-                    }
-                ?>       
-            </center>
-                    
-        </div>
-    
-
+                <h2 class="error-title"></h2>
+                <p class="error-message"></p>     
+            </center>            
+    </div>
+    <div id="overlay" class="overlay"></div>
+    <main>
         <div class="form-section" id="form-section">
             <div class="left">
+                <div class="left-content">
+                    <h2>Join as a Client</h2>
+                    <p>Find the right professional services for your needs.</p>
+                    
+                    <ul class="benefit-list">
+                        <li>Access to verified service providers</li>
+                        <li>Seamless booking experience</li>
+                        <li>Secure payment system</li>
+                        <li>Direct communication with professionals</li>
+                    </ul>
+                </div>
 
             </div>
             <div class="sign-up">
@@ -105,7 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="address"><b>Address</b></label>
                         <input type="text" id="address" name="address" placeholder="Enter your address" required>
 
-                        <center><button type="submit" id="submit-btn" class="sign-up-btn">Sign up</button></center>
+                        <center><button type="submit" id="submit-btn" class="sign-up-btn">Sign up</button><br>
+                                <a href="switch.php" class="back-link">Back to account selection</a>
+                        </center>
                     </div>
                 </form>
             </div>

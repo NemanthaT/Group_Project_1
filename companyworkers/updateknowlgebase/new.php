@@ -1,134 +1,220 @@
 <?php
-  session_start(); 
-  require_once '../../config/config.php';
+session_start();
+include '../../config/config.php';
 
-  $username = $_SESSION['username'];
-  $email = $_SESSION['email'];
+// Check if user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/login.php");
+    exit;
+}
 
-  if (!isset($_SESSION['username'])) { // if not logged in
-      header("Location: ../../Login/Login.php");
-      exit;
-  }
-if(isset($_POST['submit'])){
-  $worker_id=$_POST['worker_id'];
-  $title=$_POST['title'];
-  $conntent=$_POST['content'];
+// Get user details
+$username = $_SESSION['username'];
+$query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+$fullName = $user['full_name'] ?? 'User';
 
-  $sql="INSERT INTO `knowledgebase` (worker_id,title,content) VALUES ('$worker_id','$title','$conntent')";
-  $result=mysqli_query($conn,$sql);
-  if($result){
-    echo '<script>alert("knowldgebase updated");</script>';
-  }
-  else{
-    echo '<script>alert("Nothing changed");</script>';
-  }
+$email = $_SESSION['email'];
+
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/Login.php");
+    exit;
+}
+
+// Get the selected section from session
+$section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
+
+// Get worker_id of logged-in user (no stmt)
+$worker_id = null;
+$result_worker = mysqli_query($conn, "SELECT worker_id FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'");
+if ($row = mysqli_fetch_assoc($result_worker)) {
+    $worker_id = $row['worker_id'];
+}
+
+if (isset($_POST['submit'])) {
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $content = mysqli_real_escape_string($conn, $_POST['content']);
+    // Use $section and $worker_id
+    $sql = "INSERT INTO `knowledgebase` (worker_id, section, title, content) VALUES ('$worker_id', '$section', '$title', '$content')";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        echo '<script>alert("Knowledgebase updated");</script>';
+    } else {
+        echo '<script>alert("Nothing changed");</script>';
+    }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Knowledgebase</title>
-  <link rel="stylesheet" href="updateknowlgebase.css?version=9">
-  <link rel="stylesheet" href="../sidebar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Knowledge Base Entry | EDSA Lanka Consultancy</title>
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <link rel="stylesheet" href="updateknowlgebase.css">
 </head>
-<body>
-
-<div class="container">
+<bod>
+    <!-- Sidebar Toggle Button (for mobile) -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        ☰
+    </button>
+    
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+    
     <!-- Sidebar -->
     <div class="sidebar">
-      <div class="logo">
-        <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-      </div>
+        <div class="logo">
+            <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
+            </div>
+            
+            <ul class="menu">
+                <li>
+                    <a href="../Dashboard/Dashboard.php">
+                        <button >
+                        <span class="menu-icon">📊</span>
+                            Dashboard
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a href="../servicerequest/servicerequest.php">
+                        <button >
+                        <span class="menu-icon">🔧</span>
+                            Service Requests
+                        </button>
+                    </a>
+                    </li>
+                <li>
+                    <a href="../acceptclient/acceptclient.php">
+                        <button >
+                        <span class="menu-icon">👥</span>
+                            Client Accept
+                        </button>
+                    </a>
+                </li>                <li>
+                    <a href="../contactforums/contactforum.php">
+                        <button >
+                        <span class="menu-icon">💬</span>
+                        Conact Forum
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a href="../updateknowlgebase/initial.php">
+                    <button class="active">
+                    <span class="menu-icon">📚</span>
+                    Update Knowldgebase
+                    </button>
+                    </a>
+                </li>
+                <li><a href="../updatenews/initial.php">
+                    <button>
+                    <span class="menu-icon">📰</span>
+                    Update News
+                    </button></a>
+                </li>
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">🛠️</span>
+                    Service Providers
+                    </button></a>
+                </li>
+            </ul>
+        </div>
 
-      <ul class="menu">
-        <li>
-        <a href="../dashboard/dashboard.php">
-            <button>
-              <img src="../images/dashboard.png" alt="Dashboard">
-              Dashboard
-            </button>
-          </a>
-        </li>
-        <li>
-        <a href="../servicerequest/servicerequest.php">
-        <button>
-              <img src="../images/service.jpg" alt="servicerequest">
-              Service Requests
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../contactforums/contactforum.html">
-            <button>
-              <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forms
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateevents/updateevents.php">
-            <button>
-              <img src="../images/events.jpg" alt="events">
-              Update Events
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateknowlgebase/initial.php">
-          <button>
-            <img src="../images/knowlegdebase.jpg" alt="knowldgedebase">
-            Update Knowledge Base
-          </button>
-          </a>  
-        </li>
-        <li>
-          <a href="../updatenews/initial.php">
-          <button>
-            <img src="../images/news.jpg" alt="News">
-            Update News
-          </button>
-          </a>
-        </li>
-      </ul>
-    </div>
-
+    <!-- Header -->
     <div class="main-wrapper">
-      <!-- Navbar -->
-      <div class="navbar">
-      <div class="controls card1">
-            <h1>Add New</h1>
+            <!-- Navbar -->
+            <div class="navbar">
+                <div class="profile">
+                <a href="../myaccount/acc.php">
+                <img src="../images/user.png" alt="Profile">
+                    </a>
+                </div>
+                <a href="../../Login/Logout.php" class="logout">Logout</a>
+            </div>
+        
+
+    <div class=".main-container">
+        <div class="space"></div>
+
+        <div class="controls card1">
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Add New Knowledge Base Entry</h2>
+                <p>Create a new entry in the knowledge base</p>
+            </div>
+                <div class="date-time" style="text-align:right;">
+                <div id="currentDate"></div>
+                <div id="currentTime"></div>
+            </div>
         </div>
-        <div class="profile">
-          <p>Hi, <?php echo $username ?>!! 👋</p>
-          <a href="../SP_Profile/Profile.html">
-            <img src="../images/user.png" alt="Profile">
-          </a>
         </div>
-        <a href="../../Login/Logout.php" class="logout">Logout</a>
-      </div>
-      <div class="main-container">
-    
-    <div class="boxcontainer">
-        <form action="" method="POST">
-          <br>
-        <center><label for="title">Title:</label></center>
-        <center><input type="text" id="title" name="title" placeholder="Enter the title" required>
-            <br><br><br>
-            <label for="content">Content:</label><br>
-            <textarea id="content" name="content" placeholder="Enter the Content" required></textarea>
-            <br><br></center>
-            <label for="worker_id" style="margin-left: 7.5%;">Worker ID:</label>
-            <input type="number" id="worker_id" name="worker_id" placeholder="Enter the worker id" required>
-            <br><br><br>
-          <center><input type="submit"value="submit" name="submit" class="submit-button"></center>
-        </form>
     </div>
 
-    <script src="dashboard.js"></script>
-    <script src="../sidebar.js"></script>
+    <!-- Main Content -->
+    <div class="main-content">
 
-    </body>
+        <!-- Form Card -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card" style="grid-column: span 2;">
+                <form action="" method="POST" class="knowledge-form">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <select id="title" name="title" required>
+                            <option value="">Select a title</option>
+                            <option value="development finance">Development Finance</option>
+                            <option value="micro finance">Micro Finance</option>
+                            <option value="organizational development">Organizational Development</option>
+                            <option value="sme development">SME Development</option>
+                            <option value="gender finance">Gender Finance</option>
+                            <option value="institutional development">Institutional Development</option>
+                            <option value="community development">Community Development</option>
+                            <option value="strategic and operational planning">Strategic and Operational Planning</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" placeholder="Enter the content" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="worker_id"></label>
+                        <input type="hidden" id="worker_id" name="worker_id" value="<?php echo htmlspecialchars($worker_id); ?>" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="section">Section</label>
+                        <input type="text" id="section" name="section" value="<?php echo htmlspecialchars($section); ?>" readonly>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" name="submit" class="submit-button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').style.display = 
+                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('active');
+            this.style.display = 'none';
+        });
+    </script>
+</body>
 </html>

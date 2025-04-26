@@ -1,5 +1,5 @@
 <?php
-    require_once('../../config/config.php');
+    require_once('../../../config/config.php');
     header('Content-Type: application/json');
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,5 +23,11 @@
             $data = ['noticeType' => $noticeType, 'error_message' => $error_message];
             echo json_encode($data);
         }
+    }
+    else {
+        $noticeType = "error";
+        $error_message = "Error: Method is wrong!";
+        $data = ['noticeType' => $noticeType, 'error_message' => $error_message];
+        echo json_encode($data);
     }
 ?>

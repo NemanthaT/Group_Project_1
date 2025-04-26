@@ -1,0 +1,509 @@
+/* Root variables */
+:root {
+    --primary-color: #2563eb;
+    --sidebar-bg: #1e293b;
+    --sidebar-text: #f8fafc;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 280px;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.logo-text {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* User Area Styles */
+.notification {
+    position: relative;
+    font-size: 1.2rem;
+}
+
+.notification-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    height: 18px;
+    width: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #64748b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.logout-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* Main Content */
+.main {
+    margin-left: 10px;
+    padding: 30px;
+}
+
+/* Welcome Card Styles */
+
+/* Metrics Section */
+.section-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #1f2937;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.metric-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.metric-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    font-size: 24px;
+}
+
+.service-icon {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+}
+
+.forums-icon {
+    background-color: #d1fae5;
+    color: #10b981;
+}
+
+.news-icon {
+    background-color: #dbeafe;
+    color: #3b82f6;
+}
+
+.metric-info {
+    flex: 1;
+}
+
+.metric-info h3 {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.metric-info .count {
+    font-size: 32px;
+    font-weight: bold;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.percent {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 2px 8px;
+    border-radius: 24px;
+}
+
+.up {
+    color: #10b981;
+    background-color: #d1fae5;
+}
+
+.metric-info .period {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+/* Calendar & Recent Activity */
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 24px;
+}
+
+.calendar-container {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-table th {
+    font-weight: normal;
+    color: #6b7280;
+    padding: 8px;
+    text-align: center;
+}
+
+.calendar-table td {
+    padding: 8px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calendar-table td:hover {
+    background-color: #f3f4f6;
+}
+
+.calendar-table td.today {
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+}
+
+.activity-container {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.activity-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.service-request-icon {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+}
+
+.contact-forum-icon {
+    background-color: #d1fae5;
+    color: #10b981;
+}
+
+.news-update-icon {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.activity-info h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.activity-time {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* Client Section */
+.client-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 24px;
+}
+
+.client-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.filter-container {
+    display: flex;
+    gap: 16px;
+}
+
+.filter-select, .search-input {
+    padding: 8px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f8fafc;
+}
+
+.search-input {
+    width: 280px;
+}
+
+.client-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.client-card {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.client-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.client-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #1f2937;
+}
+
+.client-info p {
+    margin: 8px 0;
+    color: #6b7280;
+}
+
+.client-info strong {
+    color: #1f2937;
+}
+
+/* Modal */
+.modal-bg {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-bg.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.modal-content h3 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: #1f2937;
+}
+
+.modal-details {
+    margin-bottom: 24px;
+}
+
+.modal-details p {
+    margin: 12px 0;
+    color: #6b7280;
+}
+
+.modal-details strong {
+    color: #1f2937;
+    margin-right: 8px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+.btn-secondary:hover {
+    background-color: #e5e7eb;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    header {
+        left: 240px;
+    }
+    
+    .main {
+        margin-left: 240px;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .client-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        left: 0;
+        width: 100%;
+    }
+    
+    .main {
+        margin-left: 0;
+    }
+    
+    .metrics-grid,
+    .client-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .welcome-card {
+        padding: 20px;
+    }
+    
+    .filter-container {
+        flex-direction: column;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+}

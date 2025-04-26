@@ -20,6 +20,13 @@ function formatDate(date) {
     return `${year}-${month}-${day}`;
 }
 
+// Add this new function to your existing script
+function openViewPopup(){
+    console.log('Opening View Popup');
+    openPopup('viewAppointmentOverlay');
+}
+
+
 
 function openUpdatePopup(appointmentId, serviceSelect, appointmentDate, additionalMessage) {
     console.log('Opening Update Popup');
@@ -34,6 +41,19 @@ function openUpdatePopup(appointmentId, serviceSelect, appointmentDate, addition
     document.getElementById('editAdditionalMessage').value = additionalMessage || ''; 
 
     openPopup('EditAppointmentOverlay'); 
+}
+
+function openViewPopup(appointmentId, serviceSelect, appointmentDate, additionalMessage) {
+    console.log('Opening View Popup');
+    console.log('Appointment ID:', appointmentId);
+    console.log('Service:', serviceSelect);
+    console.log('Date:', appointmentDate);
+    console.log('Message:', additionalMessage);
+
+    document.getElementById('viewAppointmentId').value = appointmentId || ''; 
+    document.getElementById('viewAppointmentDate').value = formatDate(appointmentDate) || '';  
+
+    openPopup('viewAppointmentOverlay'); 
 }
 
 

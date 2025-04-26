@@ -1,21 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  min-height: 100vh;
-}
-
-/* Container Layout */
-.container {
-  display: flex;
-  width: 100%;
-}
-
 /* Sidebar Styles */
 .sidebar {
   background-color: white;
@@ -75,6 +57,156 @@ body {
   height: 4vh;
   object-fit: contain;
   margin-right: 1vh;
+}
+
+
+/* Toggle Button for Mobile */
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
+  z-index: 300;
+}
+
+.welcome-banner {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.welcome-text h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+/* Header */
+header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 280px;
+  border-bottom: 1px solid #e2e8f0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+}
+
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.notification {
+  position: relative;
+  font-size: 1.2rem;
+}
+
+.notification-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  height: 18px;
+  width: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logout-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+
+.main-wrapper {
+  width: 80vw;
+  margin-left: 20vw;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.main-container {
+  max-width: 95%;
+  margin: 12vh;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+}
+.space{
+  background-color: #f4f4f4;
+  width: 100%;
+  padding: 5.5vh ;
+  height: 100%;
+  display: flex;
+}
+.controls {
+  width: 95%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-content: center;
+  background-color: #fff;
+  margin: 10px auto;
+  border-radius: 8px;
+  
+}
+
+.card1 {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  background-image: url("../images/sunset.jpg") ;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Navbar Styles */
@@ -137,360 +269,4 @@ body {
 .logout {
   background-color: #18A0FB;
   color: white !important;
-}
-
-/* Main Content Area */
-.main-wrapper {
-  width: 80vw;
-  margin-left: 20vw;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.main-container {
-  max-width: 100%;
-  margin: 5vh;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  align-items: center;
-  justify-content: center;
-  margin-top: 15vh;
-}
-
-
-.card {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 16px;
-  margin: 16px;
-  width: 500px;
-  background-color: #fff;
-}
-
-.card p{
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-  color: #000000;
-}
-.card img {
-  width: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.card h3 {
-  margin: 0 0 8px;
-}
-.card p {
-  margin: 0 0 16px;
-}
-.card a {
-  text-decoration: none;
-}
-.card a:hover {
-  text-decoration: underline;
-}
-
-.card-container {
-  display: flex;
-}
-
-
-.container textarea {
-  width: 80%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  height: 300px;
-}
-
-.middle textarea{
-  width: 80%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  height: 200px;
-}
-
-.submit-button {
-  font-size: 18px;        /* Increase the font size */
-  color: white;           /* Text color */
-  background-color: blue; /* Background color */
-  padding: 10px 20px;     /* Add padding for a larger button */
-  border: none;           /* Remove default borders */
-  border-radius: 5px;     /* Rounded corners */
-  cursor: pointer;        /* Add a pointer cursor on hover */
-  transition: 0.3s ease;  /* Smooth transition for hover effect */
-}
-
-.submit-button:hover {
-  background-color: darkblue; /* Change color on hover */
-}
-#worker_id {
-  font-size: 100%;      /* Increase font size */
-  padding: 10px;        /* Add padding inside the input */
-  width: 20%;         /* Set the width of the input box */
-  border: 1px solid #ccc; /* Optional: Customize border */
-  border-radius: 5px;   /* Optional: Add rounded corners */
-   /* Add some margin to the left of the input */
-}
-
-#title{
-  font-size: 100%;
-  padding: 10px;
-  width: 50%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-
-}
-
-
-.scrollable-panel {
-  width: 250px;
-  height: 160px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow-y: auto; /* Enable vertical scrolling */
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-/* Links styled as items */
-.scrollable-panel a {
-  display: block; /* Makes the links block-level */
-  text-decoration: none; /* Removes underline */
-  color: #333; /* Default text color */
-  padding: 10px;
-  margin: 5px 0;
-  background-color: #f9f9f9;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-/* Hover effect for better UX */
-.scrollable-panel a:hover {
-  background-color: #007bff;
-  color: #fff; /* Change text color on hover */
-}
-
-
-.table-container {
-  max-height: 800px; /* Limit the table height */
-  overflow-y: auto; /* Add vertical scrolling */
-  border: 1px solid #ddd; /* Optional: border for container clarity */
-  margin-top: 50px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-  width: 1200px;
-  align-items: center;
-  justify-content: center;
-  justify-items: center;
-  margin-left: 80px;
-}
-
-/* Table Styling */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0; /* Explicitly set to avoid unexpected gaps */
-  font-size: 18px;
-  text-align: left;
-}
-
-
-.table thead th {
-  background-color: #f0f0f0;
-  color: rgb(0, 0, 0); /* Header text color */
-  padding: 10px; /* Padding in header cells */
-  border: 1px solid #ddd; /* Border around header cells */
-  text-align: center; /* Center-align header text */
-}
-
-.table tbody tr:nth-child(odd) {
-  background-color: #ffffff; /* Light background for odd rows */
-}
-
-.table tbody tr:nth-child(even) {
-  background-color: #ffffff; /* White background for even rows */
-}
-
-.table tbody tr:hover {
-  background-color: #f1f1f1; /* Highlight row on hover */
-  cursor: pointer; /* Change cursor to pointer */
-}
-
-.table td, .table th {
-  padding: 10px; /* Padding for all cells */
-  border: 1px solid #ddd; /* Add border to all cells */
-  text-align: center; /* Center content horizontally */
-  vertical-align: middle; /* Center content vertically */
-}
-
-/* Button Styling */
-.table td button {
-  background-color: transparent; /* Remove default background */
-  border: none; /* Remove border */
-  margin: 0 5px; /* Space between buttons */
-}
-
-.table td button a {
-  display: inline-block;
-  padding: 8px 15px; /* Add padding inside links */
-  text-decoration: none; /* Remove underline */
-  color: white; /* Button text color */
-  font-weight: bold; /* Bold text */
-  border-radius: 5px; /* Rounded corners */
-  transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
-}
-
-/* Update Button */
-.table td button a[href*="update.php"] {
-  background-color: #63c2d7
-}
-
-/* Delete Button */
-.table td button a[href*="delete.php"] {
-  background-color: #dc3545; /* Red background */
-}
-
-/* Hover Effects for Buttons */
-.table td button a:hover {
-  background-color: #007bff; /* Blue on hover */
-  color: white; /* White text on hover */
-  transform: scale(1.05); /* Slight enlargement on hover */
-}
-
-/* Ensure the label covers the entire cell */
-.checkbox-label {
-  display: block;
-  cursor: pointer;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-/* Hide the actual checkbox */
-.hidden-checkbox {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Custom checkbox appearance */
-.custom-checkbox {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
-  margin: 0 auto; /* Center the checkbox */
-  transition: all 0.3s ease-in-out;
-}
-
-/* Checkbox checked state */
-.hidden-checkbox:checked + .custom-checkbox {
-  background-color: #1dd2fb;
-  border-color: #1dd2fb;
-  box-shadow: 0 0 5px #1dd2fb;
-}
-
-.icon{
-  width: auto;
-  height: 200px;
-  object-fit: contain;
-  margin-right: 1vh;
-}
-
-.icon1{
-  width: auto;
-  height: 150px;
-  object-fit: contain;
-  margin-right: 1vh;
-}
-
-p{
-  font-size: 1.6rem;
-  margin-bottom: 5px;
-  color: #000000;
-}
-
-.updelete{
-  display: flex;
-  justify-content: space-between;
-  gap:20px;
-  margin-bottom:50px;
-}
-
-.glass-effect {
-  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
-  border: 1px solid rgb(255, 255, 255); /* Subtle border */
-  backdrop-filter: blur(10px); /* Adds the blur effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  padding: 20px; /* Add some padding inside */
-  display: flex;
-}
-
-
-.boxes{ 
-  display: flex;
-  flex-direction: row;
-  gap: 150px; /* Space out the boxes */
-  align-items: center; /* Center the boxes vertically */
-  justify-items: center;
-  margin-left: 100px;
-  margin-bottom: 175px;
-
-}
-
-.new{
-  width: 500px;
-  background-color: #ffffff;    
-  height: 300px;
-  margin-left: 10%;
-  margin-right: 50%;
-  margin-top: 200px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  border-style: solid;
-  border-color: #ffffff;
-  justify-items: center;
-  align-items: center;
-  font-style: normal;
-  font-size: 20px;
-}
-
-
-.controls {
-  width: 40%;
-  height: 55px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  margin: auto;
-  border-radius: 8px; 
-}
-
-.card1 {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  color: #000000;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-size: 18px;
-  border-radius: 10px;
 }

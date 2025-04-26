@@ -2,7 +2,7 @@
         
 session_start();
 
-include '../config/config.php'; //connect to database
+require_once ('../config/config.php'); //connect to database
 
 if (isset($_POST['submit'])) { //check if form was submitted
 
@@ -11,17 +11,17 @@ if (isset($_POST['submit'])) { //check if form was submitted
 
     // Define the queries for each user type
     $queries = [
-        'admin' => "SELECT * FROM admins WHERE email='$Email'",
-        'companyworker' => "SELECT * FROM companyworkers WHERE email='$Email'",
-        'client' => "SELECT * FROM clients WHERE email='$Email'",
-        'serviceprovider' => "SELECT * FROM serviceproviders WHERE email='$Email'"
+        'admins' => "SELECT * FROM admins WHERE email='$Email'",
+        'companyworkers' => "SELECT * FROM companyworkers WHERE email='$Email' AND status='set'",
+        'clients' => "SELECT * FROM clients WHERE email='$Email' AND status='set'",
+        'serviceproviders' => "SELECT * FROM serviceproviders WHERE email='$Email' AND status='set'"
     ];
 
     $redirects = [
-        'admin' => '../Admin/admin/dashboard/admin.php',
-        'companyworker' => '../companyworkers/dashboard/dashboard.php',
-        'client' => '../user1/user/Dashboard/Dashboard.php',
-        'serviceprovider' => '../Service-Provider/SP_Dashboard/SPDash.php'
+        'admins' => '../Admin/admin/dashboard/admin.php',
+        'companyworkers' => '../companyworkers/dashboard/dashboard.php',
+        'clients' => '../user1/user/Dashboard/Dashboard.php',
+        'serviceproviders' => '../Service-Provider/SP_Dashboard/SPDash.php'
     ];
 
     $userType = null;
@@ -48,6 +48,11 @@ if (isset($_POST['submit'])) { //check if form was submitted
     if ($userType && $userData) {
         $_SESSION['username'] = $userData['username'];
         $_SESSION['email'] = $userData['email'];
+        $_SESSION['userType'] = $userType; // Store user type in session
+        // Update last login
+        $email = $userData['email'];
+        $updateQuery = "UPDATE $userType SET last_login = NOW() WHERE email = '$email'";
+        mysqli_query($conn, $updateQuery);
 
         header("Location: " . $redirects[$userType]);
         exit;

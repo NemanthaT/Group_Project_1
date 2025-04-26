@@ -9,9 +9,10 @@
 /* Navbar */
 .navbar {
     font-size: 1.3rem;
-    font-weight: bold;
+    font-weight: lighter;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgb(0, 0, 0);
+    background-image: linear-gradient(to right, rgb(0, 0, 0), rgb(43, 43, 43), rgb(54, 54, 54), rgb(54, 54, 54), rgb(43, 43, 43),  rgb(0, 0, 0));
     color: #18A0FB;
     /*box-shadow: 0 0 2px black;*/
     z-index: 1;
@@ -20,28 +21,29 @@
 
 .Hcontainer {
     /*max-width: 1200px;*/
-    width: 70%;
+    width: 90%;
+    height: 7vh;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .Hcontainer a{
     color: #18A0FB;
+    height: 100%;
     text-decoration: none;
-    
     padding: 0.8vh 1.5vw;  /* Reduced padding to reduce gap between links */
-    margin-left: 1.5vw;  /* Optional: Adds space between links */
-    border-radius: 1vh;
+    /*margin-left: 1.5vw;  /* Optional: Adds space between links */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .Hcontainer a:hover {
-    background-color: rgb(215, 236, 255);
+    background-color: rgb(71, 71, 71);
 }
 
 /* Logo */
@@ -61,11 +63,24 @@
 }
 
 .header_item a {
-    padding: 5px 10px;
-    border-radius: 7px;
+    padding: 100% 0;
+    width: 200px;
     color: #ffffff;
     font-size: 1.25rem;
     text-decoration: none;
+}
+
+.logout {
+    background-color: #18A0FB;
+    color: white !important;
+    border-radius: 20px !important;
+    height: 50% !important;
+    padding: 5px 30px !important;
+}
+
+.logout:hover{
+    background-color:#006ab1 !important;
+    color: white !important;
 }
 
 /* Menu Toggle Button */
@@ -89,7 +104,7 @@ li.Login a, li.Register a {
 }
 
 .header_item a:hover {
-    background-color: rgb(215, 236, 255);
+    background-color: rgb(71, 71, 71);
     color: #18A0FB;
 }
 
@@ -361,17 +376,9 @@ section {
     align-items: center;
 }
 
-.bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
 
 .text-content {
+    background-color: #ffffff;
     position: relative;
     z-index: 1;
     color: white;
@@ -408,7 +415,7 @@ p {
 
 
 .box {
-    
+    background-color: #ffffff;
     box-shadow: 4px 4px 4px 4px rgba(128, 128, 128, 0.5);
     box-sizing: border-box;
     border-radius: 10px;
@@ -513,16 +520,7 @@ p {
     z-index: 0;
 }
 
-.logout{
-    padding: 3px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
 
-.logout:hover{
-    background-color:#18A0FB;
-    color: white;
-}
 
 /* Style all font awesome icons */
 .fa {
@@ -561,3 +559,48 @@ p {
   .logo1{
     width: 225px;
   }
+
+  .frame {
+    width: 100%;
+    height: 92.5vh;
+    display: flex;
+}
+
+#frame{
+    width: 100%;
+    height: 92.5vh;
+}
+
+iframe {
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#upper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh; /* optional: gives full screen height */
+    overflow: hidden;
+}
+
+#upper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+#upper #text {
+    position: relative;
+    color: white;
+    text-align: left;
+    padding: 0;
+    z-index: 1;
+}

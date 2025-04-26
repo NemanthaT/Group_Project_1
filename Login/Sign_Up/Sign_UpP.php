@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_result = mysqli_query($conn, $check_query);
 
     if (mysqli_num_rows($check_result) > 0) {
-        $checkSum= 1;
+        $checkSum = 1;
         $error_message = "Email is already registered.";
         echo "<script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (mysqli_query($conn, $sql)) {
             echo "<script>
                     alert('Registration successful!\\nPlease wait for our confirmation email with further instructions.');
-                    window.location.href = '../../Home/Homepage/HP.html';
+                    window.location.href = '../../Home/Homepage/HP.php';
                   </script>";
             exit;
         } else {
@@ -48,38 +48,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy - Sign Up</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Sign_up.css">
     <script src="Sign_Up.js"></script>
 </head>
+
 <body>
     <div class="blurry-background"></div>
     <main>
         <div id="errorView">
             <button id="closeError" onclick="closeError()">x</button>
-            <center>                    
+            <center>
                 <?php
-                    if($checkSum){
-                        echo "<h2>Oops!</h2>
-                              <p class='error'>".$error_message."</p>";
-                        $checkSum=0;
-                    }
-                ?>       
+                if ($checkSum) {
+                    echo "<h2>Oops!</h2>
+                              <p class='error'>" . $error_message . "</p>";
+                    $checkSum = 0;
+                }
+                ?>
             </center>
-                    
+
         </div>
-        
+
         <div class="form-section">
             <div class="left">
+                <div class="left-content">
+                    <h2>Join as a Service Provider</h2>
+                    <p>Grow your business by connecting with clients who need your expertise.</p>
 
+                    <ul class="benefit-list">
+                        <li>Access to thousands of potential clients</li>
+                        <li>Easy appointment scheduling and management</li>
+                        <li>Secure and timely payments</li>
+                        <li>Direct communication with your clients</li>
+                        <li>Business profile showcasing your services</li>
+                        <li>Performance ratings and reviews</li>
+                    </ul>
+                </div>
             </div>
             <div class="sign-up">
                 <h1>Welcome to EDSA Lanka Consultancy</h1>
-                <form id="signup-form" method="post" action="">
+                <form id="signup-form2" method="post" action="">
                     <!-- Step 1 -->
                     <div id="step-1">
                         <label for="first-name"><b>First Name</b></label>
@@ -98,6 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="text" id="address" name="address" placeholder="Enter your address" required>
 
                         <button type="button" id="next-btn" class="sign-up-btn">Next</button>
+                        <a href="switch.php" class="back-link">Back to account selection</a>
                     </div>
 
                     <!-- Step 2 -->
@@ -145,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <input type="checkbox" name="specialized-fields[]" value="Organizational Development"> Organizational Development
                                 </label>
                             </div>
-                        </div> 
+                        </div>
 
                         <label for="qualifications"><b>Qualifications</b></label>
                         <input type="text" id="qualifications" name="qualifications" placeholder="Enter your qualifications">
@@ -180,4 +194,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
     </script>
 </body>
+
 </html>

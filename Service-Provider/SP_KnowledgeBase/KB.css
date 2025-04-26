@@ -1,534 +1,324 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    overflow-x: hidden;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    min-height: 100vh;
-}
-
-.container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-}
-
-.sidebar {
-    background-color: white;
-    width: 220px; 
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    height: 100vh;
-    z-index: 10;
-    overflow-y: auto; /* Keep vertical scrolling */
-    overflow-x: hidden; /* Remove horizontal scrollbar */
-}
-
-
-.sidebar .logo img {
-    width: 100%;
-    max-width: 180px; /* Adjusted for smaller sidebar */
-    margin-bottom: 25px;
-}
-
-.menu {
-    list-style: none;
-    width: 100%;
-}
-
-.menu li {
-    margin-bottom: 12px;
-}
-
-.menu a {
-    text-decoration: none;
-}
-
-.menu button {
-    display: flex;
-    align-items: center;
-    font-size: 14px; /* Slightly reduced */
-    font-weight: bold;
-    width: 100%;
-    padding: 8px;
-    color: #333;
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    border-radius: 5px;
-    gap: 8px;
-}
-
-.menu img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-}
-
-.menu button:hover {
-    transform: scale(1.05);
-    background-color: #18A0FB;
-    color: white;
-}
-
-.navbar {
-    background-color: white;
-    color: #18A0FB;
-    padding: 10px 25px;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 220px; /* Adjusted for smaller sidebar */
-    z-index: 5;
-    display: flex;
-    justify-content: flex-end; /* Keep items on the right */
-    align-items: center;
-    gap: 20px; /* Add even spacing between all navbar items */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    height: 50px;
-}
-
-/* Reset margins for all direct children of navbar */
-.navbar > * {
-    margin: 0;
-}
-
-.navbar a {
-    color: #18A0FB;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 6px 6px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 0; /* Remove the left margin */
-}
-
-.navbar a img {
-    width: 24px;
-    height: 24px;
-    transition: background-color 0.3s;
-}
-
-/* Calendar styles */
-.calendar-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 300px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 16px;
-    z-index: 1000;
-}
-
-.calendar-dropdown h3 {
-    margin: 0 0 16px 0;
-    font-size: 18px;
-    color: #333;
-}
-
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.calendar-header button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #18A0FB;
-}
-
-#currentMonth {
-    font-weight: 500;
-    font-size: 16px;
-}
-
-.weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-.days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-}
-
-.days div {
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    position: relative;
-}
-
-.days div:hover {
-    background-color: #f0f0f0;
-}
-
-.days div.today {
-    background-color: #18A0FB;
-    color: white;
-}
-
-.days div.has-event::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    background-color: #18A0FB;
-    border-radius: 50%;
-}
-
-.calendar-footer {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #eee;
-    text-align: center;
-}
-
-.calendar-link {
-    color: #18A0FB;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.calendar-link:hover {
-    text-decoration: underline;
-}
-
-.dot {
-    color: #18A0FB;
-    margin: 0 8px;
-}
-
-.logout:hover {
-    background-color: rgb(215, 236, 255);
-}
-/* Main content styling */
-.main-content {
-    margin-left: 220px; 
-    padding: 60px 5px; 
-    background-color: #ecf0f4;
-    height: 100vh; /* Full viewport height */
-    width: 100%; /* Calculate width based on sidebar */
-    box-sizing: border-box;
-    overflow: flex; 
-}
-
-/* Main Content: Case Studies Section */
-.main-content h2 {
-    font-size: 4vh;
-    margin-bottom: 3vh;
-    color: black;
-    text-align: center;
-}
-
 .KB-section {
-    margin: auto;
-    max-width: 100%;
-    padding: 12px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Ensure it spans the full width of the main content */
-    height: calc(100vh - 70px); /* Subtract the top padding of main-content */
-    display: flex;
-    flex-direction: column;
+    margin: 0 auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* Form for Adding Case Studies */
-.case-study-form {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 1vh;
-    padding: 2vh;
+.KB-section h2 {
+    font-size: 2.8vh; 
+    font-weight: 700;
     margin-bottom: 2vh;
-}
-
-.case-study-form h3 {
-    font-size: 3vh;
-    margin-bottom: 2vh;
-    color: #333;
-}
-
-.case-study-form label {
-    display: block;
-    font-size: 2.5vh;
-    margin-bottom: 1vh;
-    color: black;
-}
-
-.case-study-form input,
-.case-study-form textarea {
-    width: 100%;
-    padding: 1vh;
-    font-size: 2.2vh;
-    border: 1px solid #ccc;
-    border-radius: 1vh;
-    margin-bottom: 2vh;
-}
-
-.case-study-form button {
-    background-color: #18A0FB;
-    color: white;
-    font-size: 2.5vh;
-    padding: 1vh 2vw;
-    border: none;
-    border-radius: 1vh;
-    cursor: pointer;
-}
-
-.case-study-form button:hover {
-    background-color: #145f9e;
-}
-
-/* Actions Section */
-.case-study-actions {
-    margin-bottom: 3vh;
+    color: #2d3748;
     text-align: center;
-}
-
-.case-study-actions h3 {
-    font-size: 3vh;
-    margin-bottom: 2vh;
-}
-
-.case-study-actions .view-btn {
-    background-color: #18A0FB;
-    color: white;
-    font-size: 2.5vh;
-    padding: 1vh 3vw;
-    border: none;
-    border-radius: 1vh;
-    cursor: pointer;
-}
-
-.case-study-actions .view-btn:hover {
-    background-color: #145f9e;
-}
-
-/* Published Case Studies Section */
-.published-case-studies h3 {
-    font-size: 3vh;
-    margin-bottom: 2vh;
-    color: #333;
-}
-
-.search-bar input[type="text"],
-.search-bar button {
-    padding: 8px 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.search-bar button{
-    background-color: #18A0FB;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.search-bar button:hover {
-    background-color: #145f9e;
-}
-
-.published-case-studies-container{
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 1vh;
-    padding: 2vh;
-    max-height: 400px; /* Set a fixed height */
-    overflow-y: auto; /* Add vertical scrollbar when content overflows */
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    letter-spacing: 0.5px;
+    position: relative;
   }
 
+/*------------------ KB.php ----------------------*/
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+  
+.filter-group select,
+.filter-group input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 14px; 
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1.8vh; 
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+  
+.filter-group select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%234b5563%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+}
+  
+.filter-group select:focus,
+.filter-group input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+    outline: none;
+}
+  
+.search-group input {
+    width: 400px;
+    max-width: 100%;
+}
+
+.search-button {
+    padding: 10px 15px; 
+    background-color: #18A0FB;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.8vh; 
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+  
+.search-button:hover {
+    background-color: #0c8de4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
+}
+  
+.clear-button {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    padding: 10px 15px; 
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 1.8vh; 
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+  
+.clear-button:hover {
+    background-color: #4b5563;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3);
+}
+  
+.clear-button:active {
+    transform: translateY(0);
+}  
+
+.published-case-studies-container {
+    background: linear-gradient(to bottom, #ffffff, #f9fafb);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2vh;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.published-case-studies-container:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
 .case-study-card {
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 1vh;
-    padding: 1vh;
-    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1.5vh;
+    margin-bottom: 1vh;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.case-study-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e0;
 }
 
 .case-study-card h4 {
-    font-size: 2.5vh;
-    margin-bottom: 1vh;
-    color: black;
-}
-
-.case-study-card p {
-    font-size: 2.2vh;
-    margin-bottom: 2vh;
-    color: #555;
+    font-size: 2vh;
+    font-weight: 600;
+    margin-bottom: 0.8vh;
+    color: #1e293b;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.6vh;
 }
 
 .case-study-buttons {
     display: flex;
-    gap: 1vw;
+    gap: 10px;
+    justify-content: flex-end;
 }
 
-.case-study-buttons button {
+.case-study-buttons button,
+.case-study-buttons .view-btn {
     color: white;
-    font-size: 2.2vh;
-    padding: 0.8vh 2vw;
+    font-size: 1.8vh;
+    font-weight: 500;
+    padding: 0.6vh 1.5vw;
     border: none;
-    border-radius: 1vh;
+    border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .delete-btn {
-    background-color: red; /* Red for Delete */
+    background-color: #ef4444;
 }
 
 .delete-btn:hover {
-    background-color: #c82333;
+    background-color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
 }
 
 .view-btn {
-    background-color: #18A0FB; /* Blue for View */
-    color: white;
-    font-size: 2.2vh;
-    padding: 0.8vh 2vw;
-    border: none;
-    border-radius: 1vh;
-    cursor: pointer;
-    text-decoration: none;
+    background-color: #3b82f6;
 }
 
 .view-btn:hover {
-    background-color: #145f9e;
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
-.radio-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-            align-items: center;
-        }
+/*------------------------ CreateKB.php and ViewKB.php ------------------------*/
+.back-link a {
+    color: #18A0FB;
+    text-decoration: none;
+    font-size: 2vh; 
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+  
+.back-link a:hover {
+    color: #0c8de4;
+    transform: translateX(-3px);
+}
 
-        .radio-buttons label {
-            flex: 1;
-            text-align: center;
-        }
 
-        .radio-buttons input[type="radio"] {
-            margin-right: 5px;
-        }
-
-        .terms a {
-            color: #18A0FB; /* Initial light blue color */
-            text-decoration: none;
-        }
-
-        .terms a:hover {
-            text-decoration: underline;
-        }
-
-        .terms a:visited {
-            color: purple; /* Change to purple after visited */
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none; /* Initially hidden */
-            z-index: 1000;
-        }
-
-        /* Modal Form Container */
-        .modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-            z-index: 1001;
-            display: none; /* Initially hidden */
-        }
-
-        /* Form Inputs */
-        .modal input[type="text"],
-        .modal textarea {
-            width: 100%;
-            padding: 8px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .modal textarea {
-            resize: vertical;
-        }
-
-        .modal button {
-            background-color: #18A0FB;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-top: 10px;
-        }
-
-        .modal button[type="button"] {
-            background-color: red;
-        }
-
-        /* Button Styles */
-        .modal button:hover {
-            background-color: #145f9e;
-        }
-
-        /* Close the modal when the close button is clicked */
-        .modal button[type="button"]:hover {
-            background-color: #ab0000;
-        }
-
-        /* Styling for the Read-Only State */
-        .modal input[readonly],
-        .modal textarea[readonly] {
-            background-color: #f4f4f4;
-            cursor: auto;
-        }
-
-        /* Hide the form and overlay when modal is closed */
-        .modal.closed,
-        .modal-overlay.closed {
-            display: none;
-        }
+  .case-study-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Increase gap between form sections for better spacing */
+    width: 100%; /* Stretch to fill the parent container */
+    max-width: none; /* Remove the max-width constraint to allow full width */
+    margin: 0; /* Remove auto margins to prevent centering gaps */
+    background: linear-gradient(to bottom, #ffffff, #f9fafb);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 3vh; /* Increase padding for more internal space */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    flex-grow: 1; /* Allow the form to grow and fill the available vertical space */
+  }
+  
+  .case-study-form:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+  .case-study-form h3 {
+    font-size: 2vh;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 2vh; /* Increase margin for better separation */
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 1.5vh;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .case-study-form label {
+    margin-bottom: 2vh; /* Increase margin for better spacing below labels */
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 2vh;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .case-study-form input,
+  .case-study-form textarea {
+    padding: 12px 16px; /* Slightly increase padding for better input appearance */
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1.8vh;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2.5vh; /* Add margin below inputs for better spacing */
+  }
+  
+  .case-study-form input:focus,
+  .case-study-form textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+    outline: none;
+  }
+  
+  .case-study-form input[readonly],
+  .case-study-form textarea[readonly] {
+    padding: 12px 16px; /* Slightly increase padding for better input appearance */
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1.8vh;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2.5vh; /* Add margin below inputs for better spacing */
+  }
+  
+  .case-study-form textarea {
+    resize: vertical;
+    min-height: 150px; /* Increase min-height for better usability */
+    flex-grow: 1; /* Allow textarea to grow and fill vertical space */
+  }
+  
+  .case-study-form .form-actions {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 15px; /* Add space between buttons */
+    margin-top: 2vh; /* Add space above the button group */
+  }
+  
+  .case-study-form button,
+  .case-study-form .cancel-btn {
+    padding: 12px 24px; /* Slightly increase padding for better button size */
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.8vh;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+  }
+  
+  .case-study-form .cancel-btn {
+    background-color: #6b7280;
+  }
+  
+  .case-study-form button:hover,
+  .case-study-form .cancel-btn:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  }
+  
+  .case-study-form .cancel-btn:hover {
+    background-color: #4b5563;
+    box-shadow: 0 4px 12px rgba(75, 85, 99, 0.4);
+  }

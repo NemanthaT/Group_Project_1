@@ -1,68 +1,132 @@
-* {   
+* {
     margin: 0;
     padding: 0;
-}
-body{
-    width:100vw;
-    height: 100vh;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
 }
 
-.header {
-    text-align: center;
-    /*background-color: #f4f4f4;*/
-    color: #18A0FB;
-}
-
-.dashboard {
-    padding: 300px 20px 20px 150px;
-    height: 100vh;
-    display: grid;
+body {
+    background-color: white;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    grid-template-columns: repeat(2, 1fr);
-    /*background-color: #f4f4f4;*/
-    /*gap: 20px;*/
+    width: 100vw;
+    height: 100vh;
+    position: relative;
 }
 
-.card {
-    height: 300px;
-    width: 300px;
-    /*background-color: rgb(235, 235, 235);*/
-    /*border: 1px solid #18A0FB;*/
-    background-color: #fffefe21;
-    border: 1px solid #333;
-    color: #333;
-    /*border: 1px solid #00ffd5;
-    color: white;*/
-    border-radius: 25px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    font-weight: bold;
-    font-size: 2rem;
+.container {
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 70%;
+    max-width: 900px;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.form-header {
     text-align: center;
-    cursor: pointer;
-    z-index: 1;
-    transition: transform 0.5s ease-in-out;
+    padding: 30px 0;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    background-color: #18A0FB;
+.form-header h1 {
     color: white;
+    font-size: 32px;
+    font-weight: 600;
 }
 
-.card .icon {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto 10px;
+.forms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 20px;
+    margin-bottom: 30px;
 }
 
-a {
-    text-decoration: none;
-    color: black;
+.account-option {
+    flex: 1;
+    background: #fff;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border: 2px solid transparent;
+    overflow: hidden;
+    position: relative;
 }
 
-.bg{
-    position: fixed;
-    filter: blur(10px);
-    z-index: -1;
+.account-option:hover {
+    transform: translateY(-10px);
+    border-color: #18a0fb;
+    box-shadow: 0 10px 20px rgba(24, 160, 251, 0.15);
+}
+
+.account-option h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.icon-container {
+    font-size: 120px;
+    margin: 15px 0;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.account-option:hover .icon-container {
+    transform: scale(1.1);
+}
+
+.account-option::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            rgba(24, 160, 251, 0.1) 0%,
+            rgba(255, 255, 255, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.account-option:hover::before {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .forms {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .account-option {
+        padding: 25px 15px;
+    }
+
+    .icon-container {
+        font-size: 80px;
+    }
 }

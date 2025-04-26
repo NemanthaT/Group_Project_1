@@ -3,7 +3,7 @@
     include '../session/session.php';
     $email = $_SESSION['email'];
 
-    $sql= "SELECT client_id FROM clients WHERE email= ?";
+    $sql= "SELECT client_id ,full_name FROM clients WHERE email= ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -11,6 +11,7 @@
     $row = $result->fetch_assoc();
     $clientId = $row['client_id'];
     $_SESSION['client_id'] = $clientId;
+    $clientName = $row['full_name'];
     $stmt->close();
 
 
@@ -91,7 +92,7 @@
             <!-- Navbar -->
             <div class="navbar">
                 <a href="#">
-                    <img src="../images/notification.png" alt="Notifications">
+                    <!-- <img src="../images/notification.png" alt="Notifications"> -->
                 </a>
                 <div class="profile">
                 <a href="../profile/profile.php">
@@ -106,7 +107,7 @@
 
         <div class="controls card1">
             <h1>Welcome To EDSA Lanka</h1>
-            <h3>HI !  Safran Zahim ..</h3>
+            <h3>HI ! <?php echo $clientName; ?> ..</h3>
         </div>
 
    <div class="dashboard">
@@ -125,18 +126,7 @@
                     <h2>Upcoming Projects</h2>
                     <span class="icon">📋</span>
                 </div>
-                <div class="list-item">
-                    <span>Investment Portfolio Management Software</span>
-                    <span class="status-badge status-upcoming">Upcoming</span>
-                </div>
-                <div class="list-item">
-                    <span>Automated Financial Reporting System</span>
-                    <span class="status-badge status-pending">Pending</span>
-                </div>
-                <div class="list-item">
-                    <span>E-commerce Platform</span>
-                    <span class="status-badge status-overdue">Overdue</span>
-                </div>
+                <?php include 'get_project.php'; ?>
             </div>
 
             <div class="card">
@@ -144,24 +134,10 @@
                     <h2>Pending Payments</h2>
                     <span class="icon">💰</span>
                 </div>
-                <div class="list-item">
-                    <span>Training Session Payment</span>
-                    <span>Rs.5,000</span>
-                    <span class="status-badge status-pending">Pending</span>
-                </div>
-                <div class="list-item">
-                    <span>Subscription for Monthly Sessions</span>
-                    <span>Rs.3,500</span>
-                    <span class="status-badge status-upcoming">Due Soon</span>
-                </div>
-                <div class="list-item">
-                    <span>Payment for Personal Finance Session</span>
-                    <span>Rs.2,200</span>
-                    <span class="status-badge status-overdue">Overdue</span>
-                </div>
+                <?php include 'get_bill.php'; ?>
             </div>
 
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header">
                     <h2>Notifications</h2>
                     <span class="icon">🔔</span>
@@ -187,7 +163,7 @@
                     </div>
                     <span class="status-badge status-overdue">Pending</span>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

@@ -1,127 +1,180 @@
 <?php
-  session_start(); 
-  require_once '../../config/config.php';
+session_start();
+include '../../config/config.php';
 
-  $username = $_SESSION['username'];
-  $email = $_SESSION['email'];
+// Check if user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../Login/login.php");
+    exit;
+}
 
-  if (!isset($_SESSION['username'])) { // if not logged in
-      header("Location: ../../Login/Login.php");
-      exit;
-  }
+// Get user details
+$username = $_SESSION['username'];
+$query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+$fullName = $user['full_name'] ?? 'User';
+
+$selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Knowledgebase</title>
-  <link rel="stylesheet" href="updateknowlgebase.css?version=12">
-  <link rel="stylesheet" href="../sidebar.css?version=2">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base | EDSA Lanka Consultancy</title>
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <link rel="stylesheet" href="updateknowlgebase.css">
 </head>
-<body>  
-<div class="container">
+<bo>
+    <!-- Sidebar Toggle Button (for mobile) -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        ☰
+    </button>
+    
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+    
     <!-- Sidebar -->
     <div class="sidebar">
-      <div class="logo">
-        <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
-      </div>
+        <div class="logo">
+            <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
+            </div>
+            
+            <ul class="menu">
+                <li>
+                    <a href="../Dashboard/Dashboard.php">
+                        <button >
+                        <span class="menu-icon">📊</span>
+                            Dashboard
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a href="../servicerequest/servicerequest.php">
+                        <button >
+                        <span class="menu-icon">🔧</span>
+                            Service Requests
+                        </button>
+                    </a>
+                    </li>
+                <li>
+                    <a href="../acceptclient/acceptclient.php">
+                        <button >
+                        <span class="menu-icon">👥</span>
+                            Client Accept
+                        </button>
+                    </a>
+                </li>                <li>
+                    <a href="../contactforums/contactforum.php">
+                        <button >
+                        <span class="menu-icon">💬</span>
+                        Conact Forum
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a href="../updateknowlgebase/initial.php">
+                    <button class="active">
+                    <span class="menu-icon">📚</span>
+                    Update Knowldgebase
+                    </button>
+                    </a>
+                </li>
+                <li><a href="../updatenews/initial.php">
+                    <button>
+                    <span class="menu-icon">📰</span>
+                    Update News
+                    </button></a>
+                </li>
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">🛠️</span>
+                    Service Providers
+                    </button></a>
+                </li>
+            </ul>
+        </div>
 
-      <ul class="menu">
-        <li>
-        <a href="../dashboard/dashboard.php">
-            <button>
-              <img src="../images/dashboard.png" alt="Dashboard">
-              Dashboard
-            </button>
-          </a>
-        </li>
-        <li>
-        <a href="../servicerequest/servicerequest.php">
-        <button>
-              <img src="../images/service.jpg" alt="servicerequest">
-              Service Requests
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../contactforums/contactforum.html">
-            <button>
-              <img src="../images/contact forms.jpg" alt="contactforms">
-              Contact Forms
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateevents/updateevents.php">
-            <button>
-              <img src="../images/events.jpg" alt="events">
-              Update Events
-            </button>
-          </a>
-        </li>
-        <li>
-          <a href="../updateknowlgebase/initial.php">
-          <button>
-            <img src="../images/knowlegdebase.jpg" alt="knowldgedebase">
-            Update Knowledge Base
-          </button>
-          </a>  
-        </li>
-        <li>
-          <a href="../updatenews/initial.php">
-          <button>
-            <img src="../images/news.jpg" alt="News">
-            Update News
-          </button>
-          </a>
-        </li>
-      </ul>
-    </div>
-
+    <!-- Header -->
     <div class="main-wrapper">
-      <!-- Navbar -->
-      <div class="navbar">
-      <div class="controls card1">
-            <h1>KnowledgeBase</h1>
-      </div>
-        <div class="profile">
-         <p>Hi, <?php echo $username ?>!! 👋</p>
-          <a href="../SP_Profile/Profile.html">
-            <img src="../images/user.png" alt="Profile">
-          </a>
-        </div>
-        <a href="../../Login/Logout.php" class="logout">Logout</a>
-      </div>
-      <div class="main-container">
-      <div class="boxcontainer">
-        <div class="boxes">
-            <a href="new.php" style="text-decoration: none; color: inherit;">
-                <div class="new glass-effect">
-                  <img src="../images/new.jpg" alt="new" class="icon">
-                    <p>Add New</p>
+            <!-- Navbar -->
+            <div class="navbar">
+                <div class="profile">
+                <a href="../myaccount/acc.php">
+                <img src="../images/user.png" alt="Profile">
+                    </a>
                 </div>
-            </a>
-            <a href="updatedelete.php" style="text-decoration: none; color: inherit;">
-                <div class="new glass-effect">
-                  <div class="updelete">
-                  <img src="../images/update.jpg" alt="new" class="icon1">
-                  <img src="../images/delete.jpg" alt="new" class="icon1">
-                  </div>
-                  <p>Update or Delete</p>
-                </div>
-            </a>
+                <a href="../../Login/Logout.php" class="logout">Logout</a>
+            </div>
+        
+
+    <div class=".main-container">
+        <div class="space"></div>
+
+        <div class="controls card1">
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Knowledge Base Management</h2>
+                <p>Choose an action to manage knowledge base content</p>
+            </div>
+                <div class="date-time" style="text-align:right;">
+                <div id="currentDate"></div>
+                <div id="currentTime"></div>
+            </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
 
-    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Welcome Banner -->
+        </div>
 
-    <script src="dashboard.js"></script>
-    <script src="../sidebar.js"></script>
+        <!-- Action Cards -->
+        <div class="dashboard-grid-new">
+            <div class="dashboard-card-new">
+                <h3 class="section-title">Add New Content</h3>
+                <a href="new.php" class="category-link">
+                    <div class="category-card">
+                        <div class="category-icon">📝</div>
+                        <div class="category-details">
+                            <h4>Create New Entry</h4>
+                            <p>Add new knowledge base content</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-card-new">
+                <h3 class="section-title">Manage Content</h3>
+                <a href="updatedelete.php" class="category-link">
+                    <div class="category-card">
+                        <div class="category-icon">⚙️</div>
+                        <div class="category-details">
+                            <h4>Update or Delete</h4>
+                            <p>Modify existing knowledge base entries</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
 
-    </body>
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').style.display = 
+                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('active');
+            this.style.display = 'none';
+        });
+    </script>
+</body>
 </html>

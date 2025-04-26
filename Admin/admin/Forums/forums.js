@@ -1,6 +1,11 @@
 function viewForum(id) {
     document.getElementById('overlay').style.display = "block";
-    // Send an AJAX request to the PHP script
+
+    // Show preloader immediately
+    const preloader = document.getElementById('popupPreloader');
+    preloader.classList.remove('fade-out');
+    preloader.style.display = "flex";
+
     fetch('view_forum.php', {
         method: 'POST',
         headers: {
@@ -10,22 +15,26 @@ function viewForum(id) {
     })
     .then(response => response.json())
     .then(data => {
-        // Check if data contains error
         if (data.error) {
             alert(data.error);
             document.documentElement.scrollTop = 0;
         } else {
-            // Display forum details in the hidden area
             window.addEventListener('scroll', function() {});
             document.getElementById('displayArea').style.filter = "blur(10px)";
-            document.getElementById('hiddenView').style.display = "block";
-            document.getElementById('hiddenView').style.marginTop = window.scrollY + "px";
-            //document.getElementById("forumId").innerText = "Forum Id: " + data.forum_id;
+            const popup = document.getElementById('hiddenView');
+            popup.style.display = "block";
+            popup.style.marginTop = window.scrollY + "px";
+
             document.getElementById("forumTitle").innerText = "Title: " + data.title;
             document.getElementById("createdBy").innerText = "Created By: " + data.created_by;
             document.getElementById("clientId").innerText = "User Id: " + data.user_id;
             document.getElementById("forumContent").innerText = data.content;
-            //document.documentElement.scrollTop = 0;
+
+            // ✅ Fade out the preloader
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = "none";
+            }, 500); // match transition duration
         }
     })
     .catch(error => console.error('Error fetching forum data:', error));

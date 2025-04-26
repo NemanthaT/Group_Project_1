@@ -133,12 +133,6 @@
     justify-content: center;
     align-items: center;
   }
-  
-  .logout {
-    background-color: #18A0FB;
-    color: white !important;
-  }
-  
 
   .form-container {
     display: flex;
@@ -210,20 +204,6 @@ select {
     border-radius: 4px;
 }
 
-.submit-button {
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.submit-section {
-    text-align: center;
-    margin-top: 20px;
-}
 
   /* Main Content Area */
   .main-wrapper {
@@ -265,18 +245,17 @@ select {
     color: #333;
   }
   
-  button {
-    background-color: #3498db;
+  .submit-button {
+    background-color: #52afec;
     color: white;
-    border: none;
     padding: 12px 20px;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s;
+    font-size: 16px;
+    font-weight: bold;
   }
-  
-  button:hover {
+
+  .submit-button:hover {
     background-color: #2980b9;
   }
-  

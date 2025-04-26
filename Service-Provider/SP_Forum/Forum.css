@@ -1,508 +1,489 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    overflow-x: hidden;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    min-height: 100vh;
-  }
-  
-  .container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-  }
-  
-  .sidebar {
-    background-color: white;
-    width: 220px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    height: 100vh;
-    z-index: 10;
-    overflow-x: hidden; /* Remove horizontal scrollbar */
-  }
-  
-  .sidebar .logo img {
-    width: 100%;
-    max-width: 180px; /* Adjusted for smaller sidebar */
-    margin-bottom: 25px;
-  }
-  
-  .menu {
-    list-style: none;
-    width: 100%;
-  }
-  
-  .menu li {
-    margin-bottom: 12px;
-  }
-  
-  .menu a {
-    text-decoration: none;
-  }
-  
-  .menu button {
-    display: flex;
-    align-items: center;
-    font-size: 14px; /* Slightly reduced */
-    font-weight: bold;
-    width: 100%;
-    padding: 8px;
-    color: #333;
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    border-radius: 5px;
-    gap: 8px;
-  }
-  
-  .menu img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-  }
-  
-  .menu button:hover {
-    transform: scale(1.05);
-    background-color: #18a0fb;
-    color: white;
-  }
-  
-  .navbar {
-    background-color: white;
-    color: #18a0fb;
-    padding: 10px 25px;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 220px; /* Adjusted for smaller sidebar */
-    z-index: 5;
-    display: flex;
-    justify-content: flex-end; /* Keep items on the right */
-    align-items: center;
-    gap: 20px; /* Add even spacing between all navbar items */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    height: 50px;
-  }
-  
-  /* Reset margins for all direct children of navbar */
-  .navbar > * {
-    margin: 0;
-  }
-  
-  .navbar a {
-    color: #18a0fb;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 6px 6px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 0; /* Remove the left margin */
-  }
-  
-  .navbar a img {
-    width: 24px;
-    height: 24px;
-    transition: background-color 0.3s;
-  }
-  
-  /* Calendar styles */
-  .calendar-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 300px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    z-index: 1000;
-  }
-  
-  .calendar-dropdown h3 {
-    margin: 0 0 16px 0;
-    font-size: 18px;
-    color: #333;
-  }
-  
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-  
-  .calendar-header button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #18a0fb;
-  }
-  
-  #currentMonth {
-    font-weight: 500;
-    font-size: 16px;
-  }
-  
-  .weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-  
-  .days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-  }
-  
-  .days div {
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    position: relative;
-  }
-  
-  .days div:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .days div.today {
-    background-color: #18a0fb;
-    color: white;
-  }
-  
-  .days div.has-event::after {
-    content: "";
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    background-color: #18a0fb;
-    border-radius: 50%;
-  }
-  
-  .calendar-footer {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #eee;
-    text-align: center;
-  }
-  
-  .calendar-link {
-    color: #18a0fb;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  
-  .calendar-link:hover {
-    text-decoration: underline;
-  }
-  
-  .dot {
-    color: #18a0fb;
-    margin: 0 8px;
-  }
-  
-  .logout:hover {
-    background-color: rgb(215, 236, 255);
-  }
-  
-  /* Keep original main content dimensions but make content fit */
-  .main-content {
-    margin-left: 220px;
-    padding: 60px 5px 5px 5px; /* Adjusted padding */
-    background-color: #ecf0f4;
-    height: 100vh; /* Keep original height */
-    width: calc(100% - 220px); /* Calculate width based on sidebar */
-    box-sizing: border-box;
-    overflow-y: auto; /* Keep this to allow scrolling if needed */
-  }
-  
-  .forum-section {
-    padding: 15px; /* Reduced padding */
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Ensure it spans the full width of the main content */
-    height: calc(100vh - 70px); /* Adjust height to fit within main content */
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .forum-section h2,
-  .forum-section h3 {
-    color: #333;
-    margin-bottom: 10px; /* Reduced margin */
-    margin-top: 10px; /* Reduced margin */
-  }
-  
-  .forum-section button {
-    background-color: #18a0fb;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-top: 5px; /* Reduced margin */
-    padding: 6px 12px; /* Adjusted padding */
-  }
-  
-  .forum-categories ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 8px; /* Reduced gap */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    margin-bottom: 10px; /* Reduced margin */
-  }
-  
-  .forum-categories ul li button {
-    display: block;
-    padding: 8px; /* Reduced padding */
-    margin-bottom: 0;
-    background-color: #18a0fb;
-    color: white;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    border-radius: 8px; /* Reduced border radius */
-    font-size: 13px; /* Reduced font size */
-  }
-  
-  .forum-categories ul li button:hover {
-    background-color: #1071b1;
-  }
-  
-  /* Make thread list take available space */
-  .forum-threads {
-    flex: 1; /* Take remaining space */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Hide overflow */
-  }
-  
-  .forum-threads h3 {
-    flex-shrink: 0; /* Don't shrink */
-  }
-  
-  .forum-threads ul {
-    list-style: none;
-    padding: 0;
-    flex: 1; /* Take remaining space */
-    overflow-y: auto; /* Only add scrollbar to thread list */
-    border: 1px solid #eee;
-    border-radius: 5px;
-  }
-  
-  .forum-threads ul li {
-    padding: 8px; /* Reduced padding */
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .forum-threads ul li h4,
-  .forum-threads ul li p {
-    display: block;
-    margin: 0 0 3px 0; /* Reduced margin */
-    font-size: 14px; /* Reduced font size */
-  }
-  
-  .forum-threads ul li h4 {
-    font-size: 16px; /* Reduced font size */
-    color: #18a0fb;
-  }
-  
-  .forum-threads ul li .button-container {
-    display: flex; /* Align buttons horizontally */
-    gap: 8px; /* Reduced gap */
-  }
-  
-  .forum-threads ul li button {
-    color: white;
-    font-size: 12px; /* Reduced font size */
-    padding: 5px 10px; /* Reduced padding */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .forum-threads ul li .view-btn {
-    background-color: green;
-  }
-  
-  .forum-threads ul li .delete-btn {
-    background-color: red;
-  }
-  
-  .forum-threads ul li .view-btn:hover {
-    background-color: darkgreen;
-  }
-  
-  .forum-threads ul li .delete-btn:hover {
-    background-color: darkred;
-  }
-  
-  .forum-search {
-    margin-top: 10px; /* Reduced margin */
-    margin-bottom: 10px; /* Reduced margin */
-    display: flex;
-    align-items: center;
-  }
-  
-  .forum-search input[type="text"] {
-    padding: 6px; /* Reduced padding */
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 80%; /* Adjusted width */
-    margin-right: 5px;
-  }
-  
-  .forum-search button {
-    padding: 6px 10px; /* Reduced padding */
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    background-color: #18a0fb;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .forum-search button:hover {
-    background-color: #1071b1;
-  }
-  
-  /* Modal overlay */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    z-index: 9998;
-  }
-  
-  /* Create Thread Modal styles */
-  .create-thread-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px; /* Reduced width */
-    max-height: 80vh; /* Maximum height */
-    background-color: #fff;
-    padding: 20px; /* Reduced padding */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    border-radius: 10px;
-    overflow-y: auto; /* Allow scrolling for tall content */
-  }
-  
-  /* View Thread Modal styles */
-  .view-thread-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px; /* Reduced width */
-    max-height: 80vh; /* Maximum height */
-    background-color: #fff;
-    padding: 20px; /* Reduced padding */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    border-radius: 10px;
-    overflow-y: auto; /* Allow scrolling for tall content */
-  }
-  
-  /* Form input styles */
-  .input-field {
-    width: 100%;
-    margin-bottom: 12px; /* Reduced margin */
-    padding: 10px; /* Reduced padding */
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px; /* Reduced font size */
-  }
-  
-  /* Thread details styling */
-  .thread-details {
-    margin-bottom: 15px; /* Reduced margin */
-  }
-  
-  .thread-details h4 {
-    font-size: 18px; /* Reduced font size */
-    color: #18a0fb;
-    margin-bottom: 8px; /* Reduced margin */
-  }
-  
-  .thread-details p {
-    margin-bottom: 12px; /* Reduced margin */
-    line-height: 1.4; /* Reduced line height */
-    font-size: 14px; /* Reduced font size */
-  }
-  
-  .thread-meta {
-    font-size: 12px; /* Reduced font size */
-    color: #666;
-  }
-  
-  /* Button styles */
-  .submit-btn,
-  .cancel-btn {
-    padding: 8px 15px; /* Reduced padding */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px; /* Reduced font size */
-    margin-right: 8px; /* Reduced margin */
-  }
-  
-  .submit-btn {
-    background-color: #18a0fb;
-    color: white;
-  }
-  
-  .cancel-btn {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  .submit-btn:hover {
-    background-color: #1071b1;
-  }
-  
-  .cancel-btn:hover {
-    background-color: #d32f2f;
-  }
-  
-  /* Add styling for the no-threads message */
-  .no-threads {
-    padding: 15px;
-    text-align: center;
-    color: #666;
-    font-style: italic;
-    font-size: 14px; /* Reduced font size */
-  }
-  
+.forum-section {
+  margin: 0 auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.forum-section h2,
+.forum-section h3 {
+  font-size: 2.8vh;
+  font-weight: 700;
+  margin-bottom: 2vh;
+  margin-top: 0;
+  color: #2d3748;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.forum-section button {
+  background-color: #18A0FB;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1.8vh;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.forum-section button:hover {
+  background-color: #0c8de4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
+}
+
+.forum-categories ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1vh;
+}
+
+.forum-categories ul li button {
+  min-width: 200px;
+  padding: 10px 20px;
+  background-color: #18A0FB;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 2vh;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  text-align: center;
+}
+
+.forum-categories ul li button:hover {
+  background-color: #0c8de4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
+}
+
+.forum-threads {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #ffffff, #f9fafb);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2vh;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.forum-threads:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.forum-threads h3 {
+  flex-shrink: 0;
+}
+
+.forum-threads ul {
+  list-style: none;
+  padding: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.forum-threads ul li {
+  padding: 1.5vh;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1vh;
+  transition: all 0.3s ease;
+}
+
+.forum-threads ul li:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.forum-threads ul li h4,
+.forum-threads ul li p {
+  display: block;
+  margin: 0 0 1vh 0;
+  font-size: 1.8vh;
+  color: #4b5563;
+}
+
+.forum-threads ul li h4 {
+  font-size: 2vh;
+  font-weight: 600;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.forum-threads ul li .button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.forum-threads ul li button {
+  color: white;
+  font-size: 1.8vh;
+  padding: 0.6vh 1.5vw;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.forum-threads ul li .view-btn {
+  background-color: #3b82f6;
+}
+
+.forum-threads ul li .delete-btn {
+  background-color: #e11d48;
+}
+
+.forum-threads ul li .view-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.forum-threads ul li .delete-btn:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.filter-group select,
+.filter-group input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1.8vh;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.filter-group select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%234b5563%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+  outline: none;
+}
+
+.search-group input {
+  width: 400px;
+  max-width: 100%;
+}
+
+.search-button {
+  padding: 10px 15px;
+  background-color: #18A0FB;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.8vh;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.search-button:hover {
+  background-color: #0c8de4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
+}
+
+.clear-button {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 1.8vh;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.clear-button:hover {
+  background-color: #4b5563;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3);
+}
+
+.clear-button:active {
+  transform: translateY(0);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 9998;
+  backdrop-filter: blur(3px);
+}
+
+/* Create Thread Modal styles */
+.create-thread-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1300px;
+  max-width: 100%;
+  height: 600px;
+  max-height: 100%;
+  background: linear-gradient(to bottom, #ffffff, #f9fafb);
+  padding: 3vh;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-thread-modal:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.create-thread-modal h3 {
+  font-size: 2.8vh;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 2vh;
+  text-align: center;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.8vh;
+}
+
+.create-thread-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  flex: 1;
+}
+
+.create-thread-modal label {
+  font-size: 2vh;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 0.8vh;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* View Thread Modal styles */
+.view-thread-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  max-width: 100%;
+  height: 350px;
+  max-height: 100%;
+  background: linear-gradient(to bottom, #ffffff, #f9fafb);
+  padding: 3vh;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-thread-modal:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.view-thread-modal h3 {
+  font-size: 2.8vh;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 2vh;
+  text-align: center;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.8vh;
+}
+
+/* Form input styles */
+.input-field {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1.8vh;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+  outline: none;
+}
+
+.input-field[type="text"],
+.input-field[type="textarea"] {
+  margin-bottom: 0;
+}
+
+.input-field[type="select"] {
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%234b5563%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+.input-field textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+/* Thread details styling */
+.thread-details {
+  margin-bottom: 2vh;
+  padding: 2vh;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.thread-details h4 {
+  font-size: 2vh;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 1vh;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.thread-details p {
+  margin-bottom: 1vh;
+  line-height: 1.5;
+  font-size: 1.8vh;
+  color: #4b5563;
+}
+
+.thread-meta {
+  font-size: 1.6vh;
+  color: #4b5563;
+  margin-top: 1vh;
+}
+
+/* Button styles */
+.submit-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.8vh;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.submit-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #6b7280;
+  color: white;
+}
+
+.submit-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.cancel-btn:hover {
+  background-color: #4b5563;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(75, 85, 99, 0.4);
+}
+
+.create-thread-modal .button-container {
+  display: flex;
+  gap: 0.5vw;
+  justify-content: flex-end;
+  margin-top: auto;
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.view-thread-modal .cancel-btn {
+  margin-top: 1.5vh;
+  align-self: flex-end;
+}
+
+/* Add styling for the no-threads message */
+.no-threads {
+  padding: 2vh;
+  text-align: center;
+  color: #4b5563;
+  font-weight: 600;
+  font-size: 1.8vh;
+}

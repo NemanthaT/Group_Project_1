@@ -1,247 +1,328 @@
-// Current date and time variables
-let currentDate = new Date();
-const today = new Date();
-
-// DOM ready function
-document.addEventListener('DOMContentLoaded', function () {
-  // Adjust sidebar toggle to match new layout
-  const menuToggle = document.querySelector('.menu-toggle');
-  const sidebar = document.querySelector('.sidebar');
-
-  if (menuToggle) {
-    menuToggle.addEventListener('click', function () {
-      sidebar.classList.toggle('collapsed');
-      document.querySelector('.main-content').classList.toggle('expanded');
-    });
+// Toggle Sidebar for Mobile
+ document.addEventListener('DOMContentLoaded', function() {
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  
+  sidebarToggle.addEventListener('click', function() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+  });
+  
+  overlay.addEventListener('click', function() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+  });
+  
+  // Current Date and Time
+  function updateDateTime() {
+      const now = new Date();
+      const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', dateOptions);
+      
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      
+      document.getElementById('current-time').textContent = `${hours}:${minutes} ${ampm}`;
   }
 
-  // Initialize all dashboard components
-  initializeDateTime();
-  initializeCalendar();
+      // Date/time display
+      function updateDateTime() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
+        document.getElementById('currentTime').textContent = now.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+      });
+  
+  // Initialize Date and Time
+  updateDateTime();
+  // Update every minute
+  setInterval(updateDateTime, 60000);
+  
+  // Calendar Implementation
+  function generateCalendar() {
+      const today = new Date();
+      const currentMonth = today.getMonth();
+      const currentYear = today.getFullYear();
+      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      
+      // First day of month
+      const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+      
+      // Last day of previous month
+      const prevMonthLastDay = new Date(currentYear, currentMonth, 0).getDate();
+      
+      const calendarDays = document.getElementById('calendar-days');
+      calendarDays.innerHTML = '';
+      
+      // Day names
+      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      dayNames.forEach(day => {
+          const dayNameElement = document.createElement('div');
+          dayNameElement.className = 'day-name';
+          dayNameElement.textContent = day;
+          calendarDays.appendChild(dayNameElement);
+      });
+      
+      // Previous month days
+      for (let i = firstDay - 1; i >= 0; i--) {
+          const day = document.createElement('div');
+          day.className = 'day other-month';
+          day.textContent = prevMonthLastDay - i;
+          calendarDays.appendChild(day);
+      }
+      
+      // Current month days
+      for (let i = 1; i <= daysInMonth; i++) {
+          const day = document.createElement('div');
+          day.className = 'day';
+          if (i === today.getDate()) {
+              day.classList.add('today');
+          }
+          day.textContent = i;
+          calendarDays.appendChild(day);
+      }
+      
+      // Next month days
+      const totalCells = 42; // 6 rows * 7 columns
+      const cellsFilled = firstDay + daysInMonth;
+      const cellsToFill = totalCells - cellsFilled;
+      
+      for (let i = 1; i <= cellsToFill; i++) {
+          const day = document.createElement('div');
+          day.className = 'day other-month';
+          day.textContent = i;
+          calendarDays.appendChild(day);
+      }
+  }
 
-  // Add active class to current menu item
-  highlightCurrentPage();
-
-  // Add animations to elements when they come into view
-  animateOnScroll();
+  // Initialize Calendar
+  generateCalendar();
+  
+  // Add click events to menu items
+  const menuItems = document.querySelectorAll('.menu-item');
+  menuItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+          // Only handle mobile sidebar closing
+          if (window.innerWidth <= 768) {
+              sidebar.classList.remove('open');
+              overlay.classList.remove('active');
+          }
+      });
+  });
 });
 
-// Highlight the current page in navigation
-function highlightCurrentPage() {
-  const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.nav-menu li a');
 
-  navLinks.forEach(link => {
-    if (link.getAttribute('href') && currentPath.includes(link.getAttribute('href'))) {
-      link.parentElement.classList.add('active');
+       // --- Metrics AJAX update ---
+       function fetchMetricsByDate(dateStr) {
+        // Show loading indicator
+        document.getElementById('metric-appointments').textContent = '...';
+        document.getElementById('metric-contactforums').textContent = '...';
+        document.getElementById('metric-acceptedclients').textContent = '...';
+
+        fetch('dashboard.php?fetch_metrics_by_date=1&date=' + encodeURIComponent(dateStr))
+            .then(res => {
+                if (!res.ok) throw new Error('Network response was not ok');
+                return res.json();
+            })
+            .then(data => {
+                // Debug: log the data
+                console.log('Metrics for', dateStr, data);
+
+                document.getElementById('metric-appointments').textContent = data.appointments;
+                document.getElementById('metric-contactforums').textContent = data.contactforums;
+                document.getElementById('metric-acceptedclients').textContent = data.accepted_clients;
+                document.getElementById('metric-appointments-change').textContent = '';
+                document.getElementById('metric-contactforums-change').textContent = '';
+                document.getElementById('metric-acceptedclients-change').textContent = '';
+                document.getElementById('metric-appointments-footer').textContent = 'Selected date: ' + dateStr;
+                document.getElementById('metric-contactforums-footer').textContent = 'Selected date: ' + dateStr;
+                document.getElementById('metric-acceptedclients-footer').textContent = 'Selected date: ' + dateStr;
+            })
+            .catch(err => {
+                // Debug: log the error
+                console.error('Error fetching metrics:', err);
+                document.getElementById('metric-appointments').textContent = '!';
+                document.getElementById('metric-contactforums').textContent = '!';
+                document.getElementById('metric-acceptedclients').textContent = '!';
+            });
     }
-  });
-}
 
-// Initialize the date and time displays
-function initializeDateTime() {
-  updateTime();
-  setInterval(updateTime, 1000);
-  updateDateDisplay();
-}
+    // --- Calendar navigation and rendering for all months/years ---
+    let calendarYear, calendarMonth;
+    let selectedDayElement = null;
+    let lastSelectedDateStr = null; // Track last selected date string
 
-// Update the digital clock
-function updateTime() {
-  const now = new Date();
-  const options = {
-    timeZone: 'Asia/Colombo',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false
-  };
-  const timeString = now.toLocaleTimeString('en-GB', options);
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date();
+        calendarYear = today.getFullYear();
+        calendarMonth = today.getMonth();
+        renderCalendar(calendarYear, calendarMonth);
 
-  const clockElement = document.getElementById('clock');
-  if (clockElement) {
-    clockElement.textContent = timeString;
-  }
-}
+        // Fetch metrics for today on load
+        lastSelectedDateStr = today.toISOString().slice(0,10);
+        fetchMetricsByDate(lastSelectedDateStr);
 
-// Update the date display
-function updateDateDisplay() {
-  const dateDisplay = document.getElementById('current-date');
-  if (dateDisplay) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    dateDisplay.textContent = today.toLocaleDateString('en-US', options);
-  }
-}
+        document.getElementById('calendar-prev').onclick = function() {
+            calendarMonth--;
+            if (calendarMonth < 0) {
+                calendarMonth = 11;
+                calendarYear--;
+            }
+            renderCalendar(calendarYear, calendarMonth);
+        };
+        document.getElementById('calendar-next').onclick = function() {
+            calendarMonth++;
+            if (calendarMonth > 11) {
+                calendarMonth = 0;
+                calendarYear++;
+            }
+            renderCalendar(calendarYear, calendarMonth);
+        };
 
-// Calendar functions
-function renderCalendar() {
-  const monthYear = document.getElementById('monthYear');
-  const dates = document.getElementById('dates');
+        // --- Auto-refresh logic ---
+        setInterval(function() {
+            // Use last selected date or today if not set
+            let dateStr = lastSelectedDateStr;
+            if (!dateStr) {
+                const now = new Date();
+                dateStr = now.toISOString().slice(0,10);
+            }
+            fetchMetricsByDate(dateStr);
+        }, 30000); // 30 seconds
+    });
 
-  if (!monthYear || !dates) return;
+    function renderCalendar(year, month) {
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        document.getElementById('calendar-month').textContent = `${monthNames[month]} ${year}`;
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const daysContainer = document.getElementById('calendar-days');
+        daysContainer.innerHTML = '';
 
-  const month = currentDate.getMonth();
-  const year = currentDate.getFullYear();
-  monthYear.textContent = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+        // Add empty cells for days before the first of the month
+        for (let i = 0; i < firstDay.getDay(); i++) {
+            const emptyDay = document.createElement('div');
+            emptyDay.className = 'calendar-day empty';
+            daysContainer.appendChild(emptyDay);
+        }
 
-  dates.innerHTML = '';
+        // Add days of the month
+        const today = new Date();
+        for (let i = 1; i <= lastDay.getDate(); i++) {
+            const dayElement = document.createElement('div');
+            dayElement.className = 'calendar-day';
+            if (
+                year === today.getFullYear() &&
+                month === today.getMonth() &&
+                i === today.getDate()
+            ) {
+                dayElement.classList.add('today');
+            }
+            dayElement.textContent = i;
+            dayElement.tabIndex = 0; // Make focusable for accessibility
 
-  const firstDayOfMonth = new Date(year, month, 1).getDay();
-  const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
-  const lastDateOfPrevMonth = new Date(year, month, 0).getDate();
+            // Add click event to fetch metrics for this date and highlight selection
+            dayElement.onclick = function() {
+                // Remove previous selection
+                if (selectedDayElement) {
+                    selectedDayElement.classList.remove('selected');
+                }
+                dayElement.classList.add('selected');
+                selectedDayElement = dayElement;
 
-  // Previous month dates
-  for (let i = firstDayOfMonth; i > 0; i--) {
-    const date = createDateElement(lastDateOfPrevMonth - i + 1, true);
-    dates.appendChild(date);
-  }
+                const mm = (month+1).toString().padStart(2,'0');
+                const dd = i.toString().padStart(2,'0');
+                const dateStr = `${year}-${mm}-${dd}`;
+                // Debug: log the selected date
+                console.log('Selected date:', dateStr);
+                lastSelectedDateStr = dateStr; // Update last selected date
+                fetchMetricsByDate(dateStr);
+            };
 
-  // Current month dates
-  for (let i = 1; i <= lastDateOfMonth; i++) {
-    const date = createDateElement(i, false);
-    if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-      date.classList.add('today');
+            daysContainer.appendChild(dayElement);
+        }
+
+        // Clear selection highlight when month changes
+        selectedDayElement = null;
     }
-    dates.appendChild(date);
-  }
 
-  // Next month dates
-  const remainingCells = 42 - (firstDayOfMonth + lastDateOfMonth);
-  for (let i = 1; i <= remainingCells; i++) {
-    const date = createDateElement(i, true);
-    dates.appendChild(date);
-  }
-}
+    function updateDateTime() {
+        const now = new Date();
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        
+        document.getElementById('current-date').textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+        document.getElementById('current-time').textContent = now.toLocaleTimeString();
+    }
 
-function createDateElement(day, isOtherMonth) {
-  const date = document.createElement('div');
-  date.classList.add('date');
-  if (isOtherMonth) date.classList.add('other-month');
-  date.textContent = day;
+    // --- Recent Activity AJAX update ---
+    function fetchRecentActivity() {
+        fetch('dashboard.php?fetch_recent_activity=1')
+            .then(res => {
+                if (!res.ok) throw new Error('Network response was not ok');
+                return res.text();
+            })
+            .then(html => {
+                const feed = document.querySelector('.activity-feed');
+                if (feed) feed.innerHTML = html;
+            })
+            .catch(err => {
+                console.error('Error fetching recent activity:', err);
+            });
+    }
 
-  // Add the data-date attribute
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const dayString = String(day).padStart(2, '0');
-  date.setAttribute('data-date', `${year}-${month}-${dayString}`);
+    // --- Auto-refresh logic for metrics and activity ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date();
+        calendarYear = today.getFullYear();
+        calendarMonth = today.getMonth();
+        renderCalendar(calendarYear, calendarMonth);
 
-  if (!isOtherMonth) {
-    date.addEventListener('click', function () {
-      const clickedDate = date.getAttribute('data-date');
-      fetchDataForDate(clickedDate);
+        // Fetch metrics for today on load
+        lastSelectedDateStr = today.toISOString().slice(0,10);
+        fetchMetricsByDate(lastSelectedDateStr);
+
+        document.getElementById('calendar-prev').onclick = function() {
+            calendarMonth--;
+            if (calendarMonth < 0) {
+                calendarMonth = 11;
+                calendarYear--;
+            }
+            renderCalendar(calendarYear, calendarMonth);
+        };
+        document.getElementById('calendar-next').onclick = function() {
+            calendarMonth++;
+            if (calendarMonth > 11) {
+                calendarMonth = 0;
+                calendarYear++;
+            }
+            renderCalendar(calendarYear, calendarMonth);
+        };
+
+        // --- Auto-refresh logic ---
+        setInterval(function() {
+            // Use last selected date or today if not set
+            let dateStr = lastSelectedDateStr;
+            if (!dateStr) {
+                const now = new Date();
+                dateStr = now.toISOString().slice(0,10);
+            }
+            fetchMetricsByDate(dateStr);
+            fetchRecentActivity();
+        }, 30000); // 30 seconds
+
+        // Fetch recent activity on load
+        fetchRecentActivity();
     });
-  }
-
-  return date;
-}
-
-function prevMonth() {
-  currentDate.setMonth(currentDate.getMonth() - 1);
-  renderCalendar();
-}
-
-function nextMonth() {
-  currentDate.setMonth(currentDate.getMonth() + 1);
-  renderCalendar();
-}
-
-// Initialize calendar
-function initializeCalendar() {
-  renderCalendar();
-}
-
-// Animation on scroll
-function animateOnScroll() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  });
-
-  document.querySelectorAll('.stat-card, .widget').forEach(el => {
-    observer.observe(el);
-  });
-}
-
-// Fetch data for the selected date
-function fetchDataForDate(date) {
-  fetch('dashboard.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: `selectedDate=${encodeURIComponent(date)}`,
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      displayData(data);
-    })
-    .catch(error => console.error('Error fetching data:', error));
-}
-
-// Display data in the dashboard container
-function displayData(data) {
-  const container = document.querySelector('.dashboard-container');
-  if (!container) {
-    console.error('Dashboard container not found!');
-    return;
-  }
-
-  let html = '<h2>Data for Selected Date</h2>';
-
-  // Service Requests
-  html += '<h3>Service Requests</h3>';
-  if (data.serviceRequests && data.serviceRequests.length > 0) {
-    html += '<ul>';
-    data.serviceRequests.forEach(request => {
-      html += `<li>Request ID: ${request.request_id}, Status: ${request.status}</li>`;
-    });
-    html += '</ul>';
-  } else {
-    html += '<p>No service requests found.</p>';
-  }
-
-  // Contact Forums
-  html += '<h3>Contact Forums</h3>';
-  if (data.contactForums && data.contactForums.length > 0) {
-    html += '<ul>';
-    data.contactForums.forEach(forum => {
-      html += `<li>Title: ${forum.title}, Content: ${forum.content}</li>`;
-    });
-    html += '</ul>';
-  } else {
-    html += '<p>No contact forums found.</p>';
-  }
-
-  // Events
-  html += '<h3>Events</h3>';
-  if (data.events && data.events.length > 0) {
-    html += '<ul>';
-    data.events.forEach(event => {
-      html += `<li>Title: ${event.title}, Description: ${event.description}</li>`;
-    });
-    html += '</ul>';
-  } else {
-    html += '<p>No events found.</p>';
-  }
-
-  // News
-  html += '<h3>News</h3>';
-  if (data.news && data.news.length > 0) {
-    html += '<ul>';
-    data.news.forEach(news => {
-      html += `<li>Title: ${news.title}, Content: ${news.content}</li>`;
-    });
-    html += '</ul>';
-  } else {
-    html += '<p>No news found.</p>';
-  }
-
-  container.innerHTML = html;
-}

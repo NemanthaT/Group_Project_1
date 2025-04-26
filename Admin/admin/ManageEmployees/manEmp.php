@@ -1,14 +1,27 @@
 <?php
     session_start(); 
-    require_once('../../config/config.php');
+    require_once('../../../config/config.php');
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
     if (!isset($_SESSION['username'])) { // if not logged in
-        header("Location: ../../login/login.php");
+        header("Location: ../../../login/login.php");
         exit;
     }
     $afDiv = "mainContent";
+
+    // Pagination logic
+    $records_per_page = 10;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset = ($page - 1) * $records_per_page;
+
+    // Get total number of records
+    $total_records = $conn->query("SELECT COUNT(*) as total FROM companyworkers WHERE status = 'set'")->fetch_assoc()['total'];
+    $total_pages = ceil($total_records / $records_per_page);
+
+    // Get paginated data
+    $sql = "SELECT full_name, email, role FROM companyworkers WHERE status = 'set' LIMIT $offset, $records_per_page";
+    $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -18,13 +31,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Employees</title>
     <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/preloader.css">
     <link rel="stylesheet" href="empStyles.css">
     <script src="../../js/common.js"></script>
+    <script src="../../js/preloader.js"></script>
     <script src="emp.js"></script>
 </head>
 <body>
     <div class="bg">
         <!--blur Background image-->  
+    </div>
+
+    <div id="preloader">
+        <div class="spinner"></div>
     </div>
 
     <!--Overlay-->
@@ -47,7 +66,7 @@
 
         <!--Add Employee Form-->
         <div id="addEmp">
-            <button id="closeView" onclick="closeForm()">x</button>
+            <button id="closeView" onclick="closeForm()">✕</button>
             <div id="addEmpForm">    
                     <form action="" method="POST" id="fm">
                         <label for="fullname">Full Name:</label><br>
@@ -131,11 +150,9 @@
                         <table class="displayArea" id="displayArea">
                             <thead>
                                 <tr>
-                                    <th>UId</th>
-                                    <th>User Name</th>
                                     <th>Full Name</th>
-                                    <th>Role</th>
                                     <th>Email</th>
+                                    <th>Role</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -149,27 +166,39 @@
                 <div id="dA">
                     <?php
                         echo "<center><table class=\"displayArea\">
+                        <thead>
                         <tr>
-                            <th>UId</th>
-                            <th>User Name</th>
                             <th>Full Name</th>
-                            <th>Role</th>
                             <th>Email</th>
-                        </tr>";
-
-                        $sql = "SELECT * FROM companyworkers WHERE status = 'set'";
-                        $result = $conn->query($sql);
+                            <th>Role</th>   
+                        </tr>
+                        </thead>
+                        <tbody>";
 
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                                echo '<tr><td>'.$row['worker_id'] .'</td><td>'. $row['username'] .'</td><td>'. $row['full_name'] . '</td><td>'.$row['role'].'</td><td>'.$row['email'].'</td></tr>';
+                                echo '<tr><td>'. $row['full_name'] . '</td><td>'.$row['email'].'</td><td>'.$row['role'].'</td></tr>';
                             }
                         } else {
-                            echo "0 results";
+                            echo "<tr><td colspan='5'>0 results</td></tr>";
                         }
 
+                        echo "</tbody> </table>";
 
-                        echo "</table></center>";
+                        // Pagination links
+                        echo '<div class="pagination">';
+                        if ($page > 1) {
+                            echo '<a href="?page='.($page - 1).'">&laquo; Previous</a>';
+                        }
+                        
+                        for ($i = 1; $i <= $total_pages; $i++) {
+                            echo '<a href="?page='.$i.'"'.($i == $page ? ' class="active"' : '').'>'.$i.'</a>';
+                        }
+                        
+                        if ($page < $total_pages) {
+                            echo '<a href="?page='.($page + 1).'">Next &raquo;</a>';
+                        }
+                        echo '</div></center>';
                     ?>
                 </div>
             </div>

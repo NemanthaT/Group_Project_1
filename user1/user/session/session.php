@@ -27,7 +27,7 @@ else
     }
 
     $stmt->close();
-    $conn->close();
+    //$conn->close();
 
 }
 
