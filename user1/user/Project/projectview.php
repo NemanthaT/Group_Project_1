@@ -191,8 +191,9 @@
                         <img class="pdf" src="../images/bill.png" alt=""><div  style="flex-direction: column; text-align: left;">
                         <h2><?php echo htmlspecialchars($bill_row['Description']); ?></h2>
                         <h3>Rs <?php echo number_format($bill_row['Amount'], 2); ?></h3>
-                        <h4><?php echo htmlspecialchars($bill_row['status']); ?></h4>
-                    </div></div>
+                        <h4 style="color: <?php echo $bill_row['status'] === 'Paid' ? 'green' : 'red'; ?>;">
+                            <?php echo htmlspecialchars($bill_row['status']); ?>
+                        </h4>      </div></div>
                     </a>
                     
                 </div> 
