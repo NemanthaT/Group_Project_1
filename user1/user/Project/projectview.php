@@ -124,7 +124,7 @@ if ($docResult === false) {
             <!-- Navbar -->
             <div class="navbar">
                 <a href="#">
-                    <img src="../images/notification.png" alt="Notifications">
+                    <!-- <img src="../images/notification.png" alt="Notifications"> -->
                 </a>
                 <div class="profile">
                 <a href="../profile/profile.php">

@@ -92,7 +92,7 @@
             <!-- Navbar -->
             <div class="navbar">
                 <a href="#">
-                    <img src="../images/notification.png" alt="Notifications">
+                    <!-- <img src="../images/notification.png" alt="Notifications"> -->
                 </a>
                 <div class="profile">
                 <a href="../profile/profile.php">
@@ -137,7 +137,7 @@
                 <?php include 'get_bill.php'; ?>
             </div>
 
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header">
                     <h2>Notifications</h2>
                     <span class="icon">🔔</span>
@@ -163,7 +163,7 @@
                     </div>
                     <span class="status-badge status-overdue">Pending</span>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
