@@ -76,9 +76,10 @@ $phoneNo = $worker['phoneNo'];
                             Client Accept
                         </button>
                     </a>
-                </li>                <li>
+                </li>                
+                <li>
                     <a href="../contactforums/contactforum.php">
-                        <button class="active">
+                        <button >
                         <span class="menu-icon">💬</span>
                         Conact Forum
                         </button>
@@ -100,7 +101,7 @@ $phoneNo = $worker['phoneNo'];
                 </li>
                 <li><a href="../serviceproviders/view.php">
                     <button >
-                    <span class="menu-icon">📰</span>
+                    <span class="menu-icon">🛠️</span>
                     Service Providers
                     </button></a>
                 </li>
@@ -112,8 +113,7 @@ $phoneNo = $worker['phoneNo'];
             <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
-                <a href="#">
-                    <div class="profile-name"><?php echo htmlspecialchars($fullName); ?></div>
+                <a href="acc.php">
                 <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
@@ -142,10 +142,11 @@ $phoneNo = $worker['phoneNo'];
     <div class="main-content">
         <div class="account-details">
             <h2>👤 My Account Details</h2>
+            <button class="edit-btn" onclick="showUpdateForm()">✏️ Edit Profile</button>
             <div class="details-grid">
                 <div class="detail-item">
                     <label>Full Name</label>
-                    <span><?php echo htmlspecialchars($fullName); ?></span>
+                    <span id="fullNameDisplay"><?php echo htmlspecialchars($fullName); ?></span>
                 </div>
                 <div class="detail-item">
                     <label>Username</label>
@@ -161,14 +162,40 @@ $phoneNo = $worker['phoneNo'];
                 </div>
                 <div class="detail-item">
                     <label>Address</label>
-                    <span><?php echo htmlspecialchars($address); ?></span>
+                    <span id="addressDisplay"><?php echo htmlspecialchars($address); ?></span>
                 </div>
                 <div class="detail-item">
                     <label>Phone Number</label>
-                    <span><?php echo htmlspecialchars($phoneNo); ?></span>
+                    <span id="phoneDisplay"><?php echo htmlspecialchars($phoneNo); ?></span>
                 </div>
             </div>
         </div>
+
+        <!-- Update Form Popup -->
+        <div id="updateFormPopup" class="popup-form">
+            <div class="popup-content">
+                <h3>Update Profile</h3>
+                <form id="updateForm">
+                    <div class="form-group">
+                        <label>Full Name:</label>
+                        <input type="text" id="fullName" name="fullName" value="<?php echo htmlspecialchars($fullName); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($address); ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number:</label>
+                        <input type="text" id="phone" name="phone" value="<?php echo htmlspecialchars($phoneNo); ?>">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit">Update</button>
+                        <button type="button" onclick="hideUpdateForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+    <script src="acc.js"></script>
 </body>
 </html>

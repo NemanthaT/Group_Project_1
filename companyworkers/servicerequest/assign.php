@@ -112,7 +112,7 @@
                 </li>
                 <li><a href="../updatenews/initial.php">
                     <button>
-                    <span class="menu-icon">📰</span>
+                    <span class="menu-icon">🛠️</span>
                     Update News
                     </button></a>
                 </li>
@@ -125,8 +125,7 @@
             <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
-                <a href="#">
-                    <div class="profile-name"><?php echo htmlspecialchars($fullName); ?></div>
+                <a href="../myaccount/acc.php">
                 <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>

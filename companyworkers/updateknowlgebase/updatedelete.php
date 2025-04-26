@@ -96,7 +96,7 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
             </li>
             <li><a href="../serviceproviders/view.php">
                     <button >
-                    <span class="menu-icon">📰</span>
+                    <span class="menu-icon">🛠️</span>
                     Service Providers
                     </button></a>
             </li>
@@ -108,8 +108,7 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
         <!-- Navbar -->
         <div class="navbar">
             <div class="profile">
-            <a href="#">
-                <div class="profile-name"><?php echo htmlspecialchars($fullName); ?></div>
+            <a href="../myaccount/acc.php">
             <img src="../images/user.png" alt="Profile">
                 </a>
             </div>
