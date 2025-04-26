@@ -181,7 +181,7 @@ if ($action === 'create_chat') {
              "<td>" . htmlspecialchars($thread['topic']) . "</td>" .
              "<td>" . $lastMessage . "</td>" .
              "<td>" . $status . "</td>" .
-             "<td><button class=\"chat-button\" data-thread-id=\"" . $thread['thread_id'] . "\" data-provider-id=\"" . $thread['provider_id'] . "\">Chat</button></td>" .
+             "<td><button class=\"chat-button\" data-thread-id=\"" . $thread['thread_id'] . "\" data-provider-id=\"" . $thread['provider_id'] . "\" data-provider-name=\"" . htmlspecialchars($thread['full_name']) . "\">Chat</button></td>" .
              "</tr>";
     }
 }

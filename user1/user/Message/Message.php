@@ -125,10 +125,10 @@ $stmt->close();
                     <!-- Left Panel: Thread List -->
                     <div class="thread-panel">
                         <div class="message-controls">
-                            <input type="text" placeholder="Provider Name/Topic" id="search-input">
-                            <button class="search-button">Search</button>
+                            <input type="text" placeholder="Provider Name/Topic" id="search-input" oninput="filterMessages()">
                             <button class="clear-button" id="clear-button">Clear</button>
-                            <button class="create-chat-button">Create Chat</button>
+                            <!-- Commented out for future reference: Create Chat button -->
+                            <!-- <button class="create-chat-button">Create Chat</button> -->
                         </div>
 
                         <!-- Create Chat Modal -->
@@ -137,9 +137,9 @@ $stmt->close();
                                 <button class="close-create-chat-modal" title="Close">×</button>
                                 <h3>Create New Chat</h3>
                                 <form id="create-chat-form">
-                                    <div class="form-section">
+                                    <div class="form-section" style="display: none;">
                                         <label for="provider-id">Provider ID:</label>
-                                        <input type="text" id="provider-id" name="provider-id" required>
+                                        <input type="text" id="provider-id" name="provider-id" required readonly>
                                     </div>
                                     <div class="form-section">
                                         <label for="topic">Topic:</label>
@@ -150,7 +150,7 @@ $stmt->close();
                                         <textarea id="message" name="message" required></textarea>
                                     </div>
                                     <div class="form-footer">
-                                        <button type="submit" class="create-chat-button">Create</button>
+                                        <button type="submit" class="create-chat-submit-button">Create</button>
                                     </div>
                                 </form>
                             </div>
@@ -173,7 +173,7 @@ $stmt->close();
                                         <td><?php echo htmlspecialchars($thread['topic']); ?></td>
                                         <td><?php echo htmlspecialchars($thread['last_message'] ?? 'No messages yet'); ?></td>
                                         <td><?php echo htmlspecialchars($thread['status'] ?? 'Unseen'); ?></td>
-                                        <td><button class="chat-button" data-thread-id="<?php echo $thread['thread_id']; ?>" data-provider-id="<?php echo $thread['provider_id']; ?>">Chat</button></td>
+                                        <td><button class="chat-button" data-thread-id="<?php echo $thread['thread_id']; ?>" data-provider-id="<?php echo $thread['provider_id']; ?>" data-provider-name="<?php echo htmlspecialchars($thread['full_name']); ?>">Chat</button></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -181,10 +181,10 @@ $stmt->close();
                     </div>
 
                     <!-- Right Panel: Chat Window -->
-                    <div class="chat-panel" id="chat-modal" style="display: none;">
+                    <div class="chat-panel" id="chat-panel" style="display: none;">
                         <div class="chat-header">
-                            <h3>Chat with Provider <span id="chat-provider-id"></span></h3>
-                            <button class="close-chat-modal" title="Close">×</button>
+                            <h3>Chat with <span id="chat-provider-name"></span></h3>
+                            <button class="close-chat-panel" title="Close">×</button>
                         </div>
                         <div class="chat-window" id="chat-window">
                             <!-- Chat messages will be displayed here -->

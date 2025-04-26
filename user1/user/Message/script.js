@@ -1,5 +1,5 @@
-// Search Functionality
-document.querySelector('.search-button').addEventListener('click', function () {
+// Search Functionality: Filter as user types
+function filterMessages() {
     const searchValue = document.querySelector('#search-input').value.trim().toLowerCase();
     const rows = document.querySelectorAll('#message-tbody tr');
 
@@ -8,20 +8,12 @@ document.querySelector('.search-button').addEventListener('click', function () {
         const topic = row.children[1].textContent.toLowerCase();
         row.style.display = (providerName.includes(searchValue) || topic.includes(searchValue)) ? '' : 'none';
     });
-});
+}
 
 // Clear Filter Functionality
 document.querySelector('.clear-button').addEventListener('click', function () {
     document.querySelector('#search-input').value = '';
-    const rows = document.querySelectorAll('#message-tbody tr');
-    rows.forEach(row => {
-        row.style.display = '';
-    });
-});
-
-// Open Create Chat Modal
-document.querySelector('.create-chat-button').addEventListener('click', function () {
-    document.getElementById('create-chat-modal').style.display = 'flex';
+    filterMessages(); // Reapply filtering to reset the table
 });
 
 // Close Create Chat Modal
@@ -51,10 +43,17 @@ document.getElementById('create-chat-form').addEventListener('submit', function 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert(xhr.responseText);
-            if (xhr.responseText === 'Chat created successfully') {
+            if (xhr.responseText.includes('Chat created successfully')) {
                 fetchThreads();
                 document.getElementById('create-chat-form').reset();
                 document.getElementById('create-chat-modal').style.display = 'none';
+                // Find and click the new thread's chat button
+                setTimeout(() => {
+                    const chatButton = document.querySelector(`.chat-button[data-provider-id="${providerId}"]`);
+                    if (chatButton) {
+                        chatButton.click(); // Open the chat panel for the new thread
+                    }
+                }, 1000); // Delay to ensure threads are loaded
             }
         }
     };
@@ -68,9 +67,9 @@ let pollingInterval = null;
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('chat-button')) {
         currentThreadId = event.target.getAttribute('data-thread-id');
-        const providerId = event.target.getAttribute('data-provider-id');
-        document.getElementById('chat-provider-id').textContent = providerId;
-        document.getElementById('chat-modal').style.display = 'flex';
+        const providerName = event.target.getAttribute('data-provider-name');
+        document.getElementById('chat-provider-name').textContent = providerName;
+        document.getElementById('chat-panel').style.display = 'flex';
         document.getElementById('chat-window').innerHTML = '';
 
         // Fetch initial messages
@@ -82,8 +81,8 @@ document.addEventListener('click', function (event) {
 });
 
 // Close Chat Panel
-document.querySelector('.close-chat-modal').addEventListener('click', function () {
-    document.getElementById('chat-modal').style.display = 'none';
+document.querySelector('.close-chat-panel').addEventListener('click', function () {
+    document.getElementById('chat-panel').style.display = 'none';
     clearInterval(pollingInterval);
     currentThreadId = null;
 });
@@ -142,25 +141,23 @@ function fetchThreads() {
 // Start polling for thread updates
 setInterval(fetchThreads, 5000);
 
-// Initial thread fetch
+// Initial thread fetch with URL parameter handling
 document.addEventListener('DOMContentLoaded', function () {
     fetchThreads();
 
-    // Check for provider_id in URL and open chat panel if present
+    // Check for provider_id in URL and handle chat panel or modal
     const urlParams = new URLSearchParams(window.location.search);
     const providerId = urlParams.get('provider_id');
     if (providerId) {
-        // Wait for threads to load before attempting to find the chat button
+        // Wait for threads to load before checking
         setTimeout(() => {
             const chatButton = document.querySelector(`.chat-button[data-provider-id="${providerId}"]`);
             if (chatButton) {
-                chatButton.click(); // Trigger click to open chat panel
+                chatButton.click(); // Open the chat panel for existing thread
             } else {
-                // If no thread exists, prompt to create a new chat
-                if (confirm(`No chat thread exists for Provider ID ${providerId}. Would you like to create a new chat?`)) {
-                    document.getElementById('create-chat-modal').style.display = 'flex';
-                    document.getElementById('provider-id').value = providerId; // Pre-fill provider ID
-                }
+                // Open the create chat modal and pre-fill provider ID
+                document.getElementById('create-chat-modal').style.display = 'flex';
+                document.getElementById('provider-id').value = providerId;
             }
         }, 1000); // Delay to ensure threads are loaded
     }
