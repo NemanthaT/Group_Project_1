@@ -1,6 +1,21 @@
-
 <?php
 include '../session/session.php';
+include '../../connect/connect.php'; // Make sure this file sets up $conn
+
+// Get the logged-in client's email from the session
+$email = $_SESSION['email'] ?? null;
+if (!$email) {
+    die("No client email in session.");
+}
+
+// Fetch client data
+$stmt = $conn->prepare("SELECT full_name, email, phone, address, status FROM clients WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->bind_result($full_name, $client_email, $phone, $address, $status);
+
+$stmt->fetch();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,83 +104,39 @@ include '../session/session.php';
             </div>
 
     <div class=".main-container">
-        <div class="space"></div>
-
-        <div class="profile-container">
-        <h1>Business Profile Details</h1>
-        
-        <div class="profile-section">
-            <h2>Business Details</h2>
-            <div class="profile-field">
-                <br>
-                <label>Business Name</label>
-                <div class="value" id="business_name_display">Green Solutions Pvt Ltd</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Business Type</label>
-                <div class="value" id="business_type_display">Limited Company</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Business Registration Number</label>
-                <div class="value" id="registration_number_display">BR/2024/5678</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Tax Identification Number (TIN)</label>
-                <div class="value" id="tax_id_display">987-654-321</div>
-            </div>
+    <div class="space"></div><br>
+    <div class="profile-container">
+    <h1> Profile Details</h1>
+    <div class="profile-section">
+<br>
+        <div class="profile-field">
+            <br>
+            <label>Full Name</label>
+            <div class="value" id="business_name_display"><?= htmlspecialchars($full_name) ?></div>
         </div>
-
-        <div class="profile-section">
-            <h2>Company Contact Information</h2>
-            <div class="profile-field">
-                <br>
-                <label>Business Email</label>
-                <div class="value" id="business_email_display">info@greensolutions.lk</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Business Phone Number</label>
-                <div class="value" id="business_phone_display">+94 11 456 7890</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Business Address</label>
-                <div class="value" id="business_address_display">123 Eco Street, Colombo 04, Sri Lanka</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Province</label>
-                <div class="value" id="province_display">Western Province</div>
-            </div>
+        <div class="profile-field">
+            <label>Email</label>
+            <div class="value" id="business_email_display"><?= htmlspecialchars($client_email) ?></div>
         </div>
-
-        <div class="profile-section">
-            <h2>Business Owner/Proprietor Details</h2>
-            <div class="profile-field">
-                <br>
-                <label>Full Name</label>
-                <div class="value" id="owner_name_display">Saman Kumara</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>National Identity Card (NIC) Number</label>
-                <div class="value" id="owner_nic_display">199012345678</div>
-            </div>
-            
-            <div class="profile-field">
-                <label>Personal Phone Number</label>
-                <div class="value" id="owner_phone_display">+94 77 987 6543</div>
-            </div>
+        <div class="profile-field">
+            <label>Phone Number</label>
+            <div class="value" id="business_phone_display"><?= htmlspecialchars($phone) ?></div>
         </div>
-
-        <div class="action-buttons">
-            <button class="action-button edit-button" onclick="enableEditing()">Edit Profile</button>
+        <div class="profile-field">
+            <label>Address</label>
+            <div class="value" id="business_address_display"><?= htmlspecialchars($address) ?></div>
+        </div>
+        <div class="profile-field">
+            <label>Status</label>
+            <div class="value" id="status_display"><?= htmlspecialchars($status) ?></div>
         </div>
     </div>
+    <!-- <div class="action-buttons">
+        <button class="action-button edit-button">Edit Profile</button>
+    </div> -->
+</div>
         </div>
+
 
     </div>
     <script src="script.js"></script>
