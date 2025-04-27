@@ -42,7 +42,7 @@ $row = $result->fetch_assoc();
 $employees = $row["COUNT(*)"];
 
 // Get pending requests
-$sql = "SELECT COUNT(*) FROM providerrequests";
+$sql = "SELECT COUNT(*) FROM providerrequests WHERE status = 'set'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $pendingRequests = $row["COUNT(*)"];
