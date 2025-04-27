@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($modalCase['title']); ?>" readonly>
 
                         <label for="description">Description:</label>
-                        <textarea id="description" name="description" rows="5" readonly><?php echo htmlspecialchars($modalCase['content']); ?></textarea>
+                        <textarea id="description" name="description" rows="20" readonly><?php echo htmlspecialchars($modalCase['content']); ?></textarea>
 
                         <button type="button" onclick="toggleEdit()">Edit</button>
                         <button type="submit">Update Case Study</button>

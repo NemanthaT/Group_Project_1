@@ -66,14 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h2>Create Case Study</h2>
                 
                 <div class="case-study-form">
-                    <h3>Create a New Case Study</h3>
                     <form method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="create">
                         <label for="title">Title:</label>
                         <input type="text" id="title" name="title" placeholder="Enter case study title" required>
 
                         <label for="description">Description:</label>
-                        <textarea id="description" name="description" rows="5" placeholder="Enter case study description" required></textarea>
+                        <textarea id="description" name="description" rows="15" placeholder="Enter case study description" required></textarea>
 
                         <label for="fileUpload">Upload File:</label>
                         <input type="file" id="fileUpload" name="fileUpload" accept=".pdf,.docx,.txt">
