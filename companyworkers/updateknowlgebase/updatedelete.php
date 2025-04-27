@@ -76,7 +76,7 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
                 <a href="../contactforums/contactforum.php">
                     <button >
                     <span class="menu-icon">💬</span>
-                    Conact Forum
+                    Contact Forum
                     </button>
                 </a>
             </li>

@@ -81,7 +81,7 @@ $phoneNo = $worker['phoneNo'];
                     <a href="../contactforums/contactforum.php">
                         <button >
                         <span class="menu-icon">💬</span>
-                        Conact Forum
+                        Contact Forum
                         </button>
                     </a>
                 </li>
@@ -188,6 +188,21 @@ $phoneNo = $worker['phoneNo'];
                         <label>Phone Number:</label>
                         <input type="text" id="phone" name="phone" value="<?php echo htmlspecialchars($phoneNo); ?>">
                     </div>
+                    <hr>
+                    <h4>Change Password</h4>
+                    <div class="form-group">
+                        <label>Current Password:</label>
+                        <input type="password" id="currentPassword" name="currentPassword">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password:</label>
+                        <input type="password" id="newPassword" name="newPassword">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword">
+                    </div>
+                    <p id="passwordMessage" class="password-message"></p>
                     <div class="form-buttons">
                         <button type="submit">Update</button>
                         <button type="button" onclick="hideUpdateForm()">Cancel</button>

@@ -67,7 +67,7 @@ $result = $conn->query($sql);
                     <a href="../contactforums/contactforum.php">
                         <button class="active">
                         <span class="menu-icon">💬</span>
-                        Conact Forum
+                        Contact Forum
                         </button>
                     </a>
                 </li>
@@ -156,20 +156,5 @@ $result = $conn->query($sql);
   </div>
   </div>
   </div>
-  <script src="../sidebar.js"></script>
-  <script>
-    // Sidebar toggle for mobile
-    const sidebarToggle = document.getElementByid('sidebarToggle');
-    const sidebar = document.getElementByid('sidebar');
-    const overlay = document.getElementByid('overlay');
-    sidebarToggle.addEventListener('click', function() {
-      sidebar.classList.toggle('open');
-      overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
-    });
-    overlay.addEventListener('click', function() {
-      sidebar.classList.remove('open');
-      overlay.style.display = 'none';
-    });
-  </script>
 </body>
 </html>
