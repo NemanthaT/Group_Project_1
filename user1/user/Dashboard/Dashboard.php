@@ -63,8 +63,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
-                    <button>
+                <a href="../forum/forum.php">
+                <button>
                         <img src="../images/forum.png" alt="Forum">
                         Forum
                     </button>
