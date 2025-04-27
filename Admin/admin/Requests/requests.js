@@ -78,43 +78,56 @@ function deleteReq(id) {
 
 // Function to accept the request and send an email
 function accReq(id) {
-    if (confirm("Do you want to accept the request?")) {
-      fetch("acc_req.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `id=${id}`,
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          alert(data.error);
-        } else {
-          return fetch("http://localhost/Group_Project_1/sendemail/send.php", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: `data=${JSON.stringify(data)}`, // Properly stringify the data
-          });
-        }
-      })
-      .then((response) => response.text()) // Change to text() since send.php returns HTML/JS
-      .then((result) => {
-        console.log("Email result:", result);
-        alert("Request accepted and email sent");
-        window.location.href = "requests.php";
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Request accepted but email failed to send");
-        window.location.href = "requests.php";
-      });
-    } else {
-      alert("Accepting canceled.");
-    }
+  if (confirm("Do you want to accept the request?")) {
+    // Show preloader
+    const preloader = document.getElementById("popupPreloader");
+    preloader.classList.remove("fade-out");
+    preloader.style.display = "flex";
+
+    fetch("acc_req.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `id=${id}`,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        throw new Error(data.error);
+      } else {
+        return fetch("http://localhost/Group_Project_1/sendemail/send.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `data=${JSON.stringify(data)}`,
+        });
+      }
+    })
+    .then((response) => response.text())
+    .then((result) => {
+      console.log("Email result:", result);
+      alert("Request accepted and email sent");
+      window.location.href = "requests.php";
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert(error.message || "Request accepted but email failed to send");
+      window.location.href = "requests.php";
+    })
+    .finally(() => {
+      // Hide preloader with fade out in case page doesn't redirect
+      preloader.classList.add("fade-out");
+      setTimeout(() => {
+        preloader.style.display = "none";
+      }, 500);
+    });
+  } else {
+    alert("Accepting canceled.");
   }
+}
+
 
 window.addEventListener("scroll", function () {
   document.getElementById("hiddenView").style.marginTop = window.scrollY + "px";
