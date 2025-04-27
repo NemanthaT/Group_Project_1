@@ -48,6 +48,25 @@
       echo '<script>alert("Nothing changed");</script>';
     }
   }
+  
+  // Handle rejection
+  if (isset($_POST['reject'])) {
+    $reject_reason = $_POST['reject_reason'];
+    $sql = "UPDATE `appointments` SET 
+            status='Rejected',
+            reject_note='$reject_reason' 
+            WHERE appointment_id='$appointment_id'";
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+      echo '<script>
+        alert("Appointment rejected");
+        window.location.href = "servicerequest.php";
+        </script>';
+      exit;
+    } else {
+      echo '<script>alert("Error rejecting appointment");</script>';
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +117,7 @@
                     <a href="../contactforums/contactforum.php">
                         <button >
                         <span class="menu-icon">💬</span>
-                        Conact Forum
+                        Contact Forum
                         </button>
                     </a>
                 </li>
@@ -116,7 +135,12 @@
                     Update News
                     </button></a>
                 </li>
-                
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">🛠️</span>
+                    Service Providers
+                    </button></a>
+                </li>
             </ul>
         </div>
 
@@ -234,7 +258,20 @@
 
         <div class="submit-section">
           <input type="submit" value="Submit" name="submit" class="submit-button">
+          <button type="button" class="reject-button" onclick="showRejectPopup()">Reject</button>
         </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Rejection Popup Modal -->
+  <div id="rejectModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeRejectPopup()">&times;</span>
+      <h3>Rejection Reason</h3>
+      <form id="rejectForm" method="POST" action="">
+        <textarea id="reject_reason" name="reject_reason" placeholder="Enter reason for rejection" required></textarea>
+        <input type="submit" name="reject" value="Confirm Rejection">
       </form>
     </div>
   </div>
@@ -252,6 +289,24 @@
       sidebar.classList.remove('open');
       overlay.style.display = 'none';
     });
+    
+    // Rejection modal functionality
+    function showRejectPopup() {
+      document.getElementById('rejectModal').style.display = 'block';
+    }
+    
+    function closeRejectPopup() {
+      document.getElementById('rejectModal').style.display = 'none';
+    }
+    
+    // Close modal if user clicks outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById('rejectModal');
+      if (event.target == modal) {
+        closeRejectPopup();
+      }
+    }
+    
     // Date/time display
     function updateDateTime() {
       const now = new Date();
@@ -267,5 +322,62 @@
       setInterval(updateDateTime, 60000);
     });
   </script>
+  
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 50%;
+      border-radius: 5px;
+    }
+    
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close:hover {
+      color: black;
+    }
+    
+    #reject_reason {
+      width: 100%;
+      min-height: 100px;
+      margin: 15px 0;
+      padding: 10px;
+    }
+    
+    .reject-button {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 15px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .reject-button:hover {
+      background-color: #d32f2f;
+    }
+  </style>
 </body>
 </html>

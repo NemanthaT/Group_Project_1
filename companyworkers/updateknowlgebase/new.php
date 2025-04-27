@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
                     <a href="../contactforums/contactforum.php">
                         <button >
                         <span class="menu-icon">💬</span>
-                        Conact Forum
+                        Contact Forum
                         </button>
                     </a>
                 </li>

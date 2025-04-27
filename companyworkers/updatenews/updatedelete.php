@@ -71,7 +71,7 @@ $fullName = $user['full_name'] ?? 'User';
                     <a href="../contactforums/contactforum.php">
                         <button >
                         <span class="menu-icon">💬</span>
-                        Conact Forum
+                        Contact Forum
                         </button>
                     </a>
                 </li>

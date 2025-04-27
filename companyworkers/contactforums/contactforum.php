@@ -67,7 +67,7 @@ $result = $conn->query($sql);
                     <a href="../contactforums/contactforum.php">
                         <button class="active">
                         <span class="menu-icon">💬</span>
-                        Conact Forum
+                        Contact Forum
                         </button>
                     </a>
                 </li>

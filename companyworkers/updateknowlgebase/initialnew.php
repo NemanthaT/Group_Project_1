@@ -71,7 +71,7 @@ $selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['kno
                     <a href="../contactforums/contactforum.php">
                         <button >
                         <span class="menu-icon">💬</span>
-                        Conact Forum
+                        Contact Forum
                         </button>
                     </a>
                 </li>
