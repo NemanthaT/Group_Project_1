@@ -49,14 +49,13 @@ if ($result === false) {
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <div class="project-card">
                             <div class="project-header">
-                                <span class="project-id">PROJECT</span>
+                                <span class="project-id"> <?php echo htmlspecialchars($row['project_name']); ?></span>
                                 <span class="status <?php echo strtolower($row['project_status']); ?>">
                                     <?php echo ucfirst($row['project_status']); ?>
                                 </span>
                             </div>
                             <div class="project-content">
                                 <div class="project-info">
-                                    <p><strong>Service:</strong> <?php echo htmlspecialchars($row['project_name']); ?></p>
                                     <p><strong>Description:</strong> <?php echo htmlspecialchars($row['project_description']); ?></p>
                                     <p><strong>Date:</strong> <?php echo htmlspecialchars($row['created_date']); ?></p>
                                     <p><strong>Client Name:</strong> <?php echo htmlspecialchars($row['full_name'] ?? 'Unknown'); ?></p>
