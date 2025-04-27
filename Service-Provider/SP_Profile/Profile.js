@@ -1,25 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
     const editButton = document.querySelector(".edit-button");
+    const saveButton = document.querySelector(".save-button");
     const profileImage = document.querySelector("#profileImage");
     const profileImageContainer = document.querySelector(".profile-image");
-    const profileImageInput = document.createElement("input");
+    const profileImageInput = document.querySelector("#profileImageInput");
     let isEditing = false;
-
-    // File input for image upload
-    profileImageInput.type = "file";
-    profileImageInput.accept = "image/*";
-    profileImageInput.style.display = "none";
-    document.body.appendChild(profileImageInput);
 
     // Function to toggle edit mode
     function toggleEdit() {
         if (isEditing) {
-            saveProfileChanges();
+            // Revert to display mode
+            revertToDisplayMode();
             editButton.textContent = "Edit";
+            saveButton.style.display = "none"; // Hide Save button
             profileImageContainer.classList.remove("editing");
+            profileImage.removeEventListener("click", triggerImageUpload);
         } else {
             enterEditMode();
-            editButton.textContent = "Save";
+            editButton.textContent = "Cancel";
+            saveButton.style.display = "inline-block"; // Show Save button
             profileImageContainer.classList.add("editing");
         }
         isEditing = !isEditing;
@@ -49,43 +48,20 @@ document.addEventListener("DOMContentLoaded", () => {
         return str.replace(/\n/g, '<br>');
     }
 
-    // Save changes and submit form
-    function saveProfileChanges() {
-        const form = document.createElement("form");
-        form.method = "POST";
-        form.action = "";
-        form.enctype = "multipart/form-data";
-
-        // Add form inputs
-        const fields = [
-            "full_name", "gender", "email", "phone", "address",
-            "introduction", "field", "speciality", "service_description",
-            "certifications", "awards"
-        ];
-
-        fields.forEach(field => {
-            const input = document.createElement("input");
-            input.type = "hidden";
-            input.name = field;
-            input.value = document.querySelector(`[name="${field}"]`).value;
-            form.appendChild(input);
-        });
-
-        // Add profile image if selected
-        if (profileImageInput.files[0]) {
-            const fileInput = document.createElement("input");
-            fileInput.type = "file";
-            fileInput.name = "profile_image";
-            fileInput.files = profileImageInput.files;
-            form.appendChild(fileInput);
-        }
-
-        // Submit the form
-        document.body.appendChild(form);
-        form.submit();
-
-        // Remove image click event
-        profileImage.removeEventListener("click", triggerImageUpload);
+    // Revert to display mode (same as initial HTML)
+    function revertToDisplayMode() {
+        const profileName = document.querySelector("#profileName").textContent;
+        document.querySelector("#name").outerHTML = `<span id="name">${profileName}</span>`;
+        document.querySelector("#gender").outerHTML = `<span id="gender">${document.querySelector("#gender").value}</span>`;
+        document.querySelector("#email").outerHTML = `<span id="email">${document.querySelector("#email").value}</span>`;
+        document.querySelector("#phone").outerHTML = `<span id="phone">${document.querySelector("#phone").value}</span>`;
+        document.querySelector("#address").outerHTML = `<span id="address">${document.querySelector("#address").value}</span>`;
+        document.querySelector("#introduction").outerHTML = `<span id="introduction">${nl2br(document.querySelector("#introduction").value)}</span>`;
+        document.querySelector("#field").outerHTML = `<span id="field">${document.querySelector("#field").value}</span>`;
+        document.querySelector("#speciality").outerHTML = `<span id="speciality">${document.querySelector("#speciality").value}</span>`;
+        document.querySelector("#service_description").outerHTML = `<span id="service_description">${nl2br(document.querySelector("#service_description").value)}</span>`;
+        document.querySelector("#certifications").outerHTML = `<span id="certifications">${nl2br(document.querySelector("#certifications").value)}</span>`;
+        document.querySelector("#awards").outerHTML = `<span id="awards">${nl2br(document.querySelector("#awards").value)}</span>`;
     }
 
     // Trigger file input click
