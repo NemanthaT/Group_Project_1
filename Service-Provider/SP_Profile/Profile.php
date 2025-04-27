@@ -78,6 +78,113 @@ while ($row = $result->fetch_assoc()) {
     }
 }
 $stmt->close();
+
+// Handle form submission for updates
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Prepare data
+    $full_name = $_POST['full_name'] ?? '';
+    $gender = $_POST['gender'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    $address = $_POST['address'] ?? '';
+    $introduction = $_POST['introduction'] ?? '';
+    $field = $_POST['field'] ?? '';
+    $speciality = $_POST['speciality'] ?? '';
+    $service_description = $_POST['service_description'] ?? '';
+    $certifications = $_POST['certifications'] ?? '';
+    $awards = $_POST['awards'] ?? '';
+    $image_url = '';
+
+    // Handle image upload
+    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+        $upload_dir = '../images/';
+        $file_name = time() . '_' . basename($_FILES['profile_image']['name']);
+        $target_file = $upload_dir . $file_name;
+
+        if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $target_file)) {
+            $image_url = $target_file;
+        } else {
+            echo "Failed to upload image";
+            exit();
+        }
+    }
+
+    // Update database
+    $sql = "UPDATE serviceproviders SET 
+        full_name = ?, 
+        gender = ?, 
+        email = ?, 
+        phone = ?, 
+        address = ?, 
+        introduction = ?, 
+        field = ?, 
+        speciality = ?, 
+        service_description = ?, 
+        certifications = ?, 
+        awards = ?" . 
+        ($image_url ? ", profile_image = ?" : "") . 
+        " WHERE provider_id = ?";
+
+    $stmt = $conn->prepare($sql);
+
+    if ($image_url) {
+        $stmt->bind_param(
+            "ssssssssssssi",
+            $full_name,
+            $gender,
+            $email,
+            $phone,
+            $address,
+            $introduction,
+            $field,
+            $speciality,
+            $service_description,
+            $certifications,
+            $awards,
+            $image_url,
+            $provider_id
+        );
+    } else {
+        $stmt->bind_param(
+            "sssssssssssi",
+            $full_name,
+            $gender,
+            $email,
+            $phone,
+            $address,
+            $introduction,
+            $field,
+            $speciality,
+            $service_description,
+            $certifications,
+            $awards,
+            $provider_id
+        );
+    }
+
+    if ($stmt->execute()) {
+        // Update the provider array with new values for display
+        $provider['full_name'] = $full_name;
+        $provider['gender'] = $gender;
+        $provider['email'] = $email;
+        $provider['phone'] = $phone;
+        $provider['address'] = $address;
+        $provider['introduction'] = $introduction;
+        $provider['field'] = $field;
+        $provider['speciality'] = $speciality;
+        $provider['service_description'] = $service_description;
+        $provider['certifications'] = $certifications;
+        $provider['awards'] = $awards;
+        if ($image_url) {
+            $provider['profile_image'] = $image_url;
+        }
+    } else {
+        echo "Database update failed";
+    }
+
+    $stmt->close();
+}
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -98,9 +205,9 @@ $conn->close();
             <div class="profile-card">
                 <div class="profile-image">
                     <img src="<?php echo htmlspecialchars($provider['profile_image'] ?: '../images/user.png'); ?>" alt="User Profile" id="profileImage">
-                    <button class="edit-button">Edit</button>
+                    <button type="button" class="edit-button">Edit</button>
                 </div>
-                <h3 id="profileName"><?php echo htmlspecialchars($provider['full_name']); ?></h3>
+                <h2 id="profileName"><?php echo htmlspecialchars($provider['full_name']); ?></h2>
                 <!-- <p>★★★★★</p> Star rating styled with CSS -->
                 <ul class="profile-info">
                     <li><strong>Name:</strong> <span id="name"><?php echo htmlspecialchars($provider['full_name']); ?></span></li>
@@ -120,10 +227,10 @@ $conn->close();
             <div class="service-stats">
                 <h3>Service Stats</h3>
                 <ul>
-                    <li>Assigned: <?php echo $project_stats['Assigned']; ?></li>
-                    <li>Completed: <?php echo $project_stats['Completed']; ?></li>      
-                    <li>Ongoing: <?php echo $project_stats['Ongoing']; ?></li>
-                    <li>Cancelled: <?php echo $project_stats['Cancelled']; ?></li>
+                    <li><strong>Assigned:</strong> <?php echo $project_stats['Assigned']; ?></li>
+                    <li><strong>Completed:</strong> <?php echo $project_stats['Completed']; ?></li>      
+                    <li><strong>Ongoing:</strong> <?php echo $project_stats['Ongoing']; ?></li>
+                    <li><strong>Cancelled:</strong> <?php echo $project_stats['Cancelled']; ?></li>
                 </ul>
             </div>
         </div>
@@ -146,7 +253,6 @@ $conn->close();
             </div>
         </div>
     </div>
-</div>
 </div>
 <script src="Profile.js"></script>
 <script src="../Common template/Calendar.js"></script>
