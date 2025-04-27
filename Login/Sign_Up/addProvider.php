@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (mysqli_query($conn, $sql)) {
                 $popup_type = 'success';
                 $popup_title = 'Success!';
-                $popup_message = 'Registration successful!';
+                $popup_message = 'Registration successful! Wait for our confirmation.';
                 $data = ['popup_type' => $popup_type, 'popup_title' => $popup_title, 'popup_message' => $popup_message];
                 echo json_encode($data);
                 exit();

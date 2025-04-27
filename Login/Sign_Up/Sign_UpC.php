@@ -5,6 +5,7 @@ require_once('../../config/config.php');
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +13,15 @@ require_once('../../config/config.php');
     <link rel="stylesheet" href="Sign_up.css">
     <script src="Sign_Up.js"></script>
 </head>
+
 <body>
     <div class="blurry-background"></div>
     <div id="errorView">
-            <button id="closeError" onclick="closeError()">x</button>
-            <center>                    
-                <h2 class="error-title"></h2>
-                <p class="error-message"></p>     
-            </center>            
+        <button id="closeError" onclick="closeError()">x</button>
+        <center>
+            <h2 class="error-title"></h2>
+            <p class="error-message"></p>
+        </center>
     </div>
     <div id="overlay" class="overlay"></div>
     <main>
@@ -28,7 +30,7 @@ require_once('../../config/config.php');
                 <div class="left-content">
                     <h2>Join as a Client</h2>
                     <p>Find the right professional services for your needs.</p>
-                    
+
                     <ul class="benefit-list">
                         <li>Access to verified service providers</li>
                         <li>Seamless booking experience</li>
@@ -40,7 +42,7 @@ require_once('../../config/config.php');
             </div>
             <div class="sign-up">
                 <h1>Welcome to EDSA Lanka Consultancy</h1>
-                
+
                 <form id="signup-form" method="post" action="">
                     <!-- Step 1 -->
                     <div id="step-1">
@@ -60,7 +62,7 @@ require_once('../../config/config.php');
                         <input type="text" id="address" name="address" placeholder="Enter your address" required>
 
                         <center><button type="submit" id="submit-btn" class="sign-up-btn">Sign up</button><br>
-                                <a href="switch.php" class="back-link">Back to account selection</a>
+                            <a href="switch.php" class="back-link">Back to account selection</a>
                         </center>
                     </div>
                 </form>
@@ -87,4 +89,5 @@ require_once('../../config/config.php');
         });
     </script>
 </body>
+
 </html>

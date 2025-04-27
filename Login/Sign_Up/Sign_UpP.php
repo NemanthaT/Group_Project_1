@@ -1,51 +1,3 @@
-<?php
-session_start();
-require_once('../../config/config.php'); // Include the database connection
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve and sanitize form data
-    $email = mysqli_real_escape_string($conn, $_POST['email-signup']);
-    $first_name = mysqli_real_escape_string($conn, $_POST['first-name']);
-    $last_name = mysqli_real_escape_string($conn, $_POST['last-name']);
-    $full_name = $first_name . ' ' . $last_name;
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $address = mysqli_real_escape_string($conn, $_POST['address']);
-    $speciality = mysqli_real_escape_string($conn, $_POST['speciality']);
-    $specialized_fields = isset($_POST['specialized-fields']) ? implode(', ', $_POST['specialized-fields']) : '';
-    $created_at = date('Y-m-d H:i:s');
-
-    // Check for duplicate email
-    $check_query = "SELECT * FROM providerrequests WHERE email = '$email'";
-    $check_result = mysqli_query($conn, $check_query);
-
-    if (mysqli_num_rows($check_result) > 0) {
-        $checkSum = 1;
-        $error_message = "Email is already registered.";
-        echo "<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            displayError();
-        });
-      </script>";
-    } else {
-        // Insert data into providerrequests table
-        $sql = "INSERT INTO providerrequests (full_name, email, phone, address, field, specialty)
-                VALUES ('$full_name', '$email', '$phone', '$address', '$specialized_fields', '$speciality')";
-
-        if (mysqli_query($conn, $sql)) {
-            echo "<script>
-                    alert('Registration successful!\\nPlease wait for our confirmation email with further instructions.');
-                    window.location.href = '../../Home/Homepage/HP.php';
-                  </script>";
-            exit;
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-    }
-    mysqli_close($conn);
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,21 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div class="blurry-background"></div>
+    <div id="errorView">
+        <button id="closeError" onclick="closeError()">x</button>
+        <center>
+            <h2 class="error-title"></h2>
+            <p class="error-message"></p>
+        </center>
+
+    </div>
+    <div id="overlay" class="overlay"></div>
     <main>
-        <div id="errorView">
-            <button id="closeError" onclick="closeError()">x</button>
-            <center>
-                <?php
-                if ($checkSum) {
-                    echo "<h2>Oops!</h2>
-                              <p class='error'>" . $error_message . "</p>";
-                    $checkSum = 0;
-                }
-                ?>
-            </center>
-
-        </div>
-
         <div class="form-section">
             <div class="left">
                 <div class="left-content">
