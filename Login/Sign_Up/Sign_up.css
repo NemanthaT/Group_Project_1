@@ -109,6 +109,7 @@ main {
 .sign-up {
   width: 60%;
   padding: 40px;
+  background-color: white;
   display: flex;
   flex-direction: column;
 }
@@ -125,6 +126,13 @@ main {
   flex-direction: column;
   flex: 1;
 }
+
+#signup-form2 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 
 .form-group {
   margin-bottom: 20px;
@@ -290,32 +298,22 @@ footer {
     background-color: red;
     border: red;
   }
-  
-  #errorView {
-    font-size: 1.5rem;
-    margin-top: 10%;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding: 5px;
-    padding-bottom: 20px;
-    border-radius: 10px;
-    width: 80%;
-    background-color: #ffffff;
-    border: 1px solid #333;
-    display: none;
-    position: absolute;
-    z-index: 1;
-    height: auto;
-    width: auto;
-  }
-  
-  #errorView h2 {
-    color: red;
-  }
-  
+
   #errorView p {
     color: black;
   }
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1; /* Must be higher than the rest of your page */
+    pointer-events: all; /* Ensures it blocks clicks */
+  }
+  
   
   /* Form Container Styling */
 #signup-form {
@@ -323,7 +321,15 @@ footer {
   padding: 30px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
+}
+
+#signup-form2 {
+  max-width: 500px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
 }
 
 /* Step Container */
@@ -412,6 +418,11 @@ center {
 /* Responsive Adjustments */
 @media screen and (max-width: 600px) {
   #signup-form {
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  #signup-form2 {
     padding: 20px;
     margin: 20px auto;
   }

@@ -78,26 +78,35 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $newRegisteredServiceProvidersCount = $row["COUNT(*)"];
 
-$_SESSION['pR'] = NULL;
-$_SESSION['nF'] = NULL;
-$_SESSION['nPB'] = NULL;
-$_SESSION['nRC'] = NULL;
-$_SESSION['nRSP'] = NULL;
-
 if ($_SESSION['pR']!== 'none' && $pendingRN > 0) {
     $_SESSION['pR'] = $pendingRN;
+}
+else{
+    $_SESSION['pR'] = 0;
 }
 if ($_SESSION['nF']!== 'none' && $newForumCount > 0) {
     $_SESSION['nF'] = $newForumCount;
 }
+else{
+    $_SESSION['nF'] = 0;
+}
 if ($_SESSION['nPB']!== 'none' && $newPaidBillCount > 0) {
     $_SESSION['nPB'] = $newPaidBillCount;
+}
+else{
+    $_SESSION['nPB'] = 0;
 }
 if ($_SESSION['nRC']!== 'none' && $newRegisteredClientsCount > 0) {
     $_SESSION['nRC'] = $newRegisteredClientsCount;
 }
+else{
+    $_SESSION['nRC'] = 0;
+}
 if ($_SESSION['nRSP']!== 'none' && $newRegisteredServiceProvidersCount > 0) {
     $_SESSION['nRSP'] = $newRegisteredServiceProvidersCount;
+}
+else{
+    $_SESSION['nRSP'] = 0;
 }
 
 ?>
@@ -263,19 +272,19 @@ if ($_SESSION['nRSP']!== 'none' && $newRegisteredServiceProvidersCount > 0) {
                 </div>
                 <div class="notContent">
                     <?php
-                        if($pendingRN > 0) {
+                        if($_SESSION['pR'] > 0) {
                             echo "<p id=\"notice\"><a href=\"../Requests/requests.php\" ><i class=\"fas fa-address-book\"></i>  You have ". $_SESSION['pR'] . " new provider Requests.<a/></p>";
                         }
-                        if($newForumCount > 0) {
+                        if($_SESSION['nF'] > 0) {
                             echo "<p id=\"notice\"><a href=\"../Forums/forums.php\" ><i class=\"fas fa-book\"></i>  " . $_SESSION['nF'] . " new forums.<a/></p>";
                         }
-                        if($newPaidBillCount > 0) {
+                        if($_SESSION['nPB'] > 0) {
                             echo "<p id=\"notice\"><a href=\"../Reports/reports.php\" ><i class=\"fas fa-money-bill-wave\"></i>  ". $_SESSION['nPB'] ." new paid bills.<a/></p>";
                         }
-                        if($newRegisteredClientsCount > 0) {
+                        if($_SESSION['nRC'] > 0) {
                             echo "<p id=\"notice\"><a href=\"../Users/clients/clients.php\" ><i class=\"fas fa-user\"></i>  " . $_SESSION['nRC'] . " new registered clients.<a/></p>";
                         }
-                        if($newRegisteredServiceProvidersCount > 0) {
+                        if($_SESSION['nRSP'] > 0) {
                             echo "<p id=\"notice\"><a href=\"../Users/providers/serviceproviders.php\" ><i class=\"fas fa-user\"></i>  " . $_SESSION['nRSP'] . " new registered service providers.<a/></p>";
                         }
                         if($_SESSION['pR'] == 0 && $_SESSION['nF'] == 0 && $_SESSION['nPB'] == 0 && $_SESSION['nRC'] == 0 && $_SESSION['nRSP'] == 0) {

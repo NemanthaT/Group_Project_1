@@ -158,6 +158,12 @@ while ($row = mysqli_fetch_assoc($res)) {
                     Update News
                     </button></a>
                 </li>
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">🛠️</span>
+                    Service Providers
+                    </button></a>
+                </li>
             </ul>
         </div>
 
@@ -166,8 +172,7 @@ while ($row = mysqli_fetch_assoc($res)) {
             <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
-                <a href="#">
-                    <div class="profile-name"><?php echo htmlspecialchars($fullName); ?></div>
+                <a href="../myaccount/acc.php">
                 <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>
@@ -196,66 +201,8 @@ while ($row = mysqli_fetch_assoc($res)) {
     <main class="main">
         <?php echo $message; ?>
         
-        <!-- Key Metrics -->
-        <h2 class="section-header">Key Metrics</h2>
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-icon service-icon">
-                    <i class="fas fa-user-clock"></i>
-                </div>
-                <div class="metric-info">
-                    <h3>Pending Requests</h3>
-                    <div class="count">
-                        5
-                        <span class="percent up">↑12%</span>
-                    </div>
-                    <div class="period">Last 7 days</div>
-                </div>
-            </div>
-            
-            <div class="metric-card">
-                <div class="metric-icon forums-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div class="metric-info">
-                    <h3>Accepted Today</h3>
-                    <div class="count">
-                        3
-                        <span class="percent up">↑8%</span>
-                    </div>
-                    <div class="period">Last 7 days</div>
-                </div>
-            </div>
-            
-            <div class="metric-card">
-                <div class="metric-icon news-icon">
-                    <i class="fas fa-times-circle"></i>
-                </div>
-                <div class="metric-info">
-                    <h3>Rejected Today</h3>
-                    <div class="count">
-                        2
-                        <span class="percent up">↑15%</span>
-                    </div>
-                    <div class="period">Last 7 days</div>
-                </div>
-            </div>
-        </div>
-        
         <!-- Client Requests Section -->
         <div class="client-section">
-            <div class="client-header">
-                <h2 class="section-header">Client Requests</h2>
-                <div class="filter-container">
-                    <select class="filter-select">
-                        <option value="all">All Requests</option>
-                        <option value="recent">Most Recent</option>
-                        <option value="urgent">Urgent</option>
-                        <option value="pending">Pending</option>
-                    </select>
-                    <input type="search" class="search-input" placeholder="Search by name, email...">
-                </div>
-            </div>
             
             <div class="client-grid">
                 <?php if (empty($pendingClients)): ?>

@@ -1,53 +1,6 @@
-<?php
-session_start();
-require_once('../../config/config.php'); // Include the database connection
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve and sanitize form data
-    $email = mysqli_real_escape_string($conn, $_POST['email-signup']);
-    $first_name = mysqli_real_escape_string($conn, $_POST['first-name']);
-    $last_name = mysqli_real_escape_string($conn, $_POST['last-name']);
-    $full_name = $first_name . ' ' . $last_name;
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $address = mysqli_real_escape_string($conn, $_POST['address']);
-    $speciality = mysqli_real_escape_string($conn, $_POST['speciality']);
-    $specialized_fields = isset($_POST['specialized-fields']) ? implode(', ', $_POST['specialized-fields']) : '';
-    $created_at = date('Y-m-d H:i:s');
-
-    // Check for duplicate email
-    $check_query = "SELECT * FROM providerrequests WHERE email = '$email'";
-    $check_result = mysqli_query($conn, $check_query);
-
-    if (mysqli_num_rows($check_result) > 0) {
-        $checkSum= 1;
-        $error_message = "Email is already registered.";
-        echo "<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            displayError();
-        });
-      </script>";
-    } else {
-        // Insert data into providerrequests table
-        $sql = "INSERT INTO providerrequests (full_name, email, phone, address, field, specialty)
-                VALUES ('$full_name', '$email', '$phone', '$address', '$specialized_fields', '$speciality')";
-
-        if (mysqli_query($conn, $sql)) {
-            echo "<script>
-                    alert('Registration successful!\\nPlease wait for our confirmation email with further instructions.');
-                    window.location.href = '../../Home/Homepage/HP.php';
-                  </script>";
-            exit;
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-    }
-    mysqli_close($conn);
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,30 +8,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="Sign_up.css">
     <script src="Sign_Up.js"></script>
 </head>
+
 <body>
     <div class="blurry-background"></div>
+    <div id="errorView">
+        <button id="closeError" onclick="closeError()">x</button>
+        <center>
+            <h2 class="error-title"></h2>
+            <p class="error-message"></p>
+        </center>
+
+    </div>
+    <div id="overlay" class="overlay"></div>
     <main>
-        <div id="errorView">
-            <button id="closeError" onclick="closeError()">x</button>
-            <center>                    
-                <?php
-                    if($checkSum){
-                        echo "<h2>Oops!</h2>
-                              <p class='error'>".$error_message."</p>";
-                        $checkSum=0;
-                    }
-                ?>       
-            </center>
-                    
-        </div>
-        
         <div class="form-section">
             <div class="left">
+                <div class="left-content">
+                    <h2>Join as a Service Provider</h2>
+                    <p>Grow your business by connecting with clients who need your expertise.</p>
 
+                    <ul class="benefit-list">
+                        <li>Access to thousands of potential clients</li>
+                        <li>Easy appointment scheduling and management</li>
+                        <li>Secure and timely payments</li>
+                        <li>Direct communication with your clients</li>
+                        <li>Business profile showcasing your services</li>
+                        <li>Performance ratings and reviews</li>
+                    </ul>
+                </div>
             </div>
             <div class="sign-up">
                 <h1>Welcome to EDSA Lanka Consultancy</h1>
-                <form id="signup-form" method="post" action="">
+                <form id="signup-form2" method="post" action="">
                     <!-- Step 1 -->
                     <div id="step-1">
                         <label for="first-name"><b>First Name</b></label>
@@ -97,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="text" id="address" name="address" placeholder="Enter your address" required>
 
                         <button type="button" id="next-btn" class="sign-up-btn">Next</button>
+                        <a href="switch.php" class="back-link">Back to account selection</a>
                     </div>
 
                     <!-- Step 2 -->
@@ -144,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <input type="checkbox" name="specialized-fields[]" value="Organizational Development"> Organizational Development
                                 </label>
                             </div>
-                        </div> 
+                        </div>
 
                         <label for="qualifications"><b>Qualifications</b></label>
                         <input type="text" id="qualifications" name="qualifications" placeholder="Enter your qualifications">
@@ -179,4 +141,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
     </script>
 </body>
+
 </html>

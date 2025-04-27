@@ -38,7 +38,45 @@ if ($result->num_rows > 0) {
         'profile_image' => '../images/user.png'
     ];
 }
+$stmt->close();
 
+// Fetch project stats from the projects table
+$project_stats = [
+    'Assigned' => 0,
+    'Completed' => 0,
+    'Ongoing' => 0,
+    'Cancelled' => 0
+];
+
+// Fetch total projects for Assigned
+$sql = "SELECT COUNT(*) as total 
+        FROM projects 
+        WHERE provider_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $provider_id);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($row = $result->fetch_assoc()) {
+    $project_stats['Assigned'] = $row['total'];
+}
+$stmt->close();
+
+// Fetch project status counts
+$sql = "SELECT LOWER(project_status) as project_status, COUNT(*) as count 
+        FROM projects 
+        WHERE provider_id = ? 
+        GROUP BY LOWER(project_status)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $provider_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+while ($row = $result->fetch_assoc()) {
+    $status = ucfirst($row['project_status']); // Capitalize for consistency
+    if (array_key_exists($status, $project_stats)) {
+        $project_stats[$status] = $row['count'];
+    }
+}
 $stmt->close();
 $conn->close();
 ?>
@@ -63,7 +101,7 @@ $conn->close();
                     <button class="edit-button">Edit</button>
                 </div>
                 <h3 id="profileName"><?php echo htmlspecialchars($provider['full_name']); ?></h3>
-                <p>★★★★★</p> <!-- Star rating styled with CSS -->
+                <!-- <p>★★★★★</p> Star rating styled with CSS -->
                 <ul class="profile-info">
                     <li><strong>Name:</strong> <span id="name"><?php echo htmlspecialchars($provider['full_name']); ?></span></li>
                     <li><strong>Gender:</strong> <span id="gender"><?php echo htmlspecialchars($provider['gender']); ?></span></li>
@@ -71,21 +109,21 @@ $conn->close();
                     <li><strong>Contact Number:</strong> <span id="phone"><?php echo htmlspecialchars($provider['phone']); ?></span></li>
                     <li><strong>Address:</strong> <span id="address"><?php echo htmlspecialchars($provider['address']); ?></span></li>
                 </ul>
-                <h4>Social Media</h4>
+                <!-- <h4>Social Media</h4>
                 <ul class="social-media-links">
                     <li><a href="#"><img src="../images/facebook.jpg" alt="Facebook"></a></li>
                     <li><a href="#"><img src="../images/linkedin.png" alt="LinkedIn"></a></li>
                     <li><a href="#"><img src="../images/instagram.jpg" alt="Instagram"></a></li>
-                </ul>
+                </ul> -->
             </div>
 
             <div class="service-stats">
                 <h3>Service Stats</h3>
                 <ul>
-                    <li>Completed: 10</li>
-                    <li>Assigned: 5</li>
-                    <li>Incomplete: 2</li>
-                    <li>Cancelled: 1</li>
+                    <li>Assigned: <?php echo $project_stats['Assigned']; ?></li>
+                    <li>Completed: <?php echo $project_stats['Completed']; ?></li>      
+                    <li>Ongoing: <?php echo $project_stats['Ongoing']; ?></li>
+                    <li>Cancelled: <?php echo $project_stats['Cancelled']; ?></li>
                 </ul>
             </div>
         </div>
@@ -110,7 +148,7 @@ $conn->close();
     </div>
 </div>
 </div>
-<script src="Edit.js"></script>
+<script src="Profile.js"></script>
 <script src="../Common template/Calendar.js"></script>
 </body>
 </html>

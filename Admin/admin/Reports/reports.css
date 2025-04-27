@@ -49,7 +49,8 @@ form input {
     color:green;
     padding: 10px;
     border: 1px solid #ccc;
-    height: auto;
+    border-radius: 20px;
+    height: 40px;
     width: auto;
 }
 
@@ -61,4 +62,56 @@ form input {
 #gBtn:hover{
     color:white;
     background-color: green;
+}
+
+#middleSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-right: 1%;
+}
+
+select{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    height: 40px;
+    width: auto;
+}
+
+/*Pagination*/
+.pagination {
+    margin: 20px 0;
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }

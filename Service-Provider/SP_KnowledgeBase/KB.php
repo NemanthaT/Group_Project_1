@@ -54,8 +54,8 @@ $stmt->close();
             <div class="KB-section">
                 <h2>Case Studies and Knowledge Resources</h2>
                     <div class="filter-group search-group">
-                        <input type="text" id="searchInput" placeholder="Search case studies...">
-                        <button class="search-button" id="searchButton" onclick="searchCaseStudies()">Search</button>
+                    <input type="text" id="searchInput" placeholder="Search case studies..." oninput="searchCaseStudies()">
+                        <!-- <button class="search-button" id="searchButton" onclick="searchCaseStudies()">Search</button> -->
                         <button class="clear-button" id="clearButton" onclick="clearSearch()">Clear</button>
                         <a href="createKB.php" class="create-btn"><button class="search-button">Create Case Study</button></a>
                     </div>

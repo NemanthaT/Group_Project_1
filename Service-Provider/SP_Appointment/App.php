@@ -90,25 +90,25 @@ $stmt->close();
                 echo "<td>" . htmlspecialchars($row['full_name']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['appointment_date']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-                echo "<td>";
+                echo "<td onclick=\"event.stopPropagation();\">"; //event.stopPropagation() is a JavaScript method that prevents the click event, used to prevent the onclick event of the parent table row (<tr>) from being triggered when the user clicks within the Actions column
                 $status = strtolower($row['status']);
                 if ($status === 'pending') {
-                    echo "<form method='POST' style='display: inline;'>
-                            <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
-                            <input type='hidden' name='status' value='Scheduled'>
-                            <button type='submit' class='accept-btn'>Accept</button>
-                          </form>";
-                    echo "<form method='POST' style='display: inline;'>
-                            <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
-                            <input type='hidden' name='status' value='Rejected'>
-                            <button type='submit' class='reject-btn'>Reject</button>
-                          </form>";
+                    echo "<form method='POST' style='display: inline;' onsubmit=\"return confirm('Are you sure you want to accept this appointment?');\">";
+                    echo "<input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>";
+                    echo "<input type='hidden' name='status' value='Scheduled'>";
+                    echo "<button type='submit' class='accept-btn'>Accept</button>";
+                    echo "</form>";
+                    echo "<form method='POST' style='display: inline;' onsubmit=\"return confirm('Are you sure you want to reject this appointment?');\">";
+                    echo "<input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>";
+                    echo "<input type='hidden' name='status' value='Rejected'>";
+                    echo "<button type='submit' class='reject-btn'>Reject</button>";
+                    echo "</form>";
                 } elseif ($status === 'scheduled') {
-                    echo "<form method='POST' style='display: inline;'>
-                            <input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>
-                            <input type='hidden' name='status' value='Cancelled'>
-                            <button type='submit' class='cancel-btn'>Cancel</button>
-                          </form>";
+                    echo "<form method='POST' style='display: inline;' onsubmit=\"return confirm('Are you sure you want to cancel this appointment?');\">";
+                    echo "<input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>";
+                    echo "<input type='hidden' name='status' value='Cancelled'>";
+                    echo "<button type='submit' class='cancel-btn'>Cancel</button>";
+                    echo "</form>";
                 } elseif ($status === 'rejected' || $status === 'cancelled' || $status === 'completed') {
                     echo "<span class='status-text " . $status . "'>" . ucfirst($status) . "</span>";
                 }

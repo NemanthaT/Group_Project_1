@@ -80,6 +80,12 @@ $fullName = $user['full_name'] ?? 'User';
                     Update News
                     </button></a>
                 </li>
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">🛠️</span>
+                    Service Providers
+                    </button></a>
+                </li>
             </ul>
         </div>
 
@@ -88,8 +94,7 @@ $fullName = $user['full_name'] ?? 'User';
             <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
-                <a href="#">
-                    <div class="profile-name"><?php echo htmlspecialchars($fullName); ?></div>
+                <a href="../myaccount/acc.php">
                 <img src="../images/user.png" alt="Profile">
                     </a>
                 </div>

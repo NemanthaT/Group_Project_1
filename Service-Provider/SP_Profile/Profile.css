@@ -130,15 +130,8 @@
     background-color: #ffffff;
 }
 
-/* Styled Paragraph for Ratings */
-.profile-card p {
-    font-size: 2vh;
-    color: #FFD700;
-    margin: 1vh 0;
-}
-
 /* Social Media Links Styling */
-.social-media-links {
+/* .social-media-links {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -161,7 +154,7 @@
 
 .social-media-links a img:hover {
     transform: translateY(-2px);
-}
+} */
 
 /* Right Column Styling */
 .right-column {

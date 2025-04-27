@@ -208,7 +208,6 @@
   .case-study-form {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Increase gap between form sections for better spacing */
     width: 100%; /* Stretch to fill the parent container */
     max-width: none; /* Remove the max-width constraint to allow full width */
     margin: 0; /* Remove auto margins to prevent centering gaps */
