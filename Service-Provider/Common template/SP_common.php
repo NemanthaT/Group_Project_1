@@ -45,7 +45,7 @@ $stmt->close();
   
     <header>
         <nav class="navbar">
-            <div class="calendar-icon">
+            <!-- <div class="calendar-icon">
                 <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
                 <div id="calendarDropdown" class="calendar-dropdown">
                     <h3>Calendar</h3>
@@ -67,18 +67,20 @@ $stmt->close();
                         <div id="daysGrid" class="days"></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
        
-            <div class="notification">
-                <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
-            </div>
-        
+
             <div class="profile">
                 <a href="../SP_Profile/Profile.php">
                     <img src="<?php echo htmlspecialchars($common_provider['profile_image'] ?: '../images/user.png'); ?>" alt="Profile">
                     <span class="username">Hi, <?php echo htmlspecialchars($common_provider['username']); ?></span>
                 </a>
             </div>
+
+            <div class="notification">
+                <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
+            </div>
+            
             <a href="../../Login/Logout.php" class="logout">Logout</a>                
         </nav>
     </header>
