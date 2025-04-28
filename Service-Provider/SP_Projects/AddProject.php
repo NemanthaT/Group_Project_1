@@ -4,37 +4,62 @@ include '../connection.php';
 include '../Common template/SP_common.php';
 
 $client_id = $_GET['client_id'] ?? null;
+$appointment_id = $_GET['appointment_id'] ?? null;
 
 if (isset($_POST['submit'])) { 
-    $client_id = $_POST['client_id'];
-    $project_name = $_POST['project_name'];
-    $project_description = $_POST['project_description'];
-    $project_phase = $_POST['project_phase'];
-    $project_status = $_POST['project_status'];
+    $client_id = filter_var($_POST['client_id'], FILTER_VALIDATE_INT);
+    $appointment_id = filter_var($_POST['appointment_id'], FILTER_VALIDATE_INT);
+    $project_name = mysqli_real_escape_string($conn, $_POST['project_name']);
+    $project_description = mysqli_real_escape_string($conn, $_POST['project_description']);
+    $project_phase = mysqli_real_escape_string($conn, $_POST['project_phase']);
+    $project_status = mysqli_real_escape_string($conn, $_POST['project_status']);
     $provider_id = $_SESSION['provider_id'];
 
-    // Fetch client name
-    $query_getclientname = "SELECT * FROM `clients` WHERE client_id = '$client_id'";
-    $result_clientname = mysqli_query($conn, $query_getclientname);
+    if ($client_id === false) {
+        $c_errorMsg = "Invalid client ID.";
+    } elseif ($appointment_id === false) {
+        $errorMsg = "Invalid appointment ID.";
+    } else {
+        // Fetch client name using prepared statement
+        $query_getclientname = "SELECT full_name FROM `clients` WHERE client_id = ?";
+        $stmt_client = $conn->prepare($query_getclientname);
+        $stmt_client->bind_param("i", $client_id);
+        $stmt_client->execute();
+        $result_clientname = $stmt_client->get_result();
 
-    if (mysqli_num_rows($result_clientname) > 0) {
-        $client_data = mysqli_fetch_assoc($result_clientname);
-        $client_name = $client_data['full_name'];
+        if ($result_clientname->num_rows > 0) {
+            $client_data = $result_clientname->fetch_assoc();
+            $client_name = $client_data['full_name'];
 
-        if ($client_name) {
-            // Insert project details
+            // Insert project details using prepared statement
             $query_submit = "INSERT INTO `projects` (client_id, provider_id, project_name, project_description, project_phase, project_status) 
-                             VALUES ('$client_id', '$provider_id', '$project_name', '$project_description', '$project_phase', '$project_status')";
-
-            $result = mysqli_query($conn, $query_submit);
+                             VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt_project = $conn->prepare($query_submit);
+            $stmt_project->bind_param("iissss", $client_id, $provider_id, $project_name, $project_description, $project_phase, $project_status);
+            $result = $stmt_project->execute();
 
             if ($result) {
-                $project_id = mysqli_insert_id($conn);
+                $project_id = $conn->insert_id;
+
+                // Update appointment status to "Completed" using prepared statement
+                $query_update_appointment = "UPDATE appointments 
+                                             SET status = ? 
+                                             WHERE appointment_id = ?";
+                $stmt_appointment = $conn->prepare($query_update_appointment);
+                $new_status = "Completed";
+                $stmt_appointment->bind_param("si", $new_status, $appointment_id);
+                $result_update_appointment = $stmt_appointment->execute();
+
+                if (!$result_update_appointment && $conn->affected_rows === 0) {
+                    $errorMsg = "No appointment found with the provided ID.";
+                } elseif (!$result_update_appointment) {
+                    $errorMsg = "Error updating appointment status: " . $conn->error;
+                }
 
                 // Handle file upload
                 if (isset($_FILES['upload_documents']) && $_FILES['upload_documents']['name'] != '') {
-                    $upload_dir = '../../uploads/' . $project_id . '/';
-                    $document_name = $_POST['document_name'];
+                    $upload_dir = '../../Uploads/' . $project_id . '/';
+                    $document_name = mysqli_real_escape_string($conn, $_POST['document_name']);
                     $file_name = $_FILES['upload_documents']['name'];
                     $file_tmp = $_FILES['upload_documents']['tmp_name'];
 
@@ -43,40 +68,63 @@ if (isset($_POST['submit'])) {
                     }
                     
                     if (move_uploaded_file($file_tmp, $upload_dir . $file_name)) {
-                        $query_file_upload = "INSERT INTO `projectdocuments` (project_id, file_name, file_path) VALUES ('$project_id', '$document_name', '$upload_dir$file_name')";
-                        $result_file_upload = mysqli_query($conn, $query_file_upload);
+                        // Insert file details using prepared statement
+                        $query_file_upload = "INSERT INTO `projectdocuments` (project_id, file_name, file_path) 
+                                             VALUES (?, ?, ?)";
+                        $stmt_file = $conn->prepare($query_file_upload);
+                        $file_path = $upload_dir . $file_name;
+                        $stmt_file->bind_param("iss", $project_id, $document_name, $file_path);
+                        $result_file_upload = $stmt_file->execute();
 
-                        $query_log = "INSERT INTO projectstatuslogs (project_id, message, changed_at) VALUES ('$project_id', 'creating the project', NOW());";
-                        $result_log = mysqli_query($conn, $query_log);
+                        // Log project status using prepared statement
+                        $query_log = "INSERT INTO projectstatuslogs (project_id, message, changed_at) 
+                                      VALUES (?, ?, NOW())";
+                        $stmt_log = $conn->prepare($query_log);
+                        $log_message = "creating the project";
+                        $stmt_log->bind_param("is", $project_id, $log_message);
+                        $result_log = $stmt_log->execute();
 
-                        if ($result_file_upload) {
-                            if ($result_log) {
-                                $successMsg = "$client_name's Project added successfully!";
-                            } else {
-                                $errorMsg = "Error logging project status: " . mysqli_error($conn);
-                            }
+                        if ($result_file_upload && $result_log) {
+                            $successMsg = "$client_name's Project added successfully!";
                         } else {
-                            $errorMsg = "Error: " . mysqli_error($conn);
+                            $errorMsg = "Error: " . $conn->error;
                         }
+
+                        $stmt_file->close();
+                        $stmt_log->close();
                     } else {
                         $errorMsg = "File upload failed.";
                     }
                 } else {
-                    $query_log = "INSERT INTO projectstatuslogs (project_id, message, changed_at) VALUES ('$project_id', 'creating the project', NOW());";
-                    $result_log = mysqli_query($conn, $query_log);
+                    // Log project status using prepared statement
+                    $query_log = "INSERT INTO projectstatuslogs (project_id, message, changed_at) 
+                                  VALUES (?, ?, NOW())";
+                    $stmt_log = $conn->prepare($query_log);
+                    $log_message = "creating the project";
+                    $stmt_log->bind_param("is", $project_id, $log_message);
+                    $result_log = $stmt_log->execute();
                     
                     if ($result_log) {
                         $successMsg = "$client_name's Project added successfully!";
                     } else {
-                        $errorMsg = "Error logging project status: " . mysqli_error($conn);
+                        $errorMsg = "Error logging project status: " . $conn->error;
                     }
+
+                    $stmt_log->close();
                 }
             } else {
-                $errorMsg = "Error: " . mysqli_error($conn);
+                $errorMsg = "Error inserting project: " . $conn->error;
             }
+
+            $stmt_project->close();
+            if (isset($stmt_appointment)) {
+                $stmt_appointment->close();
+            }
+        } else {
+            $c_errorMsg = "Client ID not found.";
         }
-    } else {
-        $c_errorMsg = "Client ID not found.";
+
+        $stmt_client->close();
     }
 }
 ?>
@@ -124,6 +172,21 @@ if (isset($_POST['submit'])) {
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
+                    
+                    <?php if ($appointment_id): ?>
+                        <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($appointment_id); ?>">
+                    <?php else: ?>
+                        <div class="form-field">
+                            <label for="appointment_id">Appointment ID</label>
+                            <input type="text" id="appointment_id" name="appointment_id" placeholder="Enter appointment ID" required>
+                            <?php if (!empty($errorMsg)): ?>
+                                <div class="field-error">
+                                    <?= $errorMsg ?>
+                                    <?php unset($errorMsg); ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
                
                     <div class="form-field">
                         <label for="project_name">Project Name</label>
@@ -150,7 +213,6 @@ if (isset($_POST['submit'])) {
                         <input type="text" id="project_status" name="project_status" placeholder="Enter project status" required>
                     </div>
                     
-                    
                     <div class="form-field">
                         <label for="upload_documents">Upload Documents</label>
                         <div class="upload-container">
@@ -170,7 +232,6 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>  
         </div>
-
     <script>
         // Display selected filename
         document.getElementById('upload_documents').addEventListener('change', function() {
