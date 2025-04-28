@@ -76,15 +76,12 @@ if (isset($_POST['submit'])) { //check if form was submitted
 <body>
     <div class="blurry-background"></div>
     <div class="container">
+        
         <div class="conLeft">
-            <center>
-            <img class="loginImg" src="login.png" alt="login">
-            </center>
-        </div>
-        <div class="conRight">
             <form action="login.php" method="post">
                 <div class="form-header">
-                    <h2>Member Login</h2>
+                    <h3>Hello!</h3>
+                    <h2>Welcome Back</h2>
                 </div>
                 <div class="form-group">
                     <center><input type="text" id="email" name="email" placeholder=" &#128231; E-mail" required></center>
@@ -118,6 +115,10 @@ if (isset($_POST['submit'])) { //check if form was submitted
                     <p><a href="Forgot/forgot.php">Forgot password?</a></p>
                 </div>
             </form>
+        </div>
+
+        <div class="conRight">
+            <img class="loginImg" src="images/loginImage.jpg" alt="login">
         </div>
     </div>
     <footer>

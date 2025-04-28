@@ -198,7 +198,7 @@ $conn->close();
 </head>
 <body>
 <div class="main-content">
-    <div class="profile-section">
+    <form id="profileForm" method="POST" enctype="multipart/form-data">
         <!-- Left Column -->
         <div class="left-column">
             <!-- Profile Card -->
@@ -206,8 +206,9 @@ $conn->close();
                 <div class="profile-image">
                     <img src="<?php echo htmlspecialchars($provider['profile_image'] ?: '../images/user.png'); ?>" alt="User Profile" id="profileImage">
                     <button type="button" class="edit-button">Edit</button>
+                    <button type="submit" class="save-button" style="display: none;">Save</button>
                 </div>
-                <h2 id="profileName"><?php echo htmlspecialchars($provider['full_name']); ?></h2>
+                <h3 id="profileName"><?php echo htmlspecialchars($provider['full_name']); ?></h3>
                 <!-- <p>★★★★★</p> Star rating styled with CSS -->
                 <ul class="profile-info">
                     <li><strong>Name:</strong> <span id="name"><?php echo htmlspecialchars($provider['full_name']); ?></span></li>
@@ -227,10 +228,10 @@ $conn->close();
             <div class="service-stats">
                 <h3>Service Stats</h3>
                 <ul>
-                    <li><strong>Assigned:</strong> <?php echo $project_stats['Assigned']; ?></li>
-                    <li><strong>Completed:</strong> <?php echo $project_stats['Completed']; ?></li>      
-                    <li><strong>Ongoing:</strong> <?php echo $project_stats['Ongoing']; ?></li>
-                    <li><strong>Cancelled:</strong> <?php echo $project_stats['Cancelled']; ?></li>
+                    <li>Assigned: <?php echo $project_stats['Assigned']; ?></li>
+                    <li>Completed: <?php echo $project_stats['Completed']; ?></li>      
+                    <li>Ongoing: <?php echo $project_stats['Ongoing']; ?></li>
+                    <li>Cancelled: <?php echo $project_stats['Cancelled']; ?></li>
                 </ul>
             </div>
         </div>
@@ -252,7 +253,9 @@ $conn->close();
                 <p><span id="awards"><?php echo nl2br(htmlspecialchars($provider['awards'])); ?></span></p>
             </div>
         </div>
-    </div>
+        <!-- Hidden file input for profile image -->
+        <input type="file" id="profileImageInput" name="profile_image" accept="image/*" style="display: none;">
+    </form>
 </div>
 <script src="Profile.js"></script>
 <script src="../Common template/Calendar.js"></script>

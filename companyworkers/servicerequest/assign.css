@@ -259,3 +259,58 @@ select {
   .submit-button:hover {
     background-color: #2980b9;
   }
+
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 5px;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: black;
+  }
+  
+  #reject_reason {
+    width: 100%;
+    min-height: 100px;
+    margin: 15px 0;
+    padding: 10px;
+  }
+  
+  .reject-button {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .reject-button:hover {
+    background-color: #d32f2f;
+  }

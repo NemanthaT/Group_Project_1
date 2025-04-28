@@ -48,6 +48,25 @@
       echo '<script>alert("Nothing changed");</script>';
     }
   }
+  
+  // Handle rejection
+  if (isset($_POST['reject'])) {
+    $reject_reason = $_POST['reject_reason'];
+    $sql = "UPDATE `appointments` SET 
+            status='Rejected',
+            reject_note='$reject_reason' 
+            WHERE appointment_id='$appointment_id'";
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+      echo '<script>
+        alert("Appointment rejected");
+        window.location.href = "servicerequest.php";
+        </script>';
+      exit;
+    } else {
+      echo '<script>alert("Error rejecting appointment");</script>';
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +117,7 @@
                     <a href="../contactforums/contactforum.php">
                         <button >
                         <span class="menu-icon">💬</span>
-                        Conact Forum
+                        Contact Forum
                         </button>
                     </a>
                 </li>
@@ -116,7 +135,12 @@
                     Update News
                     </button></a>
                 </li>
-                
+                <li><a href="../serviceproviders/view.php">
+                    <button >
+                    <span class="menu-icon">🛠️</span>
+                    Service Providers
+                    </button></a>
+                </li>
             </ul>
         </div>
 
@@ -234,38 +258,27 @@
 
         <div class="submit-section">
           <input type="submit" value="Submit" name="submit" class="submit-button">
+          <button type="button" class="reject-button" onclick="showRejectPopup()">Reject</button>
         </div>
       </form>
     </div>
   </div>
 
-  <script>
-    // Sidebar toggle for mobile
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    sidebarToggle.addEventListener('click', function() {
-      sidebar.classList.toggle('open');
-      overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
-    });
-    overlay.addEventListener('click', function() {
-      sidebar.classList.remove('open');
-      overlay.style.display = 'none';
-    });
-    // Date/time display
-    function updateDateTime() {
-      const now = new Date();
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
-      document.getElementById('currentTime').textContent = now.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-      updateDateTime();
-      setInterval(updateDateTime, 60000);
-    });
-  </script>
+  <!-- Rejection Popup Modal -->
+  <div id="rejectModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeRejectPopup()">&times;</span>
+      <h3>Rejection Reason</h3>
+      <form id="rejectForm" method="POST" action="">
+        <textarea id="reject_reason" name="reject_reason" placeholder="Enter reason for rejection" required></textarea>
+        <input type="submit" name="reject" value="Confirm Rejection">
+      </form>
+    </div>
+  </div>
+
+  <script src="service.js"></script>
+  
+  <style>
+  </style>
 </body>
 </html>
