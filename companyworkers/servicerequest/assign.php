@@ -27,6 +27,7 @@
   $client_id = $row['client_id'];
   $appointment_date = $row['appointment_date'];
   $service_type = $row['service_type'];
+  $field_name = $row['field_name'];
   $message = $row['message'];
   $client_name = $row['client_name'];
   $client_phone = $row['phone'];
@@ -217,6 +218,10 @@
                 <span class="label">Type:</span>
                 <span class="value"><?php echo $service_type; ?></span>
               </div>
+              <div class="info-field">
+                <span class="label">Filed:</span>
+                <span class="value"><?php echo $field_name; ?></span>
+              </div>
             </div>
           </div>
         </div>
@@ -246,7 +251,7 @@
           // Modified query to filter by speciality
           $providers_query = "SELECT provider_id, full_name 
                             FROM serviceproviders 
-                            WHERE speciality = '$required_speciality'";
+                            WHERE speciality = '$required_speciality' AND field = '$field_name'";
           $providers_result = mysqli_query($con, $providers_query);
           if (!$providers_result) {
             die("Providers query failed: " . mysqli_error($con));
