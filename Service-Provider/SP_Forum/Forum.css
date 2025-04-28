@@ -111,7 +111,7 @@
 
 .forum-threads ul li {
   padding: 1.5vh;
-  border-bottom: 1px solid #e5e7eb;
+  border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
   background: #ffffff;
