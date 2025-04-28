@@ -14,7 +14,7 @@
         if ($row = $result->fetch_assoc()) {
             echo json_encode($row);
         } else {
-            echo json_encode(["error" => "No forum found with this ID."]);
+            echo json_encode(["error" => "No News found with this ID."]);
         }
     
         $stmt->close();
