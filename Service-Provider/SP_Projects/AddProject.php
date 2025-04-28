@@ -150,6 +150,7 @@ if (isset($_POST['submit'])) {
                         <input type="text" id="project_status" name="project_status" placeholder="Enter project status" required>
                     </div>
                     
+                    
                     <div class="form-field">
                         <label for="upload_documents">Upload Documents</label>
                         <div class="upload-container">
