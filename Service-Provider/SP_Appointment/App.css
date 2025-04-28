@@ -323,11 +323,11 @@
 }
 
 .status-badge.status-pending {
-    background-color: #f59e0b;
+    background-color: #f59f0b34;
 }
 
 .status-badge.status-scheduled {
-    background-color: #250bee;
+    background-color: #1ee5c7;
 }
 
 .status-badge.status-completed {

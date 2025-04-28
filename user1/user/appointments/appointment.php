@@ -76,9 +76,7 @@
         <div class="main-wrapper">
             <!-- Navbar -->
             <div class="navbar">
-                <a href="#">
-                    <!-- <img src="../images/notification.png" alt="Notifications"> -->
-                </a>
+                <a href="#"></a>
                 <div class="profile">
                     <a href="../profile/profile.php">
                         <img src="../images/user.png" alt="Profile">
@@ -118,11 +116,7 @@
             <div class="main-container">
                 <div class="search-container">
                     <div>
-
-                        <!-- <form action="appointment.php" method="POST">
-                            <input type="text" id="searchInput" name="searchInput" class="searchInput" placeholder="Appointment ID" value="<?= htmlspecialchars($_POST['searchInput'] ?? '') ?>">
-                            <button id="Search" class="btn">Search</button>
-                        </form> -->
+                        <!-- Search Form -->
                     </div>
                     <div>
                         <button id="addAppointmentBtn" class="btn" onclick="openPopup('addAppointmentOverlay')">Add Appointment</button>
@@ -132,10 +126,8 @@
                 <table class="appointment-table">
                     <thead>
                         <tr>
-                            <!-- <th>Appointment ID</th> -->
                             <th>Service</th>
                             <th>Appointment Date</th>
-                            <!-- <th>Message</th> -->
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -143,32 +135,27 @@
                     <tbody id="appointmentList">
                         <?php foreach ($users as $user): ?>
                             <tr>
-                                <!-- <td>//<?//= htmlspecialchars($user['appointment_id']) ?></td> -->
                                 <td><?= htmlspecialchars($user['service_type']) ?></td>
                                 <td><?= htmlspecialchars($user['appointment_date']) ?></td>
-                                <!-- <td><?//= htmlspecialchars($user['message']) ?></td> -->
                                 <td><?= htmlspecialchars($user['status']) ?></td>
                                 <td>
                                     <?php if ($user['status'] == 'Pending'): ?>
-                                        <form style="display: inline;">
-                                            <button type="button" class="btn edit-btn" data-id="<?= htmlspecialchars($user['appointment_id']) ?>" 
-                                                onclick="openUpdatePopup(
-                                                    '<?= addslashes($user['appointment_id']) ?>', 
-                                                    '<?= addslashes($user['service_type']) ?>', 
-                                                    '<?= addslashes($user['appointment_date']) ?>', 
-                                                    '<?= addslashes($user['message']) ?>'
-                                                )">
-                                                Edit
-                                            </button>
+                                        <form style="display: inline;" action="update_appointment.php?appointment_id=<?= htmlspecialchars($user['appointment_id']) ?>" method="GET">
+                                            <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
+                                            <button type="submit" class="btn edit-btn">Edit</button>
                                         </form>
                                     <?php endif; ?>
 
-                                    <?php if ($user['provider_id'] !== null && ($user['status'] == 'Completed' || $user['status'] == 'Assigned' || $user['status'] == 'Scheduled')): ?>
-                                        <form action='view_appointment.php?appointment_id=<?= htmlspecialchars($user['appointment_id']) ?>' style="display: inline;">   
+                                    <?php if ($user['provider_id'] !== null && in_array($user['status'], ['Completed', 'rejected', 'Assigned', 'Scheduled'])): ?>
+                                        <form action='view_appointment.php?appointment_id=<?= htmlspecialchars($user['appointment_id']) ?>' style="display: inline;">
                                             <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
-                                            <button type="submit" class="btn view-btn" action='view_appointment.php?appointment_id=' data-id="<?= htmlspecialchars($user['appointment_id']) ?>">
-                                                View
-                                            </button>                                      
+                                            <button type="submit" class="btn view-btn">View</button>
+                                        </form>
+                                    <?php endif; ?>
+                                    <?php if ($user['status'] == 'Rejected'): ?>
+                                        <form action='view_appointment.php?appointment_id=<?= htmlspecialchars($user['appointment_id']) ?>' style="display: inline;">
+                                            <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
+                                            <button type="submit" class="btn view-btn">View</button>
                                         </form>
                                     <?php endif; ?>
 
@@ -208,6 +195,20 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="fieldName">Field Name</label>
+                            <select id="fieldName" name="fieldName" required>
+                                <option value="">Choose a Service</option>
+                                <option value="Development Finance">Development Finance</option>
+                                <option value="Micro Finance">Micro Finance</option>
+                                <option value="Gender Finance">Gender Finance</option>
+                                <option value="SME Development">SME Development</option>
+                                <option value="Strategic and Operations Planning">Strategic and Operations Planning</option>
+                                <option value="Institutional Development">Institutional Development</option>
+                                <option value="Community Development">Community Development</option>
+                                <option value="Organizational Development">Organizational Development</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="appointmentDate">Select a Date</label>
                             <input type="date" id="appointmentDate" name="appointmentDate" required>
                         </div>
@@ -218,41 +219,6 @@
                         <button type="submit" id="Bookappointmentbtn" class="btn">Book Appointment</button>
                     </form>
                 </div>
-            </div>
-
-            <!-- Edit Appointment Overlay -->
-            <div id="EditAppointmentOverlay" class="overlay">
-                <div class="overlay-content">
-                    <span class="close-btn" onclick="closePopup('EditAppointmentOverlay')">&times;</span>
-                    <h2>Edit Appointment</h2>
-                    <form id="appointmentForm" action="update_appointment.php" method="POST">
-                        <!-- <div class="form-group">
-                            <label for="editAppointmentid">Appointment ID</label>
-                            <input type="text" id="editAppointmentid" name="editAppointmentid" readonly required>
-                        </div> -->
-                        <div class="form-group">
-                            <label for="editServiceSelect">Select a Service</label>
-                            <select id="editServiceSelect" name="editServiceSelect" required>
-                                <option value="">Choose a Service</option>
-                                <option value="Consulting">Consulting</option>
-                                <option value="Training">Training</option>
-                                <option value="Researching">Researching</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="editAppointmentDate">Select a Date</label>
-                            <input type="date" id="editAppointmentDate" name="editAppointmentDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editAdditionalMessage">Additional Message</label>
-                            <textarea id="editAdditionalMessage" name="editAdditionalMessage" rows="4"></textarea>
-                        </div>
-                        <button type="submit" id="editSaveappointmentbtn" class="btn">Save</button>
-                    </form>
-                </div>
-            </div>
-
-
             </div>
         </div>
     </div>

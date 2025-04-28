@@ -57,7 +57,7 @@ $stmt->close();
                     <input type="text" id="searchInput" placeholder="Search case studies..." oninput="searchCaseStudies()">
                         <!-- <button class="search-button" id="searchButton" onclick="searchCaseStudies()">Search</button> -->
                         <button class="clear-button" id="clearButton" onclick="clearSearch()">Clear</button>
-                        <a href="createKB.php" class="create-btn"><button class="search-button">Create Case Study</button></a>
+                        <a href="CreateKB.php" class="create-btn"><button class="search-button">Create Case Study</button></a>
                     </div>
 
                     <div class="published-case-studies-container">
