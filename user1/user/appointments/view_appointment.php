@@ -7,7 +7,7 @@ $appointment_id = $_GET['appointment_id'];
 // Fetch appointment and provider details in one query
 $stmt = $conn->prepare(
     "SELECT a.appointment_id, a.service_type, DATE(a.appointment_date) AS appointment_date, a.message, a.status, 
-            p.provider_id, p.full_name, p.phone 
+            p.provider_id, p.full_name, p.phone ,a.reply_note
     FROM appointments a 
     LEFT JOIN serviceproviders p ON a.provider_id = p.provider_id 
     WHERE a.appointment_id = ?"
@@ -20,7 +20,7 @@ if ($stmt === false) {
 
 $stmt->bind_param("i", $appointment_id);
 $stmt->execute();
-$stmt->bind_result($id, $service, $date, $message, $status, $provider_id, $provider_name, $provider_phone);
+$stmt->bind_result($id, $service, $date, $message, $status, $provider_id, $provider_name, $provider_phone , $reply_note);
 
 if ($stmt->fetch()) {
     // Data is now in variables
@@ -121,6 +121,14 @@ $stmt->close();
                     <th style="padding: 15px; text-align: left; border: 1px solid #e9ecef; background-color: #f8f9fa; color: #495057; font-weight: 600;">Service</th>
                     <td style="padding: 15px; border: 1px solid #e9ecef; color: #495057;"><?= htmlspecialchars($service) ?></td>
                 </tr>
+                <tr>
+                    <th style="padding: 15px; text-align: left; border: 1px solid #e9ecef; background-color: #f8f9fa; color: #495057; font-weight: 600;">Provider Name</th>
+                    <td style="padding: 15px; border: 1px solid #e9ecef; color: #495057;"><?= htmlspecialchars($provider_name ?? 'Not Assigned') ?></td>
+                </tr>
+                <tr style="background-color: #f8f9fa;">
+                    <th style="padding: 15px; text-align: left; border: 1px solid #e9ecef; color: #495057; font-weight: 600;">Provider Phone</th>
+                    <td style="padding: 15px; border: 1px solid #e9ecef; color: #495057;"><?= htmlspecialchars($provider_phone ?? 'N/A') ?></td>
+                </tr> 
                 <tr style="background-color: #f8f9fa;">
                     <th style="padding: 15px; text-align: left; border: 1px solid #e9ecef; color: #495057; font-weight: 600;">Appointment Date</th>
                     <td style="padding: 15px; border: 1px solid #e9ecef; color: #495057;"><?= htmlspecialchars($date) ?></td>
@@ -135,14 +143,13 @@ $stmt->close();
                         <span style="background-color: #dff0d8; color: #3c763d; padding: 5px 10px; border-radius: 4px; font-size: 14px;"><?= htmlspecialchars($status) ?></span>
                     </td>
                 </tr>
-                <tr>
-                    <th style="padding: 15px; text-align: left; border: 1px solid #e9ecef; background-color: #f8f9fa; color: #495057; font-weight: 600;">Provider Name</th>
-                    <td style="padding: 15px; border: 1px solid #e9ecef; color: #495057;"><?= htmlspecialchars($provider_name ?? 'Not Assigned') ?></td>
-                </tr>
-                <tr style="background-color: #f8f9fa;">
-                    <th style="padding: 15px; text-align: left; border: 1px solid #e9ecef; color: #495057; font-weight: 600;">Provider Phone</th>
-                    <td style="padding: 15px; border: 1px solid #e9ecef; color: #495057;"><?= htmlspecialchars($provider_phone ?? 'N/A') ?></td>
-                </tr>
+                
+                <?php if ($status === 'Rejected'): ?>
+                    <tr style="background-color: #f8f9fa;">
+                        <th style="padding: 15px; text-align: left; border: 1px solid #e9ecef; color: #495057; font-weight: 600;">Rejected Reason</th>
+                        <td style="padding: 15px; border: 1px solid #e9ecef; color: #495057;"><?= htmlspecialchars($reply_note ?? 'N/A') ?></td>
+                    </tr>
+                <?php endif; ?>
             </table>
             
             <div style="text-align: center; margin-top: 40px;">
