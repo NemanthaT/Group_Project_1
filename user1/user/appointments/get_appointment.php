@@ -42,6 +42,12 @@ if ($date_to !== '') {
     $types .= "s";
 }
 
+if ($date_from> $date_to) {
+    $_SESSION['error'] = "Invalid date range.";
+    header('Location: appointment.php');
+    exit();
+}
+
 $where_sql = $where ? 'WHERE ' . implode(' AND ', $where) : '';
 $sql = "SELECT a.appointment_id, a.provider_id, a.client_id,
         DATE(a.appointment_date) AS appointment_date, a.status,

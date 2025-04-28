@@ -108,6 +108,8 @@ $stmt->close();
         <div class="controls card1">
             <h1>Projects</h1>
         </div>
+
+        
                 <!-- project Grid -->
                 <div class="project-grid">
                 <?php if ($result->num_rows > 0): ?>
