@@ -75,7 +75,9 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="button-group">
                     <button class="chat-button" onclick="window.location.href='../SP_Message/Message.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">Chat with Client</button>
-                    <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>&appointment_id=<?php echo htmlspecialchars($appointment['appointment_id']); ?>'">+ Project</button>
+                    <?php if (strtolower($appointment['status']) === 'scheduled'): ?>
+                        <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo urlencode($appointment['client_id']); ?>&appointment_id=<?php echo urlencode($appointment['appointment_id']); ?>'">+ Project</button>
+                    <?php endif; ?>
                 </div>
             </div>                   
         </div>
