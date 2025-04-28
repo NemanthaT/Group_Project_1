@@ -107,6 +107,9 @@
   flex: 1;
   overflow-y: auto;
   margin: 0;
+  display: grid; /* Use CSS Grid for two-column layout */
+  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+  gap: 1vh; /* Space between cards */
 }
 
 .forum-threads ul li {
@@ -117,8 +120,8 @@
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1vh;
   transition: all 0.3s ease;
+  margin-bottom: 0; /* Remove margin-bottom since grid gap handles spacing */
 }
 
 .forum-threads ul li:last-child {
