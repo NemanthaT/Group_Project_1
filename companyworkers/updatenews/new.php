@@ -36,29 +36,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Use the worker_id from the session instead of from POST
     $worker_id = $user['worker_id'];
     
-    // Handle image upload
-    $imagePath = null;
-    if (isset($_FILES['news_image']) && $_FILES['news_image']['error'] == 0) {
-        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
-        $filename = $_FILES['news_image']['name'];
-        $filetype = pathinfo($filename, PATHINFO_EXTENSION);
-        
-        if (in_array(strtolower($filetype), $allowed)) {
-            // Create unique filename
-            $newFilename = uniqid() . '.' . $filetype;
-            $uploadPath = $uploadDir . $newFilename;
-            
-            if (move_uploaded_file($_FILES['news_image']['tmp_name'], $uploadPath)) {
-                $imagePath = 'uploads/news/' . $newFilename;
-            }
-        }
-    }
-    
-    // Insert into database with image path using mysqli_query
-    $sql = "INSERT INTO news (worker_id, title, content, image_path) VALUES 
-            ('$worker_id', '$title', '$content', '$imagePath')";
+    // First insert the news record without image
+    $sql = "INSERT INTO news (worker_id, title, content) VALUES 
+            ('$worker_id', '$title', '$content')";
     
     if (mysqli_query($conn, $sql)) {
+        // Get the news_id of the newly inserted record
+        $news_id = mysqli_insert_id($conn);
+        
+        // Handle image upload
+        $imagePath = null;
+        if (isset($_FILES['news_image']) && $_FILES['news_image']['error'] == 0) {
+            $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+            $filename = $_FILES['news_image']['name'];
+            $filetype = pathinfo($filename, PATHINFO_EXTENSION);
+            
+            if (in_array(strtolower($filetype), $allowed)) {
+                // Create news-specific directory if it doesn't exist
+                $newsDir = $uploadDir . $news_id . '/';
+                if (!file_exists($newsDir)) {
+                    mkdir($newsDir, 0777, true);
+                }
+                
+                // Create unique filename
+                $newFilename = uniqid() . '.' . $filetype;
+                $uploadPath = $newsDir . $newFilename;
+                
+                if (move_uploaded_file($_FILES['news_image']['tmp_name'], $uploadPath)) {
+                    $imagePath = 'uploads/news/' . $news_id . '/' . $newFilename;
+                    
+                    // Update the news record with the image path
+                    $updateSql = "UPDATE news SET image_path='$imagePath' WHERE news_id='$news_id'";
+                    mysqli_query($conn, $updateSql);
+                }
+            }
+        }
+        
         echo '<script>alert("News updated");</script>';
     } else {
         echo '<script>alert("Nothing changed");</script>';
@@ -223,3 +236,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </script>
     </body>
 </html>
+

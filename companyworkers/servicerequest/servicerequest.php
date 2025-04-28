@@ -126,28 +126,39 @@ $fullName = $user['full_name'] ?? 'User';
       <table class="table">
         <thead>
           <tr>
-            <th>Appointment ID</th>
-            <th>Client ID</th>
+            <th style="display: none;">Appointment ID</th>
+            <th style="display: none;">Client ID</th>
+            <th>Client Name</th>
             <th>Date</th>
             <th>Type</th>
+            <th>Field</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <?php
-          $sql = "SELECT * FROM appointments WHERE status = 'Pending'";
+          // Replace the existing query with a JOIN to get client name from clients table
+          $sql = "SELECT a.appointment_id, a.client_id, c.full_name as client_name, 
+                  a.appointment_date, a.service_type, a.field_name 
+                  FROM appointments a 
+                  JOIN clients c ON a.client_id = c.client_id 
+                  WHERE a.status = 'Pending'";
           $result = mysqli_query($conn, $sql);
           if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
               $appointment_id = $row['appointment_id'];
               $client_id = $row['client_id'];
+              $client_name = $row['client_name']; // Now coming from clients.full_name
               $appointment_date = $row['appointment_date'];
               $service_type = $row['service_type'];
+              $field_name = $row['field_name'];
               echo '<tr>
-                <td>' . $appointment_id . '</td>
-                <td>' . $client_id . '</td>
+                <td style="display: none;">' . $appointment_id . '</td>
+                <td style="display: none;">' . $client_id . '</td>
+                <td>' . $client_name . '</td>
                 <td>' . $appointment_date . '</td>
                 <td>' . $service_type . '</td>
+                <td>' . $field_name . '</td>
                 <td>
                   <button><a href="assign.php?update_id=' . $appointment_id . '">Check</a></button>
                 </td>

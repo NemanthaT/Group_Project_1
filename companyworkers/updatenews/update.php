@@ -2,6 +2,12 @@
   session_start(); 
   require_once '../../config/config.php';
 
+  // Create uploads directory if it doesn't exist
+  $uploadDir = '../../uploads/news/';
+  if (!file_exists($uploadDir)) {
+      mkdir($uploadDir, 0777, true);
+  }
+
   $username = $_SESSION['username'];
   $email = $_SESSION['email'];
 
@@ -16,14 +22,39 @@
   $worker_id=$row['worker_id'];
   $title=$row['title'];
   $conntent=$row['content'];
+  $image_path=$row['image_path'];
 
   if(isset($_POST['submit'])){
     $worker_id=$_POST['worker_id'];
     $title=$_POST['title'];
     $conntent=$_POST['content'];
 
+    // Handle image upload
+    $imagePath = $image_path; // Keep existing image by default
+    if (isset($_FILES['news_image']) && $_FILES['news_image']['error'] == 0) {
+        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+        $filename = $_FILES['news_image']['name'];
+        $filetype = pathinfo($filename, PATHINFO_EXTENSION);
+        
+        if (in_array(strtolower($filetype), $allowed)) {
+            // Create news-specific directory if it doesn't exist
+            $newsDir = $uploadDir . $news_id . '/';
+            if (!file_exists($newsDir)) {
+                mkdir($newsDir, 0777, true);
+            }
+            
+            // Create unique filename
+            $newFilename = uniqid() . '.' . $filetype;
+            $uploadPath = $newsDir . $newFilename;
+            
+            if (move_uploaded_file($_FILES['news_image']['tmp_name'], $uploadPath)) {
+                $imagePath = 'uploads/news/' . $news_id . '/' . $newFilename;
+            }
+        }
+    }
+
     $sql="update `news` set worker_id='$worker_id', title='$title', 
-    content='$conntent' where news_id='$news_id'";
+    content='$conntent', image_path='$imagePath' where news_id='$news_id'";
     $result=mysqli_query($conn,$sql);
     if ($result) {
       echo '<script>
@@ -153,7 +184,7 @@
         <!-- Form Content -->
         <div class="dashboard-grid">
             <div class="dashboard-card" style="grid-column: span 2;">
-                <form action="" method="POST" class="news-form">
+                <form action="" method="POST" enctype="multipart/form-data" class="news-form">
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" id="title" name="title" 
@@ -171,6 +202,9 @@
                             <label for="news_image">News Image:</label>
                             <input type="file" name="news_image" id="news_image" accept="image/*">
                             <small class="form-text text-muted">Allowed formats: JPG, JPEG, PNG, GIF</small>
+                            <?php if($image_path): ?>
+                                <p>Current image: <?php echo htmlspecialchars($image_path); ?></p>
+                            <?php endif; ?>
                     </div>
 
                     <div class="form-group">

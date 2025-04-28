@@ -37,7 +37,7 @@ function getNews(page = 1) {
           const newsImage = document.createElement("div");
           newsImage.className = "news-image";
           const image = document.createElement("img");
-          image.src = `${item.image_path}`;
+          image.src = `../../${item.image_path}`;
           image.alt = "News Image";
 
           newsImage.appendChild(image);
@@ -121,6 +121,7 @@ function viewNews(id) {
       if (data === "error" || !data) {
         throw new Error("Error in response data");
       } else {
+        document.querySelector("#newsContent .news-image img").src = `../../${data.image_path}`;
         document.getElementById("newsTitle").innerText = data.title;
         document.getElementById("newsDescription").innerHTML = data.content;
         document.getElementById("newsDate").innerText = new Date(
