@@ -75,6 +75,27 @@ while ($row = $result->fetch_assoc()) {
     }
 }
 $stmt->close();
+
+// Fetch payment stats
+$payment_stats = ['Paid' => 0, 'Unpaid' => 0];
+
+// Payment status counts
+$sql = "SELECT LOWER(b.status) as status, COUNT(*) as count 
+        FROM bills b 
+        JOIN projects p ON b.project_id = p.project_id 
+        WHERE p.provider_id = ? 
+        GROUP BY LOWER(b.status)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $providerId);
+$stmt->execute();
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    $status = $row['status'];
+    if (in_array($status, ['paid', 'unpaid'])) {
+        $payment_stats[ucfirst($status)] = $row['count'];
+    }
+}
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +113,7 @@ $stmt->close();
         <div class="dashboard-section">
             <!-- Left Section (Wider) -->
             <div class="left-section">
-                <!-- First Row: Appointments, Forums, Payments -->
+                <!-- First Row: Appointments, Payments -->
                 <div class="cards-row">
                     <div class="card">
                         <h3>Appointments</h3>
@@ -103,10 +124,9 @@ $stmt->close();
                     </div>
 
                     <div class="card">
-                        <h3>Forums</h3>
-                        <p>Created: 23</p>
-                        <p>Views: 4</p>
-                        <p>Likes: 19</p>
+                        <h3>Payments</h3>
+                        <p>Recent Payments: <?php echo $payment_stats['Paid']; ?></p>
+                        <p>Overdue: <?php echo $payment_stats['Unpaid']; ?></p>
                     </div>
                 </div>
 
@@ -154,47 +174,47 @@ $stmt->close();
     <script src="SPDash.js"></script>
     <script src="../Common template/Calendar.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('projectsPieChart').getContext('2d');
-        const completed = <?php echo $project_stats['Completed']; ?>;
-        const ongoing = <?php echo $project_stats['Ongoing']; ?>;
-        const cancelled = <?php echo $project_stats['Cancelled']; ?>;
-        const data = [completed, ongoing, cancelled];
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Completed', 'Ongoing', 'Canceled'],
-                datasets: [{
-                    data: data,
-                    backgroundColor: ['#4F75FF', '#40C4B7', '#FF6B6B'],
-                    borderColor: ['#ffffff', '#ffffff', '#ffffff'],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            font: {
-                                size: 16,
-                                family: "'Inter', sans-serif"
-                            },
-                            color: '#1A202C'
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `${context.label}: ${context.parsed}`;
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('projectsPieChart').getContext('2d');
+            const completed = <?php echo $project_stats['Completed']; ?>;
+            const ongoing = <?php echo $project_stats['Ongoing']; ?>;
+            const cancelled = <?php echo $project_stats['Cancelled']; ?>;
+            const data = [completed, ongoing, cancelled];
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Completed', 'Ongoing', 'Canceled'],
+                    datasets: [{
+                        data: data,
+                        backgroundColor: ['#4F75FF', '#40C4B7', '#FF6B6B'],
+                        borderColor: ['#ffffff', '#ffffff', '#ffffff'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 16,
+                                    family: "'Inter', sans-serif"
+                                },
+                                color: '#1A202C'
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.parsed}`;
+                                }
                             }
                         }
                     }
                 }
-            }
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
