@@ -10,6 +10,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka - Appointment Management</title>
     <link rel="stylesheet" href="style.css">
+<style>
+    .filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+    background: #f9f9f9;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    margin-bottom: 20px;
+}
+
+.filter-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    color: #333;
+    min-width: 180px;
+}
+
+.filter-form select,
+.filter-form input[type="date"] {
+    border: 2px solid #333;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    font: 1.1rem/1.5 sans-serif;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.3rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.filter-form select:focus,
+.filter-form input[type="date"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.filter-form button[type="submit"] {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background 0.2s;
+}
+
+.filter-form button[type="submit"]:hover {
+    background: #0056b3;
+}
+
+@media (max-width: 700px) {
+    .filter-form {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.8rem;
+    }
+    .filter-form label {
+        min-width: 0;
+    }
+}
+
+</style>
+
 </head>
 <body>
     <script src="script.js"></script>
@@ -116,7 +185,38 @@
             <div class="main-container">
                 <div class="search-container">
                     <div>
-                        <!-- Search Form -->
+                        <form method="GET" class="filter-form" style="margin-bottom: 20px;">
+        <label>
+            Service:
+            <select name="service_type">
+                <option value="">All</option>
+                <option value="Consulting" <?= isset($_GET['service_type']) && $_GET['service_type'] == 'Consulting' ? 'selected' : '' ?>>Consulting</option>
+                <option value="Training" <?= isset($_GET['service_type']) && $_GET['service_type'] == 'Training' ? 'selected' : '' ?>>Training</option>
+                <option value="Researching" <?= isset($_GET['service_type']) && $_GET['service_type'] == 'Researching' ? 'selected' : '' ?>>Researching</option>
+            </select>
+        </label>
+        <label>
+            Status:
+            <select name="status">
+                <option value="">All</option>
+                <option value="Pending" <?= isset($_GET['status']) && $_GET['status'] == 'Pending' ? 'selected' : '' ?>>Pending</option>
+                <option value="Completed" <?= isset($_GET['status']) && $_GET['status'] == 'Completed' ? 'selected' : '' ?>>Completed</option>
+                <option value="Rejected" <?= isset($_GET['status']) && $_GET['status'] == 'Rejected' ? 'selected' : '' ?>>Rejected</option>
+                <option value="Assigned" <?= isset($_GET['status']) && $_GET['status'] == 'Assigned' ? 'selected' : '' ?>>Assigned</option>
+                <option value="Scheduled" <?= isset($_GET['status']) && $_GET['status'] == 'Scheduled' ? 'selected' : '' ?>>Scheduled</option>
+                <option value="Cancelled" <?= isset($_GET['status']) && $_GET['status'] == 'Cancelled' ? 'selected' : '' ?>>Cancelled</option>
+            </select>
+        </label>
+        <label>
+            Date From:
+            <input type="date" name="date_from" value="<?= isset($_GET['date_from']) ? htmlspecialchars($_GET['date_from']) : '' ?>">
+        </label>
+        <label>
+            Date To:
+            <input type="date" name="date_to" value="<?= isset($_GET['date_to']) ? htmlspecialchars($_GET['date_to']) : '' ?>">
+        </label>
+        <button type="submit">Filter</button>
+    </form>
                     </div>
                     <div>
                         <button id="addAppointmentBtn" class="btn" onclick="openPopup('addAppointmentOverlay')">Add Appointment</button>
