@@ -844,3 +844,10 @@ input[type="file"].upload {
   color: #4b5563;
   border: 1px solid #22c55e;
 }
+
+.coloum {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}

@@ -237,14 +237,30 @@
 
                     </div>
                 </div>
-                                                <!-- Project Status Update -->
 
                 
-                        <div class="status-card ">
-                            <h3>Add Bill</h3>
-                            <form action="../SP_Bill/CreateBill.php?project_id=<?php echo $project_id; ?>" method="post">                           
+                        <div class="status-card  ">
+                            <form action="../SP_Bill/CreateBill.php?project_id=<?php echo $project_id; ?>" method="post">  
+                            <label ><h3>Add Bill</h3>
+                            </label>
                                 <button type="submit" class="btn btn-success">Add Bill</button>
                             </form>
+                            <?php if ($docResult->num_rows > 0): ?>
+                        <?php while ($doc_row = $docResult->fetch_assoc()): ?>
+                            <div class="document-list-item">
+                                <a href="<?php echo htmlspecialchars($doc_row['file_path']); ?>" target="_blank" style="text-decoration: none; color: #333;">
+                                    <span><?php echo htmlspecialchars($doc_row['file_name']); ?></span>
+                                </a>
+                                <form action="delete_doc.php?project_id=<?php echo $projectId; ?>&doc_id=<?php echo $doc_row['document_id']; ?>" method="post" style="display:inline;">
+                                    <input type="hidden" name="document_id" value="<?php echo $doc_row['document_id']; ?>">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        <?php endwhile; ?>
+                        <?php else: ?>
+                        <p>No bills</p>
+                    <?php endif; ?>
+
                         </div>
                 <!-- Document Upload Section -->
                 <form action="EditProject.php?project_id=<?php echo $projectId; ?>" method="post" enctype="multipart/form-data">

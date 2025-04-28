@@ -69,9 +69,7 @@ $result = $stmt->get_result();
                 <input type="text" placeholder="Project Name/Service Name" id="search">
                 <button class="search-button" id="search-btn">Search</button>
                 <button class="clear-button" id="clear-filters">Clear</button>
-                <div class="add-bill-button">
-                    <a href="CreateBill.php"><button class="search-button">+ Add Bill</button></a>
-                </div>
+
             </div>
             <div class="bills-grid">
                 <?php   
@@ -86,7 +84,7 @@ $result = $stmt->get_result();
                         echo    '</div>';
                         echo    '<div class="bill-content">';
                         echo        '<div class="bill-info">';
-                        echo            '<p><strong>Service:</strong> ' . htmlspecialchars($row['Description']) . '</p>';
+                        echo            '<p><strong>Description:</strong> ' . htmlspecialchars($row['Description']) . '</p>';
                         echo            '<p><strong>Amount:</strong> Rs ' . htmlspecialchars($row['Amount']) . '</p>';
                         echo            '<p><strong>Date:</strong> ' . htmlspecialchars($row['Bill_Date']) . '</p>';
                         // Optionally keep project_id hidden in a hidden input or data attribute if needed

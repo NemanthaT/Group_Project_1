@@ -48,14 +48,7 @@ $project_id = $_POST['project_id'] ?? null;
                         <label for="bill_date">Bill Date</label>
                         <input type="date" id="bill_date" name="bill_date" required>
                     </div>
-                    
-                    <div class="form-field">
-                        <label for="payment_status">Payment Status</label>
-                        <select id="payment_status" name="payment_status" required>
-                            <option value="unpaid" selected>Unpaid</option>
-                            <option value="paid">Paid</option>
-                        </select>
-                    </div>
+
                     
                     <div class="form-actions">
                         <button type="button" class="cancel-button" onclick="window.location.href='Bill.php'">Cancel</button>

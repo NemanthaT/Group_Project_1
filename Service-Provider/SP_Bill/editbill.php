@@ -141,10 +141,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     
                             <div class="form-field">
                                 <label for="status">Payment Status</label>
-                                <select id="status" name="status" required>
+                                <select id="status" name="status" required <?php if($status == 'paid') echo 'disabled'; ?>>
                                     <option value="unpaid" <?php if($status == 'unpaid') echo 'selected'; ?>>Unpaid</option>
                                     <option value="paid" <?php if($status == 'paid') echo 'selected'; ?>>Paid</option>
                                 </select>
+                                <?php if($status == 'paid'): ?>
+                                    <input type="hidden" name="status" value="paid">
+                                <?php endif; ?>
                             </div>
                     
                             <div class="form-actions">

@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $amount = $_POST['amount'];
     $description = trim($_POST['description']);
     $bill_date = $_POST['bill_date'];
-    $payment_status = $_POST['payment_status'];
+    $payment_status = 'unpaid';
     $errors = [];
 
     if (empty($project_id)) $errors[] = "Project ID is required.";
