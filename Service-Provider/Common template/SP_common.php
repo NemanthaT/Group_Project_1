@@ -1,13 +1,11 @@
 <?php
 include '../connection.php';
 
-// Ensure the user is logged in and provider_id is set
 if (!isset($_SESSION['provider_id'])) {
     header("Location: ../login.php");
     exit();
 }
 
-// Fetch the username and profile image from the serviceproviders table
 $provider_id = $_SESSION['provider_id'];
 $sql = "SELECT username, profile_image FROM serviceproviders WHERE provider_id = ?";
 $stmt = $conn->prepare($sql);
@@ -18,7 +16,6 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $common_provider = $result->fetch_assoc();
 } else {
-    // Handle case where no provider is found
     $common_provider = [
         'username' => 'Unknown',
         'profile_image' => '../images/user.png'
@@ -45,31 +42,6 @@ $stmt->close();
   
     <header>
         <nav class="navbar">
-            <!-- <div class="calendar-icon">
-                <a href="#" id="calendarToggle"><img src="../images/calendar.png" alt="Calendar"></a>
-                <div id="calendarDropdown" class="calendar-dropdown">
-                    <h3>Calendar</h3>
-                    <div class="calendar-header">
-                        <button id="prevMonth"><</button>
-                        <span id="currentMonth">March 2025</span>
-                        <button id="nextMonth">></button>
-                    </div>
-                    <div class="calendar-grid">
-                        <div class="weekdays">
-                            <div>Mon</div>
-                            <div>Tue</div>
-                            <div>Wed</div>
-                            <div>Thu</div>
-                            <div>Fri</div>
-                            <div>Sat</div>
-                            <div>Sun</div>
-                        </div>
-                        <div id="daysGrid" class="days"></div>
-                    </div>
-                </div>
-            </div> -->
-       
-
             <div class="profile">
                 <a href="../SP_Profile/Profile.php">
                     <img src="<?php echo htmlspecialchars($common_provider['profile_image'] ?: '../images/user.png'); ?>" alt="Profile">
@@ -84,4 +56,3 @@ $stmt->close();
             <a href="../../Login/Logout.php" class="logout">Logout</a>                
         </nav>
     </header>
-<!-- </div> of container is present in the all the other files(the last </div>) dont remove it{ALTER TABLE forums ADD COLUMN category VARCHAR(100) NOT NULL;} -->

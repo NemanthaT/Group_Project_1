@@ -1,4 +1,3 @@
-    //Calendar
     document.addEventListener("DOMContentLoaded", () => {
         const calendarToggle = document.getElementById("calendarToggle")
         const calendarDropdown = document.getElementById("calendarDropdown")
@@ -46,7 +45,6 @@
             }
         }
     
-        // Event Listeners
         calendarToggle.addEventListener("click", (e) => {
             e.preventDefault()
             calendarDropdown.style.display = "block"
@@ -83,6 +81,5 @@
             renderCalendar()
         })
     
-        // Initial render
         renderCalendar()
     })
