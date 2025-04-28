@@ -21,6 +21,7 @@
                     'title' => $row['title'],
                     'description' => $row['content'],
                     'date' => $row['created_at'],
+                    'image_path' => $row['image_path'],
                 ];
             }
         }
