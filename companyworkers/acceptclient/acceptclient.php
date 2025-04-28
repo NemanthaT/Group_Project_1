@@ -58,8 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                          VALUES ('$provided_username', '$password', '$email', '$full_name', '$phone', '$address', '$created_at')";
 
                         if (mysqli_query($conn, $insert_query)) {
-                            mysqli_query($conn, "DELETE FROM pending_clients WHERE client_id=$client_id");
-                            $message = '<div style="color:green;margin-bottom:1em;">Client accepted and added to clients table.</div>';
+                            // Add WHERE clause to explicitly specify the client_id and add error handling
+                            $delete_result = mysqli_query($conn, "DELETE FROM pending_clients WHERE client_id=$client_id");
+                            if (!$delete_result) {
+                                $message = '<div style="color:red;margin-bottom:1em;">Client accepted, but error removing from pending list: ' . mysqli_error($conn) . '</div>';
+                            } else {
+                                $affected_rows = mysqli_affected_rows($conn);
+                                $message = '<div style="color:green;margin-bottom:1em;">Client accepted and added to clients table.</div>';
+                            }
                         } else {
                             $message = '<div style="color:red;margin-bottom:1em;">Insert failed: ' . mysqli_error($conn) . '</div>';
                         }
