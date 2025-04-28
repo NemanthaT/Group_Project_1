@@ -44,7 +44,7 @@ function viewThread(title, content, views, replies) {
   
   // Display the modal and overlay
   document.getElementById("modalOverlay").style.display = "block"
-  document.getElementById("modalForm").style.display = "block"
+  document.getElementById("modalForm").style.display = "flex"
 }
   
 // Function to close the modal
@@ -56,7 +56,7 @@ function closeModal() {
   // Function to open the "Create New Thread" modal
 function openCreateThreadModal() {
   document.getElementById("createThreadModalOverlay").style.display = "block"
-  document.getElementById("createThreadModal").style.display = "block"
+  document.getElementById("createThreadModal").style.display = "flex"
 }
   
 // Function to close the "Create New Thread" modal

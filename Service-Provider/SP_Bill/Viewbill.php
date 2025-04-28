@@ -109,13 +109,16 @@ $total_due = $subtotal;
                     </div>
                     
                     <div class="action-buttons">
-                        <a href="EditBill.php?bill_id=<?php echo $bill_id; ?>"><button class="pay-button">Edit</button></a>
-                        
+                        <?php if (strtolower($bill['status']) !== 'paid'): ?>
+                            <a href="EditBill.php?bill_id=<?php echo $bill_id; ?>"><button class="pay-button">Edit</button></a>
+                        <?php else: ?>
+                            <p class="status-message">This bill is already paid.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div>   <!--this is the </div> of container in the common file, don't remove it-->
+    </div>   
 <script src="Bill.js"></script>
 <script src="../Common template/Calendar.js"></script>
 </body>

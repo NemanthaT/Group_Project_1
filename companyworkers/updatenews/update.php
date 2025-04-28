@@ -168,6 +168,12 @@
                     </div>
 
                     <div class="form-group">
+                            <label for="news_image">News Image:</label>
+                            <input type="file" name="news_image" id="news_image" accept="image/*">
+                            <small class="form-text text-muted">Allowed formats: JPG, JPEG, PNG, GIF</small>
+                    </div>
+
+                    <div class="form-group">
                         <label for="worker_id"></label>
                         <input type="hidden" id="worker_id" name="worker_id" 
                                placeholder="Enter the worker id" required
@@ -197,3 +203,5 @@
     </script>
 </body>
 </html>
+
+

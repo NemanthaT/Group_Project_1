@@ -150,14 +150,10 @@
                                 <td><?= htmlspecialchars($user['status']) ?></td>
                                 <td>
                                     <?php if ($user['status'] == 'Pending'): ?>
-                                        <form style="display: inline;">
-                                            <button type="button" class="btn edit-btn" data-id="<?= htmlspecialchars($user['appointment_id']) ?>" 
-                                                onclick="openUpdatePopup(
-                                                    '<?= addslashes($user['appointment_id']) ?>', 
-                                                    '<?= addslashes($user['service_type']) ?>', 
-                                                    '<?= addslashes($user['appointment_date']) ?>', 
-                                                    '<?= addslashes($user['message']) ?>'
-                                                )">
+                                        <form style="display: inline;" >
+                                        <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
+
+                                            <button type="button" class="btn edit-btn" action="update_appointment.php?appointment_id=<?= htmlspecialchars($user['appointment_id']) ?>" >
                                                 Edit
                                             </button>
                                         </form>
