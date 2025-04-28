@@ -92,7 +92,7 @@ $stmt->close();
                 echo "<td>" . htmlspecialchars($row['status']) . "</td>";
                 echo "<td onclick=\"event.stopPropagation();\">"; //event.stopPropagation() is a JavaScript method that prevents the click event, used to prevent the onclick event of the parent table row (<tr>) from being triggered when the user clicks within the Actions column
                 $status = strtolower($row['status']);
-                if ($status === 'pending') {
+                if ($status === 'assigned') {
                     echo "<form method='POST' style='display: inline;' onsubmit=\"return confirm('Are you sure you want to accept this appointment?');\">";
                     echo "<input type='hidden' name='appointment_id' value='" . htmlspecialchars($row['appointment_id']) . "'>";
                     echo "<input type='hidden' name='status' value='Scheduled'>";
