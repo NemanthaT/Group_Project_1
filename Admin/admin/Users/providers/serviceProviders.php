@@ -12,7 +12,7 @@
         exit;
     }
 
-    $sql = "SELECT * FROM serviceproviders WHERE status = 'set'";
+    $sql = "SELECT * FROM serviceproviders WHERE status = 'set' ORDER BY provider_id DESC";
     $result = $conn->query($sql);
 
 ?>
