@@ -30,7 +30,7 @@ function viewForum(id) {
             document.getElementById("clientId").innerText = "User Id: " + data.user_id;
             document.getElementById("forumContent").innerText = data.content;
 
-            // ✅ Fade out the preloader
+            
             preloader.classList.add('fade-out');
             setTimeout(() => {
                 preloader.style.display = "none";
