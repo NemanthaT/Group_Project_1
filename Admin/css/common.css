@@ -9,7 +9,7 @@
   width: 80% !important;
 }
 body {
-  font-family: "Segoe UI", "cursive";
+  font-family: Arial, Helvetica, sans-serif !important;
   /*font-family: 'Poppins', sans-serif;*/
   /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
   /*font-family: Arial, sans-serif;*/
@@ -194,6 +194,7 @@ button:hover {
   color: rgb(3, 202, 3);
   height: 30px !important;
   border: 1px solid rgb(3, 202, 3);
+  border-radius: 30px !important;
   margin-right: 10px;
 }
 .accept:hover {
@@ -205,6 +206,7 @@ button:hover {
   height: 30px !important;
   border: 1px solid #1882fb;
   margin-right: 10px;
+  border-radius: 30px !important;
 }
 .view:hover {
   background-color: #1882fb;
@@ -215,6 +217,7 @@ button:hover {
   color: red;
   height: 30px !important;
   border: 1px solid red;
+  border-radius: 30px !important;
 }
 .del:hover {
   background-color: red;

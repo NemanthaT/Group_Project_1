@@ -37,7 +37,7 @@ function getNews(page = 1) {
           const newsImage = document.createElement("div");
           newsImage.className = "news-image";
           const image = document.createElement("img");
-          image.src = `../../${item.image_path}`;
+          image.src = `${item.image_path}`;
           image.alt = "News Image";
 
           newsImage.appendChild(image);

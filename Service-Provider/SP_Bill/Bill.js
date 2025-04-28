@@ -48,7 +48,7 @@ function addClearButtonStyles() {
     }
 }
 
-/*Filter bills based on status and project ID */
+/* Filter bills based on status and project name or service */
 function filterBills() {
     const statusFilter = document.getElementById('status-filter').value.toLowerCase();
     const searchTerm = document.getElementById('search').value.trim().toLowerCase();
@@ -61,9 +61,13 @@ function filterBills() {
         const statusElement = card.querySelector('.status');
         const billStatus = statusElement ? statusElement.textContent.trim().toLowerCase() : '';
         
-        // Get project ID from the card
-        const projectIdElement = card.querySelector('.bill-info p:nth-child(4)'); // Assuming project ID is in the 4th paragraph
-        const projectId = projectIdElement ? projectIdElement.textContent.replace('Project ID:', '').trim().toLowerCase() : '';
+        // Get project name from the bill-header
+        const projectNameElement = card.querySelector('.bill-header p'); // Project name is in the <p> tag
+        const projectName = projectNameElement ? projectNameElement.textContent.replace('Project Name:', '').trim().toLowerCase() : '';
+        
+        // Get service/description from the card
+        const serviceElement = card.querySelector('.bill-info p:nth-child(1)'); // Service is in the 1st paragraph
+        const serviceName = serviceElement ? serviceElement.textContent.replace('Service:', '').trim().toLowerCase() : '';
         
         // Determine if the card should be shown based on filters
         let showCard = true;
@@ -73,8 +77,8 @@ function filterBills() {
             showCard = false;
         }
         
-        // Filter by project ID
-        if (searchTerm && !projectId.includes(searchTerm)) {
+        // Filter by project name or service name
+        if (searchTerm && !projectName.includes(searchTerm) && !serviceName.includes(searchTerm)) {
             showCard = false;
         }
         
@@ -86,7 +90,7 @@ function filterBills() {
     updateNoBillsMessage();
 }
 
-/*Show or hide "No bills found" message based on visible cards*/
+/* Show or hide "No bills found" message based on visible cards */
 function updateNoBillsMessage() {
     const billCards = document.querySelectorAll('.bill-card');
     const billsGrids = document.querySelectorAll('.bills-grid');
@@ -112,7 +116,7 @@ function updateNoBillsMessage() {
     }
 }
 
-/*Clear all filters and reset the view*/
+/* Clear all filters and reset the view */
 function clearFilters() {
     // Reset filter values
     document.getElementById('status-filter').value = 'all';
