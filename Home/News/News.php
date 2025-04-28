@@ -27,8 +27,8 @@
                             <center><img id="newsImage" src="" class="news-image">
                             <h2 id="newsTitle"></h2></center>
                             <p id="newsDescription"></p>
-                            <p>Date</p>
-                            <p id="newsDate"></p>
+                            
+                            <div id="date"><p id="newsDate"></p></div>
                         </div>
 
                     </div>

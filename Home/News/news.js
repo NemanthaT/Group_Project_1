@@ -33,6 +33,7 @@ function getNews(page = 1) {
         data.forEach((item) => {
           const newsItem = document.createElement("div");
           newsItem.className = "news-item";
+          newsItem.onclick = function(){viewNews(item.id)};
 
           const newsImage = document.createElement("div");
           newsImage.className = "news-image";
@@ -119,9 +120,9 @@ function viewNews(id) {
     })
     .then((data) => {
       if (data === "error" || !data) {
-        throw new Error("Error in response data");
+        console.log("Error in response data");
       } else {
-        document.querySelector("#newsContent .news-image img").src = `../../${data.image_path}`;
+        document.querySelector("#newsContent .news-image").src = `../../${data.image_path}`;
         document.getElementById("newsTitle").innerText = data.title;
         document.getElementById("newsDescription").innerHTML = data.content;
         document.getElementById("newsDate").innerText = new Date(
