@@ -33,6 +33,7 @@ function getNews(page = 1) {
         data.forEach((item) => {
           const newsItem = document.createElement("div");
           newsItem.className = "news-item";
+          newsItem.onclick = function(){viewNews(item.id)};
 
           const newsImage = document.createElement("div");
           newsImage.className = "news-image";
