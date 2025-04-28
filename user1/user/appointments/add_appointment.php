@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = $_POST['additionalMessage'] ?? '';
         $status = "Pending";
         $service_type = $_POST['serviceSelect'];
-        
+        $field_name = $_POST['fieldName'] ?? '';
 
         $current_date = new DateTime();
         $appointment_datetime = new DateTime($appointment_date);

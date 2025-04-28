@@ -149,15 +149,14 @@
                                 <!-- <td><?//= htmlspecialchars($user['message']) ?></td> -->
                                 <td><?= htmlspecialchars($user['status']) ?></td>
                                 <td>
-                                    <?php if ($user['status'] == 'Pending'): ?>
-                                        <form style="display: inline;" >
-                                        <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
-
-                                            <button type="button" class="btn edit-btn" action="update_appointment.php?appointment_id=<?= htmlspecialchars($user['appointment_id']) ?>" >
-                                                Edit
-                                            </button>
-                                        </form>
-                                    <?php endif; ?>
+                                <?php if ($user['status'] == 'Pending'): ?>
+    <form style="display: inline;" action="update_appointment.php?appointment_id=<?= htmlspecialchars($user['appointment_id']) ?>" method="GET  ">
+        <input type="hidden" name="appointment_id" value="<?= htmlspecialchars($user['appointment_id']) ?>">
+        <button type="submit" class="btn edit-btn">
+            Edit
+        </button>
+    </form>
+<?php endif; ?>                                    
 
                                     <?php if ($user['provider_id'] !== null && ($user['status'] == 'Completed' || $user['status'] == 'Assigned' || $user['status'] == 'Scheduled')): ?>
                                         <form action='view_appointment.php?appointment_id=<?= htmlspecialchars($user['appointment_id']) ?>' style="display: inline;">   
@@ -194,7 +193,7 @@
                     <span class="close-btn" onclick="closePopup('addAppointmentOverlay')">&times;</span>
                     <h2>Add New Appointment</h2>
                     <form id="appointmentForm" action="add_appointment.php" method="POST">
-                        <div class="form-group">
+                    <div class="form-group">
                             <label for="serviceSelect">Select a Service</label>
                             <select id="serviceSelect" name="serviceSelect" required>
                                 <option value="">Choose a Service</option>
@@ -203,6 +202,22 @@
                                 <option value="Researching">Researching</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="fieldName">Field Name</label>
+                            <select id="fieldName" name="fieldName" required>
+                                <option value="">Choose a Service</option>
+                                <option value="Development Finance"> Development Finance</option>
+                                <option value="Micro Finance"> Micro Finance</option>
+                                <option value="Gender Finance"> Gender Finance</option>
+                                <option value="Development Finance"> Development Finance</option>
+                                <option value="SME Development"> SME Development</option>
+                                <option value="Strategic and Operations Planning"> Strategic and Operations Planning</option>
+                                <option value="Institutional Development"> Institutional Development</option>
+                                <option value="Community Development"> Community Development</option>
+                                <option value="Organizational Development"> Organizational Development</option>
+                            </select>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="appointmentDate">Select a Date</label>
                             <input type="date" id="appointmentDate" name="appointmentDate" required>
@@ -216,37 +231,7 @@
                 </div>
             </div>
 
-            <!-- Edit Appointment Overlay -->
-            <div id="EditAppointmentOverlay" class="overlay">
-                <div class="overlay-content">
-                    <span class="close-btn" onclick="closePopup('EditAppointmentOverlay')">&times;</span>
-                    <h2>Edit Appointment</h2>
-                    <form id="appointmentForm" action="update_appointment.php" method="POST">
-                        <!-- <div class="form-group">
-                            <label for="editAppointmentid">Appointment ID</label>
-                            <input type="text" id="editAppointmentid" name="editAppointmentid" readonly required>
-                        </div> -->
-                        <div class="form-group">
-                            <label for="editServiceSelect">Select a Service</label>
-                            <select id="editServiceSelect" name="editServiceSelect" required>
-                                <option value="">Choose a Service</option>
-                                <option value="Consulting">Consulting</option>
-                                <option value="Training">Training</option>
-                                <option value="Researching">Researching</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="editAppointmentDate">Select a Date</label>
-                            <input type="date" id="editAppointmentDate" name="editAppointmentDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editAdditionalMessage">Additional Message</label>
-                            <textarea id="editAdditionalMessage" name="editAdditionalMessage" rows="4"></textarea>
-                        </div>
-                        <button type="submit" id="editSaveappointmentbtn" class="btn">Save</button>
-                    </form>
-                </div>
-            </div>
+
 
 
             </div>
