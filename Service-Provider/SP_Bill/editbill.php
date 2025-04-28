@@ -119,11 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <form action="editbill.php" method="POST" class="simple-form">
                             <input type="hidden" name="bill_id" value="<?php echo htmlspecialchars($bill_id); ?>">
 
-                            <div class="form-field">
-                                <label for="project_id">Project ID</label>
-                                <input type="text" id="project_id" name="project_id" value="<?php echo htmlspecialchars($project_id); ?>" required readonly>
-                            </div>
-                    
+
                             <div class="form-field">
                                 <label for="description">Description</label>
                                 <textarea id="description" name="description" rows="4" required><?php echo htmlspecialchars($description); ?></textarea>
