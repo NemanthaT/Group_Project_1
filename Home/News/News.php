@@ -11,7 +11,7 @@
     <main>
         <!-- News Section -->
         <section class="news">
-            <div>
+            <div id="main">
                 <div>
                     <h1 id="nHeading">News</h1>
                 </div>
@@ -33,7 +33,7 @@
 
                     </div>
                 </div>
-                <div>
+                <div id="allNews">
                     <div id="news">
                         <!-- News items will be inserted here by JavaScript -->
                     </div>

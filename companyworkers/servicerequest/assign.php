@@ -33,14 +33,16 @@
 
   if (isset($_POST['submit'])) {
     $provider_id = $_POST['assign_person'];
+    $reply_message = $_POST['reply_message']; // Add this line to capture the value
     $sql = "UPDATE `appointments` SET 
             provider_id='$provider_id', 
+            reply_note='$reply_message',
             status='Assigned' 
             WHERE appointment_id='$appointment_id'";
     $result = mysqli_query($con, $sql);
     if ($result) {
       echo '<script>
-        alert("News updated");
+        alert("Service provider assigned successfully");
         window.location.href = "servicerequest.php";
         </script>';
       exit;
@@ -54,7 +56,7 @@
     $reject_reason = $_POST['reject_reason'];
     $sql = "UPDATE `appointments` SET 
             status='Rejected',
-            reject_note='$reject_reason' 
+            reply_note='$reject_reason' 
             WHERE appointment_id='$appointment_id'";
     $result = mysqli_query($con, $sql);
     if ($result) {
@@ -182,12 +184,12 @@
         <div class="form-container">
           <div class="left">
             <div class="form-top">
-              <div class="info-field">
-                <span class="label">Appointment ID:</span>
-                <span class="value"><?php echo $appointment_id; ?></span>
+              <div class="info-field" style="display: none;">
+                <span class="label" type = "hidden">Appointment ID:</span>
+                <span class="value" type = "hidden"><?php echo $appointment_id; ?></span>
               </div>
             </div>
-            <div class="right">
+            <div class="right" style="display: none;">
               <div class="info-field">
                 <span class="label">Client ID:</span>
                 <span class="value"><?php echo $client_id; ?></span>
@@ -224,6 +226,10 @@
           <textarea id="message" name="message" readonly><?php echo $message; ?></textarea>
         </div>
 
+        <div class="reply-section">
+          <label for="message">Reply message</label>
+          <textarea id="reply_message" name="reply_message" readonly>Your appointment has been approved. Our service provider will contact you soon.</textarea>
+        </div>
         <!-- Map service type to provider speciality -->
         <?php
           function mapServiceToSpeciality($service_type) {
@@ -251,7 +257,7 @@
           <option value="">Select a person</option>
           <?php while ($provider = mysqli_fetch_assoc($providers_result)) { ?>
             <option value="<?php echo $provider['provider_id']; ?>">
-              <?php echo $provider['full_name']; ?> (<?php echo $provider['provider_id']; ?>) 
+              <?php echo $provider['full_name']; ?>
             </option>
           <?php } ?>
         </select><br /><br />

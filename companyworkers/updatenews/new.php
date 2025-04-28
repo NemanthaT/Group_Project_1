@@ -223,25 +223,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </script>
     </body>
 </html>
-
-<style>
-/* Add these styles to your existing CSS */
-.form-group {
-    margin-bottom: 1rem;
-}
-
-input[type="file"] {
-    display: block;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.form-text {
-    display: block;
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-    color: #6c757d;
-}
-</style>

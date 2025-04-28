@@ -78,6 +78,20 @@ main {
 .news {
   padding: 20px;
   background-color: #ffffff;
+  height: 100%;
+}
+
+#main {
+  height: 100%;
+  width: 100%;
+}
+
+#allNews {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #news {
@@ -164,18 +178,17 @@ main {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin-top: 20px;
 }
 
 .pagination-button {
   font-size: 1rem;
   font-weight: bold;
   padding: 8px 16px;
-  width: 10%;
+  width: 8%;
   background-color: #18a0fb;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
@@ -209,7 +222,7 @@ main {
   background-color: white;
   color: #000;
   z-index: 1000;
-  max-height: 85vh;
+  height: 60%;
   width: 650px;
   max-width: 90vw;
   position: relative;
@@ -217,6 +230,11 @@ main {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   animation: slideUp 0.4s ease-out;
+}
+
+#newsView img {
+  width: 80%;
+  background-size: cover;
 }
 
 #seeMBtn {
@@ -259,6 +277,8 @@ main {
   font-weight: bold;
   width: 26px;
   height: 26px;
+  border: none;
+  border-radius: 26px;
   margin-top: 1%;
   margin-left: 96%;
   margin-bottom: 1%;
@@ -353,7 +373,7 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(211, 211, 211);
+  background: rgb(56, 56, 56);
   display: flex;
   justify-content: center;
   align-items: center;
