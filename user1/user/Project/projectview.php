@@ -7,6 +7,10 @@
     $sqlserviceproviders = "SELECT * FROM `serviceproviders` WHERE `provider_id` = ? ;";
     $doc ="SELECT * from projectdocuments where project_id = '$projectId';";
     $bill = "SELECT * from bills where project_id = '$projectId';";
+    $log = "SELECT * FROM projectstatuslogs WHERE project_id = '$projectId' ORDER BY changed_at DESC;";
+
+    $logResult = $conn->query($log);
+
 
 
     $stmt = $conn->prepare($sqlproject);
@@ -54,6 +58,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>EDSA Lanka - Appointment Management</title>
         <link rel="stylesheet" href="style.css">
+        
+<style>
+.status-log h2 {
+    margin-top: 0;
+    margin-bottom: 1.5vh;
+    text-align: left;
+    font-size: 2.2vh; /* Matched to project page */
+    color: #4b5563;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-log-item {
+    background-color: #ffffff;
+    margin-bottom: 1vh;
+    padding: 1.5vh;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.status-log-item p {
+    margin: 0;
+    flex: 1;
+    font-size: 1.8vh; /* Matched to project page */
+    color: #1e293b;
+}
+
+.status-log-item span {
+    color: #4b5563;
+    font-size: 1.6vh; /* Matched to project page */
+    white-space: nowrap;
+    margin-left: 1vh;
+}
+</style>
     </head>
     <body>
         <div class="sidebar">
@@ -152,7 +194,6 @@
                 <h2>Project Progress </h2>
                 <hr><br>
                 <p><strong>Project Start Date:</strong><?php echo $createdDate; ?></p>
-                <p><strong>updated Date:</strong> <?php echo $UpdatedDate; ?></p>
                 <div class="row">
                 <p ><strong>Project Status : </strong> <?php echo $projectStatus; ?></p>
                 </div>
@@ -199,6 +240,23 @@
                 </div> 
                 <?php endwhile; ?>
                     <?php endif; ?> 
+            </div>
+                            <!-- Status Log Section -->
+                            <div class="controls">
+
+                            <div class="status-log">
+                    <h2>Status Log</h2>
+                    <?php if ($logResult->num_rows > 0): ?>
+                        <?php while ($log_row = $logResult->fetch_assoc()): ?>
+                            <div class="status-log-item ">
+                                <p><?php echo htmlspecialchars($log_row['message']); ?></p>
+                                <span><?php echo htmlspecialchars($log_row['changed_at']); ?></span>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <p>No status logs found.</p>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>

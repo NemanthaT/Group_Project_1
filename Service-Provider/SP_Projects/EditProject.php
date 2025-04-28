@@ -233,9 +233,19 @@
                                 <button type="submit" class="btn btn-success">Update Status</button>
                             </form>
                         </div>
+
+
                     </div>
                 </div>
+                                                <!-- Project Status Update -->
 
+                
+                        <div class="status-card ">
+                            <h3>Add Bill</h3>
+                            <form action="../SP_Bill/CreateBill.php?project_id=<?php echo $project_id; ?>" method="post">                           
+                                <button type="submit" class="btn btn-success">Add Bill</button>
+                            </form>
+                        </div>
                 <!-- Document Upload Section -->
                 <form action="EditProject.php?project_id=<?php echo $projectId; ?>" method="post" enctype="multipart/form-data">
                     <div class="document-upload">

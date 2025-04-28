@@ -813,13 +813,9 @@ input[type="file"].upload {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
 }
 
-.status-log-item:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
+
 
 .status-log-item p {
   margin: 0;

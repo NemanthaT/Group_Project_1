@@ -52,10 +52,6 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
                 <div class="appointment-info">                    
-                    <!-- <div class="detail-row">
-                        <div class="detail-label">Client ID:</div>
-                        <div class="detail-value"><?php //echo htmlspecialchars($appointment['client_id']); ?></div>
-                    </div> -->
                     <div class="detail-row">
                         <div class="detail-label">Client Name:</div>
                         <div class="detail-value"><?php echo htmlspecialchars($appointment['full_name'] ?? 'Not specified'); ?></div>
@@ -79,7 +75,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="button-group">
                     <button class="chat-button" onclick="window.location.href='../SP_Message/Message.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">Chat with Client</button>
-                    <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">+ Project</button>
+                    <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>&appointment_id=<?php echo htmlspecialchars($appointment['appointment_id']); ?>'">+ Project</button>
                 </div>
             </div>                   
         </div>
