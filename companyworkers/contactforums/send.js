@@ -10,7 +10,7 @@ window.onload = function() {
         console.log('data' + data['message']);
         console.log('data' + data['subject']);
 
-        fetch("http://localhost/Group_Project_1/sendemail/send.php", {
+        fetch("../../sendemail/send.php", {
             method: "POST",
             body: `data=${JSON.stringify(data)}`,
             headers: {
