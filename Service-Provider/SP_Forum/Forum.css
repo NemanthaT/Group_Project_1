@@ -22,7 +22,7 @@
   letter-spacing: 0.5px;
 }
 
-.forum-section button {
+.forum-threads .header-container button {
   background-color: #18A0FB;
   color: white;
   border: none;
@@ -36,7 +36,7 @@
   text-decoration: none;
 }
 
-.forum-section button:hover {
+.forum-threads .header-container button:hover {
   background-color: #0c8de4;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(24, 160, 251, 0.3);
@@ -96,23 +96,32 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
-.forum-threads h3 {
+/* Create a flex container for h3 and the button */
+.forum-threads .header-container {
+  display: flex;
+  justify-content: space-between; /* Align h3 to left, button to right */
+  align-items: center; /* Vertically center the items */
   flex-shrink: 0;
   margin-bottom: 1vh;
 }
 
-.forum-threads ul {
-  list-style: none;
-  padding: 0;
-  flex: 1;
-  overflow-y: auto;
+.forum-threads h3 {
   margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.forum-threads ul {
   display: grid; /* Use CSS Grid for two-column layout */
-  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-  gap: 1vh; /* Space between cards */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Two equal columns */
+  gap: 20px;
+  padding: 20px;
 }
 
 .forum-threads ul li {
+  height: 100%;
+  min-height: 150px;
+  justify-content: space-between;
   padding: 1.5vh;
   border: 1px solid #e5e7eb;
   display: flex;
@@ -155,9 +164,8 @@
 }
 
 .forum-threads ul li .button-container {
-  display: flex;
-  gap: 10px;
-  align-self: flex-end;
+  margin-top: auto;
+  padding-top: 10px;
 }
 
 .forum-threads ul li button {
@@ -228,9 +236,18 @@
   outline: none;
 }
 
-.search-group input {
-  width: 400px;
-  max-width: 100%;
+.filter-group.search-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: nowrap;
+}
+
+.filter-group.search-group input {
+  flex: 1;
+  min-width: 200px;
+  max-width: none;
 }
 
 .search-button {

@@ -108,13 +108,6 @@ $stmt->close();
                         <p>Views: 4</p>
                         <p>Likes: 19</p>
                     </div>
-
-                    <div class="card">
-                        <h3>Payments</h3>
-                        <p>Recent Payments: 6</p>
-                        <p>Upcoming: 2</p>
-                        <p>Overdue: 1</p>
-                    </div>
                 </div>
 
                 <!-- Second Row: Projects with Counts and Pie Chart -->
@@ -161,51 +154,47 @@ $stmt->close();
     <script src="SPDash.js"></script>
     <script src="../Common template/Calendar.js"></script>
     <script>
-        // Pie Chart for Projects
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('projectsPieChart').getContext('2d');
-            const completed = <?php echo $project_stats['Completed']; ?>;
-            const ongoing = <?php echo $project_stats['Ongoing']; ?>;
-            const cancelled = <?php echo $project_stats['Cancelled']; ?>;
-
-            // Use counts for the chart
-            const data = [completed, ongoing, cancelled];
-
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Completed', 'Ongoing', 'Canceled'],
-                    datasets: [{
-                        data: data,
-                        backgroundColor: ['#4F75FF', '#40C4B7', '#FF6B6B'], // Blue, Teal-Green, Coral-Red
-                        borderColor: ['#ffffff', '#ffffff', '#ffffff'],
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                font: {
-                                    size: 14,
-                                    family: "'Inter', sans-serif"
-                                },
-                                color: '#1A202C'
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `${context.label}: ${context.parsed}`;
-                                }
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('projectsPieChart').getContext('2d');
+        const completed = <?php echo $project_stats['Completed']; ?>;
+        const ongoing = <?php echo $project_stats['Ongoing']; ?>;
+        const cancelled = <?php echo $project_stats['Cancelled']; ?>;
+        const data = [completed, ongoing, cancelled];
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Completed', 'Ongoing', 'Canceled'],
+                datasets: [{
+                    data: data,
+                    backgroundColor: ['#4F75FF', '#40C4B7', '#FF6B6B'],
+                    borderColor: ['#ffffff', '#ffffff', '#ffffff'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 16,
+                                family: "'Inter', sans-serif"
+                            },
+                            color: '#1A202C'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.label}: ${context.parsed}`;
                             }
                         }
                     }
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>

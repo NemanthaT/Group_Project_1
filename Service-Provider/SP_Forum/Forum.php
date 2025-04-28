@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $category = $_POST['category'];
 
             if (!empty($providerId) && !empty($title) && !empty($message) && !empty($category)) {
-                $stmt = $conn->prepare("INSERT INTO forums (title, content, created_by, user_id, category, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-                $stmt->bind_param("sssis", $title, $message, $fullName, $providerId, $category);
+                $stmt = $conn->prepare("INSERT INTO forums (provider_id, title, category, content, created_at) VALUES (?, ?, ?, ?, NOW())");
+                $stmt->bind_param("isss", $providerId, $title, $category, $message);
                 $stmt->execute();
             }
         }
@@ -58,10 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Fetch all forum threads created by the logged-in provider, joining with serviceproviders to get full_name
-$stmt = $conn->prepare("SELECT f.forum_id, f.title, f.content, f.user_id, f.created_at, f.category, sp.full_name 
+$stmt = $conn->prepare("SELECT f.forum_id, f.title, f.content, f.provider_id, f.created_at, f.category, sp.full_name 
                         FROM forums f 
-                        JOIN serviceproviders sp ON f.user_id = sp.provider_id 
-                        WHERE f.user_id = ? 
+                        JOIN serviceproviders sp ON f.provider_id = sp.provider_id 
+                        WHERE f.provider_id = ? 
                         ORDER BY f.created_at DESC");
 $stmt->bind_param("i", $providerId);
 $stmt->execute();
@@ -72,7 +72,7 @@ $threads = $result->fetch_all(MYSQLI_ASSOC);
 $modalThread = null;
 if (isset($_GET['forum_id'])) {
     $forumId = $_GET['forum_id'];
-    $stmt = $conn->prepare("SELECT forum_id, title, content, created_by, user_id, created_at, category FROM forums WHERE forum_id = ?");
+    $stmt = $conn->prepare("SELECT forum_id, title, content, created_by, provider_id, created_at, category FROM forums WHERE forum_id = ?");
     $stmt->bind_param("i", $forumId);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -154,7 +154,7 @@ if (isset($_GET['forum_id'])) {
 
             <!-- Forum Threads -->
             <div class="forum-threads">
-                <h3>Recent Threads</h3>
+                <h3>Recent Threads</h3> <!-- <button type="button" class="view_externalthreads-btn" onclick="">Refresh</button> -->
                 <ul id="thread-list">
                     <?php if (empty($threads)): ?>
                         <li class="no-threads">
@@ -166,7 +166,7 @@ if (isset($_GET['forum_id'])) {
                                 <h4><?= htmlspecialchars($thread['title']) ?></h4>
                                 <p>Started by<span class="username"><?=htmlspecialchars($thread['full_name'] ?? 'Unknown') ?></span> - <?= $thread['replies'] ?? 0 ?> replies</p>
                                 <div class="button-container">
-                                    <button class="view-btn" onclick="viewThread('<?= htmlspecialchars(addslashes($thread['title'])) ?>', '<?= htmlspecialchars(addslashes($thread['content'])) ?>', <?= $thread['views'] ?? 0 ?>, <?= $thread['replies'] ?? 0 ?>)">View</button>
+                                    <button class="view-btn" onclick="viewThread('<?= htmlspecialchars(addslashes($thread['title'])) ?>', '<?= htmlspecialchars(addslashes($thread['content'])) ?>', <?= $thread['views'] ?? 0 ?>, <?= $thread['replies'] ?? 0 ?>)">View</button> 
                                     <form action="" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this thread?')">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="forum_id" value="<?= $thread['forum_id'] ?>">
