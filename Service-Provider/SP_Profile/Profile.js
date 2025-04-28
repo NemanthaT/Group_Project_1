@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#name").outerHTML = `<input type="text" id="name" name="full_name" value="${document.querySelector("#name").textContent}" required>`;
         document.querySelector("#gender").outerHTML = `<input type="text" id="gender" name="gender" value="${document.querySelector("#gender").textContent}" required>`;
         document.querySelector("#email").outerHTML = `<input type="email" id="email" name="email" value="${document.querySelector("#email").textContent}" required>`;
-        document.querySelector("#phone").outerHTML = `<input type="tel" id="phone" name="phone" value="${document.querySelector("#phone").textContent}" required>`;
+        document.querySelector("#phone").outerHTML = `<input type="tel" pattern="[0-9]{10}" id="phone" name="phone" value="${document.querySelector("#phone").textContent}" required>`;
         document.querySelector("#address").outerHTML = `<input type="text" id="address" name="address" value="${document.querySelector("#address").textContent}" required>`;
         document.querySelector("#introduction").outerHTML = `<textarea id="introduction" name="introduction" required>${document.querySelector("#introduction").textContent}</textarea>`;
         document.querySelector("#field").outerHTML = `<input type="text" id="field" name="field" value="${document.querySelector("#field").textContent}" required>`;
