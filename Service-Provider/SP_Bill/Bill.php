@@ -81,7 +81,7 @@ $result = $stmt->get_result();
                         $statusClass = strtolower($row['status']) === 'paid' ? 'paid' : 'unpaid';
                         echo '<div class="bill-card">';
                         echo    '<div class="bill-header">';
-                        echo            '<p><strong>Project Name:</strong> ' . htmlspecialchars($row['project_name']) . '</p>';
+                        echo            '<p><strong> ' . htmlspecialchars($row['project_name']) . '</strong></p>';
                         echo        '<span class="status ' . $statusClass . '">' . ucfirst($row['status']) . '</span>';
                         echo    '</div>';
                         echo    '<div class="bill-content">';

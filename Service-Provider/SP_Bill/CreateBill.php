@@ -2,6 +2,8 @@
 include '../Session/Session.php';
 include '../connection.php';
 include '../Common template/SP_common.php';
+
+$project_id = $_POST['project_id'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -28,12 +30,9 @@ include '../Common template/SP_common.php';
                     <a href="Bill.php">← Back to Bills</a>
                 </div>
                 <h2>Add Bill</h2>
-                <form action="process_bill.php" method="POST" class="simple-form">
+                <form action="process_bill.php?project_id=<?php echo $project_id; ?>" method="POST" class="simple-form">
 
-                    <div class="form-field">
-                        <label for="project_id">Project ID</label>
-                        <input type="text" id="project_id" name="project_id" placeholder="Enter project ID" required>
-                    </div>
+                  
                        
                     <div class="form-field">
                         <label for="amount">Amount (Rs)</label>
