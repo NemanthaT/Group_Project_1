@@ -135,3 +135,88 @@ form input {
     margin-left: 30%;
     margin-right: 10%;
 }
+
+tbody tr:hover{
+    cursor: pointer !important;
+}
+
+.view {
+    margin: 0 !important;
+}
+
+#userPic{
+    width: 90px;
+    align-content: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgb(167, 167, 167);
+    height: 90px;
+    border-radius: 90px;
+    margin-top: 5%;
+    margin-right: 2%;
+    margin-left: 10%;
+}
+
+#userPic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#hiddenViewDetails{
+    font-size: 1.2rem;
+    width: 80%;
+    margin: 0 10% 0 10%;
+}
+
+.hiddenViewContent {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    margin-bottom: 2.5%;
+}
+
+#hiddenViewActions {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+#deteHead{
+    font-weight: bold;
+    color: rgb(48, 48, 48);
+    width: 35%;
+    margin-top: 2.5%;
+    margin-right: 2.5%;
+}
+
+.detes{
+    color: black;
+    margin-top: 2.5%;
+    height: auto;
+}
+
+#hiddenViewActions .accept{
+    height: auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border: 1px solid rgb(3, 202, 3) !important;
+}
+#hiddenViewActions .del{
+    height: auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border: 1px solid red !important;
+}
+
+hr{
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgba(97, 97, 97, 0.123); 
+    border: none;
+    height: 1px;
+}
+
+#hiddenView #closeView{
+    margin: 0 2% 0 0 !important;
+}
