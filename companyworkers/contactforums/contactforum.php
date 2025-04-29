@@ -1,8 +1,7 @@
 <?php
 session_start();
-include '../../config/config.php'; // Database connection
+include '../../config/config.php'; 
 
-// Fetch the logged-in user's name
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
     $query = "SELECT full_name FROM companyworkers WHERE username = '$username'";
@@ -14,7 +13,6 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 
-// Fetch contact forums, latest first
 $sql = "SELECT * FROM contactforums ORDER BY created_at DESC";
 $result = $conn->query($sql);
 ?>
@@ -29,11 +27,7 @@ $result = $conn->query($sql);
   <link rel="stylesheet" href="../dashboard/dashboard.css">
 </head>
 <body>
-  <!-- Sidebar Toggle Button (for mobile) -->
-  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
-  <div class="overlay" id="overlay"></div>
 
-  <!-- Sidebar -->
   <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -124,7 +118,6 @@ $result = $conn->query($sql);
         </div>
     </div>
 
-  <!-- Main Content -->
   <div class="main-content">
     <h3 class="section-title">All Contact Forums</h3>
     <?php

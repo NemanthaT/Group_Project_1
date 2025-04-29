@@ -18,26 +18,26 @@
 }
 
 .submit-button {
-    font-size: 18px;        /* Increase the font size */
-    color: white;           /* Text color */
-    background-color: blue; /* Background color */
-    padding: 10px 20px;     /* Add padding for a larger button */
-    border: none;           /* Remove default borders */
-    border-radius: 5px;     /* Rounded corners */
-    cursor: pointer;        /* Add a pointer cursor on hover */
-    transition: 0.3s ease;  /* Smooth transition for hover effect */
+    font-size: 18px;        
+    color: white;           
+    background-color: blue; 
+    padding: 10px 20px;     
+    border: none;          
+    border-radius: 5px;    
+    cursor: pointer;        
+    transition: 0.3s ease;  
 }
 
 .submit-button:hover {
-    background-color: darkblue; /* Change color on hover */
+    background-color: darkblue; 
 }
 
 #worker_id {
-    font-size: 100%;      /* Increase font size */
-    padding: 10px;        /* Add padding inside the input */
-    width: 20%;           /* Set the width of the input box */
-    border: 1px solid #ccc; /* Optional: Customize border */
-    border-radius: 5px;   /* Optional: Add rounded corners */
+    font-size: 100%;     
+    padding: 10px;        
+    width: 20%;           
+    border: 1px solid #ccc; 
+    border-radius: 5px;   
 }
 
 #title {
@@ -48,7 +48,6 @@
     border-radius: 5px;
 }
 
-/* Additional styles for news management */
 .news-form {
     background: var(--card-bg);
     padding: 2rem;
@@ -113,7 +112,6 @@
     background: var(--primary-dark);
 }
 
-/* Table styles for updatedelete.php */
 .table-container {
     background: var(--card-bg);
     padding: 1.5rem;
@@ -143,7 +141,6 @@
     background: var(--bg-light);
 }
 
-/* Initial page boxes */
 .boxes {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -184,7 +181,6 @@
     height: 48px;
 }
 
-/* News specific styles */
 .news-table-container {
     background: var(--card-bg);
     border-radius: var(--radius);
@@ -232,12 +228,10 @@
     color: var(--text-light);
 }
 
-/* Update button */
 .table button:first-child {
     background: var(--primary-color);
 }
 
-/* Delete button */
 .table button:last-child {
     background: #ef4444;
 }

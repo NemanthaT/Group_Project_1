@@ -5,12 +5,11 @@
   $username = $_SESSION['username'];
   $email = $_SESSION['email'];
 
-  if (!isset($_SESSION['username'])) { // if not logged in
+  if (!isset($_SESSION['username'])) { 
       header("Location: ../../Login/Login.php");
       exit;
   }
 
-  // Use correct primary key
   $id = $_GET['update_id'];
   $sql = "SELECT * FROM `knowledgebase` WHERE id='$id'";
   $result = mysqli_query($conn, $sql);
@@ -47,13 +46,6 @@
     <link rel="stylesheet" href="updateknowlgebase.css">
 </head>
 <body>
-    <!-- Sidebar Toggle Button (for mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
-    
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -114,9 +106,7 @@
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -144,16 +134,14 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
 
-        <!-- Form Card -->
         <div class="dashboard-grid">
             <div class="dashboard-card" style="grid-column: span 2;">
                 <form action="" method="POST" class="knowledge-form">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <select id="title" name="title" required size="5" style="overflow-y:auto; height:120px;">
+                        <select id="title" name="title" required>
                             <option value="">Select a title</option>
                             <option value="development finance" <?php if($title == 'development finance') echo 'selected'; ?>>Development Finance</option>
                             <option value="micro finance" <?php if($title == 'micro finance') echo 'selected'; ?>>Micro Finance</option>
@@ -186,19 +174,5 @@
         </div>
     </div>
     </div>
-
-    <script>
-        // Mobile sidebar toggle
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').style.display = 
-                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.remove('active');
-            this.style.display = 'none';
-        });
-    </script>
 </body>
 </html>

@@ -19,26 +19,25 @@
 }
 
 .submit-button {
-    font-size: 18px;        /* Increase the font size */
-    color: white;           /* Text color */
-    background-color: blue; /* Background color */
-    padding: 10px 20px;     /* Add padding for a larger button */
-    border: none;           /* Remove default borders */
-    border-radius: 5px;     /* Rounded corners */
-    cursor: pointer;        /* Add a pointer cursor on hover */
-    transition: 0.3s ease;  /* Smooth transition for hover effect */
+    font-size: 18px;        
+    color: white;           
+    background-color: blue; 
+    padding: 10px 20px;    
+    border: none;           
+    border-radius: 5px;     
+    cursor: pointer;        
+    transition: 0.3s ease;  
 }
 
 .submit-button:hover {
-    background-color: darkblue; /* Change color on hover */
+    background-color: darkblue; 
 }
 #worker_id {
-    font-size: 100%;      /* Increase font size */
-    padding: 10px;        /* Add padding inside the input */
-    width: 20%;         /* Set the width of the input box */
-    border: 1px solid #ccc; /* Optional: Customize border */
-    border-radius: 5px;   /* Optional: Add rounded corners */
-     /* Add some margin to the left of the input */
+    font-size: 100%;      
+    padding: 10px;        
+    width: 20%;         
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
 }
 
 #title{
@@ -50,7 +49,6 @@
 
 }
 
-/* Category Cards Styling */
 .category-link {
     text-decoration: none;
     color: inherit;
@@ -96,7 +94,6 @@
     font-size: 0.9rem;
 }
 
-/* Form Styling */
 .knowledge-form {
     max-width: 800px;
     margin: 0 auto;
@@ -154,7 +151,6 @@
     background-color: #1d4ed8;
 }
 
-/* Table Styling */
 .table-container {
     overflow-x: auto;
 }

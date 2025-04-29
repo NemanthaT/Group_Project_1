@@ -2,13 +2,11 @@
 session_start();
 include '../../config/config.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: ../../Login/login.php");
     exit;
 }
 
-// Get user details
 $username = $_SESSION['username'];
 $query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
 $result = mysqli_query($conn, $query);
@@ -28,15 +26,6 @@ $fullName = $user['full_name'] ?? 'User';
     <link rel="stylesheet" href="updatenews.css">
 </head>
 <body>
-    <!-- Sidebar Toggle Button (for mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        ☰
-    </button>
-    
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -97,9 +86,7 @@ $fullName = $user['full_name'] ?? 'User';
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -127,10 +114,8 @@ $fullName = $user['full_name'] ?? 'User';
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
 
-        <!-- Content Grid -->
         <div class="dashboard-grid">
             <div class="dashboard-card">
                 <a href="new.php" style="text-decoration: none; color: inherit;">
@@ -156,18 +141,5 @@ $fullName = $user['full_name'] ?? 'User';
         </div>
     </div>
 
-    <script>
-        // Mobile sidebar toggle
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').style.display = 
-                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.remove('active');
-            this.style.display = 'none';
-        });
-    </script>
 </body>
 </html>
