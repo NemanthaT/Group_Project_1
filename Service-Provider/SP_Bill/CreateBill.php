@@ -3,7 +3,7 @@ include '../Session/Session.php';
 include '../connection.php';
 include '../Common template/SP_common.php';
 
-$project_id = $_POST['project_id'] ?? null;
+$project_id = $_GET['project_id'];
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ $project_id = $_POST['project_id'] ?? null;
                     <a href="Bill.php">← Back to Bills</a>
                 </div>
                 <h2>Add Bill</h2>
-                <form action="process_bill.php?project_id=<?php echo $project_id; ?>" method="POST" class="simple-form">
+                <form action="ProcessBill.php?project_id=<?php echo $project_id; ?>" method="POST" class="simple-form">
 
                   
                        

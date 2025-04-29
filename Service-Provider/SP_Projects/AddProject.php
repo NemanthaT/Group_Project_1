@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $project_name = mysqli_real_escape_string($conn, $_POST['project_name']);
     $project_description = mysqli_real_escape_string($conn, $_POST['project_description']);
     $project_phase = mysqli_real_escape_string($conn, $_POST['project_phase']);
-    $project_status = mysqli_real_escape_string($conn, $_POST['project_status']);
+    $project_status = 'Ongoing';
     $provider_id = $_SESSION['provider_id'];
 
     if ($client_id === false) {
@@ -206,11 +206,6 @@ if (isset($_POST['submit'])) {
                             <option value="Execution">Execution</option>
                             <option value="Closure">Closure</option>
                         </select>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="project_status">Project Status Update</label>
-                        <input type="text" id="project_status" name="project_status" placeholder="Enter project status" required>
                     </div>
                     
                     <div class="form-field">
