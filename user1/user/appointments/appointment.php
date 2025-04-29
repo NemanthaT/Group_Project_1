@@ -284,9 +284,9 @@
                             <label for="serviceSelect">Select a Service</label>
                             <select id="serviceSelect" name="serviceSelect" required>
                                 <option value="">Choose a Service</option>
-                                <option value="Consulting">Consulting</option>
-                                <option value="Training">Training</option>
-                                <option value="Researching">Researching</option>
+                                <option value="Consultant">Consulting</option>
+                                <option value="Trainer">Training</option>
+                                <option value="Researcher">Researching</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -309,7 +309,7 @@
                         </div>
                         <div class="form-group">
                             <label for="additionalMessage">Additional Message</label>
-                            <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
+                            <textarea id="additionalMessage" name="additionalMessage" rows="4" required></textarea>
                         </div>
                         <button type="submit" id="Bookappointmentbtn" class="btn">Book Appointment</button>
                     </form>
