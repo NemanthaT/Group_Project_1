@@ -34,7 +34,7 @@
 
   if (isset($_POST['submit'])) {
     $provider_id = $_POST['assign_person'];
-    $reply_message = $_POST['reply_message']; 
+    $reply_message = $_POST['reply_message']; // Add this line to capture the value
     $sql = "UPDATE `appointments` SET 
             provider_id='$provider_id', 
             reply_note='$reply_message',
@@ -198,10 +198,6 @@
                 <span class="value"><?php echo $client_phone; ?></span>
               </div>
               <div class="info-field">
-                <span class="label">Company Name:</span>
-                <span class="value"></span>
-              </div>
-              <div class="info-field">
                 <span class="label">Date:</span>
                 <span class="value"><?php echo $appointment_date; ?></span>
               </div>
@@ -227,33 +223,33 @@
           <textarea id="reply_message" name="reply_message" readonly>Your appointment has been approved. Our service provider will contact you soon.</textarea>
         </div>
         <?php
-          function mapServiceToSpeciality($service_type) {
-            $mapping = [
-              'Training' => 'Training',
-              'Consulting' => 'Consultant', 
-              'Researching' => 'Researcher'
-            ];
-            return $mapping[$service_type] ?? '';
-          }
 
-          $required_speciality = mapServiceToSpeciality($service_type);
           
           $providers_query = "SELECT provider_id, full_name 
                             FROM serviceproviders 
-                            WHERE speciality = '$required_speciality' AND field = '$field_name'";
+                            WHERE speciality = '$service_type' AND field = '$field_name'";
           $providers_result = mysqli_query($con, $providers_query);
           if (!$providers_result) {
             die("Providers query failed: " . mysqli_error($con));
           }
+          
+          // Check if any providers were found
+          $provider_count = mysqli_num_rows($providers_result);
         ?>
         <label for="assign-person">Assign To:</label><br />
         <select id="assign-person" name="assign_person" required style="width: 50%; padding: 10px;">
           <option value="">Select a person</option>
-          <?php while ($provider = mysqli_fetch_assoc($providers_result)) { ?>
-            <option value="<?php echo $provider['provider_id']; ?>">
-              <?php echo $provider['full_name']; ?>
-            </option>
-          <?php } ?>
+          <?php 
+          if ($provider_count > 0) {
+            while ($provider = mysqli_fetch_assoc($providers_result)) { ?>
+              <option value="<?php echo $provider['provider_id']; ?>">
+                <?php echo $provider['full_name']; ?>
+              </option>
+            <?php }
+          } else {
+            echo '<option value="" disabled>No providers available for this service type and field</option>';
+          }
+          ?>
         </select><br /><br />
 
         <div class="submit-section">
