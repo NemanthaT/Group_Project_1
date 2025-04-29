@@ -3,14 +3,12 @@ include '../Session/Session.php';
 include '../connection.php';
 include '../Common template/SP_common.php';
 
-// Ensure session is started and provider is logged in
 if (!isset($_SESSION['provider_id'])) {
     die("Unauthorized access. Please log in as a provider.");
 }
 
 $providerId = $_SESSION['provider_id'];
 
-// Fetch provider's full name from serviceproviders table for thread creation
 $stmt = $conn->prepare("SELECT full_name FROM serviceproviders WHERE provider_id = ?");
 $stmt->bind_param("i", $providerId);
 $stmt->execute();
@@ -21,7 +19,7 @@ $fullName = $provider['full_name'] ?? 'Unknown Provider';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
-        // Create a new thread
+
         if ($action === 'create') {
             $title = $_POST['title'];
             $message = $_POST['message'];
@@ -33,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute();
             }
         }
-        // Update an existing thread
+
         if ($action === 'update') {
             $forumId = $_POST['forum_id'];
             $title = isset($_POST['title']) ? $_POST['title'] : '';
@@ -43,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("ssi", $title, $content, $forumId);
             $stmt->execute();
         }
-        // Delete a thread
+
         if ($action === 'delete') {
             $forumId = $_POST['forum_id'];
 
@@ -51,13 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("i", $forumId);
             $stmt->execute();
         }
-        // Redirect to avoid form resubmission
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
 }
 
-// Fetch all forum threads created by the logged-in provider, joining with serviceproviders to get full_name
 $stmt = $conn->prepare("SELECT f.forum_id, f.title, f.content, f.provider_id, f.created_at, f.category, sp.full_name 
                         FROM forums f 
                         JOIN serviceproviders sp ON f.provider_id = sp.provider_id 
@@ -68,7 +64,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 $threads = $result->fetch_all(MYSQLI_ASSOC);
 
-// Fetch thread details for modal form if editing/viewing
 $modalThread = null;
 if (isset($_GET['forum_id'])) {
     $forumId = $_GET['forum_id'];
@@ -100,7 +95,6 @@ if (isset($_GET['forum_id'])) {
                 <button class="search-button" onclick="openCreateThreadModal()">+ Create Thread</button>
             </div>
 
-            <!-- Forum Categories -->
             <div class="forum-categories">
                 <h3>Categories</h3>
                 <ul id="category-list">
@@ -112,7 +106,6 @@ if (isset($_GET['forum_id'])) {
                 </ul>
             </div>    
 
-            <!-- Modal for Creating New Thread -->
             <div class="modal-overlay" id="createThreadModalOverlay" style="display: none;"></div>
             <div class="modal create-thread-modal" id="createThreadModal" style="display: none;">
                 <h3>Create a New Thread</h3>
@@ -138,7 +131,6 @@ if (isset($_GET['forum_id'])) {
                 </form>
             </div>
 
-            <!-- Thread View Modal -->
             <div class="modal-overlay" id="modalOverlay" style="display: none;"></div>
             <div class="modal view-thread-modal" id="modalForm" style="display: none;">
                 <h3>Thread Details</h3>
@@ -152,9 +144,8 @@ if (isset($_GET['forum_id'])) {
                 <button type="button" onclick="closeModal()" class="cancel-btn">Close</button>
             </div>
 
-            <!-- Forum Threads -->
             <div class="forum-threads">
-                <h3>Recent Threads</h3> <!-- <button type="button" class="view_externalthreads-btn" onclick="">Refresh</button> -->
+                <h3>Recent Threads</h3> 
                 <ul id="thread-list">
                     <?php if (empty($threads)): ?>
                         <li class="no-threads">
