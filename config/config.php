@@ -1,6 +1,6 @@
 <?php
 $db_host = 'localhost'; // database host
-$db_name = 'edsaLanka'; // database name
+$db_name = 'edsa_Lanka'; // database name
 $db_user = 'root'; // database username
 $db_pass = ''; // database password
 
