@@ -7,7 +7,6 @@ function getNews(page = 1) {
   const preloader = document.getElementById("preloader");
   const offset = (page - 1) * itemsPerPage;
 
-  // Show preloader and clear news
   preloader.style.display = "flex";
   newsContainer.innerHTML = "";
 
@@ -25,7 +24,7 @@ function getNews(page = 1) {
     })
     .then((response) => response.json())
     .then((data) => {
-      preloader.style.display = "none"; // Hide preloader
+      preloader.style.display = "none";
 
       if (data === "error" || data.length === 0) {
         newsContainer.innerHTML = "<p><center>No news found</center></p>";
@@ -68,14 +67,11 @@ function updatePaginationControls() {
   const nextBtn = document.getElementById("nextBtn");
   const pageInfo = document.getElementById("pageInfo");
 
-  // Calculate total pages
   const totalPages = Math.ceil(totalNewsCount / itemsPerPage);
 
-  // Update buttons
   prevBtn.disabled = currentPage <= 1;
   nextBtn.disabled = currentPage >= totalPages;
 
-  // Update page info
   pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
 }
 
@@ -101,7 +97,6 @@ window.onload = function () {
 function viewNews(id) {
   console.log("Fetching news details for ID:", id);
 
-  // Show the modal and overlay
   document.getElementById("view").style.display = "flex";
   document.getElementById("overlay").style.display = "block";
 
@@ -133,7 +128,7 @@ function viewNews(id) {
     .catch((error) => {
       console.error("Error:", error);
       alert("Error fetching news details. Please try again.");
-      closeView(); // Close the modal on error
+      closeView();
     });
 }
 

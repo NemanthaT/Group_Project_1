@@ -9,7 +9,7 @@
 </head>
 <body>
     <main>
-        <!-- News Section -->
+        
         <section class="news">
             <div id="main">
                 <div>
@@ -35,7 +35,7 @@
                 </div>
                 <div id="allNews">
                     <div id="news">
-                        <!-- News items will be inserted here by JavaScript -->
+                        
                     </div>
 
                     <div id="pagination">

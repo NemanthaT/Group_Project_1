@@ -1,7 +1,6 @@
 function viewForum(id) {
     document.getElementById('overlay').style.display = "block";
 
-    // Show preloader immediately
     const preloader = document.getElementById('popupPreloader');
     preloader.classList.remove('fade-out');
     preloader.style.display = "flex";
@@ -31,11 +30,10 @@ function viewForum(id) {
             document.getElementById("clientId").innerText = "User Id: " + data.user_id;
             document.getElementById("forumContent").innerText = data.content;
 
-            
             preloader.classList.add('fade-out');
             setTimeout(() => {
                 preloader.style.display = "none";
-            }, 500); // match transition duration
+            }, 500);
         }
     })
     .catch(error => console.error('Error fetching forum data:', error));
@@ -43,8 +41,6 @@ function viewForum(id) {
 
 function deleteForum(id) {
     if (confirm("Are you sure you want to delete this item?")) {
-        // Proceed with delete action
-            // Send an AJAX request to the PHP script
         fetch('delete_forum.php', {
             method: 'POST',
             headers: {
@@ -54,11 +50,9 @@ function deleteForum(id) {
         })
         .then(response => response.json())
         .then(data => {
-            // Check if data contains error
             if (data.error) {
                 alert(data.error);
             } else {
-                // Reload the page
                 location.reload();
             }
         })
@@ -66,10 +60,8 @@ function deleteForum(id) {
         alert("Item deleted.");
         window.location.href = 'forums.php';
     } else {
-        // Do nothing
         alert("Delete canceled.");
     }
-
 }
 
 function closeView(){

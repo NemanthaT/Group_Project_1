@@ -1,28 +1,24 @@
 <?php
 session_start();
 require_once('../../../config/config.php');
-//include '../../../Error/error.php';
 
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
 $_SESSION['nPB'] = 'none';
 
-if (!isset($_SESSION['username'])) { // if not logged in
+if (!isset($_SESSION['username'])) { 
     header("Location: ../../../login/login.php");
     exit;
 }
 
-// Pagination logic
 $records_per_page = 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $records_per_page;
 
-// Get total number of records
 $total_records = $conn->query("SELECT COUNT(*) as total FROM bills")->fetch_assoc()['total'];
 $total_pages = ceil($total_records / $records_per_page);
 
-// Get paginated data
 $sqlR = "SELECT Description, Bill_Date, Amount, DATE(paid_on) AS paid_on FROM bills WHERE status = 'paid' ORDER BY paid_on DESC LIMIT $offset, $records_per_page";
 $resultR = $conn->query($sqlR);
 
@@ -47,7 +43,6 @@ $resultR = $conn->query($sqlR);
 <body>
     <div class="main" id="main">
         <div class="bg">
-            <!--blur Background image-->
         </div>
         <div id="preloader">
             <div class="spinner"></div>
@@ -59,29 +54,6 @@ $resultR = $conn->query($sqlR);
         <h1>Payments</h1>
         <div class="mainTop">
 
-            <!--Search Reports by client Id-->
-            <!--<div class="section">
-                    <h2>Search By Client Id</h2>
-                    <div class="searchContainer">
-                        <form action="" method="POST">
-                            <input type="text" name="id" placeholder="Enter Client ID" required>
-                            <button class="sBtn" type="submit" name="search_c">Search</button>
-                        </form>
-                    </div>
-                </div>
-                
-                Search Report by request Id
-                <div class="section">
-                    <h2>Search By Request Id</h2>
-                    <div class="searchContainer">
-                        <form action="" method="POST">
-                            <input type="text" name="id" placeholder="Enter Request ID" required>
-                            <button class="sBtn" type="submit" name="search_r">Search</button>
-                        </form>
-                    </div>
-                </div>-->
-
-            <!--Search By date-->
             <div class="section">
                 <h2>Filter By Date</h2>
                 <div class="searchContainer">
@@ -103,7 +75,6 @@ $resultR = $conn->query($sqlR);
                 <option value="unpaid">Unpaid Bills</option>
             </select>
         </div>
-
 
         <div id="searchResults">
 
@@ -132,14 +103,12 @@ $resultR = $conn->query($sqlR);
                 </tbody>
             </table>
 
-            <!-- Pagination links -->
             <div class="pagination">
                 <?php if ($page > 1): ?>
                     <a href="?page=<?php echo $page - 1; ?>">&laquo; Previous</a>
                 <?php endif; ?>
                 
                 <?php 
-                    // Show page numbers
                     for ($i = 1; $i <= $total_pages; $i++):
                 ?>
                     <a href="?page=<?php echo $i; ?>" <?php if ($i == $page) echo 'class="active"'; ?>>
@@ -160,7 +129,6 @@ $resultR = $conn->query($sqlR);
                     <div class="modal-header">
                         <h2>
                             <?php
-                            // Check if it's an error or success message and display the corresponding title
                             if (isset($_SESSION['error'])) {
                                 echo '<span class="Error">Error</span>';
                             } elseif (isset($_SESSION['success'])) {
@@ -173,7 +141,6 @@ $resultR = $conn->query($sqlR);
                     <div class="modal-body">
                         <p>
                             <?php
-                            // Directly print the message from the session
                             echo isset($_SESSION['error']) ? htmlspecialchars($_SESSION['error']) : htmlspecialchars($_SESSION['success']);
                             ?>
                         </p>
@@ -181,7 +148,6 @@ $resultR = $conn->query($sqlR);
                 </div>
             </div>
             <?php
-            // Unset both error and success messages after displaying them
             unset($_SESSION['error']);
             unset($_SESSION['success']);
             ?>
