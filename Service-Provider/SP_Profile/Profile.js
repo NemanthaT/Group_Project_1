@@ -6,27 +6,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileImageInput = document.querySelector("#profileImageInput");
     let isEditing = false;
 
-    // Function to toggle edit mode
     function toggleEdit() {
         if (isEditing) {
-            // Revert to display mode
             revertToDisplayMode();
             editButton.textContent = "Edit";
-            saveButton.style.display = "none"; // Hide Save button
+            saveButton.style.display = "none"; 
             profileImageContainer.classList.remove("editing");
             profileImage.removeEventListener("click", triggerImageUpload);
         } else {
             enterEditMode();
             editButton.textContent = "Cancel";
-            saveButton.style.display = "inline-block"; // Show Save button
+            saveButton.style.display = "inline-block"; 
             profileImageContainer.classList.add("editing");
         }
         isEditing = !isEditing;
     }
 
-    // Enter edit mode
     function enterEditMode() {
-        // Replace text with input fields and add required attribute where necessary
         document.querySelector("#name").outerHTML = `<input type="text" id="name" name="full_name" value="${document.querySelector("#name").textContent}" required>`;
         document.querySelector("#gender").outerHTML = `<input type="text" id="gender" name="gender" value="${document.querySelector("#gender").textContent}" required>`;
         document.querySelector("#email").outerHTML = `<input type="email" id="email" name="email" value="${document.querySelector("#email").textContent}" required>`;
@@ -39,16 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#certifications").outerHTML = `<textarea id="certifications" name="certifications">${document.querySelector("#certifications").textContent}</textarea>`;
         document.querySelector("#awards").outerHTML = `<textarea id="awards" name="awards">${document.querySelector("#awards").textContent}</textarea>`;
 
-        // Enable image upload
         profileImage.addEventListener("click", triggerImageUpload);
     }
 
-    // Helper function to convert newlines to <br> tags
     function nl2br(str) {
         return str.replace(/\n/g, '<br>');
     }
 
-    // Revert to display mode (same as initial HTML)
     function revertToDisplayMode() {
         const profileName = document.querySelector("#profileName").textContent;
         document.querySelector("#name").outerHTML = `<span id="name">${profileName}</span>`;
@@ -64,12 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#awards").outerHTML = `<span id="awards">${nl2br(document.querySelector("#awards").value)}</span>`;
     }
 
-    // Trigger file input click
     function triggerImageUpload() {
         profileImageInput.click();
     }
 
-    // Handle image file selection
     profileImageInput.addEventListener("change", () => {
         const file = profileImageInput.files[0];
         if (file) {
@@ -81,6 +72,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Attach toggle function to edit button
     editButton.addEventListener("click", toggleEdit);
 });
