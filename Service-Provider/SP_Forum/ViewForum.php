@@ -160,6 +160,13 @@ $providerId = $_SESSION['provider_id'];
     document.querySelector("#service_description").outerHTML = `<textarea id="service_description" name="service_description" maxlength="1000" required>${document.querySelector("#service_description").textContent}</textarea>`;
     document.querySelector("#certifications").outerHTML = `<textarea id="certifications" name="certifications" maxlength="1000">${document.querySelector("#certifications").textContent}</textarea>`;
     document.querySelector("#awards").outerHTML = `<textarea id="awards" name="awards" maxlength="1000">${document.querySelector("#awards").textContent}</textarea>`;
+
+    document.querySelector("#gender").outerHTML = `
+            <div id="gender">
+                <label><input type="radio" name="gender" value="Male" ${document.querySelector("#gender").textContent === "Male" ? "checked" : ""} required> Male</label>
+                <label><input type="radio" name="gender" value="Female" ${document.querySelector("#gender").textContent === "Female" ? "checked" : ""} required> Female</label>
+                <label><input type="radio" name="gender" value="Other" ${document.querySelector("#gender").textContent === "Other" ? "checked" : ""} required> Other</label>
+            </div>`
 }
 
     
