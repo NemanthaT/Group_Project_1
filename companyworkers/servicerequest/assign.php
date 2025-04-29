@@ -232,15 +232,24 @@
           if (!$providers_result) {
             die("Providers query failed: " . mysqli_error($con));
           }
+          
+          // Check if any providers were found
+          $provider_count = mysqli_num_rows($providers_result);
         ?>
         <label for="assign-person">Assign To:</label><br />
         <select id="assign-person" name="assign_person" required style="width: 50%; padding: 10px;">
           <option value="">Select a person</option>
-          <?php while ($provider = mysqli_fetch_assoc($providers_result)) { ?>
-            <option value="<?php echo $provider['provider_id']; ?>">
-              <?php echo $provider['full_name']; ?>
-            </option>
-          <?php } ?>
+          <?php 
+          if ($provider_count > 0) {
+            while ($provider = mysqli_fetch_assoc($providers_result)) { ?>
+              <option value="<?php echo $provider['provider_id']; ?>">
+                <?php echo $provider['full_name']; ?>
+              </option>
+            <?php }
+          } else {
+            echo '<option value="" disabled>No providers available for this service type and field</option>';
+          }
+          ?>
         </select><br /><br />
 
         <div class="submit-section">
