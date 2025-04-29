@@ -167,7 +167,7 @@ function changeF(uType){
 
     else{
         if(uType == "Trainers"){
-            uType = "Training";
+            uType = "Trainer";
         }
         else if(uType == "Consultants"){
             uType = "Consultant";
