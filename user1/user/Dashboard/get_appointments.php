@@ -3,7 +3,6 @@ include '../../connect/connect.php';
 
 $CLIENT_ID = $_SESSION['client_id'];
 
-// Query to get upcoming appointments
 $sql = "SELECT a.appointment_date, a.status, a.service_type, c.full_name AS client_name
 FROM appointments a
 JOIN clients c ON a.client_id = c.client_id
@@ -19,14 +18,11 @@ $result->execute();
 $res = $result->get_result();
 
 
-// Check if query was successful
 if ($res === false) {
     echo "Error: " . $conn->error;
 } else {
-    // Now it's safe to check num_rows
     if ($res->num_rows > 0) {
         while($row = $res->fetch_assoc()) {
-            // Format date
             $appointment_date = date("d M, g:i A", strtotime($row["appointment_date"]));
             
             echo '<div class="list-item">

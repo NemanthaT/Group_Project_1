@@ -102,12 +102,9 @@ $stmt->close();
         </ul>
     </div>
 
-    <!-- Main Content Area -->
     <div class="main-wrapper">
-        <!-- Navbar -->
         <div class="navbar">
             <a href="#">
-                <!-- <img src="../images/notification.png" alt="Notifications"> -->
             </a>
             <div class="profile">
                 <a href="../profile/profile.php">
@@ -122,16 +119,12 @@ $stmt->close();
             <div class="message-section">
                 <h2>Messages</h2>
                 <div class="split-container">
-                    <!-- Left Panel: Thread List -->
                     <div class="thread-panel">
                         <div class="message-controls">
                             <input type="text" placeholder="Provider Name/Topic" id="search-input" oninput="filterMessages()">
                             <button class="clear-button" id="clear-button">Clear</button>
-                            <!-- Commented out for future reference: Create Chat button -->
-                            <!-- <button class="create-chat-button">Create Chat</button> -->
                         </div>
 
-                        <!-- Create Chat Modal -->
                         <div id="create-chat-modal" class="modal">
                             <div class="modal-content">
                                 <button class="close-create-chat-modal" title="Close">×</button>
@@ -180,14 +173,12 @@ $stmt->close();
                         </table>
                     </div>
 
-                    <!-- Right Panel: Chat Window -->
                     <div class="chat-panel" id="chat-panel" style="display: none;">
                         <div class="chat-header">
                             <h3>Chat with <span id="chat-provider-name"></span></h3>
                             <button class="close-chat-panel" title="Close">×</button>
                         </div>
                         <div class="chat-window" id="chat-window">
-                            <!-- Chat messages will be displayed here -->
                         </div>
                         <div class="chat-input-section">
                             <textarea id="chat-input" placeholder="Type your message..."></textarea>

@@ -1,8 +1,7 @@
 <?php
-session_start(); // Start session at the beginning of the file
+session_start();
 include '../../connect/connect.php';
 
-// Get appointment ID from URL
 $appointment_id = isset($_GET['appointment_id']) ? $_GET['appointment_id'] : null;
 
 if (!isset($appointment_id) || empty($appointment_id)) {
@@ -10,7 +9,6 @@ if (!isset($appointment_id) || empty($appointment_id)) {
     exit;
 }
 
-// Fetch appointment details
 $stmt = $conn->prepare(
     "SELECT a.appointment_id, a.service_type, DATE(a.appointment_date) AS appointment_date, 
             a.field_name, a.message, a.status, 
@@ -20,7 +18,6 @@ $stmt = $conn->prepare(
     WHERE a.appointment_id = ?"
 );
 
-// Check if prepare succeeded
 if ($stmt === false) {
     die("Prepare failed: " . $conn->error);
 }
@@ -30,8 +27,6 @@ $stmt->execute();
 $stmt->bind_result($id, $service, $date, $field_name, $message, $status, $provider_id, $provider_name, $provider_phone);
 
 if ($stmt->fetch()) {
-    // Data is now in variables
-    // Ensure $provider_id is set, even if NULL
     $provider_id = $provider_id ?? null;
 } else {
     die("Appointment not found.");
@@ -39,7 +34,6 @@ if ($stmt->fetch()) {
 
 $stmt->close();
 
-// Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $appointmentDate = $_POST['editAppointmentDate'];
@@ -49,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $status = "Pending";
         $clientId = $_SESSION['client_id'];
 
-        // Validate appointment date is not in the past
         $current_date = new DateTime();
         $appointment_datetime = new DateTime($appointmentDate);
 
@@ -59,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        // Prepare the UPDATE query
         $updateStmt = $conn->prepare("UPDATE appointments 
             SET appointment_date = ?, 
                 service_type = ?,
@@ -69,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             WHERE appointment_id = ? 
               AND client_id = ?");
         
-        // Correctly bind the parameters
         $updateStmt->bind_param(
             "sssssii", 
             $appointmentDate, 
@@ -81,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $clientId        
         );
 
-        // Execute update and handle success/failure
         if ($updateStmt->execute()) {
             $_SESSION['success'] = 'Appointment updated successfully.';
             header('Location: appointment.php');
@@ -114,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="script.js"></script>
 
     <div class="container">
-        <!-- Sidebar -->
         <div class="sidebar">
             <div class="logo">
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -171,12 +160,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>
         </div>
 
-        <!-- Main Content Area -->
         <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <a href="#">
-                    <!-- <img src="../images/notification.png" alt="Notifications"> -->
                 </a>
                 <div class="profile">
                     <a href="../profile/profile.php">
@@ -186,7 +172,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a href="../../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
-            <!-- Appointment Content -->
             <div class="space"></div>
             <div class="main-container">
                 <?php if(isset($_SESSION['error'])): ?>

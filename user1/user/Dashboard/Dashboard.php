@@ -76,14 +76,7 @@
                         Message
                     </button></a>
                 </li>
-                <!-- <li>
-                    <a href="../reports/reports.php">
-                        <button >
-                            <img src="../images/reports.png" alt="Reports">
-                            Reports
-                        </button>
-                    </a>
-                </li> -->
+
             </ul>
         </div>
 
@@ -92,7 +85,6 @@
             <!-- Navbar -->
             <div class="navbar">
                 <a href="#">
-                    <!-- <img src="../images/notification.png" alt="Notifications"> -->
                 </a>
                 <div class="profile">
                 <a href="../profile/profile.php">
@@ -136,34 +128,6 @@
                 </div>
                 <?php include 'get_bill.php'; ?>
             </div>
-
-            <!-- <div class="card">
-                <div class="card-header">
-                    <h2>Notifications</h2>
-                    <span class="icon">🔔</span>
-                </div>
-                <div class="list-item">
-                    <div class="appointment-details">
-                        <strong>Payment Due Reminder</strong>
-                        <span class="appointment-time">Your monthly payment of Rs.6,000 is due in 3 days. Please ensure timely payment.</span>
-                    </div>
-                    <span class="status-badge status-upcoming">New</span>
-                </div>
-                <div class="list-item">
-                    <div class="appointment-details">
-                        <strong>Transaction Confirmation</strong>
-                        <span class="appointment-time">Your recent transaction of Rs.4,000 to Mr.Rama Crish has been successfully processed.</span>
-                    </div>
-                    <span class="status-badge status-pending">Seen</span>
-                </div>
-                <div class="list-item">
-                    <div class="appointment-details">
-                        <strong>Agreement Uploaded</strong>
-                        <span class="appointment-time">Your agreement has been successfully uploaded. Please review the document and let us know if you have any questions or need further assistance.</span>
-                    </div>
-                    <span class="status-badge status-overdue">Pending</span>
-                </div>
-            </div> -->
         </div>
     </div>
 

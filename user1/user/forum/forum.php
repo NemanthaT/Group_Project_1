@@ -63,23 +63,13 @@ include '../session/session.php';
                         Message
                     </button></a>
                 </li>
-                <!-- <li>
-                    <a href="../reports/reports.php">
-                        <button >
-                            <img src="../images/reports.png" alt="Reports">
-                            Reports
-                        </button>
-                    </a>
-                </li> --> 
+  
             </ul>
         </div>
 
-        <!-- Main Content Area -->
         <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <a href="#">
-                    <!-- <img src="../images/notification.png" alt="Notifications"> -->
                 </a>
                 <div class="profile">
                 <a href="../profile/profile.php">
@@ -101,7 +91,6 @@ include '../session/session.php';
                         <button onclick="searchTopics()">Search</button>
                     </div>
 
-                    <!-- Forum Categories -->
                     <div class="forum-categories">
                         <h3>Categories</h3>
                         <ul id="category-list">
@@ -113,7 +102,6 @@ include '../session/session.php';
                         </ul>
                     </div>
 
-                    <!-- Forum Threads -->
                     <div class="forum-threads">
                         <h3>Recent Threads</h3>
                         <ul id="thread-list">
@@ -128,7 +116,6 @@ include '../session/session.php';
                         </ul>
                     </div>
 
-                    <!-- New Thread Form -->
                     <div class="new-thread">
                         <h3>Create a New Thread</h3>
                         <form>
