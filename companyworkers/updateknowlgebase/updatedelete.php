@@ -20,7 +20,6 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
-// Get the selected section from session
 $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
 ?>
 
@@ -35,13 +34,6 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
     <link rel="stylesheet" href="updateknowlgebase.css">
 </head>
 <body>
-    <!-- Sidebar Toggle Button (for mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
-    
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -103,9 +95,7 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
         </ul>
     </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-        <!-- Navbar -->
         <div class="navbar">
             <div class="profile">
             <a href="../myaccount/acc.php">
@@ -133,10 +123,8 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
             </div>
         </div>
 
-        <!-- Main Content -->
         <div class="main-content">
 
-            <!-- Knowledge Base Table -->
             <div class="dashboard-grid">
                 <div class="dashboard-card" style="grid-column: span 2;">
                     <div class="table-container">
@@ -152,7 +140,6 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
                             </thead>
                             <tbody>
                                 <?php
-                                // Only show entries for the selected section
                                 $sql = "SELECT * FROM knowledgebase";
                                 if ($section) {
                                     $sql .= " WHERE section = '" . mysqli_real_escape_string($conn, $section) . "'";
@@ -183,19 +170,7 @@ $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase
     
 
     <script>
-        // Mobile sidebar toggle
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').style.display = 
-                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
-        });
 
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.remove('active');
-            this.style.display = 'none';
-        });
-
-        // AJAX delete functionality
         document.querySelectorAll('.delete-row-btn').forEach(function(btn) {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();

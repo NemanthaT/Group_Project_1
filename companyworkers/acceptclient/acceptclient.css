@@ -1,4 +1,3 @@
-/* Root variables */
 :root {
     --primary-color: #2563eb;
     --sidebar-bg: #1e293b;
@@ -18,7 +17,7 @@ body {
     line-height: 1.6;
 }
 
-/* Header */
+
 header {
     background-color: white;
     display: flex;
@@ -47,7 +46,6 @@ header {
     gap: 25px;
 }
 
-/* User Area Styles */
 .notification {
     position: relative;
     font-size: 1.2rem;
@@ -101,15 +99,11 @@ header {
     background-color: #1d4ed8;
 }
 
-/* Main Content */
 .main {
     margin-left: 10px;
     padding: 30px;
 }
 
-/* Welcome Card Styles */
-
-/* Metrics Section */
 .section-header {
     font-size: 20px;
     font-weight: bold;
@@ -200,7 +194,6 @@ header {
     margin-top: 4px;
 }
 
-/* Calendar & Recent Activity */
 .two-columns {
     display: grid;
     grid-template-columns: 1fr 350px;
@@ -301,7 +294,6 @@ header {
     color: #6b7280;
 }
 
-/* Client Section */
 .client-section {
     background-color: white;
     border-radius: 12px;
@@ -370,7 +362,6 @@ header {
     color: #1f2937;
 }
 
-/* Modal */
 .modal-bg {
     display: none;
     position: fixed;
@@ -461,7 +452,6 @@ header {
     background-color: #e5e7eb;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 1024px) {
     header {
         left: 240px;

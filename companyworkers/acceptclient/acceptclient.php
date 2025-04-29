@@ -1,8 +1,7 @@
 <?php
 session_start();
-include '../../config/config.php'; // Database connection
+include '../../config/config.php'; 
 
-// Fetch the logged-in user's name
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
     $query = "SELECT full_name FROM companyworkers WHERE username = '$username'";
@@ -14,67 +13,61 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 
-// Feedback message
 $message = '';
 
-// Handle Accept/Reject Actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['modal_action']) && isset($_POST['modal_client_id'])) {
         $client_id = intval($_POST['modal_client_id']);
+        
         if ($_POST['modal_action'] === 'accept') {
-            // Get the username from the form
             $provided_username = isset($_POST['modal_username']) ? trim($_POST['modal_username']) : '';
+            
             $res = mysqli_query($conn, "SELECT * FROM pending_clients WHERE client_id=$client_id");
             if ($row = mysqli_fetch_assoc($res)) {
-                $email = $row['email'];
-                $password = $row['password'];
-                $full_name = $row['full_name'];
-                $phone = $row['phone'];
-                $address = $row['address'];
-                $created_at = $row['created_at'];
-
-                // Accept if email, password, and username are valid
-                if (!empty($email) && !empty($password) && !empty($provided_username) &&
-                    strtolower((string)$email) !== 'null' &&
-                    strtolower((string)$password) !== 'null' &&
-                    strtolower((string)$provided_username) !== 'null') {
-
-                    // Escape all fields
-                    $provided_username = mysqli_real_escape_string($conn, $provided_username);
-                    $email = mysqli_real_escape_string($conn, $email);
-                    $password = mysqli_real_escape_string($conn, $password);
-                    $full_name = mysqli_real_escape_string($conn, $full_name);
-                    $phone = mysqli_real_escape_string($conn, $phone);
-                    $address = mysqli_real_escape_string($conn, $address);
-                    $created_at = mysqli_real_escape_string($conn, $created_at);
-
-                    // Check for duplicate email or username
-                    $dup_query = "SELECT 1 FROM clients WHERE email='$email' OR username='$provided_username'";
+                $client_data = [
+                    'email' => $row['email'],
+                    'password' => $row['password'],
+                    'full_name' => $row['full_name'],
+                    'phone' => $row['phone'],
+                    'address' => $row['address'],
+                    'created_at' => $row['created_at']
+                ];
+                
+                $is_valid = !empty($client_data['email']) && !empty($client_data['password']) && 
+                           !empty($provided_username) &&
+                           strtolower((string)$client_data['email']) !== 'null' &&
+                           strtolower((string)$client_data['password']) !== 'null' &&
+                           strtolower((string)$provided_username) !== 'null';
+                
+                if ($is_valid) {
+                    $client_data['username'] = mysqli_real_escape_string($conn, $provided_username);
+                    foreach ($client_data as $key => $value) {
+                        $client_data[$key] = mysqli_real_escape_string($conn, $value);
+                    }
+                    
+                    $dup_query = "SELECT 1 FROM clients WHERE email='{$client_data['email']}' OR username='{$client_data['username']}'";
                     $dup = mysqli_query($conn, $dup_query);
-
+                    
                     if (mysqli_num_rows($dup) === 0) {
-                        // Insert into clients
                         $insert_query = "INSERT INTO clients (username, password, email, full_name, phone, address, created_at)
-                                         VALUES ('$provided_username', '$password', '$email', '$full_name', '$phone', '$address', '$created_at')";
-
+                                         VALUES ('{$client_data['username']}', '{$client_data['password']}', 
+                                         '{$client_data['email']}', '{$client_data['full_name']}', 
+                                         '{$client_data['phone']}', '{$client_data['address']}', 
+                                         '{$client_data['created_at']}')";
+                        
                         if (mysqli_query($conn, $insert_query)) {
-                            // Add WHERE clause to explicitly specify the client_id and add error handling
                             $delete_result = mysqli_query($conn, "DELETE FROM pending_clients WHERE client_id=$client_id");
-                            if (!$delete_result) {
-                                $message = '<div style="color:red;margin-bottom:1em;">Client accepted, but error removing from pending list: ' . mysqli_error($conn) . '</div>';
-                            } else {
-                                $affected_rows = mysqli_affected_rows($conn);
-                                $message = '<div style="color:green;margin-bottom:1em;">Client accepted and added to clients table.</div>';
-                            }
+                            
+                            $message = $delete_result 
+                                ? '<div style="color:green;margin-bottom:1em;">Client accepted and added to clients table.</div>'
+                                : '<div style="color:red;margin-bottom:1em;">Client accepted, but error removing from pending list: ' . mysqli_error($conn) . '</div>';
                         } else {
                             $message = '<div style="color:red;margin-bottom:1em;">Insert failed: ' . mysqli_error($conn) . '</div>';
                         }
                     } else {
-                        // Duplicate found
                         $message = '<div style="color:orange;margin-bottom:1em;">Duplicate username or email. Client not added.</div>';
                     }
                 } else {
-                    // Invalid data
                     $message = '<div style="color:red;margin-bottom:1em;">Invalid client data. Username, email, and password are required.</div>';
                 }
             }
@@ -85,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fetch pending clients
 $pendingClients = [];
 $res = mysqli_query($conn, "SELECT * FROM pending_clients WHERE status='pending' ORDER BY created_at DESC");
 while ($row = mysqli_fetch_assoc($res)) {
@@ -104,15 +96,6 @@ while ($row = mysqli_fetch_assoc($res)) {
     <link rel="stylesheet" href="../dashboard/dashboard.css">
 </head>
 <body>
-    <!-- Sidebar -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        ☰
-    </button>
-    
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
   <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -173,9 +156,7 @@ while ($row = mysqli_fetch_assoc($res)) {
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -203,11 +184,9 @@ while ($row = mysqli_fetch_assoc($res)) {
         </div>
     </div>
     
-    <!-- Main Content -->
     <main class="main">
         <?php echo $message; ?>
         
-        <!-- Client Requests Section -->
         <div class="client-section">
             
             <div class="client-grid">
@@ -253,7 +232,6 @@ while ($row = mysqli_fetch_assoc($res)) {
         </div>
     </main>
     
-    <!-- Modal Popup -->
     <div class="modal-bg" id="clientModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>

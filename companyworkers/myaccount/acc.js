@@ -1,6 +1,5 @@
 function showUpdateForm() {
     document.getElementById('updateFormPopup').style.display = 'flex';
-    // Clear password fields and messages when showing form
     document.getElementById('currentPassword').value = '';
     document.getElementById('newPassword').value = '';
     document.getElementById('confirmPassword').value = '';
@@ -12,7 +11,6 @@ function hideUpdateForm() {
     document.getElementById('updateFormPopup').style.display = 'none';
 }
 
-// Check if passwords match
 function checkPasswordMatch() {
     const newPassword = document.getElementById('newPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
@@ -32,14 +30,12 @@ function checkPasswordMatch() {
     }
 }
 
-// Add event listeners for password fields
 document.getElementById('newPassword').addEventListener('input', checkPasswordMatch);
 document.getElementById('confirmPassword').addEventListener('input', checkPasswordMatch);
 
 document.getElementById('updateForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Check if passwords match before submitting
     if (!checkPasswordMatch()) {
         return;
     }
@@ -49,7 +45,6 @@ document.getElementById('updateForm').addEventListener('submit', function(e) {
     formData.append('address', document.getElementById('address').value);
     formData.append('phone', document.getElementById('phone').value);
     
-    // Add password fields if the current password is provided
     const currentPassword = document.getElementById('currentPassword').value;
     if (currentPassword) {
         formData.append('currentPassword', currentPassword);
@@ -63,12 +58,10 @@ document.getElementById('updateForm').addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         if(data.success) {
-            // Update displayed values
             document.getElementById('fullNameDisplay').textContent = document.getElementById('fullName').value;
             document.getElementById('addressDisplay').textContent = document.getElementById('address').value;
             document.getElementById('phoneDisplay').textContent = document.getElementById('phone').value;
             
-            // Hide form and show success message
             hideUpdateForm();
             alert('Profile updated successfully!' + (data.passwordChanged ? ' Password was also updated.' : ''));
         } else {

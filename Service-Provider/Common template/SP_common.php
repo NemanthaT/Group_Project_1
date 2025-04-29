@@ -48,10 +48,6 @@ $stmt->close();
                     <span class="username">Hi, <?php echo htmlspecialchars($common_provider['username']); ?></span>
                 </a>
             </div>
-
-            <div class="notification">
-                <a href="#"><img src="../images/notification.png" alt="Notifications"></a>
-            </div>
             
             <a href="../../Login/Logout.php" class="logout">Logout</a>                
         </nav>

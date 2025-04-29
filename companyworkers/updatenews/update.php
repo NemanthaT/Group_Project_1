@@ -2,7 +2,6 @@
   session_start(); 
   require_once '../../config/config.php';
 
-  // Create uploads directory if it doesn't exist
   $uploadDir = '../../uploads/news/';
   if (!file_exists($uploadDir)) {
       mkdir($uploadDir, 0777, true);
@@ -11,7 +10,7 @@
   $username = $_SESSION['username'];
   $email = $_SESSION['email'];
 
-  if (!isset($_SESSION['username'])) { // if not logged in
+  if (!isset($_SESSION['username'])) { 
       header("Location: ../../Login/Login.php");
       exit;
   }
@@ -29,21 +28,18 @@
     $title=$_POST['title'];
     $conntent=$_POST['content'];
 
-    // Handle image upload
-    $imagePath = $image_path; // Keep existing image by default
+    $imagePath = $image_path; 
     if (isset($_FILES['news_image']) && $_FILES['news_image']['error'] == 0) {
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
         $filename = $_FILES['news_image']['name'];
         $filetype = pathinfo($filename, PATHINFO_EXTENSION);
         
         if (in_array(strtolower($filetype), $allowed)) {
-            // Create news-specific directory if it doesn't exist
             $newsDir = $uploadDir . $news_id . '/';
             if (!file_exists($newsDir)) {
                 mkdir($newsDir, 0777, true);
             }
             
-            // Create unique filename
             $newFilename = uniqid() . '.' . $filetype;
             $uploadPath = $newsDir . $newFilename;
             
@@ -79,15 +75,7 @@
     <link rel="stylesheet" href="updatenews.css">
 </head>
 <body>
-    <!-- Sidebar Toggle Button (for mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        ☰
-    </button>
-    
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
+
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -148,9 +136,7 @@
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -178,10 +164,7 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-
-        <!-- Form Content -->
         <div class="dashboard-grid">
             <div class="dashboard-card" style="grid-column: span 2;">
                 <form action="" method="POST" enctype="multipart/form-data" class="news-form">
@@ -222,19 +205,6 @@
         </div>
     </div>
 
-    <script>
-        // Mobile sidebar toggle
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').style.display = 
-                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.remove('active');
-            this.style.display = 'none';
-        });
-    </script>
 </body>
 </html>
 
