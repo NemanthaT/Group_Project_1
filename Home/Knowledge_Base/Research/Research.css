@@ -6,6 +6,11 @@
     font-family: Arial, sans-serif;
 }
 
+main {
+    width: 100vw;
+    height: 100vh;
+}
+
 /* Navbar */
 .navbar {
     font-size: 1.3rem;
@@ -96,6 +101,7 @@ li.Login a, li.Register a {
 .knowledge-base {
     padding: 40px;
     text-align: center;
+    height: 100%;
     background-color: #F9F9F9;
     box-shadow: 0 0 2px black;
 }

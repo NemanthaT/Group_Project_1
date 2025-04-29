@@ -10,7 +10,7 @@
         $phoneNo = $_POST['phoneNo'];
         $email = $_POST['email'];
         $password = rand(100000, 999999);
-        //$password = password_hash($password, PASSWORD_DEFAULT);
+        
         $sql = "INSERT INTO companyworkers (username, full_name, role, address, phoneNo, email, password) VALUES ('$username', '$fullname', '$role', '$address', '$phoneNo', '$email', '$password')";
         if ($conn->query($sql) === TRUE) {
             $noticeType = "success";

@@ -1,6 +1,6 @@
 <?php
 require_once('../../../config/config.php');
-header('Content-Type: application/json'); // Set JSON response
+header('Content-Type: application/json'); 
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {

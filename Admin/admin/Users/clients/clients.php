@@ -7,7 +7,7 @@
 
     $_SESSION['nRC'] = 'none';
 
-    if (!isset($_SESSION['username'])) { // if not logged in
+    if (!isset($_SESSION['username'])) {
         header("Location: ../../../../login/login.php");
         exit;
     }
@@ -33,7 +33,7 @@
     <body>
         <div class="main" id="main">
             <div class="bg">
-                    <!--blur Background image-->  
+                     
             </div>
             <div id="preloader">
                 <div class="spinner"></div>
@@ -83,7 +83,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <!--<th>UId</th>-->
+                                    
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Actions</th>
