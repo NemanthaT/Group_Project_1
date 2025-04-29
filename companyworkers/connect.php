@@ -1,7 +1,7 @@
 <?php
-$servername = "mysql-edsa.alwaysdata.net";
-$username = "edsa";
-$password = "123@safran"; 
+$servername = "localhost";
+$username = "root";
+$password = ""; 
 $dbname = "edsa_lanka"; 
 
 // Create connection
