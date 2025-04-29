@@ -3,6 +3,6 @@ window.addEventListener("load", function () {
   preloader.classList.add("fade-out");
 
   setTimeout(() => {
-    preloader.remove(); // or preloader.style.display = "none";
-  }, 500); // match transition duration
+    preloader.remove();
+  }, 500);
 });

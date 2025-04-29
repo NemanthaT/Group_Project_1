@@ -96,11 +96,10 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
-/* Create a flex container for h3 and the button */
 .forum-threads .header-container {
   display: flex;
-  justify-content: space-between; /* Align h3 to left, button to right */
-  align-items: center; /* Vertically center the items */
+  justify-content: space-between;
+  align-items: center;
   flex-shrink: 0;
   margin-bottom: 1vh;
 }
@@ -112,8 +111,8 @@
 }
 
 .forum-threads ul {
-  display: grid; /* Use CSS Grid for two-column layout */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Two equal columns */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Updated to exactly 2 columns */
   gap: 20px;
   padding: 20px;
 }
@@ -130,7 +129,7 @@
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  margin-bottom: 0; /* Remove margin-bottom since grid gap handles spacing */
+  margin-bottom: 0;
 }
 
 .forum-threads ul li:last-child {
@@ -188,6 +187,10 @@
   background-color: #e11d48;
 }
 
+.forum-threads ul li .update-btn {
+  background-color: #f59e0b;
+}
+
 .forum-threads ul li .view-btn:hover {
   background-color: #1d4ed8;
   transform: translateY(-2px);
@@ -198,6 +201,12 @@
   background-color: #b91c1c;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
+}
+
+.forum-threads ul li .update-btn:hover {
+  background-color: #d97706;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
 }
 
 .filter-group {
@@ -294,7 +303,6 @@
   transform: translateY(0);
 }
 
-/* Modal overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -307,7 +315,6 @@
   backdrop-filter: blur(3px);
 }
 
-/* Create Thread Modal styles */
 .create-thread-modal {
   position: fixed;
   top: 50%;
@@ -358,7 +365,56 @@
   letter-spacing: 0.5px;
 }
 
-/* View Thread Modal styles */
+.update-thread-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 65%;
+  background: linear-gradient(to bottom, #ffffff, #f9fafb);
+  padding: 3vh;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.update-thread-modal:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.update-thread-modal h3 {
+  font-size: 2.8vh;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 2vh;
+  text-align: center;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.8vh;
+}
+
+.update-thread-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  flex: 1;
+}
+
+.update-thread-modal label {
+  font-size: 2vh;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 0.8vh;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .view-thread-modal {
   position: fixed;
   top: 50%;
@@ -393,7 +449,6 @@
   padding-bottom: 0.8vh;
 }
 
-/* Form input styles */
 .input-field {
   width: 100%;
   padding: 10px 14px;
@@ -431,7 +486,6 @@
   line-height: 1.5;
 }
 
-/* Thread details styling */
 .thread-details {
   margin-bottom: 2vh;
   padding: 2vh;
@@ -447,17 +501,17 @@
   font-size: 2vh;
   font-weight: 600;
   color: #4b5563;
-  margin: 0 0 0.5vh 0; /* Reduced margin-bottom for closer spacing */
+  margin: 0 0 0.5vh 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .thread-details p {
   margin: 0 0 1vh 0;
-  line-height: 1.5; /* Fixed line-height value (was incorrectly set to 15) */
+  line-height: 1.5;
   font-size: 1.8vh;
   color: #4b5563;
-  flex: 1; /* Allows paragraph to take up remaining space */
+  flex: 1;
 }
 
 .thread-meta {
@@ -466,7 +520,6 @@
   margin-top: 1vh;
 }
 
-/* Button styles */
 .submit-btn,
 .cancel-btn {
   padding: 10px 20px;
@@ -502,7 +555,8 @@
   box-shadow: 0 4px 12px rgba(75, 85, 99, 0.4);
 }
 
-.create-thread-modal .button-container {
+.create-thread-modal .button-container,
+.update-thread-modal .button-container {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
@@ -514,7 +568,6 @@
   align-self: flex-end;
 }
 
-/* Add styling for the no-threads message */
 .no-threads {
   padding: 2vh;
   text-align: center;

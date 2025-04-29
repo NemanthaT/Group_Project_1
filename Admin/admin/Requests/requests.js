@@ -1,7 +1,7 @@
 function viewReq(id) {
   document.getElementById("overlay").style.display = "block";
 
-  // Show preloader
+  
   const preloader = document.getElementById("popupPreloader");
   preloader.classList.remove("fade-out");
   preloader.style.display = "flex";
@@ -35,7 +35,7 @@ function viewReq(id) {
                 <button class="del" onclick="deleteReq(${data.reqId})">Delete</button>
             `;
 
-        // Hide preloader with fade out
+        
         preloader.classList.add("fade-out");
         setTimeout(() => {
           preloader.style.display = "none";
@@ -47,8 +47,7 @@ function viewReq(id) {
 
 function deleteReq(id) {
   if (confirm("Are you sure you want to delete this item?")) {
-    // Proceed with delete action
-    // Send an AJAX request to the PHP script
+    
     fetch("delete_req.php", {
       method: "POST",
       headers: {
@@ -58,28 +57,28 @@ function deleteReq(id) {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Check if data contains error
+        
         if (data.error) {
           alert(data.error);
         } else {
-          // Reload the page
+          
           location.reload();
         }
       })
       .catch((error) => console.error("Error deleting forum:", error));
     alert("Item deleted.");
-    //location.reload();
+    
     window.location.href = "requests.php";
   } else {
-    // Do nothing
+    
     alert("Delete canceled.");
   }
 }
 
-// Function to accept the request and send an email
+
 function accReq(id) {
   if (confirm("Do you want to accept the request?")) {
-    // Show preloader
+    
     const preloader = document.getElementById("popupPreloader");
     preloader.classList.remove("fade-out");
     preloader.style.display = "flex";
@@ -117,7 +116,7 @@ function accReq(id) {
       window.location.href = "requests.php";
     })
     .finally(() => {
-      // Hide preloader with fade out in case page doesn't redirect
+      
       preloader.classList.add("fade-out");
       setTimeout(() => {
         preloader.style.display = "none";

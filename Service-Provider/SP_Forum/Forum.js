@@ -55,3 +55,30 @@ function closeCreateThreadModal() {
   document.getElementById("createThreadModalOverlay").style.display = "none"
   document.getElementById("createThreadModal").style.display = "none"
 }
+
+function openUpdateThreadModal(forumId, title, content, category) {
+  document.getElementById("updateThreadModalOverlay").style.display = "block"
+  document.getElementById("updateThreadModal").style.display = "flex"
+  document.getElementById("updateThreadForumId").value = forumId
+  document.getElementById("updateThreadTitle").value = title
+  document.getElementById("updateThreadMessage").value = content
+  document.getElementById("updateThreadCategory").value = category
+}
+
+function closeUpdateThreadModal() {
+  document.getElementById("updateThreadModalOverlay").style.display = "none"
+  document.getElementById("updateThreadModal").style.display = "none"
+}
+
+function validateUpdateThreadForm(event) {
+  const title = document.getElementById("updateThreadTitle").value.trim()
+  const message = document.getElementById("updateThreadMessage").value.trim()
+  const category = document.getElementById("updateThreadCategory").value
+
+  if (!title || !message || !category) {
+      alert("Please fill out all fields.")
+      event.preventDefault()
+      return false
+  }
+  return true
+}

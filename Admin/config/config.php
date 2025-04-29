@@ -13,10 +13,8 @@ $dbname = "edsa_lanka";
 // Connect to the database
 /*$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);*/
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

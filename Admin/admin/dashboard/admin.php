@@ -5,7 +5,7 @@
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 
-    if (!isset($_SESSION['username'])) { // if not logged in
+    if (!isset($_SESSION['username'])) { 
         header("Location: ../../../login/login.php");
         exit;
     }
@@ -59,46 +59,7 @@
                     <div id=frame>
                         <iframe src="dashboard2.php" name="Dashboard" title="Dashboard"></iframe>
                     </div>
-                    <!--<div class="right" id="arrow"></div>
-                    <div id="content">
-                        <div class="calendar">
-                            <div class="calendar-header">
-                                <button onclick="prevMonth()">‹</button>
-                                <h2 id="monthYear"></h2>
-                                <button onclick="nextMonth()">›</button>
-                            </div>
-                            <div class="days">
-                                <div class="day">Sun</div>
-                                <div class="day">Mon</div>
-                                <div class="day">Tue</div>
-                                <div class="day">Wed</div>
-                                <div class="day">Thu</div>
-                                <div class="day">Fri</div>
-                                <div class="day">Sat</div>
-                            </div>
-                            <div class="days" id="dates"></div>
-                        </div>-->
 
-                        <!--<div class="userAmount">
-                            <?php
-                                $sql = "SELECT COUNT(*) FROM clients";
-                                $result = $conn->query($sql);
-                                $row = $result->fetch_assoc();
-                                echo "<table>";
-                                echo "<tr><th>Number of Clients: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
-
-                                $sql = "SELECT COUNT(*) FROM serviceproviders";
-                                $result = $conn->query($sql);
-                                $row = $result->fetch_assoc();
-                                echo "<tr><th>Number of Service Providers: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
-
-                                $sql = "SELECT COUNT(*) FROM companyworkers";
-                                $result = $conn->query($sql);
-                                $row = $result->fetch_assoc();
-                                echo "<tr><th>Number of Employees: <th>" . "<td>" . $row["COUNT(*)"] . "</td></tr>";
-                                echo "</table>";
-                            ?>
-                        </div>-->
                     </div>
                 </div>
 
