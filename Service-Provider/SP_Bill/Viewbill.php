@@ -3,7 +3,6 @@ include '../Session/Session.php';
 include '../connection.php';
 include '../Common template/SP_common.php';
 
-// Check if bill_id is provided in the URL
 if (!isset($_GET['bill_id']) || empty($_GET['bill_id'])) {
     header("Location: Bill.php");
     exit;
@@ -11,7 +10,6 @@ if (!isset($_GET['bill_id']) || empty($_GET['bill_id'])) {
 
 $bill_id = $_GET['bill_id'];
 
-// Fetch bill details with project and client information
 $query = "SELECT 
             b.*, 
             p.project_name, 
@@ -34,16 +32,12 @@ if ($result->num_rows === 0) {
 
 $bill = $result->fetch_assoc();
 
-// Format the bill date
 $bill_date = date("F j, Y", strtotime($bill['Bill_Date']));
 
-// Calculate due date (14 days after bill date)
 $due_date = date("F j, Y", strtotime($bill['Bill_Date'] . " +14 days"));
 
-// Format the invoice number
 $invoice_number = 'ED-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_pad($bill_id, 4, '0', STR_PAD_LEFT);
 
-// Set subtotal and total due (no VAT)
 $subtotal = $bill['Amount'];
 $total_due = $subtotal;
 ?>

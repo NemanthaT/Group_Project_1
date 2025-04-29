@@ -3,13 +3,11 @@ include '../Session/Session.php';
 include '../connection.php';
 include '../Common template/SP_common.php';
 
-// Ensure the user is logged in and provider_id is set
 if (!isset($_SESSION['provider_id'])) {
     header("Location: ../login.php");
     exit();
 }
 
-// Fetch service provider details from the database
 $provider_id = $_SESSION['provider_id'];
 $sql = "SELECT full_name, gender, email, phone, address, field, speciality, introduction, service_description, certifications, awards, profile_image 
         FROM serviceproviders 
@@ -22,7 +20,6 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $provider = $result->fetch_assoc();
 } else {
-    // Handle case where no provider is found
     $provider = [
         'full_name' => 'Unknown',
         'gender' => 'N/A',
@@ -40,7 +37,6 @@ if ($result->num_rows > 0) {
 }
 $stmt->close();
 
-// Fetch project stats from the projects table
 $project_stats = [
     'Assigned' => 0,
     'Completed' => 0,
@@ -48,7 +44,6 @@ $project_stats = [
     'Cancelled' => 0
 ];
 
-// Fetch total projects for Assigned
 $sql = "SELECT COUNT(*) as total 
         FROM projects 
         WHERE provider_id = ?";
@@ -61,7 +56,6 @@ if ($row = $result->fetch_assoc()) {
 }
 $stmt->close();
 
-// Fetch project status counts
 $sql = "SELECT LOWER(project_status) as project_status, COUNT(*) as count 
         FROM projects 
         WHERE provider_id = ? 
@@ -72,16 +66,14 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 while ($row = $result->fetch_assoc()) {
-    $status = ucfirst($row['project_status']); // Capitalize for consistency
+    $status = ucfirst($row['project_status']); 
     if (array_key_exists($status, $project_stats)) {
         $project_stats[$status] = $row['count'];
     }
 }
 $stmt->close();
 
-// Handle form submission for updates
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Prepare data
     $full_name = $_POST['full_name'] ?? '';
     $gender = $_POST['gender'] ?? '';
     $email = $_POST['email'] ?? '';
@@ -95,7 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $awards = $_POST['awards'] ?? '';
     $image_url = '';
 
-    // Handle image upload
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
         $upload_dir = '../images/';
         $file_name = time() . '_' . basename($_FILES['profile_image']['name']);
@@ -109,7 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Update database
     $sql = "UPDATE serviceproviders SET 
         full_name = ?, 
         gender = ?, 
@@ -163,7 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($stmt->execute()) {
-        // Update the provider array with new values for display
         $provider['full_name'] = $full_name;
         $provider['gender'] = $gender;
         $provider['email'] = $email;
@@ -199,9 +188,8 @@ $conn->close();
 <body>
 <div class="main-content">
     <form id="profileForm" method="POST" enctype="multipart/form-data">
-        <!-- Left Column -->
+
         <div class="left-column">
-            <!-- Profile Card -->
             <div class="profile-card">
                 <div class="profile-image">
                     <img src="<?php echo htmlspecialchars($provider['profile_image'] ?: '../images/user.png'); ?>" alt="User Profile" id="profileImage">
@@ -209,7 +197,6 @@ $conn->close();
                     <button type="submit" class="save-button" style="display: none;">Save</button>
                 </div>
                 <h3 id="profileName"><?php echo htmlspecialchars($provider['full_name']); ?></h3>
-                <!-- <p>★★★★★</p> Star rating styled with CSS -->
                 <ul class="profile-info">
                     <li><strong>Name:</strong> <span id="name"><?php echo htmlspecialchars($provider['full_name']); ?></span></li>
                     <li><strong>Gender:</strong> <span id="gender"><?php echo htmlspecialchars($provider['gender']); ?></span></li>
@@ -217,12 +204,6 @@ $conn->close();
                     <li><strong>Contact Number:</strong> <span id="phone"><?php echo htmlspecialchars($provider['phone']); ?></span></li>
                     <li><strong>Address:</strong> <span id="address"><?php echo htmlspecialchars($provider['address']); ?></span></li>
                 </ul>
-                <!-- <h4>Social Media</h4>
-                <ul class="social-media-links">
-                    <li><a href="#"><img src="../images/facebook.jpg" alt="Facebook"></a></li>
-                    <li><a href="#"><img src="../images/linkedin.png" alt="LinkedIn"></a></li>
-                    <li><a href="#"><img src="../images/instagram.jpg" alt="Instagram"></a></li>
-                </ul> -->
             </div>
 
             <div class="service-stats">
@@ -236,7 +217,6 @@ $conn->close();
             </div>
         </div>
 
-        <!-- Right Column -->
         <div class="right-column">
             <div class="additional-info">
                 <h3>Introduction</h3>
@@ -253,7 +233,7 @@ $conn->close();
                 <p><span id="awards"><?php echo nl2br(htmlspecialchars($provider['awards'])); ?></span></p>
             </div>
         </div>
-        <!-- Hidden file input for profile image -->
+
         <input type="file" id="profileImageInput" name="profile_image" accept="image/*" style="display: none;">
     </form>
 </div>

@@ -12,7 +12,7 @@
         exit;
     }
 
-    $sql = "SELECT * FROM clients WHERE status = 'set'";
+    $sql = "SELECT * FROM clients WHERE status = 'set' ORDER BY client_id DESC";
     $result = $conn->query($sql);
 
 ?>

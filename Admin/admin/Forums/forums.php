@@ -68,6 +68,7 @@
                         <p class="forum_th" id="forumId"></p>
                         <p class="forum_th" id="forumTitle"></p>
                         <p class="forum_th" id="createdBy"></p>
+                        <p class="forum_th" id="createdAt"></p>
                         <p class="forum_th" id="clientId" style="display: none;"></p>
                         <p class="forum_th">Content:</p>
                         <p class="content" id="forumContent"></p>

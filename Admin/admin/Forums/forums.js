@@ -26,7 +26,8 @@ function viewForum(id) {
             popup.style.marginTop = window.scrollY + "px";
 
             document.getElementById("forumTitle").innerText = "Title: " + data.title;
-            document.getElementById("createdBy").innerText = "Created By: " + data.created_by;
+            document.getElementById("createdBy").innerText = "Created By: " + data.full_name;
+            document.getElementById("createdAt").innerText = "Created At: " + data.created_at;
             document.getElementById("clientId").innerText = "User Id: " + data.user_id;
             document.getElementById("forumContent").innerText = data.content;
 

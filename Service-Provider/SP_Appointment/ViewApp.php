@@ -2,11 +2,9 @@
 include '../Session/Session.php';
 include '../connection.php';
 
-// Check if appointment ID is provided
 if (isset($_GET['id'])) {
     $appointment_id = $_GET['id'];
     
-    // Fetch appointment details with client name
     $query = "SELECT a.appointment_id, a.client_id, a.appointment_date, a.status, a.created_at, a.service_type, a.message, c.full_name 
               FROM appointments a
               LEFT JOIN clients c ON a.client_id = c.client_id
@@ -40,9 +38,9 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="App.css">
 </head>
 <body> 
-        <div class="main-content">
-            <div class="appointment-section">
-                <div class="appointment-header">
+    <div class="main-content">
+        <div class="appointment-section">
+            <div class="appointment-header">
                 <div class="back-link">
                     <a href="App.php">← Back to Appointments</a>
                 </div>
@@ -50,38 +48,38 @@ if (isset($_GET['id'])) {
                     <div class="status-badge status-<?php echo strtolower($appointment['status']); ?>">
                         <?php echo htmlspecialchars($appointment['status']); ?>
                     </div>
+            </div>
+            <div class="appointment-info">                    
+                <div class="detail-row">
+                    <div class="detail-label">Client Name:</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($appointment['full_name'] ?? 'Not specified'); ?></div>
                 </div>
-                <div class="appointment-info">                    
-                    <div class="detail-row">
-                        <div class="detail-label">Client Name:</div>
-                        <div class="detail-value"><?php echo htmlspecialchars($appointment['full_name'] ?? 'Not specified'); ?></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Appointment Date:</div>
-                        <div class="detail-value"><?php echo htmlspecialchars($appointment['appointment_date']); ?></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Created At:</div>
-                        <div class="detail-value"><?php echo htmlspecialchars($appointment['created_at']); ?></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Service Type:</div>
-                        <div class="detail-value"><?php echo htmlspecialchars($appointment['service_type']); ?></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Message:</div>
-                        <div class="detail-value"><?php echo htmlspecialchars($appointment['message'] ?? 'Not specified'); ?></div>
-                    </div>
+                <div class="detail-row">
+                    <div class="detail-label">Appointment Date:</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($appointment['appointment_date']); ?></div>
                 </div>
-                <div class="button-group">
-                    <button class="chat-button" onclick="window.location.href='../SP_Message/Message.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">Chat with Client</button>
-                    <?php if (strtolower($appointment['status']) === 'scheduled'): ?>
-                        <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo urlencode($appointment['client_id']); ?>&appointment_id=<?php echo urlencode($appointment['appointment_id']); ?>'">+ Project</button>
-                    <?php endif; ?>
+                <div class="detail-row">
+                    <div class="detail-label">Created At:</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($appointment['created_at']); ?></div>
                 </div>
-            </div>                   
-        </div>
-    </div>  <!--this is the </div> of container in the common file, don't remove it-->
+                <div class="detail-row">
+                    <div class="detail-label">Service Type:</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($appointment['service_type']); ?></div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Message:</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($appointment['message'] ?? 'Not specified'); ?></div>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="chat-button" onclick="window.location.href='../SP_Message/Message.php?client_id=<?php echo htmlspecialchars($appointment['client_id']); ?>'">Chat with Client</button>
+                <?php if (strtolower($appointment['status']) === 'scheduled'): ?>
+                    <button class="chat-button" onclick="window.location.href='../SP_Projects/AddProject.php?client_id=<?php echo urlencode($appointment['client_id']); ?>&appointment_id=<?php echo urlencode($appointment['appointment_id']); ?>'">Add Project</button>
+                <?php endif; ?>
+            </div>
+        </div>                   
+    </div>
+</div> 
 <script src="App.js"></script>
 <script src="../Common template/Calendar.js"></script>
 </body>

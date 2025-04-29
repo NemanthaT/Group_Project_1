@@ -4,30 +4,26 @@ include '../connection.php';
 include '../Common template/SP_common.php';
 
 $providerId = $_SESSION['provider_id'];
-// Get filters from GET parameters
+
 $status = isset($_GET['status']) ? $_GET['status'] : 'all';
 $project_id = isset($_GET['project_id']) ? trim($_GET['project_id']) : '';
 
-// Build the query dynamically
 $query = "SELECT b.*, p.project_name FROM bills b JOIN projects p ON b.project_id = p.project_id WHERE p.provider_id = ?";
 $params = [$providerId];
 $types = "i";
 
-// Filter by status if not 'all'
 if ($status !== 'all' && ($status === 'paid' || $status === 'unpaid')) {
     $query .= " AND status = ?";
     $params[] = $status;
     $types .= "s";
 }
 
-// Filter by project_id if provided
 if ($project_id !== '') {
     $query .= " AND b.project_id = ?";
     $params[] = $project_id;
     $types .= "i";
 }
 
-// Prepare and execute the statement
 $stmt = $conn->prepare($query);
 if ($stmt === false) {
     die("Error preparing statement: " . $conn->error);
@@ -73,7 +69,6 @@ $result = $stmt->get_result();
             </div>
             <div class="bills-grid">
                 <?php   
-                // Display cards
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $statusClass = strtolower($row['status']) === 'paid' ? 'paid' : 'unpaid';
@@ -87,7 +82,6 @@ $result = $stmt->get_result();
                         echo            '<p><strong>Description:</strong> ' . htmlspecialchars($row['Description']) . '</p>';
                         echo            '<p><strong>Amount:</strong> Rs ' . htmlspecialchars($row['Amount']) . '</p>';
                         echo            '<p><strong>Date:</strong> ' . htmlspecialchars($row['Bill_Date']) . '</p>';
-                        // Optionally keep project_id hidden in a hidden input or data attribute if needed
                         echo            '<input type="hidden" name="project_id" value="' . htmlspecialchars($row['project_id']) . '">';
                         echo        '</div>';
                         echo        '<a href="Viewbill.php?bill_id=' . $row['bill_id'] . '">';
@@ -102,7 +96,7 @@ $result = $stmt->get_result();
                 ?>
             </div>
         </div>
-    </div>   <!--this is the </div> of container in the common file, don't remove it-->
+    </div>  
 <script src="Bill.js"></script>
 <script src="../Common template/Calendar.js"></script>
 </body>

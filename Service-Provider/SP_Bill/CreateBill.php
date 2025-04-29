@@ -57,7 +57,7 @@ $project_id = $_POST['project_id'] ?? null;
                 </form>
             </div>
         </div>
-    </div>   <!--this is the </div> of container in the common file, don't remove it-->
+    </div>   
 <script src="Bill.js"></script>
 <script src="../Common template/Calendar.js"></script>
 </body>
