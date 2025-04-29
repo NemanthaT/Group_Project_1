@@ -20,6 +20,7 @@ if (isset($_POST['submit'])) {
     } elseif ($appointment_id === false) {
         $errorMsg = "Invalid appointment ID.";
     } else {
+        // Fetch client name using prepared statement
         $query_getclientname = "SELECT full_name FROM `clients` WHERE client_id = ?";
         $stmt_client = $conn->prepare($query_getclientname);
         $stmt_client->bind_param("i", $client_id);
@@ -30,6 +31,7 @@ if (isset($_POST['submit'])) {
             $client_data = $result_clientname->fetch_assoc();
             $client_name = $client_data['full_name'];
 
+            // Insert project details using prepared statement
             $query_submit = "INSERT INTO `projects` (client_id, provider_id, project_name, project_description, project_phase, project_status) 
                              VALUES (?, ?, ?, ?, ?, ?)";
             $stmt_project = $conn->prepare($query_submit);
@@ -39,6 +41,7 @@ if (isset($_POST['submit'])) {
             if ($result) {
                 $project_id = $conn->insert_id;
 
+                // Update appointment status to "Completed" using prepared statement
                 $query_update_appointment = "UPDATE appointments 
                                              SET status = ? 
                                              WHERE appointment_id = ?";
@@ -53,6 +56,7 @@ if (isset($_POST['submit'])) {
                     $errorMsg = "Error updating appointment status: " . $conn->error;
                 }
 
+                // Handle file upload
                 if (isset($_FILES['upload_documents']) && $_FILES['upload_documents']['name'] != '') {
                     $upload_dir = '../../Uploads/' . $project_id . '/';
                     $document_name = mysqli_real_escape_string($conn, $_POST['document_name']);
@@ -64,6 +68,7 @@ if (isset($_POST['submit'])) {
                     }
                     
                     if (move_uploaded_file($file_tmp, $upload_dir . $file_name)) {
+                        // Insert file details using prepared statement
                         $query_file_upload = "INSERT INTO `projectdocuments` (project_id, file_name, file_path) 
                                              VALUES (?, ?, ?)";
                         $stmt_file = $conn->prepare($query_file_upload);
@@ -71,6 +76,7 @@ if (isset($_POST['submit'])) {
                         $stmt_file->bind_param("iss", $project_id, $document_name, $file_path);
                         $result_file_upload = $stmt_file->execute();
 
+                        // Log project status using prepared statement
                         $query_log = "INSERT INTO projectstatuslogs (project_id, message, changed_at) 
                                       VALUES (?, ?, NOW())";
                         $stmt_log = $conn->prepare($query_log);
@@ -90,6 +96,7 @@ if (isset($_POST['submit'])) {
                         $errorMsg = "File upload failed.";
                     }
                 } else {
+                    // Log project status using prepared statement
                     $query_log = "INSERT INTO projectstatuslogs (project_id, message, changed_at) 
                                   VALUES (?, ?, NOW())";
                     $stmt_log = $conn->prepare($query_log);
@@ -125,13 +132,6 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDSA Lanka Consultancy</title>
-    <link rel="stylesheet" href="../Common template/SP_common.css">
-    <link rel="stylesheet" href="Project.css">
-</head>
-<body> 
-        <div
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDSA Lanka Consultancy</title>
     <link rel="stylesheet" href="../Common template/SP_common.css">
