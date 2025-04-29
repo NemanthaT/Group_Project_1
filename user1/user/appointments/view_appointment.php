@@ -4,7 +4,6 @@ include '../../connect/connect.php';
 
 $appointment_id = $_GET['appointment_id'];
 
-// Fetch appointment and provider details in one query
 $stmt = $conn->prepare(
     "SELECT a.appointment_id, a.service_type, DATE(a.appointment_date) AS appointment_date, a.message, a.status, 
             p.provider_id, p.full_name, p.phone ,a.reply_note
@@ -13,7 +12,6 @@ $stmt = $conn->prepare(
     WHERE a.appointment_id = ?"
 );
 
-// Check if prepare succeeded
 if ($stmt === false) {
     die("Prepare failed: " . $conn->error);
 }
@@ -23,8 +21,6 @@ $stmt->execute();
 $stmt->bind_result($id, $service, $date, $message, $status, $provider_id, $provider_name, $provider_phone , $reply_note);
 
 if ($stmt->fetch()) {
-    // Data is now in variables
-    // Ensure $provider_id is set, even if NULL
     $provider_id = $provider_id ?? null;
 } else {
     die("Appointment not found.");
@@ -97,9 +93,7 @@ $stmt->close();
         </ul>
     </div>
 
-    <!-- Main Content Area -->
     <div class="main-wrapper">
-        <!-- Navbar -->
         <div class="navbar">
             <a href="#">
                 <img src="../images/notification.png" alt="Notifications">

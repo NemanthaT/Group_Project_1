@@ -16,9 +16,9 @@
             $srch = "SELECT * FROM companyworkers WHERE worker_id = $id AND status = 'set' ";
             $result = $conn->query($srch);
 
-            //checking whether worker exists or not
+            
             if ($result->num_rows > 0) {
-                //Changing the role
+                
                 $chng = "UPDATE companyworkers SET role = " . " ' " . $role . " ' " . " WHERE worker_id = $id AND status = 'set' ";
                 $opert = $conn->query($chng);
 

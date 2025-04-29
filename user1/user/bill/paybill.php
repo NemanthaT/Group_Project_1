@@ -8,7 +8,6 @@ if (!isset($_GET['bill_id']) || empty($_GET['bill_id'])) {
 }
 $bill_id = $_GET['bill_id'];
 
-// Fetch bill, project, and client info
 $sql = "SELECT 
             b.*, 
             p.project_name, 
@@ -30,7 +29,6 @@ if ($result->num_rows === 0) {
 }
 $bill = $result->fetch_assoc();
 
-// Date formatting
 $bill_date = date("F d, Y", strtotime($bill['Bill_Date']));
 $due_date = date("F d, Y", strtotime($bill['Bill_Date'] . " +14 days"));
 $invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_pad($bill['bill_id'], 4, '0', STR_PAD_LEFT);
@@ -101,23 +99,12 @@ $invoice_number = 'SD-' . date('Y', strtotime($bill['Bill_Date'])) . '-' . str_p
                         Message
                     </button></a>
                 </li>
-                <!-- <li>
-                    <a href="../reports/reports.php">
-                        <button>
-                            <img src="../images/reports.png" alt="Reports">
-                            Reports
-                        </button>
-                    </a>
-                </li> -->
-            </ul>
+                </ul>
         </div>
 
-        <!-- Main Content Area -->
         <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <a href="#">
-                    <!-- <img src="../images/notification.png" alt="Notifications"> -->
                 </a>
                 <div class="profile">
                 <a href="../profile/profile.php">

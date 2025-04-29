@@ -6,7 +6,7 @@ window.onload = function () {
   document
     .getElementById("searchForm")
     .addEventListener("submit", function (e) {
-      e.preventDefault(); // prevent full page reload
+      e.preventDefault();
       var formData = new FormData(this);
 
       fetch("getBillDt.php", {
@@ -17,13 +17,10 @@ window.onload = function () {
         .then((data) => {
           const tableBody = document.querySelector("#mainT tbody");
           tableBody.innerHTML = "";
-          console.log(data);
           if (data === "nodata") {
-            console.log("No data");
             tableBody.innerHTML =
-              '<tr><td colspan="3"><center>No results found</center></td></tr>';
+              '<tr><td colspan="4"><center>No results found</center></td></tr>';
           } else {
-            console.log("Data");
             data.forEach((item) => {
               const row = document.createElement("tr");
               row.innerHTML = `
@@ -39,10 +36,9 @@ window.onload = function () {
     });
 
   document.getElementById("filterS").addEventListener("change", function (e) {
-    e.preventDefault(); // prevent full page reload
+    e.preventDefault();
 
     const sStatus = document.getElementById("filterS").value;
-    console.log("Status:", sStatus); // Check the value of sStatus
     var formData = new FormData();
     formData.append("status", sStatus);
 
@@ -58,10 +54,9 @@ window.onload = function () {
       })
       .then((data) => {
         if (data === "paid") {
-            location.reload();
-            exit();
+          location.reload();
+          exit();
         }
-        console.log("Success:", data);
         const tableContainer = document.getElementById("mainT");
         const tableBody = tableContainer.querySelector("tbody");
         const tableHeader = tableContainer.querySelector("thead");
@@ -74,13 +69,11 @@ window.onload = function () {
                             `;
         tableHeader.appendChild(headerRow);
 
-        tableBody.innerHTML = ""; // Clear previous results
+        tableBody.innerHTML = "";
         if (data === "nodata") {
-          console.log("No data");
           tableBody.innerHTML =
             '<tr><td colspan="4"><center>No results found</center></td></tr>';
         } else {
-          console.log("Data");
           data.forEach((item) => {
             const row = document.createElement("tr");
             row.innerHTML = `

@@ -84,7 +84,6 @@
     <script src="script.js"></script>
 
     <div class="container">
-        <!-- Sidebar -->
         <div class="sidebar">
             <div class="logo">
                 <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -141,9 +140,7 @@
             </ul>
         </div>
 
-        <!-- Main Content Area -->
         <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <a href="#"></a>
                 <div class="profile">
@@ -154,7 +151,6 @@
                 <a href="../../../Login/Logout.php" class="logout">Logout</a>
             </div>
 
-            <!-- Appointment Content -->
             <div class="space"></div>
             <div class="main-container controls card1">
                 <h1>Appointment Management</h1>
@@ -279,7 +275,6 @@
                 </table>
             </div>
 
-            <!-- Add Appointment Overlay -->
             <div id="addAppointmentOverlay" class="overlay">
                 <div class="overlay-content">
                     <span class="close-btn" onclick="closePopup('addAppointmentOverlay')">&times;</span>
@@ -289,9 +284,9 @@
                             <label for="serviceSelect">Select a Service</label>
                             <select id="serviceSelect" name="serviceSelect" required>
                                 <option value="">Choose a Service</option>
-                                <option value="Consulting">Consulting</option>
-                                <option value="Training">Training</option>
-                                <option value="Researching">Researching</option>
+                                <option value="Consultant">Consulting</option>
+                                <option value="Trainer">Training</option>
+                                <option value="Researcher">Researching</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -314,7 +309,7 @@
                         </div>
                         <div class="form-group">
                             <label for="additionalMessage">Additional Message</label>
-                            <textarea id="additionalMessage" name="additionalMessage" rows="4"></textarea>
+                            <textarea id="additionalMessage" name="additionalMessage" rows="4" required></textarea>
                         </div>
                         <button type="submit" id="Bookappointmentbtn" class="btn">Book Appointment</button>
                     </form>
@@ -323,7 +318,6 @@
         </div>
     </div>
 
-    <!-- Error Message Popup -->
     <?php if (isset($_SESSION['error']) || isset($_SESSION['success'])): ?>
         <div id="popupModal" class="modal">
             <div class="modal-content">

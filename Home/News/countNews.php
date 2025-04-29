@@ -9,6 +9,6 @@
         $row = $result->fetch_assoc();
         echo json_encode((int)$row['total']);
     } else {
-        echo json_encode(0); // Return 0 if there's an error
+        echo json_encode(0); 
     }
 ?>

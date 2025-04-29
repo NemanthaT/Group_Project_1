@@ -1,7 +1,6 @@
 function viewClient(id) {
     document.getElementById('overlay').style.display = "block";
 
-    // Show preloader
     const preloader = document.getElementById('popupPreloader');
     preloader.classList.remove('fade-out');
     preloader.style.display = "flex";
@@ -21,13 +20,11 @@ function viewClient(id) {
         } else {
             console.log(data);
 
-            // Hide preloader and show content
             preloader.classList.add('fade-out');
             setTimeout(() => {
-                preloader.style.display = "none"; // Hide preloader after fade
-            }, 500); // Duration should match the fade-out transition
+                preloader.style.display = "none";
+            }, 500);
 
-            // Display client details in the designated area
             window.addEventListener('scroll', function() {});
             document.getElementById('displayArea').style.filter = "blur(10px)";
             document.getElementById('hiddenView').style.display = "block";
@@ -48,8 +45,6 @@ function viewClient(id) {
 
 function deleteClient(id) {
     if (confirm("Are you sure you want to delete this item?")) {
-        // Proceed with delete action
-            // Send an AJAX request to the PHP script
         fetch('cDelete.php', {
             method: 'POST',
             headers: {
@@ -59,7 +54,6 @@ function deleteClient(id) {
         })
         .then(response => response.json())
         .then(data => {
-            // Check if data contains error
             if (data.error) {
                 alert(data.error);
             }
@@ -68,17 +62,13 @@ function deleteClient(id) {
         alert("Item deleted.");
         window.location.href = 'clients.php';
     } else {
-        // Do nothing
         alert("Delete canceled.");
     }
-
 }
 
-//
 function viewSp(id) {
     document.getElementById('overlay').style.display = "block";
 
-    // Show preloader
     const preloader = document.getElementById('popupPreloader');
     preloader.classList.remove('fade-out');
     preloader.style.display = "flex";
@@ -92,18 +82,15 @@ function viewSp(id) {
     })
     .then(response => response.json())
     .then(data => {
-        // If there's an error in the response
         if (data.error) {
             alert(data.error);
             document.documentElement.scrollTop = 0;
         } else {
-            // Hide preloader and show content
             preloader.classList.add('fade-out');
             setTimeout(() => {
-                preloader.style.display = "none"; // Hide preloader after fade
+                preloader.style.display = "none";
             }, 500);
 
-            // Display service provider details in the designated area
             window.addEventListener('scroll', function() {});
             document.getElementById('displayArea').style.filter = "blur(10px)";
             document.getElementById('hiddenView').style.display = "block";
@@ -128,8 +115,6 @@ function viewSp(id) {
 
 function deleteSp(id) {
     if (confirm("Are you sure you want to delete this item?")) {
-        // Proceed with delete action
-            // Send an AJAX request to the PHP script
         fetch('spDelete.php', {
             method: 'POST',
             headers: {
@@ -139,11 +124,9 @@ function deleteSp(id) {
         })
         .then(response => response.json())
         .then(data => {
-            // Check if data contains error
             if (data.error) {
                 alert(data.error);
             } else {
-                // Reload the page
                 location.reload();
             }
         })
@@ -151,10 +134,8 @@ function deleteSp(id) {
         alert("Item deleted.");
         window.location.href = 'serviceProviders.php';
     } else {
-        // Do nothing
         alert("Delete canceled.");
     }
-
 }
 
 function closeView(){
@@ -194,7 +175,6 @@ function changeF(uType){
         else if(uType == "Researchers"){
             uType = "Researcher";
         } 
-        // Send an AJAX request to the PHP script
         fetch('listC.php', {
             method: 'POST',
             headers: {
@@ -222,5 +202,4 @@ function changeF(uType){
             });
         })
     }
-
 }

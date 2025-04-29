@@ -4,7 +4,7 @@
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $offset = isset($_POST['offset']) ? (int)$_POST['offset'] : 0;
-        $limit = 8; // Items per page
+        $limit = 8; 
         
         $sql = "SELECT * FROM news ORDER BY news_id DESC LIMIT ? OFFSET ?";   
         $stmt = $conn->prepare($sql);

@@ -29,12 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Cannot book an appointment for past dates.");
         }
 
-        $stmt = $conn->prepare("INSERT INTO appointments (client_id, appointment_date, status, message, service_type) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO appointments (client_id, appointment_date, status, message, service_type, field_name) VALUES (?, ?, ?, ?, ?, ?)");
         if (!$stmt) {
             throw new Exception("SQL prepare failed: " . $conn->error);
         }
 
-        $stmt->bind_param("issss", $client_id, $appointment_date, $status, $message, $service_type);
+        $stmt->bind_param("isssss", $client_id, $appointment_date, $status, $message, $service_type, $field_name);
 
         if (!$stmt->execute()) {
             throw new Exception("Error inserting appointment: " . $stmt->error);

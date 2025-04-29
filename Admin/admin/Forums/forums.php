@@ -7,21 +7,18 @@
 
     $_SESSION['nF'] = 'none';
 
-    if (!isset($_SESSION['username'])) { // if not logged in
+    if (!isset($_SESSION['username'])) {
         header("Location: ../../../login/login.php");
         exit;
     }
 
-    // Pagination logic
     $records_per_page = 10;
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $offset = ($page - 1) * $records_per_page;
 
-    // Get total number of records
     $total_records = $conn->query("SELECT COUNT(*) as total FROM forums")->fetch_assoc()['total'];
     $total_pages = ceil($total_records / $records_per_page);
 
-    // Get paginated data
     $sql = "SELECT * FROM forums ORDER BY forum_id DESC LIMIT $offset, $records_per_page";
     $result = $conn->query($sql);
 ?>
@@ -102,14 +99,12 @@
                             </tbody>
                         </table>
 
-                        <!-- Pagination links -->
                         <div class="pagination">
                             <?php if ($page > 1): ?>
                                 <a href="?page=<?php echo $page - 1; ?>">&laquo; Previous</a>
                             <?php endif; ?>
                             
                             <?php 
-                                // Show page numbers
                                 for ($i = 1; $i <= $total_pages; $i++):
                             ?>
                                 <a href="?page=<?php echo $i; ?>" <?php if ($i == $page) echo 'class="active"'; ?>>

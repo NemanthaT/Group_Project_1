@@ -36,9 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $forumId = $_POST['forum_id'];
             $title = isset($_POST['title']) ? $_POST['title'] : '';
             $content = isset($_POST['content']) ? $_POST['content'] : '';
+            $category = isset($_POST['category']) ? $_POST['category'] : '';
 
-            $stmt = $conn->prepare("UPDATE forums SET title = ?, content = ? WHERE forum_id = ?");
-            $stmt->bind_param("ssi", $title, $content, $forumId);
+            $stmt = $conn->prepare("UPDATE forums SET title = ?, content = ?, category = ? WHERE forum_id = ?");
+            $stmt->bind_param("sssi", $title, $content, $category, $forumId);
             $stmt->execute();
         }
 
@@ -98,10 +99,10 @@ if (isset($_GET['forum_id'])) {
             <div class="forum-categories">
                 <h3>Categories</h3>
                 <ul id="category-list">
-                    <li><button onclick="filterByCategory('General Discussions')">General Discussions</button></li>
-                    <li><button onclick="filterByCategory('Technical Support')">Technical Support</button></li>
-                    <li><button onclick="filterByCategory('Product/Service Feedback')">Product/Service Feedback</button></li>
-                    <li><button onclick="filterByCategory('How-to Guides')">How-to Guides</button></li>
+                    <li><button onclick="filterByCategory('Gender Finance')">Gender Finance</button></li>
+                    <li><button onclick="filterByCategory('Micro Business')">Micro Business</button></li>
+                    <li><button onclick="filterByCategory('SME Development')">SME Development</button></li>
+                    <li><button onclick="filterByCategory('Community Development')">Community Development</button></li>
                     <li><button onclick="filterByCategory('Off-Topic')">Off-Topic</button></li>
                 </ul>
             </div>    
@@ -116,10 +117,10 @@ if (isset($_GET['forum_id'])) {
 
                     <label for="newThreadCategory">Category:</label>
                     <select id="newThreadCategory" name="category" class="input-field" required>
-                        <option value="General Discussions">General Discussions</option>
-                        <option value="Technical Support">Technical Support</option>
-                        <option value="Product/Service Feedback">Product/Service Feedback</option>
-                        <option value="How-to Guides">How-to Guides</option>
+                        <option value="Gender Finance">Gender Finance</option>
+                        <option value="Micro Business">Micro Business</option>
+                        <option value="SME Development">SME Development</option>
+                        <option value="Community Development">Community Development</option>
                         <option value="Off-Topic">Off-Topic</option>
                     </select>
 
@@ -128,6 +129,29 @@ if (isset($_GET['forum_id'])) {
 
                     <button type="submit" class="submit-btn">Create</button>
                     <button type="button" onclick="closeCreateThreadModal()" class="cancel-btn">Cancel</button>
+                </form>
+            </div>
+
+            <div class="modal-overlay" id="updateThreadModalOverlay" style="display: none;"></div>
+            <div class="modal update-thread-modal" id="updateThreadModal" style="display: none;">
+                <h3>Update Thread</h3>
+                <form action="" method="POST" onsubmit="return validateUpdateThreadForm(event)">
+                    <input type="hidden" name="action" value="update">
+                    <input type="hidden" name="forum_id" id="updateThreadForumId">
+                    <label for="updateThreadTitle">Title:</label>
+                    <input type="text" id="updateThreadTitle" name="title" class="input-field" placeholder="Enter thread title" maxlength="100" required>
+                    <label for="updateThreadCategory">Category:</label>
+                    <select id="updateThreadCategory" name="category" class="input-field" required>
+                        <option value="Gender Finance">Gender Finance</option>
+                        <option value="Micro Business">Micro Business</option>
+                        <option value="SME Development">SME Development</option>
+                        <option value="Community Development">Community Development</option>
+                        <option value="Off-Topic">Off-Topic</option>
+                    </select>
+                    <label for="updateThreadMessage">Message:</label>
+                    <textarea id="updateThreadMessage" name="content" class="input-field" rows="5" placeholder="Enter your message" maxlength="1000" required></textarea>
+                    <button type="submit" class="submit-btn">Update</button>
+                    <button type="button" onclick="closeUpdateThreadModal()" class="cancel-btn">Cancel</button>
                 </form>
             </div>
 
@@ -153,9 +177,9 @@ if (isset($_GET['forum_id'])) {
                         </li>
                     <?php else: ?>
                         <?php foreach ($threads as $thread): ?>
-                            <li data-category="<?= htmlspecialchars($thread['category'] ?? 'General Discussions') ?>" id="thread-<?= $thread['forum_id'] ?>">
+                            <li data-category="<?= htmlspecialchars($thread['category'] ?? 'Gender Finance') ?>" id="thread-<?= $thread['forum_id'] ?>">
                                 <h4><?= htmlspecialchars($thread['title']) ?></h4>
-                                <p>Started by<span class="username"><?=htmlspecialchars($thread['full_name'] ?? 'Unknown') ?></span> - <?= $thread['replies'] ?? 0 ?> replies</p>
+                                <p>Started by <span class="username"><?= htmlspecialchars($thread['full_name'] ?? 'Unknown') ?></span> - <?= $thread['replies'] ?? 0 ?> replies</p>
                                 <div class="button-container">
                                     <button class="view-btn" onclick="viewThread('<?= htmlspecialchars(addslashes($thread['title'])) ?>', '<?= htmlspecialchars(addslashes($thread['content'])) ?>', <?= $thread['views'] ?? 0 ?>, <?= $thread['replies'] ?? 0 ?>)">View</button> 
                                     <form action="" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this thread?')">
@@ -163,6 +187,7 @@ if (isset($_GET['forum_id'])) {
                                         <input type="hidden" name="forum_id" value="<?= $thread['forum_id'] ?>">
                                         <button type="submit" class="delete-btn">Delete</button>
                                     </form>
+                                    <button class="update-btn" onclick="openUpdateThreadModal(<?= $thread['forum_id'] ?>, '<?= htmlspecialchars(addslashes($thread['title'])) ?>', '<?= htmlspecialchars(addslashes($thread['content'])) ?>', '<?= htmlspecialchars(addslashes($thread['category'])) ?>')">Update</button>
                                 </div>
                             </li>
                         <?php endforeach; ?>

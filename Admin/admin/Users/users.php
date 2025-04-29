@@ -5,7 +5,7 @@ require_once('../../../config/config.php');
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
-if (!isset($_SESSION['username'])) { // if not logged in
+if (!isset($_SESSION['username'])) { 
     header("Location: ../../../login/login.php");
     exit;
 }
