@@ -7,11 +7,9 @@ $sql = "SELECT * FROM `projects` where client_id= '$client_id' ORDER BY project_
 
 $result = $conn->query($sql);
 
-// Check if query was successful
 if ($result === false) {
     echo "Error: " . $conn->error;
 } else {
-    // Now it's safe to check num_rows
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
                   

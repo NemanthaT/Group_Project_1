@@ -1,4 +1,3 @@
-// Function to search for topics in the forum
 function searchTopics() {
     const query = document.getElementById("search-input").value.toLowerCase();
     const threads = document.querySelectorAll("#thread-list li");
@@ -12,7 +11,6 @@ function searchTopics() {
     });
 }
 
-// Function to filter threads by category
 function filterByCategory(category) {
     const threads = document.querySelectorAll("#thread-list li");
     threads.forEach(thread => {
@@ -24,7 +22,6 @@ function filterByCategory(category) {
     });
 }
 
-// Function to add a new thread
 function addThread() {
     const title = document.getElementById("thread-title").value;
     const category = document.getElementById("thread-category").value;
@@ -39,7 +36,6 @@ function addThread() {
         `;
         threadList.appendChild(newThread);
 
-        // Clear input fields
         document.getElementById("thread-title").value = "";
     } else {
         alert("Please enter a thread title and select a category.");

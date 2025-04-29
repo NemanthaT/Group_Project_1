@@ -1,26 +1,22 @@
 <?php
 include '../../connect/connect.php';
 
-// Get filter and search inputs
 $search = $_POST['searchInput'] ?? '';
 $service_type = $_GET['service_type'] ?? '';
 $status = $_GET['status'] ?? '';
 $date_from = $_GET['date_from'] ?? '';
 $date_to = $_GET['date_to'] ?? '';
 
-// Build WHERE clause and params
 $where = ["a.client_id = ?", "a.status != 'Deleted'"];
 $params = [$_SESSION['client_id']];
 $types = "i";
 
-// If searching by appointment_id, override all filters
 if ($search !== '') {
     $where[] = "a.appointment_id = ?";
     $params[] = $search;
     $types .= "i";
 }
 
-// Filters
 if ($service_type !== '') {
     $where[] = "a.service_type = ?";
     $params[] = $service_type;
@@ -66,7 +62,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 $users = $result->fetch_all(MYSQLI_ASSOC);
 
-// Dashboard stats (always for all, not filtered)
 $statusCounts = [];
 $query = "SELECT status, COUNT(*) as count FROM appointments WHERE client_id = ? AND status != 'Deleted' GROUP BY status";
 $stmt2 = $conn->prepare($query);

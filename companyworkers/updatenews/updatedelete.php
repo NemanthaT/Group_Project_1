@@ -2,13 +2,11 @@
 session_start();
 include '../../config/config.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: ../../Login/login.php");
     exit;
 }
 
-// Get user details
 $username = $_SESSION['username'];
 $query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
 $result = mysqli_query($conn, $query);
@@ -28,15 +26,7 @@ $fullName = $user['full_name'] ?? 'User';
     <link rel="stylesheet" href="updatenews.css">
 </head>
 <body>
-    <!-- Sidebar Toggle Button (for mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        ☰
-    </button>
-    
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
+
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -98,9 +88,7 @@ $fullName = $user['full_name'] ?? 'User';
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -128,10 +116,8 @@ $fullName = $user['full_name'] ?? 'User';
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
 
-        <!-- News Table -->
         <div class="dashboard-grid">
             <div class="dashboard-card" style="grid-column: span 2;">
                 <div class="news-table-container">
@@ -174,20 +160,37 @@ $fullName = $user['full_name'] ?? 'User';
             </div>
         </div>
     </div>
-
     <script>
-        // Mobile sidebar toggle
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').style.display = 
-                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.remove('active');
-            this.style.display = 'none';
+        document.querySelectorAll('.delete-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                var link = btn.querySelector('a');
+                
+                e.preventDefault();
+                
+                if (!confirm('Are you sure you want to delete this news item?')) {
+                    return; 
+                }
+                
+                var href = link.getAttribute('href');
+                var delete_id = href.split('=')[1];
+                
+                var row = btn.closest('tr');
+                
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'delete.php?delete_id=' + encodeURIComponent(delete_id), true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        if (xhr.responseText.trim() === 'success') {
+                            row.style.display = 'none';
+                            alert('News item deleted successfully');
+                        } else {
+                            alert('Failed to delete news item.');
+                        }
+                    }
+                };
+                xhr.send();
+            });
         });
     </script>
-
 </body>
 </html>

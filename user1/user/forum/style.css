@@ -1,197 +1,192 @@
-/* Reset and Base Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   }
   
   body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    min-height: 100vh;
-    overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  overflow-x: hidden;
   }
   
-  /* Container Layout */
   .container {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
   }
   
-  /* Sidebar Styles */
   .sidebar {
-    background-color: white;
-    width: 20vw;
-    padding: 3vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    height: 100vh;
+  background-color: white;
+  width: 20vw;
+  padding: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
   }
   
   .sidebar .logo img {
-    width: 100%;
-    max-width: 20vw;
-    margin-bottom: 5vh;
+  width: 100%;
+  max-width: 20vw;
+  margin-bottom: 5vh;
   }
   
   .menu {
-    list-style: none;
-    width: 100%;
+  list-style: none;
+  width: 100%;
   }
   
   .menu li {
-    margin-bottom: 2vh;
+  margin-bottom: 2vh;
   }
   
   .menu a {
-    text-decoration: none;
+  text-decoration: none;
   }
   
   .menu button {
-    display: flex;
-    align-items: center;
-    font-size: 2.5vh;
-    font-weight: bold;
-    width: 100%;
-    padding: 1.5vh;
-    color: #333;
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    border-radius: 1vh;
-    gap: 1vh;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 2.5vh;
+  font-weight: bold;
+  width: 100%;
+  padding: 1.5vh;
+  color: #333;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 1vh;
+  gap: 1vh;
+  text-decoration: none;
   }
   
   .menu button.active,
   .menu button:hover {
-    background-color: #18A0FB;
-    color: white;
+  background-color: #18A0FB;
+  color: white;
   }
   
   .menu img {
-    width: auto;
-    height: 4vh;
-    object-fit: contain;
-    margin-right: 1vh;
+  width: auto;
+  height: 4vh;
+  object-fit: contain;
+  margin-right: 1vh;
   }
   
-  /* Navbar Styles */
   .navbar {
-    width: 80vw;
-    background-color: white;
-    color: #18A0FB;
-    margin-left: 0;
-    padding: 2vh 4vw;
-    position: fixed;
-    z-index: 2;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  width: 80vw;
+  background-color: white;
+  color: #18A0FB;
+  margin-left: 0;
+  padding: 2vh 4vw;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   }
   
   .navbar a {
-    color: #18A0FB;
-    text-decoration: none;
-    font-size: 2.5vh;
-    padding: 0.8vh 1.5vw;
-    margin-left: 1.5vw;
-    border-radius: 1vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  color: #18A0FB;
+  text-decoration: none;
+  font-size: 2.5vh;
+  padding: 0.8vh 1.5vw;
+  margin-left: 1.5vw;
+  border-radius: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   }
   
   .navbar a:hover {
-    background-color: rgb(215, 236, 255);
+  background-color: rgb(215, 236, 255);
   }
   
   .navbar a img {
-    max-width: 100%;
-    max-height: 100%;
-    width: 5vh;
-    height: 5vh;
-    border-radius: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
   }
   
   .profile {
-    display: flex;
-    align-items: center;
-    margin-right: 1vw;
+  display: flex;
+  align-items: center;
+  margin-right: 1vw;
   }
   
   .profile a {
-    padding: 0;
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    width: 5vh;
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 0;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 5vh;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   }
   
   .logout {
-    background-color: #18A0FB;
-    color: white !important;
+  background-color: #18A0FB;
+  color: white !important;
   }
   
-  /* Main Content Area */
   .main-wrapper {
-    width: 80vw;
-    margin-left: 20vw;
-    flex-direction: row;
-    justify-content: center;
+  width: 80vw;
+  margin-left: 20vw;
+  flex-direction: row;
+  justify-content: center;
   }
   
   .main-container {
-    max-width: 95%;
-    margin: 12vh;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 20px;
+  max-width: 95%;
+  margin: 12vh;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
   }
   .space{
-    background-color: #f4f4f4;
-    width: 100%;
-    padding: 5.5vh ;
-    height: 100%;
-    display: flex;
+  background-color: #f4f4f4;
+  width: 100%;
+  padding: 5.5vh ;
+  height: 100%;
+  display: flex;
   }
   .controls {
-    width: 95%;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    justify-content: center;
-    background-color: #fff;
-    margin: 10px auto;
-    border-radius: 8px;
-    
+  width: 95%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-content: center;
+  background-color: #fff;
+  margin: 10px auto;
+  border-radius: 8px;
+  
   }
   
   .card1 {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    color: #fff;
-    background-image: url("../images/sunset.jpg") ;
-    background-repeat: no-repeat;
-    background-size: cover;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  background-image: url("../images/sunset.jpg") ;
+  background-repeat: no-repeat;
+  background-size: cover;
   }
 
 .controls h2, .controls h3 {
-    color: #333;
-    margin-bottom: 15px;
+  color: #333;
+  margin-bottom: 15px;
 }
 
 .forum-search button {
@@ -214,24 +209,24 @@
 }
 
 .forum-categories ul, .forum-threads ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .forum-categories ul li button {
-    display: block;
-    padding: 10px;
-    margin-bottom: 5px;
-    width: 100%;
-    background-color: #18A0FB;
-    color: white;
-    border: none;
-    cursor: pointer;
-    text-align: left;
+  display: block;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 100%;
+  background-color: #18A0FB;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: left;
 }
 
 .forum-categories ul li button:hover {
-    background-color: #1071B1;
+  background-color: #1071B1;
 }
 
 .forum-threads h3{
@@ -239,72 +234,72 @@
 }
 
 .forum-threads ul li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .forum-threads ul li h4 {
-    font-size: 18px;
-    color: #18A0FB;
-    margin-bottom: 5px;
+  font-size: 18px;
+  color: #18A0FB;
+  margin-bottom: 5px;
 }
 
 .forum-search, .new-thread {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .forum-search input[type="text"], .new-thread input[type="text"], .forum-search button, .new-thread button, .new-thread select {
-    padding: 8px;
-    margin-right: 5px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  padding: 8px;
+  margin-right: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .new-thread {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
 .new-thread form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .new-thread .form-group {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .new-thread label {
-    font-weight: bold;
-    margin-bottom: 5px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .new-thread input[type="text"],
 .new-thread select,
 .new-thread textarea {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .new-thread button {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #18A0FB;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    align-self: flex-start;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #18A0FB;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-start;
 }
 
 .new-thread button:hover {
-    background-color: #1071B1;
+  background-color: #1071B1;
 }

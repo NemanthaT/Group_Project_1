@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Check if user is logged in and is a company worker
 if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'companyworkers') {
     header("Location: ../../Login/login.php");
     exit();
@@ -9,7 +8,6 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'companyworkers')
 
 require_once '../connect.php';
 
-// Get the logged in user's details
 $email = $_SESSION['email'];
 $query = "SELECT * FROM companyworkers WHERE email = '$email'";
 $result = mysqli_query($con, $query);
@@ -29,15 +27,7 @@ $fullName = $user['full_name'];
     <script src="dashboard.js"></script>
 </head>
 <body>
-    <!-- Sidebar Toggle Button (for mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        ☰
-    </button>
     
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -98,9 +88,7 @@ $fullName = $user['full_name'];
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -117,8 +105,8 @@ $fullName = $user['full_name'];
         <div class="controls card1">
         <div class="welcome-banner">
             <div class="welcome-text">
-                <h2>Welcome Back, <?php echo htmlspecialchars($fullName); ?></h2>
-                <p>Here's an overview of your dashboard at EDSA Lanka Consultancy</p>
+            <h2>Service Providers</h2>
+            <p>View our service providers</p>
             </div>
                 <div class="date-time" style="text-align:right;">
                 <div id="currentDate"></div>
@@ -128,11 +116,9 @@ $fullName = $user['full_name'];
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
         <div class="dashboard-grid">
             <div class="dashboard-card" style="grid-column: span 2;">
-                <!-- Add Filter Controls -->
                 <div class="filter-controls">
                     <form method="GET" class="filter-form">
                         <select name="speciality" class="filter-select">
@@ -178,7 +164,6 @@ $fullName = $user['full_name'];
                             
                             $conditions = array();
                             
-                            // Modified filter conditions
                             if (!empty($_GET['speciality'])) {
                                 $speciality = mysqli_real_escape_string($con, $_GET['speciality']);
                                 if ($speciality == 'Training') {
@@ -194,7 +179,6 @@ $fullName = $user['full_name'];
                                 $conditions[] = "field = '$field'";
                             }
                             
-                            // Combine all conditions
                             if (!empty($conditions)) {
                                 $query .= " AND " . implode(" AND ", $conditions);
                             }

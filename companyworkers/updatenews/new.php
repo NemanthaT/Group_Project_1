@@ -221,19 +221,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
-        <script>
-            // Mobile sidebar toggle
-            document.getElementById('sidebarToggle').addEventListener('click', function() {
-                document.getElementById('sidebar').classList.toggle('active');
-                document.getElementById('overlay').style.display = 
-                    document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
-            });
-
-            document.getElementById('overlay').addEventListener('click', function() {
-                document.getElementById('sidebar').classList.remove('active');
-                this.style.display = 'none';
-            });
-        </script>
     </body>
 </html>
 

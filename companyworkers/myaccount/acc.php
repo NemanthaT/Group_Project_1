@@ -2,21 +2,17 @@
 session_start();
 require_once('../connect.php');
 
-// Check if user is logged in
 if (!isset($_SESSION['email'])) {
     header("Location: ../../Login/login.php");
     exit;
 }
 
-// Get logged in user email 
 $email = $_SESSION['email'];
 
-// Get worker details from database
 $sql = "SELECT * FROM companyworkers WHERE email = '$email'";
 $result = mysqli_query($con, $sql);
 $worker = mysqli_fetch_assoc($result);
 
-// Store values for use in HTML
 $fullName = $worker['full_name'];
 $username = $worker['username']; 
 $role = $worker['role'];
@@ -42,11 +38,8 @@ $phoneNo = $worker['phoneNo'];
             <?php echo htmlspecialchars($composerWarning); ?>
         </div>
     <?php endif; ?>
-    <!-- Sidebar Toggle Button -->
-    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
-    <div class="overlay" id="overlay"></div>
 
-    <!-- Sidebar -->
+
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -108,9 +101,7 @@ $phoneNo = $worker['phoneNo'];
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="acc.php">
@@ -138,7 +129,6 @@ $phoneNo = $worker['phoneNo'];
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
         <div class="account-details">
             <h2>👤 My Account Details</h2>
@@ -171,7 +161,6 @@ $phoneNo = $worker['phoneNo'];
             </div>
         </div>
 
-        <!-- Update Form Popup -->
         <div id="updateFormPopup" class="popup-form">
             <div class="popup-content">
                 <h3>Update Profile</h3>
