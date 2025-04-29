@@ -5,8 +5,8 @@ include '../Common template/SP_common.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $providerId = $_GET['provider_id'];
-    $project_id = trim($_POST['project_id']);
+    $providerId = $_SESSION['provider_id'];
+    $project_id = trim($_GET['project_id']);
     $amount = $_POST['amount'];
     $description = trim($_POST['description']);
     $bill_date = $_POST['bill_date'];
