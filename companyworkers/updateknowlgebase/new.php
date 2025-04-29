@@ -2,13 +2,11 @@
 session_start();
 include '../../config/config.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: ../../Login/login.php");
     exit;
 }
 
-// Get user details
 $username = $_SESSION['username'];
 $query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
 $result = mysqli_query($conn, $query);
@@ -22,10 +20,8 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
-// Get the selected section from session
 $section = isset($_SESSION['knowledgebase_category']) ? $_SESSION['knowledgebase_category'] : null;
 
-// Get worker_id of logged-in user (no stmt)
 $worker_id = null;
 $result_worker = mysqli_query($conn, "SELECT worker_id FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'");
 if ($row = mysqli_fetch_assoc($result_worker)) {
@@ -35,7 +31,6 @@ if ($row = mysqli_fetch_assoc($result_worker)) {
 if (isset($_POST['submit'])) {
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $content = mysqli_real_escape_string($conn, $_POST['content']);
-    // Use $section and $worker_id
     $sql = "INSERT INTO `knowledgebase` (worker_id, section, title, content) VALUES ('$worker_id', '$section', '$title', '$content')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
@@ -56,16 +51,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../sidebar.css">
     <link rel="stylesheet" href="updateknowlgebase.css">
 </head>
-<bod>
-    <!-- Sidebar Toggle Button (for mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        ☰
-    </button>
-    
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
+<body>
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -126,9 +112,7 @@ if (isset($_POST['submit'])) {
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -156,10 +140,8 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
 
-        <!-- Form Card -->
         <div class="dashboard-grid">
             <div class="dashboard-card" style="grid-column: span 2;">
                 <form action="" method="POST" class="knowledge-form">
@@ -201,20 +183,6 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     </div>
-    
 
-    <script>
-        // Mobile sidebar toggle
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').style.display = 
-                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.remove('active');
-            this.style.display = 'none';
-        });
-    </script>
 </body>
 </html>

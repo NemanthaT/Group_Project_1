@@ -24,11 +24,6 @@ $fullName = $user['full_name'] ?? 'User';
   <link rel="stylesheet" href="../dashboard/dashboard.css">
 </head>
 <body>
-  <!-- Sidebar Toggle Button (for mobile) -->
-  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
-  <div class="overlay" id="overlay"></div>
-
-  <!-- Sidebar -->
   <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -89,9 +84,7 @@ $fullName = $user['full_name'] ?? 'User';
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -119,7 +112,6 @@ $fullName = $user['full_name'] ?? 'User';
         </div>
     </div>
 
-  <!-- Main Content -->
   <div class="main-content">
     <h3 class="section-title">Service Requests List</h3>
     <div class="table-container">
@@ -137,7 +129,6 @@ $fullName = $user['full_name'] ?? 'User';
         </thead>
         <tbody>
           <?php
-          // Replace the existing query with a JOIN to get client name from clients table
           $sql = "SELECT a.appointment_id, a.client_id, c.full_name as client_name, 
                   a.appointment_date, a.service_type, a.field_name 
                   FROM appointments a 
@@ -148,7 +139,7 @@ $fullName = $user['full_name'] ?? 'User';
             while ($row = mysqli_fetch_assoc($result)) {
               $appointment_id = $row['appointment_id'];
               $client_id = $row['client_id'];
-              $client_name = $row['client_name']; // Now coming from clients.full_name
+              $client_name = $row['client_name']; 
               $appointment_date = $row['appointment_date'];
               $service_type = $row['service_type'];
               $field_name = $row['field_name'];
@@ -172,20 +163,6 @@ $fullName = $user['full_name'] ?? 'User';
   </div>
 
   <script>
-    // Sidebar toggle for mobile
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    sidebarToggle.addEventListener('click', function() {
-      sidebar.classList.toggle('open');
-      overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
-    });
-    overlay.addEventListener('click', function() {
-      sidebar.classList.remove('open');
-      overlay.style.display = 'none';
-    });
-
-    // Date/time display
     function updateDateTime() {
       const now = new Date();
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

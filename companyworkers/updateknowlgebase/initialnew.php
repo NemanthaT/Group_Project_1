@@ -2,13 +2,11 @@
 session_start();
 include '../../config/config.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['username'])) {
     header("Location: ../../Login/login.php");
     exit;
 }
 
-// Get user details
 $username = $_SESSION['username'];
 $query = "SELECT full_name FROM companyworkers WHERE username = '" . mysqli_real_escape_string($conn, $username) . "'";
 $result = mysqli_query($conn, $query);
@@ -28,16 +26,7 @@ $selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['kno
     <link rel="stylesheet" href="../sidebar.css">
     <link rel="stylesheet" href="updateknowlgebase.css">
 </head>
-<bo>
-    <!-- Sidebar Toggle Button (for mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        ☰
-    </button>
-    
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
+<body>
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -98,9 +87,7 @@ $selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['kno
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -128,12 +115,9 @@ $selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['kno
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Welcome Banner -->
         </div>
 
-        <!-- Action Cards -->
         <div class="dashboard-grid-new">
             <div class="dashboard-card-new">
                 <h3 class="section-title">Add New Content</h3>
@@ -163,18 +147,5 @@ $selected_category = isset($_SESSION['knowledgebase_category']) ? $_SESSION['kno
     </div>
     </div>
 
-    <script>
-        // Mobile sidebar toggle
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').style.display = 
-                document.getElementById('overlay').style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.remove('active');
-            this.style.display = 'none';
-        });
-    </script>
 </body>
 </html>

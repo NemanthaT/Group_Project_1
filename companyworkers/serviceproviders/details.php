@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Check if user is logged in and is a company worker
 if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'companyworkers') {
     header("Location: ../../Login/login.php");
     exit();
@@ -9,28 +8,21 @@ if (!isset($_SESSION['userType']) || $_SESSION['userType'] !== 'companyworkers')
 
 require_once '../connect.php';
 
-// Get the provider ID from URL
-$provider_id = isset($_GET['id']) ? $_GET['id'] : 0;
+$provider_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// Get service provider details
-$query = "SELECT * FROM serviceproviders WHERE provider_id = ?";
-$stmt = $con->prepare($query);
-$stmt->bind_param("i", $provider_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$provider = $result->fetch_assoc();
+$provider_id = mysqli_real_escape_string($con, $provider_id);
+$query = "SELECT * FROM serviceproviders WHERE provider_id = '$provider_id'";
+$result = mysqli_query($con, $query);
+$provider = mysqli_fetch_assoc($result);
 
-// Get logged in user's details for the header
 $email = $_SESSION['email'];
-$query = "SELECT full_name FROM companyworkers WHERE email = ?";
-$stmt = $con->prepare($query);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$email = mysqli_real_escape_string($con, $email);
+$query = "SELECT full_name FROM companyworkers WHERE email = '$email'";
+$result = mysqli_query($con, $query);
+$user = mysqli_fetch_assoc($result);
 $fullName = $user['full_name'];
 
-$con->close();
+mysqli_close($con);
 ?>
 
 <!DOCTYPE html>
@@ -45,15 +37,6 @@ $con->close();
     <script src="dashboard.js"></script>
 </head>
 <body>
-    <!-- Sidebar Toggle Button (for mobile) -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        ☰
-    </button>
-    
-    <!-- Overlay for mobile -->
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -114,9 +97,7 @@ $con->close();
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -133,8 +114,8 @@ $con->close();
         <div class="controls card1">
         <div class="welcome-banner">
             <div class="welcome-text">
-                <h2>Welcome Back, <?php echo htmlspecialchars($fullName); ?></h2>
-                <p>Here's an overview of your dashboard at EDSA Lanka Consultancy</p>
+                <h2>Service Providers</h2>
+                <p>View our service providers</p>
             </div>
                 <div class="date-time" style="text-align:right;">
                 <div id="currentDate"></div>
@@ -143,7 +124,6 @@ $con->close();
         </div>
         </div>
     </div>
-    <!-- Header and Sidebar code remains same -->
     <div class="main-content">
         <div class="provider-details-card">
             <div class="card-header">

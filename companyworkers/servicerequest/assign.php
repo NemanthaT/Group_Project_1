@@ -34,7 +34,7 @@
 
   if (isset($_POST['submit'])) {
     $provider_id = $_POST['assign_person'];
-    $reply_message = $_POST['reply_message']; // Add this line to capture the value
+    $reply_message = $_POST['reply_message']; 
     $sql = "UPDATE `appointments` SET 
             provider_id='$provider_id', 
             reply_note='$reply_message',
@@ -52,7 +52,6 @@
     }
   }
   
-  // Handle rejection
   if (isset($_POST['reject'])) {
     $reject_reason = $_POST['reject_reason'];
     $sql = "UPDATE `appointments` SET 
@@ -82,11 +81,6 @@
   <link rel="stylesheet" href="../dashboard/dashboard.css">
 </head>
 <body>
-  <!-- Sidebar Toggle Button (for mobile) -->
-  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
-  <div class="overlay" id="overlay"></div>
-
-  <!-- Sidebar -->
   <div class="sidebar">
         <div class="logo">
             <img src="../images/logo.png" alt="EDSA Lanka Consultancy Logo">
@@ -147,9 +141,7 @@
             </ul>
         </div>
 
-    <!-- Header -->
     <div class="main-wrapper">
-            <!-- Navbar -->
             <div class="navbar">
                 <div class="profile">
                 <a href="../myaccount/acc.php">
@@ -178,7 +170,6 @@
     </div>
 
 
-  <!-- Main Content -->
   <div class="main-content">
     <div class="dashboard-content">
       <form action="" method="POST">
@@ -235,7 +226,6 @@
           <label for="message">Reply message</label>
           <textarea id="reply_message" name="reply_message" readonly>Your appointment has been approved. Our service provider will contact you soon.</textarea>
         </div>
-        <!-- Map service type to provider speciality -->
         <?php
           function mapServiceToSpeciality($service_type) {
             $mapping = [
@@ -248,7 +238,6 @@
 
           $required_speciality = mapServiceToSpeciality($service_type);
           
-          // Modified query to filter by speciality
           $providers_query = "SELECT provider_id, full_name 
                             FROM serviceproviders 
                             WHERE speciality = '$required_speciality' AND field = '$field_name'";
@@ -275,7 +264,6 @@
     </div>
   </div>
 
-  <!-- Rejection Popup Modal -->
   <div id="rejectModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeRejectPopup()">&times;</span>
