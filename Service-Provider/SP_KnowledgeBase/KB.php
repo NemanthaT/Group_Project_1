@@ -3,20 +3,17 @@ include '../Session/Session.php';
 include '../connection.php';
 include '../Common template/SP_common.php';
 
-// Check if provider is logged in
 if (!isset($_SESSION['provider_id'])) {
     echo "Unauthorized. Please log in.";
     exit;
 }
 
-$providerId = $_SESSION['provider_id']; // Logged-in provider's ID
+$providerId = $_SESSION['provider_id']; 
 
-// Handle CRUD operations
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
 
-        // Delete a case study
         if ($action === 'delete') {
             $paperId = $_POST['paper_id'];
 
@@ -25,13 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
         }
 
-        // Redirect back to avoid form resubmission issues
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
 }
 
-// Fetch all published case studies for the logged-in provider
 $stmt = $conn->prepare("SELECT * FROM researchpapers WHERE provider_id = ? ORDER BY published_at DESC");
 $stmt->bind_param("i", $providerId);
 $stmt->execute();
@@ -55,7 +50,6 @@ $stmt->close();
                 <h2>Case Studies and Knowledge Resources</h2>
                     <div class="filter-group search-group">
                     <input type="text" id="searchInput" placeholder="Search case studies..." oninput="searchCaseStudies()">
-                        <!-- <button class="search-button" id="searchButton" onclick="searchCaseStudies()">Search</button> -->
                         <button class="clear-button" id="clearButton" onclick="clearSearch()">Clear</button>
                         <a href="CreateKB.php" class="create-btn"><button class="search-button">Create Case Study</button></a>
                     </div>
@@ -77,7 +71,7 @@ $stmt->close();
                     </div>
             </div>
         </div>
-    </div>   <!--this is the </div> of container in the common file, don't remove it-->
+    </div>   
 <script src="KB.js"></script>
 <script src="../Common template/Calendar.js"></script>
 </body>

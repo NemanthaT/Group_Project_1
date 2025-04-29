@@ -3,21 +3,18 @@ include '../Session/Session.php';
 include '../connection.php';
 include '../Common template/SP_common.php';
 
-// Check if provider is logged in
 if (!isset($_SESSION['provider_id'])) {
     echo "Unauthorized. Please log in.";
     exit;
 }
 
-$providerId = $_SESSION['provider_id']; // Logged-in provider's ID
+$providerId = $_SESSION['provider_id']; 
 
-// Handle case study creation
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action']) && $_POST['action'] === 'create') {
         $title = $_POST['title'];
         $description = $_POST['description'];
 
-        // File upload handling
         $uploadDir = '../uploads/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
@@ -35,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Ensure providerId and other fields are valid
         if (!empty($providerId) && !empty($title) && !empty($description)) {
             $stmt = $conn->prepare("INSERT INTO researchpapers (provider_id, title, content, published_at) VALUES (?, ?, ?, NOW())");
             $stmt->bind_param("iss", $providerId, $title, $description);
@@ -83,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
-    </div>   <!--this is the </div> of container in the common file, don't remove it-->
+    </div>   
 <script src="KB.js"></script>
 <script src="../Common template/Calendar.js"></script>
 </body>
