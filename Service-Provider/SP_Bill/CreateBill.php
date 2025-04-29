@@ -3,7 +3,7 @@ include '../Session/Session.php';
 include '../connection.php';
 include '../Common template/SP_common.php';
 
-$project_id = $_POST['project_id'] ?? null;
+$project_id = $_GET['project_id'];
 ?>
 
 <!DOCTYPE html>
