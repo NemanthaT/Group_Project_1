@@ -3,7 +3,6 @@ include '../Session/Session.php';
 include '../connection.php';
 include '../Common template/SP_common.php';
 
-// Check if provider is logged in
 if (!isset($_SESSION['provider_id'])) {
     echo "Unauthorized. Please log in.";
     exit;
@@ -11,7 +10,6 @@ if (!isset($_SESSION['provider_id'])) {
 
 $providerId = $_SESSION['provider_id'];
 
-// Fetch chat threads for the provider with client name
 $query = "SELECT t.thread_id, t.client_id, c.full_name, t.topic, 
                  (SELECT m.message_text 
                   FROM chat_messages m 
@@ -29,6 +27,7 @@ $query = "SELECT t.thread_id, t.client_id, c.full_name, t.topic,
           ORDER BY (SELECT MAX(m.sent_at) 
                     FROM chat_messages m 
                     WHERE m.thread_id = t.thread_id) DESC";
+
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $providerId);
 $stmt->execute();
@@ -51,18 +50,12 @@ $stmt->close();
         <div class="message-section">
             <h2>Messages</h2>
             <div class="split-container">
-                <!-- Left Panel: Thread List -->
                 <div class="thread-panel">
                     <div class="message-controls">
                         <input type="text" placeholder="Client Name/Topic" id="search-input" oninput="filterMessages()">
-                        <!-- Commented out for future reference: Search button -->
-                        <!-- <button class="search-button">Search</button> -->
                         <button class="clear-button" id="clear-button">Clear</button>
-                        <!-- Commented out for future reference: Create Chat button -->
-                        <!-- <button class="create-chat-button">Create Chat</button> -->
                     </div>
 
-                    <!-- Create Chat Modal -->
                     <div id="create-chat-modal" class="modal">
                         <div class="modal-content">
                             <button class="close-create-chat-modal" title="Close">×</button>
@@ -111,15 +104,12 @@ $stmt->close();
                     </table>
                 </div>
 
-                <!-- Right Panel: Chat Window -->
                 <div class="chat-panel" id="chat-panel" style="display: none;">
                     <div class="chat-header">
                         <h3>Chat with <span id="chat-client-name"></span></h3>
                         <button class="close-chat-panel" title="Close">×</button>
                     </div>
-                    <div class="chat-window" id="chat-window">
-                        <!-- Chat messages will be displayed here -->
-                    </div>
+                    <div class="chat-window" id="chat-window"></div>
                     <div class="chat-input-section">
                         <textarea id="chat-input" placeholder="Type your message..."></textarea>
                         <button id="send-chat" class="send-chat">Send</button>
@@ -128,7 +118,8 @@ $stmt->close();
             </div>
         </div>
     </div>
-    <script src="Message.js"></script>
-    <script src="../Common template/Calendar.js"></script>
+</div>    
+<script src="Message.js"></script>
+<script src="../Common template/Calendar.js"></script>
 </body>
 </html>

@@ -28,7 +28,7 @@
 }
 
 .thread-panel {
-    flex: 1;/* The flex property in the CSS rules for .thread-panel and .chat-panel determines how the available space within their parent container(.split-container) is divided between these two panels. */
+    flex: 1;
     display: flex;
     flex-direction: column;
     transition: flex 0.3s ease;

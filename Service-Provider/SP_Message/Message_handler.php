@@ -15,13 +15,11 @@ if ($action === 'create_chat') {
     $topic = trim($_POST['topic']);
     $message = trim($_POST['message']);
 
-    // Validate inputs
     if (empty($clientId) || empty($topic) || empty($message)) {
         echo "Invalid input";
         exit;
     }
 
-    // Check if client exists
     $query = "SELECT client_id FROM clients WHERE client_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $clientId);
@@ -33,7 +31,6 @@ if ($action === 'create_chat') {
     }
     $stmt->close();
 
-    // Check if thread already exists for this client
     $query = "SELECT thread_id FROM chat_threads WHERE provider_id = ? AND client_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ii", $providerId, $clientId);
@@ -46,10 +43,8 @@ if ($action === 'create_chat') {
     }
     $stmt->close();
 
-    // Start transaction
     $conn->begin_transaction();
     try {
-        // Create new thread
         $query = "INSERT INTO chat_threads (provider_id, client_id, topic) 
                   VALUES (?, ?, ?)";
         $stmt = $conn->prepare($query);
@@ -58,7 +53,6 @@ if ($action === 'create_chat') {
         $threadId = $conn->insert_id;
         $stmt->close();
 
-        // Insert first message
         $query = "INSERT INTO chat_messages (thread_id, sender_id, sender_type, message_text, status) 
                   VALUES (?, ?, 'provider', ?, 'unseen')";
         $stmt = $conn->prepare($query);
@@ -76,13 +70,11 @@ if ($action === 'create_chat') {
     $threadId = intval($_POST['thread_id']);
     $message = trim($_POST['message']);
 
-    // Validate inputs
     if (empty($threadId) || empty($message)) {
         echo "Invalid input";
         exit;
     }
 
-    // Verify thread belongs to provider
     $query = "SELECT thread_id FROM chat_threads WHERE thread_id = ? AND provider_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ii", $threadId, $providerId);
@@ -94,7 +86,6 @@ if ($action === 'create_chat') {
     }
     $stmt->close();
 
-    // Insert message
     $query = "INSERT INTO chat_messages (thread_id, sender_id, sender_type, message_text, status) 
               VALUES (?, ?, 'provider', ?, 'unseen')";
     $stmt = $conn->prepare($query);
@@ -106,7 +97,6 @@ if ($action === 'create_chat') {
 } elseif ($action === 'fetch_messages') {
     $threadId = intval($_POST['thread_id']);
 
-    // Verify thread belongs to provider
     $query = "SELECT thread_id FROM chat_threads WHERE thread_id = ? AND provider_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ii", $threadId, $providerId);
@@ -118,7 +108,6 @@ if ($action === 'create_chat') {
     }
     $stmt->close();
 
-    // Fetch messages
     $query = "SELECT message_id, sender_id, sender_type, message_text, sent_at, status 
               FROM chat_messages 
               WHERE thread_id = ? 
@@ -130,7 +119,6 @@ if ($action === 'create_chat') {
     $messages = $result->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
 
-    // Update status to seen for client messages
     $query = "UPDATE chat_messages 
               SET status = 'seen' 
               WHERE thread_id = ? AND sender_type = 'client' AND status = 'unseen'";
@@ -139,7 +127,6 @@ if ($action === 'create_chat') {
     $stmt->execute();
     $stmt->close();
 
-    // Output messages as HTML
     foreach ($messages as $message) {
         $sender = $message['sender_type'] === 'provider' ? 'You' : 'Client';
         $class = $message['sender_type'] === 'provider' ? 'sent' : 'received';
@@ -147,7 +134,6 @@ if ($action === 'create_chat') {
              "<br><small>" . $message['sent_at'] . "</small></p>";
     }
 } elseif ($action === 'fetch_threads') {
-    // Fetch all threads with latest message, status, and client name
     $query = "SELECT t.thread_id, t.client_id, c.full_name, t.topic, 
                      (SELECT m.message_text 
                       FROM chat_messages m 
@@ -172,7 +158,6 @@ if ($action === 'create_chat') {
     $threads = $result->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
 
-    // Output threads as HTML table rows
     foreach ($threads as $thread) {
         $lastMessage = htmlspecialchars($thread['last_message'] ?? 'No messages yet');
         $status = htmlspecialchars($thread['status'] ?? 'Unseen');
